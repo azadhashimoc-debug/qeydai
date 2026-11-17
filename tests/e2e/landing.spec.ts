@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import http from "node:http";
 import { existsSync, readFileSync } from "node:fs";
 import { LEADS_FILE } from "../../playwright.config";
 
@@ -49,4 +50,36 @@ test("lead form: invalid shows error, valid is stored", async ({ page }, info) =
     .filter((l) => l.trim())
     .map((l) => JSON.parse(l));
   expect(rows.some((r) => r.phone === `+9945012345${tail}` && r.name === "Aygün")).toBe(true);
+});
+
+test("security headers are set", async ({ request }) => {
+  const h = (await request.get("/az")).headers();
+  expect(h["x-content-type-options"]).toBe("nosniff");
+  expect(h["x-frame-options"]).toBe("DENY");
+  expect(h["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+  expect(h["content-security-policy"]).toContain("frame-ancestors 'none'");
+  expect(h["x-powered-by"]).toBeUndefined();
+});
+
+test("double-slash path cannot redirect off-site", async () => {
+  // Raw request: HTTP clients would treat "//host" as a protocol-relative URL before sending.
+  const loc = await new Promise<string>((resolve, reject) => {
+    http
+      .get({ host: "localhost", port: 3100, path: "//evil.example.com" }, (res) => {
+        res.resume();
+        resolve(String(res.headers.location ?? ""));
+      })
+      .on("error", reject);
+  });
+  expect(loc.startsWith("//")).toBe(false);
+  expect(loc === "" || loc.startsWith("/") || loc.startsWith("http://localhost:3100/")).toBe(true);
+});
+
+test("lead API rejects GET and cross-origin POST", async ({ request }) => {
+  expect((await request.get("/api/lead")).status()).toBe(405);
+  const res = await request.post("/api/lead", {
+    data: { name: "Ali", phone: "050 123 45 67" },
+    headers: { origin: "https://evil.example" },
+  });
+  expect(res.status()).toBe(403);
 });

@@ -11,6 +11,8 @@ describe("validateLead", () => {
     [{ name: "", phone: "050 123 45 67" }],
     [{ name: "A", phone: "bad" }],
     [{ name: "x".repeat(101), phone: "050 123 45 67" }],
+    [{ name: "Ali" + String.fromCharCode(10) + "x", phone: "050 123 45 67" }],
+    [{ name: "Ali" + String.fromCharCode(0), phone: "050 123 45 67" }],
     [null], ["str"], [{}],
   ])("rejects %j", (input) => expect(validateLead(input)).toEqual({ ok: false }));
   it("ignores extra fields", () => {

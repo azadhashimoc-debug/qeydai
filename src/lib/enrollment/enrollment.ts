@@ -19,7 +19,7 @@ export type RegisterInput = { sessionId: string; name: string; phone: string };
 
 export type RegisterResult =
   | { ok: true; enrollment: Enrollment }
-  | { ok: false; reason: "invalid_input" | "unknown_session" | "full" | "duplicate" };
+  | { ok: false; reason: "invalid_input" | "unknown_session" | "session_started" | "full" | "duplicate" };
 
 export type InsertOutcome = "inserted" | "full" | "duplicate" | "unknown_session";
 
@@ -36,12 +36,15 @@ export interface EnrollmentStore {
   insertIfAvailable(enrollment: Enrollment): Promise<InsertOutcome>;
 }
 
-/** Normalizes Azerbaijan numbers to +994XXXXXXXXX (9 national digits). Returns null if invalid. */
+/** Mobile operator prefixes: Azercell 10/50/51, Bakcell 55/99, Nar 70/77, Naxtel 60. */
+const AZ_MOBILE = /^(10|50|51|55|60|70|77|99)\d{7}$/;
+
+/** Normalizes Azerbaijan mobile numbers to +994XXXXXXXXX. Returns null if invalid. */
 export function normalizeAzPhone(raw: string): string | null {
   let d = raw.replace(/\D/g, "");
   if (d.startsWith("994")) d = d.slice(3);
   else if (d.startsWith("0")) d = d.slice(1);
-  return /^[1-9]\d{8}$/.test(d) ? `+994${d}` : null;
+  return AZ_MOBILE.test(d) ? `+994${d}` : null;
 }
 
 export class InMemoryEnrollmentStore implements EnrollmentStore {
@@ -73,7 +76,10 @@ export class InMemoryEnrollmentStore implements EnrollmentStore {
 }
 
 export class EnrollmentService {
-  constructor(private store: EnrollmentStore) {}
+  constructor(
+    private store: EnrollmentStore,
+    private now: () => Date = () => new Date(),
+  ) {}
 
   async listSessions(tenantId: string, opts: { onlyAvailable?: boolean } = {}) {
     const all = await this.store.listSessions(tenantId);
@@ -89,6 +95,10 @@ export class EnrollmentService {
     const name = input.name?.trim();
     const phone = normalizeAzPhone(input.phone ?? "");
     if (!name || name.length > 100 || !phone) return { ok: false, reason: "invalid_input" };
+
+    const session = await this.store.getSession(tenantId, input.sessionId);
+    if (!session) return { ok: false, reason: "unknown_session" };
+    if (new Date(session.startsAt).getTime() <= this.now().getTime()) return { ok: false, reason: "session_started" };
 
     const enrollment: Enrollment = {
       id: crypto.randomUUID(),

@@ -52,3 +52,33 @@ Agents: install_plan --run => 18 ok, 0 failed (.claude/agents/)
 - Landing AZ/EN: src/app/[lang]/page.tsx, proxy.ts, e2e tests/e2e/landing.spec.ts
 - Lead API: src/app/api/lead/route.ts (+test)
 2-build: tamamlandı 2026-11-18 (F2, F4 kapsam dışı bırakıldı, log'da işaretli)
+
+## 3-test-fix (2026-11-18)
+Review: inline by assistant (not an independent agent run). 6 findings, each red test first.
+### npm audit --omit=dev
+found 0 vulnerabilities
+### npm test
+ Test Files  5 passed (5)
+      Tests  52 passed (52)
+### npm run lint exit: 1
+### npm run build exit: 0
+### npm run e2e
+  16 passed (8.8s)
+
+### Re-run after fixing 2 lint errors (prefer-const in rate-limit.test.ts); previous lint exit 1 was real
+npm test:
+ Test Files  5 passed (5)
+      Tests  52 passed (52)
+npm run lint exit: 0
+npm run build exit: 0
+npm run e2e:
+  16 passed (6.9s)
+### Findings -> test -> fix
+1. /api/lead no size/rate/content-type/origin checks -> src/app/api/lead/route.test.ts (6 cases), src/lib/rate-limit.test.ts -> route.ts, rate-limit.ts
+2. Phone accepted any 9 digits -> enrollment.test.ts (prefix cases) -> AZ_MOBILE regex
+3. Started sessions accepted -> enrollment.test.ts "already started" -> session_started
+4. No security headers -> e2e "security headers are set" -> next.config.ts headers()
+5. Control chars in name -> leads.test.ts -> hasControlChar
+6. Double-slash path: NOT a bug (Next normalizes to same-site relative); regression e2e added
+Known gaps: rate limit is per-process and X-Forwarded-For is spoofable without a trusted proxy; CSP uses 'unsafe-inline' (Next inline scripts); no CSRF token (JSON content-type + Origin check used instead).
+3-test-fix: tamamlandı 2026-11-18

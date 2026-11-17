@@ -19,8 +19,11 @@ describe("normalizeAzPhone", () => {
     ["994501234567", "+994501234567"],
     ["(050) 123-45-67", "+994501234567"],
     ["501234567", "+994501234567"],
+    ["+994 55 123 45 67", "+994551234567"],
+    ["0707654321", "+994707654321"],
+    ["+994991234567", "+994991234567"],
   ])("normalizes %s", (input, out) => expect(normalizeAzPhone(input)).toBe(out));
-  it.each(["", "abc", "12345", "+1555123456", "+99450123"])("rejects %s", (x) =>
+  it.each(["", "abc", "12345", "+1555123456", "+99450123", "+994111234567", "+994301234567"])("rejects %s", (x) =>
     expect(normalizeAzPhone(x)).toBeNull(),
   );
 });
@@ -80,6 +83,13 @@ describe("EnrollmentService", () => {
     const a = await svc.register(T1, { sessionId: "s1", name: "Ali", phone: "+994501234567" });
     const b = await svc.register(T2, { sessionId: "x1", name: "Ali", phone: "+994501234567" });
     expect(a.ok && b.ok).toBe(true);
+  });
+  it("rejects registration for a session that already started", async () => {
+    const store = new InMemoryEnrollmentStore();
+    store.addSession({ id: "p", tenantId: T1, courseId: "c", startsAt: "2026-01-01T10:00:00+04:00", capacity: 5 });
+    const svc = new EnrollmentService(store, () => new Date("2026-06-01T00:00:00Z"));
+    expect(await svc.register(T1, { sessionId: "p", ...person(1) })).toEqual({ ok: false, reason: "session_started" });
+    expect(await store.countBySession(T1, "p")).toBe(0);
   });
   it("lists only sessions with free seats when asked", async () => {
     const { svc } = setup(1);
