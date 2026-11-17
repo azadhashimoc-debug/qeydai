@@ -1,0 +1,110 @@
+{
+  "brand": "QeydAI",
+  "meta": {
+    "title": "QeydAI — Tədris mərkəzləri üçün AI satış və qeydiyyat köməkçisi",
+    "description": "WhatsApp, Instagram və Telegram müraciətlərini avtomatik cavablandırın, sınaq dərsinə qeydiyyat aparın və itkilərin qarşısını alın."
+  },
+  "nav": {
+    "features": "İmkanlar",
+    "how": "Necə işləyir",
+    "pricing": "Qiymət",
+    "cta": "Demo istə"
+  },
+  "hero": {
+    "eyebrow": "Azərbaycan dilində işləyən AI",
+    "title": "Hər müraciət qeydiyyata çevrilsin",
+    "subtitle": "Gecə yazan valideyn də, iş saatında yazan tələbə də dərhal cavab alır. QeydAI sınaq dərsinə yer ayırır, siz isə yalnız hazır müştərilərlə danışırsınız.",
+    "primary": "Pulsuz demo istə",
+    "secondary": "Necə işləyir?"
+  },
+  "proof": {
+    "one": "Dərhal cavab",
+    "two": "Boş yer yoxlanır",
+    "three": "Təkrar qeydiyyat bloklanır"
+  },
+  "features": {
+    "title": "Satışı yavaşladan hər addımı götürür",
+    "items": {
+      "ai": {
+        "title": "Təbii Azərbaycan dili",
+        "body": "Yazı səhvləri və gündəlik danışıq tərzini başa düşür. Yalnız sizin təsdiqlədiyiniz qiymət və cədvəli deyir."
+      },
+      "inbox": {
+        "title": "Vahid mesajlaşma mərkəzi",
+        "body": "Telegram ilə başlayın, sonra WhatsApp və Instagram eyni paneldə birləşsin."
+      },
+      "enroll": {
+        "title": "Ağıllı qeydiyyat",
+        "body": "Yalnız mövcud sınaq dərslərini göstərir. Dolu qrupa və təkrar müraciətə icazə vermir."
+      },
+      "crm": {
+        "title": "Sadə CRM və hesabat",
+        "body": "Neçə müraciət gəldi, neçəsi yazıldı, neçəsi ödəniş etdi — bir baxışda."
+      },
+      "human": {
+        "title": "İnsana ötürmə",
+        "body": "AI cavabdan əmin olmayanda sualı menecerə göndərir. Heç vaxt uydurmur."
+      },
+      "tenant": {
+        "title": "Hər mərkəzin öz məlumatı",
+        "body": "Kurslar, müştərilər və hesabatlar mərkəzlər arasında tam ayrılıb."
+      }
+    }
+  },
+  "how": {
+    "title": "Üç addımda işə düşür",
+    "steps": {
+      "one": {
+        "title": "Kurslarınızı əlavə edin",
+        "body": "Qiymət, qrafik və sınaq dərsi tarixlərini bir dəfə daxil edirsiniz."
+      },
+      "two": {
+        "title": "Kanalı qoşun",
+        "body": "Telegram botu dərhal, WhatsApp və Instagram isə rəsmi təsdiqdən sonra."
+      },
+      "three": {
+        "title": "Qeydiyyatları izləyin",
+        "body": "Yeni qeydiyyat olan kimi menecerə bildiriş gəlir."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Sadə və açıq qiymət",
+    "note": "İlkin təklifdir, pilot mərkəzlərlə birlikdə dəqiqləşdirilir.",
+    "setup": {
+      "label": "Quraşdırma",
+      "value": "350 AZN",
+      "body": "Bir dəfəlik: kurslar, cədvəl və kanal qoşulması."
+    },
+    "monthly": {
+      "label": "Aylıq xidmət",
+      "value": "100 AZN",
+      "body": "Dəstək, yeniləmələr və hesabatlar."
+    },
+    "cta": "Pilot üçün yazın"
+  },
+  "contact": {
+    "title": "Mərkəzinizdə sınaqdan keçirək",
+    "subtitle": "Telefon nömrənizi yazın, sizinlə 24 saat ərzində əlaqə saxlayaq.",
+    "name": "Adınız",
+    "phone": "Telefon (məs. 050 123 45 67)",
+    "submit": "Demo istə",
+    "privacy": "Məlumatlarınız yalnız sizinlə əlaqə üçün istifadə olunur.",
+    "ok": "Təşəkkürlər! Tezliklə əlaqə saxlayacağıq.",
+    "error": "Göndərmək alınmadı. Nömrəni yoxlayıb yenidən cəhd edin."
+  },
+  "footer": {
+    "tagline": "Azərbaycan tədris mərkəzləri üçün AI satış köməkçisi.",
+    "lang": "Dil"
+  },
+  "demo": {
+    "title": "Canlı söhbət nümunəsi",
+    "u1": "Salam, ielts kursu var? qiymeti nedi",
+    "b1": "Salam! IELTS kursumuz var. Aylıq qiymət 180 AZN, həftədə 3 dərs. Sınaq dərsinə yazılmaq istəyirsiniz?",
+    "u2": "bəli, şənbə olar?",
+    "b2": "Şənbə günü 11:00 sınaq dərsində 2 boş yer qalıb. Adınızı və nömrənizi yazın.",
+    "card": "Qeydiyyat təsdiqləndi",
+    "card2": "Şənbə · 11:00 · IELTS",
+    "note": "Nümunə məlumatdır"
+  }
+}

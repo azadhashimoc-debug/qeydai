@@ -17,3 +17,37 @@
 - 2026-11-18T03:06:27 `npx -y claude-code-templates@latest --agent development-team/ui-designer --yes` → exit 0
 - 2026-11-18T03:06:34 `npx -y claude-code-templates@latest --agent business-marketing/seo-specialist --yes` → exit 0
 - 2026-11-18T03:06:42 `npx -y claude-code-templates@latest --agent business-marketing/content-marketer --yes` → exit 0
+
+## 2-build (2026-11-18)
+Agents: install_plan --run => 18 ok, 0 failed (.claude/agents/)
+### npm test
+ Test Files  4 passed (4)
+      Tests  34 passed (34)
+### npm run lint (exit 0)
+### npm run build
+┌ ○ /_not-found
+├   /[lang]
+│ ├ ◐ /[lang]
+│ ├ ○ /az
+│ └ ○ /en
+└ ƒ /api/lead
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
+
+### npm run e2e
+  ✓   9 [mobile] › tests\e2e\landing.spec.ts:34:1 › lead form: invalid shows error, valid is stored (2.2s)
+
+  10 passed (10.3s)
+### Features -> evidence
+- F1 AI assistant copy/AZ+EN demo: src/app/[lang]/dictionaries/*.json (prompt/Gemini workflow: D:/tedris-ai, stage deferred)
+- F2 unified inbox: NOT built (Telegram via n8n at D:/tedris-ai; panel is a later phase)
+- F3 enrollment: src/lib/enrollment/enrollment.ts (+ .test.ts, 20 tests: capacity, duplicate, race, tenant isolation)
+- F4 CRM/analytics: NOT built (later phase)
+- F5 tenant isolation: tenant-scoped store contract in enrollment.ts, tested
+- Landing AZ/EN: src/app/[lang]/page.tsx, proxy.ts, e2e tests/e2e/landing.spec.ts
+- Lead API: src/app/api/lead/route.ts (+test)

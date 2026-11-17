@@ -1,0 +1,110 @@
+{
+  "brand": "QeydAI",
+  "meta": {
+    "title": "QeydAI — AI sales and enrollment assistant for learning centers",
+    "description": "Answer WhatsApp, Instagram and Telegram inquiries automatically, book trial lessons and stop losing leads."
+  },
+  "nav": {
+    "features": "Features",
+    "how": "How it works",
+    "pricing": "Pricing",
+    "cta": "Request a demo"
+  },
+  "hero": {
+    "eyebrow": "AI that speaks natural Azerbaijani",
+    "title": "Turn every inquiry into an enrollment",
+    "subtitle": "The parent writing at midnight and the student writing at noon both get an instant reply. QeydAI books the trial lesson, and your team talks only to ready buyers.",
+    "primary": "Request a free demo",
+    "secondary": "See how it works"
+  },
+  "proof": {
+    "one": "Instant replies",
+    "two": "Seats are verified",
+    "three": "Duplicates are blocked"
+  },
+  "features": {
+    "title": "Removes every step that slows a sale",
+    "items": {
+      "ai": {
+        "title": "Natural Azerbaijani",
+        "body": "Understands typos and everyday speech. States only the prices and schedules you have approved."
+      },
+      "inbox": {
+        "title": "One unified inbox",
+        "body": "Start with Telegram, then bring WhatsApp and Instagram into the same panel."
+      },
+      "enroll": {
+        "title": "Smart enrollment",
+        "body": "Offers only real trial lessons. Refuses full groups and repeat sign-ups."
+      },
+      "crm": {
+        "title": "Simple CRM and reports",
+        "body": "How many inquiries came in, how many enrolled, how many paid, at a glance."
+      },
+      "human": {
+        "title": "Human handoff",
+        "body": "When the AI is unsure, it passes the question to a manager. It never makes things up."
+      },
+      "tenant": {
+        "title": "Each center keeps its own data",
+        "body": "Courses, customers and reports are fully separated between centers."
+      }
+    }
+  },
+  "how": {
+    "title": "Live in three steps",
+    "steps": {
+      "one": {
+        "title": "Add your courses",
+        "body": "Enter prices, schedules and trial lesson dates once."
+      },
+      "two": {
+        "title": "Connect a channel",
+        "body": "The Telegram bot works right away; WhatsApp and Instagram follow after official approval."
+      },
+      "three": {
+        "title": "Watch enrollments arrive",
+        "body": "Managers are notified the moment someone signs up."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Simple, open pricing",
+    "note": "This is an initial offer, finalized together with pilot centers.",
+    "setup": {
+      "label": "Setup",
+      "value": "350 AZN",
+      "body": "One time: courses, schedule and channel connection."
+    },
+    "monthly": {
+      "label": "Monthly service",
+      "value": "100 AZN",
+      "body": "Support, updates and reports."
+    },
+    "cta": "Apply for the pilot"
+  },
+  "contact": {
+    "title": "Let us test it at your center",
+    "subtitle": "Leave your phone number and we will contact you within 24 hours.",
+    "name": "Your name",
+    "phone": "Phone (e.g. 050 123 45 67)",
+    "submit": "Request a demo",
+    "privacy": "Your details are used only to contact you.",
+    "ok": "Thank you! We will be in touch soon.",
+    "error": "Could not send. Check the number and try again."
+  },
+  "footer": {
+    "tagline": "AI sales assistant for Azerbaijani learning centers.",
+    "lang": "Language"
+  },
+  "demo": {
+    "title": "Live chat example",
+    "u1": "Hi, do you have an IELTS course? how much",
+    "b1": "Hello! Yes. IELTS is 180 AZN per month, 3 lessons a week. Would you like to book a trial lesson?",
+    "u2": "yes, is saturday ok?",
+    "b2": "The Saturday 11:00 trial lesson has 2 seats left. Please send your name and phone number.",
+    "card": "Enrollment confirmed",
+    "card2": "Saturday · 11:00 · IELTS",
+    "note": "Sample data"
+  }
+}
