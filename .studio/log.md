@@ -51,3 +51,4 @@ Agents: install_plan --run => 18 ok, 0 failed (.claude/agents/)
 - F5 tenant isolation: tenant-scoped store contract in enrollment.ts, tested
 - Landing AZ/EN: src/app/[lang]/page.tsx, proxy.ts, e2e tests/e2e/landing.spec.ts
 - Lead API: src/app/api/lead/route.ts (+test)
+2-build: tamamlandı 2026-11-18 (F2, F4 kapsam dışı bırakıldı, log'da işaretli)
