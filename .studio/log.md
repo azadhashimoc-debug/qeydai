@@ -82,3 +82,4 @@ npm run e2e:
 6. Double-slash path: NOT a bug (Next normalizes to same-site relative); regression e2e added
 Known gaps: rate limit is per-process and X-Forwarded-For is spoofable without a trusted proxy; CSP uses 'unsafe-inline' (Next inline scripts); no CSRF token (JSON content-type + Origin check used instead).
 3-test-fix: tamamlandı 2026-11-18
+4-content: VOICE.md taslak yazıldı, kullanıcı onayı bekleniyor (2026-11-18)
