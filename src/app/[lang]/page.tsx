@@ -132,7 +132,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p className="mt-3 text-white/70">{d.contact.subtitle}</p>
             </div>
             <div className="rounded-2xl bg-bg p-6 text-ink">
-              <LeadForm labels={d.contact} okText={d.contact.ok} errText={d.contact.error} />
+              <LeadForm labels={d.contact} okText={d.contact.ok} errText={d.contact.error} rateLimitedText={d.contact.rate_limited} />
             </div>
           </div>
         </section>

@@ -83,3 +83,20 @@ test("lead API rejects GET and cross-origin POST", async ({ request }) => {
   });
   expect(res.status()).toBe(403);
 });
+
+test("non-root paths get locale-prefixed too (proxy matcher)", async ({ request }) => {
+  const loc = async (p: string, lang: string) =>
+    (await request.get(p, { headers: { "accept-language": lang }, maxRedirects: 0 })).headers()["location"];
+  expect(await loc("/pricing", "en")).toMatch(/\/en\/pricing$/);
+  expect(await loc("/apiary", "az")).toMatch(/\/az\/apiary$/);
+});
+
+test("HSTS header is set", async ({ request }) => {
+  const h = (await request.get("/az")).headers();
+  expect(h["strict-transport-security"]).toContain("max-age=63072000");
+});
+
+test("lead API still excluded from locale redirect", async ({ request }) => {
+  const res = await request.get("/api/lead", { maxRedirects: 0 });
+  expect(res.status()).toBe(405);
+});

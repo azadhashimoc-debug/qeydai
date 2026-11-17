@@ -23,7 +23,7 @@
     "three": "Təkrar qeydiyyat bloklanır"
   },
   "features": {
-    "title": "Satışı yavaşladan hər addımı götürür",
+    "title": "Satışı yavaşladan hər addımı aradan qaldırır",
     "items": {
       "ai": {
         "title": "Təbii Azərbaycan dili",
@@ -39,7 +39,7 @@
       },
       "crm": {
         "title": "Sadə CRM və hesabat",
-        "body": "Neçə müraciət gəldi, neçəsi yazıldı, neçəsi ödəniş etdi — bir baxışda."
+        "body": "Neçə müraciət gəldi, neçəsi yazıldı, neçəsi ödəniş edib — bir baxışda."
       },
       "human": {
         "title": "İnsana ötürmə",
@@ -80,8 +80,7 @@
       "label": "Aylıq xidmət",
       "value": "100 AZN",
       "body": "Dəstək, yeniləmələr və hesabatlar."
-    },
-    "cta": "Pilot üçün yazın"
+    }
   },
   "contact": {
     "title": "Mərkəzinizdə sınaqdan keçirək",
@@ -91,7 +90,8 @@
     "submit": "Demo istə",
     "privacy": "Məlumatlarınız yalnız sizinlə əlaqə üçün istifadə olunur.",
     "ok": "Təşəkkürlər! Tezliklə əlaqə saxlayacağıq.",
-    "error": "Göndərmək alınmadı. Nömrəni yoxlayıb yenidən cəhd edin."
+    "error": "Göndərmək alınmadı. Nömrəni yoxlayıb yenidən cəhd edin.",
+    "rate_limited": "Çox sayda cəhd olub. Bir neçə dəqiqə sonra yenidən yoxlayın."
   },
   "footer": {
     "tagline": "Azərbaycan tədris mərkəzləri üçün AI satış köməkçisi.",

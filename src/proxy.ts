@@ -20,5 +20,6 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\..*).*)"],
+  // Skip API routes, Next internals and files with an extension. "\\." is a literal dot in the regex.
+  matcher: ["/((?!api/|_next/|.*\\..*).*)"],
 };

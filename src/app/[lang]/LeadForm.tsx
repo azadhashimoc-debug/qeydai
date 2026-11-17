@@ -3,8 +3,8 @@ import { useState } from "react";
 
 type Labels = { name: string; phone: string; submit: string; privacy: string };
 
-export function LeadForm({ labels, okText, errText }: { labels: Labels; okText: string; errText: string }) {
-  const [state, setState] = useState<"idle" | "sending" | "ok" | "error">("idle");
+export function LeadForm({ labels, okText, errText, rateLimitedText }: { labels: Labels; okText: string; errText: string; rateLimitedText: string }) {
+  const [state, setState] = useState<"idle" | "sending" | "ok" | "error" | "limited">("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,7 +16,7 @@ export function LeadForm({ labels, okText, errText }: { labels: Labels; okText: 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ name: fd.get("name"), phone: fd.get("phone") }),
       });
-      setState(res.ok ? "ok" : "error");
+      setState(res.ok ? "ok" : res.status === 429 ? "limited" : "error");
     } catch {
       setState("error");
     }
@@ -35,7 +35,7 @@ export function LeadForm({ labels, okText, errText }: { labels: Labels; okText: 
         {labels.submit}
       </button>
       <p role="status" className="min-h-5 text-sm text-muted">
-        {state === "ok" ? okText : state === "error" ? errText : labels.privacy}
+        {state === "ok" ? okText : state === "limited" ? rateLimitedText : state === "error" ? errText : labels.privacy}
       </p>
     </form>
   );

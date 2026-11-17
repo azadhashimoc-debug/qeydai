@@ -6,8 +6,8 @@ const T2 = "center_002";
 
 function setup(capacity = 2) {
   const store = new InMemoryEnrollmentStore();
-  store.addSession({ id: "s1", tenantId: T1, courseId: "ielts", startsAt: "2026-12-01T10:00:00+04:00", capacity });
-  store.addSession({ id: "x1", tenantId: T2, courseId: "ielts", startsAt: "2026-12-01T10:00:00+04:00", capacity: 5 });
+  store.addSession({ id: "s1", tenantId: T1, courseId: "ielts", startsAt: "2099-12-01T10:00:00+04:00", capacity });
+  store.addSession({ id: "x1", tenantId: T2, courseId: "ielts", startsAt: "2099-12-01T10:00:00+04:00", capacity: 5 });
   return { store, svc: new EnrollmentService(store) };
 }
 const person = (n: number) => ({ name: `Test ${n}`, phone: `+99450123456${n}` });

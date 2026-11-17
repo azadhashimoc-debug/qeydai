@@ -83,3 +83,36 @@ npm run e2e:
 Known gaps: rate limit is per-process and X-Forwarded-For is spoofable without a trusted proxy; CSP uses 'unsafe-inline' (Next inline scripts); no CSRF token (JSON content-type + Origin check used instead).
 3-test-fix: tamamlandı 2026-11-18
 4-content: VOICE.md taslak yazıldı, kullanıcı onayı bekleniyor (2026-11-18)
+
+## 3-test-fix, round 2: independent review (code-reviewer agent, 2026-11-18)
+Agent read-only report, 17 findings. Verified before acting; proxy matcher claim reproduced with curl (/pricing not redirected).
+### Fixed (red test first -> fix)
+- startsAt NaN/no-offset failed open -> enrollment.review.test.ts -> parseInstant (explicit Z/+hh:mm required), fail closed
+- listSessions(onlyAvailable) offered started sessions -> same file -> filters start time
+- normalizeAzPhone mangled 994xxxxxx local, rejected 00994 -> same file -> length-based normalization
+- createdAt ignored injected clock -> same file
+- tenant:id key collision in in-memory store -> same file -> JSON.stringify([tenant,id]) key
+- register lacked control-char/typeof name check -> shared validateName (src/lib/validation.ts)
+- body limit applied after buffering -> route.review.test.ts -> Content-Length early 413 (+ re-check for chunked)
+- storage errors threw -> structured 500 server_error
+- XFF spoofing / shared "unknown" bucket -> x-real-ip, else last XFF hop; global cap 200/10min
+- limiter evicted live counters + O(n) sweep amplification -> rate-limit.test.ts -> fail closed when full, sweep once per window
+- proxy matcher backslash lost (non-root paths never redirected) -> e2e "proxy matcher"
+- HSTS missing -> e2e "HSTS header"
+- 429 showed "check the number" -> contact.rate_limited string (AZ+EN)
+- AZ copy: "götürür"->"aradan qaldırır", "ödəniş etdi"->"ödəniş edib"; removed unused pricing.cta
+- test time bomb: fixed 2026-12-01 session dates -> 2099
+### Deferred (not fixed)
+- CSP 'unsafe-inline' (needs nonce via proxy; Next inline scripts) - before production
+- sec-fetch-site check (LOW, optional)
+- N+1 countBySession in listSessions -> add batch method when Postgres store is written
+- Postgres atomic insertIfAvailable contract is documented but untested (no DB yet)
+### Evidence
+npm test:
+ Test Files  7 passed (7)
+      Tests  70 passed (70)
+npm run lint exit: 0
+npm run build exit: 0
+npm run e2e:
+  22 passed (11.1s)
+found 0 vulnerabilities

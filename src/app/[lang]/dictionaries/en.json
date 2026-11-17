@@ -80,8 +80,7 @@
       "label": "Monthly service",
       "value": "100 AZN",
       "body": "Support, updates and reports."
-    },
-    "cta": "Apply for the pilot"
+    }
   },
   "contact": {
     "title": "Let us test it at your center",
@@ -91,7 +90,8 @@
     "submit": "Request a demo",
     "privacy": "Your details are used only to contact you.",
     "ok": "Thank you! We will be in touch soon.",
-    "error": "Could not send. Check the number and try again."
+    "error": "Could not send. Check the number and try again.",
+    "rate_limited": "Too many attempts. Please try again in a few minutes."
   },
   "footer": {
     "tagline": "AI sales assistant for Azerbaijani learning centers.",
