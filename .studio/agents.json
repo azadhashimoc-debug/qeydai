@@ -1,0 +1,22 @@
+{
+  "components": [
+    "agents/business-marketing/customer-support",
+    "agents/ai-specialists/prompt-engineer",
+    "agents/data-ai/ai-engineer",
+    "agents/business-marketing/sales-automator",
+    "agents/development-team/fullstack-developer",
+    "agents/web-tools/expert-nextjs-developer",
+    "agents/programming-languages/typescript-pro",
+    "agents/development-tools/playwright-tester",
+    "agents/performance-testing/test-automator",
+    "agents/development-tools/qa-expert",
+    "agents/security/security-auditor",
+    "agents/security/se-security-reviewer",
+    "agents/security/api-security-audit",
+    "agents/database/database-architect",
+    "agents/development-team/backend-architect",
+    "agents/development-team/ui-designer",
+    "agents/business-marketing/seo-specialist",
+    "agents/business-marketing/content-marketer"
+  ]
+}

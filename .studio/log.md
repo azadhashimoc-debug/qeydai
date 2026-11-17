@@ -1,0 +1,19 @@
+1-brief: onaylandı 2026-11-18
+- 2026-11-18T03:04:42 `npx -y claude-code-templates@latest --agent business-marketing/customer-support --yes` → exit 0
+- 2026-11-18T03:04:49 `npx -y claude-code-templates@latest --agent ai-specialists/prompt-engineer --yes` → exit 0
+- 2026-11-18T03:04:55 `npx -y claude-code-templates@latest --agent data-ai/ai-engineer --yes` → exit 0
+- 2026-11-18T03:05:02 `npx -y claude-code-templates@latest --agent business-marketing/sales-automator --yes` → exit 0
+- 2026-11-18T03:05:09 `npx -y claude-code-templates@latest --agent development-team/fullstack-developer --yes` → exit 0
+- 2026-11-18T03:05:17 `npx -y claude-code-templates@latest --agent web-tools/expert-nextjs-developer --yes` → exit 0
+- 2026-11-18T03:05:23 `npx -y claude-code-templates@latest --agent programming-languages/typescript-pro --yes` → exit 0
+- 2026-11-18T03:05:30 `npx -y claude-code-templates@latest --agent development-tools/playwright-tester --yes` → exit 0
+- 2026-11-18T03:05:38 `npx -y claude-code-templates@latest --agent performance-testing/test-automator --yes` → exit 0
+- 2026-11-18T03:05:47 `npx -y claude-code-templates@latest --agent development-tools/qa-expert --yes` → exit 0
+- 2026-11-18T03:05:53 `npx -y claude-code-templates@latest --agent security/security-auditor --yes` → exit 0
+- 2026-11-18T03:05:59 `npx -y claude-code-templates@latest --agent security/se-security-reviewer --yes` → exit 0
+- 2026-11-18T03:06:05 `npx -y claude-code-templates@latest --agent security/api-security-audit --yes` → exit 0
+- 2026-11-18T03:06:11 `npx -y claude-code-templates@latest --agent database/database-architect --yes` → exit 0
+- 2026-11-18T03:06:17 `npx -y claude-code-templates@latest --agent development-team/backend-architect --yes` → exit 0
+- 2026-11-18T03:06:27 `npx -y claude-code-templates@latest --agent development-team/ui-designer --yes` → exit 0
+- 2026-11-18T03:06:34 `npx -y claude-code-templates@latest --agent business-marketing/seo-specialist --yes` → exit 0
+- 2026-11-18T03:06:42 `npx -y claude-code-templates@latest --agent business-marketing/content-marketer --yes` → exit 0
