@@ -1,12 +1,18 @@
 import { describe, expect, it } from "vitest";
+import { hasLocale } from "./dictionaries";
 import az from "./dictionaries/az.json";
 import en from "./dictionaries/en.json";
+import subpagesAz from "./dictionaries/subpages-az.json";
+import subpagesEn from "./dictionaries/subpages-en.json";
 
 function flat(o: unknown, p = ""): Record<string, string> {
   if (typeof o === "string") return { [p]: o };
+  if (Array.isArray(o)) {
+    return o.reduce<Record<string, string>>((a, v, idx) => ({ ...a, ...flat(v, `${p}.${idx}`) }), {});
+  }
   return Object.entries(o as object).reduce((a, [k, v]) => ({ ...a, ...flat(v, p ? `${p}.${k}` : k) }), {});
 }
-const A = flat(az), E = flat(en);
+const A = flat({ ...az, subpages: subpagesAz }), E = flat({ ...en, subpages: subpagesEn });
 // Sample messages written by the customer stay in Azerbaijani on both pages on purpose.
 const CUSTOMER_MESSAGES = ["features.sample.u", "board.chat.u2"];
 
@@ -23,4 +29,10 @@ describe("dictionaries", () => {
     expect(same).toEqual([]);
   });
   it("AZ uses Azerbaijani letters", () => expect(Object.values(A).join(" ")).toMatch(/[əğıöüçş]/i));
+  it("hasLocale rejects prototype property names", () => {
+    expect(hasLocale("az")).toBe(true);
+    expect(hasLocale("en")).toBe(true);
+    expect(hasLocale("toString")).toBe(false);
+    expect(hasLocale("constructor")).toBe(false);
+  });
 });

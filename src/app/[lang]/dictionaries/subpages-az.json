@@ -1,0 +1,581 @@
+{
+  "navGroups": {
+    "productLabel": "Məhsul",
+    "channelsLabel": "Kanallar və Alətlər",
+    "resourcesLabel": "Resurslar",
+    "login": "Daxil ol",
+    "register": "Qeydiyyat",
+    "product": {
+      "overviewTitle": "Məhsul İcmalı",
+      "overviewDesc": "Vahid satış və mesajlaşma platforması",
+      "pipelineTitle": "Satış Qıfı",
+      "pipelineDesc": "Kanban lövhəsi və mərhələ nəzarəti",
+      "inboxTitle": "Vahid Gələn Qutusu",
+      "inboxDesc": "Çoxkanallı mesajlar və komanda bölgüsü",
+      "aiTitle": "AI Satış Köməkçisi",
+      "aiDesc": "24/7 təbii cavablar və avtomatlaşdırma",
+      "bookingTitle": "Sınaq və Rezervasiya",
+      "bookingDesc": "Tutum kilidi və təkrar qeydiyyat qorunması"
+    },
+    "channels": {
+      "hubTitle": "Bütün Kanallar",
+      "hubDesc": "Bütün mesajlaşma mənbələri tək paneldə",
+      "whatsappTitle": "WhatsApp Biznes",
+      "whatsappDesc": "Rəsmi Cloud API və şablon mesajlar",
+      "instagramTitle": "Instagram DM",
+      "instagramDesc": "Birbaşa mesajlar və hekayə cavabları",
+      "telegramTitle": "Telegram Bot",
+      "telegramDesc": "Dərhal aktivləşən müraciət botu",
+      "webhookTitle": "Webhook və n8n API",
+      "webhookDesc": "REST API və iş axını inteqrasiyası",
+      "toolsTitle": "Pulsuz WhatsApp Alətləri",
+      "toolsDesc": "Link, QR kod və Meta xərc kalkulyatoru"
+    },
+    "resources": {
+      "pricingTitle": "Qiymətləndirmə",
+      "pricingDesc": "Şəffaf paketlər və müqayisə matrisi",
+      "demoTitle": "Fərdi Demo",
+      "demoDesc": "15 dəqiqəlik canlı sistem nümayişi",
+      "contactTitle": "Əlaqə",
+      "contactDesc": "Dəstək və komandamızla birbaşa əlaqə",
+      "fitnessTitle": "Tədris və Fitnes Ssenarisi",
+      "fitnessDesc": "Xidmət sahələri üçün nümunə iş axını",
+      "blogTitle": "Bələdçi və Məqalələr",
+      "blogDesc": "Mesajlaşma və satış avtomatlaşdırması"
+    }
+  },
+  "footer": {
+    "productCol": {
+      "title": "Məhsul",
+      "overview": "Ümumi Baxış",
+      "pipeline": "Satış Qıfı",
+      "inbox": "Gələn Qutusu",
+      "ai": "AI Köməkçi",
+      "booking": "Rezervasiya"
+    },
+    "channelsCol": {
+      "title": "Kanallar və Alətlər",
+      "whatsapp": "WhatsApp Biznes",
+      "instagram": "Instagram DM",
+      "telegram": "Telegram Bot",
+      "webhook": "Webhook və n8n",
+      "tools": "Pulsuz WA Alətləri"
+    },
+    "resourcesCol": {
+      "title": "Resurslar",
+      "pricing": "Qiymətləndirmə",
+      "fitness": "Fitnes Ssenarisi",
+      "blog": "Bələdçilər",
+      "demo": "Demo İstəyi",
+      "contact": "Əlaqə"
+    },
+    "legalCol": {
+      "title": "Qaydalar və Giriş",
+      "terms": "İstifadə Şərtləri",
+      "privacy": "Məxfilik Siyasəti",
+      "login": "İşçi Paneli Girişi",
+      "register": "Qeydiyyat Müraciəti"
+    }
+  },
+  "common": {
+    "tryFree": "14 Gün Ödənişsiz Sına",
+    "bookDemo": "Demo İstə",
+    "openPanel": "İdarəetmə Paneli",
+    "readGuide": "Bələdçini Oxu",
+    "backToChannels": "Bütün Kanallara Qayıt",
+    "backToBlog": "Bütün Məqalələrə Qayıt",
+    "backHome": "Ana Səhifəyə Qayıt",
+    "sampleScenarioBadge": "Nümunə Ssenari",
+    "officialMetaNote": "Meta rəsmi tariflərinə əsaslanan təxmini hesablama",
+    "contactNote": "Məlumatlarınız yalnız sizinlə əlaqə üçün istifadə olunur",
+    "bottomCta": {
+      "title": "Satış xaosunu bu gün aradan qaldırın",
+      "subtitle": "Bütün müştəri mesajlarını tək ekranda toplayın, dərhal cavab verin və sınaq dərslərini avtomatlaşdırın.",
+      "primary": "Pulsuz Demo İstə",
+      "secondary": "Panelə Giriş"
+    }
+  },
+  "product": {
+    "hero": {
+      "badge": "Vahid Satış Platforması",
+      "title": "İlk mesajdan təsdiqlənmiş ödənişə qədər vahid sistem",
+      "subtitle": "panelim.az bütün mesajlaşma kanallarını, daxili satış qıfını, sınaq dərsi qeydiyyatlarını və AI cavablarını tək paneldə birləşdirir.",
+      "ctaPrimary": "Demoya Başla",
+      "ctaSecondary": "Kanalları Gör"
+    },
+    "modules": {
+      "title": "Komandanızın gündəlik işini asanlaşdıran 5 əsas modul",
+      "pipeline": {
+        "title": "Satış Qıfı (Pipeline)",
+        "desc": "Hər müraciət üçün fərdi kart yaradılır, mərhələlər üzrə irəliləyir və komanda yoldaşlarına təhkim edilir."
+      },
+      "inbox": {
+        "title": "Vahid Gələn Qutusu",
+        "desc": "WhatsApp, Instagram və Telegram mesajları tək interfeysdə toplanır, operatorlar təkrar cavab vermir."
+      },
+      "ai": {
+        "title": "Azərbaycan dilli AI Köməkçi",
+        "desc": "Qrammatik səhvləri və dialektləri anlayır, yalnız təsdiqlənmiş cədvəli bölüşür və mürəkkəb sualları insana ötürür."
+      },
+      "booking": {
+        "title": "Rezervasiya və Sınaq Təqvimi",
+        "desc": "Real tutum yoxlanılır, dolmuş saatlar avtomatik bağlanır və eyni nömrə ilə təkrar qeydiyyat bloklanır."
+      },
+      "analytics": {
+        "title": "Şəffaf Analitika",
+        "desc": "Hansı reklam və kanalın real gəlir gətirdiyini, cavab sürətini və dönüşüm faizlərini anlıq izləyin."
+      }
+    }
+  },
+  "pipeline": {
+    "hero": {
+      "badge": "Vizual Kanban Lövhəsi",
+      "title": "Sahibsiz qalan və unudulan müraciətlərə son qoyun",
+      "subtitle": "Gələn hər bir potensial müştəri avtomatik kart kimi lövhəyə düşür. Mərhələləri dəyişin, qeydlər yazın və tapşırıq təyin edin.",
+      "ctaPrimary": "Lövhəni Sına",
+      "ctaSecondary": "Gələn Qutusuna Keç"
+    },
+    "features": {
+      "stageControl": {
+        "title": "Mərhələ Nəzarəti",
+        "desc": "Yeni müraciət, danışıq gedir, sınağa yazılıb, ödəniş gözlənilir və qazanıldı mərhələləri ilə tam şəffaflıq."
+      },
+      "leadClaim": {
+        "title": "Tək Kliklə Sahiblənmə",
+        "desc": "Boşda qalan müştəri sorğusunu istənilən menecer bir kliklə öz adına götürə və davam etdirə bilər."
+      },
+      "notesAndTasks": {
+        "title": "Daxili Qeydlər və Tapşırıqlar",
+        "desc": "Müştəri kartı daxilində zəng tarixi, xüsusi tələblər və növbəti əlaqə saatı üçün xatırlatmalar qurun."
+      },
+      "antiDuplicate": {
+        "title": "Təkrar Sorğu Təmizlənməsi",
+        "desc": "Eyni telefon nömrəsindən fərqli vaxtlarda gələn müraciətlər eyni müştəri kartında birləşdirilir."
+      }
+    }
+  },
+  "inbox": {
+    "hero": {
+      "badge": "Vahid Mesajlaşma Mərkəzi",
+      "title": "Bütün müştəri söhbətləri tək bir pəncərədə",
+      "subtitle": "WhatsApp, Instagram DM və Telegram mesajlarını fərqli telefonlarda axtarmağa ehtiyac yoxdur. Komandanız tək ekranda cavab verir.",
+      "ctaPrimary": "Qutunu Aç",
+      "ctaSecondary": "AI İnteqrasiyası"
+    },
+    "features": {
+      "multiChannel": {
+        "title": "Çoxkanallı Vahid Qovluq",
+        "desc": "Kanal nişanları ilə fərqlənən təmiz interfeys. Müştərinin hansı platformadan yazdığını dərhal görün."
+      },
+      "quickTemplates": {
+        "title": "Hazır Cavab Şablonları",
+        "desc": "Tez-tez verilən ünvan, bank hesabı və qeydiyyat qaydalarını tək toxunuşla göndərin."
+      },
+      "teamHandoff": {
+        "title": "Komandaya Yönləndirmə",
+        "desc": "Xüsusi texniki sualları dərhal mütəxəssisə və ya filial rəhbərinə daxili şərh yazaraq ötürün."
+      },
+      "historyAudit": {
+        "title": "Tam Söhbət Tarixçəsi",
+        "desc": "Aylar əvvəl yazmış müştərinin bütün əvvəlki dialoqları və sifariş keçmişi hər zaman əlçatandır."
+      }
+    }
+  },
+  "ai": {
+    "hero": {
+      "badge": "Təbii Azərbaycan Dili",
+      "title": "Satış komandanız üçün 24/7 yorulmayan intellekt",
+      "subtitle": "Yazı səhvlərini və danışıq jarqonunu başa düşən, heç vaxt yalan qiymət uydurmayan və yalnız təsdiqlənmiş cədvəldən cavab verən AI.",
+      "ctaPrimary": "AI Demoya Bax",
+      "ctaSecondary": "Sınaq Cədvəli"
+    },
+    "scenarios": {
+      "title": "4 Dəqiq İş Ssenarisi",
+      "one": {
+        "title": "24/7 Anında İlkin Cavab",
+        "desc": "Gecə saat 01:00-da yazan valideyn səhərə qədər gözləmir, dərhal nəzakətli və dəqiq məlumat alır."
+      },
+      "two": {
+        "title": "Danışıq Dili və Səhvlərin Tanınması",
+        "desc": "Qısaldılmış sözlər və hərf xətaları ilə yazılan sualların əsl niyyətini dəqiqliklə müəyyən edir."
+      },
+      "three": {
+        "title": "Avtomatik Rezervasiya",
+        "desc": "Ad və telefon nömrəsini alaraq real cədvəldəki boş yerləri təklif edir və təsdiq edir."
+      },
+      "four": {
+        "title": "Dəqiq İnsana Ötürmə Qaydası",
+        "desc": "Şikayət, endirim və ya cədvəldən kənar xüsusi hallarda AI cavab vermir, dərhal menecerə xəbər verir."
+      }
+    }
+  },
+  "booking": {
+    "hero": {
+      "badge": "Ağıllı Rezervasiya Mühərriki",
+      "title": "Dolu qruplara və təkrar yazılmalara qəti son",
+      "subtitle": "Sınaq dərsləri, konsultasiyalar və xidmət rezervasiyaları üçün real vaxt tutum nəzarəti və avtomatik bildirişlər.",
+      "ctaPrimary": "Cədvəli İncələ",
+      "ctaSecondary": "Vahid Qutuya Bax"
+    },
+    "features": {
+      "capacityLock": {
+        "title": "Canlı Tutum Kilidi",
+        "desc": "Qrupda 5 yer varsa, 5-ci qeydiyyatdan sonra həmin saat təkliflərdən dərhal çıxarılır."
+      },
+      "antiSpam": {
+        "title": "Təkrar Qeydiyyat Əngəli",
+        "desc": "Eyni telefon nömrəsi ilə eyni dərsə ikinci dəfə yazılmaq istəyən şəxs nəzakətlə xəbərdar edilir."
+      },
+      "calendarSync": {
+        "title": "Avtomatik Cədvəl Yenilənməsi",
+        "desc": "Ləğv edilən və ya təxirə salınan yerlər yenidən növbəti müştərilər üçün sistemdə aktivləşir."
+      },
+      "managerAlerts": {
+        "title": "Menecer Xəbərdarlığı",
+        "desc": "Hər uğurlu qeydiyyat anında məsul şəxsin Telegram və ya panel bildirişlərinə çatdırılır."
+      }
+    }
+  },
+  "channelsHub": {
+    "hero": {
+      "badge": "Mərkəzləşdirilmiş Kanallar",
+      "title": "Müştəriləriniz harada yazırsa, siz oradasınız",
+      "subtitle": "WhatsApp, Instagram və Telegram kanallarını birləşdirin, REST Webhook API ilə istənilən daxili sisteminizlə inteqrasiya edin.",
+      "ctaPrimary": "Alətləri Sına",
+      "ctaSecondary": "Kanalları Seç"
+    },
+    "list": {
+      "whatsappTitle": "WhatsApp Biznes API",
+      "whatsappDesc": "Rəsmi Meta Cloud API vasitəsilə təhlükəsiz və fasiləsiz korporativ mesajlaşma.",
+      "instagramTitle": "Instagram Birbaşa (DM)",
+      "instagramDesc": "Reklamlardan və hekayələrdən gələn bütün sualları vahid qutuda toplayın.",
+      "telegramTitle": "Telegram Bot",
+      "telegramDesc": "Bir neçə dəqiqəyə aktivləşən və heç bir təsdiq gözləməyən çevik satış kanalı.",
+      "webhookTitle": "Webhook və n8n API",
+      "webhookDesc": "Mövcud 1C, sayt və ya n8n avtomatlaşdırmalarınızı birbaşa REST API ilə bağlayın."
+    }
+  },
+  "channelDetails": {
+    "whatsapp": {
+      "badge": "Rəsmi Cloud API",
+      "title": "WhatsApp ilə satışlarınızı 3 qat sürətləndirin",
+      "subtitle": "Müştərilərin ən çox etibar etdiyi kanalda avtomatik cavablar, sınaq dərsi təsdiqləri və xatırlatmalar göndərin.",
+      "features": {
+        "one": "Rəsmi nömrə ilə fasiləsiz işləmə",
+        "two": "Toplu şablon bildirişlər və xatırlatmalar",
+        "three": "Komanda üzvləri arasında nömrəsiz ortaq istifadə",
+        "four": "Pulsuz WhatsApp alətlərimizlə dərhal link və QR yaradın"
+      }
+    },
+    "instagram": {
+      "badge": "Instagram DM Kanalı",
+      "title": "DM və hekayə cavablarını satışa çevirin",
+      "subtitle": "Reklamlara gələn qiymət sualları cavabsız qalmasın. AI dərhal cavab versin və maraqlananları sınaq dərsinə yazsın.",
+      "features": {
+        "one": "Hekayə reaksiyalarına anında avtomatik cavab",
+        "two": "Qiymət və proqram məlumatının saniyələr içində təqdimatı",
+        "three": "Telefon nömrəsi toplanaraq CRM kartının açılması",
+        "four": "Operatorlar üçün rahat daxili qeyd sistemi"
+      }
+    },
+    "telegram": {
+      "badge": "Sürətli Başlanğıc",
+      "title": "Telegram ilə 5 dəqiqə içində canlı satış botu",
+      "subtitle": "Uzun rəsmi təsdiq proseslərini gözləmədən, bu gün öz botunuzu qoşun və tələbə müraciətlərini qəbul edin.",
+      "features": {
+        "one": "Sıfır təsdiq gecikməsi, dərhal işə düşmə",
+        "two": "Qrup tutumu və sınaq dərsi tarixlərinin interaktiv seçimi",
+        "three": "Menecerlərə anlıq yeni müraciət bildirişləri",
+        "four": "Bütün söhbətlərin panelə sinxronizasiyası"
+      }
+    },
+    "webhook-api": {
+      "badge": "Tərtibatçılar Üçün REST API",
+      "title": "İstənilən sistem və n8n ilə dərin inteqrasiya",
+      "subtitle": "Öz veb saytınızı, mobil tətbiqinizi və ya avtomatlaşdırma ssenarilərinizi təhlükəsiz Bearer API ilə idarə edin.",
+      "features": {
+        "one": "Sessiyalar, qeydiyyatlar və mesajlar üçün zəngin REST uç nöqtələri",
+        "two": "Mərkəz bazasını təcrid edən təhlükəsiz API açarları",
+        "three": "n8n və Make üçün hazır JSON axın uyğunluğu",
+        "four": "Saniyədə yüzlərlə müraciəti qarşılayan asinxron arxitektura"
+      }
+    }
+  },
+  "tools": {
+    "hero": {
+      "badge": "Ödənişsiz Marketinq Alətləri",
+      "title": "Satış komandanız üçün pulsuz WhatsApp alətləri",
+      "subtitle": "Qeydiyyat tələb olunmur. Saniyələr içində birbaşa WhatsApp linkləri qurun, çap üçün QR kodlar endirin və rəsmi Meta xərclərini hesablayın.",
+      "ctaPrimary": "Alətlərdən İstifadə Et",
+      "ctaSecondary": "WhatsApp Kanalına Bax"
+    },
+    "tabs": {
+      "link": "Link Yaradıcı",
+      "qr": "QR Kod Endirici",
+      "calculator": "Xərc Kalkulyatoru"
+    },
+    "linkBuilder": {
+      "title": "WhatsApp Birbaşa Keçid Linki",
+      "desc": "Nömrəni yaddaşda saxlamadan müştərinin bir kliklə sizə yazması üçün wa.me linki hazırlayın.",
+      "countryCode": "Ölkə kodu",
+      "phoneNumber": "Mobil nömrə",
+      "phonePlaceholder": "50 123 45 67",
+      "message": "İlkin mesaj (istəyə görə)",
+      "messagePlaceholder": "Salam, kurslar haqqında məlumat almaq istəyirəm",
+      "resultLabel": "Hazır WhatsApp linkiniz:",
+      "copyButton": "Linki Kopyala",
+      "copied": "Kopyalandı!",
+      "previewTitle": "Müştəri ekranında görünüş:"
+    },
+    "qrGenerator": {
+      "title": "Yüksək Keyfiyyətli WhatsApp QR Kodu",
+      "desc": "Flayer, stend, vizitkart və afişalar üçün çap keyfiyyətində vektor SVG və PNG QR kodlar əldə edin.",
+      "urlInputLabel": "QR Kod üçün Link və ya WhatsApp ünvanı",
+      "downloadSvg": "SVG Kimi Endir",
+      "downloadPng": "PNG Kimi Endir",
+      "previewAlt": "Hazırlanmış WhatsApp QR Kodu",
+      "invalidUrl": "Yalnız etibarlı http:// və ya https:// ünvanları qəbul edilir."
+    },
+    "feeCalculator": {
+      "title": "Meta WhatsApp Mesaj Xərci Kalkulyatoru",
+      "desc": "Meta-nın rəsmi söhbət və şablon tariflərinə əsasən aylıq büdcənizi əvvəlcədən təxmin edin.",
+      "marketingLabel": "Marketinq şablon mesajları (kampaniyalar, elanlar)",
+      "utilityLabel": "Xidmət şablon mesajları (təsdiqlər, status bildirişləri)",
+      "authLabel": "Doğrulama mesajları (OTP kodlar)",
+      "serviceLabel": "Müştəri xidməti mesajları (24 saatlıq pəncərədə)",
+      "rateCurrency": "Məzənnə:",
+      "usdToggle": "USD ilə göstər",
+      "aznToggle": "AZN ilə göstər",
+      "totalEstimate": "Təxmini Aylıq Xərc:",
+      "disclaimer": "Qeyd: Bu hesablama Meta-nın rəsmi beynəlxalq tariflərinə əsaslanan təxmini modeldir. Faktiki xərclər valyuta məzənnəsi və ölkə qrupuna görə dəyişə bilər."
+    }
+  },
+  "fitnessScenario": {
+    "hero": {
+      "badge": "Nümunə Sektor Ssenarisi",
+      "title": "Fitnes və İdman Klubları üçün Ağıllı Qeydiyyat",
+      "subtitle": "Məşqçi cədvəllərini, sınaq məşqlərini və abunəlik yeniləmələrini avtomatlaşdıran nümunə həll.",
+      "ctaPrimary": "Öz Ssenarini Qur",
+      "ctaSecondary": "Qiymətlərə Bax"
+    },
+    "workflow": {
+      "title": "İdman zalları üçün addım-addım iş axını",
+      "step1Title": "1. İlk Müraciət və Məqsəd Sorğusu",
+      "step1Desc": "Müştəri Instagram və ya WhatsApp-dan yazır, bot arıqlama və ya əzələ yığımı üzrə uyğun məşqçini müəyyən edir.",
+      "step2Title": "2. Sınaq Məşqinə Rezervasiya",
+      "step2Desc": "Zalın sıx olmayan saatlarına uyğun olaraq pulsuz sınaq məşqinə yer ayrılır və xatırlatma göndərilir.",
+      "step3Title": "3. Abunəliyə Çevrilmə",
+      "step3Desc": "Məşqdən sonra daxili CRM-də kart 'Sınaq keçirildi' mərhələsinə keçir və menecer xüsusi təklif təqdim edir."
+    }
+  },
+  "blogHub": {
+    "hero": {
+      "badge": "Bələdçilər və Təcrübə",
+      "title": "Satış avtomatlaşdırması və mesajlaşma üzrə bələdçilər",
+      "subtitle": "Azərbaycan bazarında müştəri xidmətini gücləndirmək və gəlirləri artırmaq üçün praktiki məsləhətlər.",
+      "ctaPrimary": "Bütün Məqalələr",
+      "ctaSecondary": "Alətlərə Keç"
+    },
+    "readingTime": "dəqiqəlik oxu",
+    "publishedAt": "Tarix:"
+  },
+  "blogPosts": {
+    "whatsapp-automation": {
+      "title": "WhatsApp Satışlarını Avtomatlaşdırmağın 5 Qızıl Qaydası",
+      "excerpt": "Müştəriləri bezdirmədən, 24 saatlıq pəncərədən səmərəli istifadə edərək satışları necə artırmaq olar?",
+      "readTime": "4",
+      "date": "2026-11-10",
+      "content": [
+        "WhatsApp bu gün Azərbaycanda ən yüksək açılma faizinə malik rabitə kanalıdır.",
+        "Müştəri müraciət etdiyi ilk 5 dəqiqədə cavab aldıqda qeydiyyata çevrilmə ehtimalı 80% artır.",
+        "Meta Cloud API vasitəsilə təsdiqlənmiş şablonlar qurmaq həm nömrənizi bloklanmaqdan qoruyur, həm də komandanızın vaxtına qənaət edir."
+      ]
+    },
+    "instagram-dm-sales": {
+      "title": "Instagram DM Üzərindən Satışların İdarə Edilməsi",
+      "excerpt": "Reklamlardan gələn 'Qiymət zəhmət olmasa' şərhlərini itirmədən sifarişə çevirmək yolları.",
+      "readTime": "5",
+      "date": "2026-11-12",
+      "content": [
+        "Instagram reklamlarına xərclənən büdcə çox vaxt gecikən cavablar səbəbindən boşa gedir.",
+        "Hekayə cavabları və birbaşa mesajları tək bir paneldə toplamaqla heç bir sorğunu gözdən qaçırmırsınız.",
+        "Avtomatik ad və telefon nömrəsi qeydiyyatı menecerlərin işini 3 dəfə asanlaşdırır."
+      ]
+    },
+    "appointment-crm": {
+      "title": "Tədris Mərkəzlərində Sınaq Dərslərinin Təşkili",
+      "excerpt": "Excel cədvəllərindən çıxaraq canlı tutum nəzarətinə keçməyin üstünlükləri.",
+      "readTime": "6",
+      "date": "2026-11-14",
+      "content": [
+        "Dolu otağa tələbə yazmaq tədris mərkəzinin imicinə ciddi zərbə vurur.",
+        "Avtomatlaşdırılmış sınaq dərsi cədvəli boş yerləri anında sayır və artıq rezervasiyanın qarşısını alır.",
+        "Dərsdən 2 saat əvvəl göndərilən xatırlatma dərslərdə iştirak faizini 40%-dən 85%-ə qaldırır."
+      ]
+    },
+    "ai-reply-workflows": {
+      "title": "Süni İntellekt Satışda: Yalan İddialardan Necə Qorunmalı?",
+      "excerpt": "AI köməkçilərinin uydurma qiymətlər verməsinin qarşısını alan ciddi məhdudiyyət qaydaları.",
+      "readTime": "5",
+      "date": "2026-11-15",
+      "content": [
+        "Sərbəst buraxılan generativ AI modelləri bəzən mövcud olmayan endirimlər vəd edə bilər.",
+        "panelim.az arxitekturasında AI yalnız sizin bazaya daxil etdiyiniz cədvəldən oxuyur və heç vaxt rəqəm uydurmur.",
+        "Əminlik səviyyəsi aşağı olduqda sistem dialoqu dərhal canlı menecerə təhvil verir."
+      ]
+    },
+    "telegram-lead-capture": {
+      "title": "Telegram Botları ilə Müraciətlərin Toplanması",
+      "excerpt": "Sadə, ucuz və dərhal aktivləşən Telegram həllərinin biznesə faydası.",
+      "readTime": "4",
+      "date": "2026-11-16",
+      "content": [
+        "Telegram API həm pulsuzdur, həm də heç bir uzun rəsmi təsdiq proseduru tələb etmir.",
+        "Xüsusilə abituriyent və dil hazırlığı mərkəzləri üçün Telegram ən sürətli ilkin əlaqə vasitəsidir.",
+        "panelim.az ilə Telegram botu quraşdırmaq cəmi 5 dəqiqə çəkir."
+      ]
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "Şəffaf və Ədalətli Tariflər",
+      "title": "Biznesinizin ölçüsünə uyğun çevik abunəlik",
+      "subtitle": "Heç bir gizli ödəniş yoxdur. Ehtiyacınız olan kanalları və komanda ölçüsünü seçin, istənilən vaxt planınızı dəyişin.",
+      "ctaPrimary": "Demoya Başla",
+      "ctaSecondary": "Matrisi Müqayisə Et"
+    },
+    "matrix": {
+      "title": "Bütün Planların Müqayisə Matrisi",
+      "categories": {
+        "channels": {
+          "name": "Dəstəklənən Kanallar",
+          "rows": {
+            "telegram": "Telegram Bot Bağlantısı",
+            "instagram": "Instagram Direct Mesajlaşması",
+            "whatsapp": "WhatsApp Cloud API Bağlantısı",
+            "webForm": "Veb Sayt Qeydiyyat Forması"
+          }
+        },
+        "crm": {
+          "name": "CRM və Satış Qıfı",
+          "rows": {
+            "pipeline": "Vizual Kanban Satış Lövhəsi",
+            "teamSeats": "Komanda Üzvü Hesabları",
+            "dealClaim": "Sorğuları Tək Kliklə Götürmə",
+            "antiDuplicate": "Təkrar Müraciət Əngəli"
+          }
+        },
+        "automation": {
+          "name": "AI və Rezervasiya",
+          "rows": {
+            "aiReplies": "24/7 AI Təbii Cavablar",
+            "capacityLock": "Canlı Qrup Tutumu Nəzarəti",
+            "managerHandoff": "Menecerə Ağıllı Ötürmə",
+            "webhook": "REST Webhook və n8n İnteqrasiyası"
+          }
+        }
+      }
+    }
+  },
+  "demoPage": {
+    "hero": {
+      "badge": "Canlı Nümayiş",
+      "title": "panelim.az-ı öz biznesinizin məlumatları ilə sınayın",
+      "subtitle": "15 dəqiqəlik fərdi demoda dərslərinizi, qiymət siyahınızı və mesajlaşma axınınızı necə idarə edəcəyinizi göstərək.",
+      "ctaPrimary": "Formu Doldurun",
+      "ctaSecondary": "Qiymətlərə Baxın"
+    },
+    "formTitle": "Fərdi Demo Sifarişi",
+    "formSubtitle": "Məlumatlarınızı qeyd edin, komandamız 24 saat ərzində sizinlə əlaqə saxlayıb demo saatını təyin etsin."
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "Həmişə Əlaqədəyik",
+      "title": "Sualınız və ya xüsusi tələbiniz var?",
+      "subtitle": "Komandamız sistemin quraşdırılması, kanal təsdiqləri və xüsusi inteqrasiyalar üzrə sizə kömək etməyə hazırdır.",
+      "ctaPrimary": "Mesaj Göndərin",
+      "ctaSecondary": "Tez-tez Verilən Suallar"
+    },
+    "formTitle": "Bizə Yazın",
+    "formSubtitle": "Telefon nömrənizi daxil edin, mütəxəssisimiz birbaşa sizinlə əlaqə saxlasın."
+  },
+  "authPages": {
+    "login": {
+      "badge": "Mərkəz Girişi",
+      "title": "panelim.az İşçi Panelinə Giriş",
+      "subtitle": "Mərkəzinizin təhlükəsiz idarəetmə açarını daxil edərək satış qıfı və mesaj qutusuna keçin.",
+      "userLabel": "İstifadəçi Adı və ya Mərkəz Adı",
+      "userPlaceholder": "məs. admin və ya filial_1",
+      "keyLabel": "Panel Giriş Açarı (Admin Açar)",
+      "keyPlaceholder": "Açarı daxil edin (ən azı 24 simvol)",
+      "showKey": "Göstər",
+      "hideKey": "Gizlət",
+      "submit": "Panelə Daxil Ol",
+      "submitting": "Yoxlanılır…",
+      "invalidKey": "Daxil edilmiş açar və ya istifadəçi adı yanlışdır.",
+      "rateLimited": "Həddindən artıq cəhd edildi. Zəhmət olmasa bir neçə dəqiqə gözləyin.",
+      "networkError": "Şəbəkə xətası baş verdi. İnternet bağlantınızı yoxlayın.",
+      "securityNote": "Açarlar mərkəz bazasını təcrid edir və heç vaxt açıq şəkildə saxlanılmır.",
+      "noAccountText": "Hələ də hesabınız yoxdur?",
+      "registerLink": "Yeni mərkəz qeydiyyatı üçün müraciət edin"
+    },
+    "register": {
+      "badge": "Yeni Mərkəz Açılışı",
+      "title": "Öz mərkəziniz üçün panelim.az qeydiyyatı",
+      "subtitle": "Məlumatlarınızı qeyd edin, 24 saat ərzində sizin mərkəz üçün təcrid olunmuş baza və giriş açarları hazırlayaq.",
+      "formTitle": "Qeydiyyat Müraciət Formu",
+      "hasAccountText": "Artıq mərkəz açarınız var?",
+      "loginLink": "Mövcud panelə daxil olun"
+    }
+  },
+  "legal": {
+    "terms": {
+      "badge": "Rəsmi Qaydalar",
+      "title": "İstifadə Şərtləri",
+      "subtitle": "panelim.az platformasından istifadə qaydaları və tərəflərin hüquqları.",
+      "updatedAt": "Son yenilənmə: 18 Noyabr 2026",
+      "sections": {
+        "intro": {
+          "title": "1. Ümumi Müddəalar",
+          "body": "panelim.az xidmətindən istifadə etməklə siz bu şərtlərlə tam razılaşmış olursunuz. Platforma müştəri mesajlarının, sifarişlərinin və rezervasiyalarının idarə edilməsi üçün təmin edilir."
+        },
+        "usage": {
+          "title": "2. Xidmətdən İstifadə Qaydaları",
+          "body": "İstifadəçi platformadan spam, qanunsuz məzmun və ya icazəsiz kütləvi mesaj göndərmək üçün istifadə etməməyi öhdəsinə götürür. Meta və digər platformaların qaydalarına riayət edilməlidir."
+        },
+        "liability": {
+          "title": "3. Məsuliyyətin Həddi",
+          "body": "Xidmət olduğu kimi təqdim edilir. 3-cü tərəf mesajlaşma platformalarının (WhatsApp, Instagram, Telegram) qlobal fasilələrinə görə panelim.az məsuliyyət daşımır."
+        },
+        "contact": {
+          "title": "4. Əlaqə və Dəstək",
+          "body": "İstifadə şərtləri ilə bağlı bütün suallarınızı saytımızın Əlaqə bölməsi vasitəsilə komandamıza ünvanlaya bilərsiniz."
+        }
+      }
+    },
+    "privacy": {
+      "badge": "Məlumatların Qorunması",
+      "title": "Məxfilik Siyasəti",
+      "subtitle": "Müştəri və biznes məlumatlarınızın təhlükəsizliyi bizim əsas prioritetimizdir.",
+      "updatedAt": "Son yenilənmə: 18 Noyabr 2026",
+      "sections": {
+        "collection": {
+          "title": "1. Toplanan Məlumatlar",
+          "body": "Yalnız xidmətin göstərilməsi üçün zəruri olan ad, telefon nömrəsi, mesaj mətnləri və rezervasiya saatları saxlanılır."
+        },
+        "isolation": {
+          "title": "2. Mərkəzlər Arasında Tam Təcrid",
+          "body": "Hər bir müştərinin və tədris mərkəzinin məlumatları ayrıca verilənlər bazası təbəqəsində saxlanılır. Bir mərkəz heç bir halda digər mərkəzin məlumatlarına baxa bilməz."
+        },
+        "thirdParties": {
+          "title": "3. Məlumatların Üçüncü Tərəflərə Verilməməsi",
+          "body": "Toplanan heç bir əlaqə və ya kommersiya məlumatı reklam məqsədilə 3-cü tərəflərə satılmır və ya ötürülmür."
+        },
+        "contact": {
+          "title": "4. Məlumatların Silinməsi Tələbi",
+          "body": "İstənilən vaxt məlumatlarınızın sistemdən tamamilə silinməsini tələb etmək üçün saytımızın Əlaqə forması vasitəsilə müraciət edə bilərsiniz."
+        }
+      }
+    }
+  }
+}

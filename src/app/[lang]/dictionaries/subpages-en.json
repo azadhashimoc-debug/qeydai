@@ -1,0 +1,581 @@
+{
+  "navGroups": {
+    "productLabel": "Product",
+    "channelsLabel": "Channels & Tools",
+    "resourcesLabel": "Resources",
+    "login": "Sign In",
+    "register": "Register",
+    "product": {
+      "overviewTitle": "Product Tour",
+      "overviewDesc": "Unified sales & messaging workspace",
+      "pipelineTitle": "Sales Pipeline",
+      "pipelineDesc": "Visual Kanban board and deal stages",
+      "inboxTitle": "Unified Inbox",
+      "inboxDesc": "Multi-channel inbox with staff routing",
+      "aiTitle": "AI Copilot",
+      "aiDesc": "24/7 natural responses & automation",
+      "bookingTitle": "Bookings & Capacity",
+      "bookingDesc": "Seat capacity lock & duplicate prevention"
+    },
+    "channels": {
+      "hubTitle": "All Channels",
+      "hubDesc": "Every customer conversation in one view",
+      "whatsappTitle": "WhatsApp Business",
+      "whatsappDesc": "Official Cloud API & template messages",
+      "instagramTitle": "Instagram DM",
+      "instagramDesc": "Direct messages & story replies",
+      "telegramTitle": "Telegram Bot",
+      "telegramDesc": "Instant bot setup with zero wait time",
+      "webhookTitle": "Webhook & n8n API",
+      "webhookDesc": "REST endpoints for workflow automation",
+      "toolsTitle": "Free WhatsApp Tools",
+      "toolsDesc": "Link builder, QR downloader & fee calculator"
+    },
+    "resources": {
+      "pricingTitle": "Pricing Plans",
+      "pricingDesc": "Transparent plans & feature matrix",
+      "demoTitle": "Book a Demo",
+      "demoDesc": "15-minute live platform walkthrough",
+      "contactTitle": "Contact Us",
+      "contactDesc": "Direct support & onboarding team",
+      "fitnessTitle": "Fitness & Studio Scenario",
+      "fitnessDesc": "Sample workflow for service centers",
+      "blogTitle": "Guides & Articles",
+      "blogDesc": "Messaging tips & sales automation"
+    }
+  },
+  "footer": {
+    "productCol": {
+      "title": "Product",
+      "overview": "Product Tour",
+      "pipeline": "Sales Pipeline",
+      "inbox": "Unified Inbox",
+      "ai": "AI Copilot",
+      "booking": "Bookings"
+    },
+    "channelsCol": {
+      "title": "Channels & Tools",
+      "whatsapp": "WhatsApp Business",
+      "instagram": "Instagram DM",
+      "telegram": "Telegram Bot",
+      "webhook": "Webhook & n8n",
+      "tools": "Free WA Tools"
+    },
+    "resourcesCol": {
+      "title": "Resources",
+      "pricing": "Pricing Plans",
+      "fitness": "Fitness Scenario",
+      "blog": "Guides",
+      "demo": "Request Demo",
+      "contact": "Contact Us"
+    },
+    "legalCol": {
+      "title": "Legal & Access",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "login": "Staff Sign In",
+      "register": "Workspace Request"
+    }
+  },
+  "common": {
+    "tryFree": "Try Free for 14 Days",
+    "bookDemo": "Request a Demo",
+    "openPanel": "Staff Panel",
+    "readGuide": "Read Guide",
+    "backToChannels": "Back to All Channels",
+    "backToBlog": "Back to All Articles",
+    "backHome": "Back to Homepage",
+    "sampleScenarioBadge": "Sample Scenario",
+    "officialMetaNote": "Estimated calculation based on Meta official benchmark tariffs",
+    "contactNote": "Your contact details are used strictly to reach you back",
+    "bottomCta": {
+      "title": "Take control of your customer conversations today",
+      "subtitle": "Unify every incoming chat, reply in seconds, and automate trial lesson reservations.",
+      "primary": "Request Free Demo",
+      "secondary": "Sign In to Panel"
+    }
+  },
+  "product": {
+    "hero": {
+      "badge": "Unified Sales Platform",
+      "title": "From first customer chat to confirmed enrollment",
+      "subtitle": "panelim.az brings all messaging channels, deals pipeline, trial bookings, and AI responses together into a single focused workspace.",
+      "ctaPrimary": "Start Demo",
+      "ctaSecondary": "Explore Channels"
+    },
+    "modules": {
+      "title": "5 core modules powering your everyday sales desk",
+      "pipeline": {
+        "title": "Sales Pipeline",
+        "desc": "Every inquiry turns into a trackable deal card, moves through clear stages, and gets assigned to team members."
+      },
+      "inbox": {
+        "title": "Unified Inbox",
+        "desc": "WhatsApp, Instagram, and Telegram chats live in one queue, preventing duplicate replies and lost inquiries."
+      },
+      "ai": {
+        "title": "Azerbaijani-Fluent AI Copilot",
+        "desc": "Understands colloquial speech and typos, quotes only approved timetables, and hands off complex requests to managers."
+      },
+      "booking": {
+        "title": "Bookings & Capacity Guard",
+        "desc": "Checks real open seats, locks full groups automatically, and prevents repeat bookings with the same phone number."
+      },
+      "analytics": {
+        "title": "Transparent Analytics",
+        "desc": "See which campaign delivers paying students, monitor team response speed, and track conversion rates live."
+      }
+    }
+  },
+  "pipeline": {
+    "hero": {
+      "badge": "Visual Kanban Pipeline",
+      "title": "Never let an inquiry sit unanswered or unassigned",
+      "subtitle": "Every new prospect automatically appears as a Kanban card. Move deals across stages, log notes, and set follow-up tasks.",
+      "ctaPrimary": "Test Pipeline",
+      "ctaSecondary": "Go to Inbox"
+    },
+    "features": {
+      "stageControl": {
+        "title": "Stage Control",
+        "desc": "From new inquiry to in conversation, trial booked, payment pending, and won — full clarity at every step."
+      },
+      "leadClaim": {
+        "title": "One-Click Claiming",
+        "desc": "Unassigned incoming inquiries can be claimed by any staff member with a single click."
+      },
+      "notesAndTasks": {
+        "title": "Internal Notes & Tasks",
+        "desc": "Keep call logs, special student requests, and scheduled reminders directly inside each deal card."
+      },
+      "antiDuplicate": {
+        "title": "Duplicate Prevention",
+        "desc": "Messages from the same phone number across different days attach cleanly to the existing deal card."
+      }
+    }
+  },
+  "inbox": {
+    "hero": {
+      "badge": "Unified Messaging Desk",
+      "title": "All customer conversations in one clean window",
+      "subtitle": "No more juggling multiple phones for WhatsApp, Instagram DM, and Telegram. Your entire team collaborates in one queue.",
+      "ctaPrimary": "Open Inbox",
+      "ctaSecondary": "AI Integration"
+    },
+    "features": {
+      "multiChannel": {
+        "title": "Multi-Channel Queue",
+        "desc": "Channel badges make every conversation source obvious at a glance."
+      },
+      "quickTemplates": {
+        "title": "One-Click Quick Replies",
+        "desc": "Send frequently requested center addresses, account details, and rules in seconds."
+      },
+      "teamHandoff": {
+        "title": "Seamless Staff Routing",
+        "desc": "Pass tricky questions or specific course inquiries to coordinators with internal private notes."
+      },
+      "historyAudit": {
+        "title": "Full Conversation Audit",
+        "desc": "Every past interaction and previous booking is preserved and visible when a returning customer messages."
+      }
+    }
+  },
+  "ai": {
+    "hero": {
+      "badge": "Natural Language AI",
+      "title": "A 24/7 sales teammate that speaks fluent Azerbaijani",
+      "subtitle": "Understands everyday grammar and typos, never invents unauthorized discounts, and answers solely from approved timetables.",
+      "ctaPrimary": "Watch AI Demo",
+      "ctaSecondary": "Trial Calendar"
+    },
+    "scenarios": {
+      "title": "4 Battle-Tested Workflows",
+      "one": {
+        "title": "24/7 Instant First Reply",
+        "desc": "Parents messaging at 1:00 AM get immediate polite answers without waiting until the next morning."
+      },
+      "two": {
+        "title": "Understands Colloquial Slang & Typos",
+        "desc": "Accurately interprets mixed Latin spelling, shortcuts, and informal phrases into the right course intent."
+      },
+      "three": {
+        "title": "Automated Trial Bookings",
+        "desc": "Collects student name and phone number, checks open seats on the schedule, and confirms reservations."
+      },
+      "four": {
+        "title": "Strict Human Handoff Rules",
+        "desc": "For complaints, custom pricing requests, or off-table questions, the AI pauses and alerts your coordinator."
+      }
+    }
+  },
+  "booking": {
+    "hero": {
+      "badge": "Smart Capacity Engine",
+      "title": "Say goodbye to overbooked groups and duplicate signups",
+      "subtitle": "Real-time seat verification and automated notifications for trial lessons, consultation slots, and studio bookings.",
+      "ctaPrimary": "Inspect Schedule",
+      "ctaSecondary": "View Unified Inbox"
+    },
+    "features": {
+      "capacityLock": {
+        "title": "Live Seat Lock",
+        "desc": "If a trial class has 5 spots, the 5th booking closes that slot automatically across all channels."
+      },
+      "antiSpam": {
+        "title": "Duplicate Guard",
+        "desc": "Prevents the same phone number from booking duplicate trial slots in the same group."
+      },
+      "calendarSync": {
+        "title": "Automatic Schedule Release",
+        "desc": "Canceled slots immediately become available for other prospective students."
+      },
+      "managerAlerts": {
+        "title": "Instant Staff Alerts",
+        "desc": "Every successful booking sends an instant alert to the designated manager via Telegram or dashboard."
+      }
+    }
+  },
+  "channelsHub": {
+    "hero": {
+      "badge": "Centralized Channels",
+      "title": "Meet your customers wherever they already message",
+      "subtitle": "Connect WhatsApp, Instagram, and Telegram, and integrate your custom backend using our REST Webhook API.",
+      "ctaPrimary": "Test Free Tools",
+      "ctaSecondary": "Select Channels"
+    },
+    "list": {
+      "whatsappTitle": "WhatsApp Business API",
+      "whatsappDesc": "Official Meta Cloud API for secure, high-deliverability enterprise messaging.",
+      "instagramTitle": "Instagram Direct",
+      "instagramDesc": "Turn ad interactions and story inquiries into organized deals inside your inbox.",
+      "telegramTitle": "Telegram Bot",
+      "telegramDesc": "Launch in minutes with zero verification bottlenecks and instant responses.",
+      "webhookTitle": "Webhook & n8n API",
+      "webhookDesc": "Connect your custom website, CRM, or n8n automated workflows directly via REST API."
+    }
+  },
+  "channelDetails": {
+    "whatsapp": {
+      "badge": "Official Cloud API",
+      "title": "Triple your response speed with WhatsApp Business",
+      "subtitle": "Deliver automated answers, trial lesson reminders, and broadcast updates on Azerbaijan's most trusted messaging app.",
+      "features": {
+        "one": "Reliable operation on official Meta Cloud API infrastructure",
+        "two": "Pre-approved template notifications and automated reminders",
+        "three": "Multi-user staff access without sharing personal phone devices",
+        "four": "Generate direct links and QR codes instantly using our free tools"
+      }
+    },
+    "instagram": {
+      "badge": "Instagram Direct",
+      "title": "Convert Instagram DMs and story replies into revenue",
+      "subtitle": "Never let ad-driven price inquiries get buried. Deliver instant details and book warm leads while interest is high.",
+      "features": {
+        "one": "Instant automated answers to story reactions and post mentions",
+        "two": "Deliver pricing sheets and syllabus overviews in seconds",
+        "three": "Capture verified names and phone numbers directly into deal cards",
+        "four": "Internal notes for coordinators to collaborate cleanly"
+      }
+    },
+    "telegram": {
+      "badge": "Instant Launch",
+      "title": "Launch a live sales bot on Telegram in 5 minutes",
+      "subtitle": "Skip lengthy verification workflows. Connect your Telegram bot today and capture student inquiries immediately.",
+      "features": {
+        "one": "Zero approval delay with instant self-service activation",
+        "two": "Interactive buttons for group timetables and trial slot picks",
+        "three": "Instant notifications sent to coordinator devices",
+        "four": "Full conversation synchronization into your central panel"
+      }
+    },
+    "webhook-api": {
+      "badge": "Developer REST API",
+      "title": "Deep integration with custom backends and n8n",
+      "subtitle": "Manage your sessions, enrollments, leads, and messages programmatically with token-authenticated endpoints.",
+      "features": {
+        "one": "REST endpoints for sessions, enrollments, leads, and inbox events",
+        "two": "Tenant-isolated API keys ensuring total workspace data separation",
+        "three": "Ready-to-use JSON workflows for n8n, Make, and webhook integrations",
+        "four": "High-throughput asynchronous architecture built for scale"
+      }
+    }
+  },
+  "tools": {
+    "hero": {
+      "badge": "Free Marketing Tools",
+      "title": "Free WhatsApp tools built for your sales team",
+      "subtitle": "No registration required. Build direct wa.me links, download print-ready QR codes, and estimate Meta messaging fees.",
+      "ctaPrimary": "Use Tools Now",
+      "ctaSecondary": "View WhatsApp Channel"
+    },
+    "tabs": {
+      "link": "Link Builder",
+      "qr": "QR Generator",
+      "calculator": "Fee Estimator"
+    },
+    "linkBuilder": {
+      "title": "Direct WhatsApp Chat Link",
+      "desc": "Generate a one-click wa.me link with prefilled text so leads can message without saving your number.",
+      "countryCode": "Country code",
+      "phoneNumber": "Phone number",
+      "phonePlaceholder": "50 123 45 67",
+      "message": "Prefilled message (optional)",
+      "messagePlaceholder": "Hi, I would like to learn more about your courses",
+      "resultLabel": "Your ready WhatsApp link:",
+      "copyButton": "Copy Link",
+      "copied": "Copied!",
+      "previewTitle": "Customer mobile preview:"
+    },
+    "qrGenerator": {
+      "title": "High-Resolution WhatsApp QR Code",
+      "desc": "Generate vector SVG and crisp PNG QR codes perfect for flyers, banners, entrance stands, and business cards.",
+      "urlInputLabel": "Target URL or WhatsApp link for QR code",
+      "downloadSvg": "Download as SVG",
+      "downloadPng": "Download as PNG",
+      "previewAlt": "Generated WhatsApp QR Code",
+      "invalidUrl": "Only valid http:// or https:// URLs are supported."
+    },
+    "feeCalculator": {
+      "title": "Meta WhatsApp Messaging Fee Estimator",
+      "desc": "Estimate your monthly messaging budget based on Meta's official conversation and template category rates.",
+      "marketingLabel": "Marketing template messages (promotions, broadcasts)",
+      "utilityLabel": "Utility template messages (confirmations, status updates)",
+      "authLabel": "Authentication messages (OTP verification codes)",
+      "serviceLabel": "Customer service messages (within 24-hour service window)",
+      "rateCurrency": "Currency rate:",
+      "usdToggle": "Show in USD",
+      "aznToggle": "Show in AZN",
+      "totalEstimate": "Estimated Monthly Cost:",
+      "disclaimer": "Note: This calculator uses Meta's official international benchmark rates. Actual billing may vary with exchange rates and destination country."
+    }
+  },
+  "fitnessScenario": {
+    "hero": {
+      "badge": "Sample Sector Scenario",
+      "title": "Smart Booking Engine for Fitness & Sports Studios",
+      "subtitle": "A practical sample scenario showing automated coach schedules, trial workouts, and membership renewals.",
+      "ctaPrimary": "Build Your Scenario",
+      "ctaSecondary": "View Pricing"
+    },
+    "workflow": {
+      "title": "Step-by-step workflow for modern fitness studios",
+      "step1Title": "1. Initial Inquiry & Fitness Goal Check",
+      "step1Desc": "A prospective client messages via Instagram or WhatsApp; the assistant identifies goals like weight loss or strength training.",
+      "step2Title": "2. Trial Workout Reservation",
+      "step2Desc": "A trial workout slot is reserved during off-peak gym hours, with automatic reminder messages sent beforehand.",
+      "step3Title": "3. Membership Conversion",
+      "step3Desc": "Following the trial, the deal advances to 'Trial Completed' in CRM, prompting staff to present tailored membership packages."
+    }
+  },
+  "blogHub": {
+    "hero": {
+      "badge": "Guides & Best Practices",
+      "title": "Expert guides on sales automation and messaging",
+      "subtitle": "Actionable playbooks to accelerate team response times and grow conversion rates in Azerbaijan.",
+      "ctaPrimary": "All Articles",
+      "ctaSecondary": "Free Tools"
+    },
+    "readingTime": "min read",
+    "publishedAt": "Published:"
+  },
+  "blogPosts": {
+    "whatsapp-automation": {
+      "title": "5 Golden Rules to Automate WhatsApp Sales",
+      "excerpt": "How to maximize your 24-hour customer window and boost conversions without spamming.",
+      "readTime": "4",
+      "date": "2026-11-10",
+      "content": [
+        "WhatsApp remains the highest-engagement messaging channel in Azerbaijan.",
+        "Inquiries answered within the first 5 minutes convert at rates up to 80% higher.",
+        "Using pre-approved Meta Cloud API templates protects your number from bans while freeing up coordinator hours."
+      ]
+    },
+    "instagram-dm-sales": {
+      "title": "Mastering Sales Inside Instagram Direct",
+      "excerpt": "Turn generic 'Price please' comments into confirmed customer orders.",
+      "readTime": "5",
+      "date": "2026-11-12",
+      "content": [
+        "Ad budgets spent driving traffic to Instagram are often wasted when responses take hours.",
+        "Bringing story replies and DMs into a unified inbox ensures no qualified lead is overlooked.",
+        "Automating initial contact capture speeds up deal closing by up to 3x."
+      ]
+    },
+    "appointment-crm": {
+      "title": "Managing Trial Lessons in Modern Education Centers",
+      "excerpt": "Why switching from spreadsheets to capacity-locked schedules transforms enrollment numbers.",
+      "readTime": "6",
+      "date": "2026-11-14",
+      "content": [
+        "Booking a student into an already full classroom harms your center's reputation immediately.",
+        "An automated trial schedule validates open seats in real time and prevents overbooking.",
+        "Automated WhatsApp reminders sent 2 hours before class raise attendance from 40% to over 85%."
+      ]
+    },
+    "ai-reply-workflows": {
+      "title": "AI in Sales: Avoiding Hallucinations and Bad Quotes",
+      "excerpt": "How strict boundary rules protect your business from made-up discounts and false promises.",
+      "readTime": "5",
+      "date": "2026-11-15",
+      "content": [
+        "Unrestricted generative AI bots can easily fabricate unauthorized discounts or promises.",
+        "panelim.az restricts AI to your verified database schedule, guaranteeing 100% price accuracy.",
+        "When confidence is low, the conversation automatically transitions to a live coordinator."
+      ]
+    },
+    "telegram-lead-capture": {
+      "title": "Capturing Leads with Fast Telegram Bots",
+      "excerpt": "The lightweight, reliable channel every training center should deploy.",
+      "readTime": "4",
+      "date": "2026-11-16",
+      "content": [
+        "Telegram Bot API offers free access with zero approval waiting periods.",
+        "For exam prep and tutoring centers, Telegram provides the lowest-friction first contact.",
+        "Connecting a custom bot to panelim.az takes fewer than 5 minutes."
+      ]
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "Transparent & Honest Pricing",
+      "title": "Flexible plans calibrated for your team size",
+      "subtitle": "Zero hidden fees. Choose the channels and seats you need, and upgrade or scale down anytime.",
+      "ctaPrimary": "Start Demo",
+      "ctaSecondary": "Compare Matrix"
+    },
+    "matrix": {
+      "title": "Full Feature Comparison Matrix",
+      "categories": {
+        "channels": {
+          "name": "Supported Channels",
+          "rows": {
+            "telegram": "Telegram Bot Integration",
+            "instagram": "Instagram Direct Messaging",
+            "whatsapp": "WhatsApp Business Cloud API",
+            "webForm": "Website Lead Form"
+          }
+        },
+        "crm": {
+          "name": "CRM & Pipeline",
+          "rows": {
+            "pipeline": "Visual Kanban Sales Pipeline",
+            "teamSeats": "Team Member Logins",
+            "dealClaim": "One-Click Deal Claiming",
+            "antiDuplicate": "Duplicate Lead Prevention"
+          }
+        },
+        "automation": {
+          "name": "AI & Bookings",
+          "rows": {
+            "aiReplies": "24/7 Natural AI Responses",
+            "capacityLock": "Live Class Capacity Lock",
+            "managerHandoff": "Intelligent Human Handoff",
+            "webhook": "REST Webhook & n8n Integration"
+          }
+        }
+      }
+    }
+  },
+  "demoPage": {
+    "hero": {
+      "badge": "Live Walkthrough",
+      "title": "Experience panelim.az tailored to your business",
+      "subtitle": "In a 15-minute live demo, we will show you how to manage your courses, prices, and channels effortlessly.",
+      "ctaPrimary": "Fill the Form",
+      "ctaSecondary": "View Plans"
+    },
+    "formTitle": "Request a Personalized Demo",
+    "formSubtitle": "Enter your contact details and our team will reach out within 24 hours to schedule your session."
+  },
+  "contactPage": {
+    "hero": {
+      "badge": "We Are Here to Help",
+      "title": "Have a question or special workflow requirement?",
+      "subtitle": "Our onboarding team is ready to guide you through channel setup, integrations, and training.",
+      "ctaPrimary": "Send a Message",
+      "ctaSecondary": "Read FAQ"
+    },
+    "formTitle": "Get in Touch",
+    "formSubtitle": "Leave your phone number and our specialist will reach out directly."
+  },
+  "authPages": {
+    "login": {
+      "badge": "Staff Sign In",
+      "title": "Sign In to panelim.az Staff Panel",
+      "subtitle": "Enter your center access key to open your sales pipeline and unified inbox.",
+      "userLabel": "Username or Center ID",
+      "userPlaceholder": "e.g. admin or branch_1",
+      "keyLabel": "Panel Access Key (Admin Key)",
+      "keyPlaceholder": "Enter access key (at least 24 characters)",
+      "showKey": "Show",
+      "hideKey": "Hide",
+      "submit": "Sign In to Panel",
+      "submitting": "Verifying…",
+      "invalidKey": "The provided key or username is invalid.",
+      "rateLimited": "Too many sign-in attempts. Please wait a few minutes.",
+      "networkError": "A network error occurred. Please check your internet connection.",
+      "securityNote": "Keys enforce strict tenant isolation and are never stored in plaintext.",
+      "noAccountText": "Do not have an account yet?",
+      "registerLink": "Request a new center workspace"
+    },
+    "register": {
+      "badge": "New Center Setup",
+      "title": "Register your center for panelim.az",
+      "subtitle": "Submit your details and our team will provision an isolated workspace and access keys within 24 hours.",
+      "formTitle": "Workspace Application Form",
+      "hasAccountText": "Already have a center access key?",
+      "loginLink": "Sign in to existing panel"
+    }
+  },
+  "legal": {
+    "terms": {
+      "badge": "Terms of Service",
+      "title": "Terms of Service",
+      "subtitle": "Rules, guidelines, and rights governing your use of panelim.az.",
+      "updatedAt": "Last updated: November 18, 2026",
+      "sections": {
+        "intro": {
+          "title": "1. Overview",
+          "body": "By using panelim.az, you agree to these terms. The platform provides software tools for customer messaging, inquiries, and booking management."
+        },
+        "usage": {
+          "title": "2. Acceptable Use",
+          "body": "Users agree not to use the service for unsolicited spam, illegal content, or unauthorized messaging. Compliance with Meta and third-party policies is required."
+        },
+        "liability": {
+          "title": "3. Limitation of Liability",
+          "body": "The service is provided as-is. panelim.az is not liable for third-party outages on messaging platforms such as WhatsApp, Instagram, or Telegram."
+        },
+        "contact": {
+          "title": "4. Contact & Support",
+          "body": "For questions regarding our terms, please reach out via our website Contact page."
+        }
+      }
+    },
+    "privacy": {
+      "badge": "Data Privacy",
+      "title": "Privacy Policy",
+      "subtitle": "Safeguarding your customer and business data is our fundamental commitment.",
+      "updatedAt": "Last updated: November 18, 2026",
+      "sections": {
+        "collection": {
+          "title": "1. Information We Collect",
+          "body": "We store only essential contact data such as customer names, phone numbers, message logs, and booking times required to deliver the service."
+        },
+        "isolation": {
+          "title": "2. Strict Tenant Data Separation",
+          "body": "Each center's data lives in an isolated schema and database scope. One center can never access or view another center's records."
+        },
+        "thirdParties": {
+          "title": "3. No Third-Party Data Selling",
+          "body": "We never sell, rent, or distribute your customer contact lists or business conversations to third parties."
+        },
+        "contact": {
+          "title": "4. Data Deletion Requests",
+          "body": "You may request full deletion of your center's data at any time by contacting our support team through our Contact form."
+        }
+      }
+    }
+  }
+}
