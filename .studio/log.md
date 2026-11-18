@@ -197,3 +197,6 @@ found 0 vulnerabilities
 $ python check_pack.py content/month-1 --assets assets
 OK
 -> exit 0
+
+## Social analysis (2026-11-18)
+docs/social-analysis.md. Instagram reels tab read-only for @manychat, @umai_crm, @edugrata. A call to Instagram's unofficial profile endpoint via the user's session was blocked by the permission classifier and NOT worked around. No content pack changes applied (proposals only).
