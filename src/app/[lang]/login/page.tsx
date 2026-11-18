@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AuthSplitClient } from "@/components/marketing/AuthSplitClient";
+import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { Photo } from "@/components/Photo";
@@ -51,16 +51,23 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
 
       <main id="main" tabIndex={-1}>
         <section className="pm-auth-section">
-          <div className="pm-wrap pm-auth-split">
-            <div className="pm-auth-card">
-              <span className="pm-subhero-badge pm-badge-lavender" style={{ justifySelf: "start" }}>
-                {login.badge}
-              </span>
-              <h1>{login.title}</h1>
-              <p className="pm-subhero-sub">{login.subtitle}</p>
-              <AuthSplitClient
+          <div className="pm-auth-kommo">
+            <Photo
+              name="p-product-tour"
+              alt={login.title}
+              className="pm-auth-kommo-illustration"
+              priority
+            />
+            <div className="pm-auth-kommo-card">
+              <span className="pm-auth-kommo-badge">{login.badge}</span>
+              <h1 className="pm-auth-kommo-title">{login.title}</h1>
+              <p className="pm-auth-kommo-sub">{login.subtitle}</p>
+              <AuthKommoClient
                 lang={locale}
                 copy={{
+                  badge: login.badge,
+                  title: login.title,
+                  subtitle: login.subtitle,
                   keyLabel: login.keyLabel,
                   keyPlaceholder: login.keyPlaceholder,
                   showKey: login.showKey,
@@ -70,29 +77,12 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
                   invalidKey: login.invalidKey,
                   rateLimited: login.rateLimited,
                   networkError: login.networkError,
-                  securityNote: login.subtitle,
-                  noAccountText: login.noAccount,
+                  securityNote: login.securityNote,
+                  noAccountText: login.noAccountText,
                   registerLink: login.registerLink,
                 }}
                 registerHref={`/${locale}/register`}
               />
-            </div>
-
-            <div className="pm-auth-visual">
-              <div className="pm-subhero-media">
-                <Photo
-                  name="p-product-tour"
-                  alt={login.title}
-                  sizes="(max-width: 900px) 100vw, 480px"
-                  priority
-                />
-              </div>
-              <div style={{ display: "grid", gap: 8 }}>
-                <strong style={{ fontSize: "1.05rem", color: "var(--pm-ink)" }}>
-                  {s.navGroups.product.pipelineTitle} · {s.navGroups.product.inboxTitle}
-                </strong>
-                <p className="pm-auth-note">{s.navGroups.product.pipelineDesc}</p>
-              </div>
             </div>
           </div>
         </section>

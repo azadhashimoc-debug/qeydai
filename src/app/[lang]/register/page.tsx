@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AuthKommoRegisterClient } from "@/components/marketing/AuthKommoRegisterClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { Photo } from "@/components/Photo";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
-import { LeadForm } from "../LeadForm";
 import "../marketing.css";
 
 export function generateStaticParams() {
@@ -54,44 +54,40 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
 
       <main id="main" tabIndex={-1}>
         <section className="pm-auth-section">
-          <div className="pm-wrap pm-auth-split">
-            <div className="pm-auth-card">
-              <span className="pm-subhero-badge pm-badge-mint" style={{ justifySelf: "start" }}>
-                {reg.badge}
-              </span>
-              <h1>{reg.title}</h1>
-              <p className="pm-subhero-sub">{reg.subtitle}</p>
-              <h2 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--pm-ink)" }}>
-                {reg.formTitle}
-              </h2>
-              <LeadForm
+          <div className="pm-auth-kommo">
+            <Photo
+              name="p-demo"
+              alt={reg.title}
+              className="pm-auth-kommo-illustration"
+              priority
+            />
+            <div className="pm-auth-kommo-card">
+              <span className="pm-auth-kommo-badge">{reg.badge}</span>
+              <h1 className="pm-auth-kommo-title">{reg.title}</h1>
+              <p className="pm-auth-kommo-sub">{reg.subtitle}</p>
+              <AuthKommoRegisterClient
                 locale={locale}
-                labels={d.contact}
-                okText={d.contact.ok}
-                errText={d.contact.error}
-                rateLimitedText={d.contact.rate_limited}
+                copy={{
+                  badge: reg.badge,
+                  title: reg.title,
+                  subtitle: reg.subtitle,
+                  formTitle: reg.formTitle,
+                  name: reg.form.nameLabel,
+                  namePlaceholder: reg.form.namePlaceholder,
+                  phone: reg.form.phoneLabel,
+                  phonePlaceholder: reg.form.phonePlaceholder,
+                  submit: reg.form.submit,
+                  sending: reg.form.submitting,
+                  nameRequired: reg.form.nameRequired,
+                  privacy: reg.form.privacyNote,
+                  okText: reg.form.successTitle,
+                  errText: reg.form.successBody,
+                  rateLimitedText: reg.form.rateLimited,
+                  hasAccount: reg.hasAccount,
+                  loginLink: reg.loginLink,
+                }}
+                loginHref={`/${locale}/login`}
               />
-              <div className="pm-auth-switch">
-                <span>{reg.hasAccount}</span>
-                <Link href={`/${locale}/login`}>{reg.loginLink}</Link>
-              </div>
-            </div>
-
-            <div className="pm-auth-visual">
-              <div className="pm-subhero-media">
-                <Photo
-                  name="p-demo"
-                  alt={reg.title}
-                  sizes="(max-width: 900px) 100vw, 480px"
-                  priority
-                />
-              </div>
-              <div style={{ display: "grid", gap: 8 }}>
-                <strong style={{ fontSize: "1.05rem", color: "var(--pm-ink)" }}>
-                  {s.navGroups.product.bookingTitle} · {s.navGroups.product.aiTitle}
-                </strong>
-                <p className="pm-auth-note">{reg.subtitle}</p>
-              </div>
             </div>
           </div>
         </section>

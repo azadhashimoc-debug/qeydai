@@ -2491,3 +2491,153 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Kommo-style centered auth card */
+.pm-auth-kommo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 72px - 200px);
+  padding: 40px 20px;
+  position: relative;
+}
+.pm-auth-kommo-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid var(--pm-line);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: var(--pm-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+  z-index: 1;
+}
+.pm-auth-kommo-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--pm-lav-soft);
+  color: var(--pm-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  width: fit-content;
+}
+.pm-auth-kommo-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--pm-ink);
+  margin: 0;
+}
+.pm-auth-kommo-sub {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--pm-muted);
+  margin: 0;
+}
+.pm-auth-kommo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pm-auth-kommo-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pm-auth-kommo-input {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 46px 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #d5daf0;
+  background: #ffffff;
+  color: var(--pm-ink);
+  font-size: 0.95rem;
+}
+.pm-auth-kommo-input:focus {
+  outline: none;
+  border-color: var(--pm-accent);
+  box-shadow: 0 0 0 4px rgba(51, 115, 255, 0.1);
+}
+.pm-auth-kommo-toggle {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--pm-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.pm-auth-kommo-toggle:hover {
+  color: var(--pm-accent);
+}
+.pm-auth-kommo-btn {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 12px;
+  background: var(--pm-cover);
+  color: #ffffff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.pm-auth-kommo-btn:hover:not(:disabled) {
+  background: #1a0b5c;
+}
+.pm-auth-kommo-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.pm-auth-kommo-forgot {
+  font-size: 0.85rem;
+  color: var(--pm-accent);
+  font-weight: 800;
+  text-align: right;
+  margin: 0;
+  cursor: pointer;
+}
+.pm-auth-kommo-forgot:hover {
+  text-decoration: underline;
+}
+.pm-auth-kommo-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--pm-muted);
+  justify-content: center;
+  margin-top: 6px;
+}
+.pm-auth-kommo-switch a {
+  color: var(--pm-accent);
+  font-weight: 800;
+}
+.pm-auth-kommo-switch a:hover {
+  text-decoration: underline;
+}
+.pm-auth-kommo-note {
+  font-size: 0.85rem;
+  color: var(--pm-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.pm-auth-kommo-illustration {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(260px, 80vw);
+  max-height: 200px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
