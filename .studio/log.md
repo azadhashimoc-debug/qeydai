@@ -116,3 +116,13 @@ npm run build exit: 0
 npm run e2e:
   22 passed (11.1s)
 found 0 vulnerabilities
+
+## 4-content (2026-11-18)
+VOICE.md: draft; user said 'devam' after seeing it, no edits requested (treated as accepted, revisable).
+Files: content/month-1/blog (4 posts x AZ/EN), ads (meta + google, 3 variants each, AZ/EN), email (demo-welcome, pilot-offer, bot-quick-replies, AZ/EN), seo-keywords.md
+### placeholder grep over content/ brand/ (excluding the test that defines the forbidden words)
+hits above: 0
+### Google Ads limits verified by script: 0 problems (headline<=30, description<=90)
+### AZ/EN pairs: all present (7 stems... blog 4, ads 2, email 3)
+Not done: site FAQ/About copy (dictionary has no FAQ section yet). Nothing sent or published.
+4-content: tamamlandı 2026-11-18 (FAQ hariç)
