@@ -135,3 +135,13 @@ Competitor research round 2: prices + Umai CRM/Kommo ad history added to docs/co
 Flow batch produced 28 files, but the batch tool mis-associated images from d09 on (4 exact duplicates: d09=d01, d11=d03, d18=d06, d19=d17; the rest shifted by one id).
 Fix: duplicates moved to assets/_rejected/, 11 files renamed by visual content (see assets/month-1/_remap_notes.json). Contact sheet re-check: 24/24 present images match their prompts.
 Missing (need regeneration): d09, d13, d14, d15, d18, d28. Blocked: last run said 'FATAL CDP connect timeout' (Chrome remote-debugging Allow prompt must be approved by the user).
+
+### 5-month-pack: final (2026-11-18)
+Regenerated d09, d13, d14, d15, d18, d28 with --only (6/6 ok).
+Duplicate check (average-hash, 30 images): 0 pairs.
+Contact sheet check: 30/30 images match their prompts (checked row by row).
+python tools/content/check_pack.py content/month-1 --assets assets
+OK
+exit: 0
+Note: d21 calendar shows odd dates, d12 notebook shows fake phone-like digits; review before posting.
+5-month-pack: tamamlandı 2026-11-18
