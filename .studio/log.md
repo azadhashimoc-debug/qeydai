@@ -200,3 +200,6 @@ OK
 
 ## Social analysis (2026-11-18)
 docs/social-analysis.md. Instagram reels tab read-only for @manychat, @umai_crm, @edugrata. A call to Instagram's unofficial profile endpoint via the user's session was blocked by the permission classifier and NOT worked around. No content pack changes applied (proposals only).
+
+## Site redesign (2026-11-18)
+Seat-board hero (CSS-only animation, reduced-motion safe), story timelines, lead feature + rows, numbered steps with photo slots, ledger pricing, FAQ, logo/favicon, Bricolage Grotesque + Manrope. Photos NOT generated yet: Flow needs the Chrome remote-debugging Allow (TIMEOUT). Prompts ready in brand/prompts.json groups site-wide and site-step. Visual check: desktop dark/light via Chrome, mobile via Playwright Pixel 7 (overflow 0). Tests: 96 unit, 32 e2e green.
