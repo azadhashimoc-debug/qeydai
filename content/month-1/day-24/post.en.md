@@ -1,0 +1,1 @@
+Why do we start with Telegram? It is the fastest and free test environment. The official WhatsApp Cloud API needs Meta approval and message fees. We calculate those costs in advance and show them to you, and nothing is activated without your consent.

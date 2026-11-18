@@ -1,0 +1,1 @@
+Niyə Telegram ilə başlayırıq? Çünki ən sürətli və pulsuz sınaq mühitidir. Rəsmi WhatsApp Cloud API isə Meta təsdiqi və mesaj xərcləri tələb edir. Həmin xərcləri əvvəlcədən hesablayıb sizə təqdim edirik, razılığınız olmadan heç nə aktivləşmir.

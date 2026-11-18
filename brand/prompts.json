@@ -1,0 +1,130 @@
+{
+ "groups": {
+  "month-1": {
+   "aspect": "1:1",
+   "items": [
+    {
+     "id": "d01-night-chat",
+     "prompt": "a phone glowing on a bedside table at night showing a chat conversation, dark room, blue light on the pillow"
+    },
+    {
+     "id": "d02-price-question",
+     "prompt": "close-up of a manager hands holding a smartphone with a chat open, desk with notebook, shallow focus"
+    },
+    {
+     "id": "d03-product-overview",
+     "prompt": "clean desk with a laptop and a smartphone side by side, both showing a chat interface, navy tones, minimal"
+    },
+    {
+     "id": "d04-myth-boundary",
+     "prompt": "a glass wall with a clear line drawn on it, two sides in navy and teal, office in soft light, abstract"
+    },
+    {
+     "id": "d05-last-seat",
+     "prompt": "a classroom with one empty chair at a table among occupied chairs, soft window light, navy and teal accents"
+    },
+    {
+     "id": "d06-manager-morning",
+     "prompt": "a person at a desk with morning coffee looking at a smartphone, relieved expression, warm window light, navy background tones"
+    },
+    {
+     "id": "d07-three-rules",
+     "prompt": "three index cards lined up on a desk with abstract check marks, navy and teal, flat lay, no text"
+    },
+    {
+     "id": "d08-after-trial",
+     "prompt": "a student leaving a bright classroom with a backpack, back view, soft evening light, navy tones"
+    },
+    {
+     "id": "d09-typo-understanding",
+     "prompt": "a phone screen close-up with a chat bubble layout, blurred keyboard, navy and electric blue light"
+    },
+    {
+     "id": "d10-manager-notification",
+     "prompt": "a smartphone lock screen lit on a wooden desk next to a notebook, notification glow in teal, minimal"
+    },
+    {
+     "id": "d11-channels",
+     "prompt": "three smartphones fanned out on a desk each with a different chat app glow, navy background, no logos"
+    },
+    {
+     "id": "d12-same-number",
+     "prompt": "a handwritten notebook page with three similar phone numbers close-up pen resting on it, shallow focus, navy tones"
+    },
+    {
+     "id": "d13-stress-test",
+     "prompt": "a laptop screen showing green test results in a dark room, close-up, teal glow, no readable text"
+    },
+    {
+     "id": "d14-poll",
+     "prompt": "four abstract colored markers lined up on a navy desk surface, flat lay, minimal, no text"
+    },
+    {
+     "id": "d15-four-numbers",
+     "prompt": "a clean minimal dashboard concept on a tablet with four abstract glowing bars, desk, navy and teal, no readable text"
+    },
+    {
+     "id": "d16-vacation",
+     "prompt": "a person relaxing on a seaside bench holding a phone, back view, soft golden light, navy sea tones"
+    },
+    {
+     "id": "d17-data-isolation",
+     "prompt": "rows of identical locked cabinets in a clean modern hallway, each with a small teal light, navy tones"
+    },
+    {
+     "id": "d18-human-handoff",
+     "prompt": "two hands, one human and one abstract glowing teal hand, about to pass a card, minimal navy background"
+    },
+    {
+     "id": "d19-pilot-open",
+     "prompt": "an open door with warm light spilling into a modern lobby, navy walls, teal accent light, inviting"
+    },
+    {
+     "id": "d20-chat-to-enroll",
+     "prompt": "a smartphone mid-swipe with motion blur showing a conversation flow, dark navy background, teal highlights"
+    },
+    {
+     "id": "d21-year-end-checklist",
+     "prompt": "a wall calendar in december with a few circled dates and a pen, soft light, navy and teal accent, no readable text"
+    },
+    {
+     "id": "d22-exam-period",
+     "prompt": "a student desk at night with a lamp, open notebook and phone beside it, warm lamp light against navy room"
+    },
+    {
+     "id": "d23-bot-unsure",
+     "prompt": "a thoughtful pause: a hand hovering over a phone screen with a chat paused, soft light, navy and teal tones"
+    },
+    {
+     "id": "d24-telegram-first",
+     "prompt": "a paper plane folded from navy paper resting on a desk beside a smartphone, minimal, teal accent"
+    },
+    {
+     "id": "d25-open-pricing",
+     "prompt": "a transparent glass price card on a navy desk with soft reflections, minimal, teal accent, no text"
+    },
+    {
+     "id": "d26-overnight-timeline",
+     "prompt": "a minimal clock face at night beside a smartphone on a desk, blue hour light through a window, navy tones"
+    },
+    {
+     "id": "d27-monday-morning",
+     "prompt": "a modern office desk early morning with coffee cup and a single tablet screen, calm, navy and teal accents"
+    },
+    {
+     "id": "d28-month-recap",
+     "prompt": "a stack of four notebooks fanned on a desk, navy cover tones with teal edges, flat lay, no text"
+    },
+    {
+     "id": "d29-last-seats",
+     "prompt": "a nearly full classroom seen from the doorway with a single empty chair lit by window light, navy tones"
+    },
+    {
+     "id": "d30-demo-invite",
+     "prompt": "an open laptop and a phone with a welcome chat on a clean desk at sunrise, navy and teal palette"
+    }
+   ]
+  }
+ },
+ "style": "minimal premium editorial photo, deep navy and graphite palette with electric blue and teal accents, soft natural light, modern Baku office or phone close-up, shallow depth of field, no text, no logos, no watermark"
+}

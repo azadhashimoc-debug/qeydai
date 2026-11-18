@@ -1,0 +1,12 @@
+{
+  "channel": "telegram",
+  "time": "10:00",
+  "hashtags": [
+    "#qeydai",
+    "#tədrismərkəzi",
+    "#crm"
+  ],
+  "image": "d14-poll",
+  "type": "poll",
+  "prompt": "four abstract colored markers lined up on a navy desk surface, flat lay, minimal, no text"
+}

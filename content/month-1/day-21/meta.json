@@ -1,0 +1,12 @@
+{
+  "channel": "telegram",
+  "time": "10:00",
+  "hashtags": [
+    "#qeydai",
+    "#tədrismərkəzi",
+    "#crm"
+  ],
+  "image": "d21-year-end-checklist",
+  "type": "education",
+  "prompt": "a wall calendar in december with a few circled dates and a pen, soft light, navy and teal accent, no readable text"
+}
