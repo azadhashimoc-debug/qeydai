@@ -164,3 +164,20 @@ found 0 vulnerabilities
 $ python check_pack.py content/month-1 --assets assets
 OK
 -> exit 0
+
+## Enrollment HTTP API for n8n (2026-11-18)
+src/lib/api/enroll-api.ts (+test 17), instance.ts (+test 3), routes src/app/api/v1/{sessions,enroll}, scripts/seed-demo.mts, tests/e2e/api.spec.ts (10 e2e), docs/api.md, .env.example
+Test-design fixes along the way (not product bugs): auth test helper default param; error-message word collision; cross-tenant e2e used same session id in both tenants.
+Run at: 2026-11-18 05:11:04
+$ npm test
+ Test Files  10 passed (10)
+      Tests  95 passed (95)
+$ npm run lint -> exit 0
+$ npm run build -> exit 0
+$ npm run e2e
+  32 passed (6.5s)
+$ npm audit --omit=dev
+found 0 vulnerabilities
+$ python check_pack.py content/month-1 --assets assets
+OK
+-> exit 0
