@@ -1,207 +1,534 @@
 import Link from "next/link";
-import { LogoMark } from "@/components/Logo";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
+import {
+  InstagramIcon,
+  SectorGlyph,
+  TelegramIcon,
+  WhatsAppIcon,
+} from "@/components/ChannelIcons";
+import {
+  AiSpotlight,
+  PricingShowcase,
+} from "@/components/LandingInteractive";
+import { SiteFooter } from "@/components/marketing/SiteFooter";
+import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { Photo } from "@/components/Photo";
-import { SeatBoard } from "@/components/SeatBoard";
-import { getDictionary, locales } from "./dictionaries";
+import { ProductPreview } from "@/components/ProductPreview";
+import { getDictionary } from "./dictionaries";
 import { LeadForm } from "./LeadForm";
+import "./marketing.css";
 
-const featureKeys = ["enroll", "inbox", "crm", "human", "tenant"] as const;
-const stepKeys = ["one", "two", "three"] as const;
-const stepPhoto = { one: "s-courses", two: "s-channel", three: "s-notify" } as const;
-const faqKeys = ["q1", "q2", "q3", "q4", "q5"] as const;
+function CheckIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      aria-hidden="true"
+    >
+      <path d="M4.5 10.5l3.5 3.5 7.5-8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
-  const d = await getDictionary(lang);
-  const other = locales.find((l) => l !== lang)!;
+  const dictionary = await getDictionary(lang);
+  const locale = lang === "en" ? "en" : "az";
+  const other = locale === "az" ? "en" : "az";
+  const l = dictionary.landing;
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://panelim.az";
+  const faqEntries = Object.entries(dictionary.faq.items);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: dictionary.brand,
+        url: siteUrl,
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: dictionary.brand,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        description: dictionary.meta.description,
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "AZN",
+          price: "90",
+          priceValidUntil: "2027-12-31",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqEntries.map(([, item]) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      },
+    ],
+  };
+
+  const sectorItems = [
+    l.logos.items.one,
+    l.logos.items.two,
+    l.logos.items.three,
+    l.logos.items.four,
+    l.logos.items.five,
+    l.logos.items.six,
+  ];
+
+  const aiItems = [
+    l.ai.items.one,
+    l.ai.items.two,
+    l.ai.items.three,
+    l.ai.items.four,
+  ];
+
+  const outcomeCards = [
+    { ...l.outcomes.cards.one, photo: "w-lobby", alt: dictionary.alts.lobby },
+    { ...l.outcomes.cards.two, photo: "w-classroom-dusk", alt: dictionary.alts.two },
+    { ...l.outcomes.cards.three, photo: "w-director", alt: dictionary.alts.director },
+  ];
+
+  const pricingPlans = [
+    {
+      key: "starter",
+      name: l.pricing.plans.starter.name,
+      desc: l.pricing.plans.starter.desc,
+      prices: l.pricing.plans.starter.prices,
+      limits: [
+        l.pricing.plans.starter.limits.one,
+        l.pricing.plans.starter.limits.two,
+        l.pricing.plans.starter.limits.three,
+      ] as [string, string, string],
+      cta: l.pricing.plans.starter.cta,
+    },
+    {
+      key: "growth",
+      name: l.pricing.plans.growth.name,
+      desc: l.pricing.plans.growth.desc,
+      prices: l.pricing.plans.growth.prices,
+      limits: [
+        l.pricing.plans.growth.limits.one,
+        l.pricing.plans.growth.limits.two,
+        l.pricing.plans.growth.limits.three,
+      ] as [string, string, string],
+      cta: l.pricing.plans.growth.cta,
+      popular: true,
+    },
+    {
+      key: "pro",
+      name: l.pricing.plans.pro.name,
+      desc: l.pricing.plans.pro.desc,
+      prices: l.pricing.plans.pro.prices,
+      limits: [
+        l.pricing.plans.pro.limits.one,
+        l.pricing.plans.pro.limits.two,
+        l.pricing.plans.pro.limits.three,
+      ] as [string, string, string],
+      cta: l.pricing.plans.pro.cta,
+    },
+    {
+      key: "enterprise",
+      name: l.pricing.plans.enterprise.name,
+      desc: l.pricing.plans.enterprise.desc,
+      staticPrice: l.pricing.plans.enterprise.price,
+      limits: [
+        l.pricing.plans.enterprise.limits.one,
+        l.pricing.plans.enterprise.limits.two,
+        l.pricing.plans.enterprise.limits.three,
+      ] as [string, string, string],
+      cta: l.pricing.plans.enterprise.cta,
+    },
+  ];
 
   return (
-    <>
-      <header className="sticky top-0 z-20 border-b border-line bg-bg/85 backdrop-blur">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-          <Link href={`/${lang}`} className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-tight">
-            <LogoMark />
-            {d.brand}
-          </Link>
-          <div className="hidden items-center gap-7 text-sm text-muted md:flex">
-            <a href="#features" className="hover:text-ink">{d.nav.features}</a>
-            <a href="#how" className="hover:text-ink">{d.nav.how}</a>
-            <a href="#pricing" className="hover:text-ink">{d.nav.pricing}</a>
-            <a href="#faq" className="hover:text-ink">{d.nav.faq}</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href={`/${other}`}
-              hrefLang={other}
-              aria-label={`${d.footer.lang}: ${other.toUpperCase()}`}
-              className="rounded-lg border border-line px-2.5 py-1 text-xs font-semibold uppercase text-muted hover:text-ink"
-            >
-              {other}
-            </Link>
-            <a href="#contact" className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white hover:brightness-110">
-              {d.nav.cta}
-            </a>
-          </div>
-        </nav>
-      </header>
+    <div className="marketing">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <a href="#main" className="skip-link">
+        {dictionary.a11y.skipToMain}
+      </a>
 
-      <main>
-        {/* Hero: the product's own object (seats filling up) is the first thing seen */}
-        <section className="relative overflow-hidden bg-navy text-white">
-          <div aria-hidden className="hero-field absolute inset-0" />
-          <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_1fr] md:py-24">
-            <div>
-              <p className="mb-5 text-sm font-medium text-accent">{d.hero.eyebrow}</p>
-              <h1 className="max-w-[16ch] text-[clamp(2.5rem,6.2vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.025em] text-balance">
-                {d.hero.title}
-              </h1>
-              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-white/72">{d.hero.subtitle}</p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a href="#contact" className="rounded-xl bg-brand px-6 py-3.5 font-semibold hover:brightness-110">{d.hero.primary}</a>
-                <a href="#how" className="rounded-xl border border-white/22 px-6 py-3.5 font-semibold text-white/90 hover:bg-white/6">{d.hero.secondary}</a>
+      <SiteHeader
+        lang={locale}
+        brand={dictionary.brand}
+        a11y={dictionary.a11y}
+        nav={l.nav}
+        subNav={dictionary.subpages.navGroups}
+        mode="landing"
+      />
+
+      <main id="main" tabIndex={-1}>
+        <section className="pm-hero">
+          <div className="pm-wrap pm-hero-inner">
+            <div className="pm-hero-copy">
+              <ul className="pm-channels" aria-label={l.hero.trustNote}>
+                <li>
+                  <WhatsAppIcon size={36} />
+                  <span className="sr-only">{l.hero.channels.whatsapp}</span>
+                </li>
+                <li>
+                  <InstagramIcon size={56} />
+                  <span className="sr-only">{l.hero.channels.instagram}</span>
+                </li>
+                <li>
+                  <TelegramIcon size={36} />
+                  <span className="sr-only">{l.hero.channels.telegram}</span>
+                </li>
+              </ul>
+
+              <h1>{l.hero.title}</h1>
+              <p className="pm-hero-sub">{l.hero.subtitle}</p>
+
+              <div className="pm-hero-actions">
+                <a className="pm-btn pm-btn-primary" href="#contact" data-track-cta="hero_primary">
+                  {l.hero.primaryCta}
+                  <svg width="18" height="20" viewBox="0 0 14 16" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M8.035.197c.037-.263.417-.263.455 0l.098.692a6.73 6.73 0 0 0 5.101 5.6c.204.049.204.339 0 .388a6.73 6.73 0 0 0-5.101 5.6l-.098.692c-.038.263-.418.263-.455 0l-.098-.693a6.73 6.73 0 0 0-5.101-5.6c-.204-.048-.204-.338 0-.387a6.73 6.73 0 0 0 5.101-5.6zm-5.488 9.95c.032-.205.328-.205.359 0l.02.127a3.1 3.1 0 0 0 2.393 2.556c.18.04.18.294 0 .334a3.1 3.1 0 0 0-2.393 2.555l-.02.127c-.031.205-.327.205-.359 0l-.02-.127a3.1 3.1 0 0 0-2.393-2.555c-.179-.04-.179-.295 0-.335a3.1 3.1 0 0 0 2.394-2.555z"
+                    />
+                  </svg>
+                </a>
+                <a className="pm-btn pm-btn-outline" href="#how" data-track-cta="hero_secondary">
+                  {l.hero.secondaryCta}
+                </a>
               </div>
-              <ul className="mt-11 flex flex-wrap gap-x-7 gap-y-2 text-sm text-white/62">
-                {[d.proof.one, d.proof.two, d.proof.three].map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span aria-hidden className="seat seat--taken" style={{ width: 9, height: 9 }} />
-                    {t}
-                  </li>
-                ))}
+
+              <ul className="pm-trust-row">
+                <li>
+                  <CheckIcon />
+                  <span>{l.hero.trustBadges.one}</span>
+                </li>
+                <li>
+                  <CheckIcon />
+                  <span>{l.hero.trustBadges.two}</span>
+                </li>
+                <li>
+                  <CheckIcon />
+                  <span>{l.hero.trustBadges.three}</span>
+                </li>
               </ul>
             </div>
-            <SeatBoard d={d.board} />
-          </div>
-        </section>
 
-        {/* The problem, as two timelines on one clock */}
-        <section className="mx-auto max-w-6xl px-5 py-20 md:py-24">
-          <p className="text-sm text-muted">{d.story.label}</p>
-          <h2 className="mt-2 max-w-[22ch] text-3xl font-semibold leading-tight tracking-tight text-balance md:text-5xl">{d.story.title}</h2>
-          <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
-            <div>
-              <h3 className="mb-4 font-semibold text-muted">{d.story.without.name}</h3>
-              <ol className="rail rail--lost">
-                <li>{d.story.without.a}</li>
-                <li>{d.story.without.b}</li>
-                <li className="font-semibold">{d.story.without.c}</li>
-              </ol>
-            </div>
-            <div>
-              <h3 className="mb-4 font-semibold">{d.story.with.name}</h3>
-              <ol className="rail rail--won">
-                <li>{d.story.with.a}</li>
-                <li>{d.story.with.b}</li>
-                <li className="font-semibold">{d.story.with.c}</li>
-              </ol>
+            <div id="how" className="pm-stage-anchor">
+              <ProductPreview
+                copy={l.preview}
+                brand={dictionary.brand}
+                lobbyAlt={dictionary.alts.lobby}
+              />
             </div>
           </div>
         </section>
 
-        {/* Features: one lead capability with a real exchange, the rest as plain rows */}
-        <section id="features" className="scroll-mt-16 border-y border-line bg-surface">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1fr_1.1fr] md:py-24">
-            <div>
-              <h2 className="max-w-[18ch] text-3xl font-semibold leading-tight tracking-tight text-balance md:text-4xl">{d.features.title}</h2>
-              <div className="mt-8 rounded-2xl border border-white/12 bg-navy p-5 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)_inset]">
-                <p className="mb-1 text-sm font-semibold text-accent">{d.features.items.ai.title}</p>
-                <p className="mb-4 text-sm text-white/65">{d.features.items.ai.body}</p>
-                <div className="grid gap-2 text-sm">
-                  <p className="max-w-[85%] justify-self-end rounded-2xl rounded-br-sm bg-brand px-3.5 py-2.5">{d.features.sample.u}</p>
-                  <p className="max-w-[90%] rounded-2xl rounded-bl-sm bg-white/10 px-3.5 py-2.5">{d.features.sample.b}</p>
+        <section className="pm-logos">
+          <div className="pm-wrap">
+            <p className="pm-logos-title">{l.logos.title}</p>
+            <div className="pm-logos-grid">
+              {sectorItems.map((sector, idx) => (
+                <div key={sector} className="pm-logo-chip">
+                  <SectorGlyph index={idx} />
+                  <span>{sector}</span>
                 </div>
-                <p className="mt-3 text-xs text-white/45">{d.features.sample.note}</p>
+              ))}
+            </div>
+            <div className="pm-logos-action">
+              <a href="#features" className="pm-link-arrow">
+                {l.logos.link}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="pm-section pm-bento">
+          <div className="pm-wrap">
+            <div className="pm-section-head">
+              <h2>{l.bento.heading}</h2>
+              <p>{l.bento.subheading}</p>
+            </div>
+
+            <div className="pm-bento-rows">
+              <article className="pm-bento-row">
+                <div className="pm-bento-copy">
+                  <span className="pm-tag">{l.bento.rows.inbox.tag}</span>
+                  <h3>{l.bento.rows.inbox.title}</h3>
+                  <p>{l.bento.rows.inbox.body}</p>
+                  <a href="#ai" className="pm-link-arrow">
+                    {l.bento.rows.inbox.cta}
+                  </a>
+                </div>
+                <div className="pm-bento-visual pm-vis-lavender">
+                  <div className="pm-visual-photo">
+                    <Photo
+                      name="s-channel"
+                      alt={dictionary.alts.two}
+                      sizes="(max-width: 900px) 100vw, 520px"
+                      className="pm-photo-box"
+                    />
+                    <div className="pm-photo-badges" aria-hidden="true">
+                      <WhatsAppIcon size={24} />
+                      <InstagramIcon size={24} />
+                      <TelegramIcon size={24} />
+                    </div>
+                  </div>
+                  <div className="pm-mini-card pm-mini-float">
+                    <div className="pm-mini-head">
+                      <span className="pm-mini-ch">
+                        <WhatsAppIcon size={16} />
+                        <span>{l.bento.rows.inbox.uiChannel}</span>
+                      </span>
+                      <span className="pm-pill-mint">{l.bento.rows.inbox.uiBadge}</span>
+                    </div>
+                    <div className="pm-mini-chat">
+                      <p className="pm-bubble-in">{l.bento.rows.inbox.uiMsg1}</p>
+                      <p className="pm-bubble-out">{l.bento.rows.inbox.uiMsg2}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article className="pm-bento-row is-reversed">
+                <div className="pm-bento-copy">
+                  <span className="pm-tag">{l.bento.rows.pipeline.tag}</span>
+                  <h3>{l.bento.rows.pipeline.title}</h3>
+                  <p>{l.bento.rows.pipeline.body}</p>
+                  <a href="#contact" className="pm-link-arrow">
+                    {l.bento.rows.pipeline.cta}
+                  </a>
+                </div>
+                <div className="pm-bento-visual pm-vis-sky">
+                  <div className="pm-visual-photo">
+                    <Photo
+                      name="w-lobby"
+                      alt={dictionary.alts.lobby}
+                      sizes="(max-width: 900px) 100vw, 520px"
+                      className="pm-photo-box"
+                    />
+                  </div>
+                  <div className="pm-mini-kanban pm-mini-float">
+                    <div className="pm-mini-col">
+                      <strong>{l.bento.rows.pipeline.uiCol1}</strong>
+                      <div className="pm-mini-deal">
+                        <span>{l.bento.rows.pipeline.uiCard1}</span>
+                        <span className="pm-claim-chip">{l.bento.rows.pipeline.uiClaim}</span>
+                      </div>
+                    </div>
+                    <div className="pm-mini-col">
+                      <strong>{l.bento.rows.pipeline.uiCol2}</strong>
+                      <div className="pm-mini-deal">
+                        <span>{l.bento.rows.pipeline.uiCard2}</span>
+                        <small>{l.bento.rows.pipeline.uiOwner}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article className="pm-bento-row">
+                <div className="pm-bento-copy">
+                  <span className="pm-tag">{l.bento.rows.bookings.tag}</span>
+                  <h3>{l.bento.rows.bookings.title}</h3>
+                  <p>{l.bento.rows.bookings.body}</p>
+                  <a href="#contact" className="pm-link-arrow">
+                    {l.bento.rows.bookings.cta}
+                  </a>
+                </div>
+                <div className="pm-bento-visual pm-vis-mint">
+                  <div className="pm-visual-photo">
+                    <Photo
+                      name="s-courses"
+                      alt={dictionary.alts.one}
+                      sizes="(max-width: 900px) 100vw, 520px"
+                      className="pm-photo-box"
+                    />
+                  </div>
+                  <div className="pm-mini-card pm-mini-float">
+                    <div className="pm-mini-head">
+                      <strong>{l.bento.rows.bookings.uiGroup}</strong>
+                      <span className="pm-pill-mint">{l.bento.rows.bookings.uiRule}</span>
+                    </div>
+                    <p className="pm-seats-line">{l.bento.rows.bookings.uiSeats}</p>
+                    <div className="pm-meter">
+                      <span style={{ width: "80%" }} />
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article className="pm-bento-row is-reversed">
+                <div className="pm-bento-copy">
+                  <span className="pm-tag">{l.bento.rows.analytics.tag}</span>
+                  <h3>{l.bento.rows.analytics.title}</h3>
+                  <p>{l.bento.rows.analytics.body}</p>
+                  <a href="#pricing" className="pm-link-arrow">
+                    {l.bento.rows.analytics.cta}
+                  </a>
+                </div>
+                <div className="pm-bento-visual pm-vis-plum">
+                  <div className="pm-visual-photo">
+                    <Photo
+                      name="w-director"
+                      alt={dictionary.alts.director}
+                      sizes="(max-width: 900px) 100vw, 520px"
+                      className="pm-photo-box"
+                    />
+                  </div>
+                  <div className="pm-mini-card pm-mini-float">
+                    <div className="pm-mini-stats">
+                      <div>
+                        <small>{l.bento.rows.analytics.uiStat1}</small>
+                        <strong>{l.bento.rows.analytics.uiVal1}</strong>
+                      </div>
+                      <div>
+                        <small>{l.bento.rows.analytics.uiStat2}</small>
+                        <strong>{l.bento.rows.analytics.uiVal2}</strong>
+                      </div>
+                    </div>
+                    <div className="pm-mini-source-row">
+                      <InstagramIcon size={16} />
+                      <p className="pm-mini-source">{l.bento.rows.analytics.uiSource}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <AiSpotlight
+          eyebrow={l.ai.eyebrow}
+          heading={l.ai.heading}
+          subheading={l.ai.subheading}
+          cta={l.ai.cta}
+          badge={l.ai.badge}
+          phoneBrand={l.ai.phoneBrand}
+          phoneSub={l.ai.phoneSub}
+          notifyAlt={dictionary.alts.three}
+          items={aiItems}
+        />
+
+        <section className="pm-section pm-outcomes">
+          <div className="pm-wrap">
+            <div className="pm-section-head">
+              <h2>{l.outcomes.heading}</h2>
+              <p>{l.outcomes.subheading}</p>
+            </div>
+
+            <div className="pm-outcomes-grid">
+              {outcomeCards.map((card) => (
+                <article key={card.author} className="pm-outcome-card">
+                  <blockquote>
+                    {card.before}
+                    <mark className="pm-mint-mark">{card.highlight}</mark>
+                    {card.after}
+                  </blockquote>
+                  <footer className="pm-outcome-meta">
+                    <Photo
+                      name={card.photo}
+                      alt={card.alt}
+                      sizes="48px"
+                      className="pm-outcome-avatar"
+                    />
+                    <div>
+                      <strong>{card.author}</strong>
+                      <span>{card.role}</span>
+                    </div>
+                  </footer>
+                </article>
+              ))}
+            </div>
+
+            <div className="pm-outcomes-cta">
+              <a href="#contact" className="pm-btn pm-btn-outline">
+                {l.outcomes.cta}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <PricingShowcase
+          heading={l.pricing.heading}
+          subheading={l.pricing.subheading}
+          periods={l.pricing.periods}
+          periodNotes={l.pricing.periodNotes}
+          perMonth={l.pricing.perMonth}
+          popularLabel={l.pricing.popular}
+          setupPrefix={l.pricing.setupPrefix}
+          setupValue={l.pricing.setupValue}
+          plans={pricingPlans}
+          footnote={l.pricing.footnote}
+        />
+
+        <section id="faq" className="pm-section pm-faq">
+          <div className="pm-wrap pm-faq-inner">
+            <div className="pm-section-head">
+              <h2>{dictionary.faq.title}</h2>
+            </div>
+
+            <div className="pm-faq-list">
+              {faqEntries.map(([id, item]) => (
+                <details key={id} data-track-faq={id} className="pm-faq-item">
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="pm-cta-band">
+          <div className="pm-cta-glow" aria-hidden="true" />
+          <div className="pm-cta-bg-photo" aria-hidden="true">
+            <Photo name="w-classroom-dusk" alt="" sizes="100vw" className="pm-cta-bg-img" />
+          </div>
+          <div className="pm-wrap pm-cta-grid">
+            <div className="pm-cta-copy">
+              <h2>{l.ctaBand.title}</h2>
+              <p>{l.ctaBand.subtitle}</p>
+              <div className="pm-cta-links">
+                <Link href={`/${lang}/panel`} className="pm-btn pm-btn-mint">
+                  {l.ctaBand.secondary}
+                </Link>
               </div>
             </div>
-            <ul className="divide-y divide-line self-center">
-              {featureKeys.map((k) => (
-                <li key={k} className="flex gap-4 py-5 first:pt-0 last:pb-0">
-                  <span aria-hidden className="seat mt-1.5 shrink-0" style={{ borderColor: "var(--teal)" }} />
-                  <div>
-                    <h3 className="font-semibold">{d.features.items[k].title}</h3>
-                    <p className="mt-1 max-w-[52ch] text-muted">{d.features.items[k].body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
 
-        {/* How it works: a genuine sequence, so it is numbered */}
-        <section id="how" className="mx-auto max-w-6xl scroll-mt-16 px-5 py-20 md:py-24">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{d.how.title}</h2>
-          <ol className="mt-12 grid gap-10 md:grid-cols-3">
-            {stepKeys.map((k, i) => (
-              <li key={k}>
-                <Photo name={stepPhoto[k]} alt={d.alts[k]} className="aspect-[4/3] rounded-2xl" sizes="(min-width: 768px) 33vw, 100vw" />
-                <p className="mt-5 flex items-baseline gap-3">
-                  <span className="font-display text-3xl font-semibold text-accent">{i + 1}</span>
-                  <span className="text-lg font-semibold">{d.how.steps[k].title}</span>
-                </p>
-                <p className="mt-2 max-w-[40ch] text-muted">{d.how.steps[k].body}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* Pricing as a plain ledger, not a pair of cards */}
-        <section id="pricing" className="scroll-mt-16 border-y border-line bg-surface">
-          <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-[1fr_1.2fr] md:py-24">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{d.pricing.title}</h2>
-              <p className="mt-3 max-w-[40ch] text-sm text-muted">{d.pricing.note}</p>
-            </div>
-            <dl className="divide-y divide-line border-y border-line">
-              {([d.pricing.setup, d.pricing.monthly] as const).map((p) => (
-                <div key={p.label} className="grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 py-6">
-                  <dt className="font-semibold">{p.label}</dt>
-                  <dd className="font-display text-3xl font-semibold tracking-tight">{p.value}</dd>
-                  <p className="col-span-2 max-w-[48ch] text-muted">{p.body}</p>
-                </div>
-              ))}
-              <p className="py-5 text-sm text-muted">{d.pricing.extra}</p>
-            </dl>
-          </div>
-        </section>
-
-        <section id="faq" className="mx-auto max-w-3xl scroll-mt-16 px-5 py-20 md:py-24">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{d.faq.title}</h2>
-          <div className="mt-8 divide-y divide-line border-y border-line">
-            {faqKeys.map((k) => (
-              <details key={k} className="group py-5">
-                <summary className="text-lg font-semibold">{d.faq.items[k].q}</summary>
-                <p className="mt-3 max-w-[60ch] text-muted">{d.faq.items[k].a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="relative scroll-mt-16 overflow-hidden bg-navy text-white">
-          <Photo name="w-classroom-dusk" className="absolute inset-0 opacity-25" sizes="100vw" />
-          <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-24">
-            <div>
-              <h2 className="max-w-[16ch] text-3xl font-semibold leading-tight tracking-tight text-balance md:text-5xl">{d.contact.title}</h2>
-              <p className="mt-4 max-w-[42ch] text-white/72">{d.contact.subtitle}</p>
-            </div>
-            <div className="rounded-2xl bg-bg p-6 text-ink">
-              <LeadForm labels={d.contact} okText={d.contact.ok} errText={d.contact.error} rateLimitedText={d.contact.rate_limited} />
+            <div className="pm-contact-card">
+              <LeadForm
+                locale={locale}
+                labels={dictionary.contact}
+                okText={dictionary.contact.ok}
+                errText={dictionary.contact.error}
+                rateLimitedText={dictionary.contact.rate_limited}
+              />
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-line py-8 pb-24 md:pb-8">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 text-sm text-muted">
-          <span className="flex items-center gap-2"><LogoMark size={20} />{d.brand}</span>
-          <span>{d.footer.tagline}</span>
-        </div>
-      </footer>
+      <SiteFooter
+        lang={locale}
+        other={other}
+        tagline={l.footer.tagline}
+        copyright={l.footer.copyright}
+        switchLabel={l.footer.switchLabel}
+        cols={dictionary.subpages.footer}
+      />
 
-      <a
-        href="#contact"
-        className="fixed inset-x-4 bottom-4 z-20 rounded-xl bg-brand py-3.5 text-center font-semibold text-white shadow-lg md:hidden"
-      >
-        {d.nav.cta}
-      </a>
-    </>
+      <AnalyticsTracker locale={locale} />
+    </div>
   );
 }
