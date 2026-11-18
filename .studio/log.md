@@ -130,3 +130,8 @@ Not done: site FAQ/About copy (dictionary has no FAQ section yet). Nothing sent 
 ## Competitor research (2026-11-18)
 docs/competitor-research.md. Apify blocked (free plan monthly usage exhausted); used web search + Meta Ad Library (AZ, active). Instagram profile metrics not collected.
 Competitor research round 2: prices + Umai CRM/Kommo ad history added to docs/competitor-research.md
+
+## 5-month-pack: images (2026-11-18)
+Flow batch produced 28 files, but the batch tool mis-associated images from d09 on (4 exact duplicates: d09=d01, d11=d03, d18=d06, d19=d17; the rest shifted by one id).
+Fix: duplicates moved to assets/_rejected/, 11 files renamed by visual content (see assets/month-1/_remap_notes.json). Contact sheet re-check: 24/24 present images match their prompts.
+Missing (need regeneration): d09, d13, d14, d15, d18, d28. Blocked: last run said 'FATAL CDP connect timeout' (Chrome remote-debugging Allow prompt must be approved by the user).

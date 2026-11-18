@@ -44,3 +44,6 @@ data/
 # playwright
 /test-results/
 /playwright-report/
+
+# generated images (large binaries)
+/assets/
