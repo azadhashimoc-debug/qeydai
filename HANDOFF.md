@@ -30,14 +30,14 @@ n8n (ayrı): `powershell -File D:\tedris-ai\start-n8n.ps1` → http://localhost:
 
 ## Test kanıtı
 ```
-Run at: 2026-11-18 05:11:04
+Run at: 2026-11-18 05:14:50
 $ npm test
  Test Files  10 passed (10)
-      Tests  95 passed (95)
+      Tests  96 passed (96)
 $ npm run lint -> exit 0
-$ npm run build -> exit 0
+$ npm run build -> exit 0 (data/ created by build: no)
 $ npm run e2e
-  32 passed (6.5s)
+  32 passed (6.2s)
 $ npm audit --omit=dev
 found 0 vulnerabilities
 $ python check_pack.py content/month-1 --assets assets

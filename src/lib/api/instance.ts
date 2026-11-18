@@ -33,10 +33,19 @@ export function parseKeys(raw: string | undefined): Record<string, string> {
   return out;
 }
 
-let api: ReturnType<typeof createEnrollApi> | null = null;
+type Api = ReturnType<typeof createEnrollApi>;
+let api: Api | null = null;
+
+// Next runs route handlers once while building (prerender probe). Never open the database then:
+// it would create files in the build directory (and bake an empty DB into build images).
+const buildPhaseApi: Api = {
+  listSessions: async () => Response.json({ ok: false, error: "unavailable_during_build" }, { status: 503 }),
+  enroll: async () => Response.json({ ok: false, error: "unavailable_during_build" }, { status: 503 }),
+};
 
 /** Lazily creates the API on first request so builds and tests never open the database. */
-export function getEnrollApi() {
+export function getEnrollApi(): Api {
+  if (process.env.NEXT_PHASE === "phase-production-build") return buildPhaseApi;
   if (!api) {
     const file = process.env.ENROLL_DB_FILE ?? path.join(process.cwd(), "data", "qeydai.sqlite");
     if (file !== ":memory:") mkdirSync(path.dirname(file), { recursive: true });

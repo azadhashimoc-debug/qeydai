@@ -181,3 +181,19 @@ found 0 vulnerabilities
 $ python check_pack.py content/month-1 --assets assets
 OK
 -> exit 0
+
+### Found while wiring the API (2026-11-18)
+next build runs the GET route handler once (prerender probe), which opened/created data/qeydai.sqlite. Fix: getEnrollApi() returns a 503 stub when NEXT_PHASE=phase-production-build (regression test in instance.test.ts). Verified: build no longer creates data/.
+Run at: 2026-11-18 05:14:50
+$ npm test
+ Test Files  10 passed (10)
+      Tests  96 passed (96)
+$ npm run lint -> exit 0
+$ npm run build -> exit 0 (data/ created by build: no)
+$ npm run e2e
+  32 passed (6.2s)
+$ npm audit --omit=dev
+found 0 vulnerabilities
+$ python check_pack.py content/month-1 --assets assets
+OK
+-> exit 0
