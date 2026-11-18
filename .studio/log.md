@@ -126,3 +126,6 @@ hits above: 0
 ### AZ/EN pairs: all present (7 stems... blog 4, ads 2, email 3)
 Not done: site FAQ/About copy (dictionary has no FAQ section yet). Nothing sent or published.
 4-content: tamamlandı 2026-11-18 (FAQ hariç)
+
+## Competitor research (2026-11-18)
+docs/competitor-research.md. Apify blocked (free plan monthly usage exhausted); used web search + Meta Ad Library (AZ, active). Instagram profile metrics not collected.
