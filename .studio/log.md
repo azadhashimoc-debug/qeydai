@@ -148,3 +148,19 @@ Note: d21 calendar shows odd dates, d12 notebook shows fake phone-like digits; r
 
 ## 6-handoff (2026-11-18 05:01)
 Final verification run at 2026-11-18 04:59:34 (see HANDOFF.md). 6-handoff: tamamlandı
+
+## Post-handoff: SQLite store (2026-11-18)
+src/lib/enrollment/sqlite-store.ts + sqlite-store.test.ts (5 tests incl. 4-process concurrency). Mutation check: BEGIN IMMEDIATE -> BEGIN made the concurrency test fail 3/3 ('database is locked'). tsconfig excludes worker.mts (build error TS5097 fixed).
+Run at: 2026-11-18 05:04:55
+$ npm test
+ Test Files  8 passed (8)
+      Tests  75 passed (75)
+$ npm run lint -> exit 0
+$ npm run build -> exit 0
+$ npm run e2e
+  22 passed (6.6s)
+$ npm audit --omit=dev
+found 0 vulnerabilities
+$ python check_pack.py content/month-1 --assets assets
+OK
+-> exit 0

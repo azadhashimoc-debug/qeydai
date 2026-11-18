@@ -5,6 +5,7 @@ Tarih: 2026-11-18 · Klasör: C:/Users/adem/projects/qeydai · Brief: brief.md (
 ## Ne yapıldı
 - **Çekirdek qeydiyyat mantığı** (boş yer, təkrar qeydiyyat, eşzamanlı son yer, kiracı izolasyonu, başlamış dərsə kayıt reddi, AZ mobil numara doğrulama) → `src/lib/enrollment/enrollment.ts` (+ `enrollment.test.ts`, `enrollment.review.test.ts`).
 - **AZ/EN landing sayfası** (`/az`, `/en`, dil yönlendirme, koyu/açık tema, mobil uyumlu) → `src/app/[lang]/`, `src/proxy.ts`.
+- **Kalıcı SQLite deposu** (node:sqlite, Node 24 yerleşik): `BEGIN IMMEDIATE` ile atomik yer ayırma, `UNIQUE(tenant_id, session_id, phone)`, kiracı kapsamlı sorgular, gerçek çok süreçli yarış testi (4 süreç x 25 deneme, 10 yer: tam 10 kayıt). Kilit zayıflatılınca test başarısız oluyor (doğrulandı) → `src/lib/enrollment/sqlite-store.ts`. Henüz uygulamaya bağlı değil.
 - **Lead formu API** (`POST /api/lead`: boyut sınırı, Content-Type ve Origin kontrolü, hız sınırı, global tavan, yapılandırılmış hatalar; lokal `data/leads.jsonl`) → `src/app/api/lead/route.ts`.
 - **Güvenlik başlıkları** (CSP, HSTS, X-Frame-Options vb.) → `next.config.ts`.
 - **Marka ve ses** → `brand/BRAND.md`, `brand/VOICE.md` (taslak; "devam" ile kabul sayıldı, değiştirilebilir).
@@ -28,14 +29,14 @@ n8n (ayrı): `powershell -File D:\tedris-ai\start-n8n.ps1` → http://localhost:
 
 ## Test kanıtı
 ```
-Run at: 2026-11-18 04:59:34
+Run at: 2026-11-18 05:04:55
 $ npm test
- Test Files  7 passed (7)
-      Tests  70 passed (70)
+ Test Files  8 passed (8)
+      Tests  75 passed (75)
 $ npm run lint -> exit 0
 $ npm run build -> exit 0
 $ npm run e2e
-  22 passed (6.9s)
+  22 passed (6.6s)
 $ npm audit --omit=dev
 found 0 vulnerabilities
 $ python check_pack.py content/month-1 --assets assets
@@ -62,7 +63,7 @@ Ayrıntılı geçmiş (kırmızı turlar, bulgular, düzeltmeler): `.studio/log.
 ## Açık kalanlar
 - **Brief'teki özellikler:** F2 (birleşik mesajlaşma paneli) ve F4 (CRM/analitik paneli) **yapılmadı**. F1 yalnızca site metni ve statik demo sohbeti; **gerçek Gemini + Telegram botu çalışmıyor** (anahtarlar yok, workflow'lar yazılmadı).
 - **Orijinal 8 aşamalı sistem planı:** yalnızca Aşama 1 (n8n kurulumu) tamam. Google Sheets/SQLite yapısı, Gemini + Telegram workflow'ları, n8n import dosyaları, WhatsApp, çok kiracılı PostgreSQL geçişi yapılmadı. Karar bekleyen: Sheets mi SQLite mi.
-- **Güvenlik:** CSP'de `'unsafe-inline'` (nonce gerekir); hız sınırı süreç bazlı ve proxy olmadan taklit edilebilir; CSRF token yok (JSON Content-Type + Origin kontrolü var); `listSessions` N+1 sorgusu; Postgres'te atomik `insertIfAvailable` sözleşmesi henüz test edilemedi (veritabanı yok).
+- **Güvenlik:** CSP'de `'unsafe-inline'` (nonce gerekir); hız sınırı süreç bazlı ve proxy olmadan taklit edilebilir; CSRF token yok (JSON Content-Type + Origin kontrolü var); `listSessions` N+1 sorgusu; SQLite deposu atomik ve test edildi, ama PostgreSQL uyarlaması yazılmadı ve henüz çalışan uygulamaya bağlı değil (site yalnızca lead dosyasına yazıyor).
 - **Doğrulanmamış rakamlar:** 350/100 AZN fiyatı (pazar doğrulaması yok), 180 AZN IELTS ve "sınaq dərsi pulsuzdur" örnek; SEO arama hacimleri; rakip fiyatları ve WhatsApp mesaj ücretleri (resmî sayfalardan teyit gerekir).
 - **Rakip araştırması eksikleri:** Instagram profil verileri (takipçi, etkileşim) toplanmadı (Apify kotası); Manychat/Wati/ChatDaddy reklam geçmişi bakılmadı.
 - **Marka:** ad, logo, domain kesin değil. Sitede SSS ve "hakkımızda" bölümü yok.
