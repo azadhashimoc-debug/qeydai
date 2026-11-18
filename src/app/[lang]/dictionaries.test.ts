@@ -7,6 +7,8 @@ function flat(o: unknown, p = ""): Record<string, string> {
   return Object.entries(o as object).reduce((a, [k, v]) => ({ ...a, ...flat(v, p ? `${p}.${k}` : k) }), {});
 }
 const A = flat(az), E = flat(en);
+// Sample messages written by the customer stay in Azerbaijani on both pages on purpose.
+const CUSTOMER_MESSAGES = ["features.sample.u", "board.chat.u2"];
 
 describe("dictionaries", () => {
   it("AZ and EN have identical keys", () => expect(Object.keys(A).sort()).toEqual(Object.keys(E).sort()));
@@ -17,7 +19,7 @@ describe("dictionaries", () => {
     }
   });
   it("AZ copy is not just the English copy", () => {
-    const same = Object.keys(A).filter((k) => A[k] === E[k] && !/^(brand|meta\.brand)/.test(k) && A[k].length > 12);
+    const same = Object.keys(A).filter((k) => A[k] === E[k] && !/^(brand|meta\.brand)/.test(k) && A[k].length > 12 && !CUSTOMER_MESSAGES.includes(k));
     expect(same).toEqual([]);
   });
   it("AZ uses Azerbaijani letters", () => expect(Object.values(A).join(" ")).toMatch(/[əğıöüçş]/i));

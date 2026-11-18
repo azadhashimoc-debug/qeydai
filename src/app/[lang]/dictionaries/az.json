@@ -8,7 +8,8 @@
     "features": "İmkanlar",
     "how": "Necə işləyir",
     "pricing": "Qiymət",
-    "cta": "Demo istə"
+    "cta": "Demo istə",
+    "faq": "Suallar"
   },
   "hero": {
     "eyebrow": "Azərbaycan dilində işləyən AI",
@@ -49,6 +50,11 @@
         "title": "Hər mərkəzin öz məlumatı",
         "body": "Kurslar, müştərilər və hesabatlar mərkəzlər arasında tam ayrılıb."
       }
+    },
+    "sample": {
+      "u": "salam ielts var qiymeti nedi",
+      "b": "Salam! IELTS kursumuz var, aylıq 180 AZN. Şənbə 11:00 sınaq dərsinə yazım?",
+      "note": "Nümunə: yazı səhvləri də başa düşülür. Rəqəmlər nümunədir."
     }
   },
   "how": {
@@ -80,7 +86,8 @@
       "label": "Aylıq xidmət",
       "value": "100 AZN",
       "body": "Dəstək, yeniləmələr və hesabatlar."
-    }
+    },
+    "extra": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir."
   },
   "contact": {
     "title": "Mərkəzinizdə sınaqdan keçirək",
@@ -97,14 +104,77 @@
     "tagline": "Azərbaycan tədris mərkəzləri üçün AI satış köməkçisi.",
     "lang": "Dil"
   },
-  "demo": {
-    "title": "Canlı söhbət nümunəsi",
-    "u1": "Salam, ielts kursu var? qiymeti nedi",
-    "b1": "Salam! IELTS kursumuz var. Aylıq qiymət 180 AZN, həftədə 3 dərs. Sınaq dərsinə yazılmaq istəyirsiniz?",
-    "u2": "bəli, şənbə olar?",
-    "b2": "Şənbə günü 11:00 sınaq dərsində 2 boş yer qalıb. Adınızı və nömrənizi yazın.",
-    "card": "Qeydiyyat təsdiqləndi",
-    "card2": "Şənbə · 11:00 · IELTS",
-    "note": "Nümunə məlumatdır"
+  "board": {
+    "title": "Sınaq dərsləri",
+    "live": "canlı",
+    "seatsLeft": "boş yer",
+    "note": "Nümunə məlumatdır",
+    "sessions": {
+      "a": {
+        "course": "IELTS",
+        "when": "Şənbə 11:00"
+      },
+      "b": {
+        "course": "IELTS",
+        "when": "Çərşənbə 18:00"
+      },
+      "c": {
+        "course": "Riyaziyyat",
+        "when": "Cümə axşamı 17:00"
+      }
+    },
+    "chat": {
+      "u1": "Şənbə 11:00-a yer var?",
+      "b1": "Bəli, 2 yer var. Adınızı və nömrənizi yazın.",
+      "u2": "Aygün, 050 123 45 67",
+      "b2": "Qeydiyyat təsdiqləndi ✓ Şənbə 11:00. Bir yer qalıb."
+    }
+  },
+  "story": {
+    "title": "Müraciətlər çox vaxt gec cavab gələndə itir",
+    "label": "Nümunə ssenari",
+    "without": {
+      "name": "Əl ilə cavab",
+      "a": "23:40 · Valideyn yazır: “IELTS kursu var, qiyməti nə qədərdir?”",
+      "b": "11:00 · Cavab gəlir",
+      "c": "O, artıq başqa mərkəzlə danışıb"
+    },
+    "with": {
+      "name": "QeydAI ilə",
+      "a": "23:40 · Valideyn yazır",
+      "b": "23:41 · Cavab və sınaq dərsi təklifi",
+      "c": "23:44 · Qeydiyyat təsdiqləndi"
+    }
+  },
+  "faq": {
+    "title": "Tez-tez verilən suallar",
+    "items": {
+      "q1": {
+        "q": "Süni intellekt qiymət və saat uydurmur?",
+        "a": "Yox. Qiymət, saat və boş yer yalnız sizin təsdiqlədiyiniz cədvəldən oxunur, qeydiyyat qaydalarını isə proqram yoxlayır. Cədvəldə olmayan sualı menecerə ötürür."
+      },
+      "q2": {
+        "q": "Hansı kanallarla işləyir?",
+        "a": "Telegram ilə başlayırıq. WhatsApp və Instagram rəsmi təsdiqdən sonra qoşulur. WhatsApp mesaj xərcləri Meta tarifinə görə ayrıca hesablanır və əvvəlcədən göstərilir."
+      },
+      "q3": {
+        "q": "Müştərilərimin məlumatı necə qorunur?",
+        "a": "Hər mərkəzin kursları, müştəriləri və hesabatları ayrı saxlanılır. Bir mərkəz digərinin məlumatını görmür."
+      },
+      "q4": {
+        "q": "Pilot necə başlayır?",
+        "a": "Demo istəyirsiniz, kurs və qrafiklərinizi birlikdə toplayırıq, Telegram-da sınaq söhbəti göstəririk. Heç bir ödənişli xidmət razılığınız olmadan aktivləşmir."
+      },
+      "q5": {
+        "q": "Menecer nə vaxt işə qarışır?",
+        "a": "AI cavabdan əmin olmayanda, şikayət və endirim suallarında. Menecerə bildiriş gəlir və söhbəti o davam etdirir."
+      }
+    }
+  },
+  "alts": {
+    "one": "Planşetdə kurs cədvəli",
+    "two": "Telefonda mesajlaşma",
+    "three": "Menecerin telefonunda yeni qeydiyyat bildirişi",
+    "lobby": "Tədris mərkəzinin qəbul zonası"
   }
 }

@@ -8,7 +8,8 @@
     "features": "Features",
     "how": "How it works",
     "pricing": "Pricing",
-    "cta": "Request a demo"
+    "cta": "Request a demo",
+    "faq": "Questions"
   },
   "hero": {
     "eyebrow": "AI that speaks natural Azerbaijani",
@@ -49,6 +50,11 @@
         "title": "Each center keeps its own data",
         "body": "Courses, customers and reports are fully separated between centers."
       }
+    },
+    "sample": {
+      "u": "salam ielts var qiymeti nedi",
+      "b": "Hello! We have an IELTS course, 180 AZN per month. Shall I book you into the Saturday 11:00 trial lesson?",
+      "note": "Example: typos are understood. Figures are examples."
     }
   },
   "how": {
@@ -80,7 +86,8 @@
       "label": "Monthly service",
       "value": "100 AZN",
       "body": "Support, updates and reports."
-    }
+    },
+    "extra": "WhatsApp message fees (Meta's rates) are billed separately and shown to you in advance."
   },
   "contact": {
     "title": "Let us test it at your center",
@@ -97,14 +104,77 @@
     "tagline": "AI sales assistant for Azerbaijani learning centers.",
     "lang": "Language"
   },
-  "demo": {
-    "title": "Live chat example",
-    "u1": "Hi, do you have an IELTS course? how much",
-    "b1": "Hello! Yes. IELTS is 180 AZN per month, 3 lessons a week. Would you like to book a trial lesson?",
-    "u2": "yes, is saturday ok?",
-    "b2": "The Saturday 11:00 trial lesson has 2 seats left. Please send your name and phone number.",
-    "card": "Enrollment confirmed",
-    "card2": "Saturday · 11:00 · IELTS",
-    "note": "Sample data"
+  "board": {
+    "title": "Trial lessons",
+    "live": "live",
+    "seatsLeft": "seats left",
+    "note": "Sample data",
+    "sessions": {
+      "a": {
+        "course": "IELTS",
+        "when": "Saturday 11:00"
+      },
+      "b": {
+        "course": "IELTS",
+        "when": "Wednesday 18:00"
+      },
+      "c": {
+        "course": "Math",
+        "when": "Thursday 17:00"
+      }
+    },
+    "chat": {
+      "u1": "Is there a seat on Saturday 11:00?",
+      "b1": "Yes, 2 seats left. Please send your name and phone number.",
+      "u2": "Aygün, 050 123 45 67",
+      "b2": "Enrollment confirmed ✓ Saturday 11:00. One seat left."
+    }
+  },
+  "story": {
+    "title": "Inquiries are usually lost when the reply comes late",
+    "label": "Sample scenario",
+    "without": {
+      "name": "Manual reply",
+      "a": "11:40 pm · A parent writes: “Do you have an IELTS course, and how much?”",
+      "b": "11:00 am · The reply arrives",
+      "c": "By then they have talked to another center"
+    },
+    "with": {
+      "name": "With QeydAI",
+      "a": "11:40 pm · A parent writes",
+      "b": "11:41 pm · Reply and trial lesson offer",
+      "c": "11:44 pm · Enrollment confirmed"
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": {
+      "q1": {
+        "q": "Does the AI make up prices and times?",
+        "a": "No. Prices, times and open seats are read only from the table you approved, and the program checks the enrollment rules. It hands any question that is not in the table to a manager."
+      },
+      "q2": {
+        "q": "Which channels does it work on?",
+        "a": "We start with Telegram. WhatsApp and Instagram connect after official approval. WhatsApp message fees follow Meta's rates, are billed separately and are shown to you in advance."
+      },
+      "q3": {
+        "q": "How is my customers' data protected?",
+        "a": "Each center's courses, customers and reports are stored separately. One center never sees another's data."
+      },
+      "q4": {
+        "q": "How does the pilot start?",
+        "a": "You request a demo, we collect your courses and schedule together, and show a test chat on Telegram. No paid service is activated without your consent."
+      },
+      "q5": {
+        "q": "When does a manager step in?",
+        "a": "When the AI is unsure, and for complaints and discount questions. The manager gets a notification and continues the chat."
+      }
+    }
+  },
+  "alts": {
+    "one": "A course timetable on a tablet",
+    "two": "A messaging conversation on a phone",
+    "three": "A new enrollment notification on a manager's phone",
+    "lobby": "The reception area of a learning center"
   }
 }
