@@ -67,8 +67,8 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
           badge={c.hero.badge}
           title={c.hero.title}
           subtitle={c.hero.subtitle}
-          primaryCta={{ href: `/${locale}/tools`, label: c.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/channels/whatsapp`, label: c.hero.ctaSecondary }}
+          primaryCta={{ href: `/${locale}/tools`, label: c.hero.primaryCta }}
+          secondaryCta={{ href: `/${locale}/channels/whatsapp`, label: c.hero.secondaryCta }}
           image="p-channels"
           imageAlt={c.hero.title}
         />
@@ -77,34 +77,34 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
           columns={2}
           items={[
             {
-              title: c.list.whatsappTitle,
-              desc: c.list.whatsappDesc,
+              title: c.cards.whatsapp.title,
+              desc: c.cards.whatsapp.desc,
               href: `/${locale}/channels/whatsapp`,
               ctaLabel: s.navGroups.channels.whatsappTitle,
               tone: "mint",
               icon: <WhatsAppIcon size={24} />,
             },
             {
-              title: c.list.instagramTitle,
-              desc: c.list.instagramDesc,
+              title: c.cards.instagram.title,
+              desc: c.cards.instagram.desc,
               href: `/${locale}/channels/instagram`,
               ctaLabel: s.navGroups.channels.instagramTitle,
               tone: "lavender",
               icon: <InstagramIcon size={24} />,
             },
             {
-              title: c.list.telegramTitle,
-              desc: c.list.telegramDesc,
+              title: c.cards.telegram.title,
+              desc: c.cards.telegram.desc,
               href: `/${locale}/channels/telegram`,
               ctaLabel: s.navGroups.channels.telegramTitle,
               tone: "sky",
               icon: <TelegramIcon size={24} />,
             },
             {
-              title: c.list.webhookTitle,
-              desc: c.list.webhookDesc,
+              title: c.cards.webhookApi.title,
+              desc: c.cards.webhookApi.desc,
               href: `/${locale}/channels/webhook-api`,
-              ctaLabel: s.navGroups.channels.webhookTitle,
+              ctaLabel: s.navGroups.channels.apiTitle,
               tone: "amber",
               icon: <WebhookIcon />,
             },

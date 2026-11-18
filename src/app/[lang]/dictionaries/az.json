@@ -1,8 +1,12 @@
 {
-  "brand": "QeydAI",
+  "brand": "panelim.az",
   "meta": {
-    "title": "QeydAI — Tədris mərkəzləri üçün AI satış və qeydiyyat köməkçisi",
-    "description": "WhatsApp, Instagram və Telegram müraciətlərini avtomatik cavablandırın, sınaq dərsinə qeydiyyat aparın və itkilərin qarşısını alın."
+    "title": "panelim.az — Azərbaycan biznesləri üçün satış CRM-i",
+    "description": "Müştəri mesajlarını, satış fürsətlərini və rezervasiyaları bir paneldə idarə edin."
+  },
+  "a11y": {
+    "skipToMain": "Əsas məzmuna keç",
+    "mainNav": "Əsas naviqasiya"
   },
   "nav": {
     "features": "İmkanlar",
@@ -14,7 +18,7 @@
   "hero": {
     "eyebrow": "Azərbaycan dilində işləyən AI",
     "title": "Hər müraciət qeydiyyata çevrilsin",
-    "subtitle": "Gecə yazan valideyn də, iş saatında yazan tələbə də dərhal cavab alır. QeydAI sınaq dərsinə yer ayırır, siz isə yalnız hazır müştərilərlə danışırsınız.",
+    "subtitle": "Gecə yazan valideyn də, iş saatında yazan tələbə də dərhal cavab alır. panelim.az sınaq dərsinə yer ayırır, siz isə yalnız hazır müştərilərlə danışırsınız.",
     "primary": "Pulsuz demo istə",
     "secondary": "Necə işləyir?"
   },
@@ -87,17 +91,28 @@
       "value": "100 AZN",
       "body": "Dəstək, yeniləmələr və hesabatlar."
     },
-    "extra": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir."
+    "extra": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir.",
+    "cta": "Pilot üçün yer saxla"
   },
   "contact": {
     "title": "Mərkəzinizdə sınaqdan keçirək",
     "subtitle": "Telefon nömrənizi yazın, sizinlə 24 saat ərzində əlaqə saxlayaq.",
+    "stepsTitle": "Növbəti addımlar:",
+    "steps": {
+      "one": "Kurs və sınaq dərsi cədvəlinizi birlikdə toplayırıq.",
+      "two": "Telegram-da mərkəzinizə uyğun sınaq botu qururuq.",
+      "three": "Ödənişsiz yoxlayırsınız, razılığınız olmadan heç nə aktivləşmir."
+    },
     "name": "Adınız",
+    "namePlaceholder": "məs. Aygün Məmmədova",
     "phone": "Telefon (məs. 050 123 45 67)",
+    "phonePlaceholder": "050 123 45 67",
     "submit": "Demo istə",
+    "sending": "Göndərilir…",
     "privacy": "Məlumatlarınız yalnız sizinlə əlaqə üçün istifadə olunur.",
     "ok": "Təşəkkürlər! Tezliklə əlaqə saxlayacağıq.",
     "error": "Göndərmək alınmadı. Nömrəni yoxlayıb yenidən cəhd edin.",
+    "nameRequired": "Göndərmək alınmadı. Adınızı yazın.",
     "rate_limited": "Çox sayda cəhd olub. Bir neçə dəqiqə sonra yenidən yoxlayın."
   },
   "footer": {
@@ -140,7 +155,7 @@
       "c": "O, artıq başqa mərkəzlə danışıb"
     },
     "with": {
-      "name": "QeydAI ilə",
+      "name": "panelim.az ilə",
       "a": "23:40 · Valideyn yazır",
       "b": "23:41 · Cavab və sınaq dərsi təklifi",
       "c": "23:44 · Qeydiyyat təsdiqləndi"
@@ -175,6 +190,777 @@
     "one": "Planşetdə kurs cədvəli",
     "two": "Telefonda mesajlaşma",
     "three": "Menecerin telefonunda yeni qeydiyyat bildirişi",
-    "lobby": "Tədris mərkəzinin qəbul zonası"
+    "lobby": "Tədris mərkəzinin qəbul zonası",
+    "director": "Tədris mərkəzinin rəhbəri planşetdə qeydiyyat hesabatına baxır"
+  },
+  "about": {
+    "eyebrow": "Tədris mərkəzləri üçün qurulub",
+    "title": "Qəbul masasından rəhbər masasına qədər eyni cədvəl",
+    "lobby": {
+      "title": "Qəbul və koordinatorlar üçün",
+      "body": "Gecə və iş saatında gələn suallara dərhal cavab gedir. Menecer yalnız sınaq dərsinə yazılmış hazır namizədlə danışır."
+    },
+    "director": {
+      "title": "Mərkəz rəhbərləri üçün",
+      "body": "Hansı kursa neçə sorğu gəldi, neçəsi dərsə yazıldı — hamısı ayrıca mərkəz bazasında toplanır və istənilən vaxt yoxlanılır."
+    }
+  },
+  "landing": {
+    "nav": {
+      "product": "Məhsul",
+      "features": "İmkanlar",
+      "ai": "AI köməkçi",
+      "pricing": "Qiymət",
+      "faq": "Suallar",
+      "signIn": "Panelə giriş",
+      "demo": "Demo istə",
+      "menuOpen": "Menyunu aç",
+      "menuClose": "Menyunu bağla"
+    },
+    "hero": {
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "instagram": "Instagram",
+        "telegram": "Telegram"
+      },
+      "title": "Söhbətləri böyüdün, xaosu azaldın",
+      "subtitle": "WhatsApp, Instagram və Telegram müraciətlərini, sınaq dərslərini və satış qıfını bir arada idarə edən Azərbaycan dilli AI CRM.",
+      "primaryCta": "Pulsuz demo istə",
+      "secondaryCta": "Paneli kəşf et",
+      "trustNote": "Azərbaycan tədris mərkəzləri və xidmət biznesləri üçün qurulub",
+      "trustBadges": {
+        "one": "24/7 təbii Azərbaycan dili",
+        "two": "Canlı boş yer yoxlaması",
+        "three": "Mərkəzə özəl təcrid olunmuş baza"
+      }
+    },
+    "preview": {
+      "tabs": {
+        "inbox": "Mesajlar",
+        "pipeline": "Satış lövhəsi",
+        "bookings": "Rezervasiya",
+        "analytics": "Analitika"
+      },
+      "menu": {
+        "overview": "İcmal",
+        "inbox": "Gələn mesajlar",
+        "pipeline": "Satış qıfı",
+        "bookings": "Sınaq dərsləri",
+        "analytics": "Hesabatlar"
+      },
+      "stages": {
+        "new": "Yeni müraciət",
+        "talking": "Danışıq gedir",
+        "booked": "Sınağa yazılıb"
+      },
+      "people": {
+        "one": "Aysel Məmmədova",
+        "two": "Elvin Əliyev",
+        "three": "Nigar Həsənli"
+      },
+      "topics": {
+        "one": "IELTS sınaq dərsi",
+        "two": "Danışıq klubu",
+        "three": "Fərdi hazırlıq"
+      },
+      "incoming": "Salam! Şənbə günü saat 11:00 IELTS sınaq dərsinə boş yer var?",
+      "outgoing": "Salam, Aysel! Bəli, Şənbə 11:00 qrupunda 2 yer qalıb. Sizin adınıza qeydiyyat edim?",
+      "confirmed": "Şənbə, 11:00",
+      "times": {
+        "one": "Şənbə, 11:00",
+        "two": "Çərşənbə, 18:00",
+        "three": "Cümə, 16:30"
+      },
+      "seats": {
+        "one": "1 yer qalıb",
+        "two": "3 yer qalıb",
+        "three": "2 yer qalıb"
+      },
+      "channelFilter": "Bütün kanallar",
+      "sampleBadge": "Canlı nümunə",
+      "unreadBadge": "2 yeni",
+      "assigneeLabel": "Menecer: Leyla",
+      "metrics": {
+        "one": "Gələn müraciətlər",
+        "two": "Sınaq qeydiyyatı",
+        "three": "Ödənişli satış"
+      },
+      "metricValues": {
+        "one": "148",
+        "two": "64",
+        "three": "4 860 AZN"
+      }
+    },
+    "logos": {
+      "title": "Fərqli xidmət sahələri üçün hazır iş axınları",
+      "items": {
+        "one": "Dil Mərkəzləri",
+        "two": "Abituriyent Hazırlığı",
+        "three": "IT Akademiyalar",
+        "four": "Estetik Klinikalar",
+        "five": "Məsləhət Xidmətləri",
+        "six": "Onlayn Mağazalar"
+      },
+      "link": "İş axınlarına bax"
+    },
+    "bento": {
+      "heading": "Bütün satış işlərinizi bir yerdə idarə edin",
+      "subheading": "İlk mesajdan ödənişə qədər komandanızın ehtiyac duyduğu dörd əsas modul.",
+      "rows": {
+        "inbox": {
+          "tag": "Vahid qutu",
+          "title": "AI ilə anında cavablar",
+          "body": "WhatsApp, Instagram və Telegram yazışmaları tək paneldə toplanır. AI yalnız sizin təsdiqlədiyiniz qiymət və cədvəllə saniyələr içində cavab verir.",
+          "cta": "Sınaq söhbətinə bax",
+          "uiChannel": "WhatsApp · 23:41",
+          "uiMsg1": "axsamınız xeyir ielts qrupu neciyedir",
+          "uiMsg2": "Axşamınız xeyir! IELTS qrupumuz aylıq 180 AZN-dir. Şənbə 11:00 sınaq dərsinə yer ayırım?",
+          "uiBadge": "Təsdiqlənmiş cədvəldən oxundu"
+        },
+        "pipeline": {
+          "tag": "Satış lövhəsi",
+          "title": "Hər müraciətin növbəti addımı aydın",
+          "body": "Sahibsiz sorğuları bir kliklə götürün, mərhələlər üzrə irəlilədin, tapşırıq və daxili qeydləri eyni satış kartında saxlayın.",
+          "cta": "Satış lövhəsini sına",
+          "uiCol1": "Yeni",
+          "uiCol2": "Sınaq yazılıb",
+          "uiCard1": "IELTS · Aysel M.",
+          "uiCard2": "Alman dili · Murad K.",
+          "uiOwner": "Operator: Nərmin",
+          "uiClaim": "Götür"
+        },
+        "bookings": {
+          "tag": "Sınaq cədvəli",
+          "title": "Dolu qrup və təkrar qeydiyyata son",
+          "body": "Qrup tutumu dolduqda sistem avtomatik bağlayır, eyni telefon nömrəsi ilə təkrar yazılmanı bloklayır və menecerə bildiriş göndərir.",
+          "cta": "Cədvəl məntiqini gör",
+          "uiGroup": "IELTS · Şənbə 11:00",
+          "uiSeats": "4 / 5 yer tutulub",
+          "uiRule": "Son 1 boş yer aktivdir"
+        },
+        "analytics": {
+          "tag": "Analitika",
+          "title": "Hansı kanalın satış gətirdiyini görün",
+          "body": "Telegram, WhatsApp və Instagram reklamlarından gələn müraciətlərin neçəsinin sınağa və ödənişə çevrildiyini bir ekranda izləyin.",
+          "cta": "Hesabatlara bax",
+          "uiStat1": "Cavab sürəti",
+          "uiVal1": "< 1 dəq",
+          "uiStat2": "Sınağa çevrilmə",
+          "uiVal2": "43%",
+          "uiSource": "Əsas mənbə: Instagram DM"
+        }
+      }
+    },
+    "ai": {
+      "eyebrow": "panelim.az AI köməkçisi",
+      "heading": "Satış komandanızın yanında 24/7 işləyən köməkçi",
+      "subheading": "Məhdudiyyətləri siz təyin edirsiniz: AI yalnız təsdiqlədiyiniz məlumatı bölüşür, mürəkkəb sualı dərhal əməkdaşa ötürür.",
+      "cta": "Demo ilə yoxla",
+      "badge": "Aktiv ssenari",
+      "items": {
+        "one": {
+          "title": "Gecə-gündüz 24/7 cavab verin",
+          "body": "Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır.",
+          "chatUser": "Salam, uşaq üçün riyaziyyat kursu var?",
+          "chatBot": "Salam! Bəli, 7–9-cu siniflər üçün qruplarımız var. Cümə axşamı 17:00 sınaq dərsinə yazım?",
+          "status": "AI cavab verdi · 12 san"
+        },
+        "two": {
+          "title": "Yazı səhvlərini və danışıq dilini anlayır",
+          "body": "Latın və ya azərbaycanca qarışıq, qısaldılmış mesajları rahatlıqla oxuyub düzgün kursa yönləndirir.",
+          "chatUser": "salam eng danisiq qrupu qiymet nedi",
+          "chatBot": "Salam! Danışıq klubumuz həftədə 2 dəfə keçirilir, aylıq 120 AZN-dir. Hansı gün sizə uyğundur?",
+          "status": "Niyyət tanındı · Qiymət sorğusu"
+        },
+        "three": {
+          "title": "Avtomatik sınaq dərsinə yazır",
+          "body": "Ad və telefon nömrəsini toplayır, boş yeri yoxlayıb yer ayırır və satış kartını açır.",
+          "chatUser": "Aygün Məmmədova, 050 123 45 67",
+          "chatBot": "Qeydiyyatınız təsdiqləndi! Şənbə saat 11:00 üçün yeriniz ayrıldı.",
+          "status": "Rezervasiya yaradıldı ✓"
+        },
+        "four": {
+          "title": "Lazım olanda menecerə ötürür",
+          "body": "Endirim, xüsusi proqram və ya şikayət olduqda AI dayanır və komandanıza dərhal xəbər verir.",
+          "chatUser": "İki uşaq yazdırsaq endirim olur?",
+          "chatBot": "Ailə endirimi şərtlərini dəqiqləşdirmək üçün menecerimiz Leylaya yönləndirirəm.",
+          "status": "Əməkdaşa ötürüldü · Leyla"
+        }
+      },
+      "phoneBrand": "Tədris Mərkəzi",
+      "phoneSub": "Təsdiqlənmiş köməkçi"
+    },
+    "outcomes": {
+      "heading": "Gündəlik işdə nəyi dəyişir?",
+      "subheading": "Pilot tətbiqlər üçün nəzərdə tutulan əsas nəticələr və iş axını nümunələri.",
+      "cta": "Öz mərkəzinizdə sınayın",
+      "cards": {
+        "one": {
+          "before": "Gecə saatlarında gələn sorğulara səhər cavab veriləndə ",
+          "highlight": "ilk 5 dəqiqədə cavab alan rəqib qazanırdı",
+          "after": ". İndi sınaq yeri elə həmin gecə ayrılır.",
+          "author": "Dil və İmtahan Mərkəzi",
+          "role": "Pilot ssenarisi · Sürətli ilkin cavab"
+        },
+        "two": {
+          "before": "WhatsApp, Instagram və Telegram ayrı telefonlarda qalırdı. Bütün kanalları birləşdirərək ",
+          "highlight": "heç bir müraciət cavabsız itmir",
+          "after": " və operator növbəsi rahat işləyir.",
+          "author": "Qəbul və Koordinatorlar",
+          "role": "Pilot ssenarisi · Vahid inbox"
+        },
+        "three": {
+          "before": "Excel cədvəlləri əvəzinə satış kartı və avtomatik tutum yoxlaması ilə ",
+          "highlight": "dolu qrupa səhv qeydiyyatın qarşısı alınır",
+          "after": " və menecer yalnız hazır namizədlə danışır.",
+          "author": "Mərkəz Rəhbərliyi",
+          "role": "Pilot ssenarisi · Dəqiq cədvəl nəzarəti"
+        }
+      }
+    },
+    "pricing": {
+      "heading": "Mərkəzinizə uyğun planı seçin",
+      "subheading": "Bütün planlar pilot müddətində mərkəzinizin kanal sayı və komanda ölçüsünə görə dəqiqləşdirilir.",
+      "periods": {
+        "monthly": "Aylıq",
+        "halfYear": "6 aylıq",
+        "annual": "İllik"
+      },
+      "periodNotes": {
+        "monthly": "Çevik başlanğıc",
+        "halfYear": "Sabit pilot dövrü",
+        "annual": "Uzunmüddətli tarif"
+      },
+      "perMonth": "/ ay",
+      "popular": "Ən populyar",
+      "setupPrefix": "Quraşdırma:",
+      "setupValue": "350 AZN (birdəfəlik)",
+      "plans": {
+        "starter": {
+          "name": "Başlanğıc",
+          "desc": "Kiçik komandalar üçün Telegram + əsas satış lövhəsi",
+          "prices": {
+            "monthly": "100 AZN",
+            "halfYear": "90 AZN",
+            "annual": "80 AZN"
+          },
+          "limits": {
+            "one": "1 kanal (Telegram)",
+            "two": "3 komanda üzvü",
+            "three": "Sınaq dərsi tutum nəzarəti"
+          },
+          "cta": "Pilot üçün müraciət et"
+        },
+        "growth": {
+          "name": "İnkişaf",
+          "desc": "Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu",
+          "prices": {
+            "monthly": "160 AZN",
+            "halfYear": "145 AZN",
+            "annual": "130 AZN"
+          },
+          "limits": {
+            "one": "Telegram, Instagram və WhatsApp",
+            "two": "8 komanda üzvü",
+            "three": "Avtomatik sınaq qeydiyyatı"
+          },
+          "cta": "Pilot üçün müraciət et"
+        },
+        "pro": {
+          "name": "Pro",
+          "desc": "Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar",
+          "prices": {
+            "monthly": "240 AZN",
+            "halfYear": "215 AZN",
+            "annual": "190 AZN"
+          },
+          "limits": {
+            "one": "Bütün kanallar + xüsusi sahələr",
+            "two": "Limitsiz operator və rol icazəsi",
+            "three": "Tam analitika və n8n inteqrasiyası"
+          },
+          "cta": "Demo ilə başla"
+        },
+        "enterprise": {
+          "name": "Korporativ",
+          "desc": "Fərdi tələblər, xüsusi server və SLA dəstəyi",
+          "price": "Fərdi",
+          "limits": {
+            "one": "Çoxfiliallı mərkəz strukturu",
+            "two": "Xüsusi API və webhook quraşdırılması",
+            "three": "Birbaşa mühəndis dəstəyi"
+          },
+          "cta": "Bizimlə əlaqə saxlayın"
+        }
+      },
+      "footnote": "Qeyd: Göstərilən AZN tarifləri ilkin pilot təklifidir və demo zamanı təsdiqlənir. WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır."
+    },
+    "ctaBand": {
+      "title": "İlk mesajdan ödənişə qədər nəzarəti ələ alın",
+      "subtitle": "Mərkəzinizdən bir sorğu nümunəsi gətirin, 15 dəqiqəlik demoda panelin sizin işinizdə necə işlədiyini göstərək.",
+      "primary": "Pulsuz demo istə",
+      "secondary": "Panelə giriş"
+    },
+    "footer": {
+      "tagline": "Azərbaycan biznesləri üçün mesajlaşma və satış CRM-i.",
+      "copyright": "© 2026 panelim.az. Bütün hüquqlar qorunur.",
+      "switchLabel": "English",
+      "cols": {
+        "product": {
+          "title": "Məhsul",
+          "one": "Vahid mesaj qutusu",
+          "two": "Satış lövhəsi",
+          "three": "Sınaq dərsi təqvimi",
+          "four": "AI satış köməkçisi"
+        },
+        "channels": {
+          "title": "Kanallar",
+          "one": "WhatsApp kanalı",
+          "two": "Instagram mesajları",
+          "three": "Telegram Bot",
+          "four": "Veb sayt forması"
+        },
+        "solutions": {
+          "title": "Həllər",
+          "one": "Tədris mərkəzləri",
+          "two": "Dil kursları",
+          "three": "Xidmət biznesləri",
+          "four": "Onlayn satış"
+        },
+        "company": {
+          "title": "Başlanğıc",
+          "one": "Demo sifarişi",
+          "two": "Qiymətləndirmə",
+          "three": "Tez-tez verilən suallar",
+          "four": "İşçi panelinə giriş"
+        }
+      }
+    }
+  },
+  "panel": {
+    "metaTitle": "İdarəetmə paneli",
+    "badge": "İşçi paneli",
+    "tenantLabel": "Mərkəz",
+    "navAria": "Panel naviqasiyası",
+    "backToSite": "Əsas səhifə",
+    "signOut": "Çıxış",
+    "signingOut": "Çıxılır…",
+    "switchLang": "Dil",
+    "loading": "Panel məlumatları yüklənir…",
+    "refresh": "Yenilə",
+    "refreshing": "Yenilənir…",
+    "loadError": "Məlumatları yükləmək alınmadı. Yenidən cəhd edin.",
+    "retry": "Yenidən yoxla",
+    "unauthorizedNotice": "Sessiya müddəti bitib. Yenidən daxil olun.",
+    "tabs": {
+      "ariaLabel": "Panel bölmələri",
+      "overview": "Ümumi baxış",
+      "sessions": "Sınaq dərsləri",
+      "leads": "CRM",
+      "inbox": "Mesajlar",
+      "deals": "Satışlar",
+      "contacts": "Kontaktlar",
+      "channels": "Kanallar",
+      "ai": "AI köməkçisi",
+      "plans": "Planlar",
+      "settings": "Komanda və Mərhələlər"
+    },
+    "channels": {
+      "title": "Kanallar",
+      "subtitle": "WhatsApp, Instagram və Telegram kanallarını bağlayın.",
+      "connect": "Bağla",
+      "disconnect": "Bağla",
+      "test": "Test",
+      "secretLabel": "Sır",
+      "webhookLabel": "Webhook ünvanı",
+      "connected": "Aktiv",
+      "disconnected": "Pasif"
+    },
+    "ai": {
+      "title": "AI köməkçisi",
+      "subtitle": "Avtomatik cavab, müraciət qiymətləndirməsi və sınaq dərsə yazdırma senarislərini idarə edin.",
+      "activeLabel": "AI cavabı aktivdir",
+      "settings": "Ayarları aç",
+      "active": "Aktiv",
+      "inactive": "Deyişdirilmişdir",
+      "greeting": "Hoş gəldin mesajı",
+      "price": "Qiymət sualı",
+      "booking": "Sınaq dərsə yazılma",
+      "handoff": "Mençərə ötürmə",
+      "open": "Aç",
+      "close": "Bağla"
+    },
+    "plans": {
+      "title": "Planlar",
+      "subtitle": "Mərkəzinizə uyğun planı seçin. Qiymətlər AZN ilə göstərilən pilot təklifləridir.",
+      "monthly": "Aylıq",
+      "halfYear": "6 aylıq",
+      "annual": "İllik",
+      "perMonth": "/ ay",
+      "setupPrefix": "Quraşdırma:",
+      "setupValue": "350 AZN (birdəfəlik)",
+      "popular": "Ən populyar",
+      "ctaStarter": "Pilot üçün müraciət et",
+      "ctaGrowth": "Pilot üçün müraciət et",
+      "ctaPro": "Demo ilə başla",
+      "ctaEnterprise": "Bizimlə əlaqə saxlayın",
+      "note": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir.",
+      "starter": {
+        "name": "Başlanğıc",
+        "desc": "Kiçik komandalar üçün Telegram + əsas satış lövhəsi",
+        "limits": ["1 kanal (Telegram)", "3 komanda üzvü", "Sınaq dərsi tutum nəzarəti"]
+      },
+      "growth": {
+        "name": "İnkişaf",
+        "desc": "Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu",
+        "limits": ["Telegram, Instagram və WhatsApp", "8 komanda üzvü", "Avtomatik sınaq qeydiyyatı"]
+      },
+      "pro": {
+        "name": "Pro",
+        "desc": "Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar",
+        "limits": ["Bütün kanallar + xüsusi sahələr", "Limitsiz operator və rol icazəsi", "Tam analitika və n8n inteqrasiyası"]
+      },
+      "enterprise": {
+        "name": "Korporativ",
+        "desc": "Fərdi tələblər, xüsusi server və SLA dəstəyi",
+        "limits": ["Çoxfiliallı mərkəz strukturu", "Xüsusi API və webhook quraşdırılması", "Birbaşa mühəndis dəstəyi"]
+      }
+    },
+    "login": {
+      "eyebrow": "Tədris mərkəzi jurnalı",
+      "title": "İşçi panelinə giriş",
+      "subtitle": "Dərsləri, müraciətləri və mesajları idarə etmək üçün mərkəz açarını daxil edin.",
+      "userLabel": "İstifadəçi adı",
+      "userPlaceholder": "istifadeci@example.com",
+      "keyLabel": "Giriş açarı",
+      "keyPlaceholder": "Mərkəzin administrator açarını yazın",
+      "showKey": "Açarı göstər",
+      "hideKey": "Açarı gizlət",
+      "submit": "Panelə daxil ol",
+      "submitting": "Yoxlanılır…",
+      "invalidKey": "Giriş açarı yanlışdır. Yoxlayıb yenidən cəhd edin.",
+      "rateLimited": "Çox sayda uğursuz cəhd oldu. Bir neçə dəqiqə gözləyin.",
+      "networkError": "Şəbəkə xətası baş verdi. Yenidən cəhd edin.",
+      "securityNote": "Sessiya qorunan HttpOnly kukisi ilə saxlanılır."
+    },
+    "stages": {
+      "new": "Yeni",
+      "contacted": "Əlaqə saxlanılıb",
+      "trial_booked": "Sınağa yazılıb",
+      "paid": "Ödəniş edib",
+      "lost": "İtirilmiş"
+    },
+    "sources": {
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram",
+      "web": "Veb sayt",
+      "manual": "Əl ilə"
+    },
+    "senders": {
+      "student": "Tələbə",
+      "ai": "AI köməkçi",
+      "staff": "Menecer"
+    },
+    "overview": {
+      "title": "Günün xülasəsi",
+      "subtitle": "Sınaq dərsləri, müraciət mərhələləri və sayt konversiyası bir vərəqdə.",
+      "kpiLeads": "Cəmi müraciət",
+      "kpiEnrollments": "Sınaq qeydiyyatı",
+      "kpiPaid": "Ödənişli tələbə",
+      "kpiMessages": "Mesaj sayı",
+      "conversionLabel": "ödənişə çevrilmə",
+      "pipelineTitle": "CRM mərhələləri üzrə bölgü",
+      "pipelineEmpty": "Hələ müraciət əlavə edilməyib. CRM bölməsindən ilk müraciəti yarada bilərsiniz.",
+      "sessionsTitle": "Sınaq dərslərində doluluq",
+      "sessionsEmpty": "Aktiv sınaq dərsi yoxdur. Dərslər bölməsindən yeni qrup əlavə edin.",
+      "seatsLeftSuffix": "boş yer",
+      "fullLabel": "Doludur",
+      "enrolledSuffix": "qeydiyyat",
+      "analyticsTitle": "Sayt müraciət qıfı",
+      "analyticsScopeNote": "Ümumi sayt üzrə izlənilən ziyarətçi hərəkətləri.",
+      "funnelViews": "Səhifə baxışı",
+      "funnelCta": "CTA klikləri",
+      "funnelStarted": "Forma başlanıb",
+      "funnelSubmitted": "Forma göndərilib",
+      "funnelFailed": "Uğursuz cəhd",
+      "localeSplitTitle": "Dil üzrə baxış",
+      "utmTitle": "UTM mənbələri",
+      "utmEmpty": "Hələ UTM mənbəyi qeydə alınmayıb.",
+      "experimentsTitle": "A/B test nəticələri",
+      "experimentsEmpty": "Aktiv eksperiment məlumatı yoxdur.",
+      "expViews": "Baxış",
+      "expClicks": "Klik",
+      "expLeads": "Müraciət",
+      "ctaLocationsTitle": "CTA yerləşmələri",
+      "ctaLocationsEmpty": "Hələ CTA kliki qeydə alınmayıb.",
+      "goToSessions": "Dərslərə keç",
+      "goToLeads": "CRM-ə keç"
+    },
+    "sessions": {
+      "title": "Sınaq dərsləri cədvəli",
+      "subtitle": "Yeni sınaq qrupu yaradın və qeydiyyatdan keçən tələbələri izləyin.",
+      "createTitle": "Yeni sınaq dərsi əlavə et",
+      "idLabel": "Sessiya kodu",
+      "idPlaceholder": "məs. ielts-senbe-11",
+      "courseLabel": "Kurs adı",
+      "coursePlaceholder": "məs. IELTS",
+      "startsAtLabel": "Başlama tarixi və saatı",
+      "capacityLabel": "Maksimum yer",
+      "createSubmit": "Sınaq dərsi yarat",
+      "creating": "Yaradılır…",
+      "createOk": "Yeni sınaq dərsi cədvələ əlavə olundu.",
+      "errorDuplicate": "Bu kodla sınaq dərsi artıq mövcuddur.",
+      "errorInvalid": "Məlumatları yoxlayın: bütün sahələr düzgün doldurulmalıdır.",
+      "errorGeneric": "Sınaq dərsi yaratmaq alınmadı. Yenidən cəhd edin.",
+      "listTitle": "Mövcud sınaq dərsləri",
+      "empty": "Hələ sınaq dərsi yaradılmayıb. Yuxarıdakı formadan ilk dərsi əlavə edin.",
+      "seatsLeft": "boş yer",
+      "full": "Yer yoxdur",
+      "takenOf": "tutulub",
+      "rosterTitle": "Yazılan tələbələr",
+      "rosterEmpty": "Bu sınaq dərsinə hələ heç kim yazılmayıb.",
+      "rosterToggleShow": "Siyahını aç",
+      "rosterToggleHide": "Siyahını bağla",
+      "enrolledAt": "Yazılma vaxtı"
+    },
+    "leads": {
+      "title": "Müraciət jurnalı (CRM)",
+      "subtitle": "Müraciətləri mərhələlər üzrə izləyin, qeyd yazın və bir kliklə söhbətə keçin.",
+      "newToggleOpen": "Yeni müraciət",
+      "newToggleClose": "Formanı bağla",
+      "createTitle": "Yeni müraciət əlavə et",
+      "nameLabel": "Ad və soyad",
+      "namePlaceholder": "məs. Aygün Məmmədova",
+      "phoneLabel": "Telefon nömrəsi",
+      "phonePlaceholder": "050 123 45 67",
+      "sourceLabel": "Mənbə kanalı",
+      "stageLabel": "Mərhələ",
+      "noteLabel": "Qeyd",
+      "notePlaceholder": "Kurs marağı və ya əlavə məlumat",
+      "createSubmit": "Müraciəti saxla",
+      "creating": "Saxlanılır…",
+      "createOk": "Müraciət jurnala əlavə edildi.",
+      "createError": "Müraciəti əlavə etmək alınmadı. Ad və nömrəni yoxlayın.",
+      "searchLabel": "Axtarış",
+      "searchPlaceholder": "Ad, telefon və ya qeyd üzrə axtar",
+      "filterStageLabel": "Mərhələ süzgəci",
+      "filterSourceLabel": "Kanal süzgəci",
+      "allStages": "Bütün mərhələlər",
+      "allSources": "Bütün kanallar",
+      "empty": "Hələ heç bir müraciət yoxdur. Yuxarıdan yeni müraciət əlavə edin.",
+      "emptyFiltered": "Seçilən süzgəclərə uyğun müraciət tapılmadı.",
+      "clearFilters": "Süzgəcləri sıfırla",
+      "stageSelectAria": "Müraciət mərhələsini dəyiş",
+      "noteSave": "Qeydi saxla",
+      "noteSaving": "Saxlanılır…",
+      "noteSaved": "Dəyişiklik saxlanıldı.",
+      "updateError": "Yeniləmək alınmadı. Yenidən cəhd edin.",
+      "openInInbox": "Söhbəti aç",
+      "updatedAt": "Yenilənib",
+      "countSuffix": "müraciət"
+    },
+    "inbox": {
+      "title": "Vahid mesajlaşma mərkəzi",
+      "subtitle": "Telegram, WhatsApp, Instagram və veb söhbətlərini tək pəncərədən aparın.",
+      "threadsTitle": "Söhbətlər",
+      "searchLabel": "Söhbət axtarışı",
+      "searchPlaceholder": "Ad və ya nömrə yazın",
+      "emptyThreads": "Hələ heç bir söhbət yoxdur. Əvvəlcə CRM bölməsində müraciət yaradın.",
+      "selectPrompt": "Mesajları görmək üçün siyahıdan bir müraciət seçin.",
+      "backToThreads": "Bütün söhbətlər",
+      "stageLabel": "Mərhələ",
+      "messagesEmpty": "Bu müraciətlə hələ mesaj yazışması yoxdur. Aşağıdan ilk mesajı göndərin.",
+      "loadingMessages": "Mesajlar yüklənir…",
+      "messagesError": "Mesajları yükləmək alınmadı.",
+      "composerTitle": "Cavab yaz",
+      "senderRoleLabel": "Göndərən rolu",
+      "senderStaff": "Menecer cavabı",
+      "senderAi": "AI cavabı",
+      "senderStudent": "Tələbə mesajı (test)",
+      "channelLabel": "Kanal",
+      "bodyLabel": "Mesaj mətni",
+      "bodyPlaceholder": "Müştəriyə cavab və ya sınaq mesajı yazın…",
+      "send": "Göndər",
+      "sending": "Göndərilir…",
+      "sendError": "Mesajı göndərmək alınmadı.",
+      "sendHint": "Tez göndərmək üçün Ctrl+Enter basın.",
+      "directionIn": "Gələn",
+      "directionOut": "Gedən"
+    },
+    "roles": {
+      "owner": "Sahib",
+      "manager": "Menecer",
+      "operator": "Operator"
+    },
+    "deals": {
+      "title": "Satış qıfı",
+      "subtitle": "Satış fürsətlərini mərhələlər üzrə idarə edin, sahibsiz sorğuları götürün və tapşırıqları izləyin.",
+      "viewKanban": "Kanban",
+      "viewList": "Siyahı",
+      "newToggleOpen": "Yeni satış",
+      "newToggleClose": "Formanı bağla",
+      "createTitle": "Yeni satış fürsəti yarat",
+      "titleLabel": "Satış başlığı",
+      "titlePlaceholder": "məs. IELTS qrup qeydiyyatı",
+      "contactLabel": "Kontakt",
+      "contactSelectPlaceholder": "Mövcud kontakt seçin",
+      "orNewContact": "Və ya yeni kontakt məlumatı daxil edin",
+      "contactNameLabel": "Kontakt adı",
+      "contactPhoneLabel": "Kontakt telefonu",
+      "stageLabel": "Mərhələ",
+      "sourceLabel": "Mənbə kanalı",
+      "amountLabel": "Məbləğ",
+      "amountPlaceholder": "məs. 150",
+      "createSubmit": "Satış yarat",
+      "creating": "Yaradılır…",
+      "createOk": "Satış fürsəti əlavə edildi.",
+      "createError": "Satış yaratmaq alınmadı. Başlıq və kontakt məlumatını yoxlayın.",
+      "searchLabel": "Satış axtarışı",
+      "searchPlaceholder": "Başlıq, kontakt və ya nömrə üzrə axtar",
+      "filterStageLabel": "Mərhələ süzgəci",
+      "filterSourceLabel": "Kanal süzgəci",
+      "filterAssigneeLabel": "Məsul şəxs süzgəci",
+      "allStages": "Bütün mərhələlər",
+      "allSources": "Bütün kanallar",
+      "allAssignees": "Bütün işçilər",
+      "unassignedOnly": "Yalnız sahibsizlər",
+      "mineOnly": "Mənə təyin olunanlar",
+      "unassigned": "Sahibsiz",
+      "claim": "Götür",
+      "claiming": "Götürülür…",
+      "claimConflict": "Bu satış artıq başqa operator tərəfindən götürülüb.",
+      "openDetail": "Aç",
+      "closeDetail": "Satışlara qayıt",
+      "empty": "Hələ heç bir satış yoxdur. Yuxarıdan yeni satış əlavə edin.",
+      "emptyFiltered": "Seçilən süzgəclərə uyğun satış tapılmadı.",
+      "clearFilters": "Süzgəcləri sıfırla",
+      "stageCountSuffix": "satış",
+      "moveStageAria": "Satış mərhələsini dəyiş",
+      "assigneeLabel": "Məsul şəxs",
+      "deleteDeal": "Satışı sil",
+      "deleteConfirm": "Silməni təsdiqlə",
+      "deleteCancel": "Ləğv et",
+      "detailTabTimeline": "Tarixçə və Cavab",
+      "detailTabTasksNotes": "Tapşırıq və Qeydlər",
+      "detailTabFields": "Xüsusi Sahələr",
+      "timelineTitle": "Satış tarixçəsi",
+      "timelineEmpty": "Bu satış üzrə hələ fəaliyyət və ya mesaj yoxdur.",
+      "replyLabel": "Müştəriyə cavab",
+      "replyPlaceholder": "Bağlı kanal üzərindən göndəriləcək cavab yazın…",
+      "replySend": "Cavabı göndər",
+      "replySending": "Göndərilir…",
+      "replyWindowExpired": "Bu kanal üçün 24 saatlıq cavab pəncərəsi bitib.",
+      "replyNoThread": "Bu satışa bağlı aktiv mesajlaşma kanalı yoxdur.",
+      "replyError": "Cavabı göndərmək alınmadı. Yenidən cəhd edin.",
+      "tasksTitle": "Tapşırıqlar",
+      "tasksEmpty": "Bu satış üzrə hələ tapşırıq yoxdur.",
+      "taskTitleLabel": "Tapşırıq başlığı",
+      "taskTitlePlaceholder": "məs. Cümə dərsindən əvvəl valideynlə zəng",
+      "taskDueLabel": "Son tarix",
+      "taskAdd": "Tapşırıq əlavə et",
+      "taskMarkDone": "Tamamla",
+      "taskReopen": "Yenidən aç",
+      "taskDelete": "Sil",
+      "notesTitle": "Daxili qeydlər",
+      "notesEmpty": "Hələ daxili qeyd yazılmayıb.",
+      "noteLabel": "Yeni qeyd",
+      "notePlaceholder": "Komanda üçün daxili qeyd yazın…",
+      "noteAdd": "Qeyd əlavə et",
+      "noteDelete": "Sil",
+      "fieldsTitle": "Xüsusi sahələr",
+      "fieldsEmpty": "Xüsusi sahə yaradılmayıb. Komanda və Mərhələlər bölməsindən əlavə edin.",
+      "fieldsSave": "Sahələri saxla",
+      "fieldsSaving": "Saxlanılır…",
+      "fieldsSaved": "Xüsusi sahələr saxlanıldı.",
+      "saveChanges": "Dəyişiklikləri saxla",
+      "saving": "Saxlanılır…",
+      "saved": "Dəyişikliklər saxlanıldı.",
+      "updateError": "Dəyişiklikləri saxlamaq alınmadı.",
+      "openContact": "Kontakta bax",
+      "eventStageChanged": "Mərhələ yeniləndi",
+      "eventTaskCreated": "Tapşırıq yaradıldı",
+      "eventTaskDone": "Tapşırıq tamamlandı",
+      "eventNoteAdded": "Qeyd əlavə edildi"
+    },
+    "contacts": {
+      "title": "Kontaktlar",
+      "subtitle": "Vahid telefon siyahısı, təsdiq statusu və bağlı satış fürsətləri.",
+      "newToggleOpen": "Yeni kontakt",
+      "newToggleClose": "Formanı bağla",
+      "createTitle": "Kontakt əlavə et",
+      "nameLabel": "Ad və soyad",
+      "namePlaceholder": "məs. Leyla Həsənova",
+      "phoneLabel": "Telefon nömrəsi",
+      "phonePlaceholder": "050 123 45 67",
+      "createSubmit": "Kontaktı saxla",
+      "creating": "Saxlanılır…",
+      "createOk": "Kontakt əlavə edildi.",
+      "createError": "Kontakt əlavə etmək alınmadı. Düzgün Azərbaycan nömrəsi daxil edin.",
+      "searchLabel": "Kontakt axtarışı",
+      "searchPlaceholder": "Ad və ya nömrə üzrə axtar",
+      "empty": "Hələ heç bir kontakt yoxdur. Yuxarıdan əlavə edin.",
+      "emptyFiltered": "Axtarışa uyğun kontakt tapılmadı.",
+      "verified": "Nömrə təsdiqlənib",
+      "unverified": "Təsdiqlənməyib",
+      "linkedDealsTitle": "Bağlı satış fürsətləri",
+      "linkedDealsEmpty": "Bu kontakta bağlı satış hələ yoxdur.",
+      "openDeal": "Satışı aç",
+      "pendingMatchesTitle": "Təsdiq gözləyən nömrə uyğunluqları",
+      "selectPrompt": "Ətraflı məlumat və bağlı satışları görmək üçün kontakt seçin.",
+      "createdAt": "Əlavə edilib"
+    },
+    "team": {
+      "title": "Komanda və Mərhələ ayarları",
+      "subtitle": "İş sahəsi ayarlarını, satış mərhələlərini, xüsusi sahələri və komanda rollarını idarə edin.",
+      "workspaceTitle": "İş sahəsi profili",
+      "workspaceNameLabel": "İş sahəsi adı",
+      "workspaceLocaleLabel": "Əsas dil",
+      "workspaceTimezoneLabel": "Saat qurşağı",
+      "workspaceCurrencyLabel": "Valyuta",
+      "workspaceSave": "Ayarları saxla",
+      "workspaceSaving": "Saxlanılır…",
+      "workspaceSaved": "İş sahəsi ayarları yeniləndi.",
+      "workspaceOwnerOnly": "İş sahəsi profilini yalnız sahib dəyişə bilər.",
+      "stagesTitle": "Satış mərhələləri",
+      "stageNameLabel": "Yeni mərhələ adı",
+      "stageNamePlaceholder": "məs. Təkrar zəng",
+      "stageKindLabel": "Mərhələ növü",
+      "stageKindOpen": "Açıq",
+      "stageKindWon": "Uğurlu",
+      "stageKindLost": "İtirilmiş",
+      "stageAdd": "Mərhələ əlavə et",
+      "stageRename": "Adını dəyiş",
+      "stageDelete": "Sil",
+      "stageInUseError": "Bu mərhələdə satışlar olduğu üçün silinə bilməz.",
+      "fieldsTitle": "Xüsusi satış sahələri",
+      "fieldNameLabel": "Sahə adı",
+      "fieldNamePlaceholder": "məs. Hədəf bal",
+      "fieldKindLabel": "Sahə növü",
+      "fieldKindText": "Mətn",
+      "fieldKindNumber": "Rəqəm",
+      "fieldKindDate": "Tarix",
+      "fieldKindBoolean": "Seçim xanası",
+      "fieldRequiredLabel": "Məcburi",
+      "fieldAdd": "Sahə əlavə et",
+      "fieldDelete": "Sil",
+      "membersTitle": "Komanda üzvləri",
+      "memberIdLabel": "Üzv kodu",
+      "memberIdPlaceholder": "məs. op_aygun",
+      "memberNameLabel": "Üzv adı",
+      "memberNamePlaceholder": "məs. Aygün Əliyeva",
+      "memberRoleLabel": "Rol",
+      "memberAdd": "Üzv əlavə et",
+      "membersRestricted": "Rolunuz yalnız öz üzv qeydinizi görməyə icazə verir.",
+      "actionError": "Əməliyyatı tamamlamaq alınmadı. İcazə və məlumatları yoxlayın."
+    },
+    "phoneMatch": {
+      "bannerTitle": "Təsdiqlənməmiş telefon uyğunluqları",
+      "bannerSubtitle": "Təsdiq etmək mesajlaşmanı bloklamadan kanal kontaktını nömrə ilə əlaqələndirir.",
+      "confirm": "Uyğunluğu təsdiqlə",
+      "confirming": "Təsdiqlənir…",
+      "confirmed": "Telefon uyğunluğu təsdiqləndi.",
+      "error": "Telefon uyğunluğunu təsdiqləmək alınmadı."
+    }
   }
 }

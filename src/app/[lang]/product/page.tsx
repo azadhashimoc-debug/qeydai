@@ -58,14 +58,14 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
           badge={p.hero.badge}
           title={p.hero.title}
           subtitle={p.hero.subtitle}
-          primaryCta={{ href: `/${locale}/demo`, label: p.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/channels`, label: p.hero.ctaSecondary }}
+          primaryCta={{ href: `/${locale}/demo`, label: p.hero.primaryCta }}
+          secondaryCta={{ href: `/${locale}/channels`, label: p.hero.secondaryCta }}
           image="p-product-tour"
           imageAlt={p.hero.title}
         />
 
         <FeatureGrid
-          heading={p.modules.title}
+          heading={p.hero.title}
           columns={3}
           items={[
             {
@@ -95,13 +95,6 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
               href: `/${locale}/booking`,
               ctaLabel: s.navGroups.product.bookingTitle,
               tone: "amber",
-            },
-            {
-              title: p.modules.analytics.title,
-              desc: p.modules.analytics.desc,
-              href: `/${locale}/channels`,
-              ctaLabel: s.navGroups.channels.hubTitle,
-              tone: "white",
             },
           ]}
         />

@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 export type LoginPageCopy = {
-  userLabel: string;
-  userPlaceholder: string;
   keyLabel: string;
   keyPlaceholder: string;
   showKey: string;
@@ -29,13 +27,11 @@ type AuthSplitClientProps = {
 
 export function AuthSplitClient({ lang, copy, registerHref }: AuthSplitClientProps) {
   const router = useRouter();
-  const [username, setUsername] = useState("");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network">(
     "idle"
   );
-  const userId = useId();
   const keyId = useId();
   const statusId = useId();
   const keyRef = useRef<HTMLInputElement>(null);
@@ -97,22 +93,6 @@ export function AuthSplitClient({ lang, copy, registerHref }: AuthSplitClientPro
   return (
     <>
       <form onSubmit={handleSubmit} className="pm-form" noValidate>
-        <div className="pm-field">
-          <label htmlFor={userId}>{copy.userLabel}</label>
-          <input
-            id={userId}
-            name="username"
-            type="text"
-            autoComplete="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              if (isError) setStatus("idle");
-            }}
-            placeholder={copy.userPlaceholder}
-          />
-        </div>
-
         <div className="pm-field">
           <label htmlFor={keyId}>{copy.keyLabel}</label>
           <div className="pm-key-wrap">

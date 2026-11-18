@@ -21,6 +21,8 @@ export function SiteFooter({
   cols,
   routeSuffix = "",
 }: SiteFooterProps) {
+  const c = cols.cols;
+
   return (
     <footer className="pm-footer">
       <div className="pm-wrap">
@@ -37,82 +39,73 @@ export function SiteFooter({
 
           <div className="pm-footer-cols">
             <div>
-              <h4>{cols.productCol.title}</h4>
+              <h4>{c.product.title}</h4>
               <ul>
                 <li>
-                  <Link href={`/${lang}/product`}>{cols.productCol.overview}</Link>
+                  <Link href={`/${lang}/product`}>{c.product.tour}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/pipeline`}>{cols.productCol.pipeline}</Link>
+                  <Link href={`/${lang}/pipeline`}>{c.product.pipeline}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/inbox`}>{cols.productCol.inbox}</Link>
+                  <Link href={`/${lang}/inbox`}>{c.product.inbox}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/ai`}>{cols.productCol.ai}</Link>
+                  <Link href={`/${lang}/ai`}>{c.product.ai}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/booking`}>{cols.productCol.booking}</Link>
+                  <Link href={`/${lang}/booking`}>{c.product.booking}</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4>{cols.channelsCol.title}</h4>
+              <h4>{c.channels.title}</h4>
               <ul>
                 <li>
-                  <Link href={`/${lang}/channels/whatsapp`}>{cols.channelsCol.whatsapp}</Link>
+                  <Link href={`/${lang}/channels/whatsapp`}>{c.channels.whatsapp}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/channels/instagram`}>{cols.channelsCol.instagram}</Link>
+                  <Link href={`/${lang}/channels/instagram`}>{c.channels.instagram}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/channels/telegram`}>{cols.channelsCol.telegram}</Link>
+                  <Link href={`/${lang}/channels/telegram`}>{c.channels.telegram}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/channels/webhook-api`}>{cols.channelsCol.webhook}</Link>
+                  <Link href={`/${lang}/channels/webhook-api`}>{c.channels.api}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/tools`}>{cols.channelsCol.tools}</Link>
+                  <Link href={`/${lang}/tools`}>{c.channels.tools}</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4>{cols.resourcesCol.title}</h4>
+              <h4>{c.resources.title}</h4>
               <ul>
                 <li>
-                  <Link href={`/${lang}/pricing`}>{cols.resourcesCol.pricing}</Link>
+                  <Link href={`/${lang}/pricing`}>{c.resources.pricing}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/scenarios/fitness-centers`}>{cols.resourcesCol.fitness}</Link>
+                  <Link href={`/${lang}/scenarios/fitness-centers`}>{c.resources.fitness}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/blog`}>{cols.resourcesCol.blog}</Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/demo`}>{cols.resourcesCol.demo}</Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/contact`}>{cols.resourcesCol.contact}</Link>
+                  <Link href={`/${lang}/blog`}>{c.resources.blog}</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4>{cols.legalCol.title}</h4>
+              <h4>{c.legal.title}</h4>
               <ul>
                 <li>
-                  <Link href={`/${lang}/legal/terms`}>{cols.legalCol.terms}</Link>
+                  <Link href={`/${lang}/legal/terms`}>{c.legal.terms}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/legal/privacy`}>{cols.legalCol.privacy}</Link>
+                  <Link href={`/${lang}/legal/privacy`}>{c.legal.privacy}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/login`}>{cols.legalCol.login}</Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/register`}>{cols.legalCol.register}</Link>
+                  <Link href={`/${lang}/login`}>{c.legal.login}</Link>
                 </li>
               </ul>
             </div>

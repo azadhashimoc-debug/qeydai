@@ -72,7 +72,7 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
                 rateLimitedText={d.contact.rate_limited}
               />
               <div className="pm-auth-switch">
-                <span>{reg.hasAccountText}</span>
+                <span>{reg.hasAccount}</span>
                 <Link href={`/${locale}/login`}>{reg.loginLink}</Link>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
                 <strong style={{ fontSize: "1.05rem", color: "var(--pm-ink)" }}>
                   {s.navGroups.product.bookingTitle} · {s.navGroups.product.aiTitle}
                 </strong>
-                <p className="pm-auth-note">{s.common.contactNote}</p>
+                <p className="pm-auth-note">{reg.subtitle}</p>
               </div>
             </div>
           </div>

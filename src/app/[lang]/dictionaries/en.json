@@ -1,8 +1,12 @@
 {
-  "brand": "QeydAI",
+  "brand": "panelim.az",
   "meta": {
-    "title": "QeydAI — AI sales and enrollment assistant for learning centers",
-    "description": "Answer WhatsApp, Instagram and Telegram inquiries automatically, book trial lessons and stop losing leads."
+    "title": "panelim.az — Sales CRM for Azerbaijani businesses",
+    "description": "Manage customer messages, sales opportunities, and bookings in one workspace."
+  },
+  "a11y": {
+    "skipToMain": "Skip to main content",
+    "mainNav": "Main navigation"
   },
   "nav": {
     "features": "Features",
@@ -14,14 +18,14 @@
   "hero": {
     "eyebrow": "AI that speaks natural Azerbaijani",
     "title": "Turn every inquiry into an enrollment",
-    "subtitle": "The parent writing at midnight and the student writing at noon both get an instant reply. QeydAI books the trial lesson, and your team talks only to ready buyers.",
+    "subtitle": "The parent writing at midnight and the student writing at noon both get an instant reply. panelim.az books the trial lesson, so your team talks only to confirmed students.",
     "primary": "Request a free demo",
     "secondary": "See how it works"
   },
   "proof": {
     "one": "Instant replies",
-    "two": "Seats are verified",
-    "three": "Duplicates are blocked"
+    "two": "Checks open seats",
+    "three": "Blocks repeat sign-ups"
   },
   "features": {
     "title": "Removes every step that slows a sale",
@@ -76,7 +80,7 @@
   },
   "pricing": {
     "title": "Simple, open pricing",
-    "note": "This is an initial offer, finalized together with pilot centers.",
+    "note": "Introductory pilot offer, finalized with each center.",
     "setup": {
       "label": "Setup",
       "value": "350 AZN",
@@ -87,17 +91,28 @@
       "value": "100 AZN",
       "body": "Support, updates and reports."
     },
-    "extra": "WhatsApp message fees (Meta's rates) are billed separately and shown to you in advance."
+    "extra": "WhatsApp message fees (Meta's rates) are billed separately and shown to you in advance.",
+    "cta": "Reserve a pilot spot"
   },
   "contact": {
-    "title": "Let us test it at your center",
+    "title": "Try it at your center",
     "subtitle": "Leave your phone number and we will contact you within 24 hours.",
+    "stepsTitle": "What happens next:",
+    "steps": {
+      "one": "We collect your course prices and trial lesson schedule.",
+      "two": "We set up a test Telegram bot tailored to your center.",
+      "three": "You test it for free; nothing paid starts without your approval."
+    },
     "name": "Your name",
+    "namePlaceholder": "e.g. Aygün Məmmədova",
     "phone": "Phone (e.g. 050 123 45 67)",
+    "phonePlaceholder": "+994 50 123 45 67",
     "submit": "Request a demo",
+    "sending": "Sending…",
     "privacy": "Your details are used only to contact you.",
     "ok": "Thank you! We will be in touch soon.",
     "error": "Could not send. Check the number and try again.",
+    "nameRequired": "Could not send. Enter your name.",
     "rate_limited": "Too many attempts. Please try again in a few minutes."
   },
   "footer": {
@@ -140,7 +155,7 @@
       "c": "By then they have talked to another center"
     },
     "with": {
-      "name": "With QeydAI",
+      "name": "With panelim.az",
       "a": "11:40 pm · A parent writes",
       "b": "11:41 pm · Reply and trial lesson offer",
       "c": "11:44 pm · Enrollment confirmed"
@@ -175,6 +190,777 @@
     "one": "A course timetable on a tablet",
     "two": "A messaging conversation on a phone",
     "three": "A new enrollment notification on a manager's phone",
-    "lobby": "The reception area of a learning center"
+    "lobby": "The reception area of a learning center",
+    "director": "A learning center director reviewing enrollment reports on a tablet"
+  },
+  "about": {
+    "eyebrow": "Built for learning centers",
+    "title": "One shared schedule from front desk to director",
+    "lobby": {
+      "title": "For reception and coordinators",
+      "body": "Inquiries sent at night or during class get an instant reply. Coordinators talk only to parents and students who already picked a trial slot."
+    },
+    "director": {
+      "title": "For center directors",
+      "body": "See how many inquiries arrived, how many booked a trial, and how many enrolled, all stored in your center's own isolated workspace."
+    }
+  },
+  "landing": {
+    "nav": {
+      "product": "Product",
+      "features": "Features",
+      "ai": "AI Assistant",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "signIn": "Sign in",
+      "demo": "Request demo",
+      "menuOpen": "Open menu",
+      "menuClose": "Close menu"
+    },
+    "hero": {
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "instagram": "Instagram",
+        "telegram": "Telegram"
+      },
+      "title": "Grow conversations, cut the chaos",
+      "subtitle": "Messaging-first AI sales CRM built for Azerbaijani businesses to unify WhatsApp, Instagram, Telegram, trial bookings, and team pipelines.",
+      "primaryCta": "Request a free demo",
+      "secondaryCta": "Explore workspace",
+      "trustNote": "Built for Azerbaijani learning centers and service teams",
+      "trustBadges": {
+        "one": "24/7 natural Azerbaijani",
+        "two": "Live seat availability checks",
+        "three": "Isolated per-center workspace"
+      }
+    },
+    "preview": {
+      "tabs": {
+        "inbox": "Inbox",
+        "pipeline": "Sales pipeline",
+        "bookings": "Bookings",
+        "analytics": "Analytics"
+      },
+      "menu": {
+        "overview": "Overview",
+        "inbox": "Unified Inbox",
+        "pipeline": "Sales Pipeline",
+        "bookings": "Trial Lessons",
+        "analytics": "Reports"
+      },
+      "stages": {
+        "new": "New inquiry",
+        "talking": "In conversation",
+        "booked": "Trial booked"
+      },
+      "people": {
+        "one": "Aysel Mammadova",
+        "two": "Elvin Aliyev",
+        "three": "Nigar Hasanli"
+      },
+      "topics": {
+        "one": "IELTS trial lesson",
+        "two": "Speaking club",
+        "three": "Private tutoring"
+      },
+      "incoming": "Hi! Is there an open seat for Saturday 11:00 IELTS trial class?",
+      "outgoing": "Hi Aysel! Yes, 2 seats are open on Saturday at 11:00. Shall I reserve one for you?",
+      "confirmed": "Saturday, 11:00",
+      "times": {
+        "one": "Saturday, 11:00",
+        "two": "Wednesday, 18:00",
+        "three": "Friday, 16:30"
+      },
+      "seats": {
+        "one": "1 seat left",
+        "two": "3 seats left",
+        "three": "2 seats left"
+      },
+      "channelFilter": "All channels",
+      "sampleBadge": "Live preview",
+      "unreadBadge": "2 new",
+      "assigneeLabel": "Owner: Leyla",
+      "metrics": {
+        "one": "New inquiries",
+        "two": "Trial bookings",
+        "three": "Won revenue"
+      },
+      "metricValues": {
+        "one": "148",
+        "two": "64",
+        "three": "4,860 AZN"
+      }
+    },
+    "logos": {
+      "title": "Ready-made workflows across service sectors",
+      "items": {
+        "one": "Language Schools",
+        "two": "Exam Prep Centers",
+        "three": "IT Academies",
+        "four": "Clinics",
+        "five": "Consulting Teams",
+        "six": "Online Retail"
+      },
+      "link": "See sector workflows"
+    },
+    "bento": {
+      "heading": "Manage your entire sales flow in one place",
+      "subheading": "Four focused modules connecting your first customer chat to a confirmed enrollment.",
+      "rows": {
+        "inbox": {
+          "tag": "Unified inbox",
+          "title": "Instant replies powered by AI",
+          "body": "Keep WhatsApp, Instagram, and Telegram messages in one workspace. The assistant replies in seconds using only your verified prices and timetable.",
+          "cta": "See chat flow",
+          "uiChannel": "WhatsApp · 11:41 PM",
+          "uiMsg1": "hi how much is the ielts group course",
+          "uiMsg2": "Hi! Our IELTS group is 180 AZN/month. Would you like a spot in Saturday 11:00 trial class?",
+          "uiBadge": "Verified from your schedule"
+        },
+        "pipeline": {
+          "tag": "Sales pipeline",
+          "title": "Clear next steps on every deal",
+          "body": "Claim unassigned inquiries with one click, move deals across stages, and keep tasks and internal notes on the same card.",
+          "cta": "Explore pipeline",
+          "uiCol1": "New",
+          "uiCol2": "Trial booked",
+          "uiCard1": "IELTS prep · Aysel M.",
+          "uiCard2": "German · Murad K.",
+          "uiOwner": "Agent: Narmin",
+          "uiClaim": "Claim"
+        },
+        "bookings": {
+          "tag": "Trial schedule",
+          "title": "No overbooked groups or duplicates",
+          "body": "When a group hits capacity it closes automatically, repeat sign-ups with the same phone number are blocked, and managers get alerted.",
+          "cta": "Inspect booking logic",
+          "uiGroup": "IELTS · Saturday 11:00",
+          "uiSeats": "4 / 5 seats filled",
+          "uiRule": "Last open seat active"
+        },
+        "analytics": {
+          "tag": "Analytics",
+          "title": "Know which channel brings real sales",
+          "body": "Track how many inquiries from Telegram, WhatsApp, and Instagram convert into trial lessons and paid enrollments.",
+          "cta": "View reports",
+          "uiStat1": "Median reply",
+          "uiVal1": "< 1 min",
+          "uiStat2": "Trial rate",
+          "uiVal2": "43%",
+          "uiSource": "Top channel: Instagram DM"
+        }
+      }
+    },
+    "ai": {
+      "eyebrow": "panelim.az AI assistant",
+      "heading": "The 24/7 AI teammate your sales desk deserves",
+      "subheading": "You control the guardrails: the assistant quotes only approved prices and hands tricky questions straight to your staff.",
+      "cta": "Try in a demo",
+      "badge": "Active flow",
+      "items": {
+        "one": {
+          "title": "Reply 24/7 without delays",
+          "body": "A parent messaging at 11:40 pm gets the same accurate answer as a student messaging during business hours.",
+          "chatUser": "Hi, do you have math prep classes for teens?",
+          "chatBot": "Hello! Yes, we have grades 7-9 groups. Shall I book you for Thursday 17:00 trial class?",
+          "status": "AI replied · 12 sec"
+        },
+        "two": {
+          "title": "Understands everyday speech and typos",
+          "body": "Handles casual Azerbaijani and mixed spelling effortlessly, routing each inquiry to the right course.",
+          "chatUser": "hi whats the speaking club price pls",
+          "chatBot": "Hi! Speaking club meets twice a week at 120 AZN/month. Which day works best for you?",
+          "status": "Intent matched · Pricing"
+        },
+        "three": {
+          "title": "Books trial seats automatically",
+          "body": "Collects name and phone number, checks live capacity, locks the slot, and creates a pipeline deal.",
+          "chatUser": "Aygun Mammadova, 050 123 45 67",
+          "chatBot": "Your booking is confirmed! Your seat for Saturday 11:00 is reserved.",
+          "status": "Booking confirmed ✓"
+        },
+        "four": {
+          "title": "Hands off smoothly to a manager",
+          "body": "For custom discounts, complaints, or off-table requests, the assistant pauses and notifies your team.",
+          "chatUser": "Do you offer a sibling discount for two kids?",
+          "chatBot": "Let me hand this to our coordinator Leyla to confirm sibling discount options.",
+          "status": "Handed off · Leyla"
+        }
+      },
+      "phoneBrand": "Learning Center",
+      "phoneSub": "Verified AI desk"
+    },
+    "outcomes": {
+      "heading": "What changes in daily operations?",
+      "subheading": "Target workflow outcomes designed for pilot centers and service desks.",
+      "cta": "Test with your workflow",
+      "cards": {
+        "one": {
+          "before": "When evening inquiries waited until morning, ",
+          "highlight": "the center that replied within 5 minutes won the student",
+          "after": ". Now trial slots are booked the same night.",
+          "author": "Language & Exam Centers",
+          "role": "Pilot scenario · Instant first reply"
+        },
+        "two": {
+          "before": "WhatsApp, Instagram, and Telegram used to live on separate phones. Unifying channels ensures ",
+          "highlight": "zero inquiries slip through unanswered",
+          "after": " and operators collaborate in one queue.",
+          "author": "Front Desk & Coordinators",
+          "role": "Pilot scenario · Unified inbox"
+        },
+        "three": {
+          "before": "Replacing spreadsheets with deal cards and capacity guards means ",
+          "highlight": "overbooked classes and duplicate entries stop",
+          "after": " while staff focus on ready applicants.",
+          "author": "Center Leadership",
+          "role": "Pilot scenario · Schedule control"
+        }
+      }
+    },
+    "pricing": {
+      "heading": "Choose the plan that fits your team",
+      "subheading": "All plans are calibrated during your pilot based on channel count and staff seats.",
+      "periods": {
+        "monthly": "Monthly",
+        "halfYear": "6 months",
+        "annual": "Annual"
+      },
+      "periodNotes": {
+        "monthly": "Flexible start",
+        "halfYear": "Standard pilot cycle",
+        "annual": "Long-term rate"
+      },
+      "perMonth": "/ mo",
+      "popular": "Most popular",
+      "setupPrefix": "Setup:",
+      "setupValue": "350 AZN (one-time)",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "desc": "Telegram bot and core pipeline for small teams",
+          "prices": {
+            "monthly": "100 AZN",
+            "halfYear": "90 AZN",
+            "annual": "80 AZN"
+          },
+          "limits": {
+            "one": "1 channel (Telegram)",
+            "two": "3 team members",
+            "three": "Trial capacity protection"
+          },
+          "cta": "Apply for pilot"
+        },
+        "growth": {
+          "name": "Growth",
+          "desc": "AI assistant and multi-channel inbox for growing teams",
+          "prices": {
+            "monthly": "160 AZN",
+            "halfYear": "145 AZN",
+            "annual": "130 AZN"
+          },
+          "limits": {
+            "one": "Telegram + Instagram + WhatsApp",
+            "two": "8 team members",
+            "three": "Automated trial booking"
+          },
+          "cta": "Apply for pilot"
+        },
+        "pro": {
+          "name": "Pro",
+          "desc": "Full automation and analytics for multi-branch centers",
+          "prices": {
+            "monthly": "240 AZN",
+            "halfYear": "215 AZN",
+            "annual": "190 AZN"
+          },
+          "limits": {
+            "one": "All channels + custom fields",
+            "two": "Unlimited operators & role rules",
+            "three": "Full analytics & n8n integration"
+          },
+          "cta": "Start with demo"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "desc": "Custom setup, dedicated deployment, and SLA support",
+          "price": "Custom",
+          "limits": {
+            "one": "Multi-branch workspace setup",
+            "two": "Custom API & webhook integrations",
+            "three": "Direct engineering support"
+          },
+          "cta": "Contact us"
+        }
+      },
+      "footnote": "Note: AZN prices shown are introductory pilot rates confirmed during your demo. WhatsApp message fees (Meta rates) are billed separately."
+    },
+    "ctaBand": {
+      "title": "Take control from first message to enrollment",
+      "subtitle": "Bring one real customer inquiry and we will walk through your exact workflow in a 15-minute live demo.",
+      "primary": "Request free demo",
+      "secondary": "Staff sign in"
+    },
+    "footer": {
+      "tagline": "Messaging and sales CRM for Azerbaijani businesses.",
+      "copyright": "© 2026 panelim.az. All rights reserved.",
+      "switchLabel": "Azərbaycan dili",
+      "cols": {
+        "product": {
+          "title": "Product",
+          "one": "Unified inbox",
+          "two": "Sales pipeline",
+          "three": "Trial calendar",
+          "four": "AI sales assistant"
+        },
+        "channels": {
+          "title": "Channels",
+          "one": "WhatsApp Business",
+          "two": "Instagram Direct",
+          "three": "Telegram Bot",
+          "four": "Web lead form"
+        },
+        "solutions": {
+          "title": "Solutions",
+          "one": "Learning centers",
+          "two": "Language schools",
+          "three": "Service businesses",
+          "four": "Online retail"
+        },
+        "company": {
+          "title": "Get started",
+          "one": "Book a demo",
+          "two": "Pricing",
+          "three": "FAQ",
+          "four": "Staff panel sign in"
+        }
+      }
+    }
+  },
+  "panel": {
+    "metaTitle": "Staff panel",
+    "badge": "Staff panel",
+    "tenantLabel": "Center",
+    "navAria": "Panel navigation",
+    "backToSite": "Back to site",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…",
+    "switchLang": "Language",
+    "loading": "Loading panel data…",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing…",
+    "loadError": "Could not load panel data. Please try again.",
+    "retry": "Retry",
+    "unauthorizedNotice": "Your session expired. Please sign in again.",
+    "tabs": {
+      "ariaLabel": "Panel sections",
+      "overview": "Overview",
+      "sessions": "Sessions",
+      "leads": "CRM",
+      "inbox": "Inbox",
+      "deals": "Deals",
+      "contacts": "Contacts",
+      "channels": "Channels",
+      "ai": "AI assistant",
+      "plans": "Plans",
+      "settings": "Team & Pipeline"
+    },
+    "channels": {
+      "title": "Channels",
+      "subtitle": "Connect WhatsApp, Instagram and Telegram channels.",
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "test": "Test",
+      "secretLabel": "Secret",
+      "webhookLabel": "Webhook URL",
+      "connected": "Active",
+      "disconnected": "Inactive"
+    },
+    "ai": {
+      "title": "AI assistant",
+      "subtitle": "Manage auto-reply, lead scoring and trial booking scenarios.",
+      "activeLabel": "AI replies enabled",
+      "settings": "Open settings",
+      "active": "Active",
+      "inactive": "Disabled",
+      "greeting": "Welcome message",
+      "price": "Pricing question",
+      "booking": "Trial booking",
+      "handoff": "Human handoff",
+      "open": "Open",
+      "close": "Close"
+    },
+    "plans": {
+      "title": "Plans",
+      "subtitle": "Choose the plan for your center. AZN prices shown are pilot offers.",
+      "monthly": "Monthly",
+      "halfYear": "6-month",
+      "annual": "Annual",
+      "perMonth": "/ mo",
+      "setupPrefix": "Setup:",
+      "setupValue": "350 AZN (one-time)",
+      "popular": "Most popular",
+      "ctaStarter": "Request pilot",
+      "ctaGrowth": "Request pilot",
+      "ctaPro": "Start demo",
+      "ctaEnterprise": "Contact us",
+      "note": "WhatsApp message fees (Meta tariffs) billed separately and shown in advance.",
+      "starter": {
+        "name": "Starter",
+        "desc": "Small teams — Telegram plus core sales board",
+        "limits": ["1 channel (Telegram)", "3 team members", "Trial seat occupancy watch"]
+      },
+      "growth": {
+        "name": "Growth",
+        "desc": "Growing centers — AI assistant and multi-channel inbox",
+        "limits": ["Telegram, Instagram and WhatsApp", "8 team members", "Automatic trial booking"]
+      },
+      "pro": {
+        "name": "Pro",
+        "desc": "Multi-branch centers — full automation and reports",
+        "limits": ["All channels + custom fields", "Unlimited operators and role permissions", "Full analytics and n8n integration"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "desc": "Custom requests, dedicated server and SLA support",
+        "limits": ["Multi-branch center structure", "Custom API and webhook setup", "Direct engineer support"]
+      }
+    },
+    "login": {
+      "eyebrow": "Learning center register",
+      "title": "Staff panel sign in",
+      "subtitle": "Enter your center admin key to manage trial sessions, leads, and conversations.",
+      "userLabel": "Username",
+      "userPlaceholder": "user@example.com",
+      "keyLabel": "Access key",
+      "keyPlaceholder": "Enter your center admin key",
+      "showKey": "Show key",
+      "hideKey": "Hide key",
+      "submit": "Sign in to panel",
+      "submitting": "Checking…",
+      "invalidKey": "Invalid access key. Check it and try again.",
+      "rateLimited": "Too many failed attempts. Please wait a few minutes.",
+      "networkError": "Network error occurred. Please try again.",
+      "securityNote": "Session is stored in a secure HttpOnly cookie."
+    },
+    "stages": {
+      "new": "New",
+      "contacted": "Contacted",
+      "trial_booked": "Trial booked",
+      "paid": "Paid",
+      "lost": "Lost"
+    },
+    "sources": {
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram",
+      "web": "Website",
+      "manual": "Manual"
+    },
+    "senders": {
+      "student": "Student",
+      "ai": "AI assistant",
+      "staff": "Staff"
+    },
+    "overview": {
+      "title": "Today at a glance",
+      "subtitle": "Trial sessions, pipeline stages, and landing conversion on one page.",
+      "kpiLeads": "Total leads",
+      "kpiEnrollments": "Trial bookings",
+      "kpiPaid": "Paid students",
+      "kpiMessages": "Total messages",
+      "conversionLabel": "paid conversion",
+      "pipelineTitle": "CRM pipeline breakdown",
+      "pipelineEmpty": "No leads yet. Create your first lead in the CRM tab.",
+      "sessionsTitle": "Trial session occupancy",
+      "sessionsEmpty": "No active trial sessions. Add a new group in the Sessions tab.",
+      "seatsLeftSuffix": "seats left",
+      "fullLabel": "Full",
+      "enrolledSuffix": "enrolled",
+      "analyticsTitle": "Landing funnel analytics",
+      "analyticsScopeNote": "Site-wide visitor events tracked on the public landing pages.",
+      "funnelViews": "Page views",
+      "funnelCta": "CTA clicks",
+      "funnelStarted": "Form started",
+      "funnelSubmitted": "Form submitted",
+      "funnelFailed": "Failed submits",
+      "localeSplitTitle": "Views by language",
+      "utmTitle": "UTM sources",
+      "utmEmpty": "No UTM sources recorded yet.",
+      "experimentsTitle": "A/B experiments",
+      "experimentsEmpty": "No active experiment data yet.",
+      "expViews": "Views",
+      "expClicks": "Clicks",
+      "expLeads": "Leads",
+      "ctaLocationsTitle": "CTA placements",
+      "ctaLocationsEmpty": "No CTA clicks recorded yet.",
+      "goToSessions": "Open sessions",
+      "goToLeads": "Open CRM"
+    },
+    "sessions": {
+      "title": "Trial sessions schedule",
+      "subtitle": "Create new trial lesson groups and track enrolled students.",
+      "createTitle": "Add a new trial session",
+      "idLabel": "Session ID",
+      "idPlaceholder": "e.g. ielts-sat-11",
+      "courseLabel": "Course name",
+      "coursePlaceholder": "e.g. IELTS",
+      "startsAtLabel": "Start date and time",
+      "capacityLabel": "Seat capacity",
+      "createSubmit": "Create session",
+      "creating": "Creating…",
+      "createOk": "Trial session added to schedule.",
+      "errorDuplicate": "A session with this ID already exists.",
+      "errorInvalid": "Check your inputs: all fields must be filled validly.",
+      "errorGeneric": "Could not create session. Please try again.",
+      "listTitle": "Scheduled trial sessions",
+      "empty": "No trial sessions yet. Use the form above to add the first one.",
+      "seatsLeft": "seats left",
+      "full": "Full",
+      "takenOf": "taken",
+      "rosterTitle": "Enrolled students",
+      "rosterEmpty": "No students enrolled in this session yet.",
+      "rosterToggleShow": "Show roster",
+      "rosterToggleHide": "Hide roster",
+      "enrolledAt": "Enrolled at"
+    },
+    "leads": {
+      "title": "Lead register (CRM)",
+      "subtitle": "Track leads across stages, save notes, and jump straight into their chat.",
+      "newToggleOpen": "New lead",
+      "newToggleClose": "Close form",
+      "createTitle": "Add a new lead",
+      "nameLabel": "Full name",
+      "namePlaceholder": "e.g. Aygün Məmmədova",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+994 50 123 45 67",
+      "sourceLabel": "Source channel",
+      "stageLabel": "Stage",
+      "noteLabel": "Note",
+      "notePlaceholder": "Course interest or extra details",
+      "createSubmit": "Save lead",
+      "creating": "Saving…",
+      "createOk": "Lead added to the register.",
+      "createError": "Could not add lead. Check the name and phone number.",
+      "searchLabel": "Search",
+      "searchPlaceholder": "Search by name, phone, or note",
+      "filterStageLabel": "Filter by stage",
+      "filterSourceLabel": "Filter by channel",
+      "allStages": "All stages",
+      "allSources": "All channels",
+      "empty": "No leads yet. Add your first lead above.",
+      "emptyFiltered": "No leads match the selected filters.",
+      "clearFilters": "Clear filters",
+      "stageSelectAria": "Change lead stage",
+      "noteSave": "Save note",
+      "noteSaving": "Saving…",
+      "noteSaved": "Changes saved.",
+      "updateError": "Could not update lead. Please try again.",
+      "openInInbox": "Open in Inbox",
+      "updatedAt": "Updated",
+      "countSuffix": "leads"
+    },
+    "inbox": {
+      "title": "Unified inbox",
+      "subtitle": "Handle Telegram, WhatsApp, Instagram, and web conversations in one place.",
+      "threadsTitle": "Threads",
+      "searchLabel": "Search threads",
+      "searchPlaceholder": "Type name or phone",
+      "emptyThreads": "No conversations yet. Add a lead in CRM first.",
+      "selectPrompt": "Select a lead from the list to view their messages.",
+      "backToThreads": "All threads",
+      "stageLabel": "Stage",
+      "messagesEmpty": "No messages with this lead yet. Send the first message below.",
+      "loadingMessages": "Loading messages…",
+      "messagesError": "Could not load messages.",
+      "composerTitle": "Write a reply",
+      "senderRoleLabel": "Sender role",
+      "senderStaff": "Staff reply",
+      "senderAi": "AI reply",
+      "senderStudent": "Student message (demo)",
+      "channelLabel": "Channel",
+      "bodyLabel": "Message",
+      "bodyPlaceholder": "Write a reply to the student or simulate an incoming message…",
+      "send": "Send",
+      "sending": "Sending…",
+      "sendError": "Could not send message.",
+      "sendHint": "Press Ctrl+Enter to send quickly.",
+      "directionIn": "Inbound",
+      "directionOut": "Outbound"
+    },
+    "roles": {
+      "owner": "Owner",
+      "manager": "Manager",
+      "operator": "Operator"
+    },
+    "deals": {
+      "title": "Sales pipeline",
+      "subtitle": "Manage deals across stages, claim unassigned inquiries, and track follow-ups.",
+      "viewKanban": "Kanban",
+      "viewList": "List",
+      "newToggleOpen": "New deal",
+      "newToggleClose": "Close form",
+      "createTitle": "Create new deal",
+      "titleLabel": "Deal title",
+      "titlePlaceholder": "e.g. IELTS group enrollment",
+      "contactLabel": "Contact",
+      "contactSelectPlaceholder": "Select existing contact",
+      "orNewContact": "Or enter new contact details",
+      "contactNameLabel": "Contact name",
+      "contactPhoneLabel": "Contact phone",
+      "stageLabel": "Stage",
+      "sourceLabel": "Source channel",
+      "amountLabel": "Amount",
+      "amountPlaceholder": "e.g. 150",
+      "createSubmit": "Create deal",
+      "creating": "Creating…",
+      "createOk": "Deal added to pipeline.",
+      "createError": "Could not create deal. Check title and contact details.",
+      "searchLabel": "Search deals",
+      "searchPlaceholder": "Search by title, contact, or phone",
+      "filterStageLabel": "Filter by stage",
+      "filterSourceLabel": "Filter by channel",
+      "filterAssigneeLabel": "Filter by assignee",
+      "allStages": "All stages",
+      "allSources": "All channels",
+      "allAssignees": "All assignees",
+      "unassignedOnly": "Unassigned only",
+      "mineOnly": "Assigned to me",
+      "unassigned": "Unassigned",
+      "claim": "Claim",
+      "claiming": "Claiming…",
+      "claimConflict": "This deal was already claimed by another operator.",
+      "openDetail": "Open",
+      "closeDetail": "Back to deals",
+      "empty": "No deals yet. Create your first deal above.",
+      "emptyFiltered": "No deals match the current filters.",
+      "clearFilters": "Clear filters",
+      "stageCountSuffix": "deals",
+      "moveStageAria": "Move deal to stage",
+      "assigneeLabel": "Assignee",
+      "deleteDeal": "Delete deal",
+      "deleteConfirm": "Confirm delete",
+      "deleteCancel": "Cancel",
+      "detailTabTimeline": "Timeline & Reply",
+      "detailTabTasksNotes": "Tasks & Notes",
+      "detailTabFields": "Custom Fields",
+      "timelineTitle": "Deal timeline",
+      "timelineEmpty": "No activity or messages on this deal yet.",
+      "replyLabel": "Reply to customer",
+      "replyPlaceholder": "Write a message to send via the linked channel…",
+      "replySend": "Send reply",
+      "replySending": "Sending…",
+      "replyWindowExpired": "24-hour messaging window has expired for this channel.",
+      "replyNoThread": "No active channel thread linked to this deal yet.",
+      "replyError": "Could not send reply. Please try again.",
+      "tasksTitle": "Tasks",
+      "tasksEmpty": "No tasks on this deal yet.",
+      "taskTitleLabel": "Task title",
+      "taskTitlePlaceholder": "e.g. Call parent before Friday class",
+      "taskDueLabel": "Due date",
+      "taskAdd": "Add task",
+      "taskMarkDone": "Mark done",
+      "taskReopen": "Reopen",
+      "taskDelete": "Delete",
+      "notesTitle": "Internal notes",
+      "notesEmpty": "No internal notes yet.",
+      "noteLabel": "New note",
+      "notePlaceholder": "Write internal note for team…",
+      "noteAdd": "Add note",
+      "noteDelete": "Delete",
+      "fieldsTitle": "Custom fields",
+      "fieldsEmpty": "No custom fields configured. Add fields in Team & Pipeline.",
+      "fieldsSave": "Save fields",
+      "fieldsSaving": "Saving…",
+      "fieldsSaved": "Custom fields saved.",
+      "saveChanges": "Save changes",
+      "saving": "Saving…",
+      "saved": "Changes saved.",
+      "updateError": "Could not save changes.",
+      "openContact": "View contact",
+      "eventStageChanged": "Stage updated",
+      "eventTaskCreated": "Task created",
+      "eventTaskDone": "Task completed",
+      "eventNoteAdded": "Note added"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "subtitle": "Canonical phone directory, verification status, and linked deals.",
+      "newToggleOpen": "New contact",
+      "newToggleClose": "Close form",
+      "createTitle": "Add contact",
+      "nameLabel": "Full name",
+      "namePlaceholder": "e.g. Leyla Hasanova",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+994 50 123 45 67",
+      "createSubmit": "Save contact",
+      "creating": "Saving…",
+      "createOk": "Contact added.",
+      "createError": "Could not add contact. Enter a valid Azerbaijan phone number.",
+      "searchLabel": "Search contacts",
+      "searchPlaceholder": "Search by name or phone",
+      "empty": "No contacts yet. Create one above or ingest an inquiry.",
+      "emptyFiltered": "No contacts match your search.",
+      "verified": "Phone verified",
+      "unverified": "Unverified",
+      "linkedDealsTitle": "Linked deals",
+      "linkedDealsEmpty": "No deals linked to this contact yet.",
+      "openDeal": "Open deal",
+      "pendingMatchesTitle": "Pending phone matches",
+      "selectPrompt": "Select a contact to inspect details and linked deals.",
+      "createdAt": "Added"
+    },
+    "team": {
+      "title": "Team & Pipeline settings",
+      "subtitle": "Configure workspace defaults, pipeline stages, custom deal fields, and team roles.",
+      "workspaceTitle": "Workspace profile",
+      "workspaceNameLabel": "Workspace name",
+      "workspaceLocaleLabel": "Default locale",
+      "workspaceTimezoneLabel": "Timezone",
+      "workspaceCurrencyLabel": "Currency",
+      "workspaceSave": "Save workspace",
+      "workspaceSaving": "Saving…",
+      "workspaceSaved": "Workspace settings updated.",
+      "workspaceOwnerOnly": "Only the workspace owner can edit workspace profile settings.",
+      "stagesTitle": "Pipeline stages",
+      "stageNameLabel": "New stage name",
+      "stageNamePlaceholder": "e.g. Follow-up call",
+      "stageKindLabel": "Stage type",
+      "stageKindOpen": "Open",
+      "stageKindWon": "Won",
+      "stageKindLost": "Lost",
+      "stageAdd": "Add stage",
+      "stageRename": "Rename",
+      "stageDelete": "Delete",
+      "stageInUseError": "Stage has existing deals and cannot be deleted.",
+      "fieldsTitle": "Custom deal fields",
+      "fieldNameLabel": "Field name",
+      "fieldNamePlaceholder": "e.g. Exam target score",
+      "fieldKindLabel": "Field type",
+      "fieldKindText": "Text",
+      "fieldKindNumber": "Number",
+      "fieldKindDate": "Date",
+      "fieldKindBoolean": "Checkbox",
+      "fieldRequiredLabel": "Required",
+      "fieldAdd": "Add field",
+      "fieldDelete": "Delete",
+      "membersTitle": "Team members",
+      "memberIdLabel": "Member ID",
+      "memberIdPlaceholder": "e.g. op_aygun",
+      "memberNameLabel": "Member name",
+      "memberNamePlaceholder": "e.g. Aygun Aliyeva",
+      "memberRoleLabel": "Role",
+      "memberAdd": "Add member",
+      "membersRestricted": "Your role allows viewing only your own member record.",
+      "actionError": "Could not complete action. Check permissions and inputs."
+    },
+    "phoneMatch": {
+      "bannerTitle": "Unconfirmed phone matches",
+      "bannerSubtitle": "Confirming links the channel contact to the matched phone record without blocking chat.",
+      "confirm": "Confirm match",
+      "confirming": "Confirming…",
+      "confirmed": "Phone match confirmed.",
+      "error": "Could not confirm phone match."
+    }
   }
 }

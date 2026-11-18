@@ -31,6 +31,8 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
+  const contact = s.contactPage;
+  const form = contact.form;
 
   return (
     <div className="marketing">
@@ -50,33 +52,38 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={s.contactPage.hero.badge}
-          title={s.contactPage.hero.title}
-          subtitle={s.contactPage.hero.subtitle}
-          primaryCta={{ href: "#contact-form", label: s.contactPage.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/pricing`, label: s.contactPage.hero.ctaSecondary }}
+          badge={contact.hero.badge}
+          title={contact.hero.title}
+          subtitle={contact.hero.subtitle}
+          primaryCta={{ href: "#contact-form", label: form.submit }}
+          secondaryCta={{ href: `/${locale}/demo`, label: s.common.bottomCta.primary }}
           image="p-cases"
-          imageAlt={s.contactPage.hero.title}
-          badgeVariant="mint"
+          imageAlt={contact.hero.title}
         />
 
         <section id="contact-form" className="pm-section">
           <div className="pm-wrap pm-cta-grid">
             <div className="pm-subhero-copy">
-              <h2>{s.contactPage.formTitle}</h2>
-              <p className="pm-subhero-sub">{s.contactPage.formSubtitle}</p>
-              <p className="pm-auth-note" style={{ marginTop: 14 }}>
-                {s.common.contactNote}
-              </p>
+              <h2>{form.title}</h2>
+              <p className="pm-subhero-sub">{form.subtitle}</p>
             </div>
 
             <div className="pm-contact-card">
               <LeadForm
                 locale={locale}
-                labels={d.contact}
-                okText={d.contact.ok}
-                errText={d.contact.error}
-                rateLimitedText={d.contact.rate_limited}
+                labels={{
+                  name: form.nameLabel,
+                  namePlaceholder: form.namePlaceholder,
+                  phone: form.phoneLabel,
+                  phonePlaceholder: form.phonePlaceholder,
+                  submit: form.submit,
+                  sending: form.submitting,
+                  privacy: form.privacyNote,
+                  nameRequired: form.nameRequired,
+                }}
+                okText={form.successTitle}
+                errText={form.successBody}
+                rateLimitedText={s.common.bookDemo}
               />
             </div>
           </div>

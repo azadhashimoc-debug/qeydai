@@ -31,6 +31,8 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
+  const demo = s.demoPage;
+  const form = demo.form;
 
   return (
     <div className="marketing">
@@ -50,32 +52,38 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={s.demoPage.hero.badge}
-          title={s.demoPage.hero.title}
-          subtitle={s.demoPage.hero.subtitle}
-          primaryCta={{ href: "#demo-form", label: s.demoPage.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/pricing`, label: s.demoPage.hero.ctaSecondary }}
+          badge={demo.hero.badge}
+          title={demo.hero.title}
+          subtitle={demo.hero.subtitle}
+          primaryCta={{ href: "#demo-form", label: form.submit }}
+          secondaryCta={{ href: `/${locale}/pricing`, label: s.common.bottomCta.secondary }}
           image="p-demo"
-          imageAlt={s.demoPage.hero.title}
+          imageAlt={demo.hero.title}
         />
 
         <section id="demo-form" className="pm-section">
           <div className="pm-wrap pm-cta-grid">
             <div className="pm-subhero-copy">
-              <h2>{s.demoPage.formTitle}</h2>
-              <p className="pm-subhero-sub">{s.demoPage.formSubtitle}</p>
-              <p className="pm-auth-note" style={{ marginTop: 14 }}>
-                {s.common.contactNote}
-              </p>
+              <h2>{form.title}</h2>
+              <p className="pm-subhero-sub">{form.subtitle}</p>
             </div>
 
             <div className="pm-contact-card">
               <LeadForm
                 locale={locale}
-                labels={d.contact}
-                okText={d.contact.ok}
-                errText={d.contact.error}
-                rateLimitedText={d.contact.rate_limited}
+                labels={{
+                  name: form.nameLabel,
+                  namePlaceholder: form.namePlaceholder,
+                  phone: form.phoneLabel,
+                  phonePlaceholder: form.phonePlaceholder,
+                  submit: form.submit,
+                  sending: form.submitting,
+                  privacy: form.privacyNote,
+                  nameRequired: form.nameRequired,
+                }}
+                okText={form.successTitle}
+                errText={form.successBody}
+                rateLimitedText={s.common.bookDemo}
               />
             </div>
           </div>
@@ -84,10 +92,10 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
         <BottomCtaBand
           title={s.common.bottomCta.title}
           subtitle={s.common.bottomCta.subtitle}
-          primaryHref={`/${locale}/product`}
-          primaryLabel={s.navGroups.product.overviewTitle}
+          primaryHref={`/${locale}/contact`}
+          primaryLabel={s.common.bottomCta.primary}
           secondaryHref={`/${locale}/login`}
-          secondaryLabel={s.common.bottomCta.secondary}
+          secondaryLabel={s.authPages.login.noAccount}
         />
       </main>
 

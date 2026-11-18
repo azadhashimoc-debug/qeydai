@@ -4,7 +4,8 @@ import { useState } from "react";
 import type { SubpagesDict } from "@/app/[lang]/dictionaries";
 
 type EntitlementRow = {
-  label: string;
+  name: string;
+  desc: string;
   values: [boolean, boolean, boolean, boolean];
 };
 
@@ -24,38 +25,108 @@ export function PricingMatrixClient({
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     channels: true,
     crm: true,
-    automation: true,
+    aiBooking: true,
+    support: true,
   });
 
   const groups: CategoryGroup[] = [
     {
       key: "channels",
-      name: matrix.categories.channels.name,
+      name: matrix.categories.channels.title,
       rows: [
-        { label: matrix.categories.channels.rows.telegram, values: [true, true, true, true] },
-        { label: matrix.categories.channels.rows.instagram, values: [true, true, true, true] },
-        { label: matrix.categories.channels.rows.whatsapp, values: [false, true, true, true] },
-        { label: matrix.categories.channels.rows.webForm, values: [true, true, true, true] },
+        {
+          name: matrix.categories.channels.features.telegram.name,
+          desc: matrix.categories.channels.features.telegram.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.channels.features.instagram.name,
+          desc: matrix.categories.channels.features.instagram.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.channels.features.whatsapp.name,
+          desc: matrix.categories.channels.features.whatsapp.desc,
+          values: [false, true, true, true],
+        },
+        {
+          name: matrix.categories.channels.features.webhook.name,
+          desc: matrix.categories.channels.features.webhook.desc,
+          values: [true, true, true, true],
+        },
       ],
     },
     {
       key: "crm",
-      name: matrix.categories.crm.name,
+      name: matrix.categories.crm.title,
       rows: [
-        { label: matrix.categories.crm.rows.pipeline, values: [true, true, true, true] },
-        { label: matrix.categories.crm.rows.teamSeats, values: [true, true, true, true] },
-        { label: matrix.categories.crm.rows.dealClaim, values: [false, true, true, true] },
-        { label: matrix.categories.crm.rows.antiDuplicate, values: [true, true, true, true] },
+        {
+          name: matrix.categories.crm.features.kanban.name,
+          desc: matrix.categories.crm.features.kanban.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.crm.features.claim.name,
+          desc: matrix.categories.crm.features.claim.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.crm.features.tasks.name,
+          desc: matrix.categories.crm.features.tasks.desc,
+          values: [false, true, true, true],
+        },
+        {
+          name: matrix.categories.crm.features.customFields.name,
+          desc: matrix.categories.crm.features.customFields.desc,
+          values: [true, true, true, true],
+        },
       ],
     },
     {
-      key: "automation",
-      name: matrix.categories.automation.name,
+      key: "aiBooking",
+      name: matrix.categories.aiBooking.title,
       rows: [
-        { label: matrix.categories.automation.rows.aiReplies, values: [false, true, true, true] },
-        { label: matrix.categories.automation.rows.capacityLock, values: [true, true, true, true] },
-        { label: matrix.categories.automation.rows.managerHandoff, values: [false, true, true, true] },
-        { label: matrix.categories.automation.rows.webhook, values: [false, false, true, true] },
+        {
+          name: matrix.categories.aiBooking.features.booking.name,
+          desc: matrix.categories.aiBooking.features.booking.desc,
+          values: [false, true, true, true],
+        },
+        {
+          name: matrix.categories.aiBooking.features.duplicateBlock.name,
+          desc: matrix.categories.aiBooking.features.duplicateBlock.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.aiBooking.features.aiAssistant.name,
+          desc: matrix.categories.aiBooking.features.aiAssistant.desc,
+          values: [false, true, true, true],
+        },
+        {
+          name: matrix.categories.aiBooking.features.handoff.name,
+          desc: matrix.categories.aiBooking.features.handoff.desc,
+          values: [false, false, true, true],
+        },
+      ],
+    },
+    {
+      key: "support",
+      name: matrix.categories.support.title,
+      rows: [
+        {
+          name: matrix.categories.support.features.isolatedDb.name,
+          desc: matrix.categories.support.features.isolatedDb.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.support.features.auditLog.name,
+          desc: matrix.categories.support.features.auditLog.desc,
+          values: [true, true, true, true],
+        },
+        {
+          name: matrix.categories.support.features.support.name,
+          desc: matrix.categories.support.features.support.desc,
+          values: [true, true, true, true],
+        },
       ],
     },
   ];
@@ -99,10 +170,14 @@ export function PricingMatrixClient({
                   </thead>
                   <tbody>
                     {group.rows.map((row) => (
-                      <tr key={row.label}>
-                        <td>{row.label}</td>
+                      <tr key={row.name}>
+                        <td>
+                          <span>{row.name}</span>
+                          <br />
+                          <span className="pm-matrix-desc">{row.desc}</span>
+                        </td>
                         {row.values.map((included, idx) => (
-                          <td key={`${row.label}-${idx}`}>
+                          <td key={`${row.name}-${idx}`}>
                             {included ? (
                               <span aria-label="Included" style={{ color: "#15803d", fontWeight: 800 }}>
                                 ✓

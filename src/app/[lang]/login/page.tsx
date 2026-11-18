@@ -60,7 +60,20 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
               <p className="pm-subhero-sub">{login.subtitle}</p>
               <AuthSplitClient
                 lang={locale}
-                copy={login}
+                copy={{
+                  keyLabel: login.keyLabel,
+                  keyPlaceholder: login.keyPlaceholder,
+                  showKey: login.showKey,
+                  hideKey: login.hideKey,
+                  submit: login.submit,
+                  submitting: login.submitting,
+                  invalidKey: login.invalidKey,
+                  rateLimited: login.rateLimited,
+                  networkError: login.networkError,
+                  securityNote: login.subtitle,
+                  noAccountText: login.noAccount,
+                  registerLink: login.registerLink,
+                }}
                 registerHref={`/${locale}/register`}
               />
             </div>

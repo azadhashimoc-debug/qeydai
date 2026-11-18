@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { PricingShowcase } from "@/components/LandingInteractive";
-import { PricingMatrixClient } from "@/components/marketing/PricingMatrixClient";
+import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
-import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
 
@@ -22,7 +20,6 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/pricing">)
     title: d.subpages.pricingPage.hero.title,
     description: d.subpages.pricingPage.hero.subtitle,
     brand: d.brand,
-    image: "/images/p-cases.webp",
   });
 }
 
@@ -31,68 +28,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
-  const l = d.landing;
   const s = d.subpages;
-  const faqEntries = Object.entries(d.faq.items);
-
-  const pricingPlans = [
-    {
-      key: "starter",
-      name: l.pricing.plans.starter.name,
-      desc: l.pricing.plans.starter.desc,
-      prices: l.pricing.plans.starter.prices,
-      limits: [
-        l.pricing.plans.starter.limits.one,
-        l.pricing.plans.starter.limits.two,
-        l.pricing.plans.starter.limits.three,
-      ] as [string, string, string],
-      cta: l.pricing.plans.starter.cta,
-    },
-    {
-      key: "growth",
-      name: l.pricing.plans.growth.name,
-      desc: l.pricing.plans.growth.desc,
-      prices: l.pricing.plans.growth.prices,
-      limits: [
-        l.pricing.plans.growth.limits.one,
-        l.pricing.plans.growth.limits.two,
-        l.pricing.plans.growth.limits.three,
-      ] as [string, string, string],
-      cta: l.pricing.plans.growth.cta,
-      popular: true,
-    },
-    {
-      key: "pro",
-      name: l.pricing.plans.pro.name,
-      desc: l.pricing.plans.pro.desc,
-      prices: l.pricing.plans.pro.prices,
-      limits: [
-        l.pricing.plans.pro.limits.one,
-        l.pricing.plans.pro.limits.two,
-        l.pricing.plans.pro.limits.three,
-      ] as [string, string, string],
-      cta: l.pricing.plans.pro.cta,
-    },
-    {
-      key: "enterprise",
-      name: l.pricing.plans.enterprise.name,
-      desc: l.pricing.plans.enterprise.desc,
-      staticPrice: l.pricing.plans.enterprise.price,
-      limits: [
-        l.pricing.plans.enterprise.limits.one,
-        l.pricing.plans.enterprise.limits.two,
-        l.pricing.plans.enterprise.limits.three,
-      ] as [string, string, string],
-      cta: l.pricing.plans.enterprise.cta,
-    },
-  ];
-
-  const planNames: [string, string, string, string] = [
-    l.pricing.plans.starter.name,
-    l.pricing.plans.growth.name,
-    l.pricing.plans.pro.name,
-    l.pricing.plans.enterprise.name,
-  ];
+  const pricing = s.pricingPage;
 
   return (
     <div className="marketing">
@@ -104,7 +41,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
         lang={locale}
         brand={d.brand}
         a11y={d.a11y}
-        nav={l.nav}
+        nav={d.landing.nav}
         subNav={s.navGroups}
         mode="subpage"
         routeSuffix="/pricing"
@@ -112,47 +49,44 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={s.pricingPage.hero.badge}
-          title={s.pricingPage.hero.title}
-          subtitle={s.pricingPage.hero.subtitle}
-          primaryCta={{ href: `/${locale}/demo`, label: s.pricingPage.hero.ctaPrimary }}
-          secondaryCta={{ href: "#matrix", label: s.pricingPage.hero.ctaSecondary }}
+          badge={pricing.hero.badge}
+          title={pricing.hero.title}
+          subtitle={pricing.hero.subtitle}
+          primaryCta={{ href: `/${locale}/demo`, label: s.common.bottomCta.primary }}
+          secondaryCta={{ href: `/${locale}/contact`, label: s.common.bottomCta.secondary }}
           image="p-cases"
-          imageAlt={s.pricingPage.hero.title}
-        />
-
-        <PricingShowcase
-          heading={l.pricing.heading}
-          subheading={l.pricing.subheading}
-          periods={l.pricing.periods}
-          periodNotes={l.pricing.periodNotes}
-          perMonth={l.pricing.perMonth}
-          popularLabel={l.pricing.popular}
-          setupPrefix={l.pricing.setupPrefix}
-          setupValue={l.pricing.setupValue}
-          plans={pricingPlans}
-          footnote={l.pricing.footnote}
-          ctaHref={`/${locale}/demo`}
+          imageAlt={pricing.hero.title}
         />
 
         <section className="pm-section">
-          <div className="pm-wrap">
-            <PricingMatrixClient matrix={s.pricingPage.matrix} planNames={planNames} />
-          </div>
-        </section>
-
-        <section className="pm-section pm-faq">
-          <div className="pm-wrap pm-faq-inner">
-            <div className="pm-section-head">
-              <h2>{d.faq.title}</h2>
-            </div>
-            <div className="pm-faq-list">
-              {faqEntries.map(([id, item]) => (
-                <details key={id} className="pm-faq-item">
-                  <summary>{item.q}</summary>
-                  <p>{item.a}</p>
-                </details>
-              ))}
+          <div className="pm-wrap pm-matrix-wrap">
+            <h2>{pricing.matrix.title}</h2>
+            <p className="pm-subhero-sub">{pricing.matrix.subtitle}</p>
+            <div className="pm-matrix-group">
+              <button className="pm-matrix-toggle" type="button">
+                {pricing.periods.annual}
+              </button>
+              <div className="pm-matrix-table-scroll">
+                <table className="pm-matrix-table">
+                  <thead>
+                    <tr>
+                      <th>{pricing.matrix.colFeature}</th>
+                      {Object.entries(pricing.periods).map(([key, label]) => (
+                        <th key={key}>{label}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(pricing.matrix.categories).map(([catKey, category]) => (
+                      <tr key={catKey}>
+                        <td colSpan={Object.keys(pricing.periods).length + 1}>
+                          {category.title}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>
@@ -170,9 +104,9 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
       <SiteFooter
         lang={locale}
         other={other}
-        tagline={l.footer.tagline}
-        copyright={l.footer.copyright}
-        switchLabel={l.footer.switchLabel}
+        tagline={d.landing.footer.tagline}
+        copyright={d.landing.footer.copyright}
+        switchLabel={d.landing.footer.switchLabel}
         cols={s.footer}
         routeSuffix="/pricing"
       />
