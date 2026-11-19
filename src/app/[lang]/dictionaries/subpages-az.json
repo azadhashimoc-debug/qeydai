@@ -842,6 +842,8 @@
       "submit": "Demo görüşü təyin et",
       "submitting": "Göndərilir…",
       "nameRequired": "Adınızı yazın",
+      "invalidPhone": "Düzgün Azərbaycan mobil nömrəsi daxil edin (məs. 050 123 45 67).",
+      "rateLimited": "Çox müraciət. Bir neçə dəqiqə gözləyin.",
       "successTitle": "Təşəkkür edirik!",
       "successBody": "Müraciətiniz qeydə alındı. Tezliklə sizinlə əlaqə saxlayacağıq.",
       "privacyNote": "Məlumatlarınız tam məxfi saxlanılır və üçüncü tərəflərə ötürülmür."
@@ -881,6 +883,8 @@
       "submit": "Müraciəti göndər",
       "submitting": "Göndərilir…",
       "nameRequired": "Adınızı yazın",
+      "invalidPhone": "Düzgün telefon nömrəsi daxil edin (ən azı 9 rəqəm).",
+      "rateLimited": "Çox müraciət. Bir neçə dəqiqə gözləyin.",
       "successTitle": "Müraciətiniz çatdı!",
       "successBody": "Əməkdaşımız 24 saat ərzində sizinlə əlaqə saxlayacaq.",
       "privacyNote": "Əlaqə məlumatlarınız yalnız sizinlə ünsiyyət üçün istifadə olunur."
@@ -961,15 +965,15 @@
   "authPages": {
     "login": {
       "badge": "İşçi Paneli Girişi",
-      "title": "panelim.az CRM Sisteminə Giriş",
+      "title": "Daxil ol",
       "subtitle": "Mərkəzinizin administrator açarını daxil edərək satış və mesajlaşma panelinə keçin.",
       "userLabel": "İstifadəçi adı",
       "userPlaceholder": "istifadeci@example.com",
       "keyLabel": "İş sahəsi açarı",
-      "keyPlaceholder": "Mərkəz açarınızı daxil edin",
-      "showKey": "Açarı göstər",
-      "hideKey": "Açarı gizlət",
-      "submit": "Panelə daxil ol",
+      "keyPlaceholder": "Şifrə və ya iş sahəsi açarı",
+      "showKey": "Göstər",
+      "hideKey": "Gizlət",
+      "submit": "Giriş",
       "submitting": "Yoxlanılır…",
       "invalidKey": "Daxil edilən açar yanlışdır. Yoxlayıb yenidən cəhd edin.",
       "rateLimited": "Çox sayda uğursuz cəhd oldu. Zəhmət olmasa bir neçə dəqiqə gözləyin.",
@@ -981,24 +985,29 @@
       "highlightsTitle": "Bir baxışda idarəetmə",
       "highlight1": "WhatsApp, Instagram və Telegram vahid qutusu",
       "highlight2": "Kanban satış lövhəsi və operator bölgüsü",
-      "highlight3": "Canlı sınaq dərsi cədvəli və tutum kilidi"
+      "highlight3": "Canlı sınaq dərsi cədvəli və tutum kilidi",
+      "emailLabel": "E-poçt",
+      "emailPlaceholder": "E-poçt",
+      "passkeyLabel": "Keçid açarı ilə davam edin",
+      "forgotLink": "Açarınızı unutmusunuz?",
+      "topSwitchLabel": "Hesab yarat"
     },
     "register": {
       "badge": "Yeni İş Sahəsi",
-      "title": "Mərkəziniz Üçün panelim.az Hesabı Yaradın",
-      "subtitle": "Məlumatlarınızı göndərin, komandanız üçün təcrid olunmuş iş sahəsi və demo açarını hazırlayaq.",
+      "title": "14 günlük sınağınızı başladın",
+      "subtitle": "Bütün funksiyalara və avtomatlaşdırmaya çıxış əldə edin. Kredit kartı tələb olunmur.",
       "formTitle": "Qeydiyyat müraciəti",
       "form": {
         "nameLabel": "Adınız və soyadınız",
-        "namePlaceholder": "məs. Aygün Məmmədova",
+        "namePlaceholder": "Adınız və soyadınız",
         "phoneLabel": "Telefon nömrəniz",
-        "phonePlaceholder": "050 123 45 67",
-        "submit": "Qeydiyyatı təsdiqlə",
+        "phonePlaceholder": "Telefon nömrəniz (050 123 45 67)",
+        "submit": "Hesab yarat",
         "submitting": "Göndərilir…",
         "nameRequired": "Adınızı yazın",
         "privacyNote": "Məlumatlarınız tam məxfi saxlanılır və üçüncü tərəflərə ötürülmür.",
-        "successTitle": "Təşəkkür edirik!",
-        "successBody": "Müraciətiniz qeydə alındı. Tezliklə sizinlə əlaqə saxlayacağıq.",
+        "successTitle": "Təşəkkür edirik! Müraciətiniz qeydə alındı, tezliklə əlaqə saxlayacağıq.",
+        "successBody": "Düzgün Azərbaycan mobil nömrəsi daxil edin (məs. 050 123 45 67).",
         "rateLimited": "Çox müraciət. Bir neçə dəqiqə gözləyin."
       },
       "hasAccount": "Artıq iş sahəniz var?",
@@ -1006,7 +1015,37 @@
       "highlightsTitle": "Niyə panelim.az?",
       "highlight1": "Azərbaycan dilində təbii danışan AI köməkçi",
       "highlight2": "Təkrar qeydiyyatları bloklayan sınaq cədvəli",
-      "highlight3": "Hər mərkəz üçün tam təcrid olunmuş məlumat bazası"
+      "highlight3": "Hər mərkəz üçün tam təcrid olunmuş məlumat bazası",
+      "topSwitchLabel": "Giriş",
+      "termsPrefix": "Qeydiyyatdan keçməklə qəbul etmiş olursunuz:",
+      "termsLinkText": "İstifadə Şərtləri",
+      "termsAnd": "və",
+      "privacyLinkText": "Məxfilik Siyasəti"
+    },
+    "shell": {
+      "closeLabel": "Ana səhifəyə qayıt",
+      "speechText": "👋 Salam! Sual vermək istəyirsiniz, yoxsa köməyə ehtiyacınız var?",
+      "chatLabel": "Dəstək ilə əlaqə",
+      "bannerText": "panelim.az qiymət və plan yeniliklərini nəzərdən keçirin",
+      "dismissLabel": "Bildirişi bağla",
+      "magnifierAlt": "Köməkçi lupa maskotu",
+      "heartAlt": "Ürək maskotu",
+      "googleLabel": "Google ilə daxil ol",
+      "facebookLabel": "Facebook ilə daxil ol",
+      "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda iş sahəsi açarı ilə daxil olun."
     }
+  },
+  "selectAccount": {
+    "badge": "İş sahəsini seçin",
+    "title": "Tekrar hoşgeldin, {name}",
+    "subtitle": "Bir hesabı seçin",
+    "emailLabel": "E-poçt",
+    "createAccount": "Başka bir iş sahəsi yaradın",
+    "partnerPortal": "Partner portalına gedin",
+    "signOut": "Oturumu bağlayın",
+    "switchAccount": "İş sahəsini dəyişdirin",
+    "noWorkspaces": "Heç bir iş sahəsi tapılmadı",
+    "switchWorkspace": "Digər iş sahəsinə keçin",
+    "createWorkspace": "Yeni iş sahəsi yaradın"
   }
 }

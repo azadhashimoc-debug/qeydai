@@ -842,6 +842,8 @@
       "submit": "Schedule demo session",
       "submitting": "Submitting…",
       "nameRequired": "Enter your name",
+      "invalidPhone": "Please enter a valid phone number (at least 9 digits).",
+      "rateLimited": "Too many requests. Please wait a few minutes.",
       "successTitle": "Thank you!",
       "successBody": "Your demo request has been received. Our team will contact you shortly.",
       "privacyNote": "Your information is kept strictly confidential and never shared with third parties."
@@ -881,6 +883,8 @@
       "submit": "Submit message",
       "submitting": "Submitting…",
       "nameRequired": "Enter your name",
+      "invalidPhone": "Please enter a valid phone number (at least 9 digits).",
+      "rateLimited": "Too many requests. Please wait a few minutes.",
       "successTitle": "Message received!",
       "successBody": "Our team will reach out to you within 24 hours.",
       "privacyNote": "Your contact details are used solely to communicate with your team."
@@ -961,14 +965,14 @@
   "authPages": {
     "login": {
       "badge": "Staff Workspace Sign In",
-      "title": "Sign in to Your CRM Workspace",
+      "title": "Sign in",
       "subtitle": "Enter your center administrator key to access the team messaging workspace.",
       "userLabel": "Username",
       "userPlaceholder": "user@example.com",
       "keyLabel": "Workspace access key",
-      "keyPlaceholder": "Enter your center admin key",
-      "showKey": "Show key",
-      "hideKey": "Hide key",
+      "keyPlaceholder": "Password or workspace access key",
+      "showKey": "Show",
+      "hideKey": "Hide",
       "submit": "Sign in to panel",
       "submitting": "Authenticating…",
       "invalidKey": "Invalid access key. Check the key and try again.",
@@ -981,24 +985,29 @@
       "highlightsTitle": "Workspace capabilities",
       "highlight1": "Unified inbox for WhatsApp, Instagram, Telegram",
       "highlight2": "Kanban sales pipeline and team assignments",
-      "highlight3": "Real-time trial booking and capacity lock"
+      "highlight3": "Real-time trial booking and capacity lock",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Email",
+      "passkeyLabel": "Continue with passkey",
+      "forgotLink": "Forgot your access key?",
+      "topSwitchLabel": "Create account"
     },
     "register": {
       "badge": "New Workspace Request",
-      "title": "Set Up Your panelim.az Workspace",
-      "subtitle": "Submit your details and we will provision an isolated workspace and demo key for your team.",
+      "title": "Start your 14-day free trial",
+      "subtitle": "Access all features and automation. No credit card required.",
       "formTitle": "Workspace application",
       "form": {
         "nameLabel": "Your name",
-        "namePlaceholder": "e.g. Aygün Məmmədova",
+        "namePlaceholder": "Your full name",
         "phoneLabel": "Phone number",
-        "phonePlaceholder": "050 123 45 67",
-        "submit": "Confirm application",
+        "phonePlaceholder": "Phone number (050 123 45 67)",
+        "submit": "Create account",
         "submitting": "Sending…",
         "nameRequired": "Enter your name",
         "privacyNote": "Your data stays private and is not shared with third parties.",
-        "successTitle": "Thank you!",
-        "successBody": "Your application has been received. We will contact you soon.",
+        "successTitle": "Thank you! Your application has been received and we will contact you soon.",
+        "successBody": "Enter a valid Azerbaijan mobile number (e.g. 050 123 45 67).",
         "rateLimited": "Too many requests. Wait a few minutes."
       },
       "hasAccount": "Already have a workspace?",
@@ -1006,7 +1015,37 @@
       "highlightsTitle": "Why panelim.az?",
       "highlight1": "Native Azerbaijani conversational AI copilot",
       "highlight2": "Capacity-guarded trial lesson scheduler",
-      "highlight3": "Strict multi-tenant isolated database per center"
+      "highlight3": "Strict multi-tenant isolated database per center",
+      "topSwitchLabel": "Sign in",
+      "termsPrefix": "By signing up, you agree to our",
+      "termsLinkText": "Terms of Use",
+      "termsAnd": "and",
+      "privacyLinkText": "Privacy Policy"
+    },
+    "shell": {
+      "closeLabel": "Return to home",
+      "speechText": "👋 Hi! Have a question or need some help?",
+      "chatLabel": "Contact support",
+      "bannerText": "Explore panelim.az plans and pricing updates",
+      "dismissLabel": "Dismiss notice",
+      "magnifierAlt": "Helper magnifying glass mascot",
+      "heartAlt": "Iridescent heart mascot",
+      "googleLabel": "Continue with Google",
+      "facebookLabel": "Continue with Facebook",
+      "socialNote": "OAuth sign-in is enabled per provisioned workspace. Use your workspace access key below."
     }
+  },
+  "selectAccount": {
+    "badge": "Choose an account",
+    "title": "Welcome back, {name}",
+    "subtitle": "Choose an account",
+    "emailLabel": "Email",
+    "createAccount": "Create another account",
+    "partnerPortal": "Go to partner portal",
+    "signOut": "Sign out",
+    "switchAccount": "Switch account",
+    "noWorkspaces": "No workspaces found",
+    "switchWorkspace": "Switch to another workspace",
+    "createWorkspace": "Create a new workspace"
   }
 }
