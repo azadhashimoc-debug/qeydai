@@ -48,6 +48,8 @@ export function SelectAccountClient({
     router.push(`/${lang}/panel?ws=${id}`);
   };
 
+  const ws = WORKSPACES[0];
+
   return (
     <div className="marketing pm-select-account">
       <a href="#main" className="skip-link">Əsas məskuja keç</a>
@@ -73,7 +75,7 @@ export function SelectAccountClient({
       <main id="main" tabIndex={-1}>
         <aside className="pm-select-account-sidebar">
           <div className="pm-select-account-user">
-            <div className="pm-select-account-avatar">AN</div>
+            <div className="pm-select-account-avatar">{USER_NAME.charAt(0)}{USER_NAME.split(" ")[1]?.charAt(0)}</div>
             <div className="pm-select-account-info">
               <strong className="pm-select-account-user-name">{USER_NAME}</strong>
               <span className="pm-select-account-user-email">{USER_EMAIL}</span>
@@ -103,31 +105,16 @@ export function SelectAccountClient({
             <p className="pm-select-account-subtitle">{subtitle}</p>
           </div>
 
-          <div className="pm-select-account-grid">
-            {WORKSPACES.map((ws) => (
-              <button
-                key={ws.id}
-                type="button"
-                className="pm-select-account-card"
-                onClick={() => handleSelect(ws.id)}
-              >
-                <div className="pm-select-account-card-head">
-                  <div className="pm-select-account-card-avatar">{ws.name.charAt(0)}</div>
-                  <div>
-                    <strong className="pm-select-account-card-name">{ws.name}</strong>
-                    <span className="pm-select-account-card-email">{ws.email}</span>
-                  </div>
-                </div>
-                <div className="pm-select-account-card-body">
-                  <span className="pm-select-account-card-plan">{ws.plan}</span>
-                  <span className="pm-select-account-card-seats">{ws.seats}</span>
-                </div>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pm-select-account-card-arrow">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            ))}
-          </div>
+          <button type="button" className="pm-select-account-card" onClick={() => handleSelect(ws.id)}>
+            <span className="pm-select-account-card-action">{ws.plan}</span>
+            <div className="pm-select-account-card-head">
+              <strong className="pm-select-account-card-name">{ws.name}</strong>
+              <span className="pm-select-account-card-email">{ws.email}</span>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pm-select-account-card-arrow">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
 
           <div className="pm-select-account-footer">
             <p className="pm-select-account-footer-note">{noWorkspaces}</p>

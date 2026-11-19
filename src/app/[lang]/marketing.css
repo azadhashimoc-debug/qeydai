@@ -3474,7 +3474,7 @@
   max-width: 1360px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 272px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 56px;
   align-items: start;
 }
@@ -3488,44 +3488,39 @@
 
 .pm-select-account-user {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 14px;
   align-items: flex-start;
 }
 
 .pm-select-account-avatar {
-  flex: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #c1b7fb 0%, #9b8df8 100%);
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   display: grid;
   place-items: center;
 }
 
-.pm-select-account-info {
-  min-width: 0;
-}
-
 .pm-select-account-user-name {
-  display: block;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #12133a;
+  line-height: 1.2;
 }
 
 .pm-select-account-user-email {
-  display: block;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #4d5066;
-  margin-top: 2px;
 }
 
 .pm-select-account-nav {
   display: grid;
   gap: 8px;
+  width: 100%;
 }
 
 .pm-select-account-nav-item {
@@ -3541,6 +3536,7 @@
   font-weight: 600;
   cursor: pointer;
   text-align: left;
+  width: 100%;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -3567,7 +3563,7 @@
 .pm-select-account-copy {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pm-select-account-badge {
@@ -3584,7 +3580,7 @@
 }
 
 .pm-select-account-title {
-  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
   font-weight: 800;
   line-height: 1.1;
   color: #12133a;
@@ -3600,20 +3596,14 @@
   max-width: 48ch;
 }
 
-.pm-select-account-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  width: 100%;
-}
-
 .pm-select-account-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
   align-items: center;
-  gap: 14px;
-  padding: 18px 20px;
-  border-radius: 14px;
-  border: 1.5px solid #dcd7f4;
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: 1px solid #dcd7f4;
   background: #ffffff;
   cursor: pointer;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
@@ -3625,30 +3615,22 @@
   transform: translateY(-2px);
 }
 
+.pm-select-account-card-action {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4338ca;
+  background: #fdf3e3;
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
 .pm-select-account-card-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
   min-width: 0;
 }
 
-.pm-select-account-card-avatar {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: #f5f2ff;
-  color: #4338ca;
-  font-weight: 800;
-  font-size: 0.85rem;
-  display: grid;
-  place-items: center;
-}
-
 .pm-select-account-card-name {
-  display: block;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #12133a;
   white-space: nowrap;
@@ -3657,32 +3639,16 @@
 }
 
 .pm-select-account-card-email {
-  display: block;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: #4d5066;
   margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pm-select-account-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.pm-select-account-card-plan,
-.pm-select-account-card-seats {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #4d5066;
-  white-space: nowrap;
 }
 
 .pm-select-account-card-arrow {
   flex: none;
   color: #c7c2e8;
+  width: 18px;
+  height: 18px;
   transition: color 0.15s ease;
 }
 
@@ -3725,6 +3691,17 @@
   border-color: #3046e8;
   background: #f5f8ff;
   color: #3046e8;
+}
+
+@media (max-width: 768px) {
+  .pm-select-account main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .pm-select-account-card {
+    grid-template-columns: auto 1fr auto;
+  }
 }
 
 @media (max-width: 900px) {
