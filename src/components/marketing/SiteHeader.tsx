@@ -38,7 +38,7 @@ export function SiteHeader({
           { href: "#ai", title: nav.ai },
         ]
       : []),
-    { href: `/${lang}/product`, title: subNav.product.overviewTitle, desc: subNav.product.overviewDesc },
+    { href: `/${lang}/product`, title: subNav.product.tourTitle, desc: subNav.product.tourDesc },
     { href: `/${lang}/pipeline`, title: subNav.product.pipelineTitle, desc: subNav.product.pipelineDesc },
     { href: `/${lang}/inbox`, title: subNav.product.inboxTitle, desc: subNav.product.inboxDesc },
     { href: `/${lang}/ai`, title: subNav.product.aiTitle, desc: subNav.product.aiDesc },
@@ -50,7 +50,7 @@ export function SiteHeader({
     { href: `/${lang}/channels/whatsapp`, title: subNav.channels.whatsappTitle, desc: subNav.channels.whatsappDesc },
     { href: `/${lang}/channels/instagram`, title: subNav.channels.instagramTitle, desc: subNav.channels.instagramDesc },
     { href: `/${lang}/channels/telegram`, title: subNav.channels.telegramTitle, desc: subNav.channels.telegramDesc },
-    { href: `/${lang}/channels/webhook-api`, title: subNav.channels.webhookTitle, desc: subNav.channels.webhookDesc },
+    { href: `/${lang}/channels/webhook-api`, title: subNav.channels.apiTitle, desc: subNav.channels.apiDesc },
     { href: `/${lang}/tools`, title: subNav.channels.toolsTitle, desc: subNav.channels.toolsDesc },
   ];
 
@@ -58,14 +58,12 @@ export function SiteHeader({
     { href: `/${lang}/pricing`, title: subNav.resources.pricingTitle, desc: subNav.resources.pricingDesc },
     { href: `/${lang}/scenarios/fitness-centers`, title: subNav.resources.fitnessTitle, desc: subNav.resources.fitnessDesc },
     { href: `/${lang}/blog`, title: subNav.resources.blogTitle, desc: subNav.resources.blogDesc },
-    { href: `/${lang}/demo`, title: subNav.resources.demoTitle, desc: subNav.resources.demoDesc },
-    { href: `/${lang}/contact`, title: subNav.resources.contactTitle, desc: subNav.resources.contactDesc },
   ];
 
   const groups: HeaderDropdownGroup[] = [
-    { id: "product", label: subNav.productLabel, items: productItems },
-    { id: "channels", label: subNav.channelsLabel, items: channelsItems },
-    { id: "resources", label: subNav.resourcesLabel, items: resourcesItems },
+    { id: "product", label: subNav.product.label, items: productItems },
+    { id: "channels", label: subNav.channels.label, items: channelsItems },
+    { id: "resources", label: subNav.resources.label, items: resourcesItems },
   ];
 
   const directLinks =
@@ -108,23 +106,29 @@ export function SiteHeader({
           </Link>
 
           <div className="pm-nav-actions">
-            <Link className="pm-signin" href={`/${lang}/login`}>
-              {subNav.login}
-            </Link>
-            <Link className="pm-signin" href={`/${lang}/register`}>
-              {subNav.register}
-            </Link>
-            <Link href={demoHref} data-track-cta="header" className="pm-btn pm-btn-primary pm-btn-sm">
-              {nav.demo}
-            </Link>
-          </div>
+          <a
+            href={demoHref}
+            data-track-cta="header"
+            className="pm-nav-globe"
+          >
+            <span className="pm-nav-globe-icon">🌐</span>
+            {nav.demo}
+          </a>
+          <span className="pm-nav-separator">|</span>
+          <Link className="pm-nav-signin" href={`/${lang}/login`}>
+            {subNav.actions.login}
+          </Link>
+          <Link className="pm-nav-create" href={`/${lang}/register`}>
+            {subNav.actions.register}
+          </Link>
+        </div>
 
           <HeaderMobileMenu
             groups={groups}
             directLinks={directLinks}
-            loginLabel={subNav.login}
+            loginLabel={subNav.actions.login}
             loginHref={`/${lang}/login`}
-            registerLabel={subNav.register}
+            registerLabel={subNav.actions.register}
             registerHref={`/${lang}/register`}
             demoLabel={nav.demo}
             demoHref={demoHref}

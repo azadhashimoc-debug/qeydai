@@ -38,10 +38,10 @@
       "pricingDesc": "Transparent plans and full feature comparison"
     },
     "actions": {
-      "demo": "Request demo",
+      "demo": "Get demo",
       "panel": "Open panel",
-      "login": "Sign in",
-      "register": "Register"
+      "login": "Log in",
+      "register": "Create account"
     }
   },
   "footer": {

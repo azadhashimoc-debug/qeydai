@@ -3693,6 +3693,86 @@
   color: #3046e8;
 }
 
+.pm-nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pm-nav-globe {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #dcd7f4;
+  background: #ffffff;
+  color: #12133a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.pm-nav-globe:hover {
+  border-color: #3046e8;
+  background: #f5f8ff;
+  color: #3046e8;
+}
+
+.pm-nav-globe-icon {
+  font-size: 0.95rem;
+}
+
+.pm-nav-separator {
+  color: #c7c2e8;
+  font-weight: 600;
+  user-select: none;
+}
+
+.pm-nav-signin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #dcd7f4;
+  background: #ffffff;
+  color: #12133a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.pm-nav-signin:hover {
+  border-color: #3046e8;
+  background: #f5f8ff;
+  color: #3046e8;
+}
+
+.pm-nav-create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 32px;
+  border-radius: 10px;
+  border: none;
+  background: #12133a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.pm-nav-create:hover {
+  background: #2a2a4e;
+}
+
 .pm-select-account-empty {
   display: flex;
   flex-direction: column;

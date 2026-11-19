@@ -38,10 +38,10 @@
       "pricingDesc": "Bütün xidmət paketləri və müqayisəli cədvəl"
     },
     "actions": {
-      "demo": "Demo istəyin",
+      "demo": "Demo al",
       "panel": "Panelə keçid",
-      "login": "Daxil ol",
-      "register": "Qeydiyyat"
+      "login": "Giriş",
+      "register": "Hesap oluştur"
     }
   },
   "footer": {
