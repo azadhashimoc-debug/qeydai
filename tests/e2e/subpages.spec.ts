@@ -24,6 +24,7 @@ const ALL_SUBPAGE_PATHS = [
   "/az/contact",
   "/az/login",
   "/az/register",
+  "/az/select-account",
   "/az/legal/terms",
   "/az/legal/privacy",
 ];
@@ -56,7 +57,7 @@ test("WhatsApp tools workbench builds links, blocks unsafe QR, estimates fees, a
   await page.locator("#wa-message").fill("Salam, kurslar haqqında məlumat almaq istəyirəm");
   await expect(page.locator('[data-testid="wa-link-output"]')).toContainText("https://wa.me/994501234567?text=");
 
-  await page.getByRole("tab", { name: "QR Kod Endirici" }).click();
+  await page.getByRole("tab", { name: "QR Kod Yaradıcı" }).click();
   await page.locator("#qr-url").fill("javascript:alert(1)");
   await expect(page.locator(".pm-error-note")).toBeVisible();
   await page.locator("#qr-url").fill("https://wa.me/994501234567");
@@ -78,8 +79,8 @@ test("demo page submits lead form cleanly", async ({ page }, info) => {
   await page.goto("/az/demo");
   await page.getByLabel("Adınız").fill("Nigar");
   await page.getByLabel(/^Telefon/).fill(`055 234 56 ${tail}`);
-  await page.getByRole("button", { name: "Demo istə" }).click();
-  await expect(page.getByRole("status")).toContainText("Təşəkkürlər");
+  await page.getByRole("button", { name: "Demo görüşü təyin et" }).click();
+  await expect(page.getByRole("status")).toHaveText("Təşəkkür edirik!");
   if (existsSync(LEADS_FILE)) {
     const content = readFileSync(LEADS_FILE, "utf8");
     expect(content).toContain(`+9945523456${tail}`);
@@ -90,11 +91,11 @@ test("standalone login signs into panel and register page links back to login", 
   const project = info.project.name as ProjectName;
   await page.goto("/en/register");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await page.getByRole("link", { name: "Sign in to existing panel" }).click();
+  await page.getByRole("link", { name: "Sign in to your panel" }).click();
   await expect(page).toHaveURL(/\/en\/login$/);
 
-  await page.getByLabel("Panel Access Key (Admin Key)").fill(E2E_ADMIN_KEYS[project]);
-  await page.getByRole("button", { name: "Sign In to Panel" }).click();
+  await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
+  await page.getByRole("button", { name: "Sign in to panel" }).click();
   await expect(page).toHaveURL(/\/en\/panel$/);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
 });
