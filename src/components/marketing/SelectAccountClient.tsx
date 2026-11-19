@@ -25,6 +25,9 @@ type SelectAccountClientProps = {
   signOut: string;
   noWorkspaces: string;
   createWorkspace: string;
+  demoAccount: string;
+  loginAccount: string;
+  createAccountTitle: string;
   planLabel?: string;
   seatsLabel?: string;
 };
@@ -41,6 +44,9 @@ export function SelectAccountClient({
   signOut,
   noWorkspaces,
   createWorkspace,
+  demoAccount,
+  loginAccount,
+  createAccountTitle,
 }: SelectAccountClientProps) {
   const router = useRouter();
 
@@ -99,29 +105,51 @@ export function SelectAccountClient({
         </aside>
 
         <section className="pm-select-account-main">
-          <div className="pm-select-account-copy">
-            <span className="pm-select-account-badge">{badge}</span>
-            <h1 className="pm-select-account-title">{title}</h1>
-            <p className="pm-select-account-subtitle">{subtitle}</p>
-          </div>
-
-          <button type="button" className="pm-select-account-card" onClick={() => handleSelect(ws.id)}>
-            <span className="pm-select-account-card-action">{ws.plan}</span>
-            <div className="pm-select-account-card-head">
-              <strong className="pm-select-account-card-name">{ws.name}</strong>
-              <span className="pm-select-account-card-email">{ws.email}</span>
+          {WORKSPACES.length === 0 ? (
+            <div className="pm-select-account-empty">
+              <span className="pm-select-account-badge">{badge}</span>
+              <h1 className="pm-select-account-title">{title}</h1>
+              <p className="pm-select-account-subtitle">{subtitle}</p>
+              <div className="pm-select-account-empty-actions">
+                <a href={`/${lang}/demo`} className="pm-select-account-empty-demo">
+                  <span className="pm-select-account-empty-globe">🌐</span>
+                  {demoAccount}
+                </a>
+                <Link href={`/${lang}/login`} className="pm-select-account-empty-login">
+                  {loginAccount}
+                </Link>
+                <button type="button" className="pm-select-account-empty-create" onClick={() => router.push(`/${lang}/register`)}>
+                  {createAccountTitle}
+                </button>
+              </div>
             </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pm-select-account-card-arrow">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+          ) : (
+            <>
+              <div className="pm-select-account-copy">
+                <span className="pm-select-account-badge">{badge}</span>
+                <h1 className="pm-select-account-title">{title}</h1>
+                <p className="pm-select-account-subtitle">{subtitle}</p>
+              </div>
 
-          <div className="pm-select-account-footer">
-            <p className="pm-select-account-footer-note">{noWorkspaces}</p>
-            <button type="button" className="pm-select-account-footer-btn" onClick={() => router.push(`/${lang}/register`)}>
-              {createWorkspace}
-            </button>
-          </div>
+              <button type="button" className="pm-select-account-card" onClick={() => handleSelect(WORKSPACES[0].id)}>
+                <span className="pm-select-account-card-action">{WORKSPACES[0].plan}</span>
+                <div className="pm-select-account-card-head">
+                  <strong className="pm-select-account-card-name">{WORKSPACES[0].name}</strong>
+                  <span className="pm-select-account-card-email">{WORKSPACES[0].email}</span>
+                </div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pm-select-account-card-arrow">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div className="pm-select-account-footer">
+                <p className="pm-select-account-footer-note">{noWorkspaces}</p>
+                <button type="button" className="pm-select-account-footer-btn" onClick={() => router.push(`/${lang}/register`)}>
+                  {createWorkspace}
+                </button>
+              </div>
+            </>
+          )}
         </section>
       </main>
     </div>

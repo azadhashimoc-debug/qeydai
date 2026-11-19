@@ -60,6 +60,9 @@ export default async function SelectAccountPage({ params }: PageProps<"/[lang]/s
       signOut={sa.signOut}
       noWorkspaces={sa.noWorkspaces}
       createWorkspace={sa.createWorkspace}
+      demoAccount={sa.demoAccount}
+      loginAccount={sa.loginAccount}
+      createAccountTitle={sa.createAccountTitle}
     />
   );
 }

@@ -1046,6 +1046,9 @@
     "switchAccount": "İş sahəsini dəyişdirin",
     "noWorkspaces": "Heç bir iş sahəsi tapılmadı",
     "switchWorkspace": "Digər iş sahəsinə keçin",
-    "createWorkspace": "Yeni iş sahəsi yaradın"
+    "createWorkspace": "Yeni iş sahəsi yaradın",
+    "demoAccount": "Demo al",
+    "loginAccount": "Giriş",
+    "createAccountTitle": "Hesap oluştur"
   }
 }

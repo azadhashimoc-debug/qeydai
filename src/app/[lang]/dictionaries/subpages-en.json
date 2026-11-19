@@ -1046,6 +1046,9 @@
     "switchAccount": "Switch account",
     "noWorkspaces": "No workspaces found",
     "switchWorkspace": "Switch to another workspace",
-    "createWorkspace": "Create a new workspace"
+    "createWorkspace": "Create a new workspace",
+    "demoAccount": "Get demo",
+    "loginAccount": "Log in",
+    "createAccountTitle": "Create account"
   }
 }

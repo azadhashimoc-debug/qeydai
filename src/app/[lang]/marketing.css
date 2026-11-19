@@ -3693,6 +3693,93 @@
   color: #3046e8;
 }
 
+.pm-select-account-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.pm-select-account-empty-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pm-select-account-empty-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #dcd7f4;
+  background: #ffffff;
+  color: #12133a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.pm-select-account-empty-demo:hover {
+  border-color: #3046e8;
+  background: #f5f8ff;
+  color: #3046e8;
+}
+
+.pm-select-account-empty-globe {
+  font-size: 0.95rem;
+}
+
+.pm-select-account-empty-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #dcd7f4;
+  background: #ffffff;
+  color: #12133a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.pm-select-account-empty-login:hover {
+  border-color: #3046e8;
+  background: #f5f8ff;
+  color: #3046e8;
+}
+
+.pm-select-account-empty-create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 32px;
+  border-radius: 10px;
+  border: none;
+  background: #12133a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pm-select-account-empty-create:hover {
+  background: #2a2a4e;
+}
+
 @media (max-width: 768px) {
   .pm-select-account main {
     grid-template-columns: 1fr;
