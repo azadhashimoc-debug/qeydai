@@ -249,7 +249,7 @@ test("custom 404 renders branded page and interactive stage/pricing/AI sections 
   await page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }).click();
   await expect(page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }))
     .toHaveAttribute("aria-selected", "true");
-  await expect(page.getByRole("tabpanel")).toContainText("qulaqcıq");
+  await expect(page.locator("#ai").getByRole("tabpanel")).toContainText("49 AZN");
 
   await page.getByRole("button", { name: "İllik", exact: true }).click();
   await expect(page.getByRole("button", { name: "İllik", exact: true }))
