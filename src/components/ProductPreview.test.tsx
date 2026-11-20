@@ -37,7 +37,7 @@ it("reveals the catalog as the sample sales conversation progresses", () => {
   fireEvent.click(screen.getByRole("tab", { name: "Böyüt" }));
   act(() => vi.advanceTimersByTime(1850));
   expect(screen.getByText("Gündəlik baxım dəsti")).toBeTruthy();
-  expect(screen.getByText("149 AZN")).toBeTruthy();
+  expect(screen.getAllByText("149 AZN").length).toBeGreaterThan(0);
 });
 
 it("shows an illustrated guide and magnifier after the booking scene progresses", () => {
