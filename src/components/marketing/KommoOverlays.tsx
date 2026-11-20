@@ -23,7 +23,7 @@ const COPY = {
     cookieText: "Veb saytımızı işlətmək, təhlil etmək və təkmilləşdirmək üçün kukilər və oxşar texnologiyalardan istifadə edirik.",
     cookieLearnMore: "Ətraflı öyrənin",
     cookieAccept: "Qəbul et",
-    stickyCta: "panelim.az AI pulsuz sına",
+    stickyCta: "Pani-ni pulsuz sına",
     fabLabel: "Çoxkanallı canlı dəstək",
     fabTitle: "Bizimlə əlaqə saxlayın",
     fabChannels: [
@@ -134,7 +134,7 @@ const COPY = {
     cookieText: "We use cookies and similar technologies to operate, analyze, and improve our website.",
     cookieLearnMore: "Learn more",
     cookieAccept: "Accept",
-    stickyCta: "Try panelim.az AI free",
+    stickyCta: "Try Pani for free",
     fabLabel: "Multi-channel live support",
     fabTitle: "Connect with us",
     fabChannels: [
