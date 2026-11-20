@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { databaseConfigured } from "./store";
 
-const names = ["NEXT_PHASE", "QEYDAI_DATABASE_URL", "QEYDAI_E2E_SQLITE", "VERCEL", "NODE_ENV"] as const;
-function setEnv(key: (typeof names)[number], value?: string) {
+type EnvKey = "NEXT_PHASE" | "QEYDAI_DATABASE_URL" | "QEYDAI_E2E_SQLITE" | "VERCEL" | "NODE_ENV";
+function setEnv(key: EnvKey, value?: string) {
   vi.stubEnv(key, value);
 }
 
