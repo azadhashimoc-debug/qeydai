@@ -2,7 +2,7 @@
   "brand": "panelim.az",
   "meta": {
     "title": "panelim.az — Sales CRM for Azerbaijani businesses",
-    "description": "Manage customer messages, sales opportunities, and bookings in one workspace."
+    "description": "panelim.az is an Azerbaijani-first CRM for customer conversations, sales opportunities and bookings across industries."
   },
   "a11y": {
     "skipToMain": "Skip to main content",
@@ -17,8 +17,8 @@
   },
   "hero": {
     "eyebrow": "AI that speaks natural Azerbaijani",
-    "title": "Turn every inquiry into an enrollment",
-    "subtitle": "The parent writing at midnight and the student writing at noon both get an instant reply. panelim.az books the trial lesson, so your team talks only to confirmed students.",
+    "title": "Turn every inquiry into a sales opportunity",
+    "subtitle": "Give timely replies to customers of your shop, salon or service business. Track conversations, bookings and sales in one workspace with Pani.",
     "primary": "Request a free demo",
     "secondary": "See how it works"
   },
@@ -39,25 +39,25 @@
         "body": "Start with Telegram, then bring WhatsApp and Instagram into the same panel."
       },
       "enroll": {
-        "title": "Smart enrollment",
-        "body": "Offers only real trial lessons. Refuses full groups and repeat sign-ups."
+        "title": "Smart bookings",
+        "body": "Displays available time slots and helps prevent overbooked appointments and duplicate reservations."
       },
       "crm": {
         "title": "Simple CRM and reports",
-        "body": "How many inquiries came in, how many enrolled, how many paid, at a glance."
+        "body": "Track inquiries, confirmed appointments and paid sales at a glance."
       },
       "human": {
         "title": "Human handoff",
         "body": "When the AI is unsure, it passes the question to a manager. It never makes things up."
       },
       "tenant": {
-        "title": "Each center keeps its own data",
-        "body": "Courses, customers and reports are fully separated between centers."
+        "title": "Private workspace for each business",
+        "body": "Customer data, conversations, sales and reports stay separate across workspaces."
       }
     },
     "sample": {
-      "u": "salam ielts var qiymeti nedi",
-      "b": "Hello! We have an IELTS course, 180 AZN per month. Shall I book you into the Saturday 11:00 trial lesson?",
+      "u": "hi is tomorrow 3pm available",
+      "b": "Hello! Tomorrow at 3 PM is available. Would you like me to book it for you?",
       "note": "Example: typos are understood. Figures are examples."
     }
   },
@@ -65,26 +65,26 @@
     "title": "Live in three steps",
     "steps": {
       "one": {
-        "title": "Add your courses",
-        "body": "Enter prices, schedules and trial lesson dates once."
+        "title": "Add your products and services",
+        "body": "Enter service details, prices and business hours."
       },
       "two": {
         "title": "Connect a channel",
         "body": "The Telegram bot works right away; WhatsApp and Instagram follow after official approval."
       },
       "three": {
-        "title": "Watch enrollments arrive",
-        "body": "Managers are notified the moment someone signs up."
+        "title": "Track inquiries",
+        "body": "Manage customer conversations, appointments and sales from one dashboard."
       }
     }
   },
   "pricing": {
     "title": "Simple, open pricing",
-    "note": "Introductory pilot offer, finalized with each center.",
+    "note": "Pilot offer; pricing is finalized based on your business needs.",
     "setup": {
       "label": "Setup",
       "value": "350 AZN",
-      "body": "One time: courses, schedule and channel connection."
+      "body": "One-time onboarding for service details, business hours and channels."
     },
     "monthly": {
       "label": "Monthly service",
@@ -95,12 +95,12 @@
     "cta": "Reserve a pilot spot"
   },
   "contact": {
-    "title": "Try it at your center",
+    "title": "Try it with your business",
     "subtitle": "Leave your phone number and we will contact you within 24 hours.",
     "stepsTitle": "What happens next:",
     "steps": {
-      "one": "We collect your course prices and trial lesson schedule.",
-      "two": "We set up a test Telegram bot tailored to your center.",
+      "one": "We review your services, sales process and typical customer questions.",
+      "two": "We prepare a Telegram sample flow tailored to your business.",
       "three": "You test it for free; nothing paid starts without your approval."
     },
     "name": "Your name",
@@ -116,25 +116,25 @@
     "rate_limited": "Too many attempts. Please try again in a few minutes."
   },
   "footer": {
-    "tagline": "AI sales assistant for Azerbaijani learning centers.",
+    "tagline": "AI-assisted messaging and sales CRM for Azerbaijani businesses.",
     "lang": "Language"
   },
   "board": {
-    "title": "Trial lessons",
+    "title": "Appointments",
     "live": "live",
     "seatsLeft": "seats left",
     "note": "Sample data",
     "sessions": {
       "a": {
-        "course": "IELTS",
+        "course": "Manicure",
         "when": "Saturday 11:00"
       },
       "b": {
-        "course": "IELTS",
+        "course": "Consultation",
         "when": "Wednesday 18:00"
       },
       "c": {
-        "course": "Math",
+        "course": "Auto service",
         "when": "Thursday 17:00"
       }
     },
@@ -142,7 +142,7 @@
       "u1": "Is there a seat on Saturday 11:00?",
       "b1": "Yes, 2 seats left. Please send your name and phone number.",
       "u2": "Aygün, 050 123 45 67",
-      "b2": "Enrollment confirmed ✓ Saturday 11:00. One seat left."
+      "b2": "Booking confirmed ✓ Saturday 11:00. One slot left."
     }
   },
   "story": {
@@ -150,15 +150,15 @@
     "label": "Sample scenario",
     "without": {
       "name": "Manual reply",
-      "a": "11:40 pm · A parent writes: “Do you have an IELTS course, and how much?”",
+      "a": "11:40 PM · Customer asks: “Any availability tomorrow?”",
       "b": "11:00 am · The reply arrives",
-      "c": "By then they have talked to another center"
+      "c": "By then the customer has contacted another business"
     },
     "with": {
-      "name": "With panelim.az",
-      "a": "11:40 pm · A parent writes",
-      "b": "11:41 pm · Reply and trial lesson offer",
-      "c": "11:44 pm · Enrollment confirmed"
+      "name": "With Pani",
+      "a": "11:40 PM · Customer sends a message",
+      "b": "11:41 PM · Pani replies and offers an appointment",
+      "c": "11:44 PM · Appointment confirmed"
     }
   },
   "faq": {
@@ -166,7 +166,7 @@
     "items": {
       "q1": {
         "q": "Does the AI make up prices and times?",
-        "a": "No. Prices, times and open seats are read only from the table you approved, and the program checks the enrollment rules. It hands any question that is not in the table to a manager."
+        "a": "No. Prices, opening hours and available slots come only from information you approve. The system checks booking rules and forwards unanswered questions to staff."
       },
       "q2": {
         "q": "Which channels does it work on?",
@@ -174,11 +174,11 @@
       },
       "q3": {
         "q": "How is my customers' data protected?",
-        "a": "Each center's courses, customers and reports are stored separately. One center never sees another's data."
+        "a": "Customer records, conversations and reports belong to each business workspace and are separated from other businesses."
       },
       "q4": {
         "q": "How does the pilot start?",
-        "a": "You request a demo, we collect your courses and schedule together, and show a test chat on Telegram. No paid service is activated without your consent."
+        "a": "Request a demo and we review your services and hours, then show a sample conversation on Telegram. No paid service starts without your approval."
       },
       "q5": {
         "q": "When does a manager step in?",
@@ -187,22 +187,22 @@
     }
   },
   "alts": {
-    "one": "A course timetable on a tablet",
-    "two": "A messaging conversation on a phone",
-    "three": "A new enrollment notification on a manager's phone",
-    "lobby": "The reception area of a learning center",
-    "director": "A learning center director reviewing enrollment reports on a tablet"
+    "one": "Appointment calendar and available times",
+    "two": "Customer conversations and unified inbox",
+    "three": "CRM platform overview",
+    "lobby": "Sales pipeline and customer cards",
+    "director": "Sales analytics and dashboard"
   },
   "about": {
-    "eyebrow": "Built for learning centers",
-    "title": "One shared schedule from front desk to director",
+    "eyebrow": "Built for businesses across Azerbaijan",
+    "title": "One workspace from first conversation to completed sale",
     "lobby": {
-      "title": "For reception and coordinators",
-      "body": "Inquiries sent at night or during class get an instant reply. Coordinators talk only to parents and students who already picked a trial slot."
+      "title": "For sales and service teams",
+      "body": "Bring inquiries together, offer available times and track the next step for each customer."
     },
     "director": {
-      "title": "For center directors",
-      "body": "See how many inquiries arrived, how many booked a trial, and how many enrolled, all stored in your center's own isolated workspace."
+      "title": "For business owners",
+      "body": "See which channels drive inquiries, what services sell and how your team performs."
     }
   },
   "landing": {
@@ -245,13 +245,13 @@
         "overview": "Overview",
         "inbox": "Unified Inbox",
         "pipeline": "Sales Pipeline",
-        "bookings": "Trial Lessons",
+        "bookings": "Appointments",
         "analytics": "Reports"
       },
       "stages": {
         "new": "New inquiry",
         "talking": "In conversation",
-        "booked": "Trial booked"
+        "booked": "Appointment booked"
       },
       "people": {
         "one": "Aysel Mammadova",
@@ -259,12 +259,12 @@
         "three": "Nigar Hasanli"
       },
       "topics": {
-        "one": "IELTS trial lesson",
-        "two": "Speaking club",
-        "three": "Private tutoring"
+        "one": "Salon appointment",
+        "two": "Product order",
+        "three": "Service consultation"
       },
-      "incoming": "Hi! Is there an open seat for Saturday 11:00 IELTS trial class?",
-      "outgoing": "Hi Aysel! Yes, 2 seats are open on Saturday at 11:00. Shall I reserve one for you?",
+      "incoming": "Hi! Is Saturday at 11 AM available for a manicure?",
+      "outgoing": "Hi Aysel! Yes, Saturday 11 AM is open. Shall I book it for you?",
       "confirmed": "Saturday, 11:00",
       "times": {
         "one": "Saturday, 11:00",
@@ -282,7 +282,7 @@
       "assigneeLabel": "Owner: Leyla",
       "metrics": {
         "one": "New inquiries",
-        "two": "Trial bookings",
+        "two": "Confirmed bookings",
         "three": "Won revenue"
       },
       "metricValues": {
@@ -294,18 +294,18 @@
     "logos": {
       "title": "Ready-made workflows across service sectors",
       "items": {
-        "one": "Language Schools",
-        "two": "Exam Prep Centers",
-        "three": "IT Academies",
-        "four": "Clinics",
-        "five": "Consulting Teams",
-        "six": "Online Retail"
+        "one": "Online Stores",
+        "two": "Beauty Salons",
+        "three": "Restaurants & Cafes",
+        "four": "Private Clinics",
+        "five": "Auto Service Shops",
+        "six": "Learning Centers"
       },
       "link": "See sector workflows"
     },
     "bento": {
       "heading": "Manage your entire sales flow in one place",
-      "subheading": "Four focused modules connecting your first customer chat to a confirmed enrollment.",
+      "subheading": "Four modules connecting your first customer chat to a completed sale.",
       "rows": {
         "inbox": {
           "tag": "Unified inbox",
@@ -313,8 +313,8 @@
           "body": "Keep WhatsApp, Instagram, and Telegram messages in one workspace. The assistant replies in seconds using only your verified prices and timetable.",
           "cta": "See chat flow",
           "uiChannel": "WhatsApp · 11:41 PM",
-          "uiMsg1": "hi how much is the ielts group course",
-          "uiMsg2": "Hi! Our IELTS group is 180 AZN/month. Would you like a spot in Saturday 11:00 trial class?",
+          "uiMsg1": "hi is 3pm tomorrow available for manicure",
+          "uiMsg2": "Hello! Tomorrow at 3 PM is available. Would you like a booking?",
           "uiBadge": "Verified from your schedule"
         },
         "pipeline": {
@@ -323,29 +323,29 @@
           "body": "Claim unassigned inquiries with one click, move deals across stages, and keep tasks and internal notes on the same card.",
           "cta": "Explore pipeline",
           "uiCol1": "New",
-          "uiCol2": "Trial booked",
-          "uiCard1": "IELTS prep · Aysel M.",
-          "uiCard2": "German · Murad K.",
+          "uiCol2": "Appointment booked",
+          "uiCard1": "Salon booking · Aysel M.",
+          "uiCard2": "Product order · Murad K.",
           "uiOwner": "Agent: Narmin",
           "uiClaim": "Claim"
         },
         "bookings": {
-          "tag": "Trial schedule",
-          "title": "No overbooked groups or duplicates",
-          "body": "When a group hits capacity it closes automatically, repeat sign-ups with the same phone number are blocked, and managers get alerted.",
+          "tag": "Booking calendar",
+          "title": "Control availability and duplicate bookings",
+          "body": "Manage service times and capacity. Limit bookings once slots are filled and keep duplicate requests under control.",
           "cta": "Inspect booking logic",
-          "uiGroup": "IELTS · Saturday 11:00",
+          "uiGroup": "Manicure · Saturday 11:00",
           "uiSeats": "4 / 5 seats filled",
-          "uiRule": "Last open seat active"
+          "uiRule": "Last available slot active"
         },
         "analytics": {
           "tag": "Analytics",
           "title": "Know which channel brings real sales",
-          "body": "Track how many inquiries from Telegram, WhatsApp, and Instagram convert into trial lessons and paid enrollments.",
+          "body": "See how inquiries from Instagram, WhatsApp and Telegram become bookings, orders and sales.",
           "cta": "View reports",
           "uiStat1": "Median reply",
           "uiVal1": "< 1 min",
-          "uiStat2": "Trial rate",
+          "uiStat2": "Sales conversion",
           "uiVal2": "43%",
           "uiSource": "Top channel: Instagram DM"
         }
@@ -360,61 +360,61 @@
       "items": {
         "one": {
           "title": "Reply 24/7 without delays",
-          "body": "A parent messaging at 11:40 pm gets the same accurate answer as a student messaging during business hours.",
-          "chatUser": "Hi, do you have math prep classes for teens?",
-          "chatBot": "Hello! Yes, we have grades 7-9 groups. Shall I book you for Thursday 17:00 trial class?",
+          "body": "Whether a shopper messages at night or a client asks during business hours, everyone gets a timely first reply.",
+          "chatUser": "Hi, is there a manicure appointment tomorrow at 3 PM?",
+          "chatBot": "Hello! Tomorrow at 3 PM is open. Shall I reserve it for you?",
           "status": "Pani replied · 12 sec"
         },
         "two": {
           "title": "Understands everyday speech and typos",
-          "body": "Handles casual Azerbaijani and mixed spelling effortlessly, routing each inquiry to the right course.",
-          "chatUser": "hi whats the speaking club price pls",
-          "chatBot": "Hi! Speaking club meets twice a week at 120 AZN/month. Which day works best for you?",
+          "body": "Pani understands casual messages and typos, then guides customers to the right service or product.",
+          "chatUser": "hi how much are these headphones do you deliver",
+          "chatBot": "Hello! These headphones cost 49 AZN. Would you like delivery details?",
           "status": "Intent matched · Pricing"
         },
         "three": {
-          "title": "Books trial seats automatically",
-          "body": "Collects name and phone number, checks live capacity, locks the slot, and creates a pipeline deal.",
+          "title": "Creates appointments and bookings",
+          "body": "Collects customer name and phone, checks available slots and creates a booking record.",
           "chatUser": "Aygun Mammadova, 050 123 45 67",
-          "chatBot": "Your booking is confirmed! Your seat for Saturday 11:00 is reserved.",
+          "chatBot": "Your appointment is confirmed! We look forward to seeing you on Saturday at 11 AM.",
           "status": "Booking confirmed ✓"
         },
         "four": {
           "title": "Hands off smoothly to a manager",
           "body": "For custom discounts, complaints, or off-table requests, the assistant pauses and notifies your team.",
-          "chatUser": "Do you offer a sibling discount for two kids?",
-          "chatBot": "Let me hand this to our coordinator Leyla to confirm sibling discount options.",
+          "chatUser": "Is there a discount if I buy two items?",
+          "chatBot": "Let me hand you over to Leyla to confirm the available discount.",
           "status": "Handed off · Leyla"
         }
       },
-      "phoneBrand": "Learning Center",
+      "phoneBrand": "Example business",
       "phoneSub": "Pani · AI assistant"
     },
     "outcomes": {
       "heading": "What changes in daily operations?",
-      "subheading": "Target workflow outcomes designed for pilot centers and service desks.",
-      "cta": "Test with your workflow",
+      "subheading": "Example workflows for retailers, salons and service teams.",
+      "cta": "Try it for your business",
       "cards": {
         "one": {
-          "before": "When evening inquiries waited until morning, ",
-          "highlight": "the center that replied within 5 minutes won the student",
-          "after": ". Now trial slots are booked the same night.",
-          "author": "Language & Exam Centers",
-          "role": "Pilot scenario · Instant first reply"
+          "before": "When salon messages arrive after hours, ",
+          "highlight": "customers can get a timely first response",
+          "after": " and be offered an available appointment.",
+          "author": "Beauty salon",
+          "role": "Example flow · Appointments"
         },
         "two": {
           "before": "WhatsApp, Instagram, and Telegram used to live on separate phones. Unifying channels ensures ",
           "highlight": "zero inquiries slip through unanswered",
           "after": " and operators collaborate in one queue.",
-          "author": "Front Desk & Coordinators",
-          "role": "Pilot scenario · Unified inbox"
+          "author": "Online store",
+          "role": "Example flow · Unified inbox"
         },
         "three": {
-          "before": "Replacing spreadsheets with deal cards and capacity guards means ",
-          "highlight": "overbooked classes and duplicate entries stop",
-          "after": " while staff focus on ready applicants.",
-          "author": "Center Leadership",
-          "role": "Pilot scenario · Schedule control"
+          "before": "When clinic bookings are scattered across spreadsheets, ",
+          "highlight": "overlapping appointments become a risk",
+          "after": ". A unified calendar helps staff coordinate availability.",
+          "author": "Private clinic",
+          "role": "Example flow · Booking oversight"
         }
       }
     },
@@ -447,13 +447,13 @@
           "limits": {
             "one": "1 channel (Telegram)",
             "two": "3 team members",
-            "three": "Trial capacity protection"
+            "three": "Appointment capacity protection"
           },
           "cta": "Apply for pilot"
         },
         "growth": {
           "name": "Growth",
-          "desc": "AI assistant and multi-channel inbox for growing teams",
+          "desc": "Pani and multichannel inbox for growing businesses",
           "prices": {
             "monthly": "160 AZN",
             "halfYear": "145 AZN",
@@ -462,13 +462,13 @@
           "limits": {
             "one": "Telegram + Instagram + WhatsApp",
             "two": "8 team members",
-            "three": "Automated trial booking"
+            "three": "Automated appointment booking"
           },
           "cta": "Apply for pilot"
         },
         "pro": {
           "name": "Pro",
-          "desc": "Full automation and analytics for multi-branch centers",
+          "desc": "Automation and reporting for multi-branch businesses",
           "prices": {
             "monthly": "240 AZN",
             "halfYear": "215 AZN",
@@ -486,7 +486,7 @@
           "desc": "Custom setup, dedicated deployment, and SLA support",
           "price": "Custom",
           "limits": {
-            "one": "Multi-branch workspace setup",
+            "one": "Multi-branch workspaces",
             "two": "Custom API & webhook integrations",
             "three": "Direct engineering support"
           },
@@ -496,8 +496,8 @@
       "footnote": "Note: AZN prices shown are introductory pilot rates confirmed during your demo. WhatsApp message fees (Meta rates) are billed separately."
     },
     "ctaBand": {
-      "title": "Take control from first message to enrollment",
-      "subtitle": "Bring one real customer inquiry and we will walk through your exact workflow in a 15-minute live demo.",
+      "title": "Take control from first inquiry to sale",
+      "subtitle": "Bring one real customer question — we will walk you through the relevant flow in a 15-minute demo.",
       "primary": "Request free demo",
       "secondary": "Staff sign in"
     },
@@ -510,7 +510,7 @@
           "title": "Product",
           "one": "Unified inbox",
           "two": "Sales pipeline",
-          "three": "Trial calendar",
+          "three": "Booking calendar",
           "four": "AI sales assistant"
         },
         "channels": {
@@ -522,10 +522,10 @@
         },
         "solutions": {
           "title": "Solutions",
-          "one": "Learning centers",
-          "two": "Language schools",
+          "one": "Online stores",
+          "two": "Beauty salons",
           "three": "Service businesses",
-          "four": "Online retail"
+          "four": "Restaurants & cafes"
         },
         "company": {
           "title": "Get started",
@@ -540,7 +540,7 @@
   "panel": {
     "metaTitle": "Staff panel",
     "badge": "Staff panel",
-    "tenantLabel": "Center",
+    "tenantLabel": "Business",
     "navAria": "Panel navigation",
     "backToSite": "Back to site",
     "signOut": "Sign out",
@@ -555,13 +555,13 @@
     "tabs": {
       "ariaLabel": "Panel sections",
       "overview": "Overview",
-      "sessions": "Sessions",
+      "sessions": "Bookings",
       "leads": "CRM",
       "inbox": "Inbox",
       "deals": "Deals",
       "contacts": "Contacts",
       "channels": "Channels",
-      "ai": "AI assistant",
+      "ai": "Pani",
       "plans": "Plans",
       "settings": "Settings"
     },
@@ -577,22 +577,22 @@
       "disconnected": "Inactive"
     },
     "ai": {
-      "title": "AI assistant",
-      "subtitle": "Manage auto-reply, lead scoring and trial booking scenarios.",
+      "title": "Pani · AI assistant",
+      "subtitle": "Manage auto-replies, inquiry qualification and appointment-booking scenarios.",
       "activeLabel": "AI replies enabled",
       "settings": "Open settings",
       "active": "Active",
       "inactive": "Disabled",
       "greeting": "Welcome message",
       "price": "Pricing question",
-      "booking": "Trial booking",
+      "booking": "Appointment booking",
       "handoff": "Human handoff",
       "open": "Open",
       "close": "Close"
     },
     "plans": {
       "title": "Plans",
-      "subtitle": "Choose the plan for your center. AZN prices shown are pilot offers.",
+      "subtitle": "Choose a plan that fits your business. AZN prices are introductory pilot offers.",
       "monthly": "Monthly",
       "halfYear": "6-month",
       "annual": "Annual",
@@ -611,21 +611,21 @@
         "limits": [
           "1 channel (Telegram)",
           "3 team members",
-          "Trial seat occupancy watch"
+          "Booking capacity controls"
         ]
       },
       "growth": {
         "name": "Growth",
-        "desc": "Growing centers — AI assistant and multi-channel inbox",
+        "desc": "Pani and unified inbox for growing businesses",
         "limits": [
           "Telegram, Instagram and WhatsApp",
           "8 team members",
-          "Automatic trial booking"
+          "Automatic booking"
         ]
       },
       "pro": {
         "name": "Pro",
-        "desc": "Multi-branch centers — full automation and reports",
+        "desc": "Multi-branch automation and reporting for businesses",
         "limits": [
           "All channels + custom fields",
           "Unlimited operators and role permissions",
@@ -636,20 +636,20 @@
         "name": "Enterprise",
         "desc": "Custom requests, dedicated server and SLA support",
         "limits": [
-          "Multi-branch center structure",
+          "Multi-branch workspace",
           "Custom API and webhook setup",
           "Direct engineer support"
         ]
       }
     },
     "login": {
-      "eyebrow": "Learning center register",
+      "eyebrow": "Business dashboard",
       "title": "Staff panel sign in",
-      "subtitle": "Enter your center admin key to manage trial sessions, leads, and conversations.",
+      "subtitle": "Enter your workspace access key to manage customers, appointments and sales.",
       "userLabel": "Username",
       "userPlaceholder": "user@example.com",
       "keyLabel": "Access key",
-      "keyPlaceholder": "Enter your center admin key",
+      "keyPlaceholder": "Enter your business administrator key",
       "showKey": "Show key",
       "hideKey": "Hide key",
       "submit": "Sign in to panel",
@@ -662,7 +662,7 @@
     "stages": {
       "new": "New",
       "contacted": "Contacted",
-      "trial_booked": "Trial booked",
+      "trial_booked": "Appointment booked",
       "paid": "Paid",
       "lost": "Lost"
     },
@@ -674,25 +674,25 @@
       "manual": "Manual"
     },
     "senders": {
-      "student": "Student",
+      "student": "Customer",
       "ai": "AI assistant",
       "staff": "Staff"
     },
     "overview": {
       "title": "Today at a glance",
-      "subtitle": "Trial sessions, pipeline stages, and landing conversion on one page.",
+      "subtitle": "Bookings, sales stages and website conversion in one view.",
       "kpiLeads": "Total leads",
-      "kpiEnrollments": "Trial bookings",
-      "kpiPaid": "Paid students",
+      "kpiEnrollments": "Confirmed bookings",
+      "kpiPaid": "Paying customers",
       "kpiMessages": "Total messages",
       "conversionLabel": "paid conversion",
       "pipelineTitle": "CRM pipeline breakdown",
       "pipelineEmpty": "No leads yet. Create your first lead in the CRM tab.",
-      "sessionsTitle": "Trial session occupancy",
-      "sessionsEmpty": "No active trial sessions. Add a new group in the Sessions tab.",
+      "sessionsTitle": "Booking capacity",
+      "sessionsEmpty": "No active booking slots. Add one from the Bookings tab.",
       "seatsLeftSuffix": "seats left",
       "fullLabel": "Full",
-      "enrolledSuffix": "enrolled",
+      "enrolledSuffix": "bookings",
       "analyticsTitle": "Landing funnel analytics",
       "analyticsScopeNote": "Site-wide visitor events tracked on the public landing pages.",
       "funnelViews": "Page views",
@@ -710,35 +710,35 @@
       "expLeads": "Leads",
       "ctaLocationsTitle": "CTA placements",
       "ctaLocationsEmpty": "No CTA clicks recorded yet.",
-      "goToSessions": "Open sessions",
+      "goToSessions": "Go to bookings",
       "goToLeads": "Open CRM"
     },
     "sessions": {
-      "title": "Trial sessions schedule",
-      "subtitle": "Create new trial lesson groups and track enrolled students.",
-      "createTitle": "Add a new trial session",
+      "title": "Appointments and booking calendar",
+      "subtitle": "Create appointment slots and track customers who book.",
+      "createTitle": "Add booking slot",
       "idLabel": "Session ID",
-      "idPlaceholder": "e.g. ielts-sat-11",
-      "courseLabel": "Course name",
-      "coursePlaceholder": "e.g. IELTS",
+      "idPlaceholder": "e.g. manicure-sat-11",
+      "courseLabel": "Service name",
+      "coursePlaceholder": "e.g. Manicure",
       "startsAtLabel": "Start date and time",
       "capacityLabel": "Seat capacity",
-      "createSubmit": "Create session",
+      "createSubmit": "Create booking slot",
       "creating": "Creating…",
-      "createOk": "Trial session added to schedule.",
-      "errorDuplicate": "A session with this ID already exists.",
+      "createOk": "Booking slot was added to the calendar.",
+      "errorDuplicate": "A booking slot with that code already exists.",
       "errorInvalid": "Check your inputs: all fields must be filled validly.",
-      "errorGeneric": "Could not create session. Please try again.",
-      "listTitle": "Scheduled trial sessions",
-      "empty": "No trial sessions yet. Use the form above to add the first one.",
+      "errorGeneric": "Could not create the booking slot. Try again.",
+      "listTitle": "Existing booking slots",
+      "empty": "No booking slots yet. Use the form above to add one.",
       "seatsLeft": "seats left",
       "full": "Full",
       "takenOf": "taken",
-      "rosterTitle": "Enrolled students",
-      "rosterEmpty": "No students enrolled in this session yet.",
+      "rosterTitle": "Booked customers",
+      "rosterEmpty": "Nobody has booked this time yet.",
       "rosterToggleShow": "Show roster",
       "rosterToggleHide": "Hide roster",
-      "enrolledAt": "Enrolled at"
+      "enrolledAt": "Booked at"
     },
     "leads": {
       "title": "Lead register (CRM)",
@@ -753,7 +753,7 @@
       "sourceLabel": "Source channel",
       "stageLabel": "Stage",
       "noteLabel": "Note",
-      "notePlaceholder": "Course interest or extra details",
+      "notePlaceholder": "Interested service or other details",
       "createSubmit": "Save lead",
       "creating": "Saving…",
       "createOk": "Lead added to the register.",
@@ -793,10 +793,10 @@
       "senderRoleLabel": "Sender role",
       "senderStaff": "Staff reply",
       "senderAi": "AI reply",
-      "senderStudent": "Student message (demo)",
+      "senderStudent": "Customer message (test)",
       "channelLabel": "Channel",
       "bodyLabel": "Message",
-      "bodyPlaceholder": "Write a reply to the student or simulate an incoming message…",
+      "bodyPlaceholder": "Write a reply to the customer or simulate an incoming message…",
       "send": "Send",
       "sending": "Sending…",
       "sendError": "Could not send message.",
@@ -818,7 +818,7 @@
       "newToggleClose": "Close form",
       "createTitle": "Create new deal",
       "titleLabel": "Deal title",
-      "titlePlaceholder": "e.g. IELTS group enrollment",
+      "titlePlaceholder": "e.g. Manicure service order",
       "contactLabel": "Contact",
       "contactSelectPlaceholder": "Select existing contact",
       "orNewContact": "Or enter new contact details",
@@ -872,7 +872,7 @@
       "tasksTitle": "Tasks",
       "tasksEmpty": "No tasks on this deal yet.",
       "taskTitleLabel": "Task title",
-      "taskTitlePlaceholder": "e.g. Call parent before Friday class",
+      "taskTitlePlaceholder": "e.g. Follow up with customer tomorrow",
       "taskDueLabel": "Due date",
       "taskAdd": "Add task",
       "taskMarkDone": "Mark done",
@@ -951,7 +951,7 @@
       "stageInUseError": "Stage has existing deals and cannot be deleted.",
       "fieldsTitle": "Custom deal fields",
       "fieldNameLabel": "Field name",
-      "fieldNamePlaceholder": "e.g. Exam target score",
+      "fieldNamePlaceholder": "e.g. Service category",
       "fieldKindLabel": "Field type",
       "fieldKindText": "Text",
       "fieldKindNumber": "Number",

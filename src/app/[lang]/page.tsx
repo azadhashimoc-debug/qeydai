@@ -97,9 +97,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   ];
 
   const outcomeCards = [
-    { ...l.outcomes.cards.one, photo: "w-lobby", alt: dictionary.alts.lobby },
-    { ...l.outcomes.cards.two, photo: "w-classroom-dusk", alt: dictionary.alts.two },
-    { ...l.outcomes.cards.three, photo: "w-director", alt: dictionary.alts.director },
+    { ...l.outcomes.cards.one, photo: "p-inbox", alt: dictionary.alts.two },
+    { ...l.outcomes.cards.two, photo: "p-demo-stats", alt: dictionary.alts.director },
+    { ...l.outcomes.cards.three, photo: "p-product-tour", alt: dictionary.alts.three },
   ];
 
   const pricingPlans = [
@@ -333,7 +333,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <div className="pm-bento-visual pm-vis-sky">
                   <div className="pm-visual-photo">
                     <Photo
-                      name="w-lobby"
+                      name="p-pipeline"
                       alt={dictionary.alts.lobby}
                       sizes="(max-width: 900px) 100vw, 520px"
                       className="pm-photo-box"
@@ -370,7 +370,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <div className="pm-bento-visual pm-vis-mint">
                   <div className="pm-visual-photo">
                     <Photo
-                      name="s-courses"
+                      name="p-booking"
                       alt={dictionary.alts.one}
                       sizes="(max-width: 900px) 100vw, 520px"
                       className="pm-photo-box"
@@ -401,7 +401,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <div className="pm-bento-visual pm-vis-plum">
                   <div className="pm-visual-photo">
                     <Photo
-                      name="w-director"
+                      name="p-demo-stats"
                       alt={dictionary.alts.director}
                       sizes="(max-width: 900px) 100vw, 520px"
                       className="pm-photo-box"
@@ -513,7 +513,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <section id="contact" className="pm-cta-band">
           <div className="pm-cta-glow" aria-hidden="true" />
           <div className="pm-cta-bg-photo" aria-hidden="true">
-            <Photo name="w-classroom-dusk" alt="" sizes="100vw" className="pm-cta-bg-img" />
+            <Photo name="p-product-tour" alt="" sizes="100vw" className="pm-cta-bg-img" />
           </div>
           <div className="pm-wrap pm-cta-grid">
             <div className="pm-cta-copy">

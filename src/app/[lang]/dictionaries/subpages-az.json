@@ -11,7 +11,7 @@
       "aiTitle": "Pani · AI satış köməkçisi",
       "aiDesc": "24/7 təbii dildə dəqiq cavab və avtomatlaşdırma",
       "bookingTitle": "Rezervasiya və cədvəl",
-      "bookingDesc": "Sınaq dərsləri və görüşlər üçün tutum nəzarəti"
+      "bookingDesc": "Görüş, xidmət və tədbirlər üçün rezervasiya və tutum nəzarəti"
     },
     "channels": {
       "label": "Kanallar və Alətlər",
@@ -132,7 +132,7 @@
       },
       "booking": {
         "title": "Rezervasiya və cədvəl",
-        "desc": "Sınaq dərsi və görüşlərdə boş yerləri canlı izləyən və təkrar yazılmanı bloklayan mexanizm.",
+        "desc": "Görüşlərdə boş vaxtları izləyən və təkrar rezervasiyalara nəzarət edən mexanizm.",
         "linkText": "Cədvəl sistemi"
       }
     },
@@ -142,7 +142,7 @@
       "items": {
         "one": {
           "title": "Bütün kanalların vahid idarəetməsi",
-          "desc": "Telefonlar arasında qaçmağa ehtiyac yoxdur. Bütün müraciətlər bir mərkəzə daxil olur və dərhal operatora çatdırılır.",
+          "desc": "Fərqli tətbiqlər arasında keçməyin. Bütün müştəri müraciətləri vahid mesaj qutusunda toplanır.",
           "tag": "Kanallar",
           "point1": "Rəsmi WhatsApp Cloud API inteqrasiyası",
           "point2": "Instagram Direct və hekayə cavabları",
@@ -150,7 +150,7 @@
         },
         "two": {
           "title": "Yalnız təsdiq olunmuş məlumatla cavab",
-          "desc": "AI heç vaxt qiymət və ya saat uydurmur. Yalnız sizin qeyd etdiyiniz kursları, qiymətləri və dərsləri təqdim edir.",
+          "desc": "Pani yalnız təsdiqlədiyiniz məhsul, xidmət, qiymət və iş saatları barədə cavab verir.",
           "tag": "Süni İntellekt",
           "point1": "Təbii danışıq dilini anlama imkanı",
           "point2": "Yazı səhvlərinə həssas dialoqlar",
@@ -167,7 +167,7 @@
       }
     },
     "stats": {
-      "title": "Mərkəzlər üçün praktiki nəticələr",
+      "title": "Bizneslər üçün praktik nəticələr",
       "items": {
         "one": {
           "value": "< 1 dəq",
@@ -211,7 +211,7 @@
         },
         "four": {
           "title": "Xüsusi sahələr və fərdiləşdirmə",
-          "desc": "Kurs marağı, büdcə və ya hədəf imtahan balı kimi sahələri rahatlıqla əlavə edin."
+          "desc": "Maraqlanılan məhsul, xidmət növü, büdcə və digər xüsusi sahələri əlavə edin."
         }
       }
     },
@@ -220,11 +220,11 @@
       "subtitle": "Operatorların hər gün istifadə etdiyi sadə və güclü idarəetmə lövhəsi.",
       "colNew": "Yeni müraciət",
       "colTalking": "Danışıq gedir",
-      "colTrial": "Sınağa yazılıb",
+      "colTrial": "Görüş təyin edilib",
       "colPaid": "Ödəniş təsdiqləndi",
       "claimBtn": "Götür",
-      "taskSample": "Sabah saat 12:00-da valideynlə zəng",
-      "noteSample": "Tələbə IELTS 7.0 hədəfləyir, şənbə qrupu uyğundur"
+      "taskSample": "Sabah saat 12:00-da müştəriyə zəng",
+      "noteSample": "Müştəri həftəsonu üçün görüş istəyir, şənbə saatı uyğundur"
     }
   },
   "inbox": {
@@ -246,7 +246,7 @@
         },
         "two": {
           "title": "İstifadəçi rolları və filtrlər",
-          "desc": "Tələbə, AI və menecer mesajları xüsusi etiketlərlə bir-birindən aydın fərqlənir."
+          "desc": "Müştəri, Pani və menecer mesajları xüsusi etiketlərlə fərqləndirilir."
         },
         "three": {
           "title": "24 saatlıq cavab pəncərəsi statusu",
@@ -287,30 +287,30 @@
     "scenarios": {
       "greeting": {
         "title": "Salamlaşma və İlkin Niyyətin Müəyyənləşdirilməsi",
-        "desc": "Müştərini adı ilə qarşılayır, maraqlandığı kursu və ya dərsi soruşaraq yönləndirir.",
-        "exampleQuery": "Salam, uşaqlar üçün ingilis dili dərsləriniz var?",
-        "exampleReply": "Salam! Bəli, 7-10 yaş uşaqlar üçün qruplarımız var. Şənbə günü saat 12:00-da sınaq dərsinə yer ayırım?",
+        "desc": "Müştərini adı ilə qarşılayır, maraqlandığı məhsul və ya xidməti öyrənir.",
+        "exampleQuery": "Salam, sabah üçün manikürə boş vaxt var?",
+        "exampleReply": "Salam! Bəli, sabah 15:00 boşdur. Sizin üçün rezervasiya edim?",
         "statusBadge": "Niyyət tanındı"
       },
       "pricing": {
         "title": "Dəqiq Qiymət və Qrafik İzahı",
         "desc": "Yalnız rəhbərliyin təsdiq etdiyi rəsmi qiymətləri, ödəniş qaydalarını və həftəlik saatları bildirir.",
-        "exampleQuery": "ielts hazirligi neciyedir ve heftede nece defe olur",
-        "exampleReply": "IELTS hazırlıq qrupumuz aylıq 180 AZN-dir, həftədə 3 dəfə 90 dəqiqə keçirilir. Cədvələ baxmaq istərdiniz?",
+        "exampleQuery": "salam bu mehsul neciyedi catdirilma var?",
+        "exampleReply": "Salam! Bu məhsul 49 AZN-dir. Çatdırılma şərtlərini dəqiqləşdirim?",
         "statusBadge": "Cədvəldən təsdiqləndi"
       },
       "booking": {
-        "title": "Sınaq Dərsinə Avtomatik Yazılma",
+        "title": "Avtomatik Görüş Rezervasiyası",
         "desc": "Ad və telefon nömrəsini qəbul edir, boş yerləri canlı yoxlayır və dərhal rezervasiya kartı yaradır.",
         "exampleQuery": "Aysel Məmmədova, 050 123 45 67, şənbə saat 11:00 uyğundur",
-        "exampleReply": "Qeydiyyatınız uğurla təsdiqləndi! Şənbə saat 11:00 IELTS sınaq dərsi üçün yeriniz ayrıldı.",
+        "exampleReply": "Rezervasiyanız təsdiqləndi! Şənbə saat 11:00 üçün yer ayrıldı.",
         "statusBadge": "Rezervasiya təsdiqləndi"
       },
       "handoff": {
         "title": "Canlı Əməkdaşa Problemsiz Ötürmə",
         "desc": "Xüsusi endirim, fərdi qrafik və ya şikayət müraciətlərində AI dayanır və operatora xəbərdarlıq göndərir.",
-        "exampleQuery": "İki övladım üçün yazdırsam ailə endirimi edə bilərsiniz?",
-        "exampleReply": "Ailə endirimi şərtlərini təsdiqləmək üçün söhbəti menecerimiz Nərminə yönləndirirəm. Qısa zamanda cavab verəcək.",
+        "exampleQuery": "İki məhsul alsam endirim var?",
+        "exampleReply": "Endirim şərtlərini təsdiqləmək üçün söhbəti menecerimiz Nərminə yönləndirirəm.",
         "statusBadge": "Menecerə ötürüldü"
       }
     },
@@ -320,7 +320,7 @@
       "items": {
         "one": {
           "title": "Yalnız təsdiqlənmiş baza",
-          "desc": "AI cavabları yalnız panelə daxil etdiyiniz kurs məlumatlarından generasiya edilir."
+          "desc": "Pani cavabları yalnız iş sahənizdə təsdiqlənmiş məhsul, xidmət və qrafik məlumatlarına əsaslanır."
         },
         "two": {
           "title": "Yazı səhvlərinə dözümlülük",
@@ -350,7 +350,7 @@
     },
     "features": {
       "sectionTitle": "Rezervasiya prosesini qoruyan 4 texnoloji mexanizm",
-      "sectionSubtitle": "Mərkəzinizin dərs cədvəlində xaosun və artıq qeydiyyatların qarşısını alın.",
+      "sectionSubtitle": "Görüş və xidmət vaxtlarını nizamlı saxlayın, artıq rezervasiyaların qarşısını alın.",
       "items": {
         "one": {
           "title": "Atomik tutum kilidi",
@@ -361,11 +361,11 @@
           "desc": "Eyni telefon nömrəsi ilə eyni sessiyaya ikinci dəfə qeydiyyat cəhdləri avtomatik bloklanır."
         },
         "three": {
-          "title": "Canlı tələbə siyahısı",
-          "desc": "Hər sınaq dərsinə yazılan şəxslərin adları və əlaqə nömrələri dərhal siyahıda əks olunur."
+          "title": "Canlı rezervasiya siyahısı",
+          "desc": "Rezervasiya edən müştərilərin adları və əlaqə nömrələri siyahıda görünür."
         },
         "four": {
-          "title": "Avtomatik qrup qapanması",
+          "title": "Dolu vaxtların bağlanması",
           "desc": "Maksimum tutuma çatdıqda qrup qeydiyyat üçün bağlanır və növbəti açıq vaxtlar təklif olunur."
         }
       }
@@ -374,7 +374,7 @@
       "title": "Proqram Təminatı Səviyyəsində Yoxlanan Qaydalar",
       "subtitle": "Süni intellektin insafına buraxılmayan, birbaşa baza səviyyəsində icra olunan məntiq.",
       "atomicLockTitle": "Atomik yer tutulması",
-      "atomicLockDesc": "Eyni saniyədə gələn müraciətlər növbəyə alınır və qrup limiti heç vaxt aşılmır.",
+      "atomicLockDesc": "Eyni vaxtda gələn müraciətlər növbəyə alınır və mövcud yer limiti aşılmır.",
       "duplicateTitle": "Təkrar müraciət filtrasiyası",
       "duplicateDesc": "Formatından asılı olmayaraq Azərbaycan mobil nömrələri standartlaşdırılır və yoxlanılır.",
       "alertTitle": "Menecerə ani bildiriş",
@@ -388,7 +388,7 @@
       "subtitle": "WhatsApp, Instagram, Telegram və fərdi sistemləriniz üçün REST Webhook API tək platformada birləşir.",
       "primaryCta": "Bütün kanalları kəşf edin",
       "secondaryCta": "Demo sifariş edin",
-      "badge": "Çoxkanallı Mərkəz"
+      "badge": "Çoxkanallı Biznes"
     },
     "cards": {
       "whatsapp": {
@@ -406,7 +406,7 @@
       "telegram": {
         "badge": "Telegram Bot kanalı",
         "title": "Telegram Bot İnteqrasiyası",
-        "desc": "Bir neçə dəqiqə ərzində bot tokeninizi panelə bağlayın, tələbə və müştəri sorğularını dərhal cavablandırın.",
+        "desc": "Botunuzu panelə bağlayıb məhsul və xidmətlə bağlı müştəri sorğularını qəbul edin.",
         "linkText": "Telegram detallarına baxın"
       },
       "webhookApi": {
@@ -460,7 +460,7 @@
         },
         "two": {
           "title": "DM sorğularından avtomatik satış kartı",
-          "desc": "Kurs və ya xidmətlə maraqlanan hər yeni istifadəçi üçün CRM lövhəsində kart açılır."
+          "desc": "Hər yeni məhsul və ya xidmət sorğusu üçün CRM lövhəsində satış kartı yaradıla bilər."
         },
         "three": {
           "title": "Təbii dildə qiymət izahı",
@@ -478,7 +478,7 @@
     "telegram": {
       "badge": "Telegram Bot kanalı",
       "title": "Telegram Üzərindən Sürətli Qeydiyyat və Bildirişlər",
-      "subtitle": "Bir neçə dəqiqə ərzində Telegram botunuzu panelə bağlayın, tələbə və müştəri sorğularını dərhal cavablandırın.",
+      "subtitle": "Telegram botunu panelə bağlayıb müştəri suallarına vahid iş sahəsindən cavab verin.",
       "features": {
         "one": {
           "title": "Bot tokeni ilə ani qoşulma",
@@ -486,7 +486,7 @@
         },
         "two": {
           "title": "24/7 fasiləsiz avtomatik dialoq",
-          "desc": "Tələbələr gecə və ya istirahət günlərində yazsa belə, dərhal sınaq dərsinə yer ayırır."
+          "desc": "Müştərilər gecə və ya istirahət günlərində yazsa belə, xidmət vaxtları barədə məlumat və rezervasiya təklifləri təqdim edin."
         },
         "three": {
           "title": "Komandaya dərhal Telegram bildirişi",
@@ -494,7 +494,7 @@
         },
         "four": {
           "title": "Təhlükəsiz və qapalı kanal",
-          "desc": "Telegram mesajları mərkəzinizin təcrid olunmuş iş sahəsində etibarlı saxlanılır."
+          "desc": "Telegram mesajları biznesinizin ayrıca iş sahəsində saxlanılır."
         }
       },
       "toolsCtaTitle": "Telegram botundan WhatsApp-a yönləndirmə",
@@ -508,7 +508,7 @@
       "features": {
         "one": {
           "title": "GET /api/v1/sessions cədvəl oxunması",
-          "desc": "Yalnız boş yeri olan gələcək sınaq dərslərini real vaxtda çəkin."
+          "desc": "Mövcud vaxtı və tutumu olan gələcək rezervasiyaları sorğulayın."
         },
         "two": {
           "title": "POST /api/v1/enroll atomik qeydiyyat",
@@ -547,7 +547,7 @@
       "phoneLabel": "Telefon nömrəsi",
       "phonePlaceholder": "050 123 45 67",
       "messageLabel": "İlkin hazır mesaj (istəyə görə)",
-      "messagePlaceholder": "Salam, IELTS sınaq dərsi üçün məlumat almaq istəyirəm.",
+      "messagePlaceholder": "Salam, məhsul və xidmətləriniz barədə məlumat almaq istəyirəm.",
       "outputLabel": "Hazır WhatsApp linkiniz",
       "copyButton": "Linki kopyala",
       "copied": "Kopyalandı!",
@@ -571,7 +571,7 @@
     },
     "calculator": {
       "title": "Meta WhatsApp Mesaj Xərcləri Kalkulyatoru",
-      "desc": "Mərkəzinizin aylıq təxmini bildiriş və müştəri xidməti mesaj həcminə uyğun xərcləri hesablayın.",
+      "desc": "Biznesinizin aylıq təxmini müştəri mesajlaşması həcminə uyğun xərcləri hesablayın.",
       "currencyToggleUsd": "USD ($)",
       "currencyToggleAzn": "AZN (₼)",
       "rateNote": "Hesablama məzənnəsi: 1 USD = 1.70 AZN",
@@ -682,11 +682,11 @@
       "body": "Instagram reklamlarından və hekayə paylaşımlarından gələn müraciətlər adətən yüksək maraq daşıyır, lakin cavab 15 dəqiqədən gecikdikdə konversiya kəskin aşağı düşür. Doğru yanaşma gələn hər sorğuya ilk dəqiqədə təbii dildə cavab vermək, maraqlandığı xidməti müəyyən etmək və təqvimə sınaq dərsi qeyd etməkdir. Bu iş axını həm operatorların yükünü azaldır, həm də reklam büdcənizin gəlirə çevrilməsini təmin edir."
     },
     "appointment-crm": {
-      "title": "Sınaq Dərsləri və Görüşlərin İdarə Edilməsi: Dolu Qruplara Son",
+      "title": "Görüş və Rezervasiya İdarəetməsi: Təkrar Qeydiyyata Son",
       "excerpt": "Excel cədvəllərindən atomik tutum kilidləməsinə keçid və təkrar müraciətlərin qarşısının alınması.",
       "category": "CRM və Cədvəl",
       "readTime": "4 dəqiqə",
-      "body": "Bir çox tədris və xidmət mərkəzi sınaq dərslərini əl ilə Excel cədvəllərində qeyd edir. Nəticədə eyni tələbə bir neçə dəfə yazılır və ya otaq tutumundan artıq adam qəbul olunur. Atomik tutum kilidi sistemi hər sessiya üçün boş yerləri baza səviyyəsində yoxlayır, son yeri dəqiq qoruyur və eyni nömrə ilə təkrar qeydiyyat cəhdlərini dayandırır. Menecerlər yalnız təsdiq olunmuş və hazır müştərilərlə ünsiyyət qurur."
+      "body": "Bir çox mağaza, salon və xidmət şirkəti görüşləri hələ də Excel cədvəllərində idarə edir. Bu isə eyni müştərinin bir neçə dəfə yazılması və dolu saatların səhv göstərilməsi riskini artırır. Atomik rezervasiya məntiqi hər vaxt aralığı üçün müəyyənləşdirilmiş tutuma əməl edilməsinə kömək edir."
     },
     "ai-reply-workflows": {
       "title": "Satış Komandasında AI Cavab Köməkçisi: Qaydalar və Nəzarət",
@@ -700,7 +700,7 @@
       "excerpt": "Telegram botunu panelim.az-a bağlamaqla sorğuların bir saniyədə qeydə alınması və cavablandırılması.",
       "category": "Telegram",
       "readTime": "5 dəqiqə",
-      "body": "Telegram Bot API müraciətlərin qəbulu üçün ən çevik və sürətli kanallardan biridir. Rəsmi bot tokeninizi panelə əlavə etməklə 2 dəqiqə ərzində tam işlək mərkəz əldə edirsiniz. Tələbələr bot vasitəsilə kurs proqramını öyrənə, sınaq dərsinə yazıla və təsdiq bildirişi ala bilərlər. Bütün məlumatlar avtomatik olaraq CRM satış lövhəsinə ötürülür və menecerlər tərəfindən idarə olunur."
+      "body": "Telegram Bot API müştəri müraciətlərini qəbul etmək üçün əlverişli kanaldır. Rəsmi bot tokeni iş sahəsinə qoşulduqda istifadəçilər məhsul və xidmətlərlə bağlı soruşa, mövcud vaxtları öyrənə və komandadan cavab ala bilirlər."
     }
   },
   "pricingPage": {
@@ -718,7 +718,7 @@
     },
     "matrix": {
       "title": "Planların Müqayisəli Cədvəli",
-      "subtitle": "Mərkəzinizin tələblərinə uyğun planı detallı şəkildə seçin.",
+      "subtitle": "Biznesinizin ehtiyaclarına uyğun planı ətraflı müqayisə edin.",
       "colFeature": "İmkanlar və Xüsusiyyətlər",
       "categories": {
         "channels": {
@@ -759,7 +759,7 @@
             },
             "customFields": {
               "name": "Xüsusi satış sahələri",
-              "desc": "Mərkəzə uyğun əlavə məlumat xanalarının yaradılması"
+              "desc": "Biznesinizə uyğun əlavə məlumat sahələri"
             }
           }
         },
@@ -767,7 +767,7 @@
           "title": "AI Köməkçi və Cədvəl Nəzarəti",
           "features": {
             "booking": {
-              "name": "Sınaq dərsi tutum nəzarəti",
+              "name": "Görüş rezervasiyası və tutum nəzarəti",
               "desc": "Qrup dolduqda avtomatik qapanma və doluluq hesabatı"
             },
             "duplicateBlock": {
@@ -789,7 +789,7 @@
           "features": {
             "isolatedDb": {
               "name": "Təcrid olunmuş məlumat bazası",
-              "desc": "Mərkəzlər arası məlumatların tam ayrılması"
+              "desc": "İş sahələri arasında məlumatların ayrılması"
             },
             "auditLog": {
               "name": "Fəaliyyət və giriş jurnalı",
@@ -808,7 +808,7 @@
       "items": {
         "q1": {
           "q": "Planı istənilən vaxt dəyişmək mümkündürmü?",
-          "a": "Bəli, ehtiyaclarınız artdıqca mərkəzinizin planını istənilən vaxt yüksəldə və ya dəyişə bilərsiniz."
+          "a": "Bəli, biznesiniz böyüdükcə planınızı yüksəldə və ya dəyişə bilərsiniz."
         },
         "q2": {
           "q": "WhatsApp mesaj xərcləri aylıq abunəyə daxildir?",
@@ -816,7 +816,7 @@
         },
         "q3": {
           "q": "Quraşdırma haqqı nələri əhatə edir?",
-          "a": "Birdəfəlik quraşdırma kurs cədvəlinizin sistemə daxil edilməsini, Telegram və digər kanalların sazlanmasını və komandanıza təlimi əhatə edir."
+          "a": "Quraşdırma xidmət və iş qrafikinizin daxil edilməsini, kanalların sazlanmasını və komandanın ilkin təlimini əhatə edir."
         },
         "q4": {
           "q": "Ödəniş üsulları hansılardır?",
@@ -857,11 +857,11 @@
         },
         "two": {
           "title": "Quraşdırma planının müzakirəsi",
-          "desc": "Mərkəzinizin dərs cədvəlinin və kanallarının necə inteqrasiya olunacağını öyrənin."
+          "desc": "Məhsul, xidmət, kanallar və iş təqviminizin sistemə uyğunlaşdırılmasını öyrənin."
         },
         "three": {
           "title": "Ödənişsiz sınaq imkanı",
-          "desc": "Sistemi risk etmədən şəxsi mərkəzinizdə test etmək üçün təlimat əldə edin."
+          "desc": "Sistemi öz biznesinizdə sınaqdan keçirmək üçün ilkin addımları öyrənin."
         }
       }
     }
@@ -910,7 +910,7 @@
         },
         "account": {
           "title": "2. İş sahəsi və təhlükəsizlik",
-          "body": "İstifadəçi mərkəz üçün təqdim edilən giriş açarlarının məxfiliyinə və iş sahəsində icra olunan bütün fəaliyyətlərə görə məsuliyyət daşıyır. Giriş açarlarının icazəsiz üçüncü şəxslərlə paylaşılması qadağandır."
+          "body": "İstifadəçi biznesin iş sahəsinə verilən giriş açarlarının məxfiliyinə və həmin iş sahəsində icra olunan fəaliyyətlərə görə məsuliyyət daşıyır. Giriş məlumatlarının icazəsiz şəxslərlə paylaşılması qadağandır."
         },
         "acceptable": {
           "title": "3. Məqbul istifadə qaydaları",
@@ -941,11 +941,11 @@
         },
         "purpose": {
           "title": "2. Məlumatların istifadə məqsədi",
-          "body": "Toplanan məlumatlar yalnız müştəri müraciətlərinin cavablandırılması, sınaq dərslərinin təşkili, CRM iş axınının icrası və platformanın texniki təhlükəsizliyinin təmin olunması məqsədilə emal edilir."
+          "body": "Toplanan məlumatlar müştəri müraciətlərinin cavablandırılması, görüş və rezervasiyaların təşkili, CRM iş axınlarının icrası və platformanın texniki təhlükəsizliyinin təmin olunması məqsədilə emal edilir."
         },
         "isolation": {
-          "title": "3. Mərkəzlər arası məlumat təcridi",
-          "body": "Hər bir müştərinin və ya mərkəzin məlumatları ayrıca təcrid olunmuş iş sahəsində saxlanılır. Bir mərkəzin heyəti digər mərkəzin müştəri bazasını, cədvəlini və ya mesajlarını heç bir halda görə bilməz."
+          "title": "3. İş sahələri arasında məlumat ayrılığı",
+          "body": "Hər biznesin müştəri məlumatları ayrıca iş sahəsində saxlanılır. Bir biznesin əməkdaşları digər biznesin müştəri bazasına, cədvəlinə və yazışmalarına çıxış əldə etməməlidir."
         },
         "thirdParty": {
           "title": "4. Üçüncü tərəf xidmətləri",
@@ -966,7 +966,7 @@
     "login": {
       "badge": "İşçi Paneli Girişi",
       "title": "Daxil ol",
-      "subtitle": "Mərkəzinizin administrator açarını daxil edərək satış və mesajlaşma panelinə keçin.",
+      "subtitle": "Biznesinizin administrator açarı ilə satış və mesajlaşma panelinə daxil olun.",
       "userLabel": "İstifadəçi adı",
       "userPlaceholder": "istifadeci@example.com",
       "keyLabel": "İş sahəsi açarı",
@@ -985,7 +985,7 @@
       "highlightsTitle": "Bir baxışda idarəetmə",
       "highlight1": "WhatsApp, Instagram və Telegram vahid qutusu",
       "highlight2": "Kanban satış lövhəsi və operator bölgüsü",
-      "highlight3": "Canlı sınaq dərsi cədvəli və tutum kilidi",
+      "highlight3": "Rezervasiya təqvimi və tutum nəzarəti",
       "emailLabel": "E-poçt",
       "emailPlaceholder": "E-poçt",
       "passkeyLabel": "Keçid açarı ilə davam edin",
@@ -1014,8 +1014,8 @@
       "loginLink": "Panelə daxil olun",
       "highlightsTitle": "Niyə panelim.az?",
       "highlight1": "Azərbaycan dilində təbii danışan AI köməkçi",
-      "highlight2": "Təkrar qeydiyyatları bloklayan sınaq cədvəli",
-      "highlight3": "Hər mərkəz üçün tam təcrid olunmuş məlumat bazası",
+      "highlight2": "Təkrar rezervasiyalara nəzarət edən cədvəl",
+      "highlight3": "Hər biznes üçün ayrıca iş sahəsi",
       "topSwitchLabel": "Giriş",
       "termsPrefix": "Qeydiyyatdan keçməklə qəbul etmiş olursunuz:",
       "termsLinkText": "İstifadə Şərtləri",

@@ -49,7 +49,7 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
           previewTitle: "AI SUMMARY",
           previewBadge: "2s",
           rows: [
-            { title: "Intent", meta: "IELTS Speaking · Evening", badge: "High", tone: "mint" },
+            { title: "Intent", meta: "Salon appointment · Tomorrow", badge: "High", tone: "mint" },
             { title: "Budget", meta: "180 AZN / month", badge: "Matched", tone: "sky" },
             { title: "Next step", meta: "Confirm Thursday 18:30", badge: "Ready", tone: "amber" },
           ],
@@ -68,7 +68,7 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
         {
           id: "tasks",
           label: "Stay organized with AI tasks",
-          caption: "Automatically schedule follow-ups when a parent or student asks to decide later.",
+          caption: "Automatically schedule follow-ups when a customer asks to decide later.",
           previewTitle: "AUTO FOLLOW-UP",
           previewBadge: "Scheduled",
           rows: [
@@ -85,7 +85,7 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
           previewTitle: "AI XÜLASƏ",
           previewBadge: "2 san",
           rows: [
-            { title: "Məqsəd", meta: "IELTS Danışıq · Axşam qrupu", badge: "Dəqiq", tone: "mint" },
+            { title: "Məqsəd", meta: "Salon rezervasiyası · Sabah", badge: "Dəqiq", tone: "mint" },
             { title: "Tarif", meta: "180 AZN / ay", badge: "Uyğun", tone: "sky" },
             { title: "Növbəti addım", meta: "Cümə axşamı 18:30 təsdiqi", badge: "Hazır", tone: "amber" },
           ],
@@ -104,12 +104,12 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
         {
           id: "tasks",
           label: "AI tapşırıqları ilə nizamlı qalın",
-          caption: "Valideyn və ya tələbə \"sabah yazacam\" dedikdə sistem avtomatik xatırlatma yaradır.",
+          caption: "Müştəri \"sabah cavab verəcəyəm\" dedikdə sistem avtomatik xatırlatma yaradır.",
           previewTitle: "AVTO TƏQİB",
           previewBadge: "Planlandı",
           rows: [
             { title: "Xatırlatma", meta: "Kamran Ə. ilə əlaqə saxla", badge: "Sabah 11:00", tone: "amber" },
-            { title: "Ötürmə", meta: "Ödəniş sualını koordinatora yönləndir", badge: "Canlı", tone: "sky" },
+            { title: "Ötürmə", meta: "Ödəniş sualını menecerə yönləndir", badge: "Canlı", tone: "sky" },
           ],
         },
       ];
@@ -146,8 +146,8 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
           heading={isEn ? "Leave routine work to AI CRM" : "Rutin işləri AI CRM-ə buraxın"}
           subheading={
             isEn
-              ? "Automate repetitive replies and let your coordinators focus on enrolling students."
-              : "Təkrarlanan sualları avtomatlaşdırın ki, koordinatorlarınız əsas satışa və tələbələrə fokuslansın."
+              ? "Automate repetitive replies so your sales team can focus on customers."
+              : "Təkrarlanan sualları avtomatlaşdırın ki, satış komandanız müştərilərlə işə fokuslansın."
           }
           tabs={tabs}
         />
