@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AuthKommoRegisterClient } from "@/components/marketing/AuthKommoRegisterClient";
-import { SiteFooter } from "@/components/marketing/SiteFooter";
-import { SiteHeader } from "@/components/marketing/SiteHeader";
-import { Photo } from "@/components/Photo";
+import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
@@ -32,9 +29,9 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
   const { lang } = await params;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
-  const other = locale === "az" ? "en" : "az";
-  const s = d.subpages;
-  const reg = s.authPages.register;
+  const auth = d.subpages.authPages;
+  const reg = auth.register;
+  const shell = auth.shell;
 
   return (
     <div className="marketing">
@@ -42,66 +39,57 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
         {d.a11y.skipToMain}
       </a>
 
-      <SiteHeader
-        lang={locale}
-        brand={d.brand}
-        a11y={d.a11y}
-        nav={d.landing.nav}
-        subNav={s.navGroups}
-        mode="subpage"
-        routeSuffix="/register"
-      />
-
-      <main id="main" tabIndex={-1}>
-        <section className="pm-auth-section">
-          <div className="pm-auth-kommo">
-            <Photo
-              name="p-demo"
-              alt={reg.title}
-              className="pm-auth-kommo-illustration"
-              priority
-            />
-            <div className="pm-auth-kommo-card">
-              <span className="pm-auth-kommo-badge">{reg.badge}</span>
-              <h1 className="pm-auth-kommo-title">{reg.title}</h1>
-              <p className="pm-auth-kommo-sub">{reg.subtitle}</p>
-              <AuthKommoRegisterClient
-                locale={locale}
-                copy={{
-                  badge: reg.badge,
-                  title: reg.title,
-                  subtitle: reg.subtitle,
-                  formTitle: reg.formTitle,
-                  name: reg.form.nameLabel,
-                  namePlaceholder: reg.form.namePlaceholder,
-                  phone: reg.form.phoneLabel,
-                  phonePlaceholder: reg.form.phonePlaceholder,
-                  submit: reg.form.submit,
-                  sending: reg.form.submitting,
-                  nameRequired: reg.form.nameRequired,
-                  privacy: reg.form.privacyNote,
-                  okText: reg.form.successTitle,
-                  errText: reg.form.successBody,
-                  rateLimitedText: reg.form.rateLimited,
-                  hasAccount: reg.hasAccount,
-                  loginLink: reg.loginLink,
-                }}
-                loginHref={`/${locale}/login`}
-              />
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter
-        lang={locale}
-        other={other}
-        tagline={d.landing.footer.tagline}
-        copyright={d.landing.footer.copyright}
-        switchLabel={d.landing.footer.switchLabel}
-        cols={s.footer}
-        routeSuffix="/register"
-      />
+      <AuthShell
+        copy={{
+          brandName: d.brand,
+          switchHref: `/${locale}/login`,
+          switchLabel: reg.topSwitchLabel,
+          switchVariant: "outline",
+          homeHref: `/${locale}`,
+          closeLabel: shell.closeLabel,
+          speechText: shell.speechText,
+          chatLabel: shell.chatLabel,
+          chatHref: `/${locale}/contact`,
+          bannerText: shell.bannerText,
+          bannerHref: `/${locale}/pricing`,
+          dismissLabel: shell.dismissLabel,
+          magnifierAlt: shell.magnifierAlt,
+          heartAlt: shell.heartAlt,
+        }}
+      >
+        <AuthKommoRegisterClient
+          locale={locale}
+          copy={{
+            title: reg.title,
+            subtitle: reg.subtitle,
+            emailLabel: auth.login.emailLabel,
+            emailPlaceholder: auth.login.emailPlaceholder,
+            name: reg.form.nameLabel,
+            namePlaceholder: reg.form.namePlaceholder,
+            phone: reg.form.phoneLabel,
+            phonePlaceholder: reg.form.phonePlaceholder,
+            submit: reg.form.submit,
+            sending: reg.form.submitting,
+            nameRequired: reg.form.nameRequired,
+            privacy: reg.form.privacyNote,
+            okText: reg.form.successTitle,
+            errText: reg.form.successBody,
+            rateLimitedText: reg.form.rateLimited,
+            googleLabel: shell.googleLabel,
+            facebookLabel: shell.facebookLabel,
+            socialNote: shell.socialNote,
+            termsPrefix: reg.termsPrefix,
+            termsLinkText: reg.termsLinkText,
+            termsAnd: reg.termsAnd,
+            privacyLinkText: reg.privacyLinkText,
+            hasAccount: reg.hasAccount,
+            loginLink: reg.loginLink,
+          }}
+          loginHref={`/${locale}/login`}
+          termsHref={`/${locale}/legal/terms`}
+          privacyHref={`/${locale}/legal/privacy`}
+        />
+      </AuthShell>
     </div>
   );
 }

@@ -1,0 +1,448 @@
+- generic [active] [ref=f8e1]:
+  - generic [ref=f8e2]:
+    - link "Əsas məzmuna keç" [ref=f8e3] [cursor=pointer]:
+      - /url: "#main"
+    - banner [ref=f8e4]:
+      - navigation "Əsas naviqasiya" [ref=f8e5]:
+        - link "panelim.az" [ref=f8e6] [cursor=pointer]:
+          - /url: /az
+        - generic [ref=f8e12]:
+          - button "Məhsul" [ref=f8e14] [cursor=pointer]
+          - button "Kanallar və Alətlər" [ref=f8e19] [cursor=pointer]
+          - link "Qiymət" [ref=f8e23] [cursor=pointer]:
+            - /url: "#pricing"
+          - link "Suallar" [ref=f8e24] [cursor=pointer]:
+            - /url: "#faq"
+          - button "Resurslar" [ref=f8e26] [cursor=pointer]
+        - generic [ref=f8e30]:
+          - link "EN" [ref=f8e31] [cursor=pointer]:
+            - /url: /en
+          - generic [ref=f8e32]:
+            - link "🌐 Demo istə" [ref=f8e33] [cursor=pointer]:
+              - /url: "#contact"
+              - generic [ref=f8e34]: 🌐
+              - text: Demo istə
+            - generic [ref=f8e35]: "|"
+            - link "Giriş" [ref=f8e36] [cursor=pointer]:
+              - /url: /az/login
+            - link "Hesap oluştur" [ref=f8e37] [cursor=pointer]:
+              - /url: /az/register
+    - main [ref=f8e38]:
+      - generic [ref=f8e40]:
+        - generic [ref=f8e41]:
+          - list "Azərbaycan tədris mərkəzləri və xidmət biznesləri üçün qurulub" [ref=f8e42]:
+            - listitem [ref=f8e43]:
+              - generic [ref=f8e47]: WhatsApp
+            - listitem [ref=f8e48]:
+              - generic [ref=f8e54]: Instagram
+            - listitem [ref=f8e55]:
+              - generic [ref=f8e59]: Telegram
+          - heading "Söhbətləri böyüdün, xaosu azaldın" [level=1] [ref=f8e60]
+          - paragraph [ref=f8e61]: WhatsApp, Instagram və Telegram müraciətlərini, sınaq dərslərini və satış qıfını bir arada idarə edən Azərbaycan dilli AI CRM.
+          - generic [ref=f8e62]:
+            - link "Pulsuz demo istə" [ref=f8e63] [cursor=pointer]:
+              - /url: "#contact"
+            - link "Paneli kəşf et" [ref=f8e66] [cursor=pointer]:
+              - /url: "#how"
+          - list [ref=f8e67]:
+            - listitem [ref=f8e68]:
+              - generic [ref=f8e71]: 24/7 təbii Azərbaycan dili
+            - listitem [ref=f8e72]:
+              - generic [ref=f8e75]: Canlı boş yer yoxlaması
+            - listitem [ref=f8e76]:
+              - generic [ref=f8e79]: Mərkəzə özəl təcrid olunmuş baza
+        - generic [ref=f8e81]:
+          - tablist "Canlı nümunə" [ref=f8e82]:
+            - tab "Mesajlar" [selected] [ref=f8e83]
+            - tab "Satış lövhəsi" [ref=f8e87]
+            - tab "Rezervasiya" [ref=f8e93]
+            - tab "Analitika" [ref=f8e98]
+          - generic [ref=f8e103]:
+            - complementary [aria-hidden] [ref=f8e104]:
+              - generic [ref=f8e105]: panelim.az
+              - generic [ref=f8e111]: İcmal
+              - generic [ref=f8e118]: Gələn mesajlar
+              - generic [ref=f8e122]: Satış qıfı
+              - generic [ref=f8e128]: Sınaq dərsləri
+              - generic [ref=f8e133]: Hesabatlar
+              - generic [ref=f8e137]: "Menecer: Leyla"
+            - generic [ref=f8e140]:
+              - generic [ref=f8e141]:
+                - strong [ref=f8e142]: Mesajlar
+                - generic [ref=f8e143]:
+                  - generic [ref=f8e144]: "Menecer: Leyla"
+                  - generic [ref=f8e145]: Canlı nümunə
+              - tabpanel "Mesajlar" [ref=f8e146]:
+                - generic [ref=f8e147]:
+                  - generic [ref=f8e148]:
+                    - generic [ref=f8e149]:
+                      - generic [ref=f8e150]: Bütün kanallar
+                      - generic [ref=f8e151]: 2 yeni
+                    - generic [ref=f8e152]:
+                      - generic [ref=f8e153]: A
+                      - generic [ref=f8e159]:
+                        - strong [ref=f8e160]: Aysel Məmmədova
+                        - generic [ref=f8e161]: WhatsApp
+                    - generic [ref=f8e162]:
+                      - generic [ref=f8e163]: E
+                      - generic [ref=f8e171]:
+                        - strong [ref=f8e172]: Elvin Əliyev
+                        - generic [ref=f8e173]: Instagram
+                    - generic [ref=f8e174]:
+                      - generic [ref=f8e175]: "N"
+                      - generic [ref=f8e181]:
+                        - strong [ref=f8e182]: Nigar Həsənli
+                        - generic [ref=f8e183]: Telegram
+                  - generic [ref=f8e184]:
+                    - generic [ref=f8e185]:
+                      - generic [ref=f8e189]:
+                        - strong [ref=f8e190]: Aysel Məmmədova
+                        - generic [ref=f8e191]: WhatsApp · Şənbə, 11:00
+                      - generic [ref=f8e192]: IELTS sınaq dərsi
+                    - generic [ref=f8e193]:
+                      - paragraph [ref=f8e194]: Salam! Şənbə günü saat 11:00 IELTS sınaq dərsinə boş yer var?
+                      - paragraph [ref=f8e195]: Salam, Aysel! Bəli, Şənbə 11:00 qrupunda 2 yer qalıb. Sizin adınıza qeydiyyat edim?
+      - generic [ref=f8e197]:
+        - paragraph [ref=f8e198]: Fərqli xidmət sahələri üçün hazır iş axınları
+        - generic [ref=f8e199]:
+          - generic [ref=f8e200]: Dil Mərkəzləri
+          - generic [ref=f8e205]: Abituriyent Hazırlığı
+          - generic [ref=f8e210]: IT Akademiyalar
+          - generic [ref=f8e215]: Estetik Klinikalar
+          - generic [ref=f8e220]: Məsləhət Xidmətləri
+          - generic [ref=f8e225]: Onlayn Mağazalar
+        - link "İş axınlarına bax →" [ref=f8e232] [cursor=pointer]:
+          - /url: "#features"
+      - generic [ref=f8e234]:
+        - generic [ref=f8e235]:
+          - heading "Bütün satış işlərinizi bir yerdə idarə edin" [level=2] [ref=f8e236]
+          - paragraph [ref=f8e237]: İlk mesajdan ödənişə qədər komandanızın ehtiyac duyduğu dörd əsas modul.
+        - generic [ref=f8e238]:
+          - article [ref=f8e239]:
+            - generic [ref=f8e240]:
+              - generic [ref=f8e241]: Vahid qutu
+              - heading "AI ilə anında cavablar" [level=3] [ref=f8e242]
+              - paragraph [ref=f8e243]: WhatsApp, Instagram və Telegram yazışmaları tək paneldə toplanır. AI yalnız sizin təsdiqlədiyiniz qiymət və cədvəllə saniyələr içində cavab verir.
+              - link "Sınaq söhbətinə bax →" [ref=f8e244] [cursor=pointer]:
+                - /url: "#ai"
+            - generic [ref=f8e245]:
+              - img "Telefonda mesajlaşma" [ref=f8e248]
+              - generic [ref=f8e261]:
+                - generic [ref=f8e262]:
+                  - generic [ref=f8e263]: WhatsApp · 23:41
+                  - generic [ref=f8e268]: Təsdiqlənmiş cədvəldən oxundu
+                - generic [ref=f8e269]:
+                  - paragraph [ref=f8e270]: axsamınız xeyir ielts qrupu neciyedir
+                  - paragraph [ref=f8e271]: Axşamınız xeyir! IELTS qrupumuz aylıq 180 AZN-dir. Şənbə 11:00 sınaq dərsinə yer ayırım?
+          - article [ref=f8e272]:
+            - generic [ref=f8e273]:
+              - generic [ref=f8e274]: Satış lövhəsi
+              - heading "Hər müraciətin növbəti addımı aydın" [level=3] [ref=f8e275]
+              - paragraph [ref=f8e276]: Sahibsiz sorğuları bir kliklə götürün, mərhələlər üzrə irəlilədin, tapşırıq və daxili qeydləri eyni satış kartında saxlayın.
+              - link "Satış lövhəsini sına →" [ref=f8e277] [cursor=pointer]:
+                - /url: "#contact"
+            - generic [ref=f8e278]:
+              - img "Tədris mərkəzinin qəbul zonası" [ref=f8e281]
+              - generic [ref=f8e282]:
+                - generic [ref=f8e283]:
+                  - strong [ref=f8e284]: Yeni
+                  - generic [ref=f8e285]:
+                    - generic [ref=f8e286]: IELTS · Aysel M.
+                    - generic [ref=f8e287]: Götür
+                - generic [ref=f8e288]:
+                  - strong [ref=f8e289]: Sınaq yazılıb
+                  - generic [ref=f8e290]:
+                    - generic [ref=f8e291]: Alman dili · Murad K.
+                    - generic [ref=f8e292]: "Operator: Nərmin"
+          - article [ref=f8e293]:
+            - generic [ref=f8e294]:
+              - generic [ref=f8e295]: Sınaq cədvəli
+              - heading "Dolu qrup və təkrar qeydiyyata son" [level=3] [ref=f8e296]
+              - paragraph [ref=f8e297]: Qrup tutumu dolduqda sistem avtomatik bağlayır, eyni telefon nömrəsi ilə təkrar yazılmanı bloklayır və menecerə bildiriş göndərir.
+              - link "Cədvəl məntiqini gör →" [ref=f8e298] [cursor=pointer]:
+                - /url: "#contact"
+            - generic [ref=f8e299]:
+              - img "Planşetdə kurs cədvəli" [ref=f8e302]
+              - generic [ref=f8e303]:
+                - generic [ref=f8e304]:
+                  - strong [ref=f8e305]: IELTS · Şənbə 11:00
+                  - generic [ref=f8e306]: Son 1 boş yer aktivdir
+                - paragraph [ref=f8e307]: 4 / 5 yer tutulub
+          - article [ref=f8e310]:
+            - generic [ref=f8e311]:
+              - generic [ref=f8e312]: Analitika
+              - heading "Hansı kanalın satış gətirdiyini görün" [level=3] [ref=f8e313]
+              - paragraph [ref=f8e314]: Telegram, WhatsApp və Instagram reklamlarından gələn müraciətlərin neçəsinin sınağa və ödənişə çevrildiyini bir ekranda izləyin.
+              - link "Hesabatlara bax →" [ref=f8e315] [cursor=pointer]:
+                - /url: "#pricing"
+            - generic [ref=f8e316]:
+              - img "Tədris mərkəzinin rəhbəri planşetdə qeydiyyat hesabatına baxır" [ref=f8e319]
+              - generic [ref=f8e320]:
+                - generic [ref=f8e321]:
+                  - generic [ref=f8e322]:
+                    - generic [ref=f8e323]: Cavab sürəti
+                    - strong [ref=f8e324]: < 1 dəq
+                  - generic [ref=f8e325]:
+                    - generic [ref=f8e326]: Sınağa çevrilmə
+                    - strong [ref=f8e327]: 43%
+                - paragraph [ref=f8e334]: "Əsas mənbə: Instagram DM"
+      - generic [ref=f8e337]:
+        - generic [ref=f8e338]:
+          - paragraph [ref=f8e339]: panelim.az AI köməkçisi
+          - heading "Satış komandanızın yanında 24/7 işləyən köməkçi" [level=2] [ref=f8e340]
+          - paragraph [ref=f8e341]: "Məhdudiyyətləri siz təyin edirsiniz: AI yalnız təsdiqlədiyiniz məlumatı bölüşür, mürəkkəb sualı dərhal əməkdaşa ötürür."
+        - generic [ref=f8e342]:
+          - tablist "panelim.az AI köməkçisi" [ref=f8e343]:
+            - tab "Gecə-gündüz 24/7 cavab verin Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır." [selected] [ref=f8e344]:
+              - generic [ref=f8e345]: Gecə-gündüz 24/7 cavab verin
+              - generic [ref=f8e346]: Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır.
+            - tab "Yazı səhvlərini və danışıq dilini anlayır Latın və ya azərbaycanca qarışıq, qısaldılmış mesajları rahatlıqla oxuyub düzgün kursa yönləndirir." [ref=f8e347]:
+              - generic [ref=f8e348]: Yazı səhvlərini və danışıq dilini anlayır
+              - generic [ref=f8e349]: Latın və ya azərbaycanca qarışıq, qısaldılmış mesajları rahatlıqla oxuyub düzgün kursa yönləndirir.
+            - tab "Avtomatik sınaq dərsinə yazır Ad və telefon nömrəsini toplayır, boş yeri yoxlayıb yer ayırır və satış kartını açır." [ref=f8e350]:
+              - generic [ref=f8e351]: Avtomatik sınaq dərsinə yazır
+              - generic [ref=f8e352]: Ad və telefon nömrəsini toplayır, boş yeri yoxlayıb yer ayırır və satış kartını açır.
+            - tab "Lazım olanda menecerə ötürür Endirim, xüsusi proqram və ya şikayət olduqda AI dayanır və komandanıza dərhal xəbər verir." [ref=f8e353]:
+              - generic [ref=f8e354]: Lazım olanda menecerə ötürür
+              - generic [ref=f8e355]: Endirim, xüsusi proqram və ya şikayət olduqda AI dayanır və komandanıza dərhal xəbər verir.
+            - link "Demo ilə yoxla" [ref=f8e357] [cursor=pointer]:
+              - /url: "#contact"
+          - tabpanel "Gecə-gündüz 24/7 cavab verin Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır." [ref=f8e359]:
+            - generic [ref=f8e374]:
+              - generic [ref=f8e375]:
+                - generic [ref=f8e381]:
+                  - strong [ref=f8e382]: Tədris Mərkəzi
+                  - generic [ref=f8e383]: Təsdiqlənmiş köməkçi
+                - generic [ref=f8e384]: Aktiv ssenari
+              - generic [ref=f8e385]:
+                - generic [ref=f8e386]: Salam, uşaq üçün riyaziyyat kursu var?
+                - generic [ref=f8e387]: Salam! Bəli, 7–9-cu siniflər üçün qruplarımız var. Cümə axşamı 17:00 sınaq dərsinə yazım?
+              - generic [ref=f8e388]: AI cavab verdi · 12 san
+      - generic [ref=f8e392]:
+        - generic [ref=f8e393]:
+          - heading "Gündəlik işdə nəyi dəyişir?" [level=2] [ref=f8e394]
+          - paragraph [ref=f8e395]: Pilot tətbiqlər üçün nəzərdə tutulan əsas nəticələr və iş axını nümunələri.
+        - generic [ref=f8e396]:
+          - article [ref=f8e397]:
+            - blockquote [ref=f8e398]:
+              - text: Gecə saatlarında gələn sorğulara səhər cavab veriləndə
+              - mark [ref=f8e399]: ilk 5 dəqiqədə cavab alan rəqib qazanırdı
+              - text: . İndi sınaq yeri elə həmin gecə ayrılır.
+            - generic [ref=f8e400]:
+              - img "Tədris mərkəzinin qəbul zonası" [ref=f8e402]
+              - generic [ref=f8e403]:
+                - strong [ref=f8e404]: Dil və İmtahan Mərkəzi
+                - generic [ref=f8e405]: Pilot ssenarisi · Sürətli ilkin cavab
+          - article [ref=f8e406]:
+            - blockquote [ref=f8e407]:
+              - text: WhatsApp, Instagram və Telegram ayrı telefonlarda qalırdı. Bütün kanalları birləşdirərək
+              - mark [ref=f8e408]: heç bir müraciət cavabsız itmir
+              - text: və operator növbəsi rahat işləyir.
+            - generic [ref=f8e409]:
+              - img "Telefonda mesajlaşma" [ref=f8e411]
+              - generic [ref=f8e412]:
+                - strong [ref=f8e413]: Qəbul və Koordinatorlar
+                - generic [ref=f8e414]: Pilot ssenarisi · Vahid inbox
+          - article [ref=f8e415]:
+            - blockquote [ref=f8e416]:
+              - text: Excel cədvəlləri əvəzinə satış kartı və avtomatik tutum yoxlaması ilə
+              - mark [ref=f8e417]: dolu qrupa səhv qeydiyyatın qarşısı alınır
+              - text: və menecer yalnız hazır namizədlə danışır.
+            - generic [ref=f8e418]:
+              - img "Tədris mərkəzinin rəhbəri planşetdə qeydiyyat hesabatına baxır" [ref=f8e420]
+              - generic [ref=f8e421]:
+                - strong [ref=f8e422]: Mərkəz Rəhbərliyi
+                - generic [ref=f8e423]: Pilot ssenarisi · Dəqiq cədvəl nəzarəti
+        - link "Öz mərkəzinizdə sınayın" [ref=f8e425] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=f8e427]:
+        - generic [ref=f8e428]:
+          - heading "Mərkəzinizə uyğun planı seçin" [level=2] [ref=f8e429]
+          - paragraph [ref=f8e430]: Bütün planlar pilot müddətində mərkəzinizin kanal sayı və komanda ölçüsünə görə dəqiqləşdirilir.
+        - generic [ref=f8e431]:
+          - group "Mərkəzinizə uyğun planı seçin" [ref=f8e432]:
+            - button "Aylıq" [ref=f8e433]
+            - button "6 aylıq" [pressed] [ref=f8e434]
+            - button "İllik" [ref=f8e435]
+          - generic [ref=f8e436]: Sabit pilot dövrü
+        - generic [ref=f8e437]:
+          - article [ref=f8e438]:
+            - heading "Başlanğıc" [level=3] [ref=f8e439]
+            - paragraph [ref=f8e440]: Kiçik komandalar üçün Telegram + əsas satış lövhəsi
+            - generic [ref=f8e441]:
+              - strong [ref=f8e442]: 90 AZN
+              - generic [ref=f8e443]: / ay
+            - paragraph [ref=f8e444]:
+              - text: "Quraşdırma:"
+              - strong [ref=f8e445]: 350 AZN (birdəfəlik)
+            - list [ref=f8e446]:
+              - listitem [ref=f8e447]:
+                - generic [ref=f8e450]: 1 kanal (Telegram)
+              - listitem [ref=f8e451]:
+                - generic [ref=f8e454]: 3 komanda üzvü
+              - listitem [ref=f8e455]:
+                - generic [ref=f8e458]: Sınaq dərsi tutum nəzarəti
+            - link "Pilot üçün müraciət et" [ref=f8e459] [cursor=pointer]:
+              - /url: "#contact"
+          - article [ref=f8e460]:
+            - generic [ref=f8e461]: Ən populyar
+            - heading "İnkişaf" [level=3] [ref=f8e462]
+            - paragraph [ref=f8e463]: Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu
+            - generic [ref=f8e464]:
+              - strong [ref=f8e465]: 145 AZN
+              - generic [ref=f8e466]: / ay
+            - paragraph [ref=f8e467]:
+              - text: "Quraşdırma:"
+              - strong [ref=f8e468]: 350 AZN (birdəfəlik)
+            - list [ref=f8e469]:
+              - listitem [ref=f8e470]:
+                - generic [ref=f8e473]: Telegram, Instagram və WhatsApp
+              - listitem [ref=f8e474]:
+                - generic [ref=f8e477]: 8 komanda üzvü
+              - listitem [ref=f8e478]:
+                - generic [ref=f8e481]: Avtomatik sınaq qeydiyyatı
+            - link "Pilot üçün müraciət et" [ref=f8e482] [cursor=pointer]:
+              - /url: "#contact"
+          - article [ref=f8e483]:
+            - heading "Pro" [level=3] [ref=f8e484]
+            - paragraph [ref=f8e485]: Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar
+            - generic [ref=f8e486]:
+              - strong [ref=f8e487]: 215 AZN
+              - generic [ref=f8e488]: / ay
+            - paragraph [ref=f8e489]:
+              - text: "Quraşdırma:"
+              - strong [ref=f8e490]: 350 AZN (birdəfəlik)
+            - list [ref=f8e491]:
+              - listitem [ref=f8e492]:
+                - generic [ref=f8e495]: Bütün kanallar + xüsusi sahələr
+              - listitem [ref=f8e496]:
+                - generic [ref=f8e499]: Limitsiz operator və rol icazəsi
+              - listitem [ref=f8e500]:
+                - generic [ref=f8e503]: Tam analitika və n8n inteqrasiyası
+            - link "Demo ilə başla" [ref=f8e504] [cursor=pointer]:
+              - /url: "#contact"
+          - article [ref=f8e505]:
+            - heading "Korporativ" [level=3] [ref=f8e506]
+            - paragraph [ref=f8e507]: Fərdi tələblər, xüsusi server və SLA dəstəyi
+            - strong [ref=f8e509]: Fərdi
+            - list [ref=f8e510]:
+              - listitem [ref=f8e511]:
+                - generic [ref=f8e514]: Çoxfiliallı mərkəz strukturu
+              - listitem [ref=f8e515]:
+                - generic [ref=f8e518]: Xüsusi API və webhook quraşdırılması
+              - listitem [ref=f8e519]:
+                - generic [ref=f8e522]: Birbaşa mühəndis dəstəyi
+            - link "Bizimlə əlaqə saxlayın" [ref=f8e523] [cursor=pointer]:
+              - /url: "#contact"
+        - paragraph [ref=f8e524]: "Qeyd: Göstərilən AZN tarifləri ilkin pilot təklifidir və demo zamanı təsdiqlənir. WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır."
+      - generic [ref=f8e526]:
+        - heading "Tez-tez verilən suallar" [level=2] [ref=f8e528]
+        - generic [ref=f8e529]:
+          - group [ref=f8e530]:
+            - generic "Süni intellekt qiymət və saat uydurmur? +" [ref=f8e531] [cursor=pointer]
+          - group [ref=f8e532]:
+            - generic "Hansı kanallarla işləyir? +" [ref=f8e533] [cursor=pointer]
+          - group [ref=f8e534]:
+            - generic "Müştərilərimin məlumatı necə qorunur? +" [ref=f8e535] [cursor=pointer]
+          - group [ref=f8e536]:
+            - generic "Pilot necə başlayır? +" [ref=f8e537] [cursor=pointer]
+          - group [ref=f8e538]:
+            - generic "Menecer nə vaxt işə qarışır? +" [ref=f8e539] [cursor=pointer]
+      - generic [ref=f8e541]:
+        - generic [ref=f8e542]:
+          - heading "İlk mesajdan ödənişə qədər nəzarəti ələ alın" [level=2] [ref=f8e543]
+          - paragraph [ref=f8e544]: Mərkəzinizdən bir sorğu nümunəsi gətirin, 15 dəqiqəlik demoda panelin sizin işinizdə necə işlədiyini göstərək.
+          - link "Panelə giriş" [ref=f8e546] [cursor=pointer]:
+            - /url: /az/panel
+        - generic [ref=f8e548]:
+          - generic [ref=f8e549]:
+            - generic [ref=f8e550]: Adınız
+            - textbox "Adınız" [ref=f8e551]:
+              - /placeholder: məs. Aygün Məmmədova
+          - generic [ref=f8e552]:
+            - generic [ref=f8e553]: Telefon (məs. 050 123 45 67)
+            - textbox "Telefon (məs. 050 123 45 67)" [ref=f8e554]:
+              - /placeholder: 050 123 45 67
+          - button "Demo istə" [ref=f8e555] [cursor=pointer]
+          - status [ref=f8e556]: Məlumatlarınız yalnız sizinlə əlaqə üçün istifadə olunur.
+    - contentinfo [ref=f8e557]:
+      - generic [ref=f8e558]:
+        - generic [ref=f8e559]:
+          - generic [ref=f8e560]:
+            - link "panelim.az" [ref=f8e561] [cursor=pointer]:
+              - /url: /az
+            - paragraph [ref=f8e567]: Azərbaycan biznesləri üçün mesajlaşma və satış CRM-i.
+          - generic [ref=f8e568]:
+            - generic [ref=f8e569]:
+              - heading "Məhsul" [level=4] [ref=f8e570]
+              - list [ref=f8e571]:
+                - listitem [ref=f8e572]:
+                  - link "Ümumi baxış" [ref=f8e573] [cursor=pointer]:
+                    - /url: /az/product
+                - listitem [ref=f8e574]:
+                  - link "Satış qıfı (Kanban)" [ref=f8e575] [cursor=pointer]:
+                    - /url: /az/pipeline
+                - listitem [ref=f8e576]:
+                  - link "Vahid mesaj qutusu" [ref=f8e577] [cursor=pointer]:
+                    - /url: /az/inbox
+                - listitem [ref=f8e578]:
+                  - link "AI satış köməkçisi" [ref=f8e579] [cursor=pointer]:
+                    - /url: /az/ai
+                - listitem [ref=f8e580]:
+                  - link "Rezervasiya və cədvəl" [ref=f8e581] [cursor=pointer]:
+                    - /url: /az/booking
+            - generic [ref=f8e582]:
+              - heading "Kanallar və Alətlər" [level=4] [ref=f8e583]
+              - list [ref=f8e584]:
+                - listitem [ref=f8e585]:
+                  - link "WhatsApp Cloud API kanalı" [ref=f8e586] [cursor=pointer]:
+                    - /url: /az/channels/whatsapp
+                - listitem [ref=f8e587]:
+                  - link "Instagram Direct mesajları" [ref=f8e588] [cursor=pointer]:
+                    - /url: /az/channels/instagram
+                - listitem [ref=f8e589]:
+                  - link "Telegram Bot bağlantısı" [ref=f8e590] [cursor=pointer]:
+                    - /url: /az/channels/telegram
+                - listitem [ref=f8e591]:
+                  - link "REST Webhook və n8n" [ref=f8e592] [cursor=pointer]:
+                    - /url: /az/channels/webhook-api
+                - listitem [ref=f8e593]:
+                  - link "Pulsuz WhatsApp alətləri" [ref=f8e594] [cursor=pointer]:
+                    - /url: /az/tools
+            - generic [ref=f8e595]:
+              - heading "Resurslar" [level=4] [ref=f8e596]
+              - list [ref=f8e597]:
+                - listitem [ref=f8e598]:
+                  - link "Qiymət və planlar" [ref=f8e599] [cursor=pointer]:
+                    - /url: /az/pricing
+                - listitem [ref=f8e600]:
+                  - link "Fitnes nümunə ssenarisi" [ref=f8e601] [cursor=pointer]:
+                    - /url: /az/scenarios/fitness-centers
+                - listitem [ref=f8e602]:
+                  - link "Bələdçilər və bloq" [ref=f8e603] [cursor=pointer]:
+                    - /url: /az/blog
+            - generic [ref=f8e604]:
+              - heading "Əlaqə və Hüquqi" [level=4] [ref=f8e605]
+              - list [ref=f8e606]:
+                - listitem [ref=f8e607]:
+                  - link "İstifadə şərtləri" [ref=f8e608] [cursor=pointer]:
+                    - /url: /az/legal/terms
+                - listitem [ref=f8e609]:
+                  - link "Məxfilik siyasəti" [ref=f8e610] [cursor=pointer]:
+                    - /url: /az/legal/privacy
+                - listitem [ref=f8e611]:
+                  - link "İşçi paneli girişi" [ref=f8e612] [cursor=pointer]:
+                    - /url: /az/login
+        - generic [ref=f8e613]:
+          - paragraph [ref=f8e614]: © 2026 panelim.az. Bütün hüquqlar qorunur.
+          - link "English" [ref=f8e615] [cursor=pointer]:
+            - /url: /en
+  - generic [ref=f8e620] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f8e621]
+    - generic [ref=f8e625]:
+      - button "Open issues overlay" [ref=f8e626]:
+        - generic [ref=f8e627]:
+          - generic [aria-hidden] [ref=f8e628]: "-1"
+          - generic [ref=f8e629]: "0"
+      - button "Collapse issues badge" [ref=f8e630]
+  - alert [ref=f8e633]

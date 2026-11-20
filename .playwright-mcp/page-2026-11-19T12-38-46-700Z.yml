@@ -1,0 +1,114 @@
+- generic [active] [ref=f51e1]:
+  - complementary [ref=f51e3]:
+    - button [ref=f51e9] [cursor=pointer]
+    - separator [ref=f51e14]
+    - list [ref=f51e20]:
+      - listitem [ref=f51e22] [cursor=pointer]:
+        - link "Home" [ref=f51e24]:
+          - /url: /home/
+      - listitem [ref=f51e29]:
+        - link "Communication" [ref=f51e31] [cursor=pointer]:
+          - /url: /chats/
+      - listitem [ref=f51e40]:
+        - link "Pipelines" [ref=f51e42] [cursor=pointer]:
+          - /url: /leads/pipeline/14795311
+      - listitem [ref=f51e52] [cursor=pointer]:
+        - link "Calendar" [ref=f51e54]:
+          - /url: /todo
+      - listitem [ref=f51e60] [cursor=pointer]:
+        - link "Segments Beta" [ref=f51e62]:
+          - /url: /segments/
+          - generic [ref=f51e68]: Segments
+          - generic [ref=f51e69]: Beta
+      - listitem [ref=f51e74]:
+        - link "Lists" [ref=f51e76] [cursor=pointer]:
+          - /url: /contacts/list/contacts
+      - listitem [ref=f51e86] [cursor=pointer]:
+        - link "AI agent" [ref=f51e88]:
+          - /url: /settings/ai-agent/
+      - listitem [ref=f51e95]:
+        - link "Automations" [ref=f51e97] [cursor=pointer]:
+          - /url: /chats/tools/bots/
+      - listitem [ref=f51e106]:
+        - link "Insights" [ref=f51e108] [cursor=pointer]:
+          - /url: /dashboard
+    - list [ref=f51e119]:
+      - listitem [ref=f51e121] [cursor=pointer]:
+        - link "Settings" [ref=f51e123]:
+          - /url: /settings/profile/
+      - listitem [ref=f51e129]:
+        - link "Help" [ref=f51e131] [cursor=pointer]:
+          - /url: /settings/ai
+      - listitem [ref=f51e141] [cursor=pointer]:
+        - link "Notification center" [ref=f51e143]:
+          - /url: /settings/profile/notifications
+    - separator [ref=f51e148]
+    - button "Avatar adem novruzlu mototiv843" [ref=f51e150] [cursor=pointer]:
+      - img "Avatar" [ref=f51e153]
+      - generic [ref=f51e154]:
+        - generic [ref=f51e155]: adem novruzlu
+        - generic [ref=f51e156]: mototiv843
+  - generic:
+    - generic [ref=f51e159]:
+      - generic [ref=f51e160]:
+        - textbox [ref=f51e168]:
+          - /placeholder: Search
+        - generic [ref=f51e174]:
+          - generic [ref=f51e176]:
+            - textbox "Filter" [disabled] [ref=f51e178] [cursor=pointer]
+            - generic [ref=f51e181]: "Total: 0"
+            - button "More" [ref=f51e185] [cursor=pointer]
+          - generic [ref=f51e191]:
+            - generic [ref=f51e195] [cursor=pointer]:
+              - generic [ref=f51e196]: Add channels
+              - generic [ref=f51e197]: Capture leads from WhatsApp & more!
+            - generic [ref=f51e198]: No conversations found
+      - generic [ref=f51e205]:
+        - paragraph [ref=f51e206]: Connect your channels to receive and reply to all messages in one place
+        - generic [ref=f51e207]:
+          - button "Connect WhatsApp" [ref=f51e208] [cursor=pointer]
+          - button "Connect TikTok" [ref=f51e213] [cursor=pointer]
+          - button "Connect Instagram" [ref=f51e218] [cursor=pointer]
+          - button "Connect Facebook" [ref=f51e223] [cursor=pointer]
+          - button "See all channels" [ref=f51e228] [cursor=pointer]
+        - paragraph [ref=f51e231]:
+          - link "Learn how to manage chats" [ref=f51e232] [cursor=pointer]:
+            - /url: https://www.kommo.com/support/crm/chat-section/
+    - generic [ref=f51e235]:
+      - button "Copilot" [ref=f51e236]
+      - generic [ref=f51e247]:
+        - generic [ref=f51e249]:
+          - generic [ref=f51e250]:
+            - generic [ref=f51e253]: Kommo Copilot
+            - button "New chat" [ref=f51e254] [cursor=pointer]
+          - generic [ref=f51e259]:
+            - button [ref=f51e260] [cursor=pointer]
+            - button [ref=f51e265] [cursor=pointer]
+        - button "New chat" [ref=f51e270]
+        - button "Assistant mode" [ref=f51e301] [cursor=pointer]
+        - generic [ref=f51e307]:
+          - generic [ref=f51e308]:
+            - textbox "Ask Kommo Copilot" [ref=f51e311]
+            - button "Send" [disabled] [ref=f51e313]
+          - generic [ref=f51e318]: AI-generated content may be inaccurate
+  - generic [ref=f51e325]:
+    - heading "Let's make Kommo yours" [level=2] [ref=f51e326]
+    - generic [ref=f51e327]:
+      - generic [ref=f51e328]:
+        - generic [ref=f51e330]:
+          - generic [ref=f51e331]: Select your avatar
+          - generic [ref=f51e333]:
+            - button "Choose File" [ref=f51e338] [cursor=pointer]
+            - button [ref=f51e339] [cursor=pointer]
+            - button [ref=f51e342] [cursor=pointer]
+            - button [ref=f51e345] [cursor=pointer]
+            - button [ref=f51e348] [cursor=pointer]
+            - button [ref=f51e351] [cursor=pointer]
+        - generic [ref=f51e354]:
+          - generic [ref=f51e355]: Select your support preference
+          - button "WhatsApp" [ref=f51e357] [cursor=pointer]
+          - generic [ref=f51e367]: Phone number
+          - generic [ref=f51e368]:
+            - textbox "Phone number" [ref=f51e369]: "+994"
+            - 'button "Azerbaijan: + 994" [ref=f51e371]'
+      - button "Next" [ref=f51e376] [cursor=pointer]

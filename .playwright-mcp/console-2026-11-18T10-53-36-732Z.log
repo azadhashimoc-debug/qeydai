@@ -1,0 +1,647 @@
+[     463ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[     476ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[     561ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[     721ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[     722ms] [LOG] [Fast Refresh] done in 105ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[     961ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[    1115ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  160779ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  160783ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  160810ms] [LOG] [Fast Refresh] done in 52ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161020ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161193ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161198ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  161235ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161472ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161493ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  161494ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  161637ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  171130ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171132ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171146ms] [LOG] [Fast Refresh] done in 99ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171211ms] [LOG] [Fast Refresh] done in 99ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171568ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171571ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  171604ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171816ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  171828ms] [LOG] [Fast Refresh] done in 116ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  172020ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  183192ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  183207ms] [LOG] [Fast Refresh] done in 22ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  183267ms] [LOG] [Fast Refresh] done in 22ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  187890ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  187896ms] [LOG] [Fast Refresh] done in 61ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  187953ms] [LOG] [Fast Refresh] done in 61ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194163ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194165ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194192ms] [LOG] [Fast Refresh] done in 36ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194404ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194630ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194635ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  194672ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194876ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  194905ms] [LOG] [Fast Refresh] done in 140ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  195085ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  218296ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218301ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218323ms] [LOG] [Fast Refresh] done in 72ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218366ms] [LOG] [Fast Refresh] done in 72ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218710ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218712ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  218745ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  218885ms] ReferenceError: PANEL_COOKIE_NAME is not defined
+    at PanelShell.useEffect.checkSession (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8168:92)
+    at Array.some (<anonymous>)
+    at checkSession (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8167:97)
+    at PanelShell.useEffect (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8199:18)
+    at Object.react_stack_bottom_frame (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:15063:22)
+    at runWithFiberInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:777:74)
+    at commitHookEffectListMount (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:7113:167)
+    at commitHookPassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:7148:60)
+    at reconnectPassiveEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8662:17)
+    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8649:13)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8621:970)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8613:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8633:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8633:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8576:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8633:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8633:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8633:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8571:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8621:783)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+    at commitPassiveMountOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8605:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8559:316)
+[  218885ms] ReferenceError: PANEL_COOKIE_NAME is not defined
+    at PanelShell.useEffect.checkSession (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8168:92)
+    at Array.some (<anonymous>)
+    at checkSession (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8167:97)
+    at PanelShell.useEffect (http://localhost:3001/_next/static/chunks/src_components_02au0e_u1bd31._.js:8199:18)
+    at Object.react_stack_bottom_frame (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:15063:22)
+    at runWithFiberInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:777:74)
+    at commitHookEffectListMount (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:7113:167)
+    at commitHookPassiveMountEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:7148:60)
+    at reconnectPassiveEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8662:17)
+    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8649:13)
+    at reconnectPassiveEffects (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:8668:443)
+    at doubleInvokeEffectsOnFiber (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:10002:189)
+    at runWithFiberInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:777:131)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:308)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at runWithFiberInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:777:131)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:410)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+    at recursivelyTraverseAndDoubleInvokeEffectsInDEV (http://localhost:3001/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js:9995:147)
+[  218977ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  219152ms] [LOG] [Fast Refresh] done in 275ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242007ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242012ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242032ms] [LOG] [Fast Refresh] done in 37ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242248ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242472ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242476ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  242511ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242716ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242739ms] [LOG] [Fast Refresh] done in 130ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  296738ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  296756ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  301385ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  301419ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  312815ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  312912ms] [LOG] [Fast Refresh] done in 208ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  318529ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  318588ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  318765ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  318778ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  319016ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  319018ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  319268ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  319270ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  319510ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  319527ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  319713ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  319757ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  319951ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  319964ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  320156ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  320201ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  320354ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  320400ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  320528ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  320589ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  320769ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  320787ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  320994ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  320996ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  321230ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  321244ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  321421ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  321481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  321637ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  321666ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  321857ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  321883ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322075ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  322105ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322314ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  322321ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322481ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  322558ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322640ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  322717ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322815ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  322891ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  322972ms] [ERROR] ./src/app/api/analytics/route.ts:21:10
+Error: the name `clientKey` is defined multiple times
+  19 |   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
+  20 |
+> 21 | function clientKey(req: Request) {
+     |          ^^^^^^^^^
+  22 |   const real = req.headers.get("x-real-ip")?.trim();
+  23 |   if (real) return real;
+  24 |   const hops = req.headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(...
+
+Ecmascript file had an error @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  323065ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  323206ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  323256ms] [LOG] [Fast Refresh] done in 163ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  619660ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  619676ms] [LOG] [Fast Refresh] done in 127ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  776533ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  776534ms] [LOG] [Fast Refresh] done in 111ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877269ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877282ms] [LOG] [Fast Refresh] done in 17ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877330ms] [LOG] [Fast Refresh] done in 17ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877540ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877544ms] [LOG] [Fast Refresh] done in 111ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877794ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  877801ms] [LOG] [Fast Refresh] done in 111ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1513920ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1514150ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1514170ms] [LOG] [Fast Refresh] done in 332ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1514427ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1515342ms] [LOG] [Fast Refresh] done in 1024ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1515556ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1516448ms] [LOG] [Fast Refresh] done in 993ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1518063ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1518075ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1518162ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1518698ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1520735ms] [LOG] [Fast Refresh] done in 2146ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1521149ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1522299ms] [LOG] [Fast Refresh] done in 1252ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1522577ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1523369ms] [LOG] [Fast Refresh] done in 896ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1523644ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1524313ms] [LOG] [Fast Refresh] done in 782ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1524561ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1525189ms] [LOG] [Fast Refresh] done in 732ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1525432ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1525959ms] [LOG] [Fast Refresh] done in 631ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1526211ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1527084ms] [LOG] [Fast Refresh] done in 974ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1527350ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1528166ms] [LOG] [Fast Refresh] done in 929ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1528410ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1529281ms] [LOG] [Fast Refresh] done in 974ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1529522ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1529978ms] [LOG] [Fast Refresh] done in 561ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1530229ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1530912ms] [LOG] [Fast Refresh] done in 790ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1531163ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1531816ms] [LOG] [Fast Refresh] done in 759ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1532082ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1532784ms] [LOG] [Fast Refresh] done in 816ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1533078ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1533523ms] [LOG] [Fast Refresh] done in 559ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1533787ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1534439ms] [LOG] [Fast Refresh] done in 758ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1534707ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1535140ms] [LOG] [Fast Refresh] done in 535ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1535396ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1535715ms] [LOG] [Fast Refresh] done in 430ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1535954ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1536265ms] [LOG] [Fast Refresh] done in 413ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1536499ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1536773ms] [LOG] [Fast Refresh] done in 376ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1537026ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1537473ms] [LOG] [Fast Refresh] done in 550ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1537721ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1538126ms] [LOG] [Fast Refresh] done in 505ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1538402ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1538930ms] [LOG] [Fast Refresh] done in 642ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1539167ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1539754ms] [LOG] [Fast Refresh] done in 695ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1540015ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1540449ms] [LOG] [Fast Refresh] done in 542ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1540702ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1541082ms] [LOG] [Fast Refresh] done in 488ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1541336ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1541694ms] [LOG] [Fast Refresh] done in 466ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1541951ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1542422ms] [LOG] [Fast Refresh] done in 587ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1542681ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1543137ms] [LOG] [Fast Refresh] done in 567ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1543384ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1544019ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1544033ms] [LOG] [Fast Refresh] done in 743ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1544321ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1545623ms] [LOG] [Fast Refresh] done in 1402ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1547060ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1547065ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1547146ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1547411ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1549224ms] [LOG] [Fast Refresh] done in 1928ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1549505ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1550339ms] [LOG] [Fast Refresh] done in 936ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1558031ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1558033ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1558066ms] [LOG] [Fast Refresh] done in 86ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1558902ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1558910ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1558957ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1559148ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1559170ms] [LOG] [Fast Refresh] done in 124ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1563988ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1563990ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564022ms] [LOG] [Fast Refresh] done in 91ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564239ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564257ms] [LOG] [Fast Refresh] done in 127ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564577ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564582ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1564638ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564825ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1564862ms] [LOG] [Fast Refresh] done in 142ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1574205ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1574239ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1574482ms] [LOG] [Fast Refresh] done in 141ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1575292ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1575297ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1575355ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1575570ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1575615ms] [LOG] [Fast Refresh] done in 151ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700223ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700227ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700247ms] [LOG] [Fast Refresh] done in 96ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700879ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 1700889ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 1700957ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761

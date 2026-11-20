@@ -69,7 +69,7 @@ export default async function BlogPostPage({
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={`${s.blogHub.publishedAt} ${post.date} · ${post.readTime} ${s.blogHub.readingTime}`}
+          badge={`${post.category} · ${post.readTime}`}
           title={post.title}
           subtitle={post.excerpt}
           primaryCta={{ href: `/${locale}/demo`, label: s.common.bookDemo }}
@@ -81,7 +81,7 @@ export default async function BlogPostPage({
         <section className="pm-section">
           <div className="pm-wrap">
             <article className="pm-article-body">
-              {post.content.map((paragraph) => (
+              {post.body.split("\n\n").map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
               <div style={{ marginTop: 12 }}>

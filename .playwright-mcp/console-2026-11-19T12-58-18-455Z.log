@@ -1,0 +1,11 @@
+[    4374ms] [WARNING] [TikTok Pixel] - Invalid pixel ID
+Issue: The pixel ID is invalid. This could prevent your pixel from receiving data.
+Suggestion: Please go to Events Manager and find the correct pixel ID. @ https://analytics.tiktok.com/i18n/pixel/static/main.MTUyMzg1YjAxMA.js:1
+[    4471ms] [WARNING] [TikTok Pixel] - Invalid pixel ID
+Issue: The pixel ID is invalid. This could prevent your pixel from receiving data.
+Suggestion: Please go to Events Manager and find the correct pixel ID. @ https://cfcdn.kommo.com/frontend/build/52878.5be6bf4d15c888c0.js:476
+[    5154ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://mototiv843.kommo.com/leads/pipeline/?skip_filter=Y:1
+[   64582ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('https://mototiv843.kommo.com'). @ https://www.youtube.com/s/player/983e9c18/www-widgetapi.vflset/www-widgetapi.js:164
+[   64756ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://mototiv843.kommo.com/ajax/v4/feedback/survey:1
+[   64758ms] [ERROR] {readyState: 4, getResponseHeader: , getAllResponseHeaders: , setRequestHeader: , overrideMimeType: } @ https://cfcdn.kommo.com/frontend/build/52878.5be6bf4d15c888c0.js:476
+[   65015ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ :1

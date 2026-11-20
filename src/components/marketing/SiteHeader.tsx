@@ -29,6 +29,8 @@ export function SiteHeader({
   const other: Locale = lang === "en" ? "az" : "en";
   const switchHref = mode === "landing" ? `/${other}` : `/${other}${routeSuffix}`;
   const demoHref = mode === "landing" ? "#contact" : `/${lang}/demo`;
+  const demoLabel = mode === "landing" ? subNav.actions.demo : nav.demo;
+  const switchLabel = other === "en" ? "English" : "Azərbaycan dili";
 
   const productItems = [
     ...(mode === "landing"
@@ -75,7 +77,7 @@ export function SiteHeader({
       : [{ href: `/${lang}/pricing`, label: subNav.resources.pricingTitle }];
 
   return (
-    <header className="pm-header">
+    <header className={mode === "landing" ? "pm-header pm-header--landing" : "pm-header"}>
       <nav className="pm-wrap pm-nav" aria-label={a11y.mainNav}>
         <Link className="pm-brand" href={`/${lang}`} aria-label={brand}>
           <LogoMark size={30} />
@@ -100,28 +102,38 @@ export function SiteHeader({
             href={switchHref}
             hrefLang={other}
             data-track-lang={other}
-            className="pm-lang-pill"
+            className={mode === "landing" ? "pm-nav-language" : "pm-lang-pill"}
+            aria-label={mode === "landing" ? switchLabel : undefined}
+            title={mode === "landing" ? switchLabel : undefined}
           >
-            {other.toUpperCase()}
+            {mode === "landing" ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                <circle cx="12" cy="12" r="9.5" />
+                <ellipse cx="12" cy="12" rx="4" ry="9.5" />
+                <path d="M3.5 8.5h17M3.5 15.5h17" />
+              </svg>
+            ) : other.toUpperCase()}
           </Link>
 
+          {mode === "landing" && <span className="pm-nav-language-divider" aria-hidden="true" />}
+
           <div className="pm-nav-actions">
-          <a
-            href={demoHref}
-            data-track-cta="header"
-            className="pm-nav-globe"
-          >
-            <span className="pm-nav-globe-icon">🌐</span>
-            {nav.demo}
-          </a>
-          <span className="pm-nav-separator">|</span>
-          <Link className="pm-nav-signin" href={`/${lang}/login`}>
-            {subNav.actions.login}
-          </Link>
-          <Link className="pm-nav-create" href={`/${lang}/register`}>
-            {subNav.actions.register}
-          </Link>
-        </div>
+            <Link
+              href={demoHref}
+              data-track-cta="header"
+              className={mode === "landing" ? "pm-nav-demo" : "pm-nav-globe"}
+            >
+              {mode === "subpage" && <span className="pm-nav-globe-icon" aria-hidden="true">🌐</span>}
+              {demoLabel}
+            </Link>
+            {mode === "subpage" && <span className="pm-nav-separator" aria-hidden="true">|</span>}
+            <Link className="pm-nav-signin" href={`/${lang}/login`}>
+              {subNav.actions.login}
+            </Link>
+            <Link className="pm-nav-create" href={`/${lang}/register`}>
+              {subNav.actions.register}
+            </Link>
+          </div>
 
           <HeaderMobileMenu
             groups={groups}
@@ -130,7 +142,7 @@ export function SiteHeader({
             loginHref={`/${lang}/login`}
             registerLabel={subNav.actions.register}
             registerHref={`/${lang}/register`}
-            demoLabel={nav.demo}
+            demoLabel={demoLabel}
             demoHref={demoHref}
             menuOpenLabel={nav.menuOpen}
             menuCloseLabel={nav.menuClose}

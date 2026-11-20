@@ -1,0 +1,2145 @@
+[      45ms] [ERROR] Connecting to 'https://bzr.openai.com/v1/sdk/events?pid=6QxCvswmCsbw6KjwzRQiGv&st=oaiq-web&sv=0.1.105&t=1795098154570&ec=3' violates the following Content Security Policy directive: "connect-src 'self' https://*.kommo.com https://connect.ok.ru https://appbroker.amocrm-dev.com https://appbroker.amostage.com https://appbroker.amocrm.com https://pagead2.googlesyndication.com gso.amocrm.com gso.kommo.com lc-en.amocrm.com lc-en.kommo.com https://pro.ip-api.com https://www.google-analytics.com https://google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googleadservices.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://www.google.com https://google.com https://www.googletagmanager.com https://www.facebook.com https://graph.facebook.com https://vk.com https://login.vk.com https://top-fwz1.mail.ru https://mc.yandex.ru https://mc.yandex.md https://cdn.userflow.com https://e.userflow.com https://js.userflow.com wss://e.userflow.com https://sales-demo-calendly.amostage.com https://sales-demo-calendly.kommo.com https://*.clarity.ms https://c.bing.com https://*.convertexperiments.com https://*.metrics.convertexperiments.com https://*.signals.convertexperiments.com https://analytics.tiktok.com https://analytics-ipv6.tiktokw.us https://ads.tiktok.com https://snap.licdn.com https://px.ads.linkedin.com https://px4.ads.linkedin.com https://p.adsymptotic.com https://cdn.linkedin.oribi.io https://gw.linkedin.oribi.io https://dc.ads.linkedin.com https://sjs.bizographics.com https://www.linkedin.com https://analytics.ahrefs.com https://bat.bing.com https://bat.bing.net". The action has been blocked. @ https://bzrcdn.openai.com/sdk/oaiq.min.js:1
+[    3727ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/az/select-account:1
+[    3969ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    3979ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[    4053ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    4154ms] [ERROR] %o
+
+%s TypeError: Cannot read properties of undefined (reading 'title')
+    at SelectAccountPage (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2050:24)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2029:105)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2548:29)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2507:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2614:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2801:13) The above error occurred in the <SelectAccountPage> component. It was handled by the <ErrorBoundaryHandler> error boundary. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_1ohys4wzsw--s._.js:17474
+[    4208ms] [ERROR] TypeError: Cannot read properties of undefined (reading 'title')
+    at SelectAccountPage (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2050:24)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2029:105)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2548:29)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2507:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2614:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2801:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[    4392ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    4516ms] [LOG] [Fast Refresh] done in 228ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    7590ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[   21634ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[   34691ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   34708ms] [LOG] [Fast Refresh] done in 4ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   38068ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[   57503ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   57558ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   57666ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   57731ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   57832ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   57895ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58001ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58065ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58134ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58233ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58282ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58365ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58399ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58498ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58517ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58631ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58633ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58733ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58767ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58853ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   58886ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   58984ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59002ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59113ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59134ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59217ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59365ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59383ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59512ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59599ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59666ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59749ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59833ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   59884ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   59980ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60079ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60117ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60197ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60198ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60317ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60428ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60446ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60546ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60568ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60573ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[   60650ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60800ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   60800ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   60918ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61032ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61050ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61149ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61168ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61266ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61297ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61382ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61383ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61516ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61615ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61648ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61748ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61749ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   61951ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   61966ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62082ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62197ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62216ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62314ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62363ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62430ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62448ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62580ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62666ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62699ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62799ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   62800ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   62934ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63046ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63080ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63165ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63183ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63282ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63298ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63397ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63432ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63507ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63550ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63649ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63651ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63763ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63782ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63882ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   63900ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   63996ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64035ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64113ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64182ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64252ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64332ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64400ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64450ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64532ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64665ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   64762ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64897ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   64898ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65099ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65118ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65233ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65330ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65366ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65462ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65482ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65581ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65647ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65698ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65801ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   65880ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   65982ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66046ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66133ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66227ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66268ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66364ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66379ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66490ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66492ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66591ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66715ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   66782ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   66983ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67013ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   67133ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67214ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   67301ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67364ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   67485ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67544ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   67681ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67732ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   67866ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   67913ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68032ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68094ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68164ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68262ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68329ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68382ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68482ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68562ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68629ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68728ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   68746ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68894ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   68963ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69067ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69146ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69214ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69299ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69348ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69431ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69432ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69583ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69679ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69749ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69813ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   69896ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   69981ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70128ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70131ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   70299ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   70364ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70463ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   70517ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70616ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   70680ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70765ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   70847ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   70932ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71013ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71147ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71163ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71330ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71380ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71497ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71563ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71664ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71730ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71833ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   71894ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   71980ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72061ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   72194ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72197ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   72364ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72416ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   72548ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72612ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   72714ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72794ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   72880ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   72949ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73048ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73099ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73182ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73281ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73315ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73410ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73411ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73575ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73629ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73730ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73797ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   73898ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   73962ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74064ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74116ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74225ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74297ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74430ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74447ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74579ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74663ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74762ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74800ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   74897ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   74996ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75129ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75130ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75248ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75363ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75400ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75465ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75516ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75626ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75628ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75728ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   75748ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75880ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   75977ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76028ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76112ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76131ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76230ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76249ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76347ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76379ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76464ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76592ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76609ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76730ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76814ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   76898ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   76960ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77050ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77130ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77197ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77281ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77348ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77416ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77497ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77566ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77628ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77728ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77864ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   77864ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   77995ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78096ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78175ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78230ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78349ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78399ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78497ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78582ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78712ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78715ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78845ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   78947ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   78982ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79080ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79098ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79197ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79213ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79314ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79347ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79415ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79450ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79562ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79581ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79664ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79728ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79797ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   79880ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   79947ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80029ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80110ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80260ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80261ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80415ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80495ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80578ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80644ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80745ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80812ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   80912ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   80965ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81049ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   81143ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81227ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   81281ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81379ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   81462ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81598ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81599ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   81742ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   81826ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81964ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   81981ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82128ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82196ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   82297ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82358ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   82462ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82526ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   82647ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82694ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   82775ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   82879ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   82949ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83011ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83128ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83180ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83262ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83360ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83394ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83494ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83496ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83608ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83627ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83726ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83798ms] [ERROR] ./src/app/[lang]/dictionaries/subpages-az.json:1037:3
+Error: Unable to make a module from invalid JSON
+  1035 |       "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda i...
+  1036 |     },
+> 1037 |   },
+       |   ^
+  1038 |   "selectAccount": {
+  1039 |     "badge": "İş sahəsini seçin",
+  1040 |     "title": "Tekrar hoşgeldin, {name}",
+
+trailing comma at line 1037 column 3 @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[   83830ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   83997ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   84004ms] [LOG] [Fast Refresh] done in 73ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   84052ms] [LOG] [Fast Refresh] done in 73ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   87259ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[   91329ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   91335ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   91394ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   91507ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[   94525ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1
+[  105242ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  105247ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  105290ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  105412ms] [LOG] [Fast Refresh] done in 16ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  108424ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_%5Blang%5D_marketing_css_10nm8bzlhlulv.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/az/select-account:1

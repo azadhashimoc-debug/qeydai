@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { completeWorkspaceSetup } from "./workspace-setup";
 import { existsSync, readFileSync } from "node:fs";
 import { E2E_ADMIN_KEYS, LEADS_FILE } from "../../playwright.config";
 
@@ -91,12 +92,24 @@ test("standalone login signs into panel and register page links back to login", 
   const project = info.project.name as ProjectName;
   await page.goto("/en/register");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  const email = page.locator('input[type="email"]');
+  const phone = page.locator('input[type="tel"]');
+  const create = page.locator('form button[type="submit"]');
+  await expect(phone).toBeHidden();
+  await email.fill("invalid-email");
+  await create.click();
+  await expect(phone).toBeHidden();
+  await email.fill("pilot@example.test");
+  await expect(phone).toBeHidden();
+  await create.click();
+  await expect(phone).toBeVisible();
   await page.getByRole("link", { name: "Sign in to your panel" }).click();
   await expect(page).toHaveURL(/\/en\/login$/);
 
   await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await expect(page).toHaveURL(/\/en\/panel$/);
+  await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
 });
 

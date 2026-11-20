@@ -13,8 +13,9 @@ export function Photo({ name, alt = "", className = "", sizes = "100vw", priorit
   if (!exists) {
     return <div aria-hidden className={`photo-placeholder ${className}`} />;
   }
+  const pos = /\b(absolute|fixed|sticky|static)\b/.test(className) ? "" : "relative ";
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`${pos}overflow-hidden ${className}`}>
       <Image src={`/images/${name}.webp`} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
     </div>
   );

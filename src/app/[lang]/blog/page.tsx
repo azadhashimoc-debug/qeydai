@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
-import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
+import { BottomCtaBand, KommoPromoBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
 import { Photo } from "@/components/Photo";
 import { BLOG_SLUGS, type BlogSlug } from "@/lib/marketing/catalog";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/blog">): P
   return buildSubpageMetadata({
     lang: locale,
     routeSuffix: "/blog",
-    title: d.subpages.blogHub.hero.title,
-    description: d.subpages.blogHub.hero.subtitle,
+    title: d.subpages.blogHub.title,
+    description: d.subpages.blogHub.subtitle,
     brand: d.brand,
     image: "/images/p-blog-1.webp",
   });
@@ -41,6 +41,7 @@ export default async function BlogHubPage({ params }: PageProps<"/[lang]/blog">)
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
+  const hub = s.blogHub;
 
   return (
     <div className="marketing">
@@ -60,13 +61,13 @@ export default async function BlogHubPage({ params }: PageProps<"/[lang]/blog">)
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={s.blogHub.hero.badge}
-          title={s.blogHub.hero.title}
-          subtitle={s.blogHub.hero.subtitle}
-          primaryCta={{ href: "#blog-list", label: s.blogHub.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/tools`, label: s.blogHub.hero.ctaSecondary }}
+          badge={s.common.badgeSample}
+          title={hub.title}
+          subtitle={hub.subtitle}
+          primaryCta={{ href: "#blog-list", label: s.common.readGuide }}
+          secondaryCta={{ href: `/${locale}/tools`, label: s.common.exploreProduct }}
           image="p-blog-1"
-          imageAlt={s.blogHub.hero.title}
+          imageAlt={hub.title}
         />
 
         <section id="blog-list" className="pm-section">
@@ -83,10 +84,8 @@ export default async function BlogHubPage({ params }: PageProps<"/[lang]/blog">)
                       className="pm-blog-thumb"
                     />
                     <div className="pm-blog-meta">
-                      <span>{post.date}</span>
-                      <span>
-                        {post.readTime} {s.blogHub.readingTime}
-                      </span>
+                      <span>{post.category}</span>
+                      <span>{post.readTime}</span>
                     </div>
                     <h3>{post.title}</h3>
                     <p style={{ color: "var(--pm-muted)", lineHeight: 1.55, flex: 1 }}>
@@ -101,6 +100,17 @@ export default async function BlogHubPage({ params }: PageProps<"/[lang]/blog">)
             </div>
           </div>
         </section>
+
+        <KommoPromoBand
+          title={
+            locale === "en"
+              ? "Put these messaging workflows into practice in 14 days free"
+              : "Bu mesajlaşma ssenarilərini 14 gün pulsuz sınaqla tətbiq edin"
+          }
+          ctaHref={`/${locale}/demo`}
+          ctaLabel={s.common.bottomCta.primary}
+          tone="lavender"
+        />
 
         <BottomCtaBand
           title={s.common.bottomCta.title}

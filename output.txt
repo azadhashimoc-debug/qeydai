@@ -1,0 +1,76 @@
+﻿
+> qeydai@0.1.0 e2e
+> playwright test tests/e2e/panel.spec.ts
+
+node.exe : [WebServer] (node:28360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 22 tests using 6 workers
+
+(node:34532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests\e2e\panel.spec.ts:61:1 › channel copying, AI previews, and localized plan contact links (2.4s)
+  ✓   2 [desktop] › tests\e2e\panel.spec.ts:164:1 › sessions tab: create session in UI, enroll via M2M API, and view student roster (2.9s)
+  ✓   3 [desktop] › tests\e2e\panel.spec.ts:42:1 › settings keep profile edits, real workspace views, and a contained notification table (3.0s)
+  ✓   6 [desktop] › tests\e2e\panel.spec.ts:81:1 › SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload (3.1s)
+  ✓   4 [desktop] › tests\e2e\panel.spec.ts:127:1 › tenant isolation: panel hides and refuses PATCH for another tenant's lead (3.9s)
+  ✓   5 [desktop] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload (4.1s)
+  ✓   9 [desktop] › tests\e2e\panel.spec.ts:444:1 › sign out clears session and subsequent API requests return 401 (1.6s)
+  ✓   8 [desktop] › tests\e2e\panel.spec.ts:360:1 › overview analytics, KPI cards, funnel sections, and zero horizontal overflow in light and dark mode (1.9s)
+  ✓   7 [desktop] › tests\e2e\panel.spec.ts:277:1 › unified inbox: staff reply, simulated student message, M2M AI sync, order and mobile threads (2.8s)
+(node:29060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [desktop] › tests\e2e\panel.spec.ts:604:1 › Google test login opens demo panel (1.5s)
+(node:9020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [mobile] › tests\e2e\panel.spec.ts:42:1 › settings keep profile edits, real workspace views, and a contained notification table (2.1s)
+  ✓  10 [desktop] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow (5.7s)
+  ✓  16 [mobile] › tests\e2e\panel.spec.ts:81:1 › SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload (2.2s)
+  ✓  14 [mobile] › tests\e2e\panel.spec.ts:61:1 › channel copying, AI previews, and localized plan contact links (2.3s)
+(node:1680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [mobile] › tests\e2e\panel.spec.ts:127:1 › tenant isolation: panel hides and refuses PATCH for another tenant's lead (3.0s)
+  ✓  15 [mobile] › tests\e2e\panel.spec.ts:164:1 › sessions tab: create session in UI, enroll via M2M API, and view student roster (2.8s)
+  ✓  17 [mobile] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload (3.1s)
+  ✓  19 [mobile] › tests\e2e\panel.spec.ts:444:1 › sign out clears session and subsequent API requests return 401 (1.7s)
+  ✓  18 [mobile] › tests\e2e\panel.spec.ts:360:1 › overview analytics, KPI cards, funnel sections, and zero horizontal overflow in light and dark mode (1.9s)
+  ✓  22 [mobile] › tests\e2e\panel.spec.ts:604:1 › Google test login opens demo panel (1.3s)
+  ✓  20 [mobile] › tests\e2e\panel.spec.ts:277:1 › unified inbox: staff reply, simulated student message, M2M AI sync, order and mobile threads (3.0s)
+  ✘  21 [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow (30.3s)
+
+
+  1) [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow 
+
+    Test timeout of 30000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\panel-Phase-1-CRM-workspac-68df4-sks-notes-and-zero-overflow-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\panel-Phase-1-CRM-workspac-68df4-sks-notes-and-zero-overflow-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow 
+  21 passed (46.5s)

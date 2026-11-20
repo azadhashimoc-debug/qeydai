@@ -1,0 +1,61 @@
+- generic [active] [ref=f39e1]:
+  - generic [ref=f39e2]:
+    - link "Əsas məskuja keç" [ref=f39e3] [cursor=pointer]:
+      - /url: "#main"
+    - banner [ref=f39e4]:
+      - link "panelim .az" [ref=f39e5] [cursor=pointer]:
+        - /url: /en
+        - generic [ref=f39e6]: panelim
+        - generic [ref=f39e7]: .az
+      - link "Return to home" [ref=f39e9] [cursor=pointer]:
+        - /url: /en
+    - main [ref=f39e12]:
+      - complementary [ref=f39e13]:
+        - generic [ref=f39e14]:
+          - generic [ref=f39e15]: AN
+          - generic [ref=f39e16]:
+            - strong [ref=f39e17]: Adem Novruzlu
+            - generic [ref=f39e18]: adem@example.com
+        - navigation [ref=f39e19]:
+          - button "Switch account" [ref=f39e20] [cursor=pointer]
+          - button "Create another account" [ref=f39e21] [cursor=pointer]
+          - link "Go to partner portal" [ref=f39e22] [cursor=pointer]:
+            - /url: /en/partner
+          - button "Sign out" [ref=f39e23] [cursor=pointer]
+      - generic [ref=f39e24]:
+        - generic [ref=f39e25]:
+          - generic [ref=f39e26]: Choose an account
+          - heading "Welcome back, Adem Novruzlu" [level=1] [ref=f39e27]
+          - paragraph [ref=f39e28]: Choose an account
+        - generic [ref=f39e29]:
+          - button "M Məhsul Satış Mərkəzi sales@demo.az Premium 12 fəaliyyətçi" [ref=f39e30] [cursor=pointer]:
+            - generic [ref=f39e31]:
+              - generic [ref=f39e32]: M
+              - generic [ref=f39e33]:
+                - strong [ref=f39e34]: Məhsul Satış Mərkəzi
+                - generic [ref=f39e35]: sales@demo.az
+            - generic [ref=f39e36]:
+              - generic [ref=f39e37]: Premium
+              - generic [ref=f39e38]: 12 fəaliyyətçi
+          - button "Ə Əməliyyat Mərkəzi ops@demo.az Standart 5 fəaliyyətçi" [ref=f39e41] [cursor=pointer]:
+            - generic [ref=f39e42]:
+              - generic [ref=f39e43]: Ə
+              - generic [ref=f39e44]:
+                - strong [ref=f39e45]: Əməliyyat Mərkəzi
+                - generic [ref=f39e46]: ops@demo.az
+            - generic [ref=f39e47]:
+              - generic [ref=f39e48]: Standart
+              - generic [ref=f39e49]: 5 fəaliyyətçi
+          - button "T Test İş Sahəsi test@demo.az Sınaq 2 fəaliyyəçi" [ref=f39e52] [cursor=pointer]:
+            - generic [ref=f39e53]:
+              - generic [ref=f39e54]: T
+              - generic [ref=f39e55]:
+                - strong [ref=f39e56]: Test İş Sahəsi
+                - generic [ref=f39e57]: test@demo.az
+            - generic [ref=f39e58]:
+              - generic [ref=f39e59]: Sınaq
+              - generic [ref=f39e60]: 2 fəaliyyəçi
+        - generic [ref=f39e63]:
+          - paragraph [ref=f39e64]: No workspaces found
+          - button "Create a new workspace" [ref=f39e65] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f39e71] [cursor=pointer]

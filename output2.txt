@@ -1,0 +1,153 @@
+﻿
+> qeydai@0.1.0 e2e
+> playwright test tests/e2e/panel.spec.ts
+
+node.exe : [WebServer] (node:34776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 22 tests using 6 workers
+
+(node:3004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [desktop] › tests\e2e\panel.spec.ts:61:1 › channel copying, AI previews, and localized plan contact links (6.8s)
+  ✓   5 [desktop] › tests\e2e\panel.spec.ts:164:1 › sessions tab: create session in UI, enroll via M2M API, and view student roster (9.3s)
+  ✓   2 [desktop] › tests\e2e\panel.spec.ts:81:1 › SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload (9.9s)
+  ✓   1 [desktop] › tests\e2e\panel.spec.ts:42:1 › settings keep profile edits, real workspace views, and a contained notification table (10.3s)
+  ✓   4 [desktop] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload (11.6s)
+  ✓   8 [desktop] › tests\e2e\panel.spec.ts:360:1 › overview analytics, KPI cards, funnel sections, and zero horizontal overflow in light and dark mode (8.6s)
+  ✓   9 [desktop] › tests\e2e\panel.spec.ts:444:1 › sign out clears session and subsequent API requests return 401 (9.9s)
+  ✓   7 [desktop] › tests\e2e\panel.spec.ts:277:1 › unified inbox: staff reply, simulated student message, M2M AI sync, order and mobile threads (15.1s)
+  ✓   3 [desktop] › tests\e2e\panel.spec.ts:127:1 › tenant isolation: panel hides and refuses PATCH for another tenant's lead (24.6s)
+  ✓  11 [desktop] › tests\e2e\panel.spec.ts:604:1 › Google test login opens demo panel (15.3s)
+  ✓  10 [desktop] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow (20.8s)
+(node:29188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [mobile] › tests\e2e\panel.spec.ts:61:1 › channel copying, AI previews, and localized plan contact links (3.5s)
+  ✓  12 [mobile] › tests\e2e\panel.spec.ts:42:1 › settings keep profile edits, real workspace views, and a contained notification table (6.1s)
+  ✓  16 [mobile] › tests\e2e\panel.spec.ts:81:1 › SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload (7.6s)
+  ✓  17 [mobile] › tests\e2e\panel.spec.ts:164:1 › sessions tab: create session in UI, enroll via M2M API, and view student roster (8.6s)
+  ✓  19 [mobile] › tests\e2e\panel.spec.ts:360:1 › overview analytics, KPI cards, funnel sections, and zero horizontal overflow in light and dark mode (10.7s)
+  ✓  20 [mobile] › tests\e2e\panel.spec.ts:444:1 › sign out clears session and subsequent API requests return 401 (13.7s)
+  ✓  14 [mobile] › tests\e2e\panel.spec.ts:127:1 › tenant isolation: panel hides and refuses PATCH for another tenant's lead (26.7s)
+  ✓  22 [mobile] › tests\e2e\panel.spec.ts:604:1 › Google test login opens demo panel (10.1s)
+  ✓  18 [mobile] › tests\e2e\panel.spec.ts:277:1 › unified inbox: staff reply, simulated student message, M2M AI sync, order and mobile threads (25.8s)
+  ✘  15 [mobile] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload (13.2s)
+  ✘  21 [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow (30.3s)
+
+
+  1) [mobile] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Today at a glance' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Today at a glance' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Today at a glance' })
+
+
+      266 |
+      267 |   await page.reload();
+    > 268 |   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
+          |                                                                          ^
+      269 |   await page.getByRole("tab", { name: /CRM/ }).click();
+      270 |
+      271 |   await page.getByLabel("Search").fill(leadName);
+        at C:\Users\adem\projects\qeydai\tests\e2e\panel.spec.ts:268:74
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\panel-CRM-leads-pipeline-c-15aa5-r-and-persist-across-reload-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\panel-CRM-leads-pipeline-c-15aa5-r-and-persist-across-reload-mobile\error-context.md
+
+  2) [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Browser logs:
+
+    <launching> C:\Users\adem\AppData\Local\ms-playwright\chromium_headless_shell-1255\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,HttpsUpgrades,HttpsFirstBalancedModeAutoEnable,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,AvoidCorsURLLoaderRestartOnRedirect,TcpPortRandomizationWin,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,PreconnectToSearch,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface,SkipListAccountsWithoutGaiaCookies --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-unsafe-swiftshader --edge-skip-compat-layer-relaunch --disable-stack-profiler --disable-infobars --disable-sync --do-not-de-elevate --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\adem\AppData\Local\Temp\playwright_chromiumdev_profile-KCzqas --remote-debugging-pipe --no-startup-window
+    <launched> pid=11332
+    [pid=11332][err] [1120/055316.983:INFO:CONSOLE:0] "The resource http://localhost:3100/_next/static/chunks/3zp4lsyu2s5j6.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: http://localhost:3100/en/panel (0)
+    [pid=11332][err] [1120/055326.079:INFO:CONSOLE:0] "The resource http://localhost:3100/_next/static/chunks/3zp4lsyu2s5j6.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: http://localhost:3100/en/panel (0)
+    [pid=11332][err] [1120/055330.740:INFO:CONSOLE:0] "The resource http://localhost:3100/_next/static/chunks/3zp4lsyu2s5j6.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source: http://localhost:3100/en/panel (0)
+    [pid=11332] <gracefully close start>
+    Call log:
+      - waiting for getByRole('button', { name: 'Add field' })
+        - locator resolved to <button type="submit" class="rounded-md font-semibold transition-[filter,border-color,background-color] duration-150 disabled:cursor-not-allowed disabled:opacity-60 bg-brand text-white hover:brightness-110 px-3.5 py-2 text-sm sm:px-4 min-h-11">Add field</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not stable
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      2 × retrying click action
+          - waiting 100ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <input id="_r_8_" type="text" placeholder="e.g. Exam target score" value="Target Score mobile-mwobrfa8-2-avsg" class="mt-1 min-h-11 w-full rounded-md border border-line bg-bg px-3 py-2 text-sm text-ink"/> from <div class="grid gap-3 sm:grid-cols-2">…</div> subtree intercepts pointer events
+      18 × retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <input id="_r_8_" type="text" placeholder="e.g. Exam target score" value="Target Score mobile-mwobrfa8-2-avsg" class="mt-1 min-h-11 w-full rounded-md border border-line bg-bg px-3 py-2 text-sm text-ink"/> from <div class="grid gap-3 sm:grid-cols-2">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      508 |   await page.getByLabel("Field name").fill(fieldName);
+      509 |   await page.getByLabel("Field type").selectOption("number");
+    > 510 |   await page.getByRole("button", { name: "Add field" }).click();
+          |                                                         ^
+      511 |   await expect(page.locator("li", { hasText: fieldName })).toBeVisible();
+      512 |
+      513 |   await page.getByRole("button", { name: "User management" }).click();
+        at C:\Users\adem\projects\qeydai\tests\e2e\panel.spec.ts:510:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\panel-Phase-1-CRM-workspac-68df4-sks-notes-and-zero-overflow-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\panel-Phase-1-CRM-workspac-68df4-sks-notes-and-zero-overflow-mobile\error-context.md
+
+  2 failed
+    [mobile] › tests\e2e\panel.spec.ts:213:1 › CRM leads pipeline: create lead, update stage and note, filter, and persist across reload 
+    [mobile] › tests\e2e\panel.spec.ts:461:1 › Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow 
+  20 passed (1.4m)

@@ -19,6 +19,47 @@ export type Enrollment = {
 
 export type RegisterInput = { sessionId: string; name: string; phone: string };
 
+export const LEAD_STAGES = ["new", "contacted", "trial_booked", "paid", "lost"] as const;
+export type LeadStage = (typeof LEAD_STAGES)[number];
+
+export const LEAD_SOURCES = ["telegram", "whatsapp", "instagram", "web", "manual"] as const;
+export type LeadSource = (typeof LEAD_SOURCES)[number];
+
+export const MESSAGE_DIRECTIONS = ["in", "out"] as const;
+export type MessageDirection = (typeof MESSAGE_DIRECTIONS)[number];
+
+export const MESSAGE_SENDERS = ["student", "ai", "staff"] as const;
+export type MessageSender = (typeof MESSAGE_SENDERS)[number];
+
+export type CrmLead = {
+  id: string;
+  tenantId: string;
+  name: string;
+  phone: string;
+  source: LeadSource;
+  stage: LeadStage;
+  note: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type InboxMessage = {
+  id: string;
+  tenantId: string;
+  leadId: string;
+  channel: LeadSource;
+  direction: MessageDirection;
+  sender: MessageSender;
+  body: string;
+  createdAt: string;
+};
+
+export type SessionSummary = {
+  session: Session;
+  taken: number;
+  seatsLeft: number;
+};
+
 export type RegisterResult =
   | { ok: true; enrollment: Enrollment }
   | { ok: false; reason: "invalid_input" | "unknown_session" | "session_started" | "full" | "duplicate" };
@@ -35,8 +76,34 @@ export interface EnrollmentStore {
   getSession(tenantId: string, sessionId: string): Promise<Session | null>;
   listSessions(tenantId: string): Promise<Session[]>;
   countBySession(tenantId: string, sessionId: string): Promise<number>;
+  countBySessions?(tenantId: string, sessionIds: string[]): Promise<Map<string, number>>;
   insertIfAvailable(enrollment: Enrollment): Promise<InsertOutcome>;
+  /** Inserts a new session. Never overwrites an existing (tenantId, id): capacity is not silently changed under enrollments. */
+  createSession(session: Session): Promise<CreateSessionOutcome>;
+  listEnrollments(tenantId: string, sessionId?: string): Promise<Enrollment[]>;
+  listSessionsWithCounts(tenantId: string): Promise<SessionSummary[]>;
+  upsertLead(lead: {
+    id: string;
+    tenantId: string;
+    name: string;
+    phone: string;
+    source: LeadSource;
+    stage?: LeadStage;
+    note?: string;
+    nowIso: string;
+  }): Promise<CrmLead>;
+  listLeads(tenantId: string): Promise<CrmLead[]>;
+  getLead(tenantId: string, leadId: string): Promise<CrmLead | null>;
+  updateLead(
+    tenantId: string,
+    leadId: string,
+    patch: { stage?: LeadStage; note?: string; updatedAt: string },
+  ): Promise<CrmLead | null>;
+  addMessage(msg: InboxMessage): Promise<InboxMessage | null>;
+  listMessages(tenantId: string, leadId?: string): Promise<InboxMessage[]>;
 }
+
+export type CreateSessionOutcome = "created" | "exists";
 
 /** Mobile operator prefixes: Azercell 10/50/51, Bakcell 55/99, Nar 70/77, Naxtel 60. */
 const AZ_MOBILE = /^(10|50|51|55|60|70|77|99)\d{7}$/;
@@ -51,13 +118,31 @@ export function normalizeAzPhone(raw: string): string | null {
   return AZ_MOBILE.test(d) ? `+994${d}` : null;
 }
 
+export const MAX_INBOX_MESSAGES = 500;
+
+function compareIsoAsc(a: string, b: string): number {
+  const ta = Date.parse(a);
+  const tb = Date.parse(b);
+  if (!Number.isNaN(ta) && !Number.isNaN(tb) && ta !== tb) return ta - tb;
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
 export class InMemoryEnrollmentStore implements EnrollmentStore {
   private sessions = new Map<string, Session>();
   private key = (tenantId: string, id: string) => JSON.stringify([tenantId, id]);
   private enrollments: Enrollment[] = [];
+  private leadsById = new Map<string, CrmLead>();
+  private leadsByPhone = new Map<string, CrmLead>();
+  private messages: InboxMessage[] = [];
 
   addSession(s: Session) {
     this.sessions.set(this.key(s.tenantId, s.id), s);
+  }
+  async createSession(s: Session): Promise<CreateSessionOutcome> {
+    const k = this.key(s.tenantId, s.id);
+    if (this.sessions.has(k)) return "exists";
+    this.sessions.set(k, s);
+    return "created";
   }
   async getSession(tenantId: string, sessionId: string) {
     return this.sessions.get(this.key(tenantId, sessionId)) ?? null;
@@ -67,6 +152,16 @@ export class InMemoryEnrollmentStore implements EnrollmentStore {
   }
   async countBySession(tenantId: string, sessionId: string) {
     return this.enrollments.filter((e) => e.tenantId === tenantId && e.sessionId === sessionId).length;
+  }
+  async countBySessions(tenantId: string, sessionIds: string[]) {
+    const counts = new Map<string, number>();
+    for (const id of sessionIds) counts.set(id, 0);
+    for (const e of this.enrollments) {
+      if (e.tenantId === tenantId && counts.has(e.sessionId)) {
+        counts.set(e.sessionId, (counts.get(e.sessionId) ?? 0) + 1);
+      }
+    }
+    return counts;
   }
   // No await between check and push: atomic on the single JS thread.
   async insertIfAvailable(e: Enrollment): Promise<InsertOutcome> {
@@ -78,6 +173,107 @@ export class InMemoryEnrollmentStore implements EnrollmentStore {
     this.enrollments.push(e);
     return "inserted";
   }
+
+  async listEnrollments(tenantId: string, sessionId?: string): Promise<Enrollment[]> {
+    return this.enrollments
+      .filter((e) => e.tenantId === tenantId && (sessionId === undefined || e.sessionId === sessionId))
+      .map((e) => ({ ...e }))
+      .sort((a, b) => compareIsoAsc(b.createdAt, a.createdAt));
+  }
+
+  async listSessionsWithCounts(tenantId: string): Promise<SessionSummary[]> {
+    const counts = new Map<string, number>();
+    for (const e of this.enrollments) {
+      if (e.tenantId === tenantId) {
+        counts.set(e.sessionId, (counts.get(e.sessionId) ?? 0) + 1);
+      }
+    }
+    return [...this.sessions.values()]
+      .filter((s) => s.tenantId === tenantId)
+      .sort((a, b) => compareIsoAsc(a.startsAt, b.startsAt))
+      .map((s) => {
+        const taken = counts.get(s.id) ?? 0;
+        return { session: { ...s }, taken, seatsLeft: Math.max(0, s.capacity - taken) };
+      });
+  }
+
+  async upsertLead(lead: {
+    id: string;
+    tenantId: string;
+    name: string;
+    phone: string;
+    source: LeadSource;
+    stage?: LeadStage;
+    note?: string;
+    nowIso: string;
+  }): Promise<CrmLead> {
+    const pk = this.key(lead.tenantId, lead.phone);
+    const existing = this.leadsByPhone.get(pk);
+    if (existing) {
+      existing.name = lead.name;
+      existing.source = lead.source;
+      if (lead.stage !== undefined) existing.stage = lead.stage;
+      if (lead.note !== undefined && lead.note !== "") {
+        existing.note = existing.note === "" ? lead.note : `${existing.note}\n${lead.note}`;
+      }
+      existing.updatedAt = lead.nowIso;
+      return { ...existing };
+    }
+    const created: CrmLead = {
+      id: lead.id,
+      tenantId: lead.tenantId,
+      name: lead.name,
+      phone: lead.phone,
+      source: lead.source,
+      stage: lead.stage ?? "new",
+      note: lead.note ?? "",
+      createdAt: lead.nowIso,
+      updatedAt: lead.nowIso,
+    };
+    this.leadsById.set(this.key(lead.tenantId, created.id), created);
+    this.leadsByPhone.set(pk, created);
+    return { ...created };
+  }
+
+  async listLeads(tenantId: string): Promise<CrmLead[]> {
+    return [...this.leadsById.values()]
+      .filter((l) => l.tenantId === tenantId)
+      .map((l) => ({ ...l }))
+      .sort((a, b) => compareIsoAsc(b.updatedAt, a.updatedAt));
+  }
+
+  async getLead(tenantId: string, leadId: string): Promise<CrmLead | null> {
+    const found = this.leadsById.get(this.key(tenantId, leadId));
+    return found ? { ...found } : null;
+  }
+
+  async updateLead(
+    tenantId: string,
+    leadId: string,
+    patch: { stage?: LeadStage; note?: string; updatedAt: string },
+  ): Promise<CrmLead | null> {
+    const found = this.leadsById.get(this.key(tenantId, leadId));
+    if (!found) return null;
+    if (patch.stage !== undefined) found.stage = patch.stage;
+    if (patch.note !== undefined) found.note = patch.note;
+    found.updatedAt = patch.updatedAt;
+    return { ...found };
+  }
+
+  async addMessage(msg: InboxMessage): Promise<InboxMessage | null> {
+    if (!this.leadsById.has(this.key(msg.tenantId, msg.leadId))) return null;
+    const stored: InboxMessage = { ...msg };
+    this.messages.push(stored);
+    return { ...stored };
+  }
+
+  async listMessages(tenantId: string, leadId?: string): Promise<InboxMessage[]> {
+    return this.messages
+      .filter((m) => m.tenantId === tenantId && (leadId === undefined || m.leadId === leadId))
+      .map((m) => ({ ...m }))
+      .sort((a, b) => compareIsoAsc(a.createdAt, b.createdAt))
+      .slice(0, MAX_INBOX_MESSAGES);
+  }
 }
 
 export class EnrollmentService {
@@ -87,14 +283,32 @@ export class EnrollmentService {
   ) {}
 
   async listSessions(tenantId: string, opts: { onlyAvailable?: boolean } = {}) {
+    if (!opts.onlyAvailable) return this.store.listSessions(tenantId);
+    const available = await this.listSessionsWithAvailability(tenantId);
+    return available.map((entry) => entry.session);
+  }
+
+  async listSessionsWithAvailability(tenantId: string): Promise<Array<{ session: Session; seatsLeft: number }>> {
     const all = await this.store.listSessions(tenantId);
-    if (!opts.onlyAvailable) return all;
     const nowMs = this.now().getTime();
-    const out: Session[] = [];
-    for (const s of all) {
+    const upcoming = all.filter((s) => {
       const start = parseInstant(s.startsAt);
-      if (start === null || start <= nowMs) continue;
-      if ((await this.store.countBySession(tenantId, s.id)) < s.capacity) out.push(s);
+      return start !== null && start > nowMs;
+    });
+    if (upcoming.length === 0) return [];
+
+    const counts = this.store.countBySessions
+      ? await this.store.countBySessions(
+          tenantId,
+          upcoming.map((s) => s.id),
+        )
+      : new Map<string, number>();
+
+    const out: Array<{ session: Session; seatsLeft: number }> = [];
+    for (const s of upcoming) {
+      const taken = this.store.countBySessions ? (counts.get(s.id) ?? 0) : await this.store.countBySession(tenantId, s.id);
+      const seatsLeft = s.capacity - taken;
+      if (seatsLeft > 0) out.push({ session: s, seatsLeft });
     }
     return out;
   }

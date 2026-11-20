@@ -1,0 +1,13 @@
+- generic [active] [ref=f98e1]:
+  - status [ref=f98e3]:
+    - paragraph [ref=f98e4]: Panel məlumatları yüklənir…
+  - generic [ref=f98e9] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f98e10]
+    - generic [ref=f98e14]:
+      - button "Open issues overlay" [ref=f98e15]:
+        - generic [ref=f98e16]:
+          - generic [aria-hidden] [ref=f98e17]: "0"
+          - generic [ref=f98e18]: "1"
+        - generic [ref=f98e19]: Issue
+      - button "Collapse issues badge" [ref=f98e20]
+  - alert [ref=f98e23]

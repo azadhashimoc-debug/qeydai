@@ -1,7 +1,7 @@
 import { mkdtempSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { POST, resetLeadRateLimit } from "./route";
 
 const good = { name: "Aygün", phone: "050 123 45 67" };
@@ -16,6 +16,12 @@ const tmpDir = () => mkdtempSync(path.join(tmpdir(), "lead-"));
 beforeEach(() => {
   resetLeadRateLimit();
   process.env.LEADS_FILE = path.join(tmpDir(), "l.jsonl");
+  process.env.ENROLL_DB_FILE = ":memory:";
+  process.env.TRUST_PROXY = "x-real-ip";
+});
+
+afterEach(() => {
+  delete process.env.TRUST_PROXY;
 });
 
 describe("route review fixes", () => {
@@ -35,6 +41,7 @@ describe("route review fixes", () => {
     expect(await res.json()).toEqual({ ok: false, error: "server_error" });
   });
   it("ignores spoofed left-most X-Forwarded-For entries (uses the proxy-added last hop)", async () => {
+    process.env.TRUST_PROXY = "x-forwarded-for";
     const codes: number[] = [];
     for (let i = 0; i < 7; i++) codes.push((await POST(mk({ "x-forwarded-for": `spoof-${i}, 203.0.113.9` }))).status);
     expect(codes.slice(5)).toEqual([429, 429]);
@@ -51,6 +58,20 @@ describe("route review fixes", () => {
       if (res.status === 429) limited++;
     }
     expect(limited).toBeGreaterThan(0);
+  }, 30_000); // 260 sequential file-backed requests; ~3 s alone, can exceed 5 s when all test files run in parallel
+  it("invalid payloads do not consume the global lead quota", async () => {
+    for (let i = 0; i < 205; i++) {
+      const r = await POST(mk({ "x-real-ip": `198.51.100.${i}` }, "{}"));
+      expect(r.status).toBe(400);
+    }
+    const valid = await POST(mk({ "x-real-ip": "203.0.113.50" }));
+    expect(valid.status).toBe(200);
+    expect(valid.headers.get("cache-control")).toBe("no-store");
+  }, 30_000);
+  it("rejects sec-fetch-site: cross-site and sets cache-control: no-store on errors", async () => {
+    const res = await POST(mk({ "sec-fetch-site": "cross-site" }));
+    expect(res.status).toBe(403);
+    expect(res.headers.get("cache-control")).toBe("no-store");
   });
 });
 

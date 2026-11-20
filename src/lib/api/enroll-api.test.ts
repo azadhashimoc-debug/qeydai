@@ -52,6 +52,8 @@ describe("GET sessions", () => {
   it("lists only this tenant's upcoming sessions with seats left", async () => {
     const res = await api.listSessions(get("key-t1"));
     expect(res.status).toBe(200);
+    expect(res.headers.get("cache-control")).toBe("no-store");
+    expect(res.headers.get("vary")).toMatch(/authorization/i);
     const body = await res.json();
     expect(body.sessions).toEqual([{ id: "s1", courseId: "ielts", startsAt: FUTURE, seatsLeft: 2 }]);
   });
@@ -61,6 +63,28 @@ describe("GET sessions", () => {
     expect((await (await api.listSessions(get("key-t1"))).json()).sessions).toEqual([]);
     const t2 = await (await api.listSessions(get("key-t2"))).json();
     expect(t2.sessions.map((s: { id: string }) => s.id)).toEqual(["x1"]);
+  });
+  it("batches seat counts in GET /api/v1/sessions (no N+1)", async () => {
+    store.addSession({ id: "s2", tenantId: "t1", courseId: "math", startsAt: FUTURE, capacity: 4 });
+    let singleCalls = 0;
+    let batchCalls = 0;
+    const origSingle = store.countBySession.bind(store);
+    const origBatch = store.countBySessions.bind(store);
+    store.countBySession = async (t, id) => {
+      singleCalls++;
+      return origSingle(t, id);
+    };
+    store.countBySessions = async (t, ids) => {
+      batchCalls++;
+      return origBatch(t, ids);
+    };
+    await api.enroll(post(person(1)));
+    const res = await api.listSessions(get("key-t1"));
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.sessions).toHaveLength(2);
+    expect(singleCalls).toBe(0);
+    expect(batchCalls).toBe(1);
   });
 });
 

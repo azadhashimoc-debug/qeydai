@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { InboxShowcaseClient } from "@/components/marketing/InboxShowcaseClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import {
   BottomCtaBand,
-  FeatureAlternating,
   FeatureGrid,
   SubpageHero,
 } from "@/components/marketing/SubpageBlocks";
@@ -36,6 +36,7 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
   const i = s.inbox;
+  const isEn = locale === "en";
 
   return (
     <div className="marketing">
@@ -58,57 +59,58 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
           badge={i.hero.badge}
           title={i.hero.title}
           subtitle={i.hero.subtitle}
-          primaryCta={{ href: `/${locale}/demo`, label: i.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/ai`, label: i.hero.ctaSecondary }}
+          primaryCta={{ href: `/${locale}/demo`, label: i.hero.primaryCta }}
+          secondaryCta={{ href: `/${locale}/ai`, label: i.hero.secondaryCta }}
           image="p-inbox"
           imageAlt={i.hero.title}
           badgeVariant="mint"
         />
 
+        <section className="pm-section pm-pipe-intro-band">
+          <div className="pm-wrap pm-pipe-intro">
+            <h2>{isEn ? "Meet the Unified Inbox" : "Gələn qutusu ilə tanış olun"}</h2>
+            <p>
+              {isEn ? (
+                <>
+                  Our{" "}
+                  <mark className="pm-hl is-amber">unified inbox</mark>{" "}
+                  gathers all student chats in{" "}
+                  <mark className="pm-hl is-lav">one workspace</mark>,{" "}
+                  builds a complete profile, and helps teams{" "}
+                  <mark className="pm-hl is-sky">collaborate seamlessly</mark>.
+                </>
+              ) : (
+                <>
+                  <mark className="pm-hl is-amber">Vahid gələn qutusu</mark>{" "}
+                  bütün söhbətlərinizi{" "}
+                  <mark className="pm-hl is-lav">tək bir tətbiqdə</mark>{" "}
+                  toplayır, hər tələbə üçün profil yaradır və komandanızın{" "}
+                  <mark className="pm-hl is-sky">asanlıqla əməkdaşlıq</mark>{" "}
+                  etməsini təmin edir.
+                </>
+              )}
+            </p>
+          </div>
+        </section>
+
+        <InboxShowcaseClient lang={locale} />
+
         <FeatureGrid
+          heading={isEn ? "More tools" : "Daha çox alət"}
           columns={2}
           items={[
             {
-              title: i.features.multiChannel.title,
-              desc: i.features.multiChannel.desc,
-              tone: "mint",
-            },
-            {
-              title: i.features.quickTemplates.title,
-              desc: i.features.quickTemplates.desc,
+              title: s.navGroups.product.pipelineTitle,
+              desc: i.features.items.two.desc,
+              href: `/${locale}/pipeline`,
+              ctaLabel: s.navGroups.product.pipelineTitle,
               tone: "lavender",
             },
             {
-              title: i.features.teamHandoff.title,
-              desc: i.features.teamHandoff.desc,
-              tone: "sky",
-            },
-            {
-              title: i.features.historyAudit.title,
-              desc: i.features.historyAudit.desc,
-              tone: "amber",
-            },
-          ]}
-        />
-
-        <FeatureAlternating
-          rows={[
-            {
-              tag: s.navGroups.channels.hubTitle,
-              title: i.features.multiChannel.title,
-              body: i.features.multiChannel.desc,
-              cta: { href: `/${locale}/channels`, label: s.navGroups.channels.hubTitle },
-              image: "p-channels",
-              imageAlt: i.features.multiChannel.title,
-              tone: "lavender",
-            },
-            {
-              tag: s.navGroups.product.aiTitle,
-              title: i.features.teamHandoff.title,
-              body: i.features.teamHandoff.desc,
-              cta: { href: `/${locale}/ai`, label: s.navGroups.product.aiTitle },
-              image: "p-ai-copilot",
-              imageAlt: i.features.teamHandoff.title,
+              title: s.navGroups.product.aiTitle,
+              desc: i.features.items.four.desc,
+              href: `/${locale}/ai`,
+              ctaLabel: s.navGroups.product.aiTitle,
               tone: "mint",
             },
           ]}

@@ -57,9 +57,38 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
           subtitle={demo.hero.subtitle}
           primaryCta={{ href: "#demo-form", label: form.submit }}
           secondaryCta={{ href: `/${locale}/pricing`, label: s.common.bottomCta.secondary }}
-          image="p-demo"
+          image="p-demo-stats"
           imageAlt={demo.hero.title}
         />
+
+        <section className="pm-demo-stats-band">
+          <div className="pm-wrap pm-demo-stats-grid">
+            <div className="pm-demo-stat">
+              <strong>24/7</strong>
+              <span>
+                {locale === "en"
+                  ? "Automated trial lesson booking"
+                  : "Avtomatik sınaq dərsi qeydiyyatı"}
+              </span>
+            </div>
+            <div className="pm-demo-stat">
+              <strong>{locale === "en" ? "3 Channels" : "3 Kanal"}</strong>
+              <span>
+                {locale === "en"
+                  ? "WhatsApp, Instagram & Telegram in one inbox"
+                  : "WhatsApp, Instagram və Telegram tək qutuda"}
+              </span>
+            </div>
+            <div className="pm-demo-stat">
+              <strong>&lt; 30 {locale === "en" ? "sec" : "san"}</strong>
+              <span>
+                {locale === "en"
+                  ? "Instant lead capture with duplicate protection"
+                  : "Təkrar qeydiyyat qoruması ilə ani cavab"}
+              </span>
+            </div>
+          </div>
+        </section>
 
         <section id="demo-form" className="pm-section">
           <div className="pm-wrap pm-cta-grid">
@@ -82,8 +111,8 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
                   nameRequired: form.nameRequired,
                 }}
                 okText={form.successTitle}
-                errText={form.successBody}
-                rateLimitedText={s.common.bookDemo}
+                errText={form.invalidPhone}
+                rateLimitedText={form.rateLimited}
               />
             </div>
           </div>

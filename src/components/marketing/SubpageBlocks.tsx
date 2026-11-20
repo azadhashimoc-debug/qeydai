@@ -210,6 +210,29 @@ export function FeatureGrid({
   );
 }
 
+export function KommoPromoBand({
+  title,
+  ctaHref,
+  ctaLabel,
+  tone = "lavender",
+}: {
+  title: string;
+  ctaHref: string;
+  ctaLabel: string;
+  tone?: "lavender" | "amber" | "mint" | "sky";
+}) {
+  return (
+    <section className={`pm-promo-band is-${tone}`}>
+      <div className="pm-wrap pm-promo-inner">
+        <h2>{title}</h2>
+        <Link href={ctaHref} className="pm-promo-pill">
+          {ctaLabel}
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export function BottomCtaBand({
   title,
   subtitle,

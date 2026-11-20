@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
+import { PipelineFocusClient } from "@/components/marketing/PipelineFocusClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import {
   BottomCtaBand,
-  FeatureAlternating,
   FeatureGrid,
   SubpageHero,
 } from "@/components/marketing/SubpageBlocks";
@@ -36,6 +38,7 @@ export default async function PipelinePage({ params }: PageProps<"/[lang]/pipeli
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
   const p = s.pipeline;
+  const isEn = locale === "en";
 
   return (
     <div className="marketing">
@@ -58,56 +61,85 @@ export default async function PipelinePage({ params }: PageProps<"/[lang]/pipeli
           badge={p.hero.badge}
           title={p.hero.title}
           subtitle={p.hero.subtitle}
-          primaryCta={{ href: `/${locale}/demo`, label: p.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/inbox`, label: p.hero.ctaSecondary }}
+          primaryCta={{ href: `/${locale}/demo`, label: p.hero.primaryCta }}
+          secondaryCta={{ href: `/${locale}/inbox`, label: p.hero.secondaryCta }}
           image="p-pipeline"
           imageAlt={p.hero.title}
         />
 
+        <section className="pm-section pm-pipe-intro-band">
+          <div className="pm-wrap pm-pipe-intro">
+            <h2>{isEn ? "Meet the Pipeline" : "Pipeline ilə tanış olun"}</h2>
+            <p>
+              {isEn ? (
+                <>
+                  A{" "}
+                  <mark className="pm-hl is-amber">visual sales funnel</mark>{" "}
+                  built to{" "}
+                  <mark className="pm-hl is-lav">organize student inquiries</mark>{" "}
+                  and move every trial lesson smoothly{" "}
+                  <mark className="pm-hl is-sky">toward enrollment</mark>.
+                </>
+              ) : (
+                <>
+                  Müraciətləri{" "}
+                  <mark className="pm-hl is-amber">sistemli izləmək</mark>,{" "}
+                  <mark className="pm-hl is-lav">sınaq dərslərini idarə etmək</mark>{" "}
+                  və tələbələri{" "}
+                  <mark className="pm-hl is-sky">qeydiyyata çatdırmaq</mark>{" "}
+                  üçün qurulmuş vizual satış xətti.
+                </>
+              )}
+            </p>
+          </div>
+        </section>
+
+        <PipelineFocusClient lang={locale} />
+
+        <section className="pm-section">
+          <div className="pm-wrap">
+            <div className="pm-prod-ai-banner">
+              <div className="pm-prod-ai-copy">
+                <span className="pm-prod-ai-tag">✨ AI CRM</span>
+                <h2>
+                  {isEn ? "AI-powered conversations" : "Süni intellekt dəstəklı söhbət"}
+                </h2>
+                <p>
+                  {isEn
+                    ? "Draft clear replies, summarize chat history, and suggest the next stage automatically inside every deal."
+                    : "Söhbət tarixçəsini saniyələr içində xülasə edin, cavab qaralama təklifləri alın və növbəti mərhələni avtomatik təyin edin."}
+                </p>
+                <Link href={`/${locale}/ai`} className="pm-prod-ai-link">
+                  {s.navGroups.product.aiTitle} →
+                </Link>
+              </div>
+              <div className="pm-prod-ai-media">
+                <Photo
+                  name="p-ai-copilot"
+                  alt={s.navGroups.product.aiTitle}
+                  className="pm-prod-ai-img"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <FeatureGrid
+          heading={isEn ? "More tools you'll love" : "Sevəcəyiniz daha çox alət"}
           columns={2}
           items={[
             {
-              title: p.features.stageControl.title,
-              desc: p.features.stageControl.desc,
+              title: s.navGroups.product.inboxTitle,
+              desc: p.features.items.two.desc,
+              href: `/${locale}/inbox`,
+              ctaLabel: s.navGroups.product.inboxTitle,
               tone: "lavender",
             },
             {
-              title: p.features.leadClaim.title,
-              desc: p.features.leadClaim.desc,
-              tone: "mint",
-            },
-            {
-              title: p.features.notesAndTasks.title,
-              desc: p.features.notesAndTasks.desc,
-              tone: "sky",
-            },
-            {
-              title: p.features.antiDuplicate.title,
-              desc: p.features.antiDuplicate.desc,
-              tone: "amber",
-            },
-          ]}
-        />
-
-        <FeatureAlternating
-          rows={[
-            {
-              tag: s.navGroups.product.inboxTitle,
-              title: p.features.leadClaim.title,
-              body: p.features.leadClaim.desc,
-              cta: { href: `/${locale}/inbox`, label: s.navGroups.product.inboxTitle },
-              image: "p-inbox",
-              imageAlt: p.features.leadClaim.title,
-              tone: "sky",
-            },
-            {
-              tag: s.navGroups.product.bookingTitle,
-              title: p.features.antiDuplicate.title,
-              body: p.features.antiDuplicate.desc,
-              cta: { href: `/${locale}/booking`, label: s.navGroups.product.bookingTitle },
-              image: "p-booking",
-              imageAlt: p.features.antiDuplicate.title,
+              title: s.navGroups.product.bookingTitle,
+              desc: p.features.items.four.desc,
+              href: `/${locale}/booking`,
+              ctaLabel: s.navGroups.product.bookingTitle,
               tone: "mint",
             },
           ]}

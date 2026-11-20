@@ -1,0 +1,478 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e6]:
+        - navigation [ref=e7]:
+          - link "Kommo" [disabled] [ref=e8] [cursor=pointer]:
+            - /url: ""
+          - list [ref=e17]:
+            - listitem [ref=e18]:
+              - button [ref=e19] [cursor=pointer]
+      - generic [ref=e24]:
+        - heading "Tekrar hoşgeldin, adem novruzlu" [level=2] [ref=e25]
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - img "avatar" [ref=e30]
+            - paragraph [ref=e31]: mototiv843@kranove.com
+            - list [ref=e32]:
+              - listitem [ref=e33]:
+                - button "Başka bir hesap oluştur" [ref=e34] [cursor=pointer]
+              - listitem [ref=e39]:
+                - link "Partner portalına git" [ref=e40] [cursor=pointer]:
+                  - /url: /tr/partners/private
+              - listitem [ref=e49]:
+                - link "Oturumu kapat" [ref=e50] [cursor=pointer]:
+                  - /url: /tr/?logout=yes
+          - generic [ref=e55]:
+            - heading "Bir hesap seç" [level=4] [ref=e56]
+            - list [ref=e57]:
+              - listitem [ref=e58]:
+                - link "Deneme mototiv843" [ref=e59] [cursor=pointer]:
+                  - /url: //mototiv843.kommo.com
+                  - generic [ref=e60]:
+                    - generic [ref=e61]: Deneme
+                    - generic [ref=e62]: mototiv843
+    - banner [ref=e69]:
+      - navigation [ref=e70]:
+        - link "Kommo" [disabled] [ref=e71] [cursor=pointer]:
+          - /url: /tr/
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - link "Fiyatlandırma" [ref=e83] [cursor=pointer]:
+              - /url: /tr/ucret/fiyat-karsilastirma/
+          - listitem [ref=e85]:
+            - button [ref=e86] [cursor=pointer]
+        - generic [ref=e92]:
+          - button "Demo al" [ref=e93] [cursor=pointer]
+          - button "Giriş" [ref=e95] [cursor=pointer]
+          - button "Hesap oluştur" [ref=e97] [cursor=pointer]
+    - generic [ref=e99]:
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e103]:
+            - generic [ref=e105]:
+              - img "telegram"
+            - generic [ref=e107]:
+              - img "whatsapp"
+            - generic [ref=e109]:
+              - img "instagram"
+            - generic [ref=e111]:
+              - img "facebook"
+            - generic [ref=e113]:
+              - img "tiktok"
+            - generic [ref=e115]:
+              - img "telegram"
+            - generic [ref=e117]:
+              - img "whatsapp"
+            - generic [ref=e119]:
+              - img "instagram"
+            - generic [ref=e121]:
+              - img "facebook"
+            - generic [ref=e123]:
+              - img "tiktok"
+          - heading "Sohbetleri büyütün, kaosu azaltın" [level=1] [ref=e124]
+          - paragraph [ref=e125]: WhatsApp, TikTok ve Instagram sohbetlerini, randevuları ve iş akışlarını otomatikleştiren hepsi bir arada AI CRM.
+          - button "14 gün ücretsiz dene" [ref=e126] [cursor=pointer]
+          - generic [ref=e131]:
+            - img "meta badge" [ref=e134]
+            - img "G2 badge" [ref=e137]
+        - generic [ref=e140]:
+          - button "Yakala" [ref=e141] [cursor=pointer]
+          - button "Otomatikleştir" [ref=e148] [cursor=pointer]
+          - button "Ölçeklendir" [ref=e154] [cursor=pointer]
+          - button "Analiz et" [ref=e160] [cursor=pointer]
+      - generic [ref=e174]:
+        - heading "100'den fazla ülkede hızla büyüyen işletmeler tarafından güveniliyor" [level=6] [ref=e175]
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - button "Video’yu izle" [ref=e180] [cursor=pointer]
+            - button "Video’yu izle" [ref=e188] [cursor=pointer]
+            - button "Video’yu izle" [ref=e192] [cursor=pointer]
+            - button "Video’yu izle" [ref=e197] [cursor=pointer]
+            - button "Video’yu izle" [ref=e203] [cursor=pointer]
+            - button "Video’yu izle" [ref=e208] [cursor=pointer]
+            - button "Video’yu izle" [ref=e214] [cursor=pointer]
+            - button "Video’yu izle" [ref=e219] [cursor=pointer]
+            - button "Video’yu izle" [ref=e223] [cursor=pointer]
+            - button "Video’yu izle" [ref=e230] [cursor=pointer]
+          - generic [ref=e235]:
+            - button "Video’yu izle" [ref=e237] [cursor=pointer]
+            - button "Video’yu izle" [ref=e245] [cursor=pointer]
+            - button "Video’yu izle" [ref=e249] [cursor=pointer]
+            - button "Video’yu izle" [ref=e254] [cursor=pointer]
+            - button "Video’yu izle" [ref=e260] [cursor=pointer]
+            - button "Video’yu izle" [ref=e265] [cursor=pointer]
+            - button "Video’yu izle" [ref=e271] [cursor=pointer]
+            - button "Video’yu izle" [ref=e276] [cursor=pointer]
+            - button "Video’yu izle" [ref=e280] [cursor=pointer]
+            - button "Video’yu izle" [ref=e287] [cursor=pointer]
+        - link "Başarı hikayelerini izleyin" [ref=e292] [cursor=pointer]:
+          - /url: https://www.youtube.com/@kommoturkiye
+      - generic [ref=e298]:
+        - heading "Tüm işlerinizi tek bir yerde yönetin" [level=2] [ref=e300]:
+          - generic [ref=e301]: Tüm işlerinizi tek bir
+          - generic [ref=e302]: yerde yönetin
+        - generic [ref=e303]:
+          - generic [ref=e304]:
+            - generic [ref=e305]:
+              - heading "AI ile anında yanıtlar" [level=3] [ref=e306]
+              - paragraph [ref=e307]: Tüm sohbetler AI destekli sohbet gelen kutusunda. Kommo AI lead'leri nitelendirir, anında yanıtlar ve daha fazla satış sağlar.
+              - link "Daha fazla bilgi" [ref=e308] [cursor=pointer]:
+                - /url: /tr/birlesik-gelen-kutusu/
+            - img "AI birleşik gelen kutusunda sohbetleri yönetiyor" [ref=e316]
+          - generic [ref=e317]:
+            - img "AI satış pipeline aşamalarını güncelliyor" [ref=e321]
+            - generic [ref=e322]:
+              - heading "AI ile lead yönetimi" [level=3] [ref=e323]
+              - paragraph [ref=e324]: Satış takip hattınızı AI ile güçlendirin; her lead ilerlesin, her satış temsilcisi bir sonraki adımı bilsin ve hiçbir şey kaçmasın.
+              - link "Daha fazla bilgi" [ref=e325] [cursor=pointer]:
+                - /url: /tr/crm-pipeline/
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - heading "AI ile randevular" [level=3] [ref=e332]
+              - paragraph [ref=e333]: "Randevularınızı tek yerden yönetin: rezervasyon sayfaları, takvimler, AI planlama, hatırlatmalar ve takipler dahil."
+              - link "Daha fazla bilgi" [ref=e334] [cursor=pointer]:
+                - /url: /tr/ai/ai-rezervasyon-temsilcisi/
+            - img "AI ajanının emlak gösterimi planlayıp bunu otomatik olarak CRM takvimine eklemesi" [ref=e342]
+          - generic [ref=e343]:
+            - img "Kommo Copilot'un kampanya performansı, gelir ve ROI verilerini analiz ederek en başarılı pazarlama çalışmalarını belirlemesi" [ref=e347]
+            - generic [ref=e348]:
+              - heading "AI ile daha fazla satış" [level=3] [ref=e349]
+              - paragraph [ref=e350]: ROI, lead kalitesi ve satış performansını takip edin. Kommo AI, ROI artışını ve lead'lerin nerede kaybolduğunu gösterir.
+              - link "Daha fazla bilgi" [ref=e351] [cursor=pointer]:
+                - /url: /tr/blog/kommo-ai/
+      - heading [level=2] [ref=e361]:
+        - generic [ref=e362]: AI planınızı seçin.Pro ile ölçeklenin
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - heading "Kommo AI" [level=6] [ref=e373]
+          - heading "Satış ekibinizin hak ettiği yapay zeka destekli dost" [level=4] [ref=e374]
+          - button "14 gün ücretsiz dene" [ref=e375] [cursor=pointer]
+        - generic [ref=e381]:
+          - generic [ref=e383]:
+            - button "Yorulmadan 7/24 yanıt verin" [expanded] [ref=e384] [cursor=pointer]
+            - img "AI asistanının potansiyel öğrenciden e-posta alıp kurs kaydı için kayıt formu göndermesi" [ref=e396]
+          - button "Her yorumu takip edin" [ref=e399] [cursor=pointer]
+          - button "Otomatik takip mesajı oluşturun" [ref=e412] [cursor=pointer]
+          - button "Dönüştüren reklamları görün" [ref=e424] [cursor=pointer]
+          - button "İlgili müşterilerinizi hemen tespit edin" [ref=e436] [cursor=pointer]
+      - generic [ref=e447]:
+        - generic [ref=e449]:
+          - heading "100.000+ müşteri bize güveniyor" [level=2] [ref=e450]
+          - generic [ref=e454]:
+            - paragraph [ref=e455]: “Kommo bize günlük ortalama 300 tane mesajı organize etmemizi sağladı. Bunu aylığa vurursak en azından 10.000 mesajı rahatlıkla kontrol edebiliyoruz.”
+            - generic [ref=e456]:
+              - img "Gökhan Güven profil fotoğrafı" [ref=e458]
+              - generic [ref=e459]:
+                - paragraph [ref=e460]: Gökhan Güven
+                - paragraph [ref=e461]: Kurucu, Farcı Gökhan Güven
+          - link "Daha fazla yorum okuyun" [ref=e463] [cursor=pointer]:
+            - /url: https://www.kommo.com/tr/vakalar/
+        - heading "Satış ekibiniz, Pro düzeyde yapay zekaya hazır" [level=2] [ref=e470]:
+          - generic [ref=e471]: Satış ekibiniz, Pro düzeyde
+          - generic [ref=e472]: yapay zekaya hazır
+        - generic [ref=e473]:
+          - generic [ref=e474]:
+            - generic [ref=e477]:
+              - radio "6 aylık" [ref=e478] [cursor=pointer]:
+                - paragraph [ref=e479]:
+                  - generic [ref=e480]: 6 aylık
+              - radio "9 aylık" [ref=e481] [cursor=pointer]:
+                - paragraph [ref=e482]:
+                  - generic [ref=e483]: 9 aylık
+              - radio "1 yıllık" [ref=e484] [cursor=pointer]:
+                - paragraph [ref=e485]:
+                  - generic [ref=e486]: 1 yıllık
+              - radio "2 yıllık" [ref=e487] [cursor=pointer]:
+                - paragraph [ref=e488]:
+                  - generic [ref=e489]: 2 yıllık
+            - button "$ USD" [ref=e491] [cursor=pointer]
+          - generic [ref=e497]:
+            - generic [ref=e499]:
+              - heading "Temel" [level=2] [ref=e501]
+              - paragraph [ref=e502]: Küçük ekipler için – basit iş akışı için temel yapay zeka unsurları
+              - generic [ref=e503]:
+                - generic [ref=e504]:
+                  - generic [ref=e505]:
+                    - heading "$25" [level=5] [ref=e506]
+                    - generic [ref=e507]: USD
+                  - generic [ref=e508]: kullanıcı başına/aylık
+                - generic [ref=e509]: Toplam maliyeti nedir?
+                - generic [ref=e514]:
+                  - generic [ref=e515]:
+                    - generic [ref=e516]: 2 500
+                    - generic [ref=e522]: müşteri / lisans
+                  - generic [ref=e523]:
+                    - generic [ref=e524]: "750"
+                    - generic [ref=e529]: AI kredisi kullanıcı başı/ay
+                  - generic [ref=e530]: Sınırlı kanal sayısı
+                - button "Ücretsiz deneyin" [ref=e538] [cursor=pointer]
+            - generic [ref=e541]:
+              - heading "Gelişmiş" [level=2] [ref=e543]
+              - paragraph [ref=e544]: Büyüyen ekipler için – daha akıllı AI ile sohbet otomasyonu
+              - generic [ref=e545]:
+                - generic [ref=e546]:
+                  - generic [ref=e547]:
+                    - heading "$35" [level=5] [ref=e548]
+                    - generic [ref=e549]: USD
+                  - generic [ref=e550]: kullanıcı başına/aylık
+                - generic [ref=e551]: Toplam maliyeti nedir?
+                - generic [ref=e556]:
+                  - generic [ref=e557]:
+                    - generic [ref=e558]: 5 000
+                    - generic [ref=e564]: müşteri / lisans
+                  - generic [ref=e565]:
+                    - generic [ref=e566]: 1 250
+                    - generic [ref=e571]: AI kredisi kullanıcı başı/ay
+                  - generic [ref=e572]: Sınırlı kanal sayısı
+                - button "Ücretsiz deneyin" [ref=e580] [cursor=pointer]
+            - generic [ref=e582]:
+              - generic: en popüler
+              - generic [ref=e585]:
+                - heading "Pro" [level=2] [ref=e587]
+                - paragraph [ref=e588]: Deneyimli ekipler için – gelişmiş AI otomasyonu ve içgörüleri
+                - generic [ref=e589]:
+                  - generic [ref=e590]:
+                    - generic [ref=e591]:
+                      - heading "$45" [level=5] [ref=e592]
+                      - generic [ref=e593]: USD
+                    - generic [ref=e594]: kullanıcı başına/aylık
+                  - generic [ref=e595]: Toplam maliyeti nedir?
+                  - generic [ref=e600]:
+                    - generic [ref=e601]:
+                      - generic [ref=e602]: 10 000
+                      - generic [ref=e608]: müşteri / lisans
+                    - generic [ref=e609]:
+                      - generic [ref=e610]: 2 250
+                      - generic [ref=e615]: AI kredisi kullanıcı başı/ay
+                    - generic [ref=e616]: Sınırsız kanal
+                  - button "Ücretsiz deneyin" [ref=e624] [cursor=pointer]
+            - generic [ref=e627]:
+              - heading "Kurumsal" [level=2] [ref=e629]
+              - paragraph [ref=e630]: En üst düzey güvenlik, kontrol ve destek sunan özel AI CRM
+              - generic [ref=e631]:
+                - generic [ref=e632]:
+                  - heading "Özel" [level=5] [ref=e634]
+                  - generic [ref=e635]: Sisteminize bağlı
+                - generic [ref=e636]: Nasıl çalışır?
+                - generic [ref=e641]: Sınırların ötesine geçin
+                - button "Bizimle iletişime geçin" [ref=e643] [cursor=pointer]
+          - generic [ref=e645]:
+            - paragraph [ref=e646]: 6, 9, 12 veya 24 aylık abonelikler sunuyoruz. Ödemeler USD cinsinden yapılır ve fiyatlar kullanıcı başınadır.
+            - link "Plan ayrıntılarını görüntüleyin" [ref=e647] [cursor=pointer]:
+              - /url: /tr/ucret/fiyat-karsilastirma/
+      - generic [ref=e649]:
+        - generic [ref=e650]:
+          - heading "Akıllı yapay zeka otomasyonu ile daha fazla satış" [level=2] [ref=e652]
+          - paragraph [ref=e654]: Kommo'yu ücretsiz deneyin ya da demo alın ve işletmenizi nasıl büyüteceğimizi görün.
+        - generic [ref=e655]:
+          - button "14 gün ücretsiz dene" [ref=e656] [cursor=pointer]
+          - button "Demo al" [ref=e661] [cursor=pointer]
+      - contentinfo [ref=e663]:
+        - generic [ref=e665]:
+          - navigation [ref=e666]:
+            - generic [ref=e667]:
+              - link "Kommo":
+                - /url: ""
+            - list [ref=e668]:
+              - listitem [ref=e669]:
+                - generic [ref=e670]:
+                  - paragraph [ref=e672]: Kommo Nedir?
+                  - list [ref=e673]:
+                    - listitem [ref=e674]:
+                      - link "Kommo Genel Bakış" [ref=e675] [cursor=pointer]:
+                        - /url: /tr/urun-incelemesi/
+                    - listitem [ref=e677]:
+                      - link "CRM satış pipeline'ı" [ref=e678] [cursor=pointer]:
+                        - /url: /tr/crm-pipeline/
+                    - listitem [ref=e680]:
+                      - link "Sohbet Gelen Kutusu" [ref=e681] [cursor=pointer]:
+                        - /url: /tr/birlesik-gelen-kutusu/
+                    - listitem [ref=e683]:
+                      - link "Salesbot" [ref=e684] [cursor=pointer]:
+                        - /url: /tr/salesbot/
+              - listitem [ref=e686]:
+                - generic [ref=e687]:
+                  - paragraph [ref=e689]: Kanallar
+                  - list [ref=e690]:
+                    - listitem [ref=e691]:
+                      - link "WhatsApp CRM" [ref=e692] [cursor=pointer]:
+                        - /url: /tr/whatsapp/
+                    - listitem [ref=e694]:
+                      - link "Instagram CRM" [ref=e695] [cursor=pointer]:
+                        - /url: /tr/instagram/
+                    - listitem [ref=e697]:
+                      - link "TikTok CRM" [ref=e698] [cursor=pointer]:
+                        - /url: /tr/tiktok/
+                    - listitem [ref=e700]:
+                      - link "Tüm Mesaj Kanalları" [ref=e701] [cursor=pointer]:
+                        - /url: /tr/entegrasyonlar/mesajlasma-sms/
+              - listitem [ref=e703]:
+                - generic [ref=e704]:
+                  - paragraph [ref=e706]: Partnerler
+                  - list [ref=e707]:
+                    - listitem [ref=e708]:
+                      - link "Bir Partner Bul" [ref=e709] [cursor=pointer]:
+                        - /url: /tr/partnerler/bir-partner-bulun/
+                    - listitem [ref=e711]:
+                      - link "Partnerimiz olun" [ref=e712] [cursor=pointer]:
+                        - /url: /tr/partnerler/partnerimiz-ol/
+                    - listitem [ref=e714]:
+                      - link "Bir İstek Gönder" [ref=e715] [cursor=pointer]:
+                        - /url: /tr/partnerler/bir-partner-bulun/#form
+              - listitem [ref=e717]:
+                - generic [ref=e718]:
+                  - paragraph [ref=e720]: Kaynaklar
+                  - list [ref=e721]:
+                    - listitem [ref=e722]:
+                      - link "Demo al" [ref=e723] [cursor=pointer]:
+                        - /url: /tr/demo-al/
+                    - listitem [ref=e725]:
+                      - link "Kommo Blog'u" [ref=e726] [cursor=pointer]:
+                        - /url: /tr/blog/
+                    - listitem [ref=e728]:
+                      - link "Bilgi Tabanı" [ref=e729] [cursor=pointer]:
+                        - /url: https://support.kommo.com/home/tr
+                    - listitem [ref=e731]:
+                      - link "Destek" [ref=e732] [cursor=pointer]:
+                        - /url: /tr/bize-ulasin/
+                    - listitem [ref=e734]:
+                      - link "API & SDK" [ref=e735] [cursor=pointer]:
+                        - /url: https://developers.kommo.com/docs/kommo-for-developers
+              - listitem [ref=e737]:
+                - generic [ref=e738]:
+                  - paragraph [ref=e740]: Rehberler
+                  - list [ref=e741]:
+                    - listitem [ref=e742]:
+                      - link "WhatsApp CRM" [ref=e743] [cursor=pointer]:
+                        - /url: /blog/whatsapp-crm/
+                    - listitem [ref=e745]:
+                      - link "TikTok CRM" [ref=e746] [cursor=pointer]:
+                        - /url: https://www.kommo.com/tr/blog/tiktok-crm/
+                    - listitem [ref=e748]:
+                      - link "Instagram CRM" [ref=e749] [cursor=pointer]:
+                        - /url: /blog/instagram-crm/
+              - listitem [ref=e751]:
+                - generic [ref=e752]:
+                  - paragraph [ref=e754]: Entegre Edilmiş Uygulamalar
+                  - list [ref=e755]:
+                    - listitem [ref=e756]:
+                      - link "Öne Çıkan Uygulamalar" [ref=e757] [cursor=pointer]:
+                        - /url: /tr/entegrasyonlar/en-cok-secilenler/
+                    - listitem [ref=e759]:
+                      - link "Mesajlaşma ve SMS" [ref=e760] [cursor=pointer]:
+                        - /url: /tr/entegrasyonlar/mesajlasma-sms/
+                    - listitem [ref=e762]:
+                      - link "Tüm Entegrasyonlar" [ref=e763] [cursor=pointer]:
+                        - /url: /tr/entegrasyonlar/
+              - listitem [ref=e765]:
+                - generic [ref=e766]:
+                  - paragraph [ref=e768]: Neden Kommo?
+                  - list [ref=e769]:
+                    - listitem [ref=e770]:
+                      - link "Fiyatlandırma" [ref=e771] [cursor=pointer]:
+                        - /url: /tr/ucret/fiyat-karsilastirma/
+                    - listitem [ref=e773]:
+                      - link "Müşteri Yorumları" [ref=e774] [cursor=pointer]:
+                        - /url: /tr/musteri-yorumlari/
+                    - listitem [ref=e776]:
+                      - link "Müşteri Başarı Öyküleri" [ref=e777] [cursor=pointer]:
+                        - /url: /tr/vakalar/
+              - listitem [ref=e779]:
+                - generic [ref=e780]:
+                  - paragraph [ref=e782]: Ücretsiz Araçlar
+                  - list [ref=e783]:
+                    - listitem [ref=e784]:
+                      - link "WhatsApp link oluşturma" [ref=e785] [cursor=pointer]:
+                        - /url: /tr/whatsapp-link-olusturma/
+                    - listitem [ref=e787]:
+                      - link "WhatsApp QR Kod Oluşturucu" [ref=e788] [cursor=pointer]:
+                        - /url: /tr/whatsapp-qr-kodu-olusturma/
+                    - listitem [ref=e790]:
+                      - link "Ücretsiz QR Kod Oluşturucu" [ref=e791] [cursor=pointer]:
+                        - /url: /tr/qr-kod-ureteci/
+                    - listitem [ref=e793]:
+                      - link "WhatsApp Ücretlendirme Hesaplayıcısı" [ref=e794] [cursor=pointer]:
+                        - /url: /tr/whatsapp-ucret-hesaplayicisi/
+              - listitem [ref=e796]:
+                - generic [ref=e797]:
+                  - paragraph [ref=e799]: Bize Ulaşın
+                  - list [ref=e800]:
+                    - listitem [ref=e801]:
+                      - link "WhatsApp Ulaşın" [ref=e802] [cursor=pointer]:
+                        - /url: https://api.whatsapp.com/send/?phone=14159141403&text&type=phone_number&app_absent=0
+                    - listitem [ref=e804]:
+                      - link "Facebook Ulaşın" [ref=e805] [cursor=pointer]:
+                        - /url: https://www.facebook.com/KommoTurkiye/
+                    - listitem [ref=e807]:
+                      - 'link "Ara: +1-830-580-3077" [ref=e808] [cursor=pointer]':
+                        - /url: tel:+18305803077
+                    - listitem [ref=e810]:
+                      - link "Bize Mesaj Gönderin" [ref=e811] [cursor=pointer]:
+                        - /url: sms:+18305803077
+                    - listitem [ref=e813]:
+                      - link "Bize E-posta Gönderin" [ref=e814] [cursor=pointer]:
+                        - /url: mailto:support@kommo.com
+              - listitem [ref=e816]:
+                - generic [ref=e817]:
+                  - paragraph [ref=e819]: Yasal
+                  - list [ref=e820]:
+                    - listitem [ref=e821]:
+                      - link "Kullanım Şartları" [ref=e822] [cursor=pointer]:
+                        - /url: /tr/kullanim-kosullari/
+                    - listitem [ref=e824]:
+                      - link "Güvenlik" [ref=e825] [cursor=pointer]:
+                        - /url: /tr/guvenlik/
+                    - listitem [ref=e827]:
+                      - link "Güvenlik Açığı Bildirim Programı" [ref=e828] [cursor=pointer]:
+                        - /url: /tr/guvenlik-acigi-bildirim-programi/
+                    - listitem [ref=e830]:
+                      - link "Google Kullanıcı Verisi İşleme Politikası" [ref=e831] [cursor=pointer]:
+                        - /url: /tr/google-api-kullanici-verisi-politikasi/
+                    - listitem [ref=e833]:
+                      - link "Gizlilik Politikası" [ref=e834] [cursor=pointer]:
+                        - /url: /tr/gizlilik-politikasi/
+                    - listitem [ref=e836]:
+                      - link "İade Politikası" [ref=e837] [cursor=pointer]:
+                        - /url: /tr/iade-politikasi/
+                    - listitem [ref=e839]:
+                      - link "Kommo AI koşulları" [ref=e840] [cursor=pointer]:
+                        - /url: /tr/kommo-ai-kosullari/
+              - listitem [ref=e842]:
+                - generic [ref=e843]:
+                  - paragraph [ref=e845]: Resmi Partnerler
+                  - img "meta badge" [ref=e848]
+          - generic [ref=e849]:
+            - button "Turkish (TR)" [ref=e851] [cursor=pointer]
+            - generic [ref=e857]:
+              - link "Facebook" [ref=e858] [cursor=pointer]:
+                - /url: https://www.facebook.com/share/1Byh7pq3Xi/
+              - link "LinkedIn" [ref=e862] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/kommo/
+              - link "Instagram" [ref=e866] [cursor=pointer]:
+                - /url: https://www.instagram.com/kommoturkey/
+              - link "YouTube" [ref=e872] [cursor=pointer]:
+                - /url: https://www.youtube.com/@kommoturkiye
+              - link "Telegramm" [ref=e875] [cursor=pointer]:
+                - /url: https://t.me/kommoglobal
+          - generic [ref=e879]:
+            - generic [ref=e880]:
+              - link [ref=e881] [cursor=pointer]:
+                - /url: https://play.google.com/store/apps/details?id=com.kommo.mobile
+              - link [ref=e894] [cursor=pointer]:
+                - /url: https://apps.apple.com/sg/app/kommo/id6443626329
+            - paragraph [ref=e900]: QSOFT LLC © 2009-2026. Tüm hakları saklıdır
+  - generic [ref=e902]:
+    - button "×" [ref=e903] [cursor=pointer]
+    - iframe [ref=e904]:
+      - generic [ref=f6e2]:
+        - generic:
+          - paragraph [ref=f6e5]:
+            - strong [ref=f6e7]: 🔊 Kommo’nun fiyat ve plan değişikliklerini inceleyin
+          - link [ref=f6e8] [cursor=pointer]:
+            - /url: https://www.kommo.com/tr/ucret/fiyat-karsilastirma/
+            - generic:
+              - strong
+  - generic [ref=e905]:
+    - iframe
+    - iframe [ref=e913] [cursor=pointer]

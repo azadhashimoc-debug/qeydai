@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
+import { PricingMatrixClient } from "@/components/marketing/PricingMatrixClient";
+import { PricingTiersClient, type PricingTier } from "@/components/marketing/PricingTiersClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
-import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
+import { BottomCtaBand, FeatureGrid, SubpageHero } from "@/components/marketing/SubpageBlocks";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
 
@@ -20,6 +22,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/pricing">)
     title: d.subpages.pricingPage.hero.title,
     description: d.subpages.pricingPage.hero.subtitle,
     brand: d.brand,
+    image: "/images/p-pricing-pro.webp",
   });
 }
 
@@ -30,6 +33,199 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
   const pricing = s.pricingPage;
+
+  const tiers: PricingTier[] =
+    locale === "en"
+      ? [
+          {
+            id: "starter",
+            name: "Starter",
+            desc: "For growing courses and studios starting unified messaging.",
+            prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
+            setupNote: "Per workspace · No hidden fees",
+            ctaLabel: "Start 14-day trial",
+            limits: [
+              "Telegram + Instagram Direct inbox",
+              "Kanban pipeline up to 500 leads",
+              "Duplicate trial booking guard",
+            ],
+          },
+          {
+            id: "growth",
+            name: "Growth",
+            desc: "WhatsApp Cloud API + automated trial scheduling.",
+            prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
+            setupNote: "Per workspace · 14-day free trial",
+            ctaLabel: "Start 14-day trial",
+            limits: [
+              "WhatsApp + Instagram + Telegram",
+              "AI assistant & instant replies",
+              "Team assignment & operator handoff",
+            ],
+          },
+          {
+            id: "pro",
+            name: "Pro",
+            desc: "Full automation, multi-branch capacity lock & AI salesbot.",
+            popular: true,
+            popularBadge: "Most Popular",
+            prices: { monthly: "169 AZN", halfYear: "145 AZN", annual: "135 AZN" },
+            setupNote: "Per workspace · Priority Baku onboarding",
+            ctaLabel: "Choose Pro",
+            limits: [
+              "All channels + REST Webhook & n8n",
+              "Unlimited custom CRM fields",
+              "Full audit log & multi-branch control",
+            ],
+          },
+          {
+            id: "enterprise",
+            name: "Enterprise",
+            desc: "Dedicated PostgreSQL isolation, SLA & custom integrations.",
+            prices: { monthly: "Custom", halfYear: "Custom", annual: "Custom" },
+            setupNote: "Tailored for multi-center networks",
+            ctaLabel: "Contact sales",
+            limits: [
+              "Dedicated isolated database",
+              "Custom ERP / payment webhooks",
+              "Dedicated technical account lead",
+            ],
+          },
+        ]
+      : [
+          {
+            id: "starter",
+            name: "Başlanğıc",
+            desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
+            prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
+            setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
+            ctaLabel: "14 gün pulsuz sına",
+            limits: [
+              "Telegram + Instagram Direct qutusu",
+              "500 müraciətədək Kanban lövhəsi",
+              "Təkrar sınaq qeydiyyatına nəzarət",
+            ],
+          },
+          {
+            id: "growth",
+            name: "İnkişaf",
+            desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
+            prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
+            setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
+            ctaLabel: "14 gün pulsuz sına",
+            limits: [
+              "WhatsApp + Instagram + Telegram",
+              "AI köməkçi və sürətli cavablar",
+              "Operator bölgüsü və canlı ötürmə",
+            ],
+          },
+          {
+            id: "pro",
+            name: "Pro",
+            desc: "Tam avtomatlaşdırma, çoxfiliallı tutum kilidi və AI satış botu.",
+            popular: true,
+            popularBadge: "Ən Populyar",
+            prices: { monthly: "169 AZN", halfYear: "145 AZN", annual: "135 AZN" },
+            setupNote: "İş sahəsi üzrə · Bakıda fərdi quraşdırma",
+            ctaLabel: "Pro planını seç",
+            limits: [
+              "Bütün kanallar + REST Webhook & n8n",
+              "Limitsiz fərdi CRM sahələri",
+              "Tam audit jurnalı və filial nəzarəti",
+            ],
+          },
+          {
+            id: "enterprise",
+            name: "Korporativ",
+            desc: "Təcrid olunmuş PostgreSQL bazası, SLA və xüsusi inteqrasiyalar.",
+            prices: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
+            setupNote: "Şəbəkə tədris və xidmət mərkəzləri üçün",
+            ctaLabel: "Satışla əlaqə",
+            limits: [
+              "Fərdi təcrid olunmuş verilənlər bazası",
+              "Xüsusi ödəniş və ERP inteqrasiyası",
+              "Fərdi texniki dəstək meneceri",
+            ],
+          },
+        ];
+
+  const proBenefits =
+    locale === "en"
+      ? [
+          {
+            title: "Omnichannel Inbox",
+            desc: "Manage WhatsApp, Instagram DMs, and Telegram inquiries in one unified screen.",
+            tone: "lavender" as const,
+          },
+          {
+            title: "Zero Double-Booking",
+            desc: "Real-time seat capacity locks and automated trial lesson reminders.",
+            tone: "mint" as const,
+          },
+          {
+            title: "Revenue-Focused Pipeline",
+            desc: "Track every lead from first message to enrolled student in AZN.",
+            tone: "sky" as const,
+          },
+          {
+            title: "Multi-Branch Ready",
+            desc: "Operate separate Baku branches with isolated schedules and operator roles.",
+            tone: "amber" as const,
+          },
+        ]
+      : [
+          {
+            title: "Geniş çeşidli ünsiyyət",
+            desc: "WhatsApp, Instagram DM və Telegram müraciətlərini tək vahid qutuda idarə edin.",
+            tone: "lavender" as const,
+          },
+          {
+            title: "Dəqiq sınaq rezervasiyası",
+            desc: "Canlı yer sayı kilidi ilə eyni nömrənin təkrar qeydiyyatının qarşısını alın.",
+            tone: "mint" as const,
+          },
+          {
+            title: "Gəlir yönümlü böyümə",
+            desc: "İlk mesajdan ödənişli qeydiyyata qədər bütün satış mərhələlərini AZN ilə izləyin.",
+            tone: "sky" as const,
+          },
+          {
+            title: "Çoxfiliallı mərkəzlər",
+            desc: "Bakı və regionlardakı filialları təcrid olunmuş cədvəl və operatorlarla işlədin.",
+            tone: "amber" as const,
+          },
+        ];
+
+  const faqItems =
+    locale === "en"
+      ? [
+          {
+            q: "Can we switch between monthly and annual billing?",
+            a: "Yes. You can start with a 14-day free trial and switch billing cycles anytime without losing student or lead records.",
+          },
+          {
+            q: "Are there any extra fees for WhatsApp Cloud API?",
+            a: "Your panelim.az subscription covers the CRM, automation, and webhook engine. Meta conversation charges are billed directly at Meta's official rates.",
+          },
+          {
+            q: "Is our center's data isolated from other centers?",
+            a: "Yes. Every workspace is strictly tenant-isolated at the database and API key level.",
+          },
+        ]
+      : [
+          {
+            q: "Aylıq və illik ödəniş arasında keçid etmək mümkündür?",
+            a: "Bəli. 14 günlük pulsuz sınaqla başlaya və məlumatlarınızı itirmədən istənilən vaxt ödəniş dövrünü dəyişə bilərsiniz.",
+          },
+          {
+            q: "WhatsApp Cloud API üçün əlavə ödəniş varmı?",
+            a: "panelim.az abunəliyi CRM, bot və avtomatlaşdırma mühərrikini əhatə edir. Rəsmi Meta mesaj tarifləri birbaşa Meta hesabınız üzərindən hesablanır.",
+          },
+          {
+            q: "Mərkəzimizin tələbə və müraciət bazası digər mərkəzlərdən təcrid olunur?",
+            a: "Bəli. Hər bir iş sahəsi verilənlər bazası və API açarı səviyyəsində tam təcrid olunmuş şəkildə saxlanılır.",
+          },
+        ];
 
   return (
     <div className="marketing">
@@ -53,40 +249,58 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           title={pricing.hero.title}
           subtitle={pricing.hero.subtitle}
           primaryCta={{ href: `/${locale}/demo`, label: s.common.bottomCta.primary }}
-          secondaryCta={{ href: `/${locale}/contact`, label: s.common.bottomCta.secondary }}
-          image="p-cases"
+          secondaryCta={{ href: "#matrix", label: pricing.matrix.title }}
+          image="p-pricing-pro"
           imageAlt={pricing.hero.title}
         />
 
+        <section className="pm-section" style={{ paddingTop: "12px" }}>
+          <div className="pm-wrap">
+            <PricingTiersClient
+              lang={locale}
+              periods={pricing.periods}
+              perMonthLabel={locale === "en" ? "/ mo" : "/ ay"}
+              tiers={tiers}
+            />
+          </div>
+        </section>
+
+        <FeatureGrid
+          heading={locale === "en" ? "Why teams choose Pro" : "Komandalar niyə Pro-nu seçir?"}
+          subheading={
+            locale === "en"
+              ? "Built to turn every message into an enrolled student."
+              : "Mesajları real dərs qeydiyyatına çevirmək üçün ideal plan."
+          }
+          columns={2}
+          items={proBenefits}
+        />
+
         <section className="pm-section">
-          <div className="pm-wrap pm-matrix-wrap">
-            <h2>{pricing.matrix.title}</h2>
-            <p className="pm-subhero-sub">{pricing.matrix.subtitle}</p>
-            <div className="pm-matrix-group">
-              <button className="pm-matrix-toggle" type="button">
-                {pricing.periods.annual}
-              </button>
-              <div className="pm-matrix-table-scroll">
-                <table className="pm-matrix-table">
-                  <thead>
-                    <tr>
-                      <th>{pricing.matrix.colFeature}</th>
-                      {Object.entries(pricing.periods).map(([key, label]) => (
-                        <th key={key}>{label}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.entries(pricing.matrix.categories).map(([catKey, category]) => (
-                      <tr key={catKey}>
-                        <td colSpan={Object.keys(pricing.periods).length + 1}>
-                          {category.title}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          <div className="pm-wrap">
+            <PricingMatrixClient
+              matrix={pricing.matrix}
+              planNames={
+                locale === "en"
+                  ? ["Starter", "Growth", "Pro", "Enterprise"]
+                  : ["Başlanğıc", "İnkişaf", "Pro", "Korporativ"]
+              }
+            />
+          </div>
+        </section>
+
+        <section className="pm-section">
+          <div className="pm-wrap pm-faq-inner">
+            <div className="pm-section-head">
+              <h2>{locale === "en" ? "Frequently Asked Questions" : "Tez-tez verilən suallar"}</h2>
+            </div>
+            <div className="pm-faq-list">
+              {faqItems.map((item) => (
+                <details key={item.q} className="pm-faq-item">
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
             </div>
           </div>
         </section>

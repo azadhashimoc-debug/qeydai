@@ -1,7 +1,8 @@
 import { mkdtempSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { getSharedStore } from "@/lib/api/instance";
 import { POST, resetLeadRateLimit } from "./route";
 
 type Opts = { body?: unknown; raw?: string; headers?: Record<string, string> };
@@ -14,19 +15,46 @@ const req = ({ body, raw, headers }: Opts) =>
 const good = { name: "Aygün", phone: "050 123 45 67" };
 
 function tmpFile() {
-  const f = path.join(mkdtempSync(path.join(tmpdir(), "lead-")), "l.jsonl");
+  const dir = mkdtempSync(path.join(tmpdir(), "lead-"));
+  const f = path.join(dir, "l.jsonl");
   process.env.LEADS_FILE = f;
+  process.env.ENROLL_DB_FILE = ":memory:";
   return f;
 }
 
-beforeEach(() => resetLeadRateLimit());
+beforeEach(() => {
+  resetLeadRateLimit();
+  process.env.TRUST_PROXY = "x-forwarded-for";
+  process.env.ENROLL_DB_FILE = ":memory:";
+});
+
+afterEach(() => {
+  delete process.env.TRUST_PROXY;
+  delete process.env.QEYDAI_PUBLIC_LEAD_TENANT;
+});
 
 describe("POST /api/lead", () => {
-  it("stores a valid lead", async () => {
+  it("stores a valid lead and syncs it to the panel CRM store", async () => {
     const f = tmpFile();
+    process.env.QEYDAI_PUBLIC_LEAD_TENANT = "pilot_center";
     const res = await POST(req({ body: good }));
     expect(res.status).toBe(200);
     expect(JSON.parse(readFileSync(f, "utf8").trim()).phone).toBe("+994501234567");
+    const leads = await getSharedStore().listLeads("pilot_center");
+    expect(leads.some((l) => l.phone === "+994501234567" && l.source === "web")).toBe(true);
+  });
+  it("returns an error when the lead cannot be saved to the panel store", async () => {
+    tmpFile();
+    const write = vi.spyOn(getSharedStore(), "upsertLead").mockRejectedValueOnce(new Error("CRM unavailable"));
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      const res = await POST(req({ body: good }));
+      expect(res.status).toBe(500);
+      expect(await res.json()).toEqual({ ok: false, error: "server_error" });
+    } finally {
+      write.mockRestore();
+      log.mockRestore();
+    }
   });
   it("rejects invalid lead and writes nothing", async () => {
     const f = tmpFile();

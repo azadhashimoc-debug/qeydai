@@ -1,0 +1,220 @@
+- generic [active] [ref=f71e1]:
+  - complementary [ref=f71e3]:
+    - button [ref=f71e9] [cursor=pointer]
+    - separator [ref=f71e14]
+    - generic [ref=f71e19]:
+      - list [ref=f71e20]:
+        - listitem [ref=f71e22] [cursor=pointer]:
+          - link "Home" [ref=f71e24]:
+            - /url: /home/
+        - listitem [ref=f71e29]:
+          - link "Communication" [ref=f71e31] [cursor=pointer]:
+            - /url: /chats/
+        - listitem [ref=f71e40]:
+          - link "Pipelines" [ref=f71e42] [cursor=pointer]:
+            - /url: /leads/pipeline/14795311
+        - listitem [ref=f71e52] [cursor=pointer]:
+          - link "Calendar" [ref=f71e54]:
+            - /url: /todo
+        - listitem [ref=f71e60] [cursor=pointer]:
+          - link "Segments Beta" [ref=f71e62]:
+            - /url: /segments/
+            - generic [ref=f71e68]: Segments
+            - generic [ref=f71e69]: Beta
+        - listitem [ref=f71e74]:
+          - link "Lists" [ref=f71e76] [cursor=pointer]:
+            - /url: /contacts/list/contacts
+        - listitem [ref=f71e86] [cursor=pointer]:
+          - link "AI agent" [ref=f71e88]:
+            - /url: /settings/ai-agent/
+        - listitem [ref=f71e95]:
+          - link "Automations" [ref=f71e97] [cursor=pointer]:
+            - /url: /chats/tools/bots/
+        - listitem [ref=f71e106]:
+          - link "Insights" [ref=f71e108] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=f71e118]: Pinned integrations
+      - list [ref=f71e119]:
+        - listitem [ref=f71e120]:
+          - link "WhatsApp Business" [ref=f71e122] [cursor=pointer]:
+            - /url: /widget_page/whatsapp_cloud_api/hub
+    - list [ref=f71e132]:
+      - listitem [ref=f71e134] [cursor=pointer]:
+        - link "Settings" [ref=f71e136]:
+          - /url: /settings/profile/
+      - listitem [ref=f71e142]:
+        - link "Help" [ref=f71e144] [cursor=pointer]:
+          - /url: /settings/ai
+      - listitem [ref=f71e154] [cursor=pointer]:
+        - link "Notification center" [ref=f71e156]:
+          - /url: /settings/profile/notifications
+    - separator [ref=f71e161]
+    - button "Avatar adem novruzlu mototiv843" [ref=f71e163] [cursor=pointer]:
+      - img "Avatar" [ref=f71e166]
+      - generic [ref=f71e167]:
+        - generic [ref=f71e168]: adem novruzlu
+        - generic [ref=f71e169]: mototiv843
+  - generic:
+    - generic [ref=f71e172]:
+      - generic [ref=f71e173]: Home
+      - generic [ref=f71e175]:
+        - generic [ref=f71e177]:
+          - button [ref=f71e178] [cursor=pointer]
+          - generic [ref=f71e181]:
+            - generic [ref=f71e182]:
+              - generic [ref=f71e183]: Welcome to Kommo!
+              - generic [ref=f71e184]: Turn chats into sales with powerful AI tools
+              - button "Explore Kommo" [ref=f71e186] [cursor=pointer]
+            - img "Welcome to Kommo!" [ref=f71e190]
+        - generic [ref=f71e191]:
+          - generic [ref=f71e193]:
+            - generic [ref=f71e194]: Trial
+            - generic [ref=f71e195]: Active
+          - generic [ref=f71e197]:
+            - generic [ref=f71e198]:
+              - generic [ref=f71e199]: Your trial gives you full Enterprise plan-level access. Try every feature in Kommo and see what works best for your business before selecting a plan.
+              - button "Go to Billing" [ref=f71e200] [cursor=pointer]
+            - generic [ref=f71e204]:
+              - generic [ref=f71e205]:
+                - generic [ref=f71e206]: Workspace overview
+                - generic [ref=f71e209]:
+                  - generic [ref=f71e210]: Days left
+                  - generic [ref=f71e212]: "14"
+              - generic [ref=f71e216]:
+                - generic [ref=f71e217]:
+                  - generic [ref=f71e218]: Leads
+                  - generic [ref=f71e219]: Unlimited
+                - generic [ref=f71e221]:
+                  - generic [ref=f71e222]: Users
+                  - generic [ref=f71e223]: Unlimited
+                - generic [ref=f71e225]:
+                  - generic [ref=f71e226]: Contacts & companies
+                  - generic [ref=f71e227]: Unlimited
+                - generic [ref=f71e229]:
+                  - generic [ref=f71e230]: WhatsApp numbers
+                  - generic [ref=f71e231]: Unlimited
+                - generic [ref=f71e233]:
+                  - generic [ref=f71e234]: Instagram accounts
+                  - generic [ref=f71e235]: Unlimited
+                - generic [ref=f71e237]:
+                  - generic [ref=f71e238]: Media storage
+                  - generic [ref=f71e239]: 0 / 10 GB
+                - generic [ref=f71e241]:
+                  - generic [ref=f71e242]: Included Chats API messages
+                  - generic [ref=f71e243]: 0 / 100
+        - generic [ref=f71e245]:
+          - generic [ref=f71e246] [cursor=pointer]: Tutorials
+          - generic [ref=f71e250]:
+            - generic [ref=f71e251]:
+              - button "In progress" [ref=f71e252] [cursor=pointer]
+              - button "Explore more" [ref=f71e253] [cursor=pointer]
+            - generic [ref=f71e254]:
+              - generic [ref=f71e255]:
+                - generic [ref=f71e257] [cursor=pointer]:
+                  - progressbar [ref=f71e258]:
+                    - generic [ref=f71e262]: 0%
+                  - generic [ref=f71e263]: Manage incoming messages 24/7
+                - generic [ref=f71e266]:
+                  - generic [ref=f71e267]:
+                    - button [ref=f71e273] [cursor=pointer]
+                    - generic [ref=f71e279]: Connect a channel
+                    - generic [ref=f71e281]: Start receiving messages directly in Kommo.
+                    - button "Connect lead sources" [ref=f71e283] [cursor=pointer]
+                  - generic [ref=f71e286]:
+                    - button [ref=f71e292] [cursor=pointer]
+                    - generic [ref=f71e298]: Create an AI receptionist
+                    - generic [ref=f71e300]: Reply to clients and make sales, even when your team is offline.
+                    - button "Create AI receptionist" [ref=f71e302] [cursor=pointer]
+                  - generic [ref=f71e308]:
+                    - button [ref=f71e314] [cursor=pointer]
+                    - generic [ref=f71e320]:
+                      - generic [ref=f71e321]: Create a greeting bot
+                      - generic [ref=f71e322]: Optional
+                    - generic [ref=f71e324]: Greet clients instantly or guide the conversation.
+                    - button "Create bot" [ref=f71e326] [cursor=pointer]
+              - generic [ref=f71e331] [cursor=pointer]:
+                - progressbar [ref=f71e332]:
+                  - generic [ref=f71e336]: 0%
+                - generic [ref=f71e337]: Create pipelines for marketing, and more
+        - generic [ref=f71e340]:
+          - generic [ref=f71e341]:
+            - generic [ref=f71e342]: Need help?
+            - button [ref=f71e343] [cursor=pointer]
+          - generic [ref=f71e349]:
+            - generic [ref=f71e355]:
+              - generic [ref=f71e356]: Get a free demo with our team
+              - generic [ref=f71e357]: Book a 30-minute Zoom call with a Kommo team member. Get answers, explore features, and learn how Kommo can help your business grow.
+              - button "Book a free demo" [ref=f71e358] [cursor=pointer]
+            - generic [ref=f71e366]:
+              - generic [ref=f71e367]: Start with expert guidance
+              - generic [ref=f71e368]:
+                - text: Certified Kommo partners help you set up your workspace, customize it, or onboard your team. Submit a request to hire the right expert.
+                - link "Learn more" [ref=f71e369] [cursor=pointer]:
+                  - /url: https://www.kommo.com/support/getting-started/hire-a-certified-kommo-expert/
+              - button "Hire an expert" [ref=f71e370] [cursor=pointer]
+        - generic [ref=f71e373]:
+          - generic [ref=f71e375]:
+            - generic [ref=f71e376]: What’s new in Kommo
+            - generic [ref=f71e377]:
+              - text: Discover our latest round of product updates, or check out the
+              - link "playlist of past releases." [ref=f71e378] [cursor=pointer]:
+                - /url: https://youtu.be/10tOabvcX5s&list=PLEz5O4XgRGzmfge6Rf7ripcOTiVMiplwQ
+          - generic [ref=f71e379]:
+            - iframe [ref=f71e383]:
+              - generic [ref=f75e1]:
+                - generic "YouTube Video Oynatıcısı" [ref=f75e3]
+                - generic [ref=f75e5]:
+                  - generic:
+                    - generic:
+                      - generic [ref=f75e6] [cursor=pointer]
+                      - button "Videoyu oynat" [ref=f75e10] [cursor=pointer]
+                      - button "Oynatıcı kontrollerini gizle" [ref=f75e12] [cursor=pointer]
+                      - generic [ref=f75e14]:
+                        - generic [ref=f75e21]:
+                          - generic [ref=f75e22]:
+                            - link "What’s New in Kommo – September Update" [ref=f75e23] [cursor=pointer]:
+                              - /url: https://www.youtube.com/watch?v=EPmTuqN02Vk
+                            - 'link "Kommo: Messenger-Based Sales" [ref=f75e24] [cursor=pointer]':
+                              - /url: /channel/UCcYhnXmssheJmhguzSfmgdw
+                          - generic [ref=f75e26]:
+                            - button [ref=f75e27] [cursor=pointer]
+                            - generic [ref=f75e29]:
+                              - generic: "Kommo: Messenger-Based Sales"
+                              - generic: 6,96 B abone
+                        - generic [ref=f75e30]:
+                          - button "Paylaş" [ref=f75e33] [cursor=pointer]
+                          - link "YouTube'da izleyin" [ref=f75e44] [cursor=pointer]:
+                            - /url: https://www.youtube.com/watch?v=EPmTuqN02Vk
+                            - generic [ref=f75e45]: "İzlemek için:"
+            - generic [ref=f71e384]:
+              - heading "Automate booking confirmations and meeting reminders with Salesbot" [level=3] [ref=f71e391] [cursor=pointer]
+              - heading "Assign multiple team members to the same Booking type" [level=3] [ref=f71e401] [cursor=pointer]
+              - heading "Pause AI agents in specific conversations and resume them when needed" [level=3] [ref=f71e410] [cursor=pointer]
+              - heading "Chat with WhatsApp leads even when their phone number is hidden" [level=3] [ref=f71e419] [cursor=pointer]
+        - generic [ref=f71e423]:
+          - text: © 2026 All rights reserved |
+          - link "Terms of Use" [ref=f71e424] [cursor=pointer]:
+            - /url: https://www.kommo.com/terms/
+    - generic [ref=f71e427]:
+      - button "Copilot" [ref=f71e428]
+      - generic [ref=f71e439]:
+        - generic [ref=f71e441]:
+          - generic [ref=f71e442]:
+            - generic [ref=f71e445]: Kommo Copilot
+            - button "New chat" [ref=f71e446] [cursor=pointer]
+          - generic [ref=f71e451]:
+            - button [ref=f71e452] [cursor=pointer]
+            - button [ref=f71e457] [cursor=pointer]
+        - button "New chat" [ref=f71e462]
+        - generic [ref=f71e470]:
+          - heading "Assistant mode" [level=2] [ref=f71e475]
+          - generic [ref=f71e476]: Need help with setting up Kommo or managing your leads? Just ask!
+        - button "Assistant mode" [ref=f71e480] [cursor=pointer]
+        - generic [ref=f71e486]:
+          - generic [ref=f71e487]:
+            - textbox "Ask Kommo Copilot" [ref=f71e490]
+            - button "Primary CRM setup" [ref=f71e493] [cursor=pointer]
+            - generic [ref=f71e495]:
+              - button [ref=f71e496] [cursor=pointer]
+              - button "Send" [disabled] [ref=f71e501]
+          - generic [ref=f71e506]: AI-generated content may be inaccurate

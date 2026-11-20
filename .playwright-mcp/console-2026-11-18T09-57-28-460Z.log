@@ -1,0 +1,1934 @@
+[    4285ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    4288ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[    4358ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[    4756ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[    4865ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  230566ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  230923ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  230952ms] [LOG] [Fast Refresh] done in 457ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  231264ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  231372ms] [LOG] [Fast Refresh] done in 223ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  232494ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  232498ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  232552ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  232813ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233187ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  233216ms] [LOG] [Fast Refresh] done in 535ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233300ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  233447ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233455ms] [LOG] [Fast Refresh] done in 122ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233699ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233737ms] [LOG] [Fast Refresh] done in 151ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  233951ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234215ms] [LOG] [Fast Refresh] done in 367ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234451ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234452ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234700ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234714ms] [LOG] [Fast Refresh] done in 117ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  234950ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235000ms] [LOG] [Fast Refresh] done in 151ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235214ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235218ms] [LOG] [Fast Refresh] done in 116ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235462ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235505ms] [LOG] [Fast Refresh] done in 157ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235719ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235721ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  235978ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236022ms] [LOG] [Fast Refresh] done in 159ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236231ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236233ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236466ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236509ms] [LOG] [Fast Refresh] done in 147ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236729ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236734ms] [LOG] [Fast Refresh] done in 119ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  236981ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  237022ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  237232ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  237233ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  237481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  237555ms] [LOG] [Fast Refresh] done in 189ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  241981ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242098ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242153ms] [LOG] [Fast Refresh] done in 227ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242381ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  242469ms] [LOG] [Fast Refresh] done in 195ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  243327ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  243330ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  243371ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  243647ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  243893ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  243919ms] [LOG] [Fast Refresh] done in 377ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244011ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  244131ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244213ms] [LOG] [Fast Refresh] done in 185ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244431ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244469ms] [LOG] [Fast Refresh] done in 140ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244694ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244754ms] [LOG] [Fast Refresh] done in 166ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244964ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  244981ms] [LOG] [Fast Refresh] done in 119ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245211ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245229ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245446ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245496ms] [LOG] [Fast Refresh] done in 164ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245732ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  245790ms] [LOG] [Fast Refresh] done in 161ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  246011ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  247228ms] [LOG] [Fast Refresh] done in 1322ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  247496ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  247542ms] [LOG] [Fast Refresh] done in 161ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  247760ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  247763ms] [LOG] [Fast Refresh] done in 117ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248012ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248033ms] [LOG] [Fast Refresh] done in 135ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248260ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248278ms] [LOG] [Fast Refresh] done in 131ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248495ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248512ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248726ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248728ms] [LOG] [Fast Refresh] done in 115ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248964ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  248980ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  249210ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  249227ms] [LOG] [Fast Refresh] done in 132ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  249430ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  249664ms] [LOG] [Fast Refresh] done in 336ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  249895ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  250028ms] [LOG] [Fast Refresh] done in 245ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  250261ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  250305ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396070ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396311ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396326ms] [LOG] [Fast Refresh] done in 347ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396603ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396697ms] [LOG] [Fast Refresh] done in 206ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  396918ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  397107ms] [LOG] [Fast Refresh] done in 290ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  397959ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  397963ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  398021ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  398287ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  398689ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  398718ms] [LOG] [Fast Refresh] done in 532ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  398818ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  398951ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  399038ms] [LOG] [Fast Refresh] done in 188ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  399468ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  399525ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  400356ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  401637ms] [LOG] [Fast Refresh] done in 1381ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  401901ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  401986ms] [LOG] [Fast Refresh] done in 195ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402234ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402252ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402467ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402520ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402734ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402751ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402969ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  402990ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  403217ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  403219ms] [LOG] [Fast Refresh] done in 117ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  403450ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  403506ms] [LOG] [Fast Refresh] done in 170ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  457380ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  457419ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  457641ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  457778ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  458025ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  458046ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  458259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  458334ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  458579ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  458610ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  458827ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  458903ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  459223ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  459310ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  459543ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  459558ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  459774ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  459846ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  460075ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  461210ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  461441ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  461444ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  461660ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  461701ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  461923ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  461976ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  462190ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  462235ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  462458ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  462462ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  462710ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  462730ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  462944ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  462945ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  463193ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  463234ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  463443ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  463445ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  463708ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  463730ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  463957ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  463978ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  464209ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  464250ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  464475ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  464477ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  464725ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  464763ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  464991ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  465016ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  465241ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  465310ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  465541ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  465626ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  465860ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  465919ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  466126ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  466146ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  466359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  466398ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  466625ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  466627ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  466875ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  466896ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  467123ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  467145ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  467359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  467376ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  467590ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  467876ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  468123ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  468152ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  468359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  468380ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  468594ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  468596ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  468857ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  468862ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  469109ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  469131ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  469343ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  469385ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  469591ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  469592ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  469823ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  469873ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  470089ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  470175ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  470423ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  470675ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  470923ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  470947ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  471157ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  471214ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  471412ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  471441ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  471673ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  471677ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  471924ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  471927ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  472189ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  472210ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  472423ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  472429ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  472689ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  472693ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  472941ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  472961ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  473174ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  473196ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  473408ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  473413ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  473656ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  473664ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  473922ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  473943ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  474173ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  474216ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  474440ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  474443ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  474692ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  474693ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  474940ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  474961ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  475189ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  475475ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  475740ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  475796ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  475991ms] [ERROR] ./src/components/panel/PlansTab.tsx:67:20
+Error: Expected '</', got ';'
+  65 |                     {l}
+  66 |                   </li>
+> 67 |                   );
+     |                    ^
+  68 |         })}
+  69 |             </ul>
+  70 |             <p className="mt-2 text-xs text-muted border-t border-line pt-2">{copy.setupPr...
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/panel/PlansTab.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Client Component Browser]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/panel/PlansTab.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Client Component SSR]
+    ./src/components/panel/PanelShell.tsx [Server Component]
+    ./src/app/[lang]/panel/page.tsx [Server Component] @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  476022ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  476236ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  476253ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  476314ms] [LOG] [Fast Refresh] done in 161ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  476506ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  476811ms] [LOG] [Fast Refresh] done in 412ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  477106ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  477903ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  477907ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[  477953ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  478209ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  478780ms] [LOG] [Fast Refresh] done in 672ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  478901ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[  479021ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[  505051ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  505154ms] [LOG] [Fast Refresh] done in 218ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  505402ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[  505457ms] [LOG] [Fast Refresh] done in 157ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2976767ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2976776ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2976805ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2977505ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2977512ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 2977577ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2977937ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 2978075ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 2986383ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2986385ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2986412ms] [LOG] [Fast Refresh] done in 69ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2986719ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2986721ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 2986746ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2986905ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 2987023ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 2987283ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 2987284ms] [LOG] [Fast Refresh] done in 111ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033145ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033147ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033177ms] [LOG] [Fast Refresh] done in 67ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033635ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033645ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 3033692ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033893ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3033961ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3034127ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 3034263ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 3041445ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3041450ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3041460ms] [LOG] [Fast Refresh] done in 86ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3041702ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3041879ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3041882ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 3041913ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3042184ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 3042316ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 3104365ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3104367ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3104383ms] [LOG] [Fast Refresh] done in 48ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3104605ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3104960ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3104969ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 3105052ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3105404ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 3105541ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 3105673ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3105675ms] [LOG] [Fast Refresh] done in 105ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3105926ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3105928ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3109985ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3109989ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110014ms] [LOG] [Fast Refresh] done in 70ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110236ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110424ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110427ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 3110476ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110696ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110719ms] [LOG] [Fast Refresh] done in 133ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3110935ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 3111074ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1
+[ 3155894ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3155897ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3155908ms] [LOG] [Fast Refresh] done in 83ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3156144ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3156397ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3156402ms] [ERROR] eval() is not supported in this environment. If this page was served with a `Content-Security-Policy` header, make sure that `unsafe-eval` is included. React requires eval() in development mode for various debugging features like reconstructing callstacks from a different environment.
+React will never use eval() in production mode @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:1037
+[ 3156456ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:761
+[ 3156727ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3001/api/panel/auth:1
+[ 3156869ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3001/az/panel:1

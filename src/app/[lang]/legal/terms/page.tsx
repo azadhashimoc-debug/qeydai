@@ -53,11 +53,11 @@ export default async function TermsPage({ params }: PageProps<"/[lang]/legal/ter
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={t.badge}
+          badge={s.common.badgeSample}
           title={t.title}
-          subtitle={`${t.subtitle} (${t.updatedAt})`}
-          primaryCta={{ href: `/${locale}/contact`, label: s.navGroups.resources.contactTitle }}
-          secondaryCta={{ href: `/${locale}/legal/privacy`, label: s.footer.legalCol.privacy }}
+          subtitle={`${t.subtitle} · ${t.lastUpdated}`}
+          primaryCta={{ href: `/${locale}/contact`, label: s.navGroups.resources.blogTitle }}
+          secondaryCta={{ href: `/${locale}/legal/privacy`, label: s.footer.cols.legal.privacy }}
           image="p-cases"
           imageAlt={t.title}
         />
@@ -73,7 +73,7 @@ export default async function TermsPage({ params }: PageProps<"/[lang]/legal/ter
               ))}
               <div>
                 <Link href={`/${locale}/contact`} className="pm-link-arrow">
-                  {s.navGroups.resources.contactTitle}
+                  {s.footer.cols.legal.contact}
                 </Link>
               </div>
             </div>

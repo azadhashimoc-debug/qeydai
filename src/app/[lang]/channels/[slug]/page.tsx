@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import {
   BottomCtaBand,
   FeatureAlternating,
   FeatureGrid,
+  KommoPromoBand,
   SubpageHero,
 } from "@/components/marketing/SubpageBlocks";
 import { CHANNEL_SLUGS, type ChannelSlug, isChannelSlug } from "@/lib/marketing/catalog";
@@ -88,15 +91,26 @@ export default async function ChannelDetailPage({
           badgeVariant={slug === "whatsapp" ? "mint" : "default"}
         />
 
+        <KommoPromoBand
+          title={
+            locale === "en"
+              ? "And even more CRM & automation tools"
+              : "Və daha çox CRM və avtomatlaşdırma aləti"
+          }
+          ctaHref={`/${locale}/demo`}
+          ctaLabel={locale === "en" ? "Try 14 days free" : "14 gün pulsuz sına"}
+          tone="mint"
+        />
+
         <FeatureGrid
           columns={2}
           items={[
-            { title: detail.features.one, desc: detail.subtitle, tone: "mint" },
-            { title: detail.features.two, desc: detail.subtitle, tone: "lavender" },
-            { title: detail.features.three, desc: detail.subtitle, tone: "sky" },
+            { title: detail.features.one.title, desc: detail.features.one.desc, tone: "mint" },
+            { title: detail.features.two.title, desc: detail.features.two.desc, tone: "lavender" },
+            { title: detail.features.three.title, desc: detail.features.three.desc, tone: "sky" },
             {
-              title: detail.features.four,
-              desc: detail.subtitle,
+              title: detail.features.four.title,
+              desc: detail.features.four.desc,
               tone: "amber",
               ...(slug === "whatsapp"
                 ? { href: `/${locale}/tools`, ctaLabel: s.navGroups.channels.toolsTitle }
@@ -104,6 +118,36 @@ export default async function ChannelDetailPage({
             },
           ]}
         />
+
+        <section className="pm-section">
+          <div className="pm-wrap">
+            <div className="pm-prod-ai-banner">
+              <div className="pm-prod-ai-copy">
+                <span className="pm-prod-ai-tag">✨ AI CRM</span>
+                <h2>
+                  {locale === "en"
+                    ? "CRM with built-in AI replies"
+                    : "Daxili süni intellektə malik CRM"}
+                </h2>
+                <p>
+                  {locale === "en"
+                    ? "Reply to student inquiries in Azerbaijani or English 24/7, summarize threads, and lock trial seats automatically."
+                    : "Tələbə sorğularına 24/7 Azərbaycan və ya İngilis dilində cavab verin, yazışmaları xülasə edin və sınaq dərsi yerlərini avtomatik kilidləyin."}
+                </p>
+                <Link href={`/${locale}/ai`} className="pm-prod-ai-link">
+                  {s.navGroups.product.aiTitle} →
+                </Link>
+              </div>
+              <div className="pm-prod-ai-media">
+                <Photo
+                  name="p-ai-copilot"
+                  alt={s.navGroups.product.aiTitle}
+                  className="pm-prod-ai-img"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {slug === "webhook-api" && (
           <section className="pm-section">

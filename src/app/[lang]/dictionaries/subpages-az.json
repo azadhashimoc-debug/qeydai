@@ -41,7 +41,7 @@
       "demo": "Demo al",
       "panel": "Panelə keçid",
       "login": "Giriş",
-      "register": "Hesap oluştur"
+      "register": "Hesab yarat"
     }
   },
   "footer": {
@@ -1002,7 +1002,7 @@
         "namePlaceholder": "Adınız və soyadınız",
         "phoneLabel": "Telefon nömrəniz",
         "phonePlaceholder": "Telefon nömrəniz (050 123 45 67)",
-        "submit": "Hesab yarat",
+        "submit": "Yeni hesab yarat",
         "submitting": "Göndərilir…",
         "nameRequired": "Adınızı yazın",
         "privacyNote": "Məlumatlarınız tam məxfi saxlanılır və üçüncü tərəflərə ötürülmür.",
@@ -1049,6 +1049,6 @@
     "createWorkspace": "Yeni iş sahəsi yaradın",
     "demoAccount": "Demo al",
     "loginAccount": "Giriş",
-    "createAccountTitle": "Hesap oluştur"
+    "createAccountTitle": "Hesab yarat"
   }
 }

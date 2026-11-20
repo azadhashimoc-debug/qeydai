@@ -151,7 +151,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
 
             <div className="pm-tools-row">
               <div className="pm-field">
-                <label htmlFor="wa-country">{copy.linkBuilder.countryCode}</label>
+                <label htmlFor="wa-country">{copy.linkBuilder.countryLabel}</label>
                 <select
                   id="wa-country"
                   value={countryCode}
@@ -166,7 +166,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
               </div>
 
               <div className="pm-field">
-                <label htmlFor="wa-phone">{copy.linkBuilder.phoneNumber}</label>
+                <label htmlFor="wa-phone">{copy.linkBuilder.phoneLabel}</label>
                 <input
                   id="wa-phone"
                   type="tel"
@@ -178,7 +178,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <div className="pm-field">
-              <label htmlFor="wa-message">{copy.linkBuilder.message}</label>
+              <label htmlFor="wa-message">{copy.linkBuilder.messageLabel}</label>
               <textarea
                 id="wa-message"
                 value={message}
@@ -190,7 +190,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
 
           <div className="pm-tools-output">
             <div>
-              <strong>{copy.linkBuilder.resultLabel}</strong>
+              <strong>{copy.linkBuilder.outputLabel}</strong>
             </div>
             <div className="pm-code-box" data-testid="wa-link-output">
               {generatedUrl ?? "—"}
@@ -223,7 +223,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <div className="pm-field">
-              <label htmlFor="qr-url">{copy.qrGenerator.urlInputLabel}</label>
+              <label htmlFor="qr-url">{copy.qrGenerator.urlLabel}</label>
               <input
                 id="qr-url"
                 type="url"
@@ -278,12 +278,12 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
         <div role="tabpanel" className="pm-tools-split">
           <div className="pm-tools-form">
             <div>
-              <h2>{copy.feeCalculator.title}</h2>
-              <p className="pm-auth-note">{copy.feeCalculator.desc}</p>
+              <h2>{copy.calculator.title}</h2>
+              <p className="pm-auth-note">{copy.calculator.desc}</p>
             </div>
 
             <div className="pm-field">
-              <label htmlFor="calc-marketing">{copy.feeCalculator.marketingLabel}</label>
+              <label htmlFor="calc-marketing">{copy.calculator.marketingLabel}</label>
               <input
                 id="calc-marketing"
                 type="number"
@@ -294,7 +294,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <div className="pm-field">
-              <label htmlFor="calc-utility">{copy.feeCalculator.utilityLabel}</label>
+              <label htmlFor="calc-utility">{copy.calculator.utilityLabel}</label>
               <input
                 id="calc-utility"
                 type="number"
@@ -305,7 +305,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <div className="pm-field">
-              <label htmlFor="calc-auth">{copy.feeCalculator.authLabel}</label>
+              <label htmlFor="calc-auth">{copy.calculator.authLabel}</label>
               <input
                 id="calc-auth"
                 type="number"
@@ -316,7 +316,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <div className="pm-field">
-              <label htmlFor="calc-service">{copy.feeCalculator.serviceLabel}</label>
+              <label htmlFor="calc-service">{copy.calculator.serviceLabel}</label>
               <input
                 id="calc-service"
                 type="number"
@@ -329,29 +329,29 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
 
           <div className="pm-tools-output">
             <div className="pm-hero-actions">
-              <span className="pm-auth-note">{copy.feeCalculator.rateCurrency}</span>
+              <span className="pm-auth-note">{copy.calculator.rateNote}</span>
               <button
                 type="button"
                 className={currency === "USD" ? "pm-tools-tab is-active" : "pm-tools-tab"}
                 onClick={() => setCurrency("USD")}
               >
-                {copy.feeCalculator.usdToggle}
+                {copy.calculator.currencyToggleUsd}
               </button>
               <button
                 type="button"
                 className={currency === "AZN" ? "pm-tools-tab is-active" : "pm-tools-tab"}
                 onClick={() => setCurrency("AZN")}
               >
-                {copy.feeCalculator.aznToggle}
+                {copy.calculator.currencyToggleAzn}
               </button>
             </div>
 
             <div className="pm-calc-total">
-              <span>{copy.feeCalculator.totalEstimate}</span>
+              <span>{copy.calculator.totalMonthly}</span>
               <strong>{formattedTotal}</strong>
             </div>
 
-            <p className="pm-auth-note">{copy.feeCalculator.disclaimer}</p>
+            <p className="pm-auth-note">{copy.calculator.disclaimer}</p>
           </div>
         </div>
       )}

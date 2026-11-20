@@ -1,0 +1,25 @@
+
+> qeydai@0.1.0 dev
+> next dev
+
+▲ Next.js 16.4.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://169.254.170.211:3000
+- Environments: .env.local
+✓ Ready in 1007ms
+✓ Running next.config.ts took 99ms
+- Cache Components enabled
+- Partial Prefetching enabled
+- Experiments (use with caution):
+  ✓ globalNotFound
+
+ GET /az 200 in 2.7s (next.js: 1467ms, proxy.ts: 83ms, generate-params: 799ms, application-code: 349ms)
+ POST /api/analytics 202 in 159ms (next.js: 76ms, application-code: 83ms)
+ POST /api/analytics 202 in 53ms (next.js: 2ms, application-code: 50ms)
+ POST /api/analytics 202 in 69ms (next.js: 3ms, application-code: 66ms)
+ POST /api/analytics 202 in 42ms (next.js: 3ms, application-code: 39ms)
+ POST /api/analytics 202 in 97ms (next.js: 3ms, application-code: 95ms)
+ POST /api/analytics 202 in 82ms (next.js: 3ms, application-code: 79ms)
+ POST /api/analytics 202 in 66ms (next.js: 2ms, application-code: 64ms)
+ POST /api/analytics 202 in 39ms (next.js: 3ms, application-code: 36ms)
+ POST /api/analytics 202 in 22ms (next.js: 3ms, application-code: 19ms)

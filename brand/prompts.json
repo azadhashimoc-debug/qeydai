@@ -158,6 +158,112 @@
           "prompt": "a manager's smartphone on a desk with a lit notification banner, coffee cup, calm morning light, natural editorial photography, deep navy and graphite palette with electric blue and teal accents, soft natural light, modern Baku setting, realistic, no text, no logos, no watermark"
         }
       ]
+    },
+    "site-subpages": {
+      "aspect": "16:9",
+      "items": [
+        {
+          "id": "p-product-tour",
+          "prompt": "bright modern Baku learning center coordinator workspace with an open laptop and tablet on a clean white desk, soft daylight, deep indigo notebook and mint-green pen accents, natural editorial photography, realistic, no text, no logos, no watermark"
+        },
+        {
+          "id": "p-pipeline",
+          "prompt": "education center sales manager reviewing organized student cards on a wide clean monitor in a sunlit modern office, crisp white and deep indigo tones with subtle emerald accents, candid over-the-shoulder shot, natural editorial photography, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-inbox",
+          "prompt": "friendly student advisor at a bright reception desk replying to inquiries on a tablet and smartphone side by side, calm focused expression, modern Baku interior, soft lavender-white daylight, deep indigo blazer, natural editorial photography, no text, no logos, no watermark"
+        },
+        {
+          "id": "p-ai-copilot",
+          "prompt": "minimal close-up of a smartphone beside an open laptop on a light wooden desk with soft cobalt-blue and mint-green ambient screen glow, modern bright office background in shallow depth of field, natural editorial photography, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-booking",
+          "prompt": "young student arriving with a backpack at a modern bright Baku language school reception for a trial class, smiling coordinator welcoming at the desk, crisp daylight, deep indigo and mint interior accents, natural editorial photography, no text, no logos, no watermark"
+        },
+        {
+          "id": "p-channels",
+          "prompt": "young prospective student messaging on a smartphone while sitting in a bright modern cafe near a university campus, deep indigo notebook and coffee on the table, warm morning light, shallow depth of field, natural editorial photography, no text, no logos, no watermark"
+        },
+        {
+          "id": "p-demo",
+          "prompt": "two education center directors sitting together at a bright conference table discussing a clean dashboard on a laptop, warm natural window light, modern Baku office, deep indigo and crisp white tones, candid editorial photography, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-cases",
+          "prompt": "small engaged group of adult students and an instructor in a bright modern Baku classroom with glass walls and notebooks on desks, natural daylight, calm productive mood, deep indigo and soft mint accents, editorial photography, no text, no logos, no watermark"
+        }
+      ]
+    },
+    "site-vibrant": {
+      "aspect": "16:9",
+      "items": [
+        {
+          "id": "p-instagram",
+          "prompt": "vibrant colorful 3D SaaS product art on a soft pastel lavender and peach studio gradient background, a sleek floating tilted smartphone surrounded by a glossy 3D Instagram gradient camera logo icon, coral pink and violet glassmorphic DM chat bubbles, playful floating heart and sparkle badges, crisp studio rim lighting, clean modern tech aesthetic, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-whatsapp",
+          "prompt": "vibrant colorful 3D SaaS illustration on a fresh mint-green and soft lavender pastel studio backdrop, floating glossy 3D smartphone with an iconic emerald green 3D WhatsApp phone speech-bubble logo icon, glowing green checkmark pills, electric cobalt speed lines and broadcast wave rings, smooth clay and frosted glass textures, crisp studio lighting, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-telegram",
+          "prompt": "vibrant dynamic 3D SaaS visual on an airy sky-blue to soft periwinkle studio gradient background, a sleek glossy 3D sky-blue Telegram paper-plane logo icon soaring through translucent frosted glass message cards, deep indigo and neon cyan accent orbs, smooth tactile 3D render, crisp studio shadows, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-salesbot",
+          "prompt": "playful colorful 3D SaaS automation diorama on a sunny warm-yellow and soft lavender pastel studio gradient backdrop, floating rounded cobalt-blue, mint-green, and coral-pink 3D workflow blocks linked by smooth glowing neon tubes with a radiant indigo AI sparkle core in the center, tactile clay and frosted glass style, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-tools",
+          "prompt": "vibrant colorful 3D SaaS render on a bright periwinkle and mint pastel studio backdrop, a floating glossy 3D QR code tile beside an emerald link-chain badge and sleek smartphone emitting a soft cobalt-blue scan beam, tactile glossy plastic and glass materials, cheerful studio lighting, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-fitness",
+          "prompt": "vibrant colorful 3D lifestyle and SaaS visual on an energetic mint, coral, and soft violet pastel gradient backdrop, playful glossy 3D wellness objects like a pastel cobalt kettlebell, stopwatch, and calendar checkmark floating around a sleek glowing booking badge card, crisp modern studio render, no office, no boring reception desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-blog-1",
+          "prompt": "vibrant colorful 3D SaaS knowledge and AI visual on a bold lavender-periwinkle to coral-pink gradient studio backdrop, floating glossy 3D cobalt AI sparkle prism hovering above sleek translucent notebook cards, glowing chat bubbles, and emerald checkmark pills, tactile clay and glass 3D render, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-blog-2",
+          "prompt": "vibrant colorful 3D SaaS editorial visual on a sunny yellow, soft coral, and deep indigo pastel studio backdrop, floating stacked frosted-glass guide cards, a sleek 3D cobalt magnifying prism, and playful mint and magenta speech bubbles, smooth tactile 3D illustration, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-product-tour",
+          "prompt": "vibrant colorful 3D SaaS product hub visual on a bright lavender-white and soft sky-blue studio gradient backdrop, floating angled frosted-glass dashboard window surrounded by colorful 3D emerald, cobalt, and sunny-yellow UI pill cards and chat icons, sleek tactile clay and glass 3D art, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-pipeline",
+          "prompt": "vibrant colorful 3D Kanban pipeline illustration on a crisp pastel periwinkle and mint gradient studio backdrop, floating translucent glass columns with glossy coral, cobalt-blue, and emerald-green rounded deal cards connected by glowing curved progress arcs, playful modern SaaS 3D art, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-inbox",
+          "prompt": "vibrant colorful 3D unified inbox illustration on a soft peach, lavender, and mint pastel studio gradient backdrop, floating glossy 3D glass chat window collecting glowing emerald, magenta-pink, and sky-blue message bubbles into one bright cobalt orb, smooth tactile 3D render, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-ai-copilot",
+          "prompt": "vibrant futuristic 3D AI copilot illustration on a deep indigo to electric violet and soft lavender gradient studio backdrop, radiant glowing 3D cobalt and mint AI sparkle prism hovering over floating translucent reply draft cards and neon pulse waves, sleek tactile 3D glassmorphism, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-booking",
+          "prompt": "vibrant colorful 3D appointment booking illustration on a bright mint-green, sunny-yellow, and soft lavender pastel studio backdrop, floating glossy 3D calendar grid card with a plump emerald checkmark badge, glowing clock orb, and floating confirmation ticket, playful tactile 3D SaaS art, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-channels",
+          "prompt": "vibrant colorful 3D omnichannel messaging constellation on a bright pastel lavender and soft cyan studio backdrop, sleek floating 3D smartphone at center orbited by glossy 3D chat bubbles in emerald green, magenta-orange gradient, and sky blue with glowing connection beams, crisp studio render, no office, no desk, no readable text, no watermark"
+        },
+        {
+          "id": "p-demo",
+          "prompt": "vibrant colorful 3D SaaS demo and walkthrough visual on a cheerful pastel cobalt, mint, and warm coral gradient studio backdrop, two sleek floating frosted-glass presentation screens with glowing play button orb and colorful interactive pointer cursor, modern tactile 3D render, no office, no desk, no readable text, no logos, no watermark"
+        },
+        {
+          "id": "p-cases",
+          "prompt": "vibrant colorful 3D growth and metrics visual on a bright lavender, mint, and sunny yellow studio gradient backdrop, floating glossy 3D rising step blocks, glowing emerald upward chart ribbon, and crisp milestone star badges, playful tactile SaaS 3D illustration, no office, no desk, no readable text, no logos, no watermark"
+        }
+      ]
     }
   },
   "style": "minimal premium editorial photo, deep navy and graphite palette with electric blue and teal accents, soft natural light, modern Baku office or phone close-up, shallow depth of field, no text, no logos, no watermark"

@@ -1,0 +1,10 @@
+- generic [active] [ref=f36e1]:
+  - main [ref=f36e2]:
+    - paragraph [ref=f36e3]: Xəta
+    - heading "Səhifə yüklənmədi" [level=1] [ref=f36e4]
+    - paragraph [ref=f36e5]: Müvəqqəti nasazlıq baş verdi. Yenidən yoxlayın və ya ana səhifəyə qayıdın.
+    - generic [ref=f36e6]:
+      - button "Səhifəni yenilə" [ref=f36e7]
+      - link "Ana səhifə" [ref=f36e8] [cursor=pointer]:
+        - /url: /az
+  - alert [ref=f36e9]

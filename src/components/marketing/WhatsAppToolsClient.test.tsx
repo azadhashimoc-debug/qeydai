@@ -15,8 +15,8 @@ describe("WhatsAppToolsClient", () => {
 
     render(<WhatsAppToolsClient copy={subpagesEn.tools} />);
 
-    const phoneInput = screen.getByLabelText(subpagesEn.tools.linkBuilder.phoneNumber);
-    const msgInput = screen.getByLabelText(subpagesEn.tools.linkBuilder.message);
+    const phoneInput = screen.getByLabelText(subpagesEn.tools.linkBuilder.phoneLabel);
+    const msgInput = screen.getByLabelText(subpagesEn.tools.linkBuilder.messageLabel);
 
     fireEvent.change(phoneInput, { target: { value: "050 123 45 67" } });
     fireEvent.change(msgInput, { target: { value: "Hello QeydAI" } });
@@ -34,7 +34,7 @@ describe("WhatsAppToolsClient", () => {
 
     fireEvent.click(screen.getByRole("tab", { name: subpagesEn.tools.tabs.qr }));
 
-    const urlInput = screen.getByLabelText(subpagesEn.tools.qrGenerator.urlInputLabel);
+    const urlInput = screen.getByLabelText(subpagesEn.tools.qrGenerator.urlLabel);
     fireEvent.change(urlInput, { target: { value: "javascript:alert(1)" } });
 
     expect(screen.getByText(subpagesEn.tools.qrGenerator.invalidUrl)).toBeTruthy();
@@ -50,10 +50,10 @@ describe("WhatsAppToolsClient", () => {
 
     fireEvent.click(screen.getByRole("tab", { name: subpagesEn.tools.tabs.calculator }));
 
-    const marketingInput = screen.getByLabelText(subpagesEn.tools.feeCalculator.marketingLabel);
-    const utilityInput = screen.getByLabelText(subpagesEn.tools.feeCalculator.utilityLabel);
-    const authInput = screen.getByLabelText(subpagesEn.tools.feeCalculator.authLabel);
-    const serviceInput = screen.getByLabelText(subpagesEn.tools.feeCalculator.serviceLabel);
+    const marketingInput = screen.getByLabelText(subpagesEn.tools.calculator.marketingLabel);
+    const utilityInput = screen.getByLabelText(subpagesEn.tools.calculator.utilityLabel);
+    const authInput = screen.getByLabelText(subpagesEn.tools.calculator.authLabel);
+    const serviceInput = screen.getByLabelText(subpagesEn.tools.calculator.serviceLabel);
 
     fireEvent.change(marketingInput, { target: { value: "1000" } });
     fireEvent.change(utilityInput, { target: { value: "0" } });
@@ -63,7 +63,7 @@ describe("WhatsAppToolsClient", () => {
     // 1000 * 0.045 = 45.00 USD
     expect(screen.getByText("$45.00")).toBeTruthy();
 
-    fireEvent.click(screen.getByRole("button", { name: subpagesEn.tools.feeCalculator.aznToggle }));
+    fireEvent.click(screen.getByRole("button", { name: subpagesEn.tools.calculator.currencyToggleAzn }));
     // 45 * 1.70 = 76.50 AZN
     expect(screen.getByText("76.50 AZN")).toBeTruthy();
   });

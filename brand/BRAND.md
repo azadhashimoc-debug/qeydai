@@ -1,22 +1,27 @@
-# QeydAI Brand (proposal, user approval pending)
+# panelim.az Brand
 
-Placeholder name: QeydAI. Character: modern, premium-simple, trustworthy, AI SaaS.
+Product: **panelim.az** — messaging-first AI sales & booking CRM for Azerbaijani businesses (learning centers, service providers, retail teams).
+
+Visual direction: crisp light SaaS canvas with soft lavender-periwinkle mesh gradients, deep indigo (`#0E0142`) anchor surfaces, cobalt-indigo (`#3046E8`) primary actions, and mint-emerald (`#137547` / `#C6F7DC`) positive highlights.
 
 ## Palette (CSS tokens in `src/app/globals.css`)
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| navy | #0a1730 | #0a1730 | hero, contact band |
-| brand (electric blue) | #2b6bff | #2b6bff | primary actions |
-| accent (teal) | #14c7b4 | #14c7b4 | success, highlights |
-| bg / surface / ink / muted / line | #f6f8fc / #fff / #0b1220 / #55627a / #dbe2ee | #070d1c / #0d1830 / #eaf0ff / #9aa8c4 / #1c2a4a | page |
+| `--cover` | `#0E0142` | `#0E0142` | deep indigo CTA & footer frame, dark hero accents |
+| `--blue` (`brand`) | `#3046E8` | `#3046E8` | primary CTAs, active tabs, focus ring on light |
+| `--pen` | `#2C40D0` | `#9FA8FF` | interactive links, step accents |
+| `--margin` | `#B8254B` | `#FF85A1` | urgent/hot indicators, alerts |
+| `--stamp` | `#137547` | `#5AE0A0` | confirmed status, ROI & feature highlights |
+| `--marker` | `#FFE45C` | `#FFE45C` | focus ring on dark surfaces, highlight badges |
+| `--bg` / `--surface` | `#F8F9FF` / `#FFFFFF` | `#090624` / `#130F3A` | page canvas & elevated cards |
+| `--ink` / `--muted` / `--line` | `#0E0142` / `#4A4F75` / `#DFE3F5` | `#EEF0FF` / `#A8AFDA` / `#2A255E` | text hierarchy & subtle dividers |
 
 Dark mode follows `prefers-color-scheme`; `data-theme="light|dark"` on `<html>` forces it.
 
 ## Typography
-Inter (latin + latin-ext, covers ə ı ğ ö ü ç ş). Headings 600 weight, tight tracking; mono only for step numbers.
+- `Plus Jakarta Sans` (`--font-display`, `latin` + `latin-ext`): display headings, section titles, navigation, and CTA buttons (full coverage of `ə ı ğ ö ü ç ş`).
+- `Inter` (`--font-body`, `latin` + `latin-ext`): body copy, form controls, UI tables, and chat previews.
 
 ## Voice
-AZ: natural, polite, short sentences, no slang in product copy. EN: plain, concrete. Never promise what is not verified (price, seat, discount).
-
-## Open items
-Final name, logo mark, domain. Currently a "Q" monogram tile.
+- **AZ:** Natural, clear, concise Azerbaijani. Direct active verbs, zero hype or unverified claims.
+- **EN:** Concrete, plain business English. Always state pilot terms and channel approvals transparently.

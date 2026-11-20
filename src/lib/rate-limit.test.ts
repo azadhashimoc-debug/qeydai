@@ -58,4 +58,33 @@ describe("rate limiter at capacity", () => {
     for (let i = 0; i < 50; i++) rl.allow(`new${i}`);
     expect(rl.sweepCount()).toBeLessThanOrEqual(1);
   });
+  it("reclaims expired keys immediately even after a mid-window failed sweep", () => {
+    let now = 0;
+    const rl = createRateLimiter({ max: 1, windowMs: 1000, maxKeys: 2, now: () => now });
+    rl.allow("a");
+    rl.allow("b");
+    now = 900;
+    expect(rl.allow("c")).toBe(false); // triggers mid-window sweep; 0 expired
+    now = 1001;
+    expect(rl.allow("c")).toBe(true); // keys from t=0 expired, must succeed without waiting to t=1900
+  });
+  it("evicts oldest key when evictOnFull is enabled instead of locking out new keys", () => {
+    const rl = createRateLimiter({ max: 2, windowMs: 1000, maxKeys: 3, evictOnFull: true, now: () => 0 });
+    expect(["a", "b", "c"].map((k) => rl.allow(k))).toEqual([true, true, true]);
+    expect(rl.allow("d")).toBe(true);
+    expect(rl.size()).toBe(3);
+    expect(rl.allow("d")).toBe(true);
+    expect(rl.allow("d")).toBe(false);
+    // "a" was evicted so it can start fresh without global lockout
+    expect(rl.allow("a")).toBe(true);
+  });
+
+  it("exposes non-mutating isLimited check", () => {
+    const rl = createRateLimiter({ max: 2, windowMs: 1000, now: () => 0 });
+    expect(rl.isLimited("a")).toBe(false);
+    rl.allow("a");
+    expect(rl.isLimited("a")).toBe(false);
+    rl.allow("a");
+    expect(rl.isLimited("a")).toBe(true);
+  });
 });

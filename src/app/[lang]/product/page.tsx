@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
+import { ProductViewSwitcherClient } from "@/components/marketing/ProductViewSwitcherClient";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import {
@@ -36,6 +39,25 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
   const p = s.product;
+  const isEn = locale === "en";
+
+  const extraTools = isEn
+    ? [
+        { title: "Tasks", desc: "Set follow-up reminders directly on student profiles and keep operators aligned.", tone: "lavender" as const },
+        { title: "Team chat", desc: "Discuss inquiries internally inside each lead card without leaving the inbox.", tone: "mint" as const },
+        { title: "Analytics", desc: "Monitor trial conversion rates, response speed, and revenue in AZN.", tone: "sky" as const },
+        { title: "Web forms", desc: "Embed fast trial registration forms directly into your center's website.", tone: "lavender" as const },
+        { title: "Chat widget", desc: "Connect WhatsApp, Instagram, and Telegram into one multi-channel widget.", tone: "mint" as const },
+        { title: "Integrations", desc: "Automate enrollments with n8n webhooks, Google Sheets, and Meta Cloud API.", tone: "sky" as const },
+      ]
+    : [
+        { title: "Tapşırıqlar", desc: "Tələbə kartlarına xatırlatmalar əlavə edin və operator təqvimini idarə edin.", tone: "lavender" as const },
+        { title: "Komanda söhbəti", desc: "Müraciət kartının daxilində komanda yoldaşlarınıza qeyd və bildiriş göndərin.", tone: "mint" as const },
+        { title: "Analitika", desc: "Sınaq dərsi dönüşümünü, cavab sürətini və AZN gəlirini canlı izləyin.", tone: "sky" as const },
+        { title: "Veb formalar", desc: "Potensial tələbələri birbaşa satış lövhəsinə yönləndirən formalar yaradın.", tone: "lavender" as const },
+        { title: "Çat düyməsi", desc: "Saytınıza WhatsApp, Instagram və Telegram-ı birləşdirən düymə əlavə edin.", tone: "mint" as const },
+        { title: "İnteqrasiyalar", desc: "n8n, Google Sheets və rəsmi Meta Cloud API ilə iş axınını avtomatlaşdırın.", tone: "sky" as const },
+      ];
 
   return (
     <div className="marketing">
@@ -64,40 +86,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
           imageAlt={p.hero.title}
         />
 
-        <FeatureGrid
-          heading={p.hero.title}
-          columns={3}
-          items={[
-            {
-              title: p.modules.pipeline.title,
-              desc: p.modules.pipeline.desc,
-              href: `/${locale}/pipeline`,
-              ctaLabel: s.navGroups.product.pipelineTitle,
-              tone: "lavender",
-            },
-            {
-              title: p.modules.inbox.title,
-              desc: p.modules.inbox.desc,
-              href: `/${locale}/inbox`,
-              ctaLabel: s.navGroups.product.inboxTitle,
-              tone: "mint",
-            },
-            {
-              title: p.modules.ai.title,
-              desc: p.modules.ai.desc,
-              href: `/${locale}/ai`,
-              ctaLabel: s.navGroups.product.aiTitle,
-              tone: "sky",
-            },
-            {
-              title: p.modules.booking.title,
-              desc: p.modules.booking.desc,
-              href: `/${locale}/booking`,
-              ctaLabel: s.navGroups.product.bookingTitle,
-              tone: "amber",
-            },
-          ]}
-        />
+        <ProductViewSwitcherClient lang={locale} />
 
         <FeatureAlternating
           rows={[
@@ -108,7 +97,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
               cta: { href: `/${locale}/pipeline`, label: s.navGroups.product.pipelineTitle },
               image: "p-pipeline",
               imageAlt: p.modules.pipeline.title,
-              tone: "lavender",
+              tone: "mint",
             },
             {
               tag: s.navGroups.product.inboxTitle,
@@ -117,7 +106,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
               cta: { href: `/${locale}/inbox`, label: s.navGroups.product.inboxTitle },
               image: "p-inbox",
               imageAlt: p.modules.inbox.title,
-              tone: "mint",
+              tone: "lavender",
             },
             {
               tag: s.navGroups.product.bookingTitle,
@@ -129,6 +118,50 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
               tone: "sky",
             },
           ]}
+        />
+
+        <section className="pm-section">
+          <div className="pm-wrap">
+            <div className="pm-prod-ai-banner">
+              <div className="pm-prod-ai-copy">
+                <span className="pm-prod-ai-tag">✨ AI CRM</span>
+                <h2>{p.modules.ai.title}</h2>
+                <p>{p.modules.ai.desc}</p>
+                <Link href={`/${locale}/ai`} className="pm-prod-ai-link">
+                  {s.navGroups.product.aiTitle} →
+                </Link>
+              </div>
+              <div className="pm-prod-ai-media">
+                <Photo
+                  name="p-ai-copilot"
+                  alt={p.modules.ai.title}
+                  className="pm-prod-ai-img"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <FeatureAlternating
+          rows={[
+            {
+              tag: s.navGroups.product.aiTitle,
+              title: isEn ? "No-code Salesbot & Automation" : "Kodsuz Salesbot və Avtomatlaşdırma",
+              body: isEn
+                ? "Greet students 24/7, answer fee questions in Azerbaijani, and lock trial lesson seats automatically."
+                : "Tələbələri 24/7 qarşılayın, qiymət və cədvəl suallarını Azərbaycan dilində cavablandırın, boş yerləri avtomatik kilidləyin.",
+              cta: { href: `/${locale}/booking`, label: s.navGroups.product.bookingTitle },
+              image: "p-salesbot",
+              imageAlt: "Salesbot",
+              tone: "lavender",
+            },
+          ]}
+        />
+
+        <FeatureGrid
+          heading={isEn ? "There's even more" : "Daha çox imkan var"}
+          columns={3}
+          items={extraTools}
         />
 
         <BottomCtaBand

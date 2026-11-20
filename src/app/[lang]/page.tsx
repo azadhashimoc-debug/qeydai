@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import {
@@ -174,6 +175,24 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       <main id="main" tabIndex={-1}>
         <section className="pm-hero">
+          <div className="pm-hero-float is-left" aria-hidden="true">
+            <Image
+              src="/images/auth-mascot-magnifier.webp"
+              alt=""
+              width={150}
+              height={135}
+              priority
+            />
+          </div>
+          <div className="pm-hero-float is-right" aria-hidden="true">
+            <Image
+              src="/images/auth-mascot-heart.webp"
+              alt=""
+              width={160}
+              height={148}
+              priority
+            />
+          </div>
           <div className="pm-wrap pm-hero-inner">
             <div className="pm-hero-copy">
               <ul className="pm-channels" aria-label={l.hero.trustNote}>

@@ -1,0 +1,238 @@
+{
+  "name": "QeydAI — Telegram AI Enrollment Bot",
+  "nodes": [
+    {
+      "id": "tg-trigger",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [180, 260],
+      "parameters": {
+        "updates": ["message"]
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED_ID",
+          "name": "QeydAI Telegram Bot"
+        }
+      }
+    },
+    {
+      "id": "normalize-msg",
+      "name": "Normalize Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [400, 260],
+      "parameters": {
+        "jsCode": "const msg = $input.first().json.message;\nif (!msg || typeof msg.text !== 'string' || !msg.chat?.id) {\n  return [];\n}\nconst text = msg.text.replace(/[\\u0000-\\u001f\\u007f]/g, ' ').trim().slice(0, 500);\nif (!text) return [];\nreturn [{ json: { chatId: String(msg.chat.id), text } }];"
+      }
+    },
+    {
+      "id": "fetch-sessions",
+      "name": "Fetch Available Sessions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [620, 260],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "parameters": {
+        "method": "GET",
+        "url": "={{ ($env.QEYDAI_API_URL || 'http://localhost:3000') + '/api/v1/sessions' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_QEYDAI_API_CRED_ID",
+          "name": "QeydAI Enrollment API Key"
+        }
+      }
+    },
+    {
+      "id": "gemini-extract",
+      "name": "Extract Intent via Gemini",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 260],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Sen QeydAI tedris merkezi qeydiyyat assistentisen. Yalnız mövcud seanslar əsasında JSON qaytar. Heç vaxt qeydiyyatın təsdiqləndiyini yazma — bunu yalnız backend təsdiqləyir. Mövcud seanslar: ' + JSON.stringify($json.sessions || []) + ' | İstifadəçi mesajı: ' + $('Normalize Message').first().json.text }] }], generationConfig: { responseMimeType: 'application/json', responseSchema: { type: 'OBJECT', properties: { action: { type: 'STRING', enum: ['enroll', 'list_sessions', 'clarify', 'handoff'] }, sessionId: { type: 'STRING' }, name: { type: 'STRING' }, phone: { type: 'STRING' }, replyText: { type: 'STRING' } }, required: ['action', 'replyText'] } } }) }}",
+        "options": {
+          "timeout": 12000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_GEMINI_HEADER_CRED_ID",
+          "name": "Gemini x-goog-api-key"
+        }
+      }
+    },
+    {
+      "id": "parse-ai",
+      "name": "Parse AI Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1080, 260],
+      "parameters": {
+        "jsCode": "const chatId = $('Normalize Message').first().json.chatId;\nconst rawText = $input.first().json?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';\nlet parsed = { action: 'handoff', replyText: 'Müraciətiniz operatora yönləndirildi. Tezliklə sizinlə əlaqə saxlayacağıq.' };\ntry {\n  const obj = JSON.parse(rawText);\n  if (obj && ['enroll', 'list_sessions', 'clarify', 'handoff'].includes(obj.action) && typeof obj.replyText === 'string') {\n    parsed = obj;\n  }\n} catch {}\nreturn [{ json: { chatId, ...parsed } }];"
+      }
+    },
+    {
+      "id": "if-enroll",
+      "name": "Should Enroll?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1300, 260],
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "c-enroll",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "enroll",
+              "operator": { "type": "string", "operation": "equals" }
+            },
+            {
+              "id": "c-sid",
+              "leftValue": "={{ $json.sessionId || '' }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEmpty" }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "call-enroll-api",
+      "name": "Call QeydAI Enroll API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 160],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ ($env.QEYDAI_API_URL || 'http://localhost:3000') + '/api/v1/enroll' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ sessionId: $json.sessionId, name: $json.name || '', phone: $json.phone || '' }) }}",
+        "options": {
+          "timeout": 5000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_QEYDAI_API_CRED_ID",
+          "name": "QeydAI Enrollment API Key"
+        }
+      }
+    },
+    {
+      "id": "format-outcome",
+      "name": "Format Enroll Outcome",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 160],
+      "parameters": {
+        "jsCode": "const chatId = $('Parse AI Output').first().json.chatId;\nconst res = $input.first().json;\nconst status = res.statusCode;\nconst err = res.body?.error;\nlet replyText = 'Texniki xəta baş verdi. Operatorumuz sizinlə əlaqə saxlayacaq.';\nif (status === 201 && res.body?.enrollmentId) {\n  replyText = `Qeydiyyatınız təsdiqləndi! Qeyd nömrəsi: ${res.body.enrollmentId}`;\n} else if (err === 'full') {\n  replyText = 'Seçdiyiniz qrup artıq doludur. Başqa uyğun vaxt seçmək istəyirsiniz?';\n} else if (err === 'duplicate') {\n  replyText = 'Bu telefon nömrəsi ilə həmin qrupa artıq qeydiyyat mövcuddur.';\n} else if (err === 'session_started') {\n  replyText = 'Bu dərs artıq başlayıb. Növbəti qruplardan birini seçə bilərsiniz.';\n} else if (err === 'invalid_input') {\n  replyText = 'Zəhmət olmasa adınızı və Azərbaycan mobil nömrənizi (məs: 050 123 45 67) dəqiq yazın.';\n} else if (err === 'unknown_session') {\n  replyText = 'Seans tapılmadı. Mövcud qrupları yenidən göstərim?';\n}\nreturn [{ json: { chatId, replyText } }];"
+      }
+    },
+    {
+      "id": "send-reply",
+      "name": "Send Telegram Reply",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2020, 260],
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.replyText }}"
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED_ID",
+          "name": "QeydAI Telegram Bot"
+        }
+      }
+    },
+    {
+      "id": "error-trigger",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [180, 520],
+      "parameters": {}
+    },
+    {
+      "id": "notify-admin-error",
+      "name": "Notify Admin on Error",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [440, 520],
+      "parameters": {
+        "chatId": "={{ $env.QEYDAI_ADMIN_CHAT_ID }}",
+        "text": "={{ 'QeydAI workflow xətası: ' + ($json.workflow?.name || 'unknown') + ' — node: ' + ($json.execution?.lastNodeExecuted || 'unknown') }}"
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED_ID",
+          "name": "QeydAI Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [[{ "node": "Normalize Message", "type": "main", "index": 0 }]]
+    },
+    "Normalize Message": {
+      "main": [[{ "node": "Fetch Available Sessions", "type": "main", "index": 0 }]]
+    },
+    "Fetch Available Sessions": {
+      "main": [[{ "node": "Extract Intent via Gemini", "type": "main", "index": 0 }]]
+    },
+    "Extract Intent via Gemini": {
+      "main": [[{ "node": "Parse AI Output", "type": "main", "index": 0 }]]
+    },
+    "Parse AI Output": {
+      "main": [[{ "node": "Should Enroll?", "type": "main", "index": 0 }]]
+    },
+    "Should Enroll?": {
+      "main": [
+        [{ "node": "Call QeydAI Enroll API", "type": "main", "index": 0 }],
+        [{ "node": "Send Telegram Reply", "type": "main", "index": 0 }]
+      ]
+    },
+    "Call QeydAI Enroll API": {
+      "main": [[{ "node": "Format Enroll Outcome", "type": "main", "index": 0 }]]
+    },
+    "Format Enroll Outcome": {
+      "main": [[{ "node": "Send Telegram Reply", "type": "main", "index": 0 }]]
+    },
+    "Error Trigger": {
+      "main": [[{ "node": "Notify Admin on Error", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

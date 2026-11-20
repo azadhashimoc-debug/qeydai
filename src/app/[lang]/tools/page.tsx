@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
-import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
+import {
+  BottomCtaBand,
+  FeatureAlternating,
+  SubpageHero,
+} from "@/components/marketing/SubpageBlocks";
 import { WhatsAppToolsClient } from "@/components/marketing/WhatsAppToolsClient";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
@@ -53,8 +57,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
           badge={s.tools.hero.badge}
           title={s.tools.hero.title}
           subtitle={s.tools.hero.subtitle}
-          primaryCta={{ href: "#tools-workbench", label: s.tools.hero.ctaPrimary }}
-          secondaryCta={{ href: `/${locale}/channels/whatsapp`, label: s.tools.hero.ctaSecondary }}
+          secondaryCta={{ href: `/${locale}/channels/whatsapp`, label: s.common.exploreProduct }}
           image="p-tools"
           imageAlt={s.tools.hero.title}
           badgeVariant="mint"
@@ -63,6 +66,85 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
         <section id="tools-workbench" className="pm-section">
           <div className="pm-wrap">
             <WhatsAppToolsClient copy={s.tools} />
+          </div>
+        </section>
+
+        <FeatureAlternating
+          rows={
+            locale === "en"
+              ? [
+                  {
+                    tag: "Entry Point",
+                    title: "Turn attention into a direct chat entry point",
+                    body: "Place your custom wa.me link or QR code on Instagram bio, flyers, and course landing pages so students start chatting in one tap.",
+                    image: "p-whatsapp",
+                    imageAlt: "WhatsApp link",
+                    tone: "mint",
+                  },
+                  {
+                    tag: "AI Speed",
+                    title: "Let AI answer every message instantly",
+                    body: "Connect your link to panelim.az so incoming inquiries receive schedule details and trial booking options 24/7.",
+                    image: "p-ai-copilot",
+                    imageAlt: "AI replies",
+                    tone: "lavender",
+                  },
+                ]
+              : [
+                  {
+                    tag: "Giriş Nöqtəsi",
+                    title: "Marağı birbaşa WhatsApp söhbətinə çevirin",
+                    body: "Xüsusi wa.me linkini və ya QR kodunu Instagram bio-da, elanlarda və kurs səhifənizdə yerləşdirin ki, tələbələr bir toxunuşla yazsınlar.",
+                    image: "p-whatsapp",
+                    imageAlt: "WhatsApp linki",
+                    tone: "mint",
+                  },
+                  {
+                    tag: "AI Sürəti",
+                    title: "AI hər mesajı anında cavablasın",
+                    body: "Linkdən gələn müraciətləri panelim.az-a bağlayın ki, sınaq dərsi cədvəli və boş yer məlumatı 24/7 avtomatik göndərilsin.",
+                    image: "p-ai-copilot",
+                    imageAlt: "AI cavablar",
+                    tone: "lavender",
+                  },
+                ]
+          }
+        />
+
+        <section className="pm-section">
+          <div className="pm-wrap pm-faq-inner">
+            <div className="pm-section-head">
+              <h2>{locale === "en" ? "Frequently Asked Questions" : "Tez-tez verilən suallar"}</h2>
+            </div>
+            <div className="pm-faq-list">
+              {(locale === "en"
+                ? [
+                    {
+                      q: "Is creating a WhatsApp link and QR code free?",
+                      a: "Yes. Both the custom wa.me link builder and SVG/PNG QR generator are 100% free with no account required.",
+                    },
+                    {
+                      q: "Why use a pre-filled welcome message?",
+                      a: "Pre-filled messages help your team immediately see which course or ad campaign the student clicked from.",
+                    },
+                  ]
+                : [
+                    {
+                      q: "WhatsApp linki və QR kodu yaratmaq pulsuzdur?",
+                      a: "Bəli. Həm fərdi wa.me link generatoru, həm də QR kod yükləyicisi qeydiyyatsız və tam pulsuzdur.",
+                    },
+                    {
+                      q: "Niyə hazır salamlama mesajı əlavə etmək lazımdır?",
+                      a: "Hazır mesaj sayəsində tələbə yazan kimi hansı kurs və ya elan üzrə müraciət etdiyini dərhal görürsünüz.",
+                    },
+                  ]
+              ).map((item) => (
+                <details key={item.q} className="pm-faq-item">
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 

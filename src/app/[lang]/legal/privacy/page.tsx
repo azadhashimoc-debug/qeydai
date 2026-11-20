@@ -53,11 +53,11 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/legal/p
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={p.badge}
+          badge={s.common.badgeSample}
           title={p.title}
-          subtitle={`${p.subtitle} (${p.updatedAt})`}
-          primaryCta={{ href: `/${locale}/contact`, label: s.navGroups.resources.contactTitle }}
-          secondaryCta={{ href: `/${locale}/legal/terms`, label: s.footer.legalCol.terms }}
+          subtitle={`${p.subtitle} · ${p.lastUpdated}`}
+          primaryCta={{ href: `/${locale}/contact`, label: s.navGroups.resources.blogTitle }}
+          secondaryCta={{ href: `/${locale}/legal/terms`, label: s.footer.cols.legal.terms }}
           image="p-cases"
           imageAlt={p.title}
           badgeVariant="mint"
@@ -74,7 +74,7 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/legal/p
               ))}
               <div>
                 <Link href={`/${locale}/contact`} className="pm-link-arrow">
-                  {s.navGroups.resources.contactTitle}
+                  {s.footer.cols.legal.contact}
                 </Link>
               </div>
             </div>

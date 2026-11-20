@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="QeydAI">
-  <rect width="64" height="64" rx="16" fill="#0B1530"/>
-  <circle cx="30" cy="30" r="14" fill="none" stroke="#F5F7FB" stroke-width="6"/>
-  <circle cx="45" cy="45" r="6" fill="#12C2B0"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="panelim.az">
+  <rect width="64" height="64" rx="17" fill="#0E0142"/>
+  <rect x="16" y="16" width="13" height="33" rx="3" fill="#FFFFFF"/>
+  <rect x="34" y="16" width="14" height="14" rx="3" fill="#FFFFFF"/>
+  <rect x="34" y="35" width="14" height="14" rx="3" fill="#64E8A8"/>
 </svg>

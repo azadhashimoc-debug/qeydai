@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
-import { SiteFooter } from "@/components/marketing/SiteFooter";
-import { SiteHeader } from "@/components/marketing/SiteHeader";
-import { Photo } from "@/components/Photo";
+import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
@@ -29,9 +27,9 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
   const { lang } = await params;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
-  const other = locale === "az" ? "en" : "az";
-  const s = d.subpages;
-  const login = s.authPages.login;
+  const auth = d.subpages.authPages;
+  const login = auth.login;
+  const shell = auth.shell;
 
   return (
     <div className="marketing">
@@ -39,64 +37,49 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
         {d.a11y.skipToMain}
       </a>
 
-      <SiteHeader
-        lang={locale}
-        brand={d.brand}
-        a11y={d.a11y}
-        nav={d.landing.nav}
-        subNav={s.navGroups}
-        mode="subpage"
-        routeSuffix="/login"
-      />
-
-      <main id="main" tabIndex={-1}>
-        <section className="pm-auth-section">
-          <div className="pm-auth-kommo">
-            <Photo
-              name="p-product-tour"
-              alt={login.title}
-              className="pm-auth-kommo-illustration"
-              priority
-            />
-            <div className="pm-auth-kommo-card">
-              <span className="pm-auth-kommo-badge">{login.badge}</span>
-              <h1 className="pm-auth-kommo-title">{login.title}</h1>
-              <p className="pm-auth-kommo-sub">{login.subtitle}</p>
-              <AuthKommoClient
-                lang={locale}
-                copy={{
-                  badge: login.badge,
-                  title: login.title,
-                  subtitle: login.subtitle,
-                  keyLabel: login.keyLabel,
-                  keyPlaceholder: login.keyPlaceholder,
-                  showKey: login.showKey,
-                  hideKey: login.hideKey,
-                  submit: login.submit,
-                  submitting: login.submitting,
-                  invalidKey: login.invalidKey,
-                  rateLimited: login.rateLimited,
-                  networkError: login.networkError,
-                  securityNote: login.securityNote,
-                  noAccountText: login.noAccountText,
-                  registerLink: login.registerLink,
-                }}
-                registerHref={`/${locale}/register`}
-              />
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter
-        lang={locale}
-        other={other}
-        tagline={d.landing.footer.tagline}
-        copyright={d.landing.footer.copyright}
-        switchLabel={d.landing.footer.switchLabel}
-        cols={s.footer}
-        routeSuffix="/login"
-      />
+      <AuthShell
+        copy={{
+          brandName: d.brand,
+          switchHref: `/${locale}/register`,
+          switchLabel: login.topSwitchLabel,
+          switchVariant: "filled",
+          homeHref: `/${locale}`,
+          closeLabel: shell.closeLabel,
+          speechText: shell.speechText,
+          chatLabel: shell.chatLabel,
+          chatHref: `/${locale}/contact`,
+          bannerText: shell.bannerText,
+          bannerHref: `/${locale}/pricing`,
+          dismissLabel: shell.dismissLabel,
+          magnifierAlt: shell.magnifierAlt,
+          heartAlt: shell.heartAlt,
+        }}
+      >
+        <AuthKommoClient
+          lang={locale}
+          copy={{
+            title: login.title,
+            emailLabel: login.emailLabel,
+            emailPlaceholder: login.emailPlaceholder,
+            keyLabel: login.keyLabel,
+            keyPlaceholder: login.keyPlaceholder,
+            showKey: login.showKey,
+            hideKey: login.hideKey,
+            submit: login.submit,
+            submitting: login.submitting,
+            passkeyLabel: login.passkeyLabel,
+            googleLabel: shell.googleLabel,
+            facebookLabel: shell.facebookLabel,
+            socialNote: shell.socialNote,
+            forgotLink: login.forgotLink,
+            invalidKey: login.invalidKey,
+            rateLimited: login.rateLimited,
+            networkError: login.networkError,
+            securityNote: login.securityNote,
+          }}
+          contactHref={`/${locale}/contact`}
+        />
+      </AuthShell>
     </div>
   );
 }
