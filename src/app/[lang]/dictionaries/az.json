@@ -187,11 +187,11 @@
     }
   },
   "alts": {
-    "one": "Planşetdə rezervasiya cədvəli",
-    "two": "Telefonda mesajlaşma",
-    "three": "Menecerin telefonunda yeni müştəri bildirişi",
-    "lobby": "Xidmət biznesinin qəbul sahəsi",
-    "director": "Biznes rəhbəri planşetdə satış hesabatına baxır"
+    "one": "Rezervasiya təqvimi və mövcud vaxtlar",
+    "two": "Müştəri mesajlaşması və vahid mesaj qutusu",
+    "three": "CRM platformasının ümumi görünüşü",
+    "lobby": "Satış qıfı və müştəri kartları",
+    "director": "Satış statistikası və hesabat paneli"
   },
   "about": {
     "eyebrow": "Azərbaycan biznesləri üçün qurulub",
