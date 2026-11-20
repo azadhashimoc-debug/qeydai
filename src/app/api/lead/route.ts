@@ -13,6 +13,25 @@ const perClient = createRateLimiter({ max: 5, windowMs: WINDOW_MS });
 // Backstop against rotating client identities: caps total accepted leads per window.
 const global = createRateLimiter({ max: 200, windowMs: WINDOW_MS });
 
+/**
+ * E2E runner submits independent forms from the same localhost IP. Give each
+ * verified local test an isolated *client* quota without raising/deleting
+ * either production rate limit. Only enabled on the explicitly opted-in
+ * localhost Playwright server; a caller cannot spoof this in production.
+ */
+function leadClientKey(req: Request) {
+  const url = new URL(req.url);
+  if (process.env.QEYDAI_E2E_SQLITE === "1" &&
+      !process.env.VERCEL &&
+      (url.hostname === "localhost" || url.hostname === "127.0.0.1")) {
+    const testClient = req.headers.get("x-qeydai-e2e-client");
+    if (testClient && /^[a-zA-Z0-9_-]{8,100}$/.test(testClient)) {
+      return `e2e:${testClient}`;
+    }
+  }
+  return clientKey(req);
+}
+
 export const resetLeadRateLimit = () => {
   perClient.clear();
   global.clear();
@@ -41,7 +60,7 @@ export async function POST(req: Request) {
   const declared = Number(req.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return fail("payload_too_large", 413);
 
-  if (global.isLimited("all") || !perClient.allow(clientKey(req))) return fail("rate_limited", 429);
+  if (global.isLimited("all") || !perClient.allow(leadClientKey(req))) return fail("rate_limited", 429);
 
   const text = await readLimitedUtf8(req, MAX_BODY_BYTES);
   if (text === null) return fail("payload_too_large", 413);
