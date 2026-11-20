@@ -30,10 +30,11 @@ function makePhone(project: ProjectName, workerIndex: number): string {
 }
 
 async function signInToPanel(page: Page, project: ProjectName): Promise<void> {
-  await page.goto("/en/panel");
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toBeVisible();
-  await page.getByLabel("Username").fill("pilot@example.test");
-  await page.getByLabel("Access key").fill(E2E_ADMIN_KEYS[project]);
+  // The current panel redirects unauthenticated visitors to the standalone login.
+  await page.goto("/en/login");
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
+  await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
@@ -89,24 +90,25 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
   expect(unauthRes.headers()["cache-control"]).toBe("no-store");
 
   await page.goto("/en/panel");
+  await expect(page).toHaveURL(/\/en\/login$/);
   const robotsMeta = page.locator('meta[name="robots"]');
   await expect(robotsMeta).toHaveAttribute("content", /noindex/i);
   await expect(robotsMeta).toHaveAttribute("content", /nofollow/i);
 
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 
-  await page.getByLabel("Username").fill("pilot@example.test");
-  await page.getByLabel("Access key").fill("invalid-panel-key-0123456789abcdef");
+  await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByLabel("Workspace access key").fill("invalid-panel-key-0123456789abcdef");
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await expect(page.getByRole("status")).toHaveText("Invalid access key. Check it and try again.");
-  await expect(page.getByLabel("Access key")).toHaveAttribute("aria-invalid", "true");
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toBeVisible();
+  await expect(page.getByLabel("Workspace access key")).toHaveAttribute("aria-invalid", "true");
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 
   const authPromise = page.waitForResponse(
     (res) => res.url().includes("/api/panel/auth") && res.request().method() === "POST",
   );
-  await page.getByLabel("Username").fill("pilot@example.test");
-  await page.getByLabel("Access key").fill(E2E_ADMIN_KEYS[project]);
+  await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   const authRes = await authPromise;
   expect(authRes.status()).toBe(200);
@@ -116,12 +118,12 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
   await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
   if (project === "desktop") {
-    await expect(page.getByText(`Center: e2e-${project}`)).toBeVisible();
+    await expect(page.getByText(`Workspace: e2e-${project}`)).toBeVisible();
   }
 
   await page.reload();
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toHaveCount(0);
 });
 
 test("tenant isolation: panel hides and refuses PATCH for another tenant's lead", async ({
@@ -448,14 +450,15 @@ test("sign out clears session and subsequent API requests return 401", async ({ 
   expect((await page.request.get("/api/panel/overview")).status()).toBe(200);
 
   await page.getByRole("button", { name: "Sign out" }).click();
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toBeVisible();
+  await expect(page).toHaveURL(/\/en\/login$/);
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 
   const afterSignOut = await page.request.get("/api/panel/overview");
   expect(afterSignOut.status()).toBe(401);
   expect(afterSignOut.headers()["cache-control"]).toBe("no-store");
 
   await page.reload();
-  await expect(page.getByRole("heading", { name: "Staff panel sign in" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 });
 
 test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts, deals, claim, tasks, notes, and zero overflow", async ({
@@ -601,10 +604,14 @@ test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts,
   await expect(page.locator("li", { hasText: dealTitle })).toBeVisible();
 });
 
-test("Google test login opens demo panel", async ({ page }) => {
+test("Google sign-in is informational without OAuth provisioning; cannot bypass key authentication", async ({ page }) => {
   await page.goto("/az/login");
+  const before = await page.request.get("/api/panel/overview");
+  expect(before.status()).toBe(401);
   await page.getByRole("button", { name: /Google/ }).click();
-  await expect(page).toHaveURL(/\/az\/panel/);
-  await expect(page.getByRole("heading", { name: /İççi panelinə giriş/ })).toHaveCount(0);
+  await expect(page).toHaveURL(/\/az\/login$/);
+  await expect(page.getByRole("status")).toContainText(/OAuth/i);
+  const cookies = await page.context().cookies();
+  expect(cookies.some((c) => c.name === "qeydai_panel")).toBe(false);
+  expect((await page.request.get("/api/panel/overview")).status()).toBe(401);
 });
-
