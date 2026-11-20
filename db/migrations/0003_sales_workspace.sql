@@ -271,7 +271,10 @@ BEGIN
     'sales_phone_matches','sales_deals','sales_custom_field_defs','sales_deal_field_values',
     'sales_connections','sales_threads','sales_messages','sales_outbox','sales_activity','sales_tasks','sales_notes','sales_deal_bookings'] LOOP
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename=tbl AND policyname=tbl || '_isolation') THEN
-      EXECUTE format('CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), '')) WITH CHECK (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), ''))', tbl || '_isolation', tbl);
+      EXECUTE format(
+        'CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting(%L, true), %L)) WITH CHECK (tenant_id = NULLIF(current_setting(%L, true), %L))',
+        tbl || '_isolation', tbl, 'app.tenant_id', '', 'app.tenant_id', ''
+      );
     END IF;
   END LOOP;
 END $$;
