@@ -29,7 +29,9 @@ export async function completeWorkspaceSetup(page: Page) {
   await next.click();
 
   await expect(dialog.getByRole("heading", { name: "How many people are on your team?" })).toBeVisible();
-  await dialog.getByRole("radio", { name: "Just me" }).check();
+  // Team size uses a visually hidden native radio inside a clickable label.
+  await dialog.getByText("Just me", { exact: true }).click();
+  await expect(dialog.getByRole("radio", { name: "Just me" })).toBeChecked();
   await dialog.getByRole("button", { name: "Finish and open workspace" }).click();
   await expect(dialog).toHaveCount(0);
 }
