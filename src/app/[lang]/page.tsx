@@ -248,7 +248,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <ProductPreview
                 copy={l.preview}
                 lang={locale}
-                brand={dictionary.brand}
+                brand="QeydAI"
                 lobbyAlt={dictionary.alts.lobby}
               />
             </div>
