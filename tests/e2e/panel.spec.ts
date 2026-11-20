@@ -100,7 +100,7 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
   await page.getByLabel("Email").fill("pilot@example.test");
   await page.getByLabel("Workspace access key").fill("invalid-panel-key-0123456789abcdef");
   await page.getByRole("button", { name: "Sign in to panel" }).click();
-  await expect(page.getByRole("status")).toHaveText("Invalid access key. Check it and try again.");
+  await expect(page.getByRole("status")).toHaveText("Invalid access key. Check the key and try again.");
   await expect(page.getByLabel("Workspace access key")).toHaveAttribute("aria-invalid", "true");
   await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 
