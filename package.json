@@ -10,7 +10,7 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "seed:demo": "node scripts/seed-demo.mts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts"
   },
   "dependencies": {
