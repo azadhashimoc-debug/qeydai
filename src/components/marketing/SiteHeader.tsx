@@ -28,7 +28,7 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const other: Locale = lang === "en" ? "az" : "en";
   const switchHref = mode === "landing" ? `/${other}` : `/${other}${routeSuffix}`;
-  const demoHref = mode === "landing" ? "#contact" : `/${lang}/demo`;
+  const demoHref = `/${lang}/demo`;
   const demoLabel = mode === "landing" ? subNav.actions.demo : nav.demo;
   const switchLabel = other === "en" ? "English" : "Azərbaycan dili";
 
@@ -71,7 +71,7 @@ export function SiteHeader({
   const directLinks =
     mode === "landing"
       ? [
-          { href: "#pricing", label: nav.pricing },
+          { href: `/${lang}/pricing`, label: nav.pricing },
           { href: "#faq", label: nav.faq },
         ]
       : [{ href: `/${lang}/pricing`, label: subNav.resources.pricingTitle }];

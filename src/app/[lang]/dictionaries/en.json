@@ -223,15 +223,15 @@
         "instagram": "Instagram",
         "telegram": "Telegram"
       },
-      "title": "Grow conversations, cut the chaos",
-      "subtitle": "Messaging-first AI sales CRM built for Azerbaijani businesses to unify WhatsApp, Instagram, Telegram, trial bookings, and team pipelines.",
+      "title": "From customer conversations to sales — in one place",
+      "subtitle": "Bring WhatsApp, Instagram and Telegram messages together, organize customers and track sales. QeydAI is an AI-assisted CRM for businesses across industries.",
       "primaryCta": "Request a free demo",
       "secondaryCta": "Explore workspace",
-      "trustNote": "Built for Azerbaijani learning centers and service teams",
+      "trustNote": "Built for retail, salons, service teams and businesses across Azerbaijan",
       "trustBadges": {
-        "one": "24/7 natural Azerbaijani",
-        "two": "Live seat availability checks",
-        "three": "Isolated per-center workspace"
+        "one": "Azerbaijani-first experience",
+        "two": "Sales and booking overview",
+        "three": "A workspace tailored to your business"
       }
     },
     "preview": {
@@ -608,22 +608,38 @@
       "starter": {
         "name": "Starter",
         "desc": "Small teams — Telegram plus core sales board",
-        "limits": ["1 channel (Telegram)", "3 team members", "Trial seat occupancy watch"]
+        "limits": [
+          "1 channel (Telegram)",
+          "3 team members",
+          "Trial seat occupancy watch"
+        ]
       },
       "growth": {
         "name": "Growth",
         "desc": "Growing centers — AI assistant and multi-channel inbox",
-        "limits": ["Telegram, Instagram and WhatsApp", "8 team members", "Automatic trial booking"]
+        "limits": [
+          "Telegram, Instagram and WhatsApp",
+          "8 team members",
+          "Automatic trial booking"
+        ]
       },
       "pro": {
         "name": "Pro",
         "desc": "Multi-branch centers — full automation and reports",
-        "limits": ["All channels + custom fields", "Unlimited operators and role permissions", "Full analytics and n8n integration"]
+        "limits": [
+          "All channels + custom fields",
+          "Unlimited operators and role permissions",
+          "Full analytics and n8n integration"
+        ]
       },
       "enterprise": {
         "name": "Enterprise",
         "desc": "Custom requests, dedicated server and SLA support",
-        "limits": ["Multi-branch center structure", "Custom API and webhook setup", "Direct engineer support"]
+        "limits": [
+          "Multi-branch center structure",
+          "Custom API and webhook setup",
+          "Direct engineer support"
+        ]
       }
     },
     "login": {

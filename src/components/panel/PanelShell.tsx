@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { LogoMark } from "@/components/Logo";
 import { buttonClass } from "@/components/ui/button";
@@ -15,7 +15,6 @@ import { DealDetail } from "./DealDetail";
 import { DealList } from "./DealList";
 import { InboxTab } from "./InboxTab";
 import { LeadsTab } from "./LeadsTab";
-import { LoginGate } from "./LoginGate";
 import { OverviewTab } from "./OverviewTab";
 import { SessionsTab } from "./SessionsTab";
 import { TeamStageTab } from "./TeamStageTab";
@@ -73,11 +72,10 @@ const PANEL_TAB_ICONS: Record<PanelTabId, string> = {
 export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
   const [authState, setAuthState] = useState<"checking" | "unauthenticated" | "authenticated">("checking");
   const [tenantId, setTenantId] = useState<string>("");
-  const [authNotice, setAuthNotice] = useState<string | null>(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const initialTab = searchParams.get("tab") === "settings" ? "settings" : "overview";
-  const testLogin = searchParams.get("test-login");
   const [activeTab, setActiveTab] = useState<PanelTabId>(initialTab);
   const [selectedInboxLeadId, setSelectedInboxLeadId] = useState<string | null>(null);
   const [selectedDealId, setSelectedDealId] = useState<string | null>(null);
@@ -131,8 +129,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
     abortControllerRef.current = null;
     clearSensitiveState();
     setAuthState("unauthenticated");
-    setAuthNotice(d.unauthorizedNotice);
-  }, [clearSensitiveState, d.unauthorizedNotice]);
+  }, [clearSensitiveState]);
 
   const loadPanelData = useCallback(async () => {
     const epoch = sessionEpochRef.current;
@@ -281,13 +278,6 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
     const epoch = ++sessionEpochRef.current;
     const controller = new AbortController();
     async function checkSession() {
-      if (testLogin === "1") {
-        setTenantId("test-tenant-1");
-        setActiveTab(initialTab);
-        setAuthState("authenticated");
-        void loadPanelData();
-        return;
-      }
       // The session cookie is HttpOnly; only the server can check it.
       try {
         const res = await fetch("/api/panel/auth", {
@@ -322,7 +312,13 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
       clearSensitiveState();
       setAuthState("checking");
     };
-  }, [clearSensitiveState, initialTab, loadPanelData, testLogin]);
+  }, [clearSensitiveState, initialTab, loadPanelData]);
+
+  useEffect(() => {
+    if (authState === "unauthenticated") {
+      router.replace(`/${lang}/login`);
+    }
+  }, [authState, lang, router]);
 
   async function handleSignOut() {
     sessionEpochRef.current += 1;
@@ -336,18 +332,9 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
       });
     } finally {
       setSigningOut(false);
-      setAuthNotice(null);
       clearSensitiveState();
       setAuthState("unauthenticated");
     }
-  }
-
-  function handleAuthenticated(nextTenantId: string) {
-    setTenantId(nextTenantId);
-    setActiveTab(initialTab);
-    setAuthNotice(null);
-    setAuthState("authenticated");
-    void loadPanelData();
   }
 
   function handleLeadCreated(lead: LeadRecord) {
@@ -434,29 +421,15 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
 
   if (authState === "checking") {
     return (
-      <div className="crm-screen flex min-h-screen items-center justify-center px-4">
-        <div className="panel-register px-6 py-5 text-center" role="status" aria-live="polite">
-          <p className="text-sm font-semibold text-muted">{d.loading}</p>
-        </div>
+      <div className="flex min-h-screen items-center justify-center bg-white px-4" role="status" aria-live="polite">
+        <p className="text-sm font-semibold text-[#251744]">{d.loading}</p>
       </div>
     );
   }
 
+  // All panel sign-ins go through the single, existing /login page.
   if (authState === "unauthenticated") {
-    return (
-      <>
-        <a href="#main" className="skip-link">
-          {skipToMain}
-        </a>
-        <LoginGate
-          lang={lang}
-          brand={brand}
-          d={d}
-          notice={authNotice}
-          onAuthenticated={handleAuthenticated}
-        />
-      </>
-    );
+    return null;
   }
 
   const otherLang: PanelLocale = lang === "az" ? "en" : "az";

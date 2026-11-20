@@ -68,7 +68,7 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
           title={c.hero.title}
           subtitle={c.hero.subtitle}
           primaryCta={{ href: `/${locale}/tools`, label: c.hero.primaryCta }}
-          secondaryCta={{ href: `/${locale}/channels/whatsapp`, label: c.hero.secondaryCta }}
+          secondaryCta={{ href: `/${locale}/demo`, label: c.hero.secondaryCta }}
           image="p-channels"
           imageAlt={c.hero.title}
         />
@@ -130,7 +130,7 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/pricing`}
           secondaryLabel={s.common.bottomCta.secondary}
         />
       </main>

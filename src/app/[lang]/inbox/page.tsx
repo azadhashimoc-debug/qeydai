@@ -60,7 +60,7 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
           title={i.hero.title}
           subtitle={i.hero.subtitle}
           primaryCta={{ href: `/${locale}/demo`, label: i.hero.primaryCta }}
-          secondaryCta={{ href: `/${locale}/ai`, label: i.hero.secondaryCta }}
+          secondaryCta={{ href: `/${locale}/demo`, label: i.hero.secondaryCta }}
           image="p-inbox"
           imageAlt={i.hero.title}
           badgeVariant="mint"
@@ -74,7 +74,7 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
                 <>
                   Our{" "}
                   <mark className="pm-hl is-amber">unified inbox</mark>{" "}
-                  gathers all student chats in{" "}
+                  gathers all customer chats in{" "}
                   <mark className="pm-hl is-lav">one workspace</mark>,{" "}
                   builds a complete profile, and helps teams{" "}
                   <mark className="pm-hl is-sky">collaborate seamlessly</mark>.
@@ -84,7 +84,7 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
                   <mark className="pm-hl is-amber">Vahid gələn qutusu</mark>{" "}
                   bütün söhbətlərinizi{" "}
                   <mark className="pm-hl is-lav">tək bir tətbiqdə</mark>{" "}
-                  toplayır, hər tələbə üçün profil yaradır və komandanızın{" "}
+                  toplayır, hər müştəri üçün profil yaradır və komandanızın{" "}
                   <mark className="pm-hl is-sky">asanlıqla əməkdaşlıq</mark>{" "}
                   etməsini təmin edir.
                 </>
@@ -121,7 +121,7 @@ export default async function InboxPage({ params }: PageProps<"/[lang]/inbox">) 
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/pricing`}
           secondaryLabel={s.common.bottomCta.secondary}
         />
       </main>

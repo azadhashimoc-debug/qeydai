@@ -43,18 +43,18 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
 
   const extraTools = isEn
     ? [
-        { title: "Tasks", desc: "Set follow-up reminders directly on student profiles and keep operators aligned.", tone: "lavender" as const },
+        { title: "Tasks", desc: "Set follow-up reminders directly on customer profiles and keep operators aligned.", tone: "lavender" as const },
         { title: "Team chat", desc: "Discuss inquiries internally inside each lead card without leaving the inbox.", tone: "mint" as const },
-        { title: "Analytics", desc: "Monitor trial conversion rates, response speed, and revenue in AZN.", tone: "sky" as const },
-        { title: "Web forms", desc: "Embed fast trial registration forms directly into your center's website.", tone: "lavender" as const },
+        { title: "Analytics", desc: "Monitor sales conversion rates, response speed, and revenue in AZN.", tone: "sky" as const },
+        { title: "Web forms", desc: "Embed fast lead capture forms directly into your center's website.", tone: "lavender" as const },
         { title: "Chat widget", desc: "Connect WhatsApp, Instagram, and Telegram into one multi-channel widget.", tone: "mint" as const },
         { title: "Integrations", desc: "Automate enrollments with n8n webhooks, Google Sheets, and Meta Cloud API.", tone: "sky" as const },
       ]
     : [
-        { title: "Tapşırıqlar", desc: "Tələbə kartlarına xatırlatmalar əlavə edin və operator təqvimini idarə edin.", tone: "lavender" as const },
+        { title: "Tapşırıqlar", desc: "Müştəri kartlarına xatırlatmalar əlavə edin və operator təqvimini idarə edin.", tone: "lavender" as const },
         { title: "Komanda söhbəti", desc: "Müraciət kartının daxilində komanda yoldaşlarınıza qeyd və bildiriş göndərin.", tone: "mint" as const },
-        { title: "Analitika", desc: "Sınaq dərsi dönüşümünü, cavab sürətini və AZN gəlirini canlı izləyin.", tone: "sky" as const },
-        { title: "Veb formalar", desc: "Potensial tələbələri birbaşa satış lövhəsinə yönləndirən formalar yaradın.", tone: "lavender" as const },
+        { title: "Analitika", desc: "Satış nəticələrini, cavab sürətini və AZN gəlirini canlı izləyin.", tone: "sky" as const },
+        { title: "Veb formalar", desc: "Potensial müştəriləri birbaşa satış lövhəsinə yönləndirən formalar yaradın.", tone: "lavender" as const },
         { title: "Çat düyməsi", desc: "Saytınıza WhatsApp, Instagram və Telegram-ı birləşdirən düymə əlavə edin.", tone: "mint" as const },
         { title: "İnteqrasiyalar", desc: "n8n, Google Sheets və rəsmi Meta Cloud API ilə iş axınını avtomatlaşdırın.", tone: "sky" as const },
       ];

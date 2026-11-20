@@ -388,10 +388,10 @@ export function AuthKommoRegisterClient({
             </label>
           </div>
           <Link
-            href={`/${locale}/panel?test-login=1`}
+            href={loginHref}
             className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
           >
-            {ws.openPanelBtn} →
+            {locale === "az" ? "Giriş səhifəsinə keç" : "Go to sign in"} →
           </Link>
         </div>
       )}

@@ -99,8 +99,8 @@
     "badgeFree": "Free utility",
     "contactNote": "We will contact you within 24 hours",
     "bottomCta": {
-      "title": "Turn incoming customer chats into confirmed enrollments",
-      "subtitle": "Consolidate WhatsApp, Instagram, and Telegram into one workspace with 24/7 AI response assistance.",
+      "title": "Turn customer conversations into sales opportunities",
+      "subtitle": "One workspace for WhatsApp, Instagram, Telegram, customers and sales.",
       "primary": "Book a free demo",
       "secondary": "Review pricing tiers"
     }
@@ -109,7 +109,7 @@
     "hero": {
       "eyebrow": "All-in-One Sales Workspace",
       "title": "From First Message to Confirmed Sale in One System",
-      "subtitle": "Capture chats across WhatsApp, Instagram, and Telegram, automate replies with natural AI, and manage trial bookings.",
+      "subtitle": "Bring customer messages together, track sales, organize appointments and make teamwork easier.",
       "primaryCta": "Schedule a demo",
       "secondaryCta": "Explore channels",
       "badge": "Full Platform"
@@ -187,7 +187,7 @@
   "pipeline": {
     "hero": {
       "eyebrow": "Visual Sales Pipeline",
-      "title": "Track Every Opportunity and Next Step Visually",
+      "title": "Keep every sales opportunity and next step in view",
       "subtitle": "Move deals across stages, claim unassigned leads instantly, and keep tasks and notes attached to each deal card.",
       "primaryCta": "Explore sales pipeline",
       "secondaryCta": "Schedule a demo",
@@ -231,7 +231,7 @@
     "hero": {
       "eyebrow": "Unified Team Inbox",
       "title": "One Shared Inbox for WhatsApp, Instagram, and Telegram",
-      "subtitle": "No more jumping across phones and apps. Your team collaborates in a single workspace with instant AI assistance.",
+      "subtitle": "Manage WhatsApp, Instagram and Telegram conversations in one place with a complete customer history.",
       "primaryCta": "Explore the inbox",
       "secondaryCta": "Schedule a demo",
       "badge": "Multi-Channel Inbox"
@@ -342,8 +342,8 @@
   "booking": {
     "hero": {
       "eyebrow": "Smart Booking & Capacity Lock",
-      "title": "Stop Overbooked Sessions and Duplicate Sign-Ups",
-      "subtitle": "Define group capacities for trial lessons and appointments. The engine locks seats atomically, rejects duplicate phone numbers, and updates the roster.",
+      "title": "Manage appointments and reservations with confidence",
+      "subtitle": "Organize appointments for services, consultations, events and classes, and track reservations from one place.",
       "primaryCta": "Explore booking engine",
       "secondaryCta": "Schedule a demo",
       "badge": "Capacity Lock"
@@ -706,8 +706,8 @@
   "pricingPage": {
     "hero": {
       "eyebrow": "Transparent Pricing",
-      "title": "Fair, Scalable Plans for Every Service Team",
-      "subtitle": "No hidden charges. Every plan includes an isolated workspace database and dependable support.",
+      "title": "Clear pricing plans for every business",
+      "subtitle": "Compare packages, choose what suits your team and understand any additional service terms upfront.",
       "badge": "Open Terms"
     },
     "periods": {

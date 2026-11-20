@@ -214,7 +214,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p className="pm-hero-sub">{l.hero.subtitle}</p>
 
               <div className="pm-hero-actions">
-                <a className="pm-btn pm-btn-primary" href="#contact" data-track-cta="hero_primary">
+                <Link className="pm-btn pm-btn-primary" href={`/${locale}/demo`} data-track-cta="hero_primary">
                   {l.hero.primaryCta}
                   <svg width="18" height="20" viewBox="0 0 14 16" aria-hidden="true">
                     <path
@@ -222,7 +222,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       d="M8.035.197c.037-.263.417-.263.455 0l.098.692a6.73 6.73 0 0 0 5.101 5.6c.204.049.204.339 0 .388a6.73 6.73 0 0 0-5.101 5.6l-.098.692c-.038.263-.418.263-.455 0l-.098-.693a6.73 6.73 0 0 0-5.101-5.6c-.204-.048-.204-.338 0-.387a6.73 6.73 0 0 0 5.101-5.6zm-5.488 9.95c.032-.205.328-.205.359 0l.02.127a3.1 3.1 0 0 0 2.393 2.556c.18.04.18.294 0 .334a3.1 3.1 0 0 0-2.393 2.555l-.02.127c-.031.205-.327.205-.359 0l-.02-.127a3.1 3.1 0 0 0-2.393-2.555c-.179-.04-.179-.295 0-.335a3.1 3.1 0 0 0 2.394-2.555z"
                     />
                   </svg>
-                </a>
+                </Link>
                 <a className="pm-btn pm-btn-outline" href="#how" data-track-cta="hero_secondary">
                   {l.hero.secondaryCta}
                 </a>
@@ -519,7 +519,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <h2>{l.ctaBand.title}</h2>
               <p>{l.ctaBand.subtitle}</p>
               <div className="pm-cta-links">
-                <Link href={`/${lang}/panel`} className="pm-btn pm-btn-mint">
+                <Link href={`/${locale}/login`} className="pm-btn pm-btn-mint">
                   {l.ctaBand.secondary}
                 </Link>
               </div>

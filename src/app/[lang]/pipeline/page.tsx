@@ -62,7 +62,7 @@ export default async function PipelinePage({ params }: PageProps<"/[lang]/pipeli
           title={p.hero.title}
           subtitle={p.hero.subtitle}
           primaryCta={{ href: `/${locale}/demo`, label: p.hero.primaryCta }}
-          secondaryCta={{ href: `/${locale}/inbox`, label: p.hero.secondaryCta }}
+          secondaryCta={{ href: `/${locale}/demo`, label: p.hero.secondaryCta }}
           image="p-pipeline"
           imageAlt={p.hero.title}
         />

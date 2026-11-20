@@ -223,15 +223,15 @@
         "instagram": "Instagram",
         "telegram": "Telegram"
       },
-      "title": "Söhbətləri böyüdün, xaosu azaldın",
-      "subtitle": "WhatsApp, Instagram və Telegram müraciətlərini, sınaq dərslərini və satış qıfını bir arada idarə edən Azərbaycan dilli AI CRM.",
+      "title": "Müştəri mesajlarından satışa — hər şey bir yerdə",
+      "subtitle": "WhatsApp, Instagram və Telegram yazışmalarını birləşdirin, müştəriləri və satışları rahat izləyin. QeydAI müxtəlif bizneslər üçün hazırlanmış AI dəstəkli CRM-dir.",
       "primaryCta": "Pulsuz demo istə",
       "secondaryCta": "Paneli kəşf et",
-      "trustNote": "Azərbaycan tədris mərkəzləri və xidmət biznesləri üçün qurulub",
+      "trustNote": "Azərbaycandakı mağazalar, salonlar, xidmət şirkətləri və digər bizneslər üçün",
       "trustBadges": {
-        "one": "24/7 təbii Azərbaycan dili",
-        "two": "Canlı boş yer yoxlaması",
-        "three": "Mərkəzə özəl təcrid olunmuş baza"
+        "one": "Azərbaycan dilində rahat idarəetmə",
+        "two": "Satış və rezervasiya nəzarəti",
+        "three": "Biznesinizə uyğun iş məkanı"
       }
     },
     "preview": {
@@ -608,22 +608,38 @@
       "starter": {
         "name": "Başlanğıc",
         "desc": "Kiçik komandalar üçün Telegram + əsas satış lövhəsi",
-        "limits": ["1 kanal (Telegram)", "3 komanda üzvü", "Sınaq dərsi tutum nəzarəti"]
+        "limits": [
+          "1 kanal (Telegram)",
+          "3 komanda üzvü",
+          "Sınaq dərsi tutum nəzarəti"
+        ]
       },
       "growth": {
         "name": "İnkişaf",
         "desc": "Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu",
-        "limits": ["Telegram, Instagram və WhatsApp", "8 komanda üzvü", "Avtomatik sınaq qeydiyyatı"]
+        "limits": [
+          "Telegram, Instagram və WhatsApp",
+          "8 komanda üzvü",
+          "Avtomatik sınaq qeydiyyatı"
+        ]
       },
       "pro": {
         "name": "Pro",
         "desc": "Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar",
-        "limits": ["Bütün kanallar + xüsusi sahələr", "Limitsiz operator və rol icazəsi", "Tam analitika və n8n inteqrasiyası"]
+        "limits": [
+          "Bütün kanallar + xüsusi sahələr",
+          "Limitsiz operator və rol icazəsi",
+          "Tam analitika və n8n inteqrasiyası"
+        ]
       },
       "enterprise": {
         "name": "Korporativ",
         "desc": "Fərdi tələblər, xüsusi server və SLA dəstəyi",
-        "limits": ["Çoxfiliallı mərkəz strukturu", "Xüsusi API və webhook quraşdırılması", "Birbaşa mühəndis dəstəyi"]
+        "limits": [
+          "Çoxfiliallı mərkəz strukturu",
+          "Xüsusi API və webhook quraşdırılması",
+          "Birbaşa mühəndis dəstəyi"
+        ]
       }
     },
     "login": {
