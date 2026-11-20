@@ -40,20 +40,20 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Starter",
-            desc: "For growing courses and studios starting unified messaging.",
+            desc: "For growing shops, salons and service teams starting unified messaging.",
             prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
             setupNote: "Per workspace · No hidden fees",
             ctaLabel: "Start 14-day trial",
             limits: [
               "Telegram + Instagram Direct inbox",
               "Kanban pipeline up to 500 leads",
-              "Duplicate trial booking guard",
+              "Duplicate booking checks",
             ],
           },
           {
             id: "growth",
             name: "Growth",
-            desc: "WhatsApp Cloud API + automated trial scheduling.",
+            desc: "WhatsApp Cloud API + automated appointment booking.",
             prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
             setupNote: "Per workspace · 14-day free trial",
             ctaLabel: "Start 14-day trial",
@@ -83,7 +83,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             name: "Enterprise",
             desc: "Dedicated PostgreSQL isolation, SLA & custom integrations.",
             prices: { monthly: "Custom", halfYear: "Custom", annual: "Custom" },
-            setupNote: "Tailored for multi-center networks",
+            setupNote: "Tailored for multi-branch businesses",
             ctaLabel: "Contact sales",
             limits: [
               "Dedicated isolated database",
@@ -96,20 +96,20 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Başlanğıc",
-            desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
+            desc: "Vahid mesajlaşma və müştəri idarəetməsinə keçən kiçik bizneslər üçün.",
             prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
             setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
               "Telegram + Instagram Direct qutusu",
               "500 müraciətədək Kanban lövhəsi",
-              "Təkrar sınaq qeydiyyatına nəzarət",
+              "Təkrar rezervasiyalara nəzarət",
             ],
           },
           {
             id: "growth",
             name: "İnkişaf",
-            desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
+            desc: "WhatsApp Cloud API və avtomatik görüş rezervasiyası.",
             prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
             setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
             ctaLabel: "14 gün pulsuz sına",
@@ -139,7 +139,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             name: "Korporativ",
             desc: "Təcrid olunmuş PostgreSQL bazası, SLA və xüsusi inteqrasiyalar.",
             prices: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
-            setupNote: "Şəbəkə tədris və xidmət mərkəzləri üçün",
+            setupNote: "Çoxfiliallı bizneslər və xidmət şəbəkələri üçün",
             ctaLabel: "Satışla əlaqə",
             limits: [
               "Fərdi təcrid olunmuş verilənlər bazası",
@@ -159,12 +159,12 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           },
           {
             title: "Zero Double-Booking",
-            desc: "Real-time seat capacity locks and automated trial lesson reminders.",
+            desc: "Available appointment slots and automatic booking reminders.",
             tone: "mint" as const,
           },
           {
             title: "Revenue-Focused Pipeline",
-            desc: "Track every lead from first message to enrolled student in AZN.",
+            desc: "Track every deal from first message to paid sale in AZN.",
             tone: "sky" as const,
           },
           {
@@ -180,8 +180,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             tone: "lavender" as const,
           },
           {
-            title: "Dəqiq sınaq rezervasiyası",
-            desc: "Canlı yer sayı kilidi ilə eyni nömrənin təkrar qeydiyyatının qarşısını alın.",
+            title: "Dəqiq görüş rezervasiyası",
+            desc: "Dolu saatları və eyni nömrə ilə təkrar rezervasiyaları nəzarətdə saxlayın.",
             tone: "mint" as const,
           },
           {
@@ -190,7 +190,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             tone: "sky" as const,
           },
           {
-            title: "Çoxfiliallı mərkəzlər",
+            title: "Çoxfiliallı bizneslər",
             desc: "Bakı və regionlardakı filialları təcrid olunmuş cədvəl və operatorlarla işlədin.",
             tone: "amber" as const,
           },
@@ -201,14 +201,14 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
       ? [
           {
             q: "Can we switch between monthly and annual billing?",
-            a: "Yes. You can start with a 14-day free trial and switch billing cycles anytime without losing student or lead records.",
+            a: "Yes. You can start with a 14-day free trial and switch billing cycles without losing customer or lead records.",
           },
           {
             q: "Are there any extra fees for WhatsApp Cloud API?",
             a: "Your panelim.az subscription covers the CRM, automation, and webhook engine. Meta conversation charges are billed directly at Meta's official rates.",
           },
           {
-            q: "Is our center's data isolated from other centers?",
+            q: "Is our business data separate from other workspaces?",
             a: "Yes. Every workspace is strictly tenant-isolated at the database and API key level.",
           },
         ]
@@ -222,7 +222,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             a: "panelim.az abunəliyi CRM, bot və avtomatlaşdırma mühərrikini əhatə edir. Rəsmi Meta mesaj tarifləri birbaşa Meta hesabınız üzərindən hesablanır.",
           },
           {
-            q: "Mərkəzimizin tələbə və müraciət bazası digər mərkəzlərdən təcrid olunur?",
+            q: "Biznesimizin müştəri məlumatları digər iş sahələrindən ayrıdır?",
             a: "Bəli. Hər bir iş sahəsi verilənlər bazası və API açarı səviyyəsində tam təcrid olunmuş şəkildə saxlanılır.",
           },
         ];
@@ -269,7 +269,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           heading={locale === "en" ? "Why teams choose Pro" : "Komandalar niyə Pro-nu seçir?"}
           subheading={
             locale === "en"
-              ? "Built to turn every message into an enrolled student."
+              ? "Built to turn customer conversations into sales."
               : "Mesajları real dərs qeydiyyatına çevirmək üçün ideal plan."
           }
           columns={2}
