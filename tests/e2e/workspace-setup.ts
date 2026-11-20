@@ -7,7 +7,9 @@ import { expect } from "@playwright/test";
  * Finish on Overview so downstream tests can assert a visible authenticated UI.
  */
 export async function completeWorkspaceSetup(page: Page) {
-  const dialog = page.getByRole("dialog", { name: "Tell us about your business" });
+  const dialog = page.getByRole("dialog");
+  // The accessible dialog name comes from the current step H1 and changes each step.
+  await expect(dialog.getByRole("heading", { name: "Tell us about your business" })).toBeVisible();
   await expect(dialog).toBeVisible();
   await expect(page.getByRole("tablist")).toHaveCount(0);
 
