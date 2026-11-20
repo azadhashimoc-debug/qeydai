@@ -40,7 +40,7 @@ const COPY = {
     demoModal: {
       badge: "Calendly · Canlı Görüş",
       title: "15 dəqiqəlik fərdi demo təyin edin",
-      subtitle: "Mütəxəssisimizlə uyğun gün və saatı seçin, mərkəziniz üçün canlı iş axınını birlikdə quraq.",
+      subtitle: "Mütəxəssisimizlə uyğun gün və saatı seçin, biznesiniz üçün canlı iş axınını birlikdə quraq.",
       days: ["B.e · 23 Noy", "Ç.a · 24 Noy", "Çər · 25 Noy", "C.a · 26 Noy"],
       slots: ["11:00", "14:00", "16:30", "18:00"],
       nameLabel: "Adınız",
@@ -78,7 +78,7 @@ const COPY = {
       doneTitle: "İstək göndərildi!",
       doneBody: "Rəsmi inteqrasiya partnerimiz 24 saat ərzində sizinlə əlaqə saxlayacaq.",
       nameLabel: "Tam adınız",
-      companyLabel: "Şirkət / Mərkəz adı",
+      companyLabel: "Şirkət / biznes adı",
       industryLabel: "Sektor / Sənaye",
       industries: [
         "Təhsil və Kurslar",
@@ -121,7 +121,7 @@ const COPY = {
       duration: "02:45 · HD Təqdimat",
       chapters: [
         "00:00 — WhatsApp, Instagram və Telegram vahid gələn qutusu",
-        "00:55 — AI satış təmsilçisinin 24/7 sınaq dərsi rezervasiyası",
+        "00:55 — Pani-nin 24/7 görüş rezervasiyası",
         "01:45 — Kanban satış qıfı, avtomatik tapşırıqlar və analitika",
       ],
       tryCta: "14 gün pulsuz sına",
@@ -189,7 +189,7 @@ const COPY = {
       doneTitle: "Request submitted!",
       doneBody: "A certified integration partner will reach out to you within 24 hours.",
       nameLabel: "Full name",
-      companyLabel: "Company / Center name",
+      companyLabel: "Company / business name",
       industryLabel: "Industry",
       industries: [
         "Education & Training",
