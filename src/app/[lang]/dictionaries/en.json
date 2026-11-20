@@ -187,11 +187,11 @@
     }
   },
   "alts": {
-    "one": "Booking calendar on a tablet",
-    "two": "A messaging conversation on a phone",
-    "three": "New customer alert on a manager's phone",
-    "lobby": "Reception area of a service business",
-    "director": "Business owner reviewing sales reports on a tablet"
+    "one": "Appointment calendar and available times",
+    "two": "Customer conversations and unified inbox",
+    "three": "CRM platform overview",
+    "lobby": "Sales pipeline and customer cards",
+    "director": "Sales analytics and dashboard"
   },
   "about": {
     "eyebrow": "Built for businesses across Azerbaijan",
