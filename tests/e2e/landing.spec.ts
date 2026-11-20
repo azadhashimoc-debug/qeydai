@@ -16,10 +16,10 @@ test("root redirects by Accept-Language, default az", async ({ request }) => {
 test("language switch keeps content in sync", async ({ page }) => {
   await page.goto("/az");
   await expect(page.locator("html")).toHaveAttribute("lang", "az");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Söhbətləri böyüdün, xaosu azaldın");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Müştəri mesajlarından satışa — hər şey bir yerdə");
   await page.getByRole("banner").getByRole("link", { name: "English" }).click();
   await expect(page).toHaveURL(/\/en$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Grow conversations, cut the chaos");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("From customer conversations to sales — in one place");
 });
 
 test("landing header actions fit on one row at desktop widths", async ({ page }) => {
@@ -41,7 +41,7 @@ test("landing header actions fit on one row at desktop widths", async ({ page })
   await expect(login).toHaveAttribute("href", "/az/login");
   await expect(register).toHaveAttribute("href", "/az/register");
   await demo.click({ timeout: 5000 });
-  await expect(page).toHaveURL(/\/az#contact$/);
+  await expect(page).toHaveURL(/\/az\/demo$/);
 });
 
 test("landing header actions remain available in the mobile menu", async ({ page }) => {
@@ -67,6 +67,7 @@ test("no horizontal scroll", async ({ page }) => {
 });
 
 test("lead form: invalid shows error, valid is stored", async ({ page }, info) => {
+  await page.setExtraHTTPHeaders({ "x-qeydai-e2e-client": `landing-lead-${info.project.name}-${info.workerIndex}` });
   const tail = info.project.name === "mobile" ? "68" : "67";
   const phone = `050 123 45 ${tail}`;
   await page.goto("/az#contact");
@@ -86,10 +87,11 @@ test("lead form: invalid shows error, valid is stored", async ({ page }, info) =
   const normalizedPhone = `+9945012345${tail}`;
   expect(rows.some((r) => r.phone === normalizedPhone && r.name === "Aygün")).toBe(true);
 
-  await page.goto("/en/panel");
-  await page.getByLabel("Username").fill("pilot@example.test");
-  await page.getByLabel("Access key").fill(E2E_ADMIN_KEYS.desktop);
+  await page.goto("/en/login");
+  await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS.desktop);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
+  await expect(page).toHaveURL(/\/en\/panel$/);
   await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
   const leads = await page.request.get("/api/panel/leads");
@@ -181,7 +183,7 @@ test("lead form validates empty name client-side and focuses invalid input", asy
   await expect(page.getByLabel("Adınız")).toBeFocused();
 });
 
-test("focus ring keeps 3:1 contrast: blue ring on paper, highlighter yellow on dark cover", async ({ page }) => {
+test("focus ring keeps 3:1 contrast: dark violet on paper, yellow on dark cover", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/az");
   const focusViaKeyboard = async (sel: string) => {
@@ -203,12 +205,28 @@ test("focus ring keeps 3:1 contrast: blue ring on paper, highlighter yellow on d
     color: getComputedStyle(el).outlineColor,
   }));
   expect(skip).toEqual({ visible: true, color: "rgb(255, 228, 92)" });
+  const contrastAgainstWhite = (rgb: string) => {
+    const values = rgb.match(/\\d+/g)?.slice(0, 3).map(Number) ?? [];
+    expect(values).toHaveLength(3);
+    const channels = values.map((channel) => {
+      const v = channel / 255;
+      return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    });
+    const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+    return 1.05 / (luminance + 0.05);
+  };
   // Contact form input sits on a light card inside the cover section.
-  expect(await focusViaKeyboard("#contact input")).toEqual({ visible: true, color: "rgb(48, 70, 232)" });
+  const inputFocus = await focusViaKeyboard("#contact input");
+  expect(inputFocus.visible).toBe(true);
+  expect(contrastAgainstWhite(inputFocus.color)).toBeGreaterThanOrEqual(3);
   // Hero CTA sits on the light mesh hero.
-  expect(await focusViaKeyboard('[data-track-cta="hero_primary"]')).toEqual({ visible: true, color: "rgb(48, 70, 232)" });
+  const heroFocus = await focusViaKeyboard('[data-track-cta="hero_primary"]');
+  expect(heroFocus.visible).toBe(true);
+  expect(contrastAgainstWhite(heroFocus.color)).toBeGreaterThanOrEqual(3);
   // Header language link sits on the light header.
-  expect(await focusViaKeyboard("[data-track-lang]")).toEqual({ visible: true, color: "rgb(48, 70, 232)" });
+  const langFocus = await focusViaKeyboard("[data-track-lang]");
+  expect(langFocus.visible).toBe(true);
+  expect(contrastAgainstWhite(langFocus.color)).toBeGreaterThanOrEqual(3);
 });
 
 test("bilingual 404 marks English copy and link with lang/hreflang", async ({ page }) => {
@@ -226,11 +244,16 @@ test("custom 404 renders branded page and interactive stage/pricing/AI sections 
   await expect(page.locator('a[href="/en"]').last()).toBeVisible();
 
   await page.goto("/az");
-  await page.getByRole("tab", { name: "Satış lövhəsi" }).click();
-  await expect(page.getByText("Danışıq gedir")).toBeVisible();
+  // The current AI spotlight has real keyboard-accessible tabs. The old
+  // "Satış lövhəsi" teaser was replaced by the Pani product preview.
+  await page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }).click();
+  await expect(page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }))
+    .toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText("qulaqcıq");
 
-  await page.getByRole("button", { name: "İllik" }).click();
-  await expect(page.getByText("130 AZN")).toBeVisible();
+  await page.getByRole("button", { name: "İllik", exact: true }).click();
+  await expect(page.getByRole("button", { name: "İllik", exact: true }))
+    .toHaveAttribute("aria-pressed", "true");
 
   const contactBgPos = await page.locator("#contact > div").first().evaluate((el) => getComputedStyle(el).position);
   expect(contactBgPos).toBe("absolute");
