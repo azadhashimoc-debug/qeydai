@@ -44,7 +44,7 @@
       },
       "crm": {
         "title": "Simple CRM and reports",
-        "body": "How many inquiries came in, how many enrolled, how many paid, at a glance."
+        "body": "Track inquiries, confirmed appointments and paid sales at a glance."
       },
       "human": {
         "title": "Human handoff",
@@ -166,7 +166,7 @@
     "items": {
       "q1": {
         "q": "Does the AI make up prices and times?",
-        "a": "No. Prices, times and open seats are read only from the table you approved, and the program checks the enrollment rules. It hands any question that is not in the table to a manager."
+        "a": "No. Prices, opening hours and available slots come only from information you approve. The system checks booking rules and forwards unanswered questions to staff."
       },
       "q2": {
         "q": "Which channels does it work on?",
@@ -692,7 +692,7 @@
       "sessionsEmpty": "No active booking slots. Add one from the Bookings tab.",
       "seatsLeftSuffix": "seats left",
       "fullLabel": "Full",
-      "enrolledSuffix": "enrolled",
+      "enrolledSuffix": "bookings",
       "analyticsTitle": "Landing funnel analytics",
       "analyticsScopeNote": "Site-wide visitor events tracked on the public landing pages.",
       "funnelViews": "Page views",
@@ -738,7 +738,7 @@
       "rosterEmpty": "Nobody has booked this time yet.",
       "rosterToggleShow": "Show roster",
       "rosterToggleHide": "Hide roster",
-      "enrolledAt": "Enrolled at"
+      "enrolledAt": "Booked at"
     },
     "leads": {
       "title": "Lead register (CRM)",
@@ -796,7 +796,7 @@
       "senderStudent": "Customer message (test)",
       "channelLabel": "Channel",
       "bodyLabel": "Message",
-      "bodyPlaceholder": "Write a reply to the student or simulate an incoming message…",
+      "bodyPlaceholder": "Write a reply to the customer or simulate an incoming message…",
       "send": "Send",
       "sending": "Sending…",
       "sendError": "Could not send message.",
