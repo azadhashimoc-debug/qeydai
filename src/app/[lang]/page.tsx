@@ -97,9 +97,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   ];
 
   const outcomeCards = [
-    { ...l.outcomes.cards.one, photo: "p-inbox", alt: dictionary.alts.lobby },
-    { ...l.outcomes.cards.two, photo: "p-demo-stats", alt: dictionary.alts.two },
-    { ...l.outcomes.cards.three, photo: "p-product-tour", alt: dictionary.alts.director },
+    { ...l.outcomes.cards.one, photo: "p-inbox", alt: dictionary.alts.two },
+    { ...l.outcomes.cards.two, photo: "p-demo-stats", alt: dictionary.alts.director },
+    { ...l.outcomes.cards.three, photo: "p-product-tour", alt: dictionary.alts.three },
   ];
 
   const pricingPlans = [
