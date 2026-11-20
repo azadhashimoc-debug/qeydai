@@ -35,7 +35,7 @@ type Scene = {
 
 const CONTENT = {
   az: {
-    showcase: "panelim.az iş başında",
+    showcase: "Pani iş başında",
     sample: "İnteraktiv nümayiş · real müştəri məlumatı deyil",
     repeat: "Yenidən göstər",
     sidebar: ["İcmal", "Mesajlar", "Satışlar", "Təqvim", "Analitika"],
@@ -109,7 +109,7 @@ const CONTENT = {
     demo: "Nümayiş",
   },
   en: {
-    showcase: "See panelim.az in action",
+    showcase: "See Pani in action",
     sample: "Interactive preview · no real customer data",
     repeat: "Replay animation",
     sidebar: ["Overview", "Inbox", "Sales", "Calendar", "Analytics"],
