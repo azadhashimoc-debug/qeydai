@@ -67,7 +67,7 @@ test("channel copying, AI previews, and localized plan contact links", async ({ 
   await page.getByRole("button", { name: "Webhook URL" }).first().click();
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).not.toBe("");
 
-  await page.getByRole("tab", { name: "AI assistant" }).click();
+  await page.getByRole("tab", { name: "Pani", exact: true }).click();
   const preview = page.getByRole("button", { name: "Open", exact: true }).first();
   await preview.click();
   await expect(page.getByRole("button", { name: "Close", exact: true })).toHaveAttribute("aria-expanded", "true");
@@ -118,7 +118,7 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
   await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
   if (project === "desktop") {
-    await expect(page.getByText(`Workspace: e2e-${project}`)).toBeVisible();
+    await expect(page.getByText(`Business: e2e-${project}`)).toBeVisible();
   }
 
   await page.reload();
@@ -175,16 +175,16 @@ test("sessions tab: create session in UI, enroll via M2M API, and view student r
   const studentPhone = makePhone(project, info.workerIndex);
 
   await signInToPanel(page, project);
-  await page.getByRole("tab", { name: /Sessions/ }).click();
-  await expect(page.getByRole("heading", { name: "Trial sessions schedule" })).toBeVisible();
+  await page.getByRole("tab", { name: /Bookings/ }).click();
+  await expect(page.getByRole("heading", { name: "Appointments and booking calendar" })).toBeVisible();
 
   await page.getByLabel("Session ID").fill(sessionId);
-  await page.getByLabel("Course name").fill(courseId);
+  await page.getByLabel("Service name").fill(courseId);
   await page.getByLabel("Start date and time").fill(futureLocalDatetime(7));
   await page.getByLabel("Seat capacity").fill("4");
-  await page.getByRole("button", { name: "Create session" }).click();
+  await page.getByRole("button", { name: "Create booking slot" }).click();
 
-  await expect(page.getByText("Trial session added to schedule.")).toBeVisible();
+  await expect(page.getByText("Booking slot was added to the calendar.")).toBeVisible();
 
   const sessionItem = page.locator("li", { hasText: sessionId });
   await expect(sessionItem).toBeVisible();
@@ -226,7 +226,7 @@ test("CRM leads pipeline: create lead, update stage and note, filter, and persis
   await page.getByRole("tab", { name: /CRM/ }).click();
   await expect(page.getByRole("heading", { name: "Lead register (CRM)" })).toBeVisible();
 
-  await page.getByRole("button", { name: "+ New lead" }).click();
+  await page.getByRole("button", { name: "New lead" }).click();
   const createSection = page.locator("section", {
     has: page.getByRole("heading", { name: "Add a new lead" }),
   });
@@ -321,8 +321,8 @@ test("unified inbox: staff reply, simulated student message, M2M AI sync, order 
   await expect(convSection.locator("article", { hasText: staffMsg })).toBeVisible();
 
   const studentMsg = `2-Student: Qiymət nə qədərdir? ${uid}`;
-  await convSection.getByRole("button", { name: "Student message (demo)" }).click();
-  await expect(convSection.getByRole("button", { name: "Student message (demo)" })).toHaveAttribute(
+  await convSection.getByRole("button", { name: "Customer message (test)" }).click();
+  await expect(convSection.getByRole("button", { name: "Customer message (test)" })).toHaveAttribute(
     "aria-pressed",
     "true",
   );
@@ -406,13 +406,13 @@ test("overview analytics, KPI cards, funnel sections, and zero horizontal overfl
   page.on("pageerror", (err) => pageErrors.push(err));
 
   await signInToPanel(page, project);
-  await page.getByRole("tab", { name: /Sessions/ }).click();
+  await page.getByRole("tab", { name: /Bookings/ }).click();
   await page.getByRole("tab", { name: /Overview/ }).click();
 
   const kpiSection = page.getByRole("region", { name: "Today at a glance" });
   await expect(kpiSection.getByText("Total leads")).toBeVisible();
-  await expect(kpiSection.getByText("Trial bookings")).toBeVisible();
-  await expect(kpiSection.getByText("Paid students")).toBeVisible();
+  await expect(kpiSection.getByText("Confirmed bookings")).toBeVisible();
+  await expect(kpiSection.getByText("Paying customers")).toBeVisible();
   await expect(kpiSection.getByText("Total messages")).toBeVisible();
 
   const kpiCards = kpiSection.locator("article");
@@ -423,7 +423,7 @@ test("overview analytics, KPI cards, funnel sections, and zero horizontal overfl
   }
 
   await expect(page.getByRole("heading", { name: "CRM pipeline breakdown" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Trial session occupancy" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Booking capacity" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Landing funnel analytics" })).toBeVisible();
   await expect(page.getByText("Page views")).toBeVisible();
   await expect(page.getByText("CTA clicks")).toBeVisible();
