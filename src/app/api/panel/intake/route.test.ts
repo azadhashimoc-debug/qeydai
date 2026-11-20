@@ -68,32 +68,32 @@ describe("CRM atomic intake", () => {
     expect(json.contact.phone).toBe("+994501234567");
     expect(json.deal.contactId).toBe(json.contact.id);
     expect(json.task.dealId).toBe(json.deal.id);
-    expect(store.listSalesContacts("alpha")).toHaveLength(1);
-    expect(store.listSalesDeals("alpha")).toHaveLength(1);
-    expect(store.listSalesTasks("alpha")).toHaveLength(1);
-    expect(store.listSalesContacts("bravo")).toHaveLength(0);
+    expect(await store.listSalesContacts("alpha")).toHaveLength(1);
+    expect(await store.listSalesDeals("alpha")).toHaveLength(1);
+    expect(await store.listSalesTasks("alpha")).toHaveLength(1);
+    expect(await store.listSalesContacts("bravo")).toHaveLength(0);
   });
 
   it("reuses an existing contact without creating a second customer", async () => {
     expect((await POST(request("alpha", input))).status).toBe(201);
     const second = await POST(request("alpha", { ...input, title: "Rəngləmə" }));
     expect(second.status).toBe(201);
-    expect(store.listSalesContacts("alpha")).toHaveLength(1);
-    expect(store.listSalesDeals("alpha")).toHaveLength(2);
+    expect(await store.listSalesContacts("alpha")).toHaveLength(1);
+    expect(await store.listSalesDeals("alpha")).toHaveLength(2);
   });
 
   it("blocks operators, cross-origin requests and invalid payloads", async () => {
     expect((await POST(request("alpha", input, "operator1"))).status).toBe(403);
     expect((await POST(request("alpha", input, undefined, "https://evil.example"))).status).toBe(403);
     expect((await POST(request("alpha", { ...input, message: "" }))).status).toBe(422);
-    expect(store.listSalesContacts("alpha")).toHaveLength(0);
+    expect(await store.listSalesContacts("alpha")).toHaveLength(0);
   });
 
   it("isolates matching phone numbers by tenant", async () => {
     const a = await (await POST(request("alpha", input))).json();
     const b = await (await POST(request("bravo", input))).json();
     expect(a.contact.id).not.toBe(b.contact.id);
-    expect(store.listSalesContacts("alpha")).toHaveLength(1);
-    expect(store.listSalesContacts("bravo")).toHaveLength(1);
+    expect(await store.listSalesContacts("alpha")).toHaveLength(1);
+    expect(await store.listSalesContacts("bravo")).toHaveLength(1);
   });
 });
