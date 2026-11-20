@@ -8,7 +8,7 @@
       "pipelineDesc": "Advance incoming leads visually on a Kanban board",
       "inboxTitle": "Unified inbox",
       "inboxDesc": "WhatsApp, Instagram, and Telegram in one desk",
-      "aiTitle": "AI sales copilot",
+      "aiTitle": "Pani · AI sales assistant",
       "aiDesc": "24/7 conversational replies and qualification",
       "bookingTitle": "Booking & schedule",
       "bookingDesc": "Capacity-guarded trial sessions and appointments"
@@ -126,7 +126,7 @@
         "linkText": "Explore inbox"
       },
       "ai": {
-        "title": "AI sales copilot",
+        "title": "Pani · AI sales assistant",
         "desc": "Conversational assistant that understands typos and responds strictly from verified tables.",
         "linkText": "Explore AI"
       },
@@ -275,7 +275,7 @@
   },
   "ai": {
     "hero": {
-      "eyebrow": "Natural Azerbaijani AI Copilot",
+      "eyebrow": "Pani · Azerbaijani AI assistant",
       "title": "24/7 Accurate, Guardrailed Customer Conversations",
       "subtitle": "The assistant follows your exact price list and schedule, understands conversational Azerbaijani, and hands off complex inquiries immediately.",
       "primaryCta": "Explore AI copilot",
