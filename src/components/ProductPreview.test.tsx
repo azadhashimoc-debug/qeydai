@@ -11,6 +11,7 @@ it("shows the four QeydAI showcase stages in Azerbaijani", () => {
   render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="az" />);
   const tabs = screen.getAllByRole("tab");
   expect(tabs).toHaveLength(4);
+  expect(screen.getByText("Pani iş başında")).toBeTruthy();
   expect(tabs.map((tab) => tab.textContent)).toEqual(["Cəlb et", "Avtomatlaşdır", "Böyüt", "Təhlil et"]);
   expect(screen.getByRole("tabpanel").getAttribute("aria-labelledby")).toBe("pm-live-tab-capture");
   expect(screen.getAllByText("Aysel Məmmədova").length).toBeGreaterThan(0);
@@ -28,6 +29,7 @@ it("switches to booking and analytics without navigating away", () => {
 it("shows the same stages in English when selected", () => {
   render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="en" />);
   expect(screen.getByRole("tab", { name: "Automate" })).toBeTruthy();
+  expect(screen.getByText("See Pani in action")).toBeTruthy();
   expect(screen.getByText("Interactive preview · no real customer data")).toBeTruthy();
 });
 
