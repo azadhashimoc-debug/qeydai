@@ -1,16 +1,14 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { databaseConfigured } from "./store";
 
 const names = ["NEXT_PHASE", "QEYDAI_DATABASE_URL", "QEYDAI_E2E_SQLITE", "VERCEL", "NODE_ENV"] as const;
-const before = Object.fromEntries(names.map((k) => [k, process.env[k]]));
 function setEnv(key: (typeof names)[number], value?: string) {
-  if (value === undefined) delete process.env[key];
-  else process.env[key] = value;
+  vi.stubEnv(key, value);
 }
 
 describe("CRM persistent database availability", () => {
   afterEach(() => {
-    for (const k of names) setEnv(k, before[k]);
+    vi.unstubAllEnvs();
   });
 
   it("fails closed without PostgreSQL in production", () => {
