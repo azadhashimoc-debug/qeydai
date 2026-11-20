@@ -26,7 +26,7 @@ const COPY = {
       question: "Dəvət göndərildikdən sonra lead sayı niyə düşür?",
       answerBold: "Lead-lərin 37%-i",
       answerRest:
-        "sınaq dərsi rezervasiya keçidini aldıqdan sonra 48 saat ərzində hərəkətə keçmədikləri üçün itirilir.",
+        "rezervasiya keçidini aldıqdan sonra 48 saat ərzində hərəkətə keçmədikləri üçün itirilir.",
       recLabel: "Təklif:",
       recBody: "Rezervasiya etməyən lead-lər ilə 24 saat ərzində avtomatik xatırlatma mesajı ilə əlaqə saxlayın.",
       funnelStages: [
@@ -63,17 +63,17 @@ const COPY = {
       heading: "📊 Yeni və Öncəlikli Lead-lər",
       subhead: "Məsul olduğunuz, vaxtı keçmiş tapşırıqları ehtiva edən önəmli lead-lər:",
       cards: [
-        { name: "Cəngiz Qarasu", title: "İELTS İntensiv Qrup", tag: "tam_paket", age: "1g •" },
-        { name: "Hakan Qaralar", title: "Uşaq Üzgüçülük Akademiyası", tag: "ozel_qrup", age: "1g •" },
+        { name: "Cəngiz Qarasu", title: "Gözəllik salonu rezervasiyası", tag: "tam_paket", age: "1g •" },
+        { name: "Hakan Qaralar", title: "Onlayn mağaza sifarişi", tag: "ozel_qrup", age: "1g •" },
       ],
     },
     assistantSection: {
       crumb: "Avtomatik Tapşırıq & 24/7 Cavab",
-      userMsg: "Salam! Sabahkı sınaq dərsini saat 11:00-a dəyişə bilərik?",
+      userMsg: "Salam! Sabahkı görüşümü saat 11:00-a dəyişə bilərik?",
       botMsg:
-        "Təqvim yoxlanılır... Saat 11:00 qrupunda 2 boş yer mövcuddur, qeydiyyatınız yeniləndi!",
+        "Təqvim yoxlanılır... Saat 11:00 üçün boş vaxt mövcuddur, qeydiyyatınız yeniləndi!",
       taskBadge: "Tapşırıq vaxtı gəlmiş Sabah üçün Təmsilçi : ⟳ Təqib:",
-      taskText: "Sınaq dərsi öncəsi valideynə WhatsApp konum və hazırlıq mesajı göndər.",
+      taskText: "Görüşdən əvvəl müştəriyə WhatsApp ilə ünvan və xatırlatma mesajı göndər.",
     },
     promptPlaceholder: "Pani-yə sual verin...",
     askBtn: "Soruş",
@@ -96,7 +96,7 @@ const COPY = {
       question: "Why does the lead count drop after sending the booking invite?",
       answerBold: "37% of leads",
       answerRest:
-        "are lost because they do not take action within 48 hours of receiving the trial booking link.",
+        "are lost because they do not take action within 48 hours of receiving the booking link.",
       recLabel: "Recommendation:",
       recBody: "Trigger an automated follow-up message within 24 hours for leads who haven't booked.",
       funnelStages: [
@@ -133,17 +133,17 @@ const COPY = {
       heading: "📊 Priority Hot Leads",
       subhead: "Important leads with overdue tasks assigned to you:",
       cards: [
-        { name: "Cengiz Karasu", title: "IELTS Intensive Group", tag: "full_bundle", age: "1d •" },
-        { name: "Hakan Karalar", title: "Kids Swimming Academy", tag: "custom_group", age: "1d •" },
+        { name: "Cengiz Karasu", title: "Beauty salon appointment", tag: "full_bundle", age: "1d •" },
+        { name: "Hakan Karalar", title: "Online store order", tag: "custom_group", age: "1d •" },
       ],
     },
     assistantSection: {
       crumb: "Automated Task & 24/7 Reply",
-      userMsg: "Hi! Can we move my trial session tomorrow to 11:00 AM?",
+      userMsg: "Hi! Can we move my appointment tomorrow to 11:00 AM?",
       botMsg:
-        "Checking calendar... 2 seats available in the 11:00 AM slot, your booking has been updated!",
+        "Checking calendar... the 11:00 AM slot is available, your booking has been updated!",
       taskBadge: "Task due Tomorrow for Rep : ⟳ Follow-up:",
-      taskText: "Send WhatsApp location pin and preparation checklist before trial class.",
+      taskText: "Send WhatsApp location and reminder before the appointment.",
     },
     promptPlaceholder: "Ask Pani...",
     askBtn: "Ask",
