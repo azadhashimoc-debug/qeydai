@@ -11,7 +11,7 @@
       "aiTitle": "Pani · AI sales assistant",
       "aiDesc": "24/7 conversational replies and qualification",
       "bookingTitle": "Booking & schedule",
-      "bookingDesc": "Capacity-guarded trial sessions and appointments"
+      "bookingDesc": "Booking and capacity controls for appointments, services and events"
     },
     "channels": {
       "label": "Channels & Tools",
@@ -132,13 +132,13 @@
       },
       "booking": {
         "title": "Booking & capacity",
-        "desc": "Live seat availability checks that prevent overbooking and block duplicate phone entries.",
+        "desc": "Live availability checks to prevent overbooking and duplicate reservations.",
         "linkText": "Explore booking"
       }
     },
     "features": {
       "sectionTitle": "Three core engines driving your sales velocity",
-      "sectionSubtitle": "Streamlined tools designed to support your staff from cold inquiry to confirmed enrollment.",
+      "sectionSubtitle": "Tools supporting your team from first inquiry to completed sale.",
       "items": {
         "one": {
           "title": "Unified multi-channel management",
@@ -150,7 +150,7 @@
         },
         "two": {
           "title": "Strictly guardrailed information",
-          "desc": "The AI assistant never invents prices or dates. It answers exclusively from the course and session rules you approve.",
+          "desc": "Pani replies only with products, services, prices and hours approved by your team.",
           "tag": "AI Engine",
           "point1": "Understands conversational speech",
           "point2": "Resilient to typos and everyday slang",
@@ -167,7 +167,7 @@
       }
     },
     "stats": {
-      "title": "Measurable operational outcomes",
+      "title": "Practical outcomes for businesses",
       "items": {
         "one": {
           "value": "< 1 min",
@@ -211,7 +211,7 @@
         },
         "four": {
           "title": "Custom fields and tailoring",
-          "desc": "Create custom inputs for target score, preferred schedule, and branch location."
+          "desc": "Add fields for service interest, budget, product category and other business needs."
         }
       }
     },
@@ -220,11 +220,11 @@
       "subtitle": "The clean and responsive board your team interacts with daily.",
       "colNew": "New inquiry",
       "colTalking": "In conversation",
-      "colTrial": "Trial booked",
+      "colTrial": "Appointment booked",
       "colPaid": "Payment confirmed",
       "claimBtn": "Claim",
-      "taskSample": "Follow-up call with parent tomorrow at 12:00",
-      "noteSample": "Candidate aims for IELTS 7.0, preferred Saturday group"
+      "taskSample": "Follow up with customer tomorrow at 12 PM",
+      "noteSample": "Customer asked for a weekend appointment; Saturday slot available"
     }
   },
   "inbox": {
@@ -246,7 +246,7 @@
         },
         "two": {
           "title": "Sender roles and filters",
-          "desc": "Distinct badges clearly differentiate student, AI, and staff messages."
+          "desc": "Clear badges distinguish customer, Pani and staff messages."
         },
         "three": {
           "title": "24-hour reply window indicators",
@@ -254,7 +254,7 @@
         },
         "four": {
           "title": "Fast search and complete history",
-          "desc": "Look up full past chat logs by student name, phone number, or keywords."
+          "desc": "Search past conversations by customer name, phone or keyword."
         }
       }
     },
@@ -287,30 +287,30 @@
     "scenarios": {
       "greeting": {
         "title": "Welcome Greeting & Intent Detection",
-        "desc": "Welcomes prospects naturally and identifies the specific course or service needed.",
-        "exampleQuery": "Hi, do you have English classes for young children?",
-        "exampleReply": "Hello! Yes, we have groups for ages 7-10. Shall I reserve a seat in Saturday 12:00 trial class?",
+        "desc": "Welcomes customers and identifies the product or service they need.",
+        "exampleQuery": "Hi, is there a manicure slot tomorrow?",
+        "exampleReply": "Hello! Tomorrow at 3 PM is available. Shall I book it for you?",
         "statusBadge": "Intent recognized"
       },
       "pricing": {
         "title": "Accurate Pricing & Timetable Details",
         "desc": "Quotes only approved rates, class durations, and weekly frequency from your catalog.",
-        "exampleQuery": "how much is ielts prep and how many times per week",
-        "exampleReply": "Our IELTS group is 180 AZN/month, meeting 3 times a week for 90 minutes. Would you like to see available times?",
+        "exampleQuery": "hi how much is this item do you deliver",
+        "exampleReply": "Hello! This item is 49 AZN. Would you like delivery details?",
         "statusBadge": "Verified from catalog"
       },
       "booking": {
-        "title": "Automated Trial Class Booking",
-        "desc": "Captures student details, verifies remaining capacity, and confirms the seat atomically.",
+        "title": "Automatic Appointment Booking",
+        "desc": "Collects customer details, checks available slots and creates a booking record.",
         "exampleQuery": "Aysel Mammadova, +994 50 123 45 67, Saturday 11:00 works",
-        "exampleReply": "Your booking is confirmed! Your seat is reserved for Saturday 11:00 IELTS trial class.",
+        "exampleReply": "Your booking is confirmed for Saturday at 11 AM!",
         "statusBadge": "Booking confirmed"
       },
       "handoff": {
         "title": "Smooth Human Agent Handoff",
         "desc": "For custom discounts or exceptions, the AI pauses and alerts your coordinator immediately.",
-        "exampleQuery": "Do you offer a family discount if I enroll two children?",
-        "exampleReply": "Let me connect you with our coordinator Narmin to confirm family discount options shortly.",
+        "exampleQuery": "Is there a discount if I buy two items?",
+        "exampleReply": "Let me connect you with Narmin to confirm the available discount.",
         "statusBadge": "Escalated to staff"
       }
     },
@@ -320,7 +320,7 @@
       "items": {
         "one": {
           "title": "Verified catalog only",
-          "desc": "The copilot references solely the courses and schedules entered in your database."
+          "desc": "Pani references only product, service and schedule information approved in your workspace."
         },
         "two": {
           "title": "Robust typo handling",
@@ -350,7 +350,7 @@
     },
     "features": {
       "sectionTitle": "Four engineering safeguards protecting your bookings",
-      "sectionSubtitle": "Eliminate scheduling chaos and prevent overcrowded classrooms effortlessly.",
+      "sectionSubtitle": "Keep appointment schedules organized and avoid overbooking.",
       "items": {
         "one": {
           "title": "Atomic capacity locking",
@@ -361,11 +361,11 @@
           "desc": "Prevents repeated sign-ups with the same normalized phone number in the same session."
         },
         "three": {
-          "title": "Live attendee roster",
-          "desc": "View confirmed attendee lists, reservation timestamps, and contact numbers in real time."
+          "title": "Live booking list",
+          "desc": "View customers who booked, their contact details and reservation times."
         },
         "four": {
-          "title": "Automatic session closure",
+          "title": "Close fully booked slots",
           "desc": "When full, the session automatically closes and directs prospects to upcoming open slots."
         }
       }
@@ -374,7 +374,7 @@
       "title": "Engineered Business Rules Enforced in Code",
       "subtitle": "Hard business rules enforced directly in database transactions, not left to chance.",
       "atomicLockTitle": "Atomic seat reservation",
-      "atomicLockDesc": "Simultaneous requests are serialized to strictly respect physical classroom capacity.",
+      "atomicLockDesc": "Simultaneous requests are queued to respect the available booking capacity.",
       "duplicateTitle": "Duplicate entry rejection",
       "duplicateDesc": "Phone numbers are normalized and checked to prevent accidental duplicate entries.",
       "alertTitle": "Instant manager notification",
@@ -412,7 +412,7 @@
       "webhookApi": {
         "badge": "REST Webhooks & n8n",
         "title": "REST Webhook & Open API",
-        "desc": "Secure Bearer-token endpoints for sessions, enrollments, leads, and messages with n8n support.",
+        "desc": "Bearer-token APIs for sessions, reservations, leads and messages, with n8n support.",
         "linkText": "View API documentation"
       }
     },
@@ -547,7 +547,7 @@
       "phoneLabel": "Phone number",
       "phonePlaceholder": "50 123 45 67",
       "messageLabel": "Prefilled message (optional)",
-      "messagePlaceholder": "Hello, I would like information about your IELTS trial class.",
+      "messagePlaceholder": "Hello, I would like information about your products and services.",
       "outputLabel": "Your WhatsApp link",
       "copyButton": "Copy link",
       "copied": "Copied!",
@@ -759,7 +759,7 @@
             },
             "customFields": {
               "name": "Custom deal fields",
-              "desc": "Add custom inputs tailored to your center's requirements"
+              "desc": "Add custom fields for your business needs"
             }
           }
         },
@@ -816,7 +816,7 @@
         },
         "q3": {
           "q": "What does the one-time setup fee cover?",
-          "a": "Setup covers onboarding your course timetable, configuring Telegram and other channels, and training your staff."
+          "a": "Setup covers entering your service details and opening hours, connecting channels and training staff."
         },
         "q4": {
           "q": "What payment methods are supported?",
@@ -857,7 +857,7 @@
         },
         "two": {
           "title": "Custom onboarding plan",
-          "desc": "Learn how your courses, channels, and calendars map into the workspace."
+          "desc": "See how your products, services, channels and calendars fit into the workspace."
         },
         "three": {
           "title": "Risk-free trial setup",
@@ -966,7 +966,7 @@
     "login": {
       "badge": "Staff Workspace Sign In",
       "title": "Sign in",
-      "subtitle": "Enter your center administrator key to access the team messaging workspace.",
+      "subtitle": "Enter your business administrator key to access the team messaging workspace.",
       "userLabel": "Username",
       "userPlaceholder": "user@example.com",
       "keyLabel": "Workspace access key",
@@ -985,7 +985,7 @@
       "highlightsTitle": "Workspace capabilities",
       "highlight1": "Unified inbox for WhatsApp, Instagram, Telegram",
       "highlight2": "Kanban sales pipeline and team assignments",
-      "highlight3": "Real-time trial booking and capacity lock",
+      "highlight3": "Appointment booking and capacity safeguards",
       "emailLabel": "Email",
       "emailPlaceholder": "Email",
       "passkeyLabel": "Continue with passkey",
@@ -1014,8 +1014,8 @@
       "loginLink": "Sign in to your panel",
       "highlightsTitle": "Why panelim.az?",
       "highlight1": "Native Azerbaijani conversational AI copilot",
-      "highlight2": "Capacity-guarded trial lesson scheduler",
-      "highlight3": "Strict multi-tenant isolated database per center",
+      "highlight2": "Booking calendar with duplicate-reservation controls",
+      "highlight3": "Separate workspace for each business",
       "topSwitchLabel": "Sign in",
       "termsPrefix": "By signing up, you agree to our",
       "termsLinkText": "Terms of Use",
