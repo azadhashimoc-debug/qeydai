@@ -2,7 +2,7 @@
   "brand": "panelim.az",
   "meta": {
     "title": "panelim.az — Azərbaycan biznesləri üçün satış CRM-i",
-    "description": "Müştəri mesajlarını, satış fürsətlərini və rezervasiyaları bir paneldə idarə edin."
+    "description": "panelim.az — WhatsApp, Instagram və Telegram müraciətlərini satış, görüş və xidmət prosesləri ilə birləşdirən Azərbaycan dilli CRM."
   },
   "a11y": {
     "skipToMain": "Əsas məzmuna keç",
@@ -17,8 +17,8 @@
   },
   "hero": {
     "eyebrow": "Azərbaycan dilində işləyən AI",
-    "title": "Hər müraciət qeydiyyata çevrilsin",
-    "subtitle": "Gecə yazan valideyn də, iş saatında yazan tələbə də dərhal cavab alır. panelim.az sınaq dərsinə yer ayırır, siz isə yalnız hazır müştərilərlə danışırsınız.",
+    "title": "Hər müraciəti satış fürsətinə çevirin",
+    "subtitle": "Mağazanıza, salonunuza və ya xidmət şirkətinizə gələn mesajlara vaxtında cavab verin. Pani ilə müraciətləri, görüşləri və satışları vahid paneldə izləyin.",
     "primary": "Pulsuz demo istə",
     "secondary": "Necə işləyir?"
   },
@@ -39,8 +39,8 @@
         "body": "Telegram ilə başlayın, sonra WhatsApp və Instagram eyni paneldə birləşsin."
       },
       "enroll": {
-        "title": "Ağıllı qeydiyyat",
-        "body": "Yalnız mövcud sınaq dərslərini göstərir. Dolu qrupa və təkrar müraciətə icazə vermir."
+        "title": "Ağıllı rezervasiya",
+        "body": "Mövcud vaxtları göstərir, dolu saatlara və təkrar rezervasiyaya nəzarət edir."
       },
       "crm": {
         "title": "Sadə CRM və hesabat",
@@ -51,13 +51,13 @@
         "body": "AI cavabdan əmin olmayanda sualı menecerə göndərir. Heç vaxt uydurmur."
       },
       "tenant": {
-        "title": "Hər mərkəzin öz məlumatı",
-        "body": "Kurslar, müştərilər və hesabatlar mərkəzlər arasında tam ayrılıb."
+        "title": "Hər biznesin öz iş sahəsi",
+        "body": "Müştərilər, yazışmalar, satışlar və hesabatlar iş sahələri arasında ayrı saxlanılır."
       }
     },
     "sample": {
-      "u": "salam ielts var qiymeti nedi",
-      "b": "Salam! IELTS kursumuz var, aylıq 180 AZN. Şənbə 11:00 sınaq dərsinə yazım?",
+      "u": "salam sabah saat 3-e yer var?",
+      "b": "Salam! Sabah saat 15:00 üçün boş vaxt var. Görüşü adınıza qeyd edim?",
       "note": "Nümunə: yazı səhvləri də başa düşülür. Rəqəmlər nümunədir."
     }
   },
@@ -65,26 +65,26 @@
     "title": "Üç addımda işə düşür",
     "steps": {
       "one": {
-        "title": "Kurslarınızı əlavə edin",
-        "body": "Qiymət, qrafik və sınaq dərsi tarixlərini bir dəfə daxil edirsiniz."
+        "title": "Xidmətlərinizi əlavə edin",
+        "body": "Məhsul, xidmət, qiymət və iş saatları haqqında məlumatları daxil edin."
       },
       "two": {
         "title": "Kanalı qoşun",
         "body": "Telegram botu dərhal, WhatsApp və Instagram isə rəsmi təsdiqdən sonra."
       },
       "three": {
-        "title": "Qeydiyyatları izləyin",
-        "body": "Yeni qeydiyyat olan kimi menecerə bildiriş gəlir."
+        "title": "Müraciətləri izləyin",
+        "body": "Yeni müştəri, görüş və satış sorğularını vahid paneldən izləyin."
       }
     }
   },
   "pricing": {
     "title": "Sadə və açıq qiymət",
-    "note": "İlkin təklifdir, pilot mərkəzlərlə birlikdə dəqiqləşdirilir.",
+    "note": "İlkin pilot təklifidir; qiymətlər biznesinizin ehtiyacına uyğun dəqiqləşdirilir.",
     "setup": {
       "label": "Quraşdırma",
       "value": "350 AZN",
-      "body": "Bir dəfəlik: kurslar, cədvəl və kanal qoşulması."
+      "body": "Birdəfəlik: xidmət məlumatları, iş qrafiki və kanalların qurulması."
     },
     "monthly": {
       "label": "Aylıq xidmət",
@@ -95,12 +95,12 @@
     "cta": "Pilot üçün yer saxla"
   },
   "contact": {
-    "title": "Mərkəzinizdə sınaqdan keçirək",
+    "title": "Biznesinizdə sınaqdan keçirək",
     "subtitle": "Telefon nömrənizi yazın, sizinlə 24 saat ərzində əlaqə saxlayaq.",
     "stepsTitle": "Növbəti addımlar:",
     "steps": {
-      "one": "Kurs və sınaq dərsi cədvəlinizi birlikdə toplayırıq.",
-      "two": "Telegram-da mərkəzinizə uyğun sınaq botu qururuq.",
+      "one": "Xidmətlərinizi, satış prosesinizi və müştəri suallarını birlikdə müəyyənləşdiririk.",
+      "two": "Telegram üçün biznesinizə uyğun sınaq axını hazırlayırıq.",
       "three": "Ödənişsiz yoxlayırsınız, razılığınız olmadan heç nə aktivləşmir."
     },
     "name": "Adınız",
@@ -116,25 +116,25 @@
     "rate_limited": "Çox sayda cəhd olub. Bir neçə dəqiqə sonra yenidən yoxlayın."
   },
   "footer": {
-    "tagline": "Azərbaycan tədris mərkəzləri üçün AI satış köməkçisi.",
+    "tagline": "Azərbaycan biznesləri üçün AI dəstəkli satış və mesajlaşma CRM-i.",
     "lang": "Dil"
   },
   "board": {
-    "title": "Sınaq dərsləri",
+    "title": "Rezervasiyalar",
     "live": "canlı",
     "seatsLeft": "boş yer",
     "note": "Nümunə məlumatdır",
     "sessions": {
       "a": {
-        "course": "IELTS",
+        "course": "Manikür",
         "when": "Şənbə 11:00"
       },
       "b": {
-        "course": "IELTS",
+        "course": "Konsultasiya",
         "when": "Çərşənbə 18:00"
       },
       "c": {
-        "course": "Riyaziyyat",
+        "course": "Avtoservis",
         "when": "Cümə axşamı 17:00"
       }
     },
@@ -142,7 +142,7 @@
       "u1": "Şənbə 11:00-a yer var?",
       "b1": "Bəli, 2 yer var. Adınızı və nömrənizi yazın.",
       "u2": "Aygün, 050 123 45 67",
-      "b2": "Qeydiyyat təsdiqləndi ✓ Şənbə 11:00. Bir yer qalıb."
+      "b2": "Rezervasiya təsdiqləndi ✓ Şənbə 11:00. Bir boş vaxt qalıb."
     }
   },
   "story": {
@@ -150,15 +150,15 @@
     "label": "Nümunə ssenari",
     "without": {
       "name": "Əl ilə cavab",
-      "a": "23:40 · Valideyn yazır: “IELTS kursu var, qiyməti nə qədərdir?”",
+      "a": "23:40 · Müştəri yazır: “Sabah üçün boş vaxt varmı?”",
       "b": "11:00 · Cavab gəlir",
-      "c": "O, artıq başqa mərkəzlə danışıb"
+      "c": "Müştəri artıq başqa bizneslə əlaqə saxlayıb"
     },
     "with": {
-      "name": "panelim.az ilə",
-      "a": "23:40 · Valideyn yazır",
-      "b": "23:41 · Cavab və sınaq dərsi təklifi",
-      "c": "23:44 · Qeydiyyat təsdiqləndi"
+      "name": "Pani ilə",
+      "a": "23:40 · Müştəri yazır",
+      "b": "23:41 · Pani cavab verir və görüş təklif edir",
+      "c": "23:44 · Görüş təsdiqlənir"
     }
   },
   "faq": {
@@ -174,11 +174,11 @@
       },
       "q3": {
         "q": "Müştərilərimin məlumatı necə qorunur?",
-        "a": "Hər mərkəzin kursları, müştəriləri və hesabatları ayrı saxlanılır. Bir mərkəz digərinin məlumatını görmür."
+        "a": "Hər biznesin müştəriləri, yazışmaları və hesabatları öz iş sahəsində saxlanılır; digər bizneslərin məlumatları ilə qarışmır."
       },
       "q4": {
         "q": "Pilot necə başlayır?",
-        "a": "Demo istəyirsiniz, kurs və qrafiklərinizi birlikdə toplayırıq, Telegram-da sınaq söhbəti göstəririk. Heç bir ödənişli xidmət razılığınız olmadan aktivləşmir."
+        "a": "Demo istəyirsiniz, xidmət və iş qrafikinizi nəzərdən keçiririk, Telegram üzərindən nümunə yazışma göstəririk. Heç bir ödənişli xidmət razılığınız olmadan aktivləşmir."
       },
       "q5": {
         "q": "Menecer nə vaxt işə qarışır?",
@@ -187,22 +187,22 @@
     }
   },
   "alts": {
-    "one": "Planşetdə kurs cədvəli",
+    "one": "Planşetdə rezervasiya cədvəli",
     "two": "Telefonda mesajlaşma",
-    "three": "Menecerin telefonunda yeni qeydiyyat bildirişi",
-    "lobby": "Tədris mərkəzinin qəbul zonası",
-    "director": "Tədris mərkəzinin rəhbəri planşetdə qeydiyyat hesabatına baxır"
+    "three": "Menecerin telefonunda yeni müştəri bildirişi",
+    "lobby": "Xidmət biznesinin qəbul sahəsi",
+    "director": "Biznes rəhbəri planşetdə satış hesabatına baxır"
   },
   "about": {
-    "eyebrow": "Tədris mərkəzləri üçün qurulub",
-    "title": "Qəbul masasından rəhbər masasına qədər eyni cədvəl",
+    "eyebrow": "Azərbaycan biznesləri üçün qurulub",
+    "title": "Müştəri ilə ilk mesajdan son satışa qədər vahid iş sahəsi",
     "lobby": {
-      "title": "Qəbul və koordinatorlar üçün",
-      "body": "Gecə və iş saatında gələn suallara dərhal cavab gedir. Menecer yalnız sınaq dərsinə yazılmış hazır namizədlə danışır."
+      "title": "Satış və xidmət komandaları üçün",
+      "body": "Müraciətləri bir yerə toplayın, boş saatları təklif edin və hər müştərinin növbəti addımını izləyin."
     },
     "director": {
-      "title": "Mərkəz rəhbərləri üçün",
-      "body": "Hansı kursa neçə sorğu gəldi, neçəsi dərsə yazıldı — hamısı ayrıca mərkəz bazasında toplanır və istənilən vaxt yoxlanılır."
+      "title": "Biznes rəhbərləri üçün",
+      "body": "Hansı kanaldan neçə müraciət gəldiyini, hansı xidmətlərin satıldığını və komandanın nəticələrini izləyin."
     }
   },
   "landing": {
@@ -245,13 +245,13 @@
         "overview": "İcmal",
         "inbox": "Gələn mesajlar",
         "pipeline": "Satış qıfı",
-        "bookings": "Sınaq dərsləri",
+        "bookings": "Görüşlər",
         "analytics": "Hesabatlar"
       },
       "stages": {
         "new": "Yeni müraciət",
         "talking": "Danışıq gedir",
-        "booked": "Sınağa yazılıb"
+        "booked": "Görüş təyin edildi"
       },
       "people": {
         "one": "Aysel Məmmədova",
@@ -259,12 +259,12 @@
         "three": "Nigar Həsənli"
       },
       "topics": {
-        "one": "IELTS sınaq dərsi",
-        "two": "Danışıq klubu",
-        "three": "Fərdi hazırlıq"
+        "one": "Salon rezervasiyası",
+        "two": "Məhsul sifarişi",
+        "three": "Xidmət konsultasiyası"
       },
-      "incoming": "Salam! Şənbə günü saat 11:00 IELTS sınaq dərsinə boş yer var?",
-      "outgoing": "Salam, Aysel! Bəli, Şənbə 11:00 qrupunda 2 yer qalıb. Sizin adınıza qeydiyyat edim?",
+      "incoming": "Salam! Şənbə saat 11:00-da manikür üçün boş vaxtınız var?",
+      "outgoing": "Salam, Aysel! Bəli, şənbə 11:00 boşdur. Sizin üçün rezervasiya edim?",
       "confirmed": "Şənbə, 11:00",
       "times": {
         "one": "Şənbə, 11:00",
@@ -282,7 +282,7 @@
       "assigneeLabel": "Menecer: Leyla",
       "metrics": {
         "one": "Gələn müraciətlər",
-        "two": "Sınaq qeydiyyatı",
+        "two": "Təsdiqlənmiş görüşlər",
         "three": "Ödənişli satış"
       },
       "metricValues": {
@@ -294,12 +294,12 @@
     "logos": {
       "title": "Fərqli xidmət sahələri üçün hazır iş axınları",
       "items": {
-        "one": "Dil Mərkəzləri",
-        "two": "Abituriyent Hazırlığı",
-        "three": "IT Akademiyalar",
-        "four": "Estetik Klinikalar",
-        "five": "Məsləhət Xidmətləri",
-        "six": "Onlayn Mağazalar"
+        "one": "Onlayn Mağazalar",
+        "two": "Gözəllik Salonları",
+        "three": "Restoran və Kafelər",
+        "four": "Özəl Klinikalar",
+        "five": "Avtoservislər",
+        "six": "Tədris Mərkəzləri"
       },
       "link": "İş axınlarına bax"
     },
@@ -313,8 +313,8 @@
           "body": "WhatsApp, Instagram və Telegram yazışmaları tək paneldə toplanır. AI yalnız sizin təsdiqlədiyiniz qiymət və cədvəllə saniyələr içində cavab verir.",
           "cta": "Sınaq söhbətinə bax",
           "uiChannel": "WhatsApp · 23:41",
-          "uiMsg1": "axsamınız xeyir ielts qrupu neciyedir",
-          "uiMsg2": "Axşamınız xeyir! IELTS qrupumuz aylıq 180 AZN-dir. Şənbə 11:00 sınaq dərsinə yer ayırım?",
+          "uiMsg1": "axsaminiz xeyir, sabah saat 3-e manikur ucun yer var?",
+          "uiMsg2": "Axşamınız xeyir! Sabah saat 15:00 boşdur. Sizin üçün rezervasiya edim?",
           "uiBadge": "Təsdiqlənmiş cədvəldən oxundu"
         },
         "pipeline": {
@@ -323,29 +323,29 @@
           "body": "Sahibsiz sorğuları bir kliklə götürün, mərhələlər üzrə irəlilədin, tapşırıq və daxili qeydləri eyni satış kartında saxlayın.",
           "cta": "Satış lövhəsini sına",
           "uiCol1": "Yeni",
-          "uiCol2": "Sınaq yazılıb",
-          "uiCard1": "IELTS · Aysel M.",
-          "uiCard2": "Alman dili · Murad K.",
+          "uiCol2": "Görüş təyin edildi",
+          "uiCard1": "Salon görüşü · Aysel M.",
+          "uiCard2": "Məhsul sifarişi · Murad K.",
           "uiOwner": "Operator: Nərmin",
           "uiClaim": "Götür"
         },
         "bookings": {
-          "tag": "Sınaq cədvəli",
-          "title": "Dolu qrup və təkrar qeydiyyata son",
-          "body": "Qrup tutumu dolduqda sistem avtomatik bağlayır, eyni telefon nömrəsi ilə təkrar yazılmanı bloklayır və menecerə bildiriş göndərir.",
+          "tag": "Rezervasiya cədvəli",
+          "title": "Dolu saatlara və təkrar rezervasiyaya nəzarət",
+          "body": "Görüş və xidmət vaxtlarını izləyin. Mövcud yerlər dolduqda əlavə rezervasiyanı məhdudlaşdırın, təkrar müraciətləri nəzarətdə saxlayın.",
           "cta": "Cədvəl məntiqini gör",
-          "uiGroup": "IELTS · Şənbə 11:00",
+          "uiGroup": "Manikür · Şənbə 11:00",
           "uiSeats": "4 / 5 yer tutulub",
-          "uiRule": "Son 1 boş yer aktivdir"
+          "uiRule": "Son boş vaxt aktivdir"
         },
         "analytics": {
           "tag": "Analitika",
           "title": "Hansı kanalın satış gətirdiyini görün",
-          "body": "Telegram, WhatsApp və Instagram reklamlarından gələn müraciətlərin neçəsinin sınağa və ödənişə çevrildiyini bir ekranda izləyin.",
+          "body": "Instagram, WhatsApp və Telegram müraciətlərinin neçəsinin görüşə, sifarişə və satışa çevrildiyini bir ekranda izləyin.",
           "cta": "Hesabatlara bax",
           "uiStat1": "Cavab sürəti",
           "uiVal1": "< 1 dəq",
-          "uiStat2": "Sınağa çevrilmə",
+          "uiStat2": "Satışa çevrilmə",
           "uiVal2": "43%",
           "uiSource": "Əsas mənbə: Instagram DM"
         }
@@ -360,67 +360,67 @@
       "items": {
         "one": {
           "title": "Gecə-gündüz 24/7 cavab verin",
-          "body": "Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır.",
-          "chatUser": "Salam, uşaq üçün riyaziyyat kursu var?",
-          "chatBot": "Salam! Bəli, 7–9-cu siniflər üçün qruplarımız var. Cümə axşamı 17:00 sınaq dərsinə yazım?",
+          "body": "İstər gecə yazan alıcı olsun, istər iş saatında müraciət edən müştəri — hər biri gecikmədən ilkin cavab alır.",
+          "chatUser": "Salam, sabah saat 15:00-da manikür üçün yer var?",
+          "chatBot": "Salam! Sabah 15:00 boşdur. Adınıza rezervasiya edim?",
           "status": "Pani cavab verdi · 12 san"
         },
         "two": {
           "title": "Yazı səhvlərini və danışıq dilini anlayır",
-          "body": "Latın və ya azərbaycanca qarışıq, qısaldılmış mesajları rahatlıqla oxuyub düzgün kursa yönləndirir.",
-          "chatUser": "salam eng danisiq qrupu qiymet nedi",
-          "chatBot": "Salam! Danışıq klubumuz həftədə 2 dəfə keçirilir, aylıq 120 AZN-dir. Hansı gün sizə uyğundur?",
+          "body": "Pani qısaldılmış və səhv yazılmış mesajları anlayıb müştərini uyğun məhsula və ya xidmətə yönləndirir.",
+          "chatUser": "salam bu qulaqciq neciyedi catdirilma var?",
+          "chatBot": "Salam! Qulaqlığın qiyməti 49 AZN-dir. Çatdırılma şərtlərini də göndərim?",
           "status": "Niyyət tanındı · Qiymət sorğusu"
         },
         "three": {
-          "title": "Avtomatik sınaq dərsinə yazır",
-          "body": "Ad və telefon nömrəsini toplayır, boş yeri yoxlayıb yer ayırır və satış kartını açır.",
+          "title": "Görüş və rezervasiya yaradır",
+          "body": "Müştərinin adını və nömrəsini toplayır, boş vaxtı yoxlayır və rezervasiya qeydini formalaşdırır.",
           "chatUser": "Aygün Məmmədova, 050 123 45 67",
-          "chatBot": "Qeydiyyatınız təsdiqləndi! Şənbə saat 11:00 üçün yeriniz ayrıldı.",
+          "chatBot": "Rezervasiyanız təsdiqləndi! Şənbə saat 11:00-da sizi gözləyirik.",
           "status": "Rezervasiya yaradıldı ✓"
         },
         "four": {
           "title": "Lazım olanda menecerə ötürür",
           "body": "Endirim, xüsusi proqram və ya şikayət olduqda AI dayanır və komandanıza dərhal xəbər verir.",
-          "chatUser": "İki uşaq yazdırsaq endirim olur?",
-          "chatBot": "Ailə endirimi şərtlərini dəqiqləşdirmək üçün menecerimiz Leylaya yönləndirirəm.",
+          "chatUser": "İki məhsul alsam endirim olacaq?",
+          "chatBot": "Endirim şərtlərini dəqiqləşdirmək üçün sizi menecerimiz Leylaya yönləndirirəm.",
           "status": "Əməkdaşa ötürüldü · Leyla"
         }
       },
-      "phoneBrand": "Tədris Mərkəzi",
+      "phoneBrand": "Nümunə biznes",
       "phoneSub": "Pani · AI köməkçisi"
     },
     "outcomes": {
       "heading": "Gündəlik işdə nəyi dəyişir?",
-      "subheading": "Pilot tətbiqlər üçün nəzərdə tutulan əsas nəticələr və iş axını nümunələri.",
-      "cta": "Öz mərkəzinizdə sınayın",
+      "subheading": "Mağaza, salon və xidmət komandaları üçün nümunə iş axınları.",
+      "cta": "Öz biznesinizdə sınayın",
       "cards": {
         "one": {
-          "before": "Gecə saatlarında gələn sorğulara səhər cavab veriləndə ",
-          "highlight": "ilk 5 dəqiqədə cavab alan rəqib qazanırdı",
-          "after": ". İndi sınaq yeri elə həmin gecə ayrılır.",
-          "author": "Dil və İmtahan Mərkəzi",
-          "role": "Pilot ssenarisi · Sürətli ilkin cavab"
+          "before": "Gözəllik salonuna axşam gələn mesajlar səhərə qədər cavabsız qalırdı. ",
+          "highlight": "Boş vaxt sorğularına dərhal cavab verilir",
+          "after": " və müştəriyə uyğun görüş saatı təklif olunur.",
+          "author": "Gözəllik salonu",
+          "role": "Nümunə ssenari · Rezervasiya"
         },
         "two": {
           "before": "WhatsApp, Instagram və Telegram ayrı telefonlarda qalırdı. Bütün kanalları birləşdirərək ",
           "highlight": "heç bir müraciət cavabsız itmir",
           "after": " və operator növbəsi rahat işləyir.",
-          "author": "Qəbul və Koordinatorlar",
-          "role": "Pilot ssenarisi · Vahid inbox"
+          "author": "Onlayn mağaza",
+          "role": "Nümunə ssenari · Vahid mesaj qutusu"
         },
         "three": {
-          "before": "Excel cədvəlləri əvəzinə satış kartı və avtomatik tutum yoxlaması ilə ",
-          "highlight": "dolu qrupa səhv qeydiyyatın qarşısı alınır",
-          "after": " və menecer yalnız hazır namizədlə danışır.",
-          "author": "Mərkəz Rəhbərliyi",
-          "role": "Pilot ssenarisi · Dəqiq cədvəl nəzarəti"
+          "before": "Klinikada müraciətlər ayrı cədvəllərdə qalanda ",
+          "highlight": "görüş saatlarının qarışması riski artır",
+          "after": ". Vahid rezervasiya siyahısı komandanın işini asanlaşdırır.",
+          "author": "Özəl klinika",
+          "role": "Nümunə ssenari · Görüş nəzarəti"
         }
       }
     },
     "pricing": {
-      "heading": "Mərkəzinizə uyğun planı seçin",
-      "subheading": "Bütün planlar pilot müddətində mərkəzinizin kanal sayı və komanda ölçüsünə görə dəqiqləşdirilir.",
+      "heading": "Biznesinizə uyğun planı seçin",
+      "subheading": "Pilot planlar kanal sayı, komanda ölçüsü və iş axınlarınıza görə dəqiqləşdirilir.",
       "periods": {
         "monthly": "Aylıq",
         "halfYear": "6 aylıq",
@@ -447,13 +447,13 @@
           "limits": {
             "one": "1 kanal (Telegram)",
             "two": "3 komanda üzvü",
-            "three": "Sınaq dərsi tutum nəzarəti"
+            "three": "Görüş tutumuna nəzarət"
           },
           "cta": "Pilot üçün müraciət et"
         },
         "growth": {
           "name": "İnkişaf",
-          "desc": "Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu",
+          "desc": "Böyüyən bizneslər üçün Pani və çoxkanallı mesaj qutusu",
           "prices": {
             "monthly": "160 AZN",
             "halfYear": "145 AZN",
@@ -462,13 +462,13 @@
           "limits": {
             "one": "Telegram, Instagram və WhatsApp",
             "two": "8 komanda üzvü",
-            "three": "Avtomatik sınaq qeydiyyatı"
+            "three": "Avtomatik görüş rezervasiyası"
           },
           "cta": "Pilot üçün müraciət et"
         },
         "pro": {
           "name": "Pro",
-          "desc": "Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar",
+          "desc": "Bir neçə filialı olan bizneslər üçün avtomatlaşdırma və hesabatlar",
           "prices": {
             "monthly": "240 AZN",
             "halfYear": "215 AZN",
@@ -486,7 +486,7 @@
           "desc": "Fərdi tələblər, xüsusi server və SLA dəstəyi",
           "price": "Fərdi",
           "limits": {
-            "one": "Çoxfiliallı mərkəz strukturu",
+            "one": "Çoxfiliallı iş sahəsi",
             "two": "Xüsusi API və webhook quraşdırılması",
             "three": "Birbaşa mühəndis dəstəyi"
           },
@@ -497,7 +497,7 @@
     },
     "ctaBand": {
       "title": "İlk mesajdan ödənişə qədər nəzarəti ələ alın",
-      "subtitle": "Mərkəzinizdən bir sorğu nümunəsi gətirin, 15 dəqiqəlik demoda panelin sizin işinizdə necə işlədiyini göstərək.",
+      "subtitle": "Biznesinizdən bir müştəri sualı nümunəsi gətirin — 15 dəqiqəlik demoda uyğun iş axınını göstərək.",
       "primary": "Pulsuz demo istə",
       "secondary": "Panelə giriş"
     },
@@ -510,7 +510,7 @@
           "title": "Məhsul",
           "one": "Vahid mesaj qutusu",
           "two": "Satış lövhəsi",
-          "three": "Sınaq dərsi təqvimi",
+          "three": "Rezervasiya təqvimi",
           "four": "AI satış köməkçisi"
         },
         "channels": {
@@ -522,10 +522,10 @@
         },
         "solutions": {
           "title": "Həllər",
-          "one": "Tədris mərkəzləri",
-          "two": "Dil kursları",
+          "one": "Onlayn mağazalar",
+          "two": "Gözəllik salonları",
           "three": "Xidmət biznesləri",
-          "four": "Onlayn satış"
+          "four": "Restoran və kafelər"
         },
         "company": {
           "title": "Başlanğıc",
@@ -540,7 +540,7 @@
   "panel": {
     "metaTitle": "İdarəetmə paneli",
     "badge": "İşçi paneli",
-    "tenantLabel": "Mərkəz",
+    "tenantLabel": "Biznes",
     "navAria": "Panel naviqasiyası",
     "backToSite": "Əsas səhifə",
     "signOut": "Çıxış",
@@ -555,13 +555,13 @@
     "tabs": {
       "ariaLabel": "Panel bölmələri",
       "overview": "Ümumi baxış",
-      "sessions": "Sınaq dərsləri",
+      "sessions": "Görüşlər",
       "leads": "CRM",
       "inbox": "Mesajlar",
       "deals": "Satışlar",
       "contacts": "Kontaktlar",
       "channels": "Kanallar",
-      "ai": "AI köməkçisi",
+      "ai": "Pani",
       "plans": "Planlar",
       "settings": "Ayarlar"
     },
@@ -577,22 +577,22 @@
       "disconnected": "Pasif"
     },
     "ai": {
-      "title": "AI köməkçisi",
-      "subtitle": "Avtomatik cavab, müraciət qiymətləndirməsi və sınaq dərsə yazdırma senarislərini idarə edin.",
+      "title": "Pani · AI köməkçisi",
+      "subtitle": "Avtomatik cavab, müraciətlərin qiymətləndirilməsi və görüş rezervasiyası ssenarilərini idarə edin.",
       "activeLabel": "AI cavabı aktivdir",
       "settings": "Ayarları aç",
       "active": "Aktiv",
       "inactive": "Deyişdirilmişdir",
       "greeting": "Hoş gəldin mesajı",
       "price": "Qiymət sualı",
-      "booking": "Sınaq dərsə yazılma",
+      "booking": "Görüş rezervasiyası",
       "handoff": "Mençərə ötürmə",
       "open": "Aç",
       "close": "Bağla"
     },
     "plans": {
       "title": "Planlar",
-      "subtitle": "Mərkəzinizə uyğun planı seçin. Qiymətlər AZN ilə göstərilən pilot təklifləridir.",
+      "subtitle": "Biznesinizə uyğun planı seçin. Qiymətlər AZN ilə göstərilən pilot təklifləridir.",
       "monthly": "Aylıq",
       "halfYear": "6 aylıq",
       "annual": "İllik",
@@ -611,21 +611,21 @@
         "limits": [
           "1 kanal (Telegram)",
           "3 komanda üzvü",
-          "Sınaq dərsi tutum nəzarəti"
+          "Görüş tutumuna nəzarət"
         ]
       },
       "growth": {
         "name": "İnkişaf",
-        "desc": "Böyüyən mərkəzlər üçün AI köməkçi və çoxkanallı qutu",
+        "desc": "Böyüyən bizneslər üçün Pani və çoxkanallı mesajlaşma",
         "limits": [
           "Telegram, Instagram və WhatsApp",
           "8 komanda üzvü",
-          "Avtomatik sınaq qeydiyyatı"
+          "Avtomatik görüş rezervasiyası"
         ]
       },
       "pro": {
         "name": "Pro",
-        "desc": "Filiallı mərkəzlər üçün tam avtomatlaşdırma və hesabatlar",
+        "desc": "Çoxfiliallı bizneslər üçün avtomatlaşdırma və hesabatlar",
         "limits": [
           "Bütün kanallar + xüsusi sahələr",
           "Limitsiz operator və rol icazəsi",
@@ -636,20 +636,20 @@
         "name": "Korporativ",
         "desc": "Fərdi tələblər, xüsusi server və SLA dəstəyi",
         "limits": [
-          "Çoxfiliallı mərkəz strukturu",
+          "Çoxfiliallı iş sahəsi",
           "Xüsusi API və webhook quraşdırılması",
           "Birbaşa mühəndis dəstəyi"
         ]
       }
     },
     "login": {
-      "eyebrow": "Tədris mərkəzi jurnalı",
+      "eyebrow": "Biznes idarəetmə paneli",
       "title": "İşçi panelinə giriş",
-      "subtitle": "Dərsləri, müraciətləri və mesajları idarə etmək üçün mərkəz açarını daxil edin.",
+      "subtitle": "Müştəri, görüş və satışları idarə etmək üçün biznes giriş açarınızı daxil edin.",
       "userLabel": "İstifadəçi adı",
       "userPlaceholder": "istifadeci@example.com",
       "keyLabel": "Giriş açarı",
-      "keyPlaceholder": "Mərkəzin administrator açarını yazın",
+      "keyPlaceholder": "Biznesin administrator açarını yazın",
       "showKey": "Açarı göstər",
       "hideKey": "Açarı gizlət",
       "submit": "Panelə daxil ol",
@@ -662,7 +662,7 @@
     "stages": {
       "new": "Yeni",
       "contacted": "Əlaqə saxlanılıb",
-      "trial_booked": "Sınağa yazılıb",
+      "trial_booked": "Görüş təyin edilib",
       "paid": "Ödəniş edib",
       "lost": "İtirilmiş"
     },
@@ -674,22 +674,22 @@
       "manual": "Əl ilə"
     },
     "senders": {
-      "student": "Tələbə",
+      "student": "Müştəri",
       "ai": "AI köməkçi",
       "staff": "Menecer"
     },
     "overview": {
       "title": "Günün xülasəsi",
-      "subtitle": "Sınaq dərsləri, müraciət mərhələləri və sayt konversiyası bir vərəqdə.",
+      "subtitle": "Görüşlər, satış mərhələləri və sayt konversiyası bir ekranda.",
       "kpiLeads": "Cəmi müraciət",
-      "kpiEnrollments": "Sınaq qeydiyyatı",
-      "kpiPaid": "Ödənişli tələbə",
+      "kpiEnrollments": "Təsdiqlənmiş görüşlər",
+      "kpiPaid": "Ödəniş etmiş müştərilər",
       "kpiMessages": "Mesaj sayı",
       "conversionLabel": "ödənişə çevrilmə",
       "pipelineTitle": "CRM mərhələləri üzrə bölgü",
       "pipelineEmpty": "Hələ müraciət əlavə edilməyib. CRM bölməsindən ilk müraciəti yarada bilərsiniz.",
-      "sessionsTitle": "Sınaq dərslərində doluluq",
-      "sessionsEmpty": "Aktiv sınaq dərsi yoxdur. Dərslər bölməsindən yeni qrup əlavə edin.",
+      "sessionsTitle": "Rezervasiyalarda doluluq",
+      "sessionsEmpty": "Aktiv rezervasiya yoxdur. Görüşlər bölməsindən yenisini əlavə edin.",
       "seatsLeftSuffix": "boş yer",
       "fullLabel": "Doludur",
       "enrolledSuffix": "qeydiyyat",
@@ -710,32 +710,32 @@
       "expLeads": "Müraciət",
       "ctaLocationsTitle": "CTA yerləşmələri",
       "ctaLocationsEmpty": "Hələ CTA kliki qeydə alınmayıb.",
-      "goToSessions": "Dərslərə keç",
+      "goToSessions": "Görüşlərə keç",
       "goToLeads": "CRM-ə keç"
     },
     "sessions": {
-      "title": "Sınaq dərsləri cədvəli",
-      "subtitle": "Yeni sınaq qrupu yaradın və qeydiyyatdan keçən tələbələri izləyin.",
-      "createTitle": "Yeni sınaq dərsi əlavə et",
+      "title": "Görüş və rezervasiya cədvəli",
+      "subtitle": "Yeni görüş vaxtı yaradın və rezervasiya edən müştəriləri izləyin.",
+      "createTitle": "Yeni rezervasiya vaxtı əlavə et",
       "idLabel": "Sessiya kodu",
-      "idPlaceholder": "məs. ielts-senbe-11",
-      "courseLabel": "Kurs adı",
-      "coursePlaceholder": "məs. IELTS",
+      "idPlaceholder": "məs. manikur-senbe-11",
+      "courseLabel": "Xidmət adı",
+      "coursePlaceholder": "məs. Manikür",
       "startsAtLabel": "Başlama tarixi və saatı",
       "capacityLabel": "Maksimum yer",
-      "createSubmit": "Sınaq dərsi yarat",
+      "createSubmit": "Rezervasiya vaxtı yarat",
       "creating": "Yaradılır…",
-      "createOk": "Yeni sınaq dərsi cədvələ əlavə olundu.",
-      "errorDuplicate": "Bu kodla sınaq dərsi artıq mövcuddur.",
+      "createOk": "Rezervasiya vaxtı cədvələ əlavə olundu.",
+      "errorDuplicate": "Bu kodla rezervasiya vaxtı artıq mövcuddur.",
       "errorInvalid": "Məlumatları yoxlayın: bütün sahələr düzgün doldurulmalıdır.",
-      "errorGeneric": "Sınaq dərsi yaratmaq alınmadı. Yenidən cəhd edin.",
-      "listTitle": "Mövcud sınaq dərsləri",
-      "empty": "Hələ sınaq dərsi yaradılmayıb. Yuxarıdakı formadan ilk dərsi əlavə edin.",
+      "errorGeneric": "Rezervasiya vaxtını yaratmaq alınmadı. Yenidən cəhd edin.",
+      "listTitle": "Mövcud rezervasiya vaxtları",
+      "empty": "Hələ rezervasiya vaxtı yaradılmayıb. Yuxarıdakı formadan yenisini əlavə edin.",
       "seatsLeft": "boş yer",
       "full": "Yer yoxdur",
       "takenOf": "tutulub",
-      "rosterTitle": "Yazılan tələbələr",
-      "rosterEmpty": "Bu sınaq dərsinə hələ heç kim yazılmayıb.",
+      "rosterTitle": "Rezervasiya edən müştərilər",
+      "rosterEmpty": "Bu vaxt üçün hələ heç kim rezervasiya etməyib.",
       "rosterToggleShow": "Siyahını aç",
       "rosterToggleHide": "Siyahını bağla",
       "enrolledAt": "Yazılma vaxtı"
@@ -753,7 +753,7 @@
       "sourceLabel": "Mənbə kanalı",
       "stageLabel": "Mərhələ",
       "noteLabel": "Qeyd",
-      "notePlaceholder": "Kurs marağı və ya əlavə məlumat",
+      "notePlaceholder": "Maraqlanılan xidmət və ya əlavə məlumat",
       "createSubmit": "Müraciəti saxla",
       "creating": "Saxlanılır…",
       "createOk": "Müraciət jurnala əlavə edildi.",
@@ -793,7 +793,7 @@
       "senderRoleLabel": "Göndərən rolu",
       "senderStaff": "Menecer cavabı",
       "senderAi": "AI cavabı",
-      "senderStudent": "Tələbə mesajı (test)",
+      "senderStudent": "Müştəri mesajı (test)",
       "channelLabel": "Kanal",
       "bodyLabel": "Mesaj mətni",
       "bodyPlaceholder": "Müştəriyə cavab və ya sınaq mesajı yazın…",
@@ -818,7 +818,7 @@
       "newToggleClose": "Formanı bağla",
       "createTitle": "Yeni satış fürsəti yarat",
       "titleLabel": "Satış başlığı",
-      "titlePlaceholder": "məs. IELTS qrup qeydiyyatı",
+      "titlePlaceholder": "məs. Manikür xidməti sifarişi",
       "contactLabel": "Kontakt",
       "contactSelectPlaceholder": "Mövcud kontakt seçin",
       "orNewContact": "Və ya yeni kontakt məlumatı daxil edin",
@@ -872,7 +872,7 @@
       "tasksTitle": "Tapşırıqlar",
       "tasksEmpty": "Bu satış üzrə hələ tapşırıq yoxdur.",
       "taskTitleLabel": "Tapşırıq başlığı",
-      "taskTitlePlaceholder": "məs. Cümə dərsindən əvvəl valideynlə zəng",
+      "taskTitlePlaceholder": "məs. Sabah müştəri ilə əlaqə saxla",
       "taskDueLabel": "Son tarix",
       "taskAdd": "Tapşırıq əlavə et",
       "taskMarkDone": "Tamamla",
@@ -951,7 +951,7 @@
       "stageInUseError": "Bu mərhələdə satışlar olduğu üçün silinə bilməz.",
       "fieldsTitle": "Xüsusi satış sahələri",
       "fieldNameLabel": "Sahə adı",
-      "fieldNamePlaceholder": "məs. Hədəf bal",
+      "fieldNamePlaceholder": "məs. Xidmət kateqoriyası",
       "fieldKindLabel": "Sahə növü",
       "fieldKindText": "Mətn",
       "fieldKindNumber": "Rəqəm",
