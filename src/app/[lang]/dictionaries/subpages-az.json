@@ -99,8 +99,8 @@
     "badgeFree": "Ödənişsiz alət",
     "contactNote": "Sizinlə 24 saat ərzində əlaqə saxlayaq",
     "bottomCta": {
-      "title": "Müştəri müraciətlərini qeydiyyata və satışa çevirin",
-      "subtitle": "WhatsApp, Instagram və Telegram mesajlarını tək iş masasında birləşdirin, AI köməkçi ilə cavablandırın.",
+      "title": "Müştəri mesajlarını satış imkanlarına çevirin",
+      "subtitle": "WhatsApp, Instagram və Telegram yazışmaları, müştərilər və satışlar üçün vahid iş məkanı.",
       "primary": "Pulsuz demo istəyin",
       "secondary": "Qiymətlərlə tanış olun"
     }
@@ -109,7 +109,7 @@
     "hero": {
       "eyebrow": "Vahid Satış Platforması",
       "title": "Mesajlaşmadan Satışa Qədər Bütün İş Axını",
-      "subtitle": "WhatsApp, Instagram və Telegram müraciətlərini toplayın, AI ilə cavab verin, sınaq dərsləri və görüşləri təqvimə bağlayın.",
+      "subtitle": "Müştəri mesajlarını bir yerə toplayın, satışları izləyin, görüşləri planlaşdırın və komandanızın işini asanlaşdırın.",
       "primaryCta": "Demo sifariş edin",
       "secondaryCta": "Kanallara baxın",
       "badge": "Tam Platforma"
@@ -187,7 +187,7 @@
   "pipeline": {
     "hero": {
       "eyebrow": "Vizual Satış Qıfı",
-      "title": "Hər Satış Fürsəti Göz Önündə, Növbəti Addım Aydın",
+      "title": "Hər satış fürsəti göz önündə, növbəti addım aydın",
       "subtitle": "Gələn sorğuları mərhələlər üzrə irəlilədin, sahibsiz müraciətləri operatorlar arasında bölüşdürün və daxili qeydlər aparın.",
       "primaryCta": "Satış qıfını sınaqdan keçirin",
       "secondaryCta": "Demo təyin edin",
@@ -231,7 +231,7 @@
     "hero": {
       "eyebrow": "Vahid Mesajlaşma Mərkəzi",
       "title": "Bütün Mesajlar Tək Ekranda, Heç Bir Müştəri İtmir",
-      "subtitle": "Fərqli telefonlar və tətbiqlər arasında keçid etməyə son. Operatorlar eyni pəncərədən cavab verir, AI zəruri hallarda menecerə ötürür.",
+      "subtitle": "WhatsApp, Instagram və Telegram söhbətlərini bir yerdən idarə edin, hər müştərinin tarixçəsini görün.",
       "primaryCta": "Gələn qutusunu açın",
       "secondaryCta": "Demo sifariş edin",
       "badge": "Çoxkanallı Qutu"
@@ -342,8 +342,8 @@
   "booking": {
     "hero": {
       "eyebrow": "Ağıllı Rezervasiya və Təqvim",
-      "title": "Dolu Qruplara və Təkrar Qeydiyyatlara Avtomatik Nəzarət",
-      "subtitle": "Sınaq dərsləri və görüşlər üçün tutum limiti təyin edin. Sistem boş yerləri canlı izləyir, nömrə üzrə təkrarı bloklayır və dərhal təsdiq edir.",
+      "title": "Görüş və rezervasiyaları rahat idarə edin",
+      "subtitle": "Xidmət görüşləri, konsultasiyalar, tədbirlər və dərslər üçün vaxtları planlaşdırın; rezervasiyaları bir yerdən izləyin.",
       "primaryCta": "Cədvəl sistemini sınayın",
       "secondaryCta": "Demo təyin edin",
       "badge": "Tutum Kilidi"
@@ -706,8 +706,8 @@
   "pricingPage": {
     "hero": {
       "eyebrow": "Şəffaf Qiymətləndirmə",
-      "title": "Mərkəzinizin Ölçüsünə Uyğun Ədalətli Planlar",
-      "subtitle": "Gizli xərclər yoxdur. Bütün planlar təhlükəsiz təcrid olunmuş baza və texniki dəstəklə gəlir.",
+      "title": "Biznesinizə uyğun aydın qiymət planları",
+      "subtitle": "Paketləri müqayisə edin, sizə uyğun variantı seçin və əlavə xidmətlərin şərtlərini əvvəlcədən öyrənin.",
       "badge": "Açıq Şərtlər"
     },
     "periods": {
