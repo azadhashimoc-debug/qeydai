@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
@@ -33,96 +32,12 @@ type Props = {
   contactHref: string;
 };
 
-const EXTRA_COPY = {
-  az: {
-    passkeyUnavailable:
-      "Parol açarları (Passkey) bu cihazda mövcud deyil. Zəhmət olmasa başqa giriş üsulu sınayın.",
-    mfaToggle: "2FA kodu ilə doğrulama",
-    forgotModalBtn: "Şifrəni sıfırla",
-    forgotTitle: "Şifrənizi unutmusunuz?",
-    forgotSub:
-      "Narahat olmayın! E-poçt ünvanınızı daxil edin, şifrəni sıfırlamaq üçün təlimatları göndərək.",
-    forgotSubmit: "Şifrəni sıfırla",
-    backToLogin: "Girişə qayıt",
-    checkEmailTitle: "E-poçtunuzu yoxlayın",
-    checkEmailSub: "Şifrə sıfırlama keçidini e-poçt ünvanınıza göndərdik.",
-    openResetForm: "Yeni şifrə yarat ekranını aç",
-    newPassTitle: "Yeni şifrə yaradın",
-    newPassSub: "Güclü şifrə tələbləri:",
-    ruleLen: "Ən azı 8 simvol",
-    ruleCase: "Böyük və kiçik hərflər (A-z)",
-    ruleNum: "Ən azı bir rəqəm və simvol (0-9, !@#$)",
-    savePassBtn: "Yadda saxla və davam et",
-    nicelyDoneTitle: "Əla iş çıxardınız!",
-    nicelyDoneSub: "Şifrəniz uğurla yeniləndi. İndi hesabınıza daxil ola bilərsiniz.",
-    mfaTitle: "İki addımlı doğrulama",
-    mfaSub: "Doğrulama tətbiqinizdəki 6 rəqəmli təhlükəsizlik kodunu daxil edin.",
-    mfaVerifyBtn: "Kodu doğrula",
-    mfaResend: "Kodu yenidən göndər (0:45)",
-    mfaUseBackup: "Ehtiyat kod istifadə et",
-    mfaBackupTitle: "Ehtiyat kod ilə giriş",
-    mfaBackupPlaceholder: "XXXX-XXXX-XXXX",
-    mfaNeedHelp: "Kömək lazımdır?",
-    mfaHelpText:
-      "Doğrulama cihazınıza girişiniz yoxdursa, iş sahəsi administratoru və ya dəstək komandamızla əlaqə saxlayın.",
-  },
-  en: {
-    passkeyUnavailable:
-      "Passkeys are not available on this device. Please try another sign-in method.",
-    mfaToggle: "Verify with 2FA code",
-    forgotModalBtn: "Reset password",
-    forgotTitle: "Forgot your password?",
-    forgotSub:
-      "No worries! Enter your email address and we will send instructions to reset your password.",
-    forgotSubmit: "Reset password",
-    backToLogin: "Back to sign in",
-    checkEmailTitle: "Check your email",
-    checkEmailSub: "We sent a password reset link to your email address.",
-    openResetForm: "Open create new password screen",
-    newPassTitle: "Create a new password",
-    newPassSub: "Strong password requirements:",
-    ruleLen: "At least 8 characters",
-    ruleCase: "Uppercase & lowercase letters (A-z)",
-    ruleNum: "At least one number or symbol (0-9, !@#$)",
-    savePassBtn: "Save and continue",
-    nicelyDoneTitle: "Nicely done!",
-    nicelyDoneSub: "Your password has been reset. You can now sign in to your workspace.",
-    mfaTitle: "Two-factor authentication",
-    mfaSub: "Enter the 6-digit security code from your authenticator app.",
-    mfaVerifyBtn: "Verify code",
-    mfaResend: "Resend code (0:45)",
-    mfaUseBackup: "Use a backup code",
-    mfaBackupTitle: "Sign in with backup code",
-    mfaBackupPlaceholder: "XXXX-XXXX-XXXX",
-    mfaNeedHelp: "Need help?",
-    mfaHelpText:
-      "If you lost access to your authenticator device, contact your workspace admin or support team.",
-  },
-} as const;
-
 export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const router = useRouter();
-  const extra = EXTRA_COPY[lang];
-  const [view, setView] = useState<
-    | "login"
-    | "forgot-email"
-    | "forgot-check"
-    | "forgot-new"
-    | "forgot-done"
-    | "mfa-otp"
-    | "mfa-backup"
-    | "mfa-help"
-  >("login");
   const [email, setEmail] = useState("");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [passkeyNotice, setPasskeyNotice] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
-  const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
-  const [backupCode, setBackupCode] = useState("");
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "invalid" | "limited" | "network" | "social"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network" | "social">("idle");
   const emailId = useId();
   const keyId = useId();
   const statusId = useId();
@@ -137,15 +52,11 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
 
   const isError = status === "invalid" || status === "limited" || status === "network";
   const statusText =
-    status === "invalid"
-      ? copy.invalidKey
-      : status === "limited"
-        ? copy.rateLimited
-        : status === "network"
-          ? copy.networkError
-          : status === "social"
-            ? copy.socialNote
-            : copy.securityNote;
+    status === "invalid" ? copy.invalidKey
+    : status === "limited" ? copy.rateLimited
+    : status === "network" ? copy.networkError
+    : status === "social" ? copy.socialNote
+    : copy.securityNote;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -155,7 +66,6 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
       keyRef.current?.focus();
       return;
     }
-
     setStatus("submitting");
     try {
       const res = await fetch("/api/panel/auth", {
@@ -164,19 +74,16 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
         credentials: "same-origin",
         body: JSON.stringify({ key: trimmedKey }),
       });
-
       if (res.ok) {
         setKey("");
         setStatus("idle");
-        router.push(`/${lang}/panel`);
+        router.replace(`/${lang}/panel`);
         return;
       }
-
       if (res.status === 429) {
         setStatus("limited");
         return;
       }
-
       setStatus("invalid");
       keyRef.current?.focus();
     } catch {
@@ -184,37 +91,9 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     }
   }
 
-  function handleOtpChange(idx: number, val: string) {
-    const digit = val.replace(/\D/g, "").slice(-1);
-    setOtp((prev) => {
-      const next = [...prev];
-      next[idx] = digit;
-      return next;
-    });
-  }
-
   return (
     <div className="pm-auth-form-box">
-      {view === "login" && (
-        <>
-          <h1 className="pm-auth-heading">{copy.title}</h1>
-
-          {passkeyNotice && (
-            <div
-              role="alert"
-              className="pm-kommo-passkey-notice js-passkey-not-available-notification"
-            >
-              <span>🔑 {extra.passkeyUnavailable}</span>
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={() => setPasskeyNotice(false)}
-              >
-                ×
-              </button>
-            </div>
-          )}
-
+      <h1 className="pm-auth-heading">{copy.title}</h1>
           <form onSubmit={handleSubmit} className="pm-auth-form" noValidate>
             <div className="pm-auth-field">
               <label htmlFor={emailId} className="pm-sr-only">
@@ -297,282 +176,17 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             </p>
           </form>
 
-          <div className="pm-kommo-auth-quick-row">
-            <button
-              type="button"
-              className="pm-kommo-passkey-btn js-passkey-sign-in-form"
-              onClick={() => setPasskeyNotice(true)}
-            >
-              🔑 {copy.passkeyLabel}
-            </button>
-            <button
-              type="button"
-              className="pm-kommo-passkey-btn js-mfa-trigger"
-              onClick={() => setView("mfa-otp")}
-            >
-              🛡️ {extra.mfaToggle}
-            </button>
-          </div>
 
-          <AuthSocialRow
-            googleLabel={copy.googleLabel}
-            facebookLabel={copy.facebookLabel}
-            onSocialClick={() => router.push(`/${lang}/panel?test-login=1`)}
-          />
-
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link js-forgot-button"
-              onClick={() => setView("forgot-email")}
-            >
-              {extra.forgotModalBtn}
-            </button>
-            <span>·</span>
-            <Link href={contactHref} className="pm-auth-forgot-link">
-              {copy.forgotLink}
-            </Link>
-          </div>
-        </>
-      )}
-
-      {view === "forgot-email" && (
-        <div className="pm-kommo-subview js-forgot">
-          <h1 className="pm-auth-heading">{extra.forgotTitle}</h1>
-          <p className="pm-auth-subheading">{extra.forgotSub}</p>
-          <form
-            className="pm-auth-form js-forgot-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setView("forgot-check");
-            }}
-          >
-            <div className="pm-auth-field">
-              <div className="pm-auth-input-shell">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={copy.emailPlaceholder}
-                  className="pm-auth-input"
-                />
-              </div>
-            </div>
-            <button type="submit" className="pm-auth-submit-pill">
-              {extra.forgotSubmit}
-            </button>
-          </form>
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link js-back-to-login"
-              onClick={() => setView("login")}
-            >
-              ← {extra.backToLogin}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {view === "forgot-check" && (
-        <div className="pm-kommo-subview js-check-your-email">
-          <h1 className="pm-auth-heading">{extra.checkEmailTitle}</h1>
-          <p className="pm-auth-subheading">{extra.checkEmailSub}</p>
-          <button
-            type="button"
-            className="pm-auth-submit-pill"
-            onClick={() => setView("forgot-new")}
-          >
-            {extra.openResetForm}
-          </button>
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("login")}
-            >
-              ← {extra.backToLogin}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {view === "forgot-new" && (
-        <div className="pm-kommo-subview js-create-new-password">
-          <h1 className="pm-auth-heading">{extra.newPassTitle}</h1>
-          <p className="pm-auth-subheading">{extra.newPassSub}</p>
-          <form
-            className="pm-auth-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setView("forgot-done");
-            }}
-          >
-            <div className="pm-auth-field">
-              <div className="pm-auth-input-shell">
-                <input
-                  type="password"
-                  required
-                  minLength={8}
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder={copy.keyPlaceholder}
-                  className="pm-auth-input"
-                />
-              </div>
-            </div>
-            <ul className="pm-kommo-pass-rules">
-              <li className={newPassword.length >= 8 ? "is-valid" : ""}>✓ {extra.ruleLen}</li>
-              <li className={/[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword) ? "is-valid" : ""}>
-                ✓ {extra.ruleCase}
-              </li>
-              <li className={/[0-9!@#$%^&*]/.test(newPassword) ? "is-valid" : ""}>✓ {extra.ruleNum}</li>
-            </ul>
-            <button type="submit" className="pm-auth-submit-pill">
-              {extra.savePassBtn}
-            </button>
-          </form>
-        </div>
-      )}
-
-      {view === "forgot-done" && (
-        <div className="pm-kommo-subview js-nicely-done" role="status">
-          <h1 className="pm-auth-heading">🎉 {extra.nicelyDoneTitle}</h1>
-          <p className="pm-auth-subheading">{extra.nicelyDoneSub}</p>
-          <button
-            type="button"
-            className="pm-auth-submit-pill"
-            onClick={() => setView("login")}
-          >
-            {extra.backToLogin}
-          </button>
-        </div>
-      )}
-
-      {view === "mfa-otp" && (
-        <div className="pm-kommo-subview js-mfa-auth">
-          <div className="pm-kommo-flow-art">
-            <Image
-              src={
-                lang === "en"
-                  ? "/images/flow-auth-passkey-2fa-en.webp"
-                  : "/images/flow-auth-passkey-2fa.webp"
-              }
-              alt="2FA & Passkey Security"
-              width={320}
-              height={178}
-              className="pm-kommo-flow-img"
-            />
-          </div>
-          <h1 className="pm-auth-heading">{extra.mfaTitle}</h1>
-          <p className="pm-auth-subheading">{extra.mfaSub}</p>
-          <form
-            className="pm-auth-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              router.push(`/${lang}/panel?test-login=1`);
-            }}
-          >
-            <div className="pm-kommo-otp-row">
-              {otp.map((digit, idx) => (
-                <input
-                  key={idx}
-                  id={`mfa-${idx + 1}`}
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={1}
-                  value={digit}
-                  aria-label={`OTP ${idx + 1}`}
-                  onChange={(e) => handleOtpChange(idx, e.target.value)}
-                  className="pm-kommo-otp-box"
-                />
-              ))}
-            </div>
-            <button type="submit" className="pm-auth-submit-pill">
-              {extra.mfaVerifyBtn}
-            </button>
-          </form>
-          <div className="pm-kommo-mfa-links">
-            <span className="pm-kommo-mfa-timer">{extra.mfaResend}</span>
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("mfa-backup")}
-            >
-              {extra.mfaUseBackup}
-            </button>
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("mfa-help")}
-            >
-              {extra.mfaNeedHelp}
-            </button>
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("login")}
-            >
-              ← {extra.backToLogin}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {view === "mfa-backup" && (
-        <div className="pm-kommo-subview js-mfa-backup">
-          <h1 className="pm-auth-heading">{extra.mfaBackupTitle}</h1>
-          <form
-            className="pm-auth-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              router.push(`/${lang}/panel?test-login=1`);
-            }}
-          >
-            <div className="pm-auth-field">
-              <div className="pm-auth-input-shell">
-                <input
-                  type="text"
-                  required
-                  value={backupCode}
-                  onChange={(e) => setBackupCode(e.target.value)}
-                  placeholder={extra.mfaBackupPlaceholder}
-                  className="pm-auth-input"
-                />
-              </div>
-            </div>
-            <button type="submit" className="pm-auth-submit-pill">
-              {extra.mfaVerifyBtn}
-            </button>
-          </form>
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("mfa-otp")}
-            >
-              ← {extra.mfaTitle}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {view === "mfa-help" && (
-        <div className="pm-kommo-subview js-mfa-support">
-          <h1 className="pm-auth-heading">{extra.mfaNeedHelp}</h1>
-          <p className="pm-auth-subheading">{extra.mfaHelpText}</p>
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("mfa-otp")}
-            >
-              ← {extra.mfaTitle}
-            </button>
-          </div>
-        </div>
-      )}
+      <AuthSocialRow
+        googleLabel={copy.googleLabel}
+        facebookLabel={copy.facebookLabel}
+        onSocialClick={() => setStatus("social")}
+      />
+      <div className="pm-auth-footer-links">
+        <Link href={contactHref} className="pm-auth-forgot-link">
+          {copy.forgotLink}
+        </Link>
+      </div>
     </div>
   );
 }
