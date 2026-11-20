@@ -8,7 +8,7 @@
       "pipelineDesc": "Müraciətləri mərhələlər üzrə vizual lövhədə idarə edin",
       "inboxTitle": "Vahid mesaj qutusu",
       "inboxDesc": "WhatsApp, Instagram və Telegram tək pəncərədə",
-      "aiTitle": "AI satış köməkçisi",
+      "aiTitle": "Pani · AI satış köməkçisi",
       "aiDesc": "24/7 təbii dildə dəqiq cavab və avtomatlaşdırma",
       "bookingTitle": "Rezervasiya və cədvəl",
       "bookingDesc": "Sınaq dərsləri və görüşlər üçün tutum nəzarəti"
@@ -126,7 +126,7 @@
         "linkText": "Gələn qutusu"
       },
       "ai": {
-        "title": "AI satış köməkçisi",
+        "title": "Pani · AI satış köməkçisi",
         "desc": "Azərbaycan dilində yazı səhvlərini anlayan və yalnız təsdiqlənmiş cədvəllə cavab verən intellekt.",
         "linkText": "AI köməkçi"
       },
@@ -275,7 +275,7 @@
   },
   "ai": {
     "hero": {
-      "eyebrow": "Azərbaycan Dilli AI Köməkçi",
+      "eyebrow": "Pani · Azərbaycan dilində AI köməkçisi",
       "title": "Gecə-Gündüz 24/7 Dəqiq və Qaydalara Uyğun Cavablar",
       "subtitle": "Süni intellekt yalnız sizin təsdiqlədiyiniz cədvəl və qiymətləri təqdim edir, danışıq dilini başa düşür və mürəkkəb hallarda dərhal komandaya xəbər verir.",
       "primaryCta": "AI imkanlarını yoxlayın",
