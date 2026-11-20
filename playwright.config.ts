@@ -39,6 +39,8 @@ export default defineConfig({
       LEADS_FILE,
       ANALYTICS_FILE,
       ENROLL_DB_FILE: E2E_DB,
+      // Only the local Playwright server may use SQLite under next start.
+      QEYDAI_E2E_SQLITE: "1",
       QEYDAI_API_KEYS: JSON.stringify({ [E2E_KEYS.desktop]: "e2e-desktop", [E2E_KEYS.mobile]: "e2e-mobile" }),
       QEYDAI_ADMIN_KEYS: JSON.stringify({ [E2E_ADMIN_KEYS.desktop]: "e2e-desktop", [E2E_ADMIN_KEYS.mobile]: "e2e-mobile" }),
     },
