@@ -247,6 +247,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <div id="how" className="pm-stage-anchor">
               <ProductPreview
                 copy={l.preview}
+                lang={locale}
                 brand={dictionary.brand}
                 lobbyAlt={dictionary.alts.lobby}
               />
