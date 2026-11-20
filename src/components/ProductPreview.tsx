@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode, type KeyboardEvent } from "react";
 import { WhatsAppIcon, InstagramIcon, TelegramIcon } from "@/components/ChannelIcons";
 import { LogoMark } from "@/components/Logo";
+import { CONTENT } from "@/components/marketing/ProductPreviewCopy";
 
 export type PreviewCopy = {
   tabs: { inbox: string; pipeline: string; bookings: string; analytics: string };
@@ -24,166 +25,6 @@ export type PreviewCopy = {
 };
 
 type Stage = "capture" | "automate" | "grow" | "analyze";
-type Scene = {
-  name: string;
-  headline: string;
-  detail: string;
-  customer: string;
-  service: string;
-  chat: { who: "customer" | "agent"; message: string }[];
-};
-
-const CONTENT = {
-  az: {
-    showcase: "Pani iş başında",
-    sample: "İnteraktiv nümayiş · real müştəri məlumatı deyil",
-    repeat: "Yenidən göstər",
-    sidebar: ["İcmal", "Mesajlar", "Satışlar", "Təqvim", "Analitika"],
-    tabs: [
-      { name: "Cəlb et", headline: "Hər mesaj yeni fürsətdir", detail: "Bütün müraciətlər bir yerdə toplanır." },
-      { name: "Avtomatlaşdır", headline: "AI cavab verir, görüş yaranır", detail: "Müştəri yazır, Pani təqvimi yoxlayır." },
-      { name: "Böyüt", headline: "Satışları nəzarətdə saxlayın", detail: "Müştərilər satış mərhələləri üzrə irəliləyir." },
-      { name: "Təhlil et", headline: "Nəticələri aydın görün", detail: "Hansının daha yaxşı işlədiyini anlayın." },
-    ],
-    scenes: [
-      {
-        name: "Yeni müraciət", headline: "Bütün mesajlar bir yerdə", detail: "Yeni müştəri kartı avtomatik görünür.",
-        customer: "Aysel Məmmədova", service: "Instagram",
-        chat: [
-          { who: "customer", message: "Salam! Məhsul haqqında məlumat ala bilərəm?" },
-          { who: "agent", message: "Salam! Əlbəttə, sizə kömək edim. 🌿" },
-          { who: "customer", message: "Çatdırılma da var?" },
-        ],
-      },
-      {
-        name: "Avtomatik rezervasiya", headline: "AI təqvimi yoxlayır", detail: "Boş vaxt seçilir və görüş yaradılır.",
-        customer: "Nərmin Əliyeva", service: "WhatsApp",
-        chat: [
-          { who: "customer", message: "Salam, sabah saat 15:00-a yer var?" },
-          { who: "agent", message: "Salam! Bir dəqiqə, təqvimi yoxlayıram. ✨" },
-          { who: "agent", message: "Bəli, saat 15:00 boşdur. Görüşünüzü qeyd etdim! ✅" },
-        ],
-      },
-      {
-        name: "Satışın idarəsi", headline: "Müraciətdən satışa", detail: "Satış kartı növbəti mərhələyə keçir.",
-        customer: "Elvin Qasımov", service: "Telegram",
-        chat: [
-          { who: "customer", message: "Salam, bu dəsti sifariş etmək istəyirəm." },
-          { who: "agent", message: "Əla! Sifariş məlumatlarını dəqiqləşdirək." },
-          { who: "customer", message: "Təsdiq edirəm, təşəkkürlər!" },
-        ],
-      },
-      {
-        name: "Satış hesabatı", headline: "Hər nəticə göz önündə", detail: "Mesajlardan satışa gedən yolu izləyin.",
-        customer: "Pani", service: "AI xülasəsi",
-        chat: [
-          { who: "agent", message: "Bu həftə ən çox müraciət WhatsApp-dan gəlib." },
-          { who: "agent", message: "24 yeni müraciət və 8 tamamlanmış satış var." },
-          { who: "agent", message: "Tövsiyə: cavabsız müraciətləri izləyin." },
-        ],
-      },
-    ] satisfies Scene[],
-    newly: "Yeni müraciətlər",
-    captured: "Yeni müştəri əlavə edildi",
-    incoming: "Yeni mesaj",
-    created: "Yeni müştəri kartı",
-    open: "Müştəri profili",
-    booking: "Rezervasiyalar",
-    days: ["B.e.", "Ç.a.", "Ç.", "C.a.", "C."],
-    booked: "Görüş təsdiqləndi",
-    consultation: "Müştəri görüşü",
-    stages: ["Yeni", "Danışıqda", "Tamamlandı"],
-    deal: "Yeni sifariş",
-    won: "Satış tamamlandı",
-    metrics: ["Yeni müraciətlər", "Tamamlanan satışlar", "Cavab sürəti"],
-    insight: "AI tövsiyəsi",
-    chart: "Kanallar üzrə müraciətlər",
-    viewLabel: "Nümunə",
-    typing: "Pani yazır",
-    online: "Onlayn",
-    catalog: "Məhsul kataloqu",
-    product: "Gündəlik baxım dəsti",
-    productPrice: "149 AZN",
-    order: "Məhsul seçildi",
-    guide: "Baxın, Pani bunu avtomatik edir",
-    demo: "Nümayiş",
-  },
-  en: {
-    showcase: "See Pani in action",
-    sample: "Interactive preview · no real customer data",
-    repeat: "Replay animation",
-    sidebar: ["Overview", "Inbox", "Sales", "Calendar", "Analytics"],
-    tabs: [
-      { name: "Capture", headline: "Every message is an opportunity", detail: "Keep every inquiry in one place." },
-      { name: "Automate", headline: "AI replies, bookings appear", detail: "A customer asks and Pani checks the calendar." },
-      { name: "Grow", headline: "Stay on top of sales", detail: "Move customers through your sales stages." },
-      { name: "Analyze", headline: "See every result clearly", detail: "Understand what works best." },
-    ],
-    scenes: [
-      {
-        name: "New lead", headline: "Every message in one place", detail: "A new lead appears automatically.",
-        customer: "Aysel Mammadova", service: "Instagram",
-        chat: [
-          { who: "customer", message: "Hi! Can I ask about your products?" },
-          { who: "agent", message: "Absolutely! Happy to help. 🌿" },
-          { who: "customer", message: "Do you offer delivery?" },
-        ],
-      },
-      {
-        name: "Automatic booking", headline: "AI checks the calendar", detail: "An open time is selected and booked.",
-        customer: "Narmin Aliyeva", service: "WhatsApp",
-        chat: [
-          { who: "customer", message: "Hi, is 3 pm tomorrow available?" },
-          { who: "agent", message: "Let me check the calendar. ✨" },
-          { who: "agent", message: "Yes, 3 pm is open. You're booked! ✅" },
-        ],
-      },
-      {
-        name: "Sales management", headline: "From message to sale", detail: "A deal moves to its next stage.",
-        customer: "Elvin Gasimov", service: "Telegram",
-        chat: [
-          { who: "customer", message: "Hello, I'd like to order this set." },
-          { who: "agent", message: "Great! Let's confirm the details." },
-          { who: "customer", message: "Confirmed, thank you!" },
-        ],
-      },
-      {
-        name: "Sales report", headline: "See every outcome", detail: "Track the journey from chats to sales.",
-        customer: "Pani", service: "AI summary",
-        chat: [
-          { who: "agent", message: "WhatsApp brought the most inquiries this week." },
-          { who: "agent", message: "24 new leads and 8 completed sales." },
-          { who: "agent", message: "Suggestion: follow up with unanswered leads." },
-        ],
-      },
-    ] satisfies Scene[],
-    newly: "New inquiries",
-    captured: "New customer added",
-    incoming: "New message",
-    created: "New customer card",
-    open: "Customer profile",
-    booking: "Appointments",
-    days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-    booked: "Booking confirmed",
-    consultation: "Customer appointment",
-    stages: ["New", "In progress", "Completed"],
-    deal: "New order",
-    won: "Sale completed",
-    metrics: ["New leads", "Completed sales", "Response time"],
-    insight: "AI insight",
-    chart: "Leads by channel",
-    viewLabel: "Preview",
-    typing: "Pani is typing",
-    online: "Online",
-    catalog: "Product catalog",
-    product: "Daily care gift set",
-    productPrice: "149 AZN",
-    order: "Product selected",
-    guide: "See Pani handle this automatically",
-    demo: "Demo",
-  },
-} as const;
-
 const STAGE_ICONS: Stage[] = ["capture", "automate", "grow", "analyze"];
 
 function StageIcon({ type }: { type: Stage }) {
@@ -272,8 +113,8 @@ function CaptureScene({ phase, text }: { phase: number; text: typeof CONTENT.az 
       <div className="pm-live-lead-list">
         {[
           { name: text.scenes[0].customer, source: "Instagram", initial: "A", color: "pink" },
-          { name: "Kamran Hüseynov", source: "WhatsApp", initial: "K", color: "mint" },
-          { name: "Lalə Rzayeva", source: "Telegram", initial: "L", color: "purple" },
+          { name: text.previewLeads[0], source: "WhatsApp", initial: "K", color: "mint" },
+          { name: text.previewLeads[1], source: "Telegram", initial: "L", color: "purple" },
         ].map((item, index) => <div key={item.name} className={`pm-live-lead ${index === 0 && phase >= 2 ? "is-new" : ""}`}>
           <span className={`pm-live-avatar is-${item.color}`}>{item.initial}</span>
           <span><strong>{item.name}</strong><small>{item.source}</small></span>
@@ -314,10 +155,10 @@ function GrowScene({ phase, text }: { phase: number; text: typeof CONTENT.az | t
 }
 
 function AnalyzeScene({ phase, text }: { phase: number; text: typeof CONTENT.az | typeof CONTENT.en }) {
-  const numbers = ["24", "8", "2 dəq"];
+  const numbers = ["24", "8", text.responseTime];
   return <div className="pm-live-analytics">
     <div className="pm-live-section-title"><strong>{text.sidebar[4]}</strong><span className="pm-live-month">{text.viewLabel}</span></div>
-    <div className="pm-live-stat-grid">{text.metrics.map((label, i) => <div className="pm-live-stat" key={label}><small>{label}</small><strong>{i === 2 && text === CONTENT.en ? "2 min" : numbers[i]}</strong><span className="pm-live-trend">↗ {i === 0 ? "18%" : i === 1 ? "12%" : "9%"}</span></div>)}</div>
+    <div className="pm-live-stat-grid">{text.metrics.map((label, i) => <div className="pm-live-stat" key={label}><small>{label}</small><strong>{numbers[i]}</strong><span className="pm-live-trend">↗ {i === 0 ? "18%" : i === 1 ? "12%" : "9%"}</span></div>)}</div>
     <div className="pm-live-chart"><strong>{text.chart}</strong><div className="pm-live-chart-bars">{[52, 92, 65, 78, 56, 96, 69].map((h, i) => <div key={i} className="pm-live-chart-bar-wrap"><div className="pm-live-chart-bar" style={{ height: phase >= 1 ? `${h}%` : "5%" }} /><span>{i + 1}</span></div>)}</div></div>
     {phase >= 2 && <div className="pm-live-insight" key="insight"><StageIcon type="automate" /><span><strong>{text.insight}</strong>{text.scenes[3].chat[2].message}</span></div>}
   </div>;
