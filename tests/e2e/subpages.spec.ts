@@ -171,7 +171,7 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
 
   await page.getByRole("button", { name: "Google ilə daxil ol" }).click();
   await expect(page.getByRole("status")).toContainText("OAuth");
-  await expect(page).toHaveURL(/\\/az\\/login$/);
+  await expect(page).toHaveURL(/\/az\/login$/);
   expect((await page.request.get("/api/panel/overview")).status()).toBe(401);
 
   await keyField.fill("invalid-workspace-key-0123456789abcdef");
@@ -179,5 +179,5 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page.getByRole("status")).toContainText("Daxil edilən açar yanlışdır");
   await expect(keyField).toHaveAttribute("aria-invalid", "true");
   await page.locator(".pm-auth-forgot-link").click();
-  await expect(page).toHaveURL(/\\/az\\/contact$/);
+  await expect(page).toHaveURL(/\/az\/contact$/);
 });
