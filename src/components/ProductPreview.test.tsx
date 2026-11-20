@@ -1,11 +1,11 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, expect, it } from "vitest";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, expect, it, vi } from "vitest";
 import { ProductPreview, type PreviewCopy } from "./ProductPreview";
 
 const sample = {} as PreviewCopy;
 
-afterEach(() => cleanup());
+afterEach(() => { cleanup(); vi.useRealTimers(); });
 
 it("shows the four QeydAI showcase stages in Azerbaijani", () => {
   render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="az" />);
@@ -29,4 +29,31 @@ it("shows the same stages in English when selected", () => {
   render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="en" />);
   expect(screen.getByRole("tab", { name: "Automate" })).toBeTruthy();
   expect(screen.getByText("Interactive preview · no real customer data")).toBeTruthy();
+});
+
+it("reveals the catalog as the sample sales conversation progresses", () => {
+  vi.useFakeTimers();
+  render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="az" />);
+  fireEvent.click(screen.getByRole("tab", { name: "Böyüt" }));
+  act(() => vi.advanceTimersByTime(1850));
+  expect(screen.getByText("Gündəlik baxım dəsti")).toBeTruthy();
+  expect(screen.getByText("149 AZN")).toBeTruthy();
+});
+
+it("shows an illustrated guide and magnifier after the booking scene progresses", () => {
+  vi.useFakeTimers();
+  const { container } = render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="az" />);
+  fireEvent.click(screen.getByRole("tab", { name: "Avtomatlaşdır" }));
+  act(() => vi.advanceTimersByTime(1850));
+  act(() => vi.advanceTimersByTime(1850));
+  expect(container.querySelector(".pm-live-guide-lens")).not.toBeNull();
+  expect(container.querySelector(".pm-live-calendar-event")).not.toBeNull();
+});
+
+it("updates keyboard selection and keeps all demo elements non-interactive", () => {
+  render(<ProductPreview copy={sample} brand="QeydAI" lobbyAlt="" lang="az" />);
+  const initial = screen.getByRole("tab", { name: "Cəlb et" });
+  fireEvent.keyDown(initial, { key: "ArrowRight" });
+  expect(screen.getByRole("tab", { name: "Avtomatlaşdır" }).getAttribute("aria-selected")).toBe("true");
+  expect(screen.getByText("İnteraktiv nümayiş · real müştəri məlumatı deyil")).toBeTruthy();
 });
