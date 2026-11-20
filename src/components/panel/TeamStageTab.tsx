@@ -59,6 +59,8 @@ export function TeamStageTab({
 
   useEffect(() => {
     if (workspace) {
+      // Workspace switches intentionally replace the form draft with server state.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setWsName(workspace.name);
       setWsLocale(workspace.locale);
       setWsTimezone(workspace.timezone);
