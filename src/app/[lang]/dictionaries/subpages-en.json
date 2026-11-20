@@ -460,7 +460,7 @@
         },
         "two": {
           "title": "Automatic deal generation from DMs",
-          "desc": "Every prospect inquiring about courses is turned into a tracked CRM pipeline deal."
+          "desc": "Every new product or service inquiry can become a tracked CRM deal."
         },
         "three": {
           "title": "Conversational pricing assistance",
@@ -486,7 +486,7 @@
         },
         "two": {
           "title": "24/7 automated conversations",
-          "desc": "Enables students to book trial classes and check schedules around the clock."
+          "desc": "Help customers check available appointments and service hours at any time."
         },
         "three": {
           "title": "Instant staff notification alerts",
@@ -494,7 +494,7 @@
         },
         "four": {
           "title": "Secure isolated communication",
-          "desc": "Telegram messages are stored securely inside your center's private workspace."
+          "desc": "Telegram messages are stored within your business workspace."
         }
       },
       "toolsCtaTitle": "Route inquiries to WhatsApp when needed",
@@ -504,7 +504,7 @@
     "webhook-api": {
       "badge": "REST Webhooks & n8n API",
       "title": "Developer-Friendly REST Webhooks and n8n Workflows",
-      "subtitle": "Secure endpoints for sessions, enrollments, leads, and messages authenticated via tenant Bearer keys.",
+      "subtitle": "Authenticated endpoints for sessions, reservations, leads and messages with Bearer keys.",
       "features": {
         "one": {
           "title": "GET /api/v1/sessions endpoint",
@@ -682,11 +682,11 @@
       "body": "Inquiries from Instagram advertising campaigns carry high purchase intent, but response delays exceeding fifteen minutes drastically reduce close rates. Best practices require instant conversational qualification, immediate pricing guidance from approved tables, and automated trial scheduling. Unifying direct messages inside a structured team workspace ensures zero leads slip through unanswered."
     },
     "appointment-crm": {
-      "title": "Appointment & Trial Class Management: Ending Overbooking",
+      "title": "Appointment & Booking Management: Prevent Duplicate Reservations",
       "excerpt": "Transitioning from spreadsheets to atomic capacity protection, live rosters, and duplicate checks.",
       "category": "CRM & Schedule",
       "readTime": "4 min read",
-      "body": "Many training centers and service businesses track appointments in shared spreadsheets, creating duplicate bookings and classroom overflow. Modern booking engines lock seats atomically inside database transactions, guaranteeing that physical capacities are strictly respected. Duplicate submissions from the same normalized phone number are blocked, freeing managers to focus on confirmed prospects."
+      "body": "Many shops, salons and service businesses still manage appointments with spreadsheets. This can lead to duplicate bookings and overlapping time slots. Booking workflows with capacity checks help teams offer accurate availability and keep reservations organized."
     },
     "ai-reply-workflows": {
       "title": "AI Reply Assistants in Sales: Guardrails and Best Practices",
@@ -700,7 +700,7 @@
       "excerpt": "Connecting Telegram bot tokens to capture leads in seconds and route inquiries to your staff pipeline.",
       "category": "Telegram",
       "readTime": "5 min read",
-      "body": "Telegram Bot API offers the fastest onboarding path for conversational intake. By connecting your bot token, your service desk goes live in under two minutes. Prospects browse course options, pick trial class dates, and receive instant confirmations. Every interaction feeds directly into the unified inbox and CRM pipeline, enabling your team to follow up smoothly."
+      "body": "Telegram Bot API offers a way to collect customer requests in one place. Once connected, prospects can ask about products and services, check available appointment times and receive replies from your team."
     }
   },
   "pricingPage": {
@@ -910,7 +910,7 @@
         },
         "account": {
           "title": "2. Workspace access & security",
-          "body": "Users are responsible for maintaining the confidentiality of their center access keys and for all activities within their workspace. Sharing credentials with unauthorized third parties is prohibited."
+          "body": "Users are responsible for keeping business workspace access keys confidential and for activity carried out within that workspace. Sharing credentials with unauthorized parties is prohibited."
         },
         "acceptable": {
           "title": "3. Acceptable use policy",
@@ -945,7 +945,7 @@
         },
         "isolation": {
           "title": "3. Multi-tenant data isolation",
-          "body": "Every customer workspace is maintained in an isolated database environment. Staff from one center cannot access another center's customer records, schedules, or chat logs under any circumstance."
+          "body": "Customer data is maintained in separate business workspaces. Employees of one business should not have access to another business's customer records, booking schedules or chat history."
         },
         "thirdParty": {
           "title": "4. Third-party integrations",
