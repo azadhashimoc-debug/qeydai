@@ -475,39 +475,64 @@ export class SqliteEnrollmentStore implements EnrollmentStore {
   }
 
   async insertIfAvailable(e: Enrollment): Promise<InsertOutcome> {
-    this.db.exec("BEGIN IMMEDIATE");
+    let sp: string | null = null;
+    try {
+      this.db.exec("BEGIN IMMEDIATE");
+    } catch (beginErr) {
+      if (beginErr instanceof Error && /within a transaction/i.test(beginErr.message)) {
+        sp = `sp_enr_${randomUUID().replace(/-/g, "")}`;
+        this.db.exec(`SAVEPOINT ${sp}`);
+      } else {
+        throw beginErr;
+      }
+    }
+    const commitTx = () => {
+      if (sp) {
+        this.db.exec(`RELEASE SAVEPOINT ${sp}`);
+      } else {
+        this.db.exec("COMMIT");
+      }
+    };
+    const rollbackTx = () => {
+      if (sp) {
+        this.db.exec(`ROLLBACK TO SAVEPOINT ${sp}`);
+        this.db.exec(`RELEASE SAVEPOINT ${sp}`);
+      } else {
+        this.db.exec("ROLLBACK");
+      }
+    };
     try {
       const s = this.db.prepare("SELECT capacity FROM sessions WHERE tenant_id = ? AND id = ?").get(e.tenantId, e.sessionId) as
         | { capacity: number }
         | undefined;
       if (!s) {
-        this.db.exec("ROLLBACK");
+        rollbackTx();
         return "unknown_session";
       }
       const dup = this.db
         .prepare("SELECT 1 AS x FROM enrollments WHERE tenant_id = ? AND session_id = ? AND phone = ?")
         .get(e.tenantId, e.sessionId, e.phone);
       if (dup) {
-        this.db.exec("ROLLBACK");
+        rollbackTx();
         return "duplicate";
       }
       const n = this.db
         .prepare("SELECT COUNT(*) AS n FROM enrollments WHERE tenant_id = ? AND session_id = ?")
         .get(e.tenantId, e.sessionId) as { n: number };
       if (Number(n.n) >= s.capacity) {
-        this.db.exec("ROLLBACK");
+        rollbackTx();
         return "full";
       }
       this.db
         .prepare("INSERT INTO enrollments (id, tenant_id, session_id, name, phone, created_at) VALUES (?, ?, ?, ?, ?, ?)")
         .run(e.id, e.tenantId, e.sessionId, e.name, e.phone, e.createdAt);
-      this.db.exec("COMMIT");
+      commitTx();
       return "inserted";
     } catch (err) {
       try {
-        this.db.exec("ROLLBACK");
+        rollbackTx();
       } catch {
-        /* no open transaction */
+        /* transaction already closed */
       }
       if (err instanceof Error && /UNIQUE constraint failed/i.test(err.message)) return "duplicate";
       throw err;

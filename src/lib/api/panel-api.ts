@@ -110,7 +110,7 @@ export function createPanelApi({
   now = () => new Date(),
   authRateMax = 30,
   authMaxKeys = 10_000,
-  apiRateMax = 120,
+  apiRateMax = 600,
 }: PanelApiOptions) {
   const authLimiter = createRateLimiter({
     max: authRateMax,

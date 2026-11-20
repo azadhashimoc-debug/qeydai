@@ -19,6 +19,7 @@ import { LoginGate } from "./LoginGate";
 import { OverviewTab } from "./OverviewTab";
 import { SessionsTab } from "./SessionsTab";
 import { TeamStageTab } from "./TeamStageTab";
+import { CopilotDrawer } from "./CopilotDrawer";
 import type {
   LeadRecord,
   OverviewPayload,
@@ -198,6 +199,21 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
 
       if (epoch !== sessionEpochRef.current || controller.signal.aborted) return;
 
+      if (wsRes.ok) {
+        const wsJson = (await wsRes.json()) as {
+          ok: true;
+          workspace: SalesWorkspace;
+          actor?: { memberId: string | null; role: SalesMemberRole };
+        };
+        if (epoch === sessionEpochRef.current) {
+          setWorkspace(wsJson.workspace);
+          if (wsJson.actor) {
+            setActorRole(wsJson.actor.role);
+            setActorMemberId(wsJson.actor.memberId);
+          }
+        }
+      }
+
       setOverview(ovJson);
       setTenantId(ovJson.tenantId);
       setSessions(sesJson.sessions);
@@ -230,20 +246,6 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
       if (matchRes.ok) {
         const matchJson = (await matchRes.json()) as { ok: true; matches: SalesPhoneMatch[] };
         if (epoch === sessionEpochRef.current) setPhoneMatches(matchJson.matches);
-      }
-      if (wsRes.ok) {
-        const wsJson = (await wsRes.json()) as {
-          ok: true;
-          workspace: SalesWorkspace;
-          actor?: { memberId: string | null; role: SalesMemberRole };
-        };
-        if (epoch === sessionEpochRef.current) {
-          setWorkspace(wsJson.workspace);
-          if (wsJson.actor) {
-            setActorRole(wsJson.actor.role);
-            setActorMemberId(wsJson.actor.memberId);
-          }
-        }
       }
     } catch (err) {
       if (epoch !== sessionEpochRef.current || controller.signal.aborted) return;
@@ -503,6 +505,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
           </div>
 
           <nav aria-label={d.navAria} className="flex flex-wrap items-center gap-2">
+            <CopilotDrawer lang={lang} deals={deals} leads={leads} sessions={sessions} />
             <button
               type="button"
               onClick={() => void loadPanelData()}

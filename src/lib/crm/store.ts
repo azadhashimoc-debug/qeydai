@@ -840,19 +840,27 @@ export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClie
     }
   }
 
-  // SQLite fallback (dev / unit / e2e): serialize async transactions on single DatabaseSync handle.
+  // SQLite fallback (dev / unit / e2e): serialize transactions on single DatabaseSync handle.
+  // Because DatabaseSync is synchronous, savepoints allow safe nesting without holding an open
+  // transaction across async microtask ticks where non-queued handlers might also touch SQLite.
   const next = sqliteTxQueue.then(async () => {
     const sqliteStore = getSharedStore();
-    const adapter = new SqliteQueryAdapter(sqliteStore.getSqliteDb());
+    const db = sqliteStore.getSqliteDb();
+    const adapter = new SqliteQueryAdapter(db);
     sqliteStoreMap.set(adapter, sqliteStore);
-    sqliteStore.getSqliteDb().exec("BEGIN IMMEDIATE");
+    const sp = `sp_${randomUUID().replace(/-/g, "")}`;
+    db.exec(`SAVEPOINT ${sp}`);
     try {
-      // tenant scoping is inherent in every query; no RLS needed for sqlite.
       const result = await run(adapter as unknown as PoolClient);
-      sqliteStore.getSqliteDb().exec("COMMIT");
+      db.exec(`RELEASE SAVEPOINT ${sp}`);
       return result;
     } catch (error) {
-      try { sqliteStore.getSqliteDb().exec("ROLLBACK"); } catch { /* no open transaction */ }
+      try {
+        db.exec(`ROLLBACK TO SAVEPOINT ${sp}`);
+        db.exec(`RELEASE SAVEPOINT ${sp}`);
+      } catch {
+        /* savepoint already closed */
+      }
       throw error;
     }
   });

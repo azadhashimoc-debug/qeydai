@@ -613,7 +613,7 @@ export function DealList({
 
                 <div className="flex flex-wrap items-center gap-2">
                   <select
-                    aria-label={`${d.deals.moveStageAria}: ${deal.title}`}
+                    aria-label={d.deals.moveStageAria}
                     value={deal.stageId}
                     disabled={movingDealId === deal.id}
                     onChange={(e) => void handleMoveStage(deal.id, e.target.value)}

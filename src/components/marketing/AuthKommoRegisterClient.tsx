@@ -42,6 +42,55 @@ type Props = {
   privacyHref: string;
 };
 
+const WORKSPACE_COPY = {
+  az: {
+    step3Title: "14 günlük sınağınızı başladın",
+    step3Sub: "Bütün özəlliklərə və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
+    accountNameLabel: "Hesab ismi (Mərkəz və ya şirkət adı)",
+    accountNamePlaceholder: "Məsələn: Bakı Tədris Mərkəzi",
+    subdomainLabel: "Hesab alt alan adı",
+    industryLabel: "Sektor",
+    industries: [
+      "Təhsil və Kurslar",
+      "İdman və Fitnes",
+      "Sağlamlıq və Gözəllik",
+      "Pərakəndə və E-ticarət",
+      "Daşınmaz Əmlak",
+      "Rəqəmsal və İT Xidmətləri",
+    ],
+    businessTypeLabel: "İşlətmə növü",
+    businessTypes: ["B2C (Fərdi müştərilər)", "B2B (Korporativ)", "Hər ikisi (B2B & B2C)"],
+    employeesLabel: "Çalışan sayı",
+    employeeCounts: ["1 - 5", "6 - 15", "16 - 50", "50+"],
+    clientsLabel: "Aylıq müştəri / müraciət sayı",
+    clientCounts: ["1 - 100", "100 - 500", "500 - 2000", "2000+"],
+    openPanelBtn: "Hesab yarat və Canlı CRM Panelini Aç",
+  },
+  en: {
+    step3Title: "Start your 14-day free trial",
+    step3Sub: "Access all features and 10GB storage. No credit card required",
+    accountNameLabel: "Account name (Center or company name)",
+    accountNamePlaceholder: "e.g. Baku Learning Center",
+    subdomainLabel: "Account subdomain",
+    industryLabel: "Industry",
+    industries: [
+      "Education & Training",
+      "Sports & Fitness",
+      "Health & Beauty",
+      "Retail & E-commerce",
+      "Real Estate",
+      "Digital & IT Services",
+    ],
+    businessTypeLabel: "Business type",
+    businessTypes: ["B2C (Consumers)", "B2B (Business)", "Both (B2B & B2C)"],
+    employeesLabel: "Number of employees",
+    employeeCounts: ["1 - 5", "6 - 15", "16 - 50", "50+"],
+    clientsLabel: "Monthly clients / leads",
+    clientCounts: ["1 - 100", "100 - 500", "500 - 2000", "2000+"],
+    openPanelBtn: "Create account & Open Live CRM Panel",
+  },
+} as const;
+
 export function AuthKommoRegisterClient({
   locale,
   copy,
@@ -53,6 +102,8 @@ export function AuthKommoRegisterClient({
     "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social"
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
+  const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
+  const [subdomain, setSubdomain] = useState("baki-merkezi");
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const nameId = useId();
@@ -60,6 +111,7 @@ export function AuthKommoRegisterClient({
   const statusId = useId();
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const ws = WORKSPACE_COPY[locale];
 
   const markStarted = useCallback(() => {
     trackEvent({
@@ -119,6 +171,14 @@ export function AuthKommoRegisterClient({
       });
       if (res.ok) {
         setState("ok");
+        const slug = rawName
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+        if (slug) {
+          setWorkspaceName(rawName);
+          setSubdomain(slug);
+        }
         const { utm_source, utm_medium, utm_campaign } = extractUtmProps(
           typeof window !== "undefined" ? window.location.search : "",
         );
@@ -254,6 +314,87 @@ export function AuthKommoRegisterClient({
           </>
         )}
       </form>
+
+      {/* Step 3: Kommo Create Account / Subdomain screen (.js-create-account) */}
+      {state === "ok" && (
+        <div className="pm-kommo-create-account js-create-account">
+          <h2 className="pm-kommo-create-title js-create-account-title">{ws.step3Title}</h2>
+          <p className="pm-auth-note js-create-account-subtitle">{ws.step3Sub}</p>
+          <label className="pm-kommo-field js-control-account-wrapper">
+            <span>{ws.accountNameLabel}</span>
+            <input
+              type="text"
+              name="account"
+              value={workspaceName}
+              onChange={(e) => setWorkspaceName(e.target.value)}
+            />
+          </label>
+          <label className="pm-kommo-field js-control-subdomain-wrapper">
+            <span>{ws.subdomainLabel}</span>
+            <div className="pm-kommo-subdomain-box">
+              <input
+                type="text"
+                name="subdomain"
+                value={subdomain}
+                onChange={(e) =>
+                  setSubdomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))
+                }
+              />
+              <span>.panelim.az</span>
+            </div>
+          </label>
+          <div className="pm-tools-row">
+            <label className="pm-kommo-field js-industry-select">
+              <span>{ws.industryLabel}</span>
+              <select defaultValue={ws.industries[0]}>
+                {ws.industries.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="pm-kommo-field js-business-type-select">
+              <span>{ws.businessTypeLabel}</span>
+              <select defaultValue={ws.businessTypes[0]}>
+                {ws.businessTypes.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="pm-tools-row">
+            <label className="pm-kommo-field js-employees-count-select">
+              <span>{ws.employeesLabel}</span>
+              <select defaultValue={ws.employeeCounts[0]}>
+                {ws.employeeCounts.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="pm-kommo-field js-clients-count-select">
+              <span>{ws.clientsLabel}</span>
+              <select defaultValue={ws.clientCounts[0]}>
+                {ws.clientCounts.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <Link
+            href={`/${locale}/panel?test-login=1`}
+            className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
+          >
+            {ws.openPanelBtn} →
+          </Link>
+        </div>
+      )}
 
       <p className="pm-auth-legal-note">
         {copy.termsPrefix}{" "}

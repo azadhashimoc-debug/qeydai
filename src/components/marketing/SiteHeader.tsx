@@ -87,14 +87,14 @@ export function SiteHeader({
         </Link>
 
         <div className="pm-nav-links">
-          <NavDropdown group={groups[0]} />
-          <NavDropdown group={groups[1]} />
+          <NavDropdown group={groups[0]} lang={lang} />
+          <NavDropdown group={groups[1]} lang={lang} />
           {directLinks.map((link) => (
             <Link key={link.href} href={link.href} className="pm-nav-direct">
               {link.label}
             </Link>
           ))}
-          <NavDropdown group={groups[2]} />
+          <NavDropdown group={groups[2]} lang={lang} />
         </div>
 
         <div className="pm-nav-right">

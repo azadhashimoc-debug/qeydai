@@ -5,6 +5,11 @@ import { useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/ChannelIcons";
 import { LogoMark } from "@/components/Logo";
+import {
+  convertPriceString,
+  type CurrencyCode,
+  PricingCurrencyBar,
+} from "@/components/marketing/PricingCurrencyBar";
 
 export type AiSpotlightItem = {
   title: string;
@@ -183,6 +188,7 @@ export function PricingShowcase({
   ctaHref?: string;
 }) {
   const [period, setPeriod] = useState<BillingPeriod>("halfYear");
+  const [currency, setCurrency] = useState<CurrencyCode>("AZN");
   const periodKeys: BillingPeriod[] = ["monthly", "halfYear", "annual"];
 
   return (
@@ -210,9 +216,14 @@ export function PricingShowcase({
           <span className="pm-period-note">{periodNotes[period]}</span>
         </div>
 
+        <PricingCurrencyBar currency={currency} onCurrencyChange={setCurrency} />
+
         <div className="pm-pricing-grid">
           {plans.map((plan) => {
-            const displayPrice = plan.prices ? plan.prices[period] : plan.staticPrice ?? "";
+            const rawDisplayPrice = plan.prices ? plan.prices[period] : plan.staticPrice ?? "";
+            const displayPrice = plan.prices
+              ? convertPriceString(rawDisplayPrice, currency)
+              : rawDisplayPrice;
             return (
               <article
                 key={plan.key}

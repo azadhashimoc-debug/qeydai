@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Locale, SubpagesDict } from "@/app/[lang]/dictionaries";
 import { LogoMark } from "@/components/Logo";
+import { KommoOverlays } from "./KommoOverlays";
 
 export type SiteFooterProps = {
   lang: Locale;
@@ -119,6 +120,7 @@ export function SiteFooter({
           </Link>
         </div>
       </div>
+      <KommoOverlays lang={lang} />
     </footer>
   );
 }

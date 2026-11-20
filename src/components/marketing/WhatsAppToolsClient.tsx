@@ -76,6 +76,7 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
   const [auth, setAuth] = useState(100);
   const [service, setService] = useState(1000);
   const [currency, setCurrency] = useState<"USD" | "AZN">("USD");
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
 
   const estimate = useMemo(
     () => estimateWhatsAppCost({ marketing, utility, auth, service }),
@@ -195,14 +196,24 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             <div className="pm-code-box" data-testid="wa-link-output">
               {generatedUrl ?? "—"}
             </div>
-            <button
-              type="button"
-              className="pm-btn pm-btn-primary"
-              disabled={!generatedUrl}
-              onClick={handleCopy}
-            >
-              {copied ? copy.linkBuilder.copied : copy.linkBuilder.copyButton}
-            </button>
+            <div className="pm-kommo-tool-btns">
+              <button
+                type="button"
+                className="pm-btn pm-btn-primary"
+                disabled={!generatedUrl}
+                onClick={handleCopy}
+              >
+                {copied ? copy.linkBuilder.copied : copy.linkBuilder.copyButton}
+              </button>
+              <button
+                type="button"
+                className="pm-btn pm-btn-outline js-link-generator-modal-trigger"
+                disabled={!generatedUrl}
+                onClick={() => setPreviewModalOpen(true)}
+              >
+                QR & Modal
+              </button>
+            </div>
 
             <div>
               <p className="pm-auth-note">{copy.linkBuilder.previewTitle}</p>
@@ -291,6 +302,16 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
                 value={marketing}
                 onChange={(e) => setMarketing(Number(e.target.value) || 0)}
               />
+              <input
+                type="range"
+                min={0}
+                max={5000}
+                step={50}
+                value={Math.min(marketing, 5000)}
+                aria-label={`${copy.calculator.marketingLabel} slider`}
+                onChange={(e) => setMarketing(Number(e.target.value) || 0)}
+                className="pm-kommo-range-slider"
+              />
             </div>
 
             <div className="pm-field">
@@ -301,6 +322,16 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
                 min={0}
                 value={utility}
                 onChange={(e) => setUtility(Number(e.target.value) || 0)}
+              />
+              <input
+                type="range"
+                min={0}
+                max={5000}
+                step={50}
+                value={Math.min(utility, 5000)}
+                aria-label={`${copy.calculator.utilityLabel} slider`}
+                onChange={(e) => setUtility(Number(e.target.value) || 0)}
+                className="pm-kommo-range-slider"
               />
             </div>
 
@@ -313,6 +344,16 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
                 value={auth}
                 onChange={(e) => setAuth(Number(e.target.value) || 0)}
               />
+              <input
+                type="range"
+                min={0}
+                max={5000}
+                step={50}
+                value={Math.min(auth, 5000)}
+                aria-label={`${copy.calculator.authLabel} slider`}
+                onChange={(e) => setAuth(Number(e.target.value) || 0)}
+                className="pm-kommo-range-slider"
+              />
             </div>
 
             <div className="pm-field">
@@ -323,6 +364,16 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
                 min={0}
                 value={service}
                 onChange={(e) => setService(Number(e.target.value) || 0)}
+              />
+              <input
+                type="range"
+                min={0}
+                max={10000}
+                step={100}
+                value={Math.min(service, 10000)}
+                aria-label={`${copy.calculator.serviceLabel} slider`}
+                onChange={(e) => setService(Number(e.target.value) || 0)}
+                className="pm-kommo-range-slider"
               />
             </div>
           </div>
@@ -352,6 +403,49 @@ export function WhatsAppToolsClient({ copy }: { copy: SubpagesDict["tools"] }) {
             </div>
 
             <p className="pm-auth-note">{copy.calculator.disclaimer}</p>
+          </div>
+        </div>
+      )}
+
+      {previewModalOpen && (
+        <div
+          className="pm-kommo-modal-backdrop js-link-generator-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="WhatsApp QR Modal"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setPreviewModalOpen(false);
+          }}
+        >
+          <div className="pm-kommo-modal-card">
+            <button
+              type="button"
+              className="pm-kommo-modal-close"
+              aria-label="Close"
+              onClick={() => setPreviewModalOpen(false)}
+            >
+              ×
+            </button>
+            <div className="pm-kommo-modal-body">
+              <h2>{copy.linkBuilder.title}</h2>
+              <div className="pm-code-box">{generatedUrl ?? "—"}</div>
+              {qrPath && (
+                <div className="pm-qr-preview" style={{ maxWidth: 220, margin: "12px auto" }}>
+                  <svg viewBox={`-2 -2 ${qrPath.size + 4} ${qrPath.size + 4}`} role="img" aria-label="QR">
+                    <rect x="-2" y="-2" width={qrPath.size + 4} height={qrPath.size + 4} fill="#ffffff" />
+                    <path d={qrPath.d} fill="#0e0142" />
+                  </svg>
+                </div>
+              )}
+              <div className="pm-kommo-modal-actions">
+                <button type="button" className="pm-btn pm-btn-primary" onClick={handleCopy}>
+                  {copied ? copy.linkBuilder.copied : copy.linkBuilder.copyButton}
+                </button>
+                <button type="button" className="pm-btn pm-btn-outline" onClick={handleDownloadPng}>
+                  {copy.qrGenerator.downloadPng}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -45,7 +45,12 @@ test("sessions are scoped to the key's tenant", async ({ request }, info) => {
   expect(ids).toContain(`s-only-${info.project.name}`);
   expect(ids).not.toContain(`s-only-${other}`);
   expect(ids).not.toContain(`s-admin-${other}`);
-  for (const id of ids) expect(["s-small", "s-race", `s-only-${info.project.name}`, `s-admin-${info.project.name}`]).toContain(id);
+  for (const id of ids)
+    expect(
+      ["s-small", "s-race", `s-only-${info.project.name}`, `s-admin-${info.project.name}`].includes(id) ||
+        id.startsWith(`s-ui-${info.project.name}-`) ||
+        id.startsWith(`s-ov-${info.project.name}-`),
+    ).toBe(true);
 });
 
 test("enroll: success, duplicate, full, unknown, invalid over real HTTP", async ({ request }, info) => {

@@ -122,3 +122,48 @@ test("sitemap includes localized subpage URLs", async ({ request }) => {
   expect(xml).toContain("/az/tools");
   expect(xml).toContain("/en/blog/whatsapp-automation");
 });
+
+test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flows work end-to-end", async ({
+  page,
+}) => {
+  await page.goto("/az");
+
+  // Cookie consent notification & accept
+  const cookieAccept = page.locator(".js-control-cookies-close-button");
+  await expect(cookieAccept).toBeVisible();
+  await cookieAccept.click();
+  await expect(cookieAccept).toBeHidden();
+
+  // Pricing currency switcher & Enterprise modal trigger
+  const currencyBtn = page.locator(".js-currencies-button");
+  await currencyBtn.click();
+  await expect(page.locator(".js-currencies-popup")).toBeVisible();
+  await page.getByRole("menuitem", { name: /USD/ }).click();
+  await expect(page.locator("#pricing")).toContainText("$");
+
+  const entTrigger = page.locator(".js-enterprise-request-trigger");
+  await entTrigger.click();
+  await expect(page.locator(".js-enterprise-request-modal")).toBeVisible();
+  await page.locator(".js-modal-close-button").click();
+  await expect(page.locator(".js-enterprise-request-modal")).toBeHidden();
+
+  // Multi-channel floating live-chat & 2-step Partner modal
+  await page.locator(".js-amo-button").click();
+  await expect(page.locator("#amo-livechat")).toBeVisible();
+  await page.getByRole("button", { name: /Partner yardımı tələb et/ }).click();
+  await expect(page.locator(".js-find-partner-form-step-1")).toBeVisible();
+  await page.locator(".js-modal-close-button").click();
+
+  // Auth Passkey, Forgot Password, and 2FA subviews on /az/login
+  await page.goto("/az/login");
+  await page.locator(".js-passkey-sign-in-form").click();
+  await expect(page.locator(".js-passkey-not-available-notification")).toBeVisible();
+
+  await page.locator(".js-forgot-button").click();
+  await expect(page.locator(".js-forgot")).toBeVisible();
+  await page.locator(".js-back-to-login").click();
+
+  await page.locator(".js-mfa-trigger").click();
+  await expect(page.locator(".js-mfa-auth")).toBeVisible();
+});
+
