@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS sales_contacts (
   tags text[] NOT NULL DEFAULT '{}',
   created_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
-  UNIQUE (tenant_id, phone) NULLS NOT DISTINCT
+  UNIQUE (tenant_id, phone) -- NULL is distinct: allow multiple contacts without a phone
 );
 
 CREATE TABLE IF NOT EXISTS sales_phone_matches (
