@@ -155,8 +155,8 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
         <KommoPromoBand
           title={
             isEn
-              ? "Have an AI assistant serving your center 24/7"
-              : "AI CRM ilə 7/24 xidmət verən köməkçiniz olsun"
+              ? "Meet Pani, your 24/7 AI assistant"
+              : "Pani — 7/24 çalışan AI köməkçiniz"
           }
           ctaHref={`/${locale}/demo`}
           ctaLabel={isEn ? "Try 14 days free" : "14 gün pulsuz sına"}
@@ -175,7 +175,7 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
               tone: "lavender",
             },
             {
-              tag: "Copilot",
+              tag: "Pani",
               title: ai.scenarios.handoff.title,
               body: ai.scenarios.handoff.desc,
               cta: { href: `/${locale}/inbox`, label: s.navGroups.product.inboxTitle },

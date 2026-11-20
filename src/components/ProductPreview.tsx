@@ -35,13 +35,13 @@ type Scene = {
 
 const CONTENT = {
   az: {
-    showcase: "QeydAI iş başında",
+    showcase: "panelim.az iş başında",
     sample: "İnteraktiv nümayiş · real müştəri məlumatı deyil",
     repeat: "Yenidən göstər",
     sidebar: ["İcmal", "Mesajlar", "Satışlar", "Təqvim", "Analitika"],
     tabs: [
       { name: "Cəlb et", headline: "Hər mesaj yeni fürsətdir", detail: "Bütün müraciətlər bir yerdə toplanır." },
-      { name: "Avtomatlaşdır", headline: "AI cavab verir, görüş yaranır", detail: "Müştəri yazır, QeydAI təqvimi yoxlayır." },
+      { name: "Avtomatlaşdır", headline: "AI cavab verir, görüş yaranır", detail: "Müştəri yazır, Pani təqvimi yoxlayır." },
       { name: "Böyüt", headline: "Satışları nəzarətdə saxlayın", detail: "Müştərilər satış mərhələləri üzrə irəliləyir." },
       { name: "Təhlil et", headline: "Nəticələri aydın görün", detail: "Hansının daha yaxşı işlədiyini anlayın." },
     ],
@@ -75,7 +75,7 @@ const CONTENT = {
       },
       {
         name: "Satış hesabatı", headline: "Hər nəticə göz önündə", detail: "Mesajlardan satışa gedən yolu izləyin.",
-        customer: "QeydAI köməkçisi", service: "AI xülasəsi",
+        customer: "Pani", service: "AI xülasəsi",
         chat: [
           { who: "agent", message: "Bu həftə ən çox müraciət WhatsApp-dan gəlib." },
           { who: "agent", message: "24 yeni müraciət və 8 tamamlanmış satış var." },
@@ -99,23 +99,23 @@ const CONTENT = {
     insight: "AI tövsiyəsi",
     chart: "Kanallar üzrə müraciətlər",
     viewLabel: "Nümunə",
-    typing: "QeydAI yazır",
+    typing: "Pani yazır",
     online: "Onlayn",
     catalog: "Məhsul kataloqu",
     product: "Gündəlik baxım dəsti",
     productPrice: "149 AZN",
     order: "Məhsul seçildi",
-    guide: "Baxın, QeydAI bunu avtomatik edir",
+    guide: "Baxın, Pani bunu avtomatik edir",
     demo: "Nümayiş",
   },
   en: {
-    showcase: "See QeydAI in action",
+    showcase: "See panelim.az in action",
     sample: "Interactive preview · no real customer data",
     repeat: "Replay animation",
     sidebar: ["Overview", "Inbox", "Sales", "Calendar", "Analytics"],
     tabs: [
       { name: "Capture", headline: "Every message is an opportunity", detail: "Keep every inquiry in one place." },
-      { name: "Automate", headline: "AI replies, bookings appear", detail: "A customer asks and QeydAI checks the calendar." },
+      { name: "Automate", headline: "AI replies, bookings appear", detail: "A customer asks and Pani checks the calendar." },
       { name: "Grow", headline: "Stay on top of sales", detail: "Move customers through your sales stages." },
       { name: "Analyze", headline: "See every result clearly", detail: "Understand what works best." },
     ],
@@ -149,7 +149,7 @@ const CONTENT = {
       },
       {
         name: "Sales report", headline: "See every outcome", detail: "Track the journey from chats to sales.",
-        customer: "QeydAI assistant", service: "AI summary",
+        customer: "Pani", service: "AI summary",
         chat: [
           { who: "agent", message: "WhatsApp brought the most inquiries this week." },
           { who: "agent", message: "24 new leads and 8 completed sales." },
@@ -173,13 +173,13 @@ const CONTENT = {
     insight: "AI insight",
     chart: "Leads by channel",
     viewLabel: "Preview",
-    typing: "QeydAI is typing",
+    typing: "Pani is typing",
     online: "Online",
     catalog: "Product catalog",
     product: "Daily care gift set",
     productPrice: "149 AZN",
     order: "Product selected",
-    guide: "See QeydAI handle this automatically",
+    guide: "See Pani handle this automatically",
     demo: "Demo",
   },
 } as const;

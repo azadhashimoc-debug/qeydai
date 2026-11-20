@@ -352,7 +352,7 @@
       }
     },
     "ai": {
-      "eyebrow": "panelim.az AI assistant",
+      "eyebrow": "Pani — panelim.az AI assistant",
       "heading": "The 24/7 AI teammate your sales desk deserves",
       "subheading": "You control the guardrails: the assistant quotes only approved prices and hands tricky questions straight to your staff.",
       "cta": "Try in a demo",
@@ -363,7 +363,7 @@
           "body": "A parent messaging at 11:40 pm gets the same accurate answer as a student messaging during business hours.",
           "chatUser": "Hi, do you have math prep classes for teens?",
           "chatBot": "Hello! Yes, we have grades 7-9 groups. Shall I book you for Thursday 17:00 trial class?",
-          "status": "AI replied · 12 sec"
+          "status": "Pani replied · 12 sec"
         },
         "two": {
           "title": "Understands everyday speech and typos",
@@ -388,7 +388,7 @@
         }
       },
       "phoneBrand": "Learning Center",
-      "phoneSub": "Verified AI desk"
+      "phoneSub": "Pani · AI assistant"
     },
     "outcomes": {
       "heading": "What changes in daily operations?",
