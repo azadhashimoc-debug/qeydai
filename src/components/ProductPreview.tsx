@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode, type KeyboardEvent } from "react";
 import { WhatsAppIcon, InstagramIcon, TelegramIcon } from "@/components/ChannelIcons";
 import { LogoMark } from "@/components/Logo";
 
@@ -173,7 +173,7 @@ const CONTENT = {
 const STAGE_ICONS: Stage[] = ["capture", "automate", "grow", "analyze"];
 
 function StageIcon({ type }: { type: Stage }) {
-  const paths: Record<Stage, React.ReactNode> = {
+  const paths: Record<Stage, ReactNode> = {
     capture: <><path d="M3 5h12v9H8l-4 4V5Z" /><path d="M17 7h4v9h-5" /></>,
     automate: <><path d="m12 2 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" /><path d="m19 17 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z" /></>,
     grow: <><path d="M4 19V5M4 19h17M7 15l5-5 3 3 5-6" /><path d="M15 7h5v5" /></>,
@@ -244,7 +244,7 @@ function AnalyzeScene({ phase, text }: { phase: number; text: typeof CONTENT.az 
   </div>;
 }
 
-export function ProductPreview({ copy, brand, lang = "az" }: { copy: PreviewCopy; brand: string; lobbyAlt: string; lang?: "az" | "en" }) {
+export function ProductPreview({ brand, lang = "az" }: { copy: PreviewCopy; brand: string; lobbyAlt: string; lang?: "az" | "en" }) {
   const text = CONTENT[lang];
   const [active, setActive] = useState(0);
   const [phase, setPhase] = useState(0);
@@ -258,13 +258,19 @@ export function ProductPreview({ copy, brand, lang = "az" }: { copy: PreviewCopy
   useEffect(() => {
     const node = root.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
-    observer.observe(node);
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(query.matches);
+    const observer = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 })
+      : null;
+    if (observer) observer.observe(node);
+    else setVisible(true);
+    const query = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+    const update = () => {
+      setReducedMotion(Boolean(query?.matches));
+      if (query?.matches) setPhase(3);
+    };
     update();
-    query.addEventListener("change", update);
-    return () => { observer.disconnect(); query.removeEventListener("change", update); };
+    query?.addEventListener?.("change", update);
+    return () => { observer?.disconnect(); query?.removeEventListener?.("change", update); };
   }, []);
 
   useEffect(() => {
@@ -286,7 +292,7 @@ export function ProductPreview({ copy, brand, lang = "az" }: { copy: PreviewCopy
     setPhase(reducedMotion ? 3 : 0);
   }
 
-  function onTabKeyDown(event: React.KeyboardEvent<HTMLButtonElement>, index: number) {
+  function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next = index;
     if (event.key === "ArrowRight") next = (index + 1) % 4;
     else if (event.key === "ArrowLeft") next = (index + 3) % 4;
