@@ -50,7 +50,11 @@ jobs:
       - name: Production build
         run: npm run build
       - run: npx playwright install --with-deps chromium
-      - name: Playwright desktop and mobile
+      - name: Playwright desktop (independent)
+        run: npx playwright test --project=desktop
+      - name: Playwright mobile (independent)
+        run: npx playwright test --project=mobile
+      - name: Playwright desktop and mobile (combined regression)
         run: npm run e2e
 
       - uses: actions/upload-artifact@v4
