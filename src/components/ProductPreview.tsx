@@ -342,7 +342,11 @@ export function ProductPreview({ brand, lang = "az" }: { copy: PreviewCopy; bran
       ? new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 })
       : null;
     if (observer) observer.observe(node);
-    else setVisible(true);
+    else {
+      // Fallback must display the preview on browsers without IntersectionObserver.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisible(true);
+    }
     const query = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
     const update = () => {
       setReducedMotion(Boolean(query?.matches));
