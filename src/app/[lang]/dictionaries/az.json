@@ -352,7 +352,7 @@
       }
     },
     "ai": {
-      "eyebrow": "panelim.az AI köməkçisi",
+      "eyebrow": "Pani — panelim.az AI köməkçisi",
       "heading": "Satış komandanızın yanında 24/7 işləyən köməkçi",
       "subheading": "Məhdudiyyətləri siz təyin edirsiniz: AI yalnız təsdiqlədiyiniz məlumatı bölüşür, mürəkkəb sualı dərhal əməkdaşa ötürür.",
       "cta": "Demo ilə yoxla",
@@ -363,7 +363,7 @@
           "body": "Saat 23:40-da yazan valideyn də, iş saatında yazan tələbə də gözləmədən dəqiq cavab alır.",
           "chatUser": "Salam, uşaq üçün riyaziyyat kursu var?",
           "chatBot": "Salam! Bəli, 7–9-cu siniflər üçün qruplarımız var. Cümə axşamı 17:00 sınaq dərsinə yazım?",
-          "status": "AI cavab verdi · 12 san"
+          "status": "Pani cavab verdi · 12 san"
         },
         "two": {
           "title": "Yazı səhvlərini və danışıq dilini anlayır",
@@ -388,7 +388,7 @@
         }
       },
       "phoneBrand": "Tədris Mərkəzi",
-      "phoneSub": "Təsdiqlənmiş köməkçi"
+      "phoneSub": "Pani · AI köməkçisi"
     },
     "outcomes": {
       "heading": "Gündəlik işdə nəyi dəyişir?",
