@@ -388,7 +388,7 @@
       "subtitle": "WhatsApp, Instagram, Telegram və fərdi sistemləriniz üçün REST Webhook API tək platformada birləşir.",
       "primaryCta": "Bütün kanalları kəşf edin",
       "secondaryCta": "Demo sifariş edin",
-      "badge": "Çoxkanallı Mərkəz"
+      "badge": "Çoxkanallı Biznes"
     },
     "cards": {
       "whatsapp": {
@@ -460,7 +460,7 @@
         },
         "two": {
           "title": "DM sorğularından avtomatik satış kartı",
-          "desc": "Kurs və ya xidmətlə maraqlanan hər yeni istifadəçi üçün CRM lövhəsində kart açılır."
+          "desc": "Hər yeni məhsul və ya xidmət sorğusu üçün CRM lövhəsində satış kartı yaradıla bilər."
         },
         "three": {
           "title": "Təbii dildə qiymət izahı",
@@ -478,7 +478,7 @@
     "telegram": {
       "badge": "Telegram Bot kanalı",
       "title": "Telegram Üzərindən Sürətli Qeydiyyat və Bildirişlər",
-      "subtitle": "Bir neçə dəqiqə ərzində Telegram botunuzu panelə bağlayın, tələbə və müştəri sorğularını dərhal cavablandırın.",
+      "subtitle": "Telegram botunu panelə bağlayıb müştəri suallarına vahid iş sahəsindən cavab verin.",
       "features": {
         "one": {
           "title": "Bot tokeni ilə ani qoşulma",
@@ -486,7 +486,7 @@
         },
         "two": {
           "title": "24/7 fasiləsiz avtomatik dialoq",
-          "desc": "Tələbələr gecə və ya istirahət günlərində yazsa belə, dərhal sınaq dərsinə yer ayırır."
+          "desc": "Müştərilər gecə və ya istirahət günlərində yazsa belə, xidmət vaxtları barədə məlumat və rezervasiya təklifləri təqdim edin."
         },
         "three": {
           "title": "Komandaya dərhal Telegram bildirişi",
@@ -494,7 +494,7 @@
         },
         "four": {
           "title": "Təhlükəsiz və qapalı kanal",
-          "desc": "Telegram mesajları mərkəzinizin təcrid olunmuş iş sahəsində etibarlı saxlanılır."
+          "desc": "Telegram mesajları biznesinizin ayrıca iş sahəsində saxlanılır."
         }
       },
       "toolsCtaTitle": "Telegram botundan WhatsApp-a yönləndirmə",
@@ -508,7 +508,7 @@
       "features": {
         "one": {
           "title": "GET /api/v1/sessions cədvəl oxunması",
-          "desc": "Yalnız boş yeri olan gələcək sınaq dərslərini real vaxtda çəkin."
+          "desc": "Mövcud vaxtı və tutumu olan gələcək rezervasiyaları sorğulayın."
         },
         "two": {
           "title": "POST /api/v1/enroll atomik qeydiyyat",
@@ -682,11 +682,11 @@
       "body": "Instagram reklamlarından və hekayə paylaşımlarından gələn müraciətlər adətən yüksək maraq daşıyır, lakin cavab 15 dəqiqədən gecikdikdə konversiya kəskin aşağı düşür. Doğru yanaşma gələn hər sorğuya ilk dəqiqədə təbii dildə cavab vermək, maraqlandığı xidməti müəyyən etmək və təqvimə sınaq dərsi qeyd etməkdir. Bu iş axını həm operatorların yükünü azaldır, həm də reklam büdcənizin gəlirə çevrilməsini təmin edir."
     },
     "appointment-crm": {
-      "title": "Sınaq Dərsləri və Görüşlərin İdarə Edilməsi: Dolu Qruplara Son",
+      "title": "Görüş və Rezervasiya İdarəetməsi: Təkrar Qeydiyyata Son",
       "excerpt": "Excel cədvəllərindən atomik tutum kilidləməsinə keçid və təkrar müraciətlərin qarşısının alınması.",
       "category": "CRM və Cədvəl",
       "readTime": "4 dəqiqə",
-      "body": "Bir çox tədris və xidmət mərkəzi sınaq dərslərini əl ilə Excel cədvəllərində qeyd edir. Nəticədə eyni tələbə bir neçə dəfə yazılır və ya otaq tutumundan artıq adam qəbul olunur. Atomik tutum kilidi sistemi hər sessiya üçün boş yerləri baza səviyyəsində yoxlayır, son yeri dəqiq qoruyur və eyni nömrə ilə təkrar qeydiyyat cəhdlərini dayandırır. Menecerlər yalnız təsdiq olunmuş və hazır müştərilərlə ünsiyyət qurur."
+      "body": "Bir çox mağaza, salon və xidmət şirkəti görüşləri hələ də Excel cədvəllərində idarə edir. Bu isə eyni müştərinin bir neçə dəfə yazılması və dolu saatların səhv göstərilməsi riskini artırır. Atomik rezervasiya məntiqi hər vaxt aralığı üçün müəyyənləşdirilmiş tutuma əməl edilməsinə kömək edir."
     },
     "ai-reply-workflows": {
       "title": "Satış Komandasında AI Cavab Köməkçisi: Qaydalar və Nəzarət",
@@ -700,7 +700,7 @@
       "excerpt": "Telegram botunu panelim.az-a bağlamaqla sorğuların bir saniyədə qeydə alınması və cavablandırılması.",
       "category": "Telegram",
       "readTime": "5 dəqiqə",
-      "body": "Telegram Bot API müraciətlərin qəbulu üçün ən çevik və sürətli kanallardan biridir. Rəsmi bot tokeninizi panelə əlavə etməklə 2 dəqiqə ərzində tam işlək mərkəz əldə edirsiniz. Tələbələr bot vasitəsilə kurs proqramını öyrənə, sınaq dərsinə yazıla və təsdiq bildirişi ala bilərlər. Bütün məlumatlar avtomatik olaraq CRM satış lövhəsinə ötürülür və menecerlər tərəfindən idarə olunur."
+      "body": "Telegram Bot API müştəri müraciətlərini qəbul etmək üçün əlverişli kanaldır. Rəsmi bot tokeni iş sahəsinə qoşulduqda istifadəçilər məhsul və xidmətlərlə bağlı soruşa, mövcud vaxtları öyrənə və komandadan cavab ala bilirlər."
     }
   },
   "pricingPage": {
@@ -910,7 +910,7 @@
         },
         "account": {
           "title": "2. İş sahəsi və təhlükəsizlik",
-          "body": "İstifadəçi mərkəz üçün təqdim edilən giriş açarlarının məxfiliyinə və iş sahəsində icra olunan bütün fəaliyyətlərə görə məsuliyyət daşıyır. Giriş açarlarının icazəsiz üçüncü şəxslərlə paylaşılması qadağandır."
+          "body": "İstifadəçi biznesin iş sahəsinə verilən giriş açarlarının məxfiliyinə və həmin iş sahəsində icra olunan fəaliyyətlərə görə məsuliyyət daşıyır. Giriş məlumatlarının icazəsiz şəxslərlə paylaşılması qadağandır."
         },
         "acceptable": {
           "title": "3. Məqbul istifadə qaydaları",
@@ -941,11 +941,11 @@
         },
         "purpose": {
           "title": "2. Məlumatların istifadə məqsədi",
-          "body": "Toplanan məlumatlar yalnız müştəri müraciətlərinin cavablandırılması, sınaq dərslərinin təşkili, CRM iş axınının icrası və platformanın texniki təhlükəsizliyinin təmin olunması məqsədilə emal edilir."
+          "body": "Toplanan məlumatlar müştəri müraciətlərinin cavablandırılması, görüş və rezervasiyaların təşkili, CRM iş axınlarının icrası və platformanın texniki təhlükəsizliyinin təmin olunması məqsədilə emal edilir."
         },
         "isolation": {
-          "title": "3. Mərkəzlər arası məlumat təcridi",
-          "body": "Hər bir müştərinin və ya mərkəzin məlumatları ayrıca təcrid olunmuş iş sahəsində saxlanılır. Bir mərkəzin heyəti digər mərkəzin müştəri bazasını, cədvəlini və ya mesajlarını heç bir halda görə bilməz."
+          "title": "3. İş sahələri arasında məlumat ayrılığı",
+          "body": "Hər biznesin müştəri məlumatları ayrıca iş sahəsində saxlanılır. Bir biznesin əməkdaşları digər biznesin müştəri bazasına, cədvəlinə və yazışmalarına çıxış əldə etməməlidir."
         },
         "thirdParty": {
           "title": "4. Üçüncü tərəf xidmətləri",
