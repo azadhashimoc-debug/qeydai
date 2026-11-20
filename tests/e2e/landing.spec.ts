@@ -206,7 +206,7 @@ test("focus ring keeps 3:1 contrast: dark violet on paper, yellow on dark cover"
   }));
   expect(skip).toEqual({ visible: true, color: "rgb(255, 228, 92)" });
   const contrastAgainstWhite = (rgb: string) => {
-    const values = rgb.match(/\\d+/g)?.slice(0, 3).map(Number) ?? [];
+    const values = rgb.match(/\d+/g)?.slice(0, 3).map(Number) ?? [];
     expect(values).toHaveLength(3);
     const channels = values.map((channel) => {
       const v = channel / 255;
