@@ -9,12 +9,12 @@ type CopilotMode = "analyst" | "sources" | "overdue" | "assistant";
 
 const COPY = {
   az: {
-    triggerBtn: "✨ Copilot",
-    title: "panelim.az Copilot",
+    triggerBtn: "✨ Pani",
+    title: "Pani · panelim.az",
     newChat: "Yeni təhlil",
     expand: "Genişləndir",
-    close: "Copilot pəncərəsini bağla",
-    modeLabel: "Copilot rejimi",
+    close: "Pani pəncərəsini bağla",
+    modeLabel: "Pani rejimi",
     modes: {
       analyst: "Analist modu — Qazanc-İtki Analizi",
       sources: "Qaynaq Bazında Performans (2026)",
@@ -75,16 +75,16 @@ const COPY = {
       taskBadge: "Tapşırıq vaxtı gəlmiş Sabah üçün Təmsilçi : ⟳ Təqib:",
       taskText: "Sınaq dərsi öncəsi valideynə WhatsApp konum və hazırlıq mesajı göndər.",
     },
-    promptPlaceholder: "Copilot-a sual verin...",
+    promptPlaceholder: "Pani-yə sual verin...",
     askBtn: "Soruş",
   },
   en: {
-    triggerBtn: "✨ Copilot",
-    title: "panelim.az Copilot",
+    triggerBtn: "✨ Pani",
+    title: "Pani · panelim.az",
     newChat: "New analysis",
     expand: "Expand",
-    close: "Close Copilot drawer",
-    modeLabel: "Copilot mode",
+    close: "Close Pani drawer",
+    modeLabel: "Pani mode",
     modes: {
       analyst: "Analyst mode — Win-Loss Funnel Analysis",
       sources: "Top Ad Sources Performance (2026)",
@@ -145,7 +145,7 @@ const COPY = {
       taskBadge: "Task due Tomorrow for Rep : ⟳ Follow-up:",
       taskText: "Send WhatsApp location pin and preparation checklist before trial class.",
     },
-    promptPlaceholder: "Ask Copilot...",
+    promptPlaceholder: "Ask Pani...",
     askBtn: "Ask",
   },
 } as const;
