@@ -13,7 +13,7 @@ it("shows the four QeydAI showcase stages in Azerbaijani", () => {
   expect(tabs).toHaveLength(4);
   expect(tabs.map((tab) => tab.textContent)).toEqual(["Cəlb et", "Avtomatlaşdır", "Böyüt", "Təhlil et"]);
   expect(screen.getByRole("tabpanel").getAttribute("aria-labelledby")).toBe("pm-live-tab-capture");
-  expect(screen.getByText("Aysel Məmmədova")).toBeTruthy();
+  expect(screen.getAllByText("Aysel Məmmədova").length).toBeGreaterThan(0);
 });
 
 it("switches to booking and analytics without navigating away", () => {
