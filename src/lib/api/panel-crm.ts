@@ -79,7 +79,7 @@ export async function requirePanelMember(
   }
   const nowMs = Date.now();
   const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant);
-  if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs))) {
+  if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs, payload.tenantId))) {
     return { ok: false, response: fail(401, "unauthorized") };
   }
   return { ok: true, value: { tenantId: payload.tenantId, memberId: payload.memberId, role: "owner" } };
