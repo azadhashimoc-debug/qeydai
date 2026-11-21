@@ -24,7 +24,7 @@ suite("public lead route persists with application PostgreSQL and tenant RLS", (
     body: JSON.stringify(body),
   }));
 
-  async function queryFor<R = { total: number }>(tenantId: string, sql: string, params: unknown[] = []) {
+  async function queryFor<R extends Record<string, unknown> = { total: number }>(tenantId: string, sql: string, params: unknown[] = []) {
     const client = await pool.connect();
     try {
       await client.query("BEGIN");
