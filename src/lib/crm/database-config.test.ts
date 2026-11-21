@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { databaseConfigured } from "./store";
+import { databaseConfigured, workspaceTransaction } from "./store";
 
 type EnvKey = "NEXT_PHASE" | "QEYDAI_DATABASE_URL" | "QEYDAI_E2E_SQLITE" | "VERCEL" | "NODE_ENV";
 function setEnv(key: EnvKey, value?: string) {
@@ -34,6 +34,17 @@ describe("CRM persistent database availability", () => {
     expect(databaseConfigured()).toBe(true);
     setEnv("VERCEL", "1");
     expect(databaseConfigured()).toBe(false);
+  });
+
+  it("refuses direct worker transactions without PostgreSQL on Vercel", async () => {
+    setEnv("NEXT_PHASE");
+    setEnv("QEYDAI_DATABASE_URL");
+    setEnv("QEYDAI_E2E_SQLITE", "1");
+    setEnv("VERCEL", "1");
+    setEnv("NODE_ENV", "production");
+    await expect(workspaceTransaction("tenant", async () => 1)).rejects.toThrow(
+      "database_unavailable",
+    );
   });
 
   it("never initializes a CRM database while Next.js builds", () => {
