@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS sales_deals (
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, contact_id) REFERENCES sales_contacts(tenant_id, id) ON DELETE RESTRICT,
   FOREIGN KEY (tenant_id, stage_id) REFERENCES sales_stages(tenant_id, id) ON DELETE RESTRICT,
-  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (assignee_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_custom_field_defs (
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS sales_deal_field_values (
   tenant_id text NOT NULL,
   deal_id text NOT NULL,
   field_id text NOT NULL,
-  value jsonb NOT NULL DEFAULT '{}'::jsonb CHECK (jsonb_typeof(value) IN ('string','number','boolean') OR jsonb_typeof(value)='null'),
+  value jsonb NOT NULL DEFAULT 'null'::jsonb CHECK (jsonb_typeof(value) IN ('string','number','boolean') OR jsonb_typeof(value)='null'),
   PRIMARY KEY (tenant_id, deal_id, field_id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
   FOREIGN KEY (tenant_id, field_id) REFERENCES sales_custom_field_defs(tenant_id, id) ON DELETE CASCADE
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS sales_tasks (
   updated_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
-  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (assignee_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_notes (
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS sales_notes (
   created_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
-  FOREIGN KEY (tenant_id, author_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, author_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (author_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_deal_bookings (
