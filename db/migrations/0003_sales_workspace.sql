@@ -259,7 +259,7 @@ ALTER TABLE crm_leads FORCE ROW LEVEL SECURITY;
 ALTER TABLE inbox_messages FORCE ROW LEVEL SECURITY;
 
 -- RLS
-DO $
+DO $$
 DECLARE tbl text;
 BEGIN
   FOREACH tbl IN ARRAY ARRAY['sales_workspaces','sales_members','sales_member_keys','sales_stages',
