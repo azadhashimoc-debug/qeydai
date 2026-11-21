@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   adminKeyFingerprint,
   authenticateAdminKey,
@@ -9,6 +9,9 @@ import {
   PANEL_COOKIE_NAME,
   readCookieValue,
   verifyPanelSessionToken,
+  revokePanelJti,
+  isPanelJtiRevoked,
+  setPanelJtiStore,
 } from "./panel-auth";
 
 const KEY_A = "admin_key_alpha_1234567890abcdef";
@@ -155,5 +158,22 @@ describe("cookie header helpers", () => {
     expect(readCookieValue(header, "missing")).toBeNull();
     expect(readCookieValue(null, PANEL_COOKIE_NAME)).toBeNull();
     expect(readCookieValue(`${PANEL_COOKIE_NAME}=%E0%A4%A`, PANEL_COOKIE_NAME)).toBe("%E0%A4%A");
+  });
+});
+
+describe("production JTI storage fail-closed", () => {
+  it("never trusts an in-process revocation map on Vercel", async () => {
+    setPanelJtiStore(null);
+    vi.stubEnv("VERCEL", "1");
+    try {
+      await expect(revokePanelJti("test-production-jti", Date.now() + 60_000)).rejects.toThrow(
+        "persistent_panel_jti_store_required",
+      );
+      await expect(isPanelJtiRevoked("test-production-jti")).rejects.toThrow(
+        "persistent_panel_jti_store_required",
+      );
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 });

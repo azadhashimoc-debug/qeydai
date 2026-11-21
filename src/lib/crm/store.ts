@@ -5,6 +5,7 @@ import { normalizeAzPhone } from "../enrollment/enrollment";
 import type { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
 import type { InboundMessage } from "./channels";
 import { getSharedStore } from "../api/instance";
+import { assertSafeApplicationRole, type PgClient } from "../enrollment/postgres-store";
 
 const sqliteStoreMap = new WeakMap<object, SqliteEnrollmentStore>();
 
@@ -818,16 +819,27 @@ export function setPoolForTesting(p: Pool | undefined) {
 }
 
 export function databaseConfigured() {
-  return process.env.NEXT_PHASE !== "phase-production-build";
+  if (process.env.NEXT_PHASE === "phase-production-build") return false;
+  if (process.env.QEYDAI_DATABASE_URL) return true;
+  // Production/serverless must not silently persist CRM records to a local
+  // SQLite file that disappears across deployments or Vercel invocations.
+  if (process.env.NODE_ENV === "production" || process.env.VERCEL) {
+    // Explicitly limited to the local, non-Vercel Playwright harness.
+    return process.env.QEYDAI_E2E_SQLITE === "1" && !process.env.VERCEL;
+  }
+  return true;
 }
 
 export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClient) => Promise<T>): Promise<T> {
+  // Direct channel/worker callers must not silently fall back to ephemeral SQLite in production.
+  if (!databaseConfigured()) throw new Error("database_unavailable");
   const connectionString = process.env.QEYDAI_DATABASE_URL;
   if (connectionString) {
     pool ??= new Pool({ connectionString, connectionTimeoutMillis: 5000 });
     const db = await pool.connect();
     try {
       await db.query("BEGIN");
+      await assertSafeApplicationRole(db as unknown as PgClient);
       await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
       const result = await run(db);
       await db.query("COMMIT");

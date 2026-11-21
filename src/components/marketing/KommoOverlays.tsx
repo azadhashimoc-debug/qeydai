@@ -296,6 +296,8 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
   useEffect(() => {
     try {
       if (!localStorage.getItem("panelim:cookie-accepted")) {
+        // First-mount localStorage hydration is intentional for the existing banner.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCookieOpen(true);
       }
     } catch {

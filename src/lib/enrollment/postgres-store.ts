@@ -120,6 +120,25 @@ function toMessage(r: InboxMessageRow): InboxMessage {
 }
 
 /**
+ * Never use an owner, superuser, or BYPASSRLS connection for production app queries.
+ * Owners are rejected even with FORCE RLS so future tables cannot accidentally bypass it.
+ */
+export async function assertSafeApplicationRole(client: PgClient): Promise<void> {
+  if (process.env.NODE_ENV !== "production") return;
+  const { rows } = await client.query<{ unsafe: boolean }>(`
+    SELECT (r.rolsuper OR r.rolbypassrls OR EXISTS (
+      SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+      WHERE n.nspname='public' AND c.relname IN ('sessions','sales_contacts')
+        AND c.relowner=r.oid
+    )) AS unsafe
+    FROM pg_roles r WHERE r.rolname=current_user
+  `);
+  if (rows.length !== 1 || rows[0].unsafe !== false) {
+    throw new Error("unsafe_application_database_role");
+  }
+}
+
+/**
  * PostgreSQL implementation of EnrollmentStore.
  * Uses `SELECT ... FOR UPDATE` on the locked session row inside an explicit transaction
  * plus `UNIQUE(tenant_id, session_id, phone)` to prevent double-booking and race overfills.
@@ -127,8 +146,60 @@ function toMessage(r: InboxMessageRow): InboxMessage {
 export class PostgresEnrollmentStore implements EnrollmentStore {
   constructor(private pool: PgPool) {}
 
+  /** All PostgreSQL enrollment queries run with tenant-bound, transaction-local RLS. */
+  private scoped(tenantId: string): PgClient {
+    if (!tenantId) throw new Error("tenant_required");
+    return {
+      query: async <R = Record<string, unknown>>(sql: string, params?: unknown[]) => {
+        const client = await this.pool.connect();
+        try {
+          await client.query("BEGIN");
+          await assertSafeApplicationRole(client);
+          await client.query("SELECT set_config('app.tenant_id', $1, true)", [tenantId]);
+          const result = await client.query<R>(sql, params);
+          await client.query("COMMIT");
+          return result;
+        } catch (error) {
+          await client.query("ROLLBACK").catch(() => {});
+          throw error;
+        } finally {
+          client.release();
+        }
+      },
+    };
+  }
+
+  /** JTI revocations persist in tenant-isolated PostgreSQL across instances. */
+  async revokePanelJti(jti: string, expMs: number, tenantId: string): Promise<void> {
+    await this.scoped(tenantId).query(
+      `INSERT INTO panel_revoked_jti (tenant_id,jti,exp_ms) VALUES ($1,$2,$3)
+       ON CONFLICT (tenant_id,jti)
+       DO UPDATE SET exp_ms=GREATEST(panel_revoked_jti.exp_ms, EXCLUDED.exp_ms)`,
+      [tenantId, jti, expMs],
+    );
+  }
+
+  async isPanelJtiRevoked(jti: string, nowMs: number, tenantId: string): Promise<boolean> {
+    const { rows } = await this.scoped(tenantId).query<{ exp_ms: number | string }>(
+      "SELECT exp_ms FROM panel_revoked_jti WHERE tenant_id=$1 AND jti=$2",
+      [tenantId, jti],
+    );
+    return Number(rows[0]?.exp_ms ?? 0) > nowMs;
+  }
+
+  async requireSalesMember(
+    tenantId: string, memberId: string | null,
+  ): Promise<{ memberId: string; role: "owner" | "manager" | "operator" } | null> {
+    if (!memberId) return null;
+    const { rows } = await this.scoped(tenantId).query<{ id: string; role: "owner" | "manager" | "operator" }>(
+      "SELECT id,role FROM sales_members WHERE tenant_id=$1 AND id=$2",
+      [tenantId, memberId],
+    );
+    return rows[0] ? { memberId: rows[0].id, role: rows[0].role } : null;
+  }
+
   async createSession(s: Session): Promise<CreateSessionOutcome> {
-    const { rows } = await this.pool.query<{ id: string }>(
+    const { rows } = await this.scoped(s.tenantId).query<{ id: string }>(
       "INSERT INTO sessions (tenant_id, id, course_id, starts_at, capacity) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (tenant_id, id) DO NOTHING RETURNING id",
       [s.tenantId, s.id, s.courseId, s.startsAt, s.capacity],
     );
@@ -136,7 +207,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async getSession(tenantId: string, sessionId: string): Promise<Session | null> {
-    const { rows } = await this.pool.query<SessionRow>(
+    const { rows } = await this.scoped(tenantId).query<SessionRow>(
       "SELECT id, tenant_id, course_id, starts_at, capacity FROM sessions WHERE tenant_id = $1 AND id = $2",
       [tenantId, sessionId],
     );
@@ -144,7 +215,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async listSessions(tenantId: string): Promise<Session[]> {
-    const { rows } = await this.pool.query<SessionRow>(
+    const { rows } = await this.scoped(tenantId).query<SessionRow>(
       "SELECT id, tenant_id, course_id, starts_at, capacity FROM sessions WHERE tenant_id = $1 ORDER BY starts_at ASC",
       [tenantId],
     );
@@ -152,7 +223,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async countBySession(tenantId: string, sessionId: string): Promise<number> {
-    const { rows } = await this.pool.query<{ n: number | string }>(
+    const { rows } = await this.scoped(tenantId).query<{ n: number | string }>(
       "SELECT COUNT(*)::int AS n FROM enrollments WHERE tenant_id = $1 AND session_id = $2",
       [tenantId, sessionId],
     );
@@ -162,7 +233,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   async countBySessions(tenantId: string, sessionIds: string[]): Promise<Map<string, number>> {
     const counts = new Map<string, number>();
     if (sessionIds.length === 0) return counts;
-    const { rows } = await this.pool.query<{ session_id: string; n: number | string }>(
+    const { rows } = await this.scoped(tenantId).query<{ session_id: string; n: number | string }>(
       "SELECT session_id, COUNT(*)::int AS n FROM enrollments WHERE tenant_id = $1 AND session_id = ANY($2::text[]) GROUP BY session_id",
       [tenantId, sessionIds],
     );
@@ -175,6 +246,8 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
     const client = await this.pool.connect();
     try {
       await client.query("BEGIN");
+      await assertSafeApplicationRole(client);
+      await client.query("SELECT set_config('app.tenant_id', $1, true)", [e.tenantId]);
       const { rows: sessionRows } = await client.query<{ capacity: number }>(
         "SELECT capacity FROM sessions WHERE tenant_id = $1 AND id = $2 FOR UPDATE",
         [e.tenantId, e.sessionId],
@@ -225,11 +298,11 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   async listEnrollments(tenantId: string, sessionId?: string): Promise<Enrollment[]> {
     const { rows } =
       sessionId === undefined
-        ? await this.pool.query<EnrollmentRow>(
+        ? await this.scoped(tenantId).query<EnrollmentRow>(
             "SELECT id, tenant_id, session_id, name, phone, created_at FROM enrollments WHERE tenant_id = $1 ORDER BY created_at DESC",
             [tenantId],
           )
-        : await this.pool.query<EnrollmentRow>(
+        : await this.scoped(tenantId).query<EnrollmentRow>(
             "SELECT id, tenant_id, session_id, name, phone, created_at FROM enrollments WHERE tenant_id = $1 AND session_id = $2 ORDER BY created_at DESC",
             [tenantId, sessionId],
           );
@@ -237,7 +310,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async listSessionsWithCounts(tenantId: string): Promise<SessionSummary[]> {
-    const { rows } = await this.pool.query<SessionSummaryRow>(
+    const { rows } = await this.scoped(tenantId).query<SessionSummaryRow>(
       `SELECT s.id, s.tenant_id, s.course_id, s.starts_at, s.capacity, COUNT(e.id)::int AS taken
        FROM sessions s
        LEFT JOIN enrollments e ON e.tenant_id = s.tenant_id AND e.session_id = s.id
@@ -267,7 +340,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
     note?: string;
     nowIso: string;
   }): Promise<CrmLead> {
-    const { rows } = await this.pool.query<CrmLeadRow>(
+    const { rows } = await this.scoped(lead.tenantId).query<CrmLeadRow>(
       `INSERT INTO crm_leads (id, tenant_id, name, phone, source, stage, note, created_at, updated_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        ON CONFLICT (tenant_id, phone) DO UPDATE SET
@@ -298,7 +371,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async listLeads(tenantId: string): Promise<CrmLead[]> {
-    const { rows } = await this.pool.query<CrmLeadRow>(
+    const { rows } = await this.scoped(tenantId).query<CrmLeadRow>(
       "SELECT id, tenant_id, name, phone, source, stage, note, created_at, updated_at FROM crm_leads WHERE tenant_id = $1 ORDER BY updated_at DESC",
       [tenantId],
     );
@@ -306,7 +379,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   }
 
   async getLead(tenantId: string, leadId: string): Promise<CrmLead | null> {
-    const { rows } = await this.pool.query<CrmLeadRow>(
+    const { rows } = await this.scoped(tenantId).query<CrmLeadRow>(
       "SELECT id, tenant_id, name, phone, source, stage, note, created_at, updated_at FROM crm_leads WHERE tenant_id = $1 AND id = $2",
       [tenantId, leadId],
     );
@@ -318,7 +391,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
     leadId: string,
     patch: { stage?: LeadStage; note?: string; updatedAt: string },
   ): Promise<CrmLead | null> {
-    const { rows } = await this.pool.query<CrmLeadRow>(
+    const { rows } = await this.scoped(tenantId).query<CrmLeadRow>(
       `UPDATE crm_leads
        SET stage = COALESCE($1::text, stage),
            note = COALESCE($2::text, note),
@@ -332,7 +405,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
 
   async addMessage(msg: InboxMessage): Promise<InboxMessage | null> {
     try {
-      const { rows } = await this.pool.query<InboxMessageRow>(
+      const { rows } = await this.scoped(msg.tenantId).query<InboxMessageRow>(
         `INSERT INTO inbox_messages (id, tenant_id, lead_id, channel, direction, sender, body, created_at)
          SELECT $1::text, $2::text, $3::text, $4::text, $5::text, $6::text, $7::text, $8::timestamptz
          WHERE EXISTS (SELECT 1 FROM crm_leads WHERE tenant_id = $2::text AND id = $3::text)
@@ -350,7 +423,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
   async listMessages(tenantId: string, leadId?: string): Promise<InboxMessage[]> {
     const { rows } =
       leadId === undefined
-        ? await this.pool.query<InboxMessageRow>(
+        ? await this.scoped(tenantId).query<InboxMessageRow>(
             `SELECT id, tenant_id, lead_id, channel, direction, sender, body, created_at
              FROM inbox_messages
              WHERE tenant_id = $1
@@ -358,7 +431,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
              LIMIT $2`,
             [tenantId, MAX_INBOX_MESSAGES],
           )
-        : await this.pool.query<InboxMessageRow>(
+        : await this.scoped(tenantId).query<InboxMessageRow>(
             `SELECT id, tenant_id, lead_id, channel, direction, sender, body, created_at
              FROM inbox_messages
              WHERE tenant_id = $1 AND lead_id = $2

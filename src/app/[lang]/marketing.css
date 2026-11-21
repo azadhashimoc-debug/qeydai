@@ -5059,8 +5059,10 @@
   --pm-shadow-sm: 0 10px 28px rgb(31 16 73 / 5%);
   --pm-shadow: 0 20px 55px rgb(31 16 73 / 10%);
 }
+/* On light marketing surfaces the former lavender focus ring missed WCAG 3:1.
+   Use an equally brand-consistent deep violet; preserve yellow on dark skip links. */
 .marketing :is(a,button,input,select,textarea,summary):focus-visible {
-  outline: 3px solid #a995f8;
+  outline: 3px solid #573fc4;
   outline-offset: 3px;
 }
 .pm-header {

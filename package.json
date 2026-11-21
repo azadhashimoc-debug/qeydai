@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test": "vitest run",
     "e2e": "playwright test",
-    "seed:demo": "node scripts/seed-demo.mts"
+    "seed:demo": "node scripts/seed-demo.mts",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts src/lib/api/panel-session.pg.test.ts src/app/api/lead/route.pg.test.ts"
   },
   "dependencies": {
     "next": "16.4.6",

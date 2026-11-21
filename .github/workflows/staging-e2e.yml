@@ -1,0 +1,81 @@
+name: Neon staging Next.js E2E
+
+on:
+  push:
+    branches: ['feat/pani-crm-intake-core']
+    paths:
+      - '.github/workflows/staging-e2e.yml'
+      - 'playwright.staging.config.ts'
+      - 'tests/staging-e2e/**'
+      - 'src/**'
+      - 'package*.json'
+  pull_request:
+    branches: ['feat/panelim-subpages']
+    paths:
+      - '.github/workflows/staging-e2e.yml'
+      - 'playwright.staging.config.ts'
+      - 'tests/staging-e2e/**'
+      - 'src/**'
+      - 'package*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  neon-staging-e2e:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CI: "true"
+      QEYDAI_DATABASE_URL: ${{ secrets.QEYDAI_STAGING_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Require real staging-only Neon secret
+        shell: bash
+        run: |
+          if [ -z "$QEYDAI_DATABASE_URL" ]; then
+            echo "::error::Missing Actions secret QEYDAI_STAGING_DATABASE_URL. Staging E2E NOT executed."
+            exit 1
+          fi
+          node -e 'const u=new URL(process.env.QEYDAI_DATABASE_URL); if(u.hostname!=="ep-still-lab-bct78sf9.c-16.us-east-1.aws.neon.tech"||decodeURIComponent(u.username)!=="panelim_staging_app"||u.pathname!=="/neondb") process.exit(1);'
+      - name: Generate isolated throwaway test tenants and credentials
+        shell: bash
+        run: |
+          node <<'NODE'
+          const crypto = require('node:crypto');
+          const fs = require('node:fs');
+          const suffix = crypto.randomBytes(7).toString('hex');
+          const vars = {
+            STAGING_E2E_TENANT_A: 'stg_e2e_a_' + suffix,
+            STAGING_E2E_TENANT_B: 'stg_e2e_b_' + suffix,
+            STAGING_E2E_ADMIN_KEY_A: crypto.randomBytes(32).toString('hex'),
+            STAGING_E2E_ADMIN_KEY_B: crypto.randomBytes(32).toString('hex'),
+            STAGING_E2E_API_KEY_A: crypto.randomBytes(32).toString('hex'),
+            STAGING_E2E_API_KEY_B: crypto.randomBytes(32).toString('hex'),
+            STAGING_E2E_PANEL_SECRET: crypto.randomBytes(32).toString('hex'),
+          };
+          for (const [key, val] of Object.entries(vars)) {
+            if (key.includes('KEY') || key.includes('SECRET')) console.log('::add-mask::' + val);
+            fs.appendFileSync(process.env.GITHUB_ENV, key + '=' + val + '\n');
+          }
+          NODE
+      - run: npm ci
+      - name: Production-mode Next.js build
+        run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Real Neon staging browser and HTTP regression
+        run: npx playwright test --config=playwright.staging.config.ts
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: neon-staging-e2e-failure
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 3

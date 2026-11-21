@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { getSharedStore, parseKeys } from "@/lib/api/instance";
+import { getApplicationEnrollmentStore, parseKeys } from "@/lib/api/instance";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
 import { validateLead } from "@/lib/leads/leads";
 import { createRateLimiter } from "@/lib/rate-limit";
@@ -12,6 +12,25 @@ const WINDOW_MS = 10 * 60_000;
 const perClient = createRateLimiter({ max: 5, windowMs: WINDOW_MS });
 // Backstop against rotating client identities: caps total accepted leads per window.
 const global = createRateLimiter({ max: 200, windowMs: WINDOW_MS });
+
+/**
+ * E2E runner submits independent forms from the same localhost IP. Give each
+ * verified local test an isolated *client* quota without raising/deleting
+ * either production rate limit. Only enabled on the explicitly opted-in
+ * localhost Playwright server; a caller cannot spoof this in production.
+ */
+function leadClientKey(req: Request) {
+  const url = new URL(req.url);
+  if (process.env.QEYDAI_E2E_SQLITE === "1" &&
+      !process.env.VERCEL &&
+      (url.hostname === "localhost" || url.hostname === "127.0.0.1")) {
+    const testClient = req.headers.get("x-qeydai-e2e-client");
+    if (testClient && /^[a-zA-Z0-9_-]{8,100}$/.test(testClient)) {
+      return `e2e:${testClient}`;
+    }
+  }
+  return clientKey(req);
+}
 
 export const resetLeadRateLimit = () => {
   perClient.clear();
@@ -31,7 +50,7 @@ export function resolvePublicLeadTenant(): string {
 const noStore = { "cache-control": "no-store" } as const;
 const fail = (error: string, status: number) => Response.json({ ok: false, error }, { status, headers: noStore });
 
-// Local MVP storage: data/leads.jsonl (gitignored) + shared SQLite CRM store so leads appear in panel.
+// Production leads persist in tenant-scoped PostgreSQL; local JSONL remains test/dev-only.
 export async function POST(req: Request) {
   if (!(req.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json")) {
     return fail("unsupported_media_type", 415);
@@ -41,7 +60,7 @@ export async function POST(req: Request) {
   const declared = Number(req.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return fail("payload_too_large", 413);
 
-  if (global.isLimited("all") || !perClient.allow(clientKey(req))) return fail("rate_limited", 429);
+  if (global.isLimited("all") || !perClient.allow(leadClientKey(req))) return fail("rate_limited", 429);
 
   const text = await readLimitedUtf8(req, MAX_BODY_BYTES);
   if (text === null) return fail("payload_too_large", 413);
@@ -56,20 +75,24 @@ export async function POST(req: Request) {
   if (!v.ok) return fail("invalid_input", 400);
   if (!global.allow("all")) return fail("rate_limited", 429);
 
+  const store = getApplicationEnrollmentStore();
+  if (!store) return fail("database_unavailable", 503);
+
   const createdAt = new Date().toISOString();
-  try {
-    const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
+  // Keep historical local test/dev JSONL output only when PostgreSQL is not configured.
+  if (!process.env.QEYDAI_DATABASE_URL) {
+    try {
+      const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
     await mkdir(path.dirname(file), { recursive: true });
-    await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
-  } catch (err) {
-    console.error("lead storage failed:", err instanceof Error ? err.message : "unknown");
-    return fail("server_error", 500);
+      await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
+    } catch (err) {
+      console.error("lead storage failed:", err instanceof Error ? err.message : "unknown");
+      return fail("server_error", 500);
+    }
   }
 
-  if (process.env.NEXT_PHASE !== "phase-production-build") {
-    try {
-      const store = getSharedStore();
-      await store.upsertLead({
+  try {
+    await store.upsertLead({
         id: `lead_${randomUUID()}`,
         tenantId: resolvePublicLeadTenant(),
         name: v.lead.name,
@@ -77,11 +100,10 @@ export async function POST(req: Request) {
         source: "web",
         stage: "new",
         nowIso: createdAt,
-      });
-    } catch (err) {
-      console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
-      return fail("server_error", 500);
-    }
+    });
+  } catch (err) {
+    console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
+    return fail("server_error", 500);
   }
   return Response.json({ ok: true }, { headers: noStore });
 }

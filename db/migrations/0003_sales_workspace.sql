@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS sales_contacts (
   tags text[] NOT NULL DEFAULT '{}',
   created_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
-  UNIQUE (tenant_id, phone) NULLS NOT DISTINCT
+  UNIQUE (tenant_id, phone) -- NULL is distinct: allow multiple contacts without a phone
 );
 
 CREATE TABLE IF NOT EXISTS sales_phone_matches (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS sales_deals (
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, contact_id) REFERENCES sales_contacts(tenant_id, id) ON DELETE RESTRICT,
   FOREIGN KEY (tenant_id, stage_id) REFERENCES sales_stages(tenant_id, id) ON DELETE RESTRICT,
-  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (assignee_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_custom_field_defs (
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS sales_deal_field_values (
   tenant_id text NOT NULL,
   deal_id text NOT NULL,
   field_id text NOT NULL,
-  value jsonb NOT NULL DEFAULT '{}'::jsonb CHECK (jsonb_typeof(value) IN ('string','number','boolean') OR jsonb_typeof(value)='null'),
+  value jsonb NOT NULL DEFAULT 'null'::jsonb CHECK (jsonb_typeof(value) IN ('string','number','boolean') OR jsonb_typeof(value)='null'),
   PRIMARY KEY (tenant_id, deal_id, field_id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
   FOREIGN KEY (tenant_id, field_id) REFERENCES sales_custom_field_defs(tenant_id, id) ON DELETE CASCADE
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS sales_tasks (
   updated_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
-  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (assignee_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_notes (
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS sales_notes (
   created_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (tenant_id, id),
   FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
-  FOREIGN KEY (tenant_id, author_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+  FOREIGN KEY (tenant_id, author_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL (author_id)
 );
 
 CREATE TABLE IF NOT EXISTS sales_deal_bookings (
@@ -249,6 +249,15 @@ SELECT tenant_id, id, lead_id || ':' || channel, lead_id, direction, sender, bod
 FROM inbox_messages
 ON CONFLICT (tenant_id, id) DO NOTHING;
 
+-- Legacy tenant tables must also enforce RLS for table owners. Apply this only
+-- AFTER the historical crm_leads/inbox_messages backfill above, so the migration
+-- can read all tenants without setting app.tenant_id.
+-- Roles with BYPASSRLS still bypass FORCE RLS: never use those for app traffic.
+ALTER TABLE sessions FORCE ROW LEVEL SECURITY;
+ALTER TABLE enrollments FORCE ROW LEVEL SECURITY;
+ALTER TABLE crm_leads FORCE ROW LEVEL SECURITY;
+ALTER TABLE inbox_messages FORCE ROW LEVEL SECURITY;
+
 -- RLS
 DO $$
 DECLARE tbl text;
@@ -271,7 +280,10 @@ BEGIN
     'sales_phone_matches','sales_deals','sales_custom_field_defs','sales_deal_field_values',
     'sales_connections','sales_threads','sales_messages','sales_outbox','sales_activity','sales_tasks','sales_notes','sales_deal_bookings'] LOOP
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename=tbl AND policyname=tbl || '_isolation') THEN
-      EXECUTE format('CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), '')) WITH CHECK (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), ''))', tbl || '_isolation', tbl);
+      EXECUTE format(
+        'CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting(%L, true), %L)) WITH CHECK (tenant_id = NULLIF(current_setting(%L, true), %L))',
+        tbl || '_isolation', tbl, 'app.tenant_id', '', 'app.tenant_id', ''
+      );
     END IF;
   END LOOP;
 END $$;

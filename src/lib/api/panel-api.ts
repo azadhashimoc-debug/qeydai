@@ -132,7 +132,7 @@ export function createPanelApi({
     const nowMs = now().getTime();
     const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
     const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-    if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs))) {
+    if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs, payload.tenantId))) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
     return { ok: true, tenantId: payload.tenantId, memberId: payload.memberId };
@@ -190,6 +190,15 @@ export function createPanelApi({
         DEFAULT_PANEL_TTL_MS,
         adminKeyFingerprint(rawKey),
       );
+      // Validate the revocation backend before issuing a successful login.
+      // A missing PostgreSQL table, unavailable connection, or unsafe role fails closed.
+      const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant, now().getTime());
+      if (!payload) return fail(503, "database_unavailable");
+      try {
+        await isPanelJtiRevoked(payload.jti, now().getTime(), payload.tenantId);
+      } catch {
+        return fail(503, "database_unavailable");
+      }
       const cookie = buildPanelCookieHeader(token, isSecureRequest(req), DEFAULT_PANEL_TTL_MS / 1000);
       return json(200, { ok: true, tenantId }, { "set-cookie": cookie });
     },
@@ -203,7 +212,7 @@ export function createPanelApi({
           const nowMs = now().getTime();
           const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
           const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs);
+          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs, payload.tenantId);
         }
       }
       const cookie = clearPanelCookieHeader(isSecureRequest(req));

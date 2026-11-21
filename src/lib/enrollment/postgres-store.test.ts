@@ -7,12 +7,16 @@ type QueryRecord = { sql: string; params: unknown[] };
 
 function createMockPool(handler: (sql: string, params: unknown[]) => unknown[] | Promise<unknown[]>) {
   const queries: QueryRecord[] = [];
+  const allQueries: QueryRecord[] = [];
   let released = 0;
   let acquired = 0;
 
   const client: PgClient & { release: () => void } = {
     async query<R = Record<string, unknown>>(sql: string, params: unknown[] = []) {
-      queries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      allQueries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      if (!/^(BEGIN|COMMIT|ROLLBACK|SELECT set_config)/i.test(sql.trim())) {
+        queries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      }
       const rows = (await handler(sql, params)) as R[];
       return { rows };
     },
@@ -23,7 +27,10 @@ function createMockPool(handler: (sql: string, params: unknown[]) => unknown[] |
 
   const pool: PgPool = {
     async query<R = Record<string, unknown>>(sql: string, params: unknown[] = []) {
-      queries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      allQueries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      if (!/^(BEGIN|COMMIT|ROLLBACK|SELECT set_config)/i.test(sql.trim())) {
+        queries.push({ sql: sql.replace(/\s+/g, " ").trim(), params });
+      }
       const rows = (await handler(sql, params)) as R[];
       return { rows };
     },
@@ -33,7 +40,7 @@ function createMockPool(handler: (sql: string, params: unknown[]) => unknown[] |
     },
   };
 
-  return { pool, queries, counts: () => ({ acquired, released }) };
+  return { pool, queries, allQueries, counts: () => ({ acquired, released }) };
 }
 
 describe("PostgresEnrollmentStore", () => {
@@ -70,7 +77,7 @@ describe("PostgresEnrollmentStore", () => {
   });
 
   it("uses BEGIN + SELECT ... FOR UPDATE + COMMIT on insertIfAvailable", async () => {
-    const { pool, queries, counts } = createMockPool((sql) => {
+    const { pool, allQueries, counts } = createMockPool((sql) => {
       if (sql.includes("FOR UPDATE")) return [{ capacity: 2 }];
       if (sql.includes("SELECT 1")) return [];
       if (sql.includes("COUNT(*)")) return [{ n: 1 }];
@@ -88,8 +95,9 @@ describe("PostgresEnrollmentStore", () => {
     });
 
     expect(out).toBe("inserted");
-    expect(queries.map((q) => q.sql)).toEqual([
+    expect(allQueries.map((q) => q.sql)).toEqual([
       "BEGIN",
+      "SELECT set_config('app.tenant_id', $1, true)",
       "SELECT capacity FROM sessions WHERE tenant_id = $1 AND id = $2 FOR UPDATE",
       "SELECT 1 AS x FROM enrollments WHERE tenant_id = $1 AND session_id = $2 AND phone = $3",
       "SELECT COUNT(*)::int AS n FROM enrollments WHERE tenant_id = $1 AND session_id = $2",
@@ -104,7 +112,7 @@ describe("PostgresEnrollmentStore", () => {
     ["duplicate", [{ x: 1 }]],
     ["full", [{ n: 2 }]],
   ])("rolls back and releases client on %s", async (expected, mockMatch) => {
-    const { pool, queries, counts } = createMockPool((sql) => {
+    const { pool, queries, allQueries, counts } = createMockPool((sql) => {
       if (sql.includes("FOR UPDATE")) return expected === "unknown_session" ? mockMatch : [{ capacity: 2 }];
       if (sql.includes("SELECT 1")) return expected === "duplicate" ? mockMatch : [];
       if (sql.includes("COUNT(*)")) return expected === "full" ? mockMatch : [{ n: 0 }];
@@ -122,12 +130,12 @@ describe("PostgresEnrollmentStore", () => {
     });
 
     expect(out).toBe(expected);
-    expect(queries.at(-1)?.sql).toBe("ROLLBACK");
+    expect(allQueries.at(-1)?.sql).toBe("ROLLBACK");
     expect(counts()).toEqual({ acquired: 1, released: 1 });
   });
 
   it("maps SQLSTATE 23505 unique violation to duplicate and rolls back", async () => {
-    const { pool, queries, counts } = createMockPool((sql) => {
+    const { pool, queries, allQueries, counts } = createMockPool((sql) => {
       if (sql.includes("FOR UPDATE")) return [{ capacity: 5 }];
       if (sql.includes("SELECT 1")) return [];
       if (sql.includes("COUNT(*)")) return [{ n: 0 }];
@@ -150,7 +158,7 @@ describe("PostgresEnrollmentStore", () => {
     });
 
     expect(out).toBe("duplicate");
-    expect(queries.at(-1)?.sql).toBe("ROLLBACK");
+    expect(allQueries.at(-1)?.sql).toBe("ROLLBACK");
     expect(counts()).toEqual({ acquired: 1, released: 1 });
   });
 

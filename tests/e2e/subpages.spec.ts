@@ -76,6 +76,9 @@ test("WhatsApp tools workbench builds links, blocks unsafe QR, estimates fees, a
 });
 
 test("demo page submits lead form cleanly", async ({ page }, info) => {
+  // The real 5-requests-per-client limiter remains active; requests from
+  // independent E2E flows must not share one synthetic localhost identity.
+  await page.setExtraHTTPHeaders({ "x-qeydai-e2e-client": `demo-form-${info.project.name}-${info.workerIndex}` });
   const tail = info.project.name === "mobile" ? "91" : "92";
   await page.goto("/az/demo");
   await page.getByLabel("Adınız").fill("Nigar");
@@ -154,16 +157,27 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page.locator(".js-find-partner-form-step-1")).toBeVisible();
   await page.locator(".js-modal-close-button").click();
 
-  // Auth Passkey, Forgot Password, and 2FA subviews on /az/login
+  // The current sign-in design uses a real workspace key. OAuth buttons are
+  // informational until OAuth is configured; no mock social login may mint a
+  // panel session. Verify the actual key form, security feedback and support link.
   await page.goto("/az/login");
-  await page.locator(".js-passkey-sign-in-form").click();
-  await expect(page.locator(".js-passkey-not-available-notification")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Daxil ol" })).toBeVisible();
+  const keyField = page.getByLabel("İş sahəsi açarı");
+  await expect(keyField).toHaveAttribute("type", "password");
+  await page.getByRole("button", { name: "Göstər" }).click();
+  await expect(keyField).toHaveAttribute("type", "text");
+  await page.getByRole("button", { name: "Gizlət" }).click();
+  await expect(keyField).toHaveAttribute("type", "password");
 
-  await page.locator(".js-forgot-button").click();
-  await expect(page.locator(".js-forgot")).toBeVisible();
-  await page.locator(".js-back-to-login").click();
+  await page.getByRole("button", { name: "Google ilə daxil ol" }).click();
+  await expect(page.getByRole("status")).toContainText("OAuth");
+  await expect(page).toHaveURL(/\/az\/login$/);
+  expect((await page.request.get("/api/panel/overview")).status()).toBe(401);
 
-  await page.locator(".js-mfa-trigger").click();
-  await expect(page.locator(".js-mfa-auth")).toBeVisible();
+  await keyField.fill("invalid-workspace-key-0123456789abcdef");
+  await page.getByRole("button", { name: "Giriş", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("Daxil edilən açar yanlışdır");
+  await expect(keyField).toHaveAttribute("aria-invalid", "true");
+  await page.locator(".pm-auth-forgot-link").click();
+  await expect(page).toHaveURL(/\/az\/contact$/);
 });
-
