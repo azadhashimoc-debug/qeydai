@@ -16,6 +16,7 @@ try {
     "0002_crm_inbox.sql",
     "0003_sales_workspace.sql",
     "0004_panel_jti.sql",
+    "0005_analytics_ingest.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);
@@ -30,8 +31,8 @@ try {
     END $$;
     GRANT CONNECT ON DATABASE panelim_ci TO panelim_ci;
     GRANT USAGE ON SCHEMA public TO panelim_ci;
-    -- Grant only tenant-isolated application tables. Public analytics_events
-    -- and legacy leads have no RLS and must not be accessible to the app role.
+    -- General CRM grants apply only to tenant tables. Marketing analytics
+    -- has FORCE RLS but must remain INSERT-only (no SELECT/UPDATE/DELETE).
     DO $grants$
     DECLARE t text;
     BEGIN
@@ -40,10 +41,12 @@ try {
         JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='r'
           AND c.relrowsecurity AND c.relforcerowsecurity
+          AND c.relname <> 'analytics_events'
       LOOP
         EXECUTE format('GRANT SELECT, INSERT, UPDATE, DELETE ON public.%I TO panelim_ci', t);
       END LOOP;
     END $grants$;
+    GRANT INSERT (event, locale, props) ON TABLE public.analytics_events TO panelim_ci;
   `);
   const rls = await pool.query(`
     SELECT c.relname AS tablename, c.relrowsecurity AS rowsecurity,
