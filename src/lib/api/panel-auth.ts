@@ -8,8 +8,8 @@ const MIN_EXPLICIT_SECRET_LENGTH = 24;
 const BASE64URL_RE = /^[A-Za-z0-9_-]+$/;
 
 export type PanelJtiStore = {
-  revokePanelJti: (jti: string, expMs: number) => Promise<void>;
-  isPanelJtiRevoked: (jti: string, nowMs: number) => Promise<boolean>;
+  revokePanelJti: (jti: string, expMs: number, tenantId: string) => Promise<void>;
+  isPanelJtiRevoked: (jti: string, nowMs: number, tenantId: string) => Promise<boolean>;
 };
 
 let panelJtiStore: PanelJtiStore | null = null;
@@ -22,10 +22,10 @@ export function setPanelJtiStore(store: PanelJtiStore | null): void {
 const MAX_REVOKED_JTIS = 10_000;
 const revokedJtis = new Map<string, number>();
 
-export async function revokePanelJti(jti: string, expMs: number, nowMs: number = Date.now()): Promise<void> {
+export async function revokePanelJti(jti: string, expMs: number, nowMs: number = Date.now(), tenantId = ""): Promise<void> {
   if (!jti || expMs <= nowMs) return;
   if (panelJtiStore) {
-    await panelJtiStore.revokePanelJti(jti, expMs);
+    await panelJtiStore.revokePanelJti(jti, expMs, tenantId);
     return;
   }
   if (revokedJtis.size >= MAX_REVOKED_JTIS) {
@@ -37,15 +37,15 @@ export async function revokePanelJti(jti: string, expMs: number, nowMs: number =
       if (oldest !== undefined) revokedJtis.delete(oldest);
     }
   }
-  revokedJtis.set(jti, expMs);
+  revokedJtis.set(`${tenantId}:${jti}`, expMs);
 }
 
-export async function isPanelJtiRevoked(jti: string, nowMs: number = Date.now()): Promise<boolean> {
-  if (panelJtiStore) return panelJtiStore.isPanelJtiRevoked(jti, nowMs);
-  const exp = revokedJtis.get(jti);
+export async function isPanelJtiRevoked(jti: string, nowMs: number = Date.now(), tenantId = ""): Promise<boolean> {
+  if (panelJtiStore) return panelJtiStore.isPanelJtiRevoked(jti, nowMs, tenantId);
+  const exp = revokedJtis.get(`${tenantId}:${jti}`);
   if (exp === undefined) return false;
   if (exp <= nowMs) {
-    revokedJtis.delete(jti);
+    revokedJtis.delete(`${tenantId}:${jti}`);
     return false;
   }
   return true;
