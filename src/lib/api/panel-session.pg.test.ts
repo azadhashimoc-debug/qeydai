@@ -12,6 +12,7 @@ const origin = "https://panelim.test";
 const config = getPanelAuthConfig({
   QEYDAI_ADMIN_KEYS: JSON.stringify({ [key]: tenant }),
   QEYDAI_PANEL_SECRET: "pg-test-signing-secret-0123456789abcdefgh",
+  NODE_ENV: "test",
 } as NodeJS.ProcessEnv);
 
 suite("Panel sessions: persistent PostgreSQL revocation across instances", () => {
