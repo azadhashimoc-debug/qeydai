@@ -120,6 +120,25 @@ function toMessage(r: InboxMessageRow): InboxMessage {
 }
 
 /**
+ * Never use an owner, superuser, or BYPASSRLS connection for production app queries.
+ * Owners are rejected even with FORCE RLS so future tables cannot accidentally bypass it.
+ */
+export async function assertSafeApplicationRole(client: PgClient): Promise<void> {
+  if (process.env.NODE_ENV !== "production") return;
+  const { rows } = await client.query<{ unsafe: boolean }>(`
+    SELECT (r.rolsuper OR r.rolbypassrls OR EXISTS (
+      SELECT 1 FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+      WHERE n.nspname='public' AND c.relname IN ('sessions','sales_contacts')
+        AND c.relowner=r.oid
+    )) AS unsafe
+    FROM pg_roles r WHERE r.rolname=current_user
+  `);
+  if (rows.length !== 1 || rows[0].unsafe !== false) {
+    throw new Error("unsafe_application_database_role");
+  }
+}
+
+/**
  * PostgreSQL implementation of EnrollmentStore.
  * Uses `SELECT ... FOR UPDATE` on the locked session row inside an explicit transaction
  * plus `UNIQUE(tenant_id, session_id, phone)` to prevent double-booking and race overfills.
@@ -135,6 +154,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
         const client = await this.pool.connect();
         try {
           await client.query("BEGIN");
+          await assertSafeApplicationRole(client);
           await client.query("SELECT set_config('app.tenant_id', $1, true)", [tenantId]);
           const result = await client.query<R>(sql, params);
           await client.query("COMMIT");
@@ -226,6 +246,7 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
     const client = await this.pool.connect();
     try {
       await client.query("BEGIN");
+      await assertSafeApplicationRole(client);
       await client.query("SELECT set_config('app.tenant_id', $1, true)", [e.tenantId]);
       const { rows: sessionRows } = await client.query<{ capacity: number }>(
         "SELECT capacity FROM sessions WHERE tenant_id = $1 AND id = $2 FOR UPDATE",
