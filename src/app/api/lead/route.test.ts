@@ -43,6 +43,21 @@ describe("POST /api/lead", () => {
     const leads = await getSharedStore().listLeads("pilot_center");
     expect(leads.some((l) => l.phone === "+994501234567" && l.source === "web")).toBe(true);
   });
+  it("rejects production writes without PostgreSQL before opening JSONL or SQLite", async () => {
+    const f = tmpFile();
+    vi.stubEnv("VERCEL", "1");
+    vi.stubEnv("QEYDAI_DATABASE_URL", undefined);
+    vi.stubEnv("NODE_ENV", "production");
+    try {
+      const res = await POST(req({ body: good }));
+      expect(res.status).toBe(503);
+      expect(await res.json()).toEqual({ ok: false, error: "database_unavailable" });
+      expect(existsSync(f)).toBe(false);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
   it("returns an error when the lead cannot be saved to the panel store", async () => {
     tmpFile();
     const write = vi.spyOn(getSharedStore(), "upsertLead").mockRejectedValueOnce(new Error("CRM unavailable"));
