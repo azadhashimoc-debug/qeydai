@@ -102,6 +102,15 @@ const buildPhasePanelApi: PanelApi = {
   createMessage: buildUnavailable,
 };
 
+/** Make JWT revocations durable even if a CRM endpoint is hit before /api/panel/auth. */
+export function ensurePanelJtiStore(): boolean {
+  if (process.env.NEXT_PHASE === "phase-production-build") return false;
+  const store = getApplicationStore();
+  if (!store) return false;
+  setPanelJtiStore(store);
+  return true;
+}
+
 /** Lazily creates the API on first request so builds and tests never open the database. */
 export function getEnrollApi(): Api {
   if (process.env.NEXT_PHASE === "phase-production-build") return buildPhaseApi;
