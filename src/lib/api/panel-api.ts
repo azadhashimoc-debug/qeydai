@@ -132,7 +132,7 @@ export function createPanelApi({
     const nowMs = now().getTime();
     const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
     const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-    if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs))) {
+    if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs, payload.tenantId))) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
     return { ok: true, tenantId: payload.tenantId, memberId: payload.memberId };
@@ -203,7 +203,7 @@ export function createPanelApi({
           const nowMs = now().getTime();
           const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
           const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs);
+          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs, payload.tenantId);
         }
       }
       const cookie = clearPanelCookieHeader(isSecureRequest(req));
