@@ -249,8 +249,17 @@ SELECT tenant_id, id, lead_id || ':' || channel, lead_id, direction, sender, bod
 FROM inbox_messages
 ON CONFLICT (tenant_id, id) DO NOTHING;
 
+-- Legacy tenant tables must also enforce RLS for table owners. Apply this only
+-- AFTER the historical crm_leads/inbox_messages backfill above, so the migration
+-- can read all tenants without setting app.tenant_id.
+-- Roles with BYPASSRLS still bypass FORCE RLS: never use those for app traffic.
+ALTER TABLE sessions FORCE ROW LEVEL SECURITY;
+ALTER TABLE enrollments FORCE ROW LEVEL SECURITY;
+ALTER TABLE crm_leads FORCE ROW LEVEL SECURITY;
+ALTER TABLE inbox_messages FORCE ROW LEVEL SECURITY;
+
 -- RLS
-DO $$
+DO $
 DECLARE tbl text;
 BEGIN
   FOREACH tbl IN ARRAY ARRAY['sales_workspaces','sales_members','sales_member_keys','sales_stages',
