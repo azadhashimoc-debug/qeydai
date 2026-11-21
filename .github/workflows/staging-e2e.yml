@@ -9,6 +9,14 @@ on:
       - 'tests/staging-e2e/**'
       - 'src/**'
       - 'package*.json'
+  pull_request:
+    branches: ['feat/panelim-subpages']
+    paths:
+      - '.github/workflows/staging-e2e.yml'
+      - 'playwright.staging.config.ts'
+      - 'tests/staging-e2e/**'
+      - 'src/**'
+      - 'package*.json'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +24,7 @@ permissions:
 
 jobs:
   neon-staging-e2e:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
