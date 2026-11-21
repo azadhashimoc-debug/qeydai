@@ -5,6 +5,7 @@ import { normalizeAzPhone } from "../enrollment/enrollment";
 import type { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
 import type { InboundMessage } from "./channels";
 import { getSharedStore } from "../api/instance";
+import { assertSafeApplicationRole, type PgClient } from "../enrollment/postgres-store";
 
 const sqliteStoreMap = new WeakMap<object, SqliteEnrollmentStore>();
 
@@ -836,6 +837,7 @@ export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClie
     const db = await pool.connect();
     try {
       await db.query("BEGIN");
+      await assertSafeApplicationRole(db as unknown as PgClient);
       await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
       const result = await run(db);
       await db.query("COMMIT");
