@@ -28,9 +28,22 @@ try {
         CREATE ROLE panelim_ci LOGIN PASSWORD 'local_app_password';
       END IF;
     END $$;
+    GRANT CONNECT ON DATABASE panelim_ci TO panelim_ci;
     GRANT USAGE ON SCHEMA public TO panelim_ci;
-    GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO panelim_ci;
-    GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO panelim_ci;
+    -- Grant only tenant-isolated application tables. Public analytics_events
+    -- and legacy leads have no RLS and must not be accessible to the app role.
+    DO $grants$
+    DECLARE t text;
+    BEGIN
+      FOR t IN
+        SELECT c.relname FROM pg_class c
+        JOIN pg_namespace n ON n.oid=c.relnamespace
+        WHERE n.nspname='public' AND c.relkind='r'
+          AND c.relrowsecurity AND c.relforcerowsecurity
+      LOOP
+        EXECUTE format('GRANT SELECT, INSERT, UPDATE, DELETE ON public.%I TO panelim_ci', t);
+      END LOOP;
+    END $grants$;
   `);
   const rls = await pool.query(`
     SELECT c.relname AS tablename, c.relrowsecurity AS rowsecurity,
