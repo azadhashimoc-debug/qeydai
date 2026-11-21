@@ -183,6 +183,13 @@ suite("CRM intake PostgreSQL integration (non-superuser, forced RLS)", () => {
       `);
       expect(tables.rows).toHaveLength(17);
       expect(tables.rows.every((r) => r.relrowsecurity && r.relforcerowsecurity)).toBe(true);
+      const legacy = await db.query<{ relname: string; relrowsecurity: boolean; relforcerowsecurity: boolean }>(`
+        SELECT relname, relrowsecurity, relforcerowsecurity FROM pg_class
+        WHERE oid IN ('sessions'::regclass, 'enrollments'::regclass,
+                      'crm_leads'::regclass, 'inbox_messages'::regclass)
+      `);
+      expect(legacy.rows).toHaveLength(4);
+      expect(legacy.rows.every((r) => r.relrowsecurity && r.relforcerowsecurity)).toBe(true);
       const policies = await db.query<{ tablename: string }>(`
         SELECT tablename FROM pg_policies
         WHERE schemaname='public' AND tablename LIKE 'sales_%'
