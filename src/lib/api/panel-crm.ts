@@ -1,4 +1,5 @@
 import type { PoolClient } from "pg";
+import { ensurePanelJtiStore } from "./instance";
 import { createRateLimiter } from "../rate-limit";
 import {
   verifyPanelSessionToken,
@@ -72,6 +73,7 @@ export async function requirePanelMember(
   req: Request,
   getAuthConfig: () => AuthConfig,
 ): Promise<{ ok: true; value: PanelMember } | { ok: false; response: Response }> {
+  if (!ensurePanelJtiStore()) return { ok: false, response: fail(503, "database_unavailable") };
   const config = getAuthConfig();
   const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
   if (!config.secret || config.allowedKeysByTenant.size === 0 || !token) {
