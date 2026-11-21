@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { getSharedStore, parseKeys } from "@/lib/api/instance";
+import { getApplicationEnrollmentStore, parseKeys } from "@/lib/api/instance";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
 import { validateLead } from "@/lib/leads/leads";
 import { createRateLimiter } from "@/lib/rate-limit";
@@ -50,7 +50,7 @@ export function resolvePublicLeadTenant(): string {
 const noStore = { "cache-control": "no-store" } as const;
 const fail = (error: string, status: number) => Response.json({ ok: false, error }, { status, headers: noStore });
 
-// Local MVP storage: data/leads.jsonl (gitignored) + shared SQLite CRM store so leads appear in panel.
+// Production leads persist in tenant-scoped PostgreSQL; local JSONL remains test/dev-only.
 export async function POST(req: Request) {
   if (!(req.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json")) {
     return fail("unsupported_media_type", 415);
@@ -75,20 +75,24 @@ export async function POST(req: Request) {
   if (!v.ok) return fail("invalid_input", 400);
   if (!global.allow("all")) return fail("rate_limited", 429);
 
+  const store = getApplicationEnrollmentStore();
+  if (!store) return fail("database_unavailable", 503);
+
   const createdAt = new Date().toISOString();
-  try {
-    const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
+  // Keep historical local test/dev JSONL output only when PostgreSQL is not configured.
+  if (!process.env.QEYDAI_DATABASE_URL) {
+    try {
+      const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
     await mkdir(path.dirname(file), { recursive: true });
-    await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
-  } catch (err) {
-    console.error("lead storage failed:", err instanceof Error ? err.message : "unknown");
-    return fail("server_error", 500);
+      await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
+    } catch (err) {
+      console.error("lead storage failed:", err instanceof Error ? err.message : "unknown");
+      return fail("server_error", 500);
+    }
   }
 
-  if (process.env.NEXT_PHASE !== "phase-production-build") {
-    try {
-      const store = getSharedStore();
-      await store.upsertLead({
+  try {
+    await store.upsertLead({
         id: `lead_${randomUUID()}`,
         tenantId: resolvePublicLeadTenant(),
         name: v.lead.name,
@@ -96,11 +100,10 @@ export async function POST(req: Request) {
         source: "web",
         stage: "new",
         nowIso: createdAt,
-      });
-    } catch (err) {
-      console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
-      return fail("server_error", 500);
-    }
+    });
+  } catch (err) {
+    console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
+    return fail("server_error", 500);
   }
   return Response.json({ ok: true }, { headers: noStore });
 }
