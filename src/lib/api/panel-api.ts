@@ -190,6 +190,15 @@ export function createPanelApi({
         DEFAULT_PANEL_TTL_MS,
         adminKeyFingerprint(rawKey),
       );
+      // Validate the revocation backend before issuing a successful login.
+      // A missing PostgreSQL table, unavailable connection, or unsafe role fails closed.
+      const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant, now().getTime());
+      if (!payload) return fail(503, "database_unavailable");
+      try {
+        await isPanelJtiRevoked(payload.jti, now().getTime(), payload.tenantId);
+      } catch {
+        return fail(503, "database_unavailable");
+      }
       const cookie = buildPanelCookieHeader(token, isSecureRequest(req), DEFAULT_PANEL_TTL_MS / 1000);
       return json(200, { ok: true, tenantId }, { "set-cookie": cookie });
     },
