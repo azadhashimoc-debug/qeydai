@@ -1,9 +1,12 @@
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
+import { PostgresEnrollmentStore, type PgPool } from "../enrollment/postgres-store";
+import type { EnrollmentStore } from "../enrollment/enrollment";
+import { Pool } from "pg";
 import { createEnrollApi } from "./enroll-api";
 import { createPanelApi } from "./panel-api";
-import { getPanelAuthConfig, setPanelJtiStore } from "./panel-auth";
+import { getPanelAuthConfig, setPanelJtiStore, type PanelJtiStore } from "./panel-auth";
 
 const MIN_KEY_LENGTH = 24;
 
@@ -39,6 +42,27 @@ type Api = ReturnType<typeof createEnrollApi>;
 type PanelApi = ReturnType<typeof createPanelApi>;
 
 let sharedStore: SqliteEnrollmentStore | null = null;
+let postgresStore: PostgresEnrollmentStore | null = null;
+
+/** Production fails closed without PostgreSQL. Local SQLite remains opt-in for Playwright. */
+function getApplicationStore(): (EnrollmentStore & PanelJtiStore) | null {
+  if (process.env.QEYDAI_DATABASE_URL) {
+    if (!postgresStore) {
+      const pool = new Pool({
+        connectionString: process.env.QEYDAI_DATABASE_URL,
+        max: 5,
+        connectionTimeoutMillis: 5000,
+      });
+      postgresStore = new PostgresEnrollmentStore(pool as unknown as PgPool);
+    }
+    return postgresStore;
+  }
+  if (process.env.VERCEL ||
+      (process.env.NODE_ENV === "production" && process.env.QEYDAI_E2E_SQLITE !== "1")) {
+    return null;
+  }
+  return getSharedStore();
+}
 let api: Api | null = null;
 let panelApi: PanelApi | null = null;
 
@@ -82,8 +106,10 @@ const buildPhasePanelApi: PanelApi = {
 export function getEnrollApi(): Api {
   if (process.env.NEXT_PHASE === "phase-production-build") return buildPhaseApi;
   if (!api) {
+    const store = getApplicationStore();
+    if (!store) return buildPhaseApi;
     api = createEnrollApi({
-      store: getSharedStore(),
+      store,
       keys: parseKeys(process.env.QEYDAI_API_KEYS),
       adminKeys: parseKeys(process.env.QEYDAI_ADMIN_KEYS, "QEYDAI_ADMIN_KEYS"),
     });
@@ -95,7 +121,8 @@ export function getEnrollApi(): Api {
 export function getPanelApi(): PanelApi {
   if (process.env.NEXT_PHASE === "phase-production-build") return buildPhasePanelApi;
   if (!panelApi) {
-    const store = getSharedStore();
+    const store = getApplicationStore();
+    if (!store) return buildPhasePanelApi;
     setPanelJtiStore(store);
     panelApi = createPanelApi({
       store,
