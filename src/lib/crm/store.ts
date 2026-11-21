@@ -831,6 +831,8 @@ export function databaseConfigured() {
 }
 
 export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClient) => Promise<T>): Promise<T> {
+  // Direct channel/worker callers must not silently fall back to ephemeral SQLite in production.
+  if (!databaseConfigured()) throw new Error("database_unavailable");
   const connectionString = process.env.QEYDAI_DATABASE_URL;
   if (connectionString) {
     pool ??= new Pool({ connectionString, connectionTimeoutMillis: 5000 });
