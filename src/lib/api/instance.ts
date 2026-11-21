@@ -102,6 +102,12 @@ const buildPhasePanelApi: PanelApi = {
   createMessage: buildUnavailable,
 };
 
+/** Shared tenant-aware enrollment store for public intake and private endpoints. */
+export function getApplicationEnrollmentStore(): EnrollmentStore | null {
+  if (process.env.NEXT_PHASE === "phase-production-build") return null;
+  return getApplicationStore();
+}
+
 /** Make JWT revocations durable even if a CRM endpoint is hit before /api/panel/auth. */
 export function ensurePanelJtiStore(): boolean {
   if (process.env.NEXT_PHASE === "phase-production-build") return false;
