@@ -15,6 +15,7 @@ try {
     "0001_init.sql",
     "0002_crm_inbox.sql",
     "0003_sales_workspace.sql",
+    "0004_panel_jti.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);
@@ -36,9 +37,9 @@ try {
            c.relforcerowsecurity AS forcerowsecurity
     FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
     WHERE n.nspname = 'public'
-      AND c.relname IN ('sales_contacts', 'sales_deals', 'sales_tasks')
+      AND c.relname IN ('sales_contacts', 'sales_deals', 'sales_tasks', 'panel_revoked_jti')
   `);
-  if (rls.rows.length !== 3 || rls.rows.some((r) => !r.rowsecurity || !r.forcerowsecurity)) {
+  if (rls.rows.length !== 4 || rls.rows.some((r) => !r.rowsecurity || !r.forcerowsecurity)) {
     throw new Error("Required PostgreSQL RLS policies are not enabled and forced");
   }
   console.log("PostgreSQL schema, app role and forced RLS verified.");
