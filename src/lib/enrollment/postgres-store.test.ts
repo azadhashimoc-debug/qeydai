@@ -135,7 +135,7 @@ describe("PostgresEnrollmentStore", () => {
   });
 
   it("maps SQLSTATE 23505 unique violation to duplicate and rolls back", async () => {
-    const { pool, queries, counts } = createMockPool((sql) => {
+    const { pool, queries, allQueries, counts } = createMockPool((sql) => {
       if (sql.includes("FOR UPDATE")) return [{ capacity: 5 }];
       if (sql.includes("SELECT 1")) return [];
       if (sql.includes("COUNT(*)")) return [{ n: 0 }];
@@ -158,7 +158,7 @@ describe("PostgresEnrollmentStore", () => {
     });
 
     expect(out).toBe("duplicate");
-    expect(queries.at(-1)?.sql).toBe("ROLLBACK");
+    expect(allQueries.at(-1)?.sql).toBe("ROLLBACK");
     expect(counts()).toEqual({ acquired: 1, released: 1 });
   });
 
