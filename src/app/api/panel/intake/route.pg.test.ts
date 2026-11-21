@@ -67,7 +67,11 @@ suite("CRM intake PostgreSQL integration (non-superuser, forced RLS)", () => {
       const result = await db.query<{ rolname: string; rolsuper: boolean; rolbypassrls: boolean }>(
         `SELECT rolname, rolsuper, rolbypassrls FROM pg_roles WHERE rolname=current_user`,
       );
-      expect(result.rows[0].rolname).toBe("panelim_ci");
+      // CI uses a dedicated non-owner role; Neon staging can use a different
+      // non-superuser role. Forced RLS still applies to table owners.
+      if (process.env.CI === "true") {
+        expect(result.rows[0].rolname).toBe("panelim_ci");
+      }
       expect(result.rows[0].rolsuper).toBe(false);
       expect(result.rows[0].rolbypassrls).toBe(false);
     });
@@ -166,6 +170,95 @@ suite("CRM intake PostgreSQL integration (non-superuser, forced RLS)", () => {
       expect(c.rows).toHaveLength(0);
       expect(d.rows).toHaveLength(0);
     });
+  });
+
+  it("verifies the sales schema, tenant RLS and composite foreign-key actions", async () => {
+    await workspaceTransaction(tenantA, async (db) => {
+      const tables = await db.query<{
+        relname: string; relrowsecurity: boolean; relforcerowsecurity: boolean;
+      }>(`
+        SELECT c.relname, c.relrowsecurity, c.relforcerowsecurity
+        FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+        WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'sales_%'
+      `);
+      expect(tables.rows).toHaveLength(17);
+      expect(tables.rows.every((r) => r.relrowsecurity && r.relforcerowsecurity)).toBe(true);
+      const policies = await db.query<{ tablename: string }>(`
+        SELECT tablename FROM pg_policies
+        WHERE schemaname='public' AND tablename LIKE 'sales_%'
+      `);
+      expect(new Set(policies.rows.map((r) => r.tablename)).size).toBe(17);
+      const foreignKeys = await db.query<{ table_name: string; definition: string }>(`
+        SELECT c.conrelid::regclass::text AS table_name,
+               pg_get_constraintdef(c.oid) AS definition
+        FROM pg_constraint c
+        WHERE c.contype='f' AND c.conrelid IN
+          ('sales_deals'::regclass, 'sales_tasks'::regclass, 'sales_notes'::regclass)
+      `);
+      for (const [table, column] of [
+        ["sales_deals", "assignee_id"], ["sales_tasks", "assignee_id"], ["sales_notes", "author_id"],
+      ]) {
+        expect(foreignKeys.rows.some((fk) =>
+          fk.table_name === table &&
+          fk.definition.includes(`ON DELETE SET NULL (${column})`),
+        )).toBe(true);
+      }
+    });
+  });
+
+  it("keeps tenant IDs on deals, tasks and notes when an assigned member is deleted", async () => {
+    await workspaceTransaction(tenantA, async (db) => {
+      const memberId = randomUUID();
+      await db.query("INSERT INTO sales_members (tenant_id,id,name,role) VALUES ($1,$2,'Temporary','operator')", [
+        tenantA, memberId,
+      ]);
+      const contact = await createContact(db, tenantA, "Member FK Test", null);
+      expect(contact).not.toBeNull();
+      const deal = await createDeal(db, tenantA, randomUUID(), contact!.id, "new", "Member deletion", "manual", 0, "");
+      expect(deal).not.toBeNull();
+      await db.query("UPDATE sales_deals SET assignee_id=$3 WHERE tenant_id=$1 AND id=$2", [
+        tenantA, deal!.id, memberId,
+      ]);
+      const task = await createTask(db, tenantA, deal!.id, "Follow up", "", memberId, null);
+      expect(task).not.toBeNull();
+      const noteId = randomUUID();
+      await db.query(
+        "INSERT INTO sales_notes (tenant_id,id,deal_id,author_id,body) VALUES ($1,$2,$3,$4,'Test note')",
+        [tenantA, noteId, deal!.id, memberId],
+      );
+      await db.query("DELETE FROM sales_members WHERE tenant_id=$1 AND id=$2", [tenantA, memberId]);
+      for (const [table, id, column] of [
+        ["sales_deals", deal!.id, "assignee_id"],
+        ["sales_tasks", task!.id, "assignee_id"],
+        ["sales_notes", noteId, "author_id"],
+      ]) {
+        const result = await db.query<{ tenant_id: string; nullable_id: string | null }>(
+          `SELECT tenant_id, ${column} AS nullable_id FROM ${table} WHERE tenant_id=$1 AND id=$2`,
+          [tenantA, id],
+        );
+        expect(result.rows[0]).toMatchObject({ tenant_id: tenantA, nullable_id: null });
+      }
+      const fieldId = randomUUID();
+      await db.query(
+        "INSERT INTO sales_custom_field_defs (tenant_id,id,name,kind) VALUES ($1,$2,$3,'text')",
+        [tenantA, fieldId, "Test " + fieldId],
+      );
+      const defaultValue = await db.query<{ is_json_null: boolean }>(
+        `INSERT INTO sales_deal_field_values (tenant_id,deal_id,field_id)
+         VALUES ($1,$2,$3) RETURNING value='null'::jsonb AS is_json_null`,
+        [tenantA, deal!.id, fieldId],
+      );
+      expect(defaultValue.rows[0].is_json_null).toBe(true);
+    });
+  });
+
+  it("rejects cross-tenant inserts at the database policy layer", async () => {
+    await expect(workspaceTransaction(tenantA, async (db) => {
+      await db.query(
+        "INSERT INTO sales_contacts (tenant_id,id,name) VALUES ($1,$2,'Cross tenant')",
+        [tenantB, randomUUID()],
+      );
+    })).rejects.toMatchObject({ code: "42501" });
   });
 
   it("blocks unauthenticated, operator, cross-origin, and malformed input", async () => {
