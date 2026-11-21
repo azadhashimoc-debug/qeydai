@@ -74,3 +74,24 @@ SQLite tests inject deal/task failures and verify savepoint rollback.
 PostgreSQL tests verify real FK rollback, concurrent phone upserts, idempotency,
 role checks and forced RLS isolation. A Vercel deployment alone is never
 evidence that these checks passed.
+
+## Neon staging and production session audit (2026-11-21)
+
+- Run the schema migrations **only on Neon staging**, after independently
+  verifying the project, branch and database identifiers. GitHub's passing
+  PostgreSQL 16 service tests do not prove staging has been migrated.
+- Use a dedicated PostgreSQL **NOBYPASSRLS, NOSUPERUSER** application/test role
+  for tenant-scoped connections; do not use Neon's administrative
+  `neondb_owner` as the CRM runtime role. `FORCE ROW LEVEL SECURITY`
+  cannot constrain a role granted `BYPASSRLS`. Verify via `pg_roles`.
+- `0003_sales_workspace.sql` also forces RLS on the four legacy tenant
+  tables **after** copying historical CRM records, preventing table-owner
+  bypass without blocking the backfill.
+- **Do not merge or enable CRM production traffic until staging is verified**:
+  the auth route initializes a SQLite-backed panel API; JTI revocation is
+  handled by an injected SQLite store or process-local fallback. Neither is
+  reliably shared across serverless instances. Deployable durable auth and
+  revocation need separate implementation and end-to-end validation.
+- Never copy a staging URL into Vercel's existing
+  `QEYDAI_DATABASE_URL`; don't change production variables as part of
+  staging verification. Keep the PR unmerged pending approval.
