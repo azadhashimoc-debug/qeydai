@@ -22,12 +22,21 @@ export function setPanelJtiStore(store: PanelJtiStore | null): void {
 const MAX_REVOKED_JTIS = 10_000;
 const revokedJtis = new Map<string, number>();
 
+/** Memory fallback is limited to development and unit tests, never Vercel runtime. */
+function requirePersistentRevocationInProduction(): void {
+  if (process.env.VERCEL ||
+      (process.env.NODE_ENV === "production" && process.env.QEYDAI_E2E_SQLITE !== "1")) {
+    throw new Error("persistent_panel_jti_store_required");
+  }
+}
+
 export async function revokePanelJti(jti: string, expMs: number, nowMs: number = Date.now(), tenantId = ""): Promise<void> {
   if (!jti || expMs <= nowMs) return;
   if (panelJtiStore) {
     await panelJtiStore.revokePanelJti(jti, expMs, tenantId);
     return;
   }
+  requirePersistentRevocationInProduction();
   if (revokedJtis.size >= MAX_REVOKED_JTIS) {
     for (const [k, exp] of revokedJtis) {
       if (exp <= nowMs) revokedJtis.delete(k);
@@ -42,6 +51,7 @@ export async function revokePanelJti(jti: string, expMs: number, nowMs: number =
 
 export async function isPanelJtiRevoked(jti: string, nowMs: number = Date.now(), tenantId = ""): Promise<boolean> {
   if (panelJtiStore) return panelJtiStore.isPanelJtiRevoked(jti, nowMs, tenantId);
+  requirePersistentRevocationInProduction();
   const exp = revokedJtis.get(`${tenantId}:${jti}`);
   if (exp === undefined) return false;
   if (exp <= nowMs) {
