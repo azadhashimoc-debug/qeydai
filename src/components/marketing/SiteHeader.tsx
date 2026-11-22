@@ -45,6 +45,11 @@ export function SiteHeader({
     { href: `/${lang}/inbox`, title: subNav.product.inboxTitle, desc: subNav.product.inboxDesc },
     { href: `/${lang}/ai`, title: subNav.product.aiTitle, desc: subNav.product.aiDesc },
     { href: `/${lang}/booking`, title: subNav.product.bookingTitle, desc: subNav.product.bookingDesc },
+    { href: `/${lang}/features/automation`, title: subNav.product.automationTitle, desc: subNav.product.automationDesc },
+    { href: `/${lang}/features/broadcast`, title: subNav.product.broadcastTitle, desc: subNav.product.broadcastDesc },
+    { href: `/${lang}/features/copilot`, title: subNav.product.copilotTitle, desc: subNav.product.copilotDesc },
+    { href: `/${lang}/features/analytics`, title: subNav.product.analyticsTitle, desc: subNav.product.analyticsDesc },
+    { href: `/${lang}/features/integrations`, title: subNav.product.integrationsTitle, desc: subNav.product.integrationsDesc },
   ];
 
   const channelsItems = [

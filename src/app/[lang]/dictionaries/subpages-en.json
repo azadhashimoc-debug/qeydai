@@ -11,7 +11,17 @@
       "aiTitle": "Pani · AI sales assistant",
       "aiDesc": "24/7 conversational replies and qualification",
       "bookingTitle": "Booking & schedule",
-      "bookingDesc": "Booking and capacity controls for appointments, services and events"
+      "bookingDesc": "Booking and capacity controls for appointments, services and events",
+      "automationTitle": "Auto-reply and scenarios",
+      "automationDesc": "AI replies and staff hand-off rules",
+      "broadcastTitle": "WhatsApp broadcast",
+      "broadcastDesc": "In development: consent-based bulk messages",
+      "copilotTitle": "AI copilot for staff",
+      "copilotDesc": "In development: reply drafts for staff",
+      "analyticsTitle": "Reports and analytics",
+      "analyticsDesc": "Overview from enquiry to sale",
+      "integrationsTitle": "Integrations and API",
+      "integrationsDesc": "API key and channel webhooks"
     },
     "channels": {
       "label": "Channels & Tools",
@@ -55,7 +65,12 @@
         "pipeline": "Sales pipeline",
         "inbox": "Unified inbox",
         "ai": "AI sales copilot",
-        "booking": "Booking & schedule"
+        "booking": "Booking & schedule",
+        "automation": "Auto-reply and scenarios",
+        "broadcast": "WhatsApp broadcast",
+        "copilot": "AI copilot for staff",
+        "analytics": "Reports and analytics",
+        "integrations": "Integrations and API"
       },
       "channels": {
         "title": "Channels & Tools",
@@ -1266,6 +1281,230 @@
           "Unified inbox",
           "Customer card",
           "n8n templates"
+        ]
+      }
+    }
+  },
+  "features": {
+    "ui": {
+      "badgeLive": "Available",
+      "badgeSoon": "In development",
+      "soonNote": "This feature is still in development and not released. Join the waitlist and we will contact you when it is ready.",
+      "soonCta": "Join the waitlist",
+      "moreTitle": "More features",
+      "disclaimer": "This page is a sample workflow. No real customer names, reviews or result figures are shown."
+    },
+    "items": {
+      "automation": {
+        "navLabel": "Auto-reply and scenarios",
+        "title": "Automatic replies to repeated questions",
+        "subtitle": "The AI answers only from information you approved and hands the question to staff when it is not sure.",
+        "problemsTitle": "Problems with manual replies",
+        "problems": [
+          {
+            "title": "Customers writing at night",
+            "desc": "A message that arrives in the evening waits until morning."
+          },
+          {
+            "title": "The same questions",
+            "desc": "Price and opening-hours questions take staff time."
+          },
+          {
+            "title": "Fear of an unchecked bot",
+            "desc": "A bot quoting a wrong price can lose the customer."
+          }
+        ],
+        "howTitle": "How it works",
+        "how": [
+          {
+            "title": "A message arrives",
+            "desc": "WhatsApp, Instagram or Telegram messages land in one inbox."
+          },
+          {
+            "title": "Answer from approved information",
+            "desc": "The AI replies only from the prices, hours and address in your business information."
+          },
+          {
+            "title": "Hand-off when unsure",
+            "desc": "Discounts, complaints, payments and unanswered questions create a task for staff."
+          }
+        ],
+        "detailTitle": "You stay in control",
+        "detailBody": "You write the business information in the panel yourself and can switch the AI off at any time.",
+        "detailBullets": [
+          "Numbers in a reply are checked against your information",
+          "The AI stays quiet for 30 minutes after staff reply",
+          "Card-like data is never sent to the model"
+        ],
+        "note": "The visual scenario builder is still in development. Today the AI reply and staff hand-off rules are live."
+      },
+      "broadcast": {
+        "navLabel": "WhatsApp broadcast",
+        "title": "Bulk messages to customers who opted in",
+        "subtitle": "A feature in development for sending promotions and reminders to a selected customer list.",
+        "problemsTitle": "Risks of bulk messaging",
+        "problems": [
+          {
+            "title": "Consent",
+            "desc": "Only customers who agreed to receive messages should be messaged."
+          },
+          {
+            "title": "Meta templates",
+            "desc": "If a customer has not written for over 24 hours, only an approved template can be sent."
+          },
+          {
+            "title": "Cost",
+            "desc": "Meta charges for each delivered template message."
+          }
+        ],
+        "howTitle": "Planned flow",
+        "how": [
+          {
+            "title": "Pick a list",
+            "desc": "A customer list by stage or tag."
+          },
+          {
+            "title": "Pick a template",
+            "desc": "A template approved by Meta."
+          },
+          {
+            "title": "Delivery report",
+            "desc": "How many messages arrived and how many got a reply."
+          }
+        ],
+        "detailTitle": "Why it is not available yet",
+        "detailBody": "A badly set up broadcast can get a number blocked. We are building consent and template rules first.",
+        "detailBullets": [
+          "Only contacts with consent",
+          "Template and limit checks",
+          "Delivery report"
+        ]
+      },
+      "copilot": {
+        "navLabel": "AI copilot for staff",
+        "title": "A helper that suggests the reply to staff",
+        "subtitle": "When staff open a message, the AI drafts a reply and staff edit it before sending.",
+        "problemsTitle": "The daily load on staff",
+        "problems": [
+          {
+            "title": "Long conversations",
+            "desc": "Reading the history takes time."
+          },
+          {
+            "title": "Reply style",
+            "desc": "Every employee writes differently."
+          },
+          {
+            "title": "Speed",
+            "desc": "Replies slow down when many messages arrive."
+          }
+        ],
+        "howTitle": "Planned flow",
+        "how": [
+          {
+            "title": "Conversation summary",
+            "desc": "What the customer wants in one sentence."
+          },
+          {
+            "title": "Reply draft",
+            "desc": "A draft based on your business information."
+          },
+          {
+            "title": "Staff approval",
+            "desc": "Staff edit it and send it themselves."
+          }
+        ],
+        "detailTitle": "Why it is not available yet",
+        "detailBody": "Today the AI either replies on its own or hands off. A draft mode for staff is being built separately.",
+        "detailBullets": [
+          "Nothing is sent without staff approval",
+          "Same business information",
+          "Same safety rules"
+        ]
+      },
+      "analytics": {
+        "navLabel": "Reports and analytics",
+        "title": "From enquiry to sale at a glance",
+        "subtitle": "How many enquiries arrived, how many booked and how many paid is shown in the panel overview.",
+        "problemsTitle": "Managing without reports",
+        "problems": [
+          {
+            "title": "Unknown source",
+            "desc": "It is unclear which channel the enquiries came from."
+          },
+          {
+            "title": "Losses between stages",
+            "desc": "You cannot see where customers drop off."
+          },
+          {
+            "title": "Manual spreadsheets",
+            "desc": "Numbers are collected by hand."
+          }
+        ],
+        "howTitle": "What you see in the panel",
+        "how": [
+          {
+            "title": "Enquiry count",
+            "desc": "The total number of incoming enquiries."
+          },
+          {
+            "title": "Stage distribution",
+            "desc": "How many customers sit in each stage of the pipeline."
+          },
+          {
+            "title": "Outcome",
+            "desc": "Customers who booked and paid."
+          }
+        ],
+        "detailTitle": "AI analyst",
+        "detailBody": "An AI analyst that explains the report is still in development. Today the overview numbers are shown in the panel itself.",
+        "detailBullets": [
+          "Count by stage",
+          "Enquiries by UTM source",
+          "Booking and message counts"
+        ],
+        "note": "The AI analyst is still in development; report numbers are available in the panel."
+      },
+      "integrations": {
+        "navLabel": "Integrations and API",
+        "title": "Receive enquiries from your site and tools",
+        "subtitle": "Enquiries arrive in the panel through an API key, and channel webhooks route messages to one inbox.",
+        "problemsTitle": "The problem of separate systems",
+        "problems": [
+          {
+            "title": "Scattered enquiries",
+            "desc": "Website forms, messengers and calls live in different places."
+          },
+          {
+            "title": "Manual copying",
+            "desc": "Enquiries are typed into the CRM by hand."
+          },
+          {
+            "title": "Delayed delivery",
+            "desc": "Sending queued replies has to be checked by hand."
+          }
+        ],
+        "howTitle": "How it connects",
+        "how": [
+          {
+            "title": "API key",
+            "desc": "A separate key per business; send enquiries through the API."
+          },
+          {
+            "title": "Channel webhooks",
+            "desc": "Telegram, WhatsApp and Instagram messages land in the inbox automatically."
+          },
+          {
+            "title": "Delivery worker",
+            "desc": "Queued replies are sent by cron or n8n."
+          }
+        ],
+        "detailTitle": "Technical details",
+        "detailBody": "Contact our team for API documentation and connection steps.",
+        "detailBullets": [
+          "A separate API key per business",
+          "Webhook signatures are verified",
+          "Send queue with retries"
         ]
       }
     }

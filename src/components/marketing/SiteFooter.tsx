@@ -57,6 +57,21 @@ export function SiteFooter({
                 <li>
                   <Link href={`/${lang}/booking`}>{c.product.booking}</Link>
                 </li>
+                <li>
+                  <Link href={`/${lang}/features/automation`}>{c.product.automation}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/features/broadcast`}>{c.product.broadcast}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/features/copilot`}>{c.product.copilot}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/features/analytics`}>{c.product.analytics}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/features/integrations`}>{c.product.integrations}</Link>
+                </li>
               </ul>
             </div>
 

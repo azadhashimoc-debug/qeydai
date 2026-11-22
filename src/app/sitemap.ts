@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { statSync } from "node:fs";
 import { BLOG_SLUGS, CHANNEL_SLUGS } from "@/lib/marketing/catalog";
+import { FEATURE_SLUGS } from "@/lib/marketing/features";
 import { SECTOR_SLUGS } from "@/lib/marketing/sectors";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -17,6 +18,7 @@ const STATIC_SUBPAGE_SUFFIXES = [
   "/tools",
   "/scenarios/fitness-centers",
   ...SECTOR_SLUGS.map((slug) => `/scenarios/${slug}`),
+  ...FEATURE_SLUGS.map((slug) => `/features/${slug}`),
   "/blog",
   ...BLOG_SLUGS.map((slug) => `/blog/${slug}`),
   "/pricing",

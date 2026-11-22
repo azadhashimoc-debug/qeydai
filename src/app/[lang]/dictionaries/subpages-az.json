@@ -11,7 +11,17 @@
       "aiTitle": "Pani · AI satış köməkçisi",
       "aiDesc": "24/7 təbii dildə dəqiq cavab və avtomatlaşdırma",
       "bookingTitle": "Rezervasiya və cədvəl",
-      "bookingDesc": "Görüş, xidmət və tədbirlər üçün rezervasiya və tutum nəzarəti"
+      "bookingDesc": "Görüş, xidmət və tədbirlər üçün rezervasiya və tutum nəzarəti",
+      "automationTitle": "Avtomatik cavab və ssenarilər",
+      "automationDesc": "AI cavab və işçiyə ötürmə qaydaları",
+      "broadcastTitle": "WhatsApp yayını",
+      "broadcastDesc": "Hazırlanır: razılıq əsaslı kütləvi mesaj",
+      "copilotTitle": "AI köməkçi işçi üçün",
+      "copilotDesc": "Hazırlanır: işçi üçün cavab qaralaması",
+      "analyticsTitle": "Hesabat və analitika",
+      "analyticsDesc": "Müraciətdən satışa qədər icmal",
+      "integrationsTitle": "İnteqrasiyalar və API",
+      "integrationsDesc": "API açarı və kanal webhook-ları"
     },
     "channels": {
       "label": "Kanallar və Alətlər",
@@ -55,7 +65,12 @@
         "pipeline": "Satış qıfı (Kanban)",
         "inbox": "Vahid mesaj qutusu",
         "ai": "AI satış köməkçisi",
-        "booking": "Rezervasiya və cədvəl"
+        "booking": "Rezervasiya və cədvəl",
+        "automation": "Avtomatik cavab və ssenarilər",
+        "broadcast": "WhatsApp yayını",
+        "copilot": "AI köməkçi işçi üçün",
+        "analytics": "Hesabat və analitika",
+        "integrations": "İnteqrasiyalar və API"
       },
       "channels": {
         "title": "Kanallar və Alətlər",
@@ -1266,6 +1281,230 @@
           "Vahid mesaj qutusu",
           "Müştəri kartı",
           "Broadcast və n8n şablonları"
+        ]
+      }
+    }
+  },
+  "features": {
+    "ui": {
+      "badgeLive": "Aktiv imkan",
+      "badgeSoon": "Hazırlanır",
+      "soonNote": "Bu imkan hələ hazırlanır və istifadəyə verilməyib. Növbəyə yazılsanız, hazır olanda sizinlə əlaqə saxlayacağıq.",
+      "soonCta": "Növbəyə yazıl",
+      "moreTitle": "Digər imkanlar",
+      "disclaimer": "Bu səhifə nümunə iş axınıdır. Real müştəri adı, rəy və ya nəticə rəqəmi göstərilmir."
+    },
+    "items": {
+      "automation": {
+        "navLabel": "Avtomatik cavab və ssenarilər",
+        "title": "Təkrarlanan suallara avtomatik cavab",
+        "subtitle": "AI yalnız sizin təsdiqlədiyiniz məlumatdan cavab verir, əmin olmayanda isə sualı işçiyə ötürür.",
+        "problemsTitle": "Əl ilə cavabın problemləri",
+        "problems": [
+          {
+            "title": "Gecə yazan müştəri",
+            "desc": "Axşam gələn mesaj səhərə qədər cavabsız qalır."
+          },
+          {
+            "title": "Eyni suallar",
+            "desc": "Qiymət və iş saatı sualları işçinin vaxtını alır."
+          },
+          {
+            "title": "Nəzarətsiz bot qorxusu",
+            "desc": "Səhv qiymət deyən bot müştərini itirə bilər."
+          }
+        ],
+        "howTitle": "Necə işləyir",
+        "how": [
+          {
+            "title": "Mesaj gəlir",
+            "desc": "WhatsApp, Instagram və ya Telegram mesajı vahid qutuya düşür."
+          },
+          {
+            "title": "Təsdiqlənmiş məlumatdan cavab",
+            "desc": "AI yalnız biznes məlumatındakı qiymət, saat və ünvandan cavab verir."
+          },
+          {
+            "title": "Əmin deyilsə işçiyə",
+            "desc": "Endirim, şikayət, ödəniş və məlumatda olmayan sual üçün işçiyə tapşırıq yaranır."
+          }
+        ],
+        "detailTitle": "Nəzarət sizdədir",
+        "detailBody": "Biznes məlumatını paneldən özünüz yazırsınız və AI-ni istədiyiniz vaxt söndürə bilirsiniz.",
+        "detailBullets": [
+          "Cavabdakı rəqəmlər məlumatla yoxlanılır",
+          "İşçi yazıbsa AI 30 dəqiqə susur",
+          "Kart nömrəsi kimi məlumat modelə göndərilmir"
+        ],
+        "note": "Vizual ssenari qurucusu hələ hazırlanır. Hazırda AI cavab və işçiyə ötürmə qaydaları işləyir."
+      },
+      "broadcast": {
+        "navLabel": "WhatsApp yayını",
+        "title": "Razılıq verən müştərilərə kütləvi mesaj",
+        "subtitle": "Aksiya və xatırlatmaları seçilmiş müştəri siyahısına göndərmək üçün hazırlanan imkan.",
+        "problemsTitle": "Kütləvi mesajda risklər",
+        "problems": [
+          {
+            "title": "Razılıq",
+            "desc": "Yalnız mesaj almağa razı olan müştərilərə göndərmək lazımdır."
+          },
+          {
+            "title": "Meta şablonları",
+            "desc": "Müştəri 24 saatdan çox yazmayıbsa, yalnız təsdiqlənmiş şablon göndərilə bilər."
+          },
+          {
+            "title": "Xərc",
+            "desc": "Hər çatdırılan şablon mesajı Meta tərəfindən ödənişlidir."
+          }
+        ],
+        "howTitle": "Planlaşdırılan axın",
+        "how": [
+          {
+            "title": "Siyahı seçimi",
+            "desc": "Mərhələ və ya etiket üzrə müştəri siyahısı."
+          },
+          {
+            "title": "Şablon seçimi",
+            "desc": "Meta tərəfindən təsdiqlənmiş şablon."
+          },
+          {
+            "title": "Göndəriş hesabatı",
+            "desc": "Neçə mesajın çatdığı və cavab gəldiyi."
+          }
+        ],
+        "detailTitle": "Nə üçün hələ yoxdur",
+        "detailBody": "Kütləvi göndəriş yanlış qurulsa, nömrənin bloklanmasına gətirib çıxara bilər. Əvvəl razılıq və şablon qaydalarını düzgün qururuq.",
+        "detailBullets": [
+          "Yalnız razılığı olan kontaktlar",
+          "Şablon və limit yoxlaması",
+          "Çatdırılma hesabatı"
+        ]
+      },
+      "copilot": {
+        "navLabel": "AI köməkçi işçi üçün",
+        "title": "Cavabı işçiyə təklif edən köməkçi",
+        "subtitle": "İşçi mesaja baxanda AI cavab təklifi hazırlayır, göndərməzdən əvvəl işçi redaktə edir.",
+        "problemsTitle": "İşçinin gündəlik yükü",
+        "problems": [
+          {
+            "title": "Uzun yazışmalar",
+            "desc": "Söhbətin tarixçəsini oxumaq vaxt aparır."
+          },
+          {
+            "title": "Cavab üslubu",
+            "desc": "Hər işçi fərqli üslubda yazır."
+          },
+          {
+            "title": "Sürət",
+            "desc": "Çox mesaj gələndə cavab gecikir."
+          }
+        ],
+        "howTitle": "Planlaşdırılan axın",
+        "how": [
+          {
+            "title": "Söhbətin xülasəsi",
+            "desc": "Müştərinin istəyi bir cümlədə."
+          },
+          {
+            "title": "Cavab təklifi",
+            "desc": "Biznes məlumatına əsaslanan qaralama."
+          },
+          {
+            "title": "İşçi təsdiqi",
+            "desc": "İşçi redaktə edir və özü göndərir."
+          }
+        ],
+        "detailTitle": "Nə üçün hələ yoxdur",
+        "detailBody": "Hazırda AI müstəqil cavab verir və ya işçiyə ötürür. İşçi üçün qaralama rejimi ayrıca hazırlanır.",
+        "detailBullets": [
+          "İşçi təsdiqi olmadan göndərilmir",
+          "Eyni biznes məlumatından istifadə",
+          "Eyni təhlükəsizlik qaydaları"
+        ]
+      },
+      "analytics": {
+        "navLabel": "Hesabat və analitika",
+        "title": "Müraciətdən satışa qədər bir baxışda",
+        "subtitle": "Neçə müraciət gəldi, neçəsi yazıldı və neçəsi ödəniş etdi, panelin icmalında görünür.",
+        "problemsTitle": "Hesabatsız idarəetmə",
+        "problems": [
+          {
+            "title": "Mənbə bilinmir",
+            "desc": "Müraciətlərin hansı kanaldan gəldiyi bəlli olmur."
+          },
+          {
+            "title": "Mərhələlərdə itki",
+            "desc": "Müştəri hansı mərhələdə itir görünmür."
+          },
+          {
+            "title": "Əl ilə cədvəl",
+            "desc": "Rəqəmlər cədvəldə əl ilə toplanır."
+          }
+        ],
+        "howTitle": "Paneldə nə görürsünüz",
+        "how": [
+          {
+            "title": "Müraciət sayı",
+            "desc": "Gələn müraciətlərin ümumi sayı."
+          },
+          {
+            "title": "Mərhələ üzrə paylanma",
+            "desc": "Qıfın hər mərhələsində neçə müştəri var."
+          },
+          {
+            "title": "Nəticə",
+            "desc": "Yazılan və ödəniş edən müştərilər."
+          }
+        ],
+        "detailTitle": "AI analitik",
+        "detailBody": "AI ilə hesabatı izah edən analitik hələ hazırlanır. Hazırda icmal rəqəmləri panelin özündə göstərilir.",
+        "detailBullets": [
+          "Mərhələ üzrə say",
+          "UTM mənbəyi üzrə müraciətlər",
+          "Rezervasiya və mesaj sayı"
+        ],
+        "note": "AI analitik hələ hazırlanır; hesabat rəqəmləri paneldə mövcuddur."
+      },
+      "integrations": {
+        "navLabel": "İnteqrasiyalar və API",
+        "title": "Saytınızdan və alətlərinizdən müraciət qəbul edin",
+        "subtitle": "API açarı ilə müraciətlər panelə düşür, kanal webhook-ları isə mesajları vahid qutuya yönləndirir.",
+        "problemsTitle": "Ayrı sistemlərin problemi",
+        "problems": [
+          {
+            "title": "Dağınıq müraciətlər",
+            "desc": "Sayt formu, mesajlaşma və zənglər ayrı yerlərdə qalır."
+          },
+          {
+            "title": "Əl ilə köçürmə",
+            "desc": "Müraciət CRM-ə əl ilə yazılır."
+          },
+          {
+            "title": "Gecikmiş çatdırılma",
+            "desc": "Mesajın göndərilməsi hər dəfə əl ilə yoxlanılır."
+          }
+        ],
+        "howTitle": "Necə qoşulur",
+        "how": [
+          {
+            "title": "API açarı",
+            "desc": "Hər biznes üçün ayrıca açar, müraciətləri API ilə göndərin."
+          },
+          {
+            "title": "Kanal webhook-ları",
+            "desc": "Telegram, WhatsApp və Instagram mesajları avtomatik qutuya düşür."
+          },
+          {
+            "title": "Çatdırılma işçisi",
+            "desc": "Növbədəki cavablar cron və ya n8n ilə göndərilir."
+          }
+        ],
+        "detailTitle": "Texniki məlumat",
+        "detailBody": "API sənədləri və qoşulma addımları üçün komandamızla əlaqə saxlayın.",
+        "detailBullets": [
+          "Biznes üzrə ayrı API açarı",
+          "Webhook imzası yoxlanılır",
+          "Göndərmə növbəsi və təkrar cəhd"
         ]
       }
     }
