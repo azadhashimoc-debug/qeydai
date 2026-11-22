@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
+import { enabledProviders } from "@/lib/auth/oauth";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
@@ -55,6 +57,7 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
           heartAlt: shell.heartAlt,
         }}
       >
+        <Suspense>
         <AuthKommoClient
           lang={locale}
           copy={{
@@ -70,7 +73,9 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
             passkeyLabel: login.passkeyLabel,
             googleLabel: shell.googleLabel,
             facebookLabel: shell.facebookLabel,
-            socialNote: shell.socialNote,
+            oauthDenied: login.oauthDenied,
+            oauthError: login.oauthError,
+            oauthEmail: login.oauthEmail,
             forgotLink: login.forgotLink,
             invalidKey: login.invalidKey,
             rateLimited: login.rateLimited,
@@ -78,7 +83,9 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
             securityNote: login.securityNote,
           }}
           contactHref={`/${locale}/contact`}
+          providers={enabledProviders()}
         />
+        </Suspense>
       </AuthShell>
     </div>
   );

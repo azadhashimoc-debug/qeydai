@@ -51,3 +51,19 @@ Tarix: 22 Noyabr 2026. Kod, migrasiyalar (0001–0006 Neon production-da), CI v�
 - Kommo kimi WhatsApp yayını, AI copilot və vizual Salesbot qurucusu hələ yoxdur; sayt bunları "Hazırlanır" kimi göstərir.
 - Naməlum `/features/...` və `/scenarios/...` ünvanları standart ingilis 404 mətni göstərir (noindex ilə); lokallaşdırma yoxlanıldı, bu Next sazlamasında işləmədi.
 - `npm run test:pg` Neon-a bu konteynerdən işləmədi (portlar bağlıdır); Neon-da yalnız SQL yoxlamaları (RLS, imtiyazlar) aparılıb. Lokal PostgreSQL 16-da 22 PG testi keçir.
+
+## F. Google və Facebook ilə giriş / hesab yaratma (kod hazırdır, açarlar sizdən)
+Kod işləyir (hər kəs Google/Facebook ilə girib öz biznes hesabını yarada bilir). Düymələr yalnız aşağıdakı açarlar Vercel-ə qoyulanda görünür.
+Əvvəl bir dəfə: migrasiya `0007_panel_accounts.sql` Neon production-a tətbiq olunmalıdır (mən tətbiq edirəm, sizin "bəli"nizlə).
+
+19. **Google:** https://console.cloud.google.com → yeni layihə → APIs & Services → OAuth consent screen (External, tətbiq adı, dəstək e-poçtu) → Credentials → Create credentials → OAuth client ID → "Web application".
+    - Authorized redirect URI: `https://panelim.az/api/auth/oauth/google/callback`
+    - Çıxan **Client ID** və **Client secret**-i Vercel-də `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` kimi əlavə edin.
+    - Consent screen-i "In production"-a keçirin, yoxsa yalnız test istifadəçiləri girə bilər.
+20. **Facebook:** https://developers.facebook.com → Create App → "Authenticate and request data from users with Facebook Login" → Facebook Login → Settings.
+    - Valid OAuth Redirect URIs: `https://panelim.az/api/auth/oauth/facebook/callback`
+    - App Settings → Basic: **App ID** → `FACEBOOK_APP_ID`, **App Secret** → `FACEBOOK_APP_SECRET`.
+    - Privacy Policy URL: `https://panelim.az/az/legal/privacy`. Tətbiqi "Live" rejiminə keçirin.
+    - `email` və `public_profile` icazələri standartdır (əlavə review tələb etmir).
+21. Dəyişənlər əlavə olunandan sonra saytı yenidən deploy edin (düymələr build zamanı oxunur).
+22. **Sui-istifadədən qorunma:** hər yeni Google/Facebook hesabı avtomatik yeni biznes hesabı yaradır. Sorğu limiti var (IP başına dəqiqədə 20 geri çağırış), amma çoxlu saxta hesabları izləmək üçün Neon-da `panel_accounts` cədvəlinə vaxtaşırı baxın.

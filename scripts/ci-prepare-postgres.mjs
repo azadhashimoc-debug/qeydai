@@ -18,6 +18,7 @@ try {
     "0004_panel_jti.sql",
     "0005_analytics_ingest.sql",
     "0006_ai_settings.sql",
+    "0007_panel_accounts.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);
@@ -48,6 +49,8 @@ try {
       END LOOP;
     END $grants$;
     GRANT INSERT (event, locale, props) ON TABLE public.analytics_events TO panelim_ci;
+    -- Global social-account table (no tenant RLS): the app role may only read, insert and update.
+    GRANT SELECT, INSERT, UPDATE ON TABLE public.panel_accounts TO panelim_ci;
   `);
   const rls = await pool.query(`
     SELECT c.relname AS tablename, c.relrowsecurity AS rowsecurity,

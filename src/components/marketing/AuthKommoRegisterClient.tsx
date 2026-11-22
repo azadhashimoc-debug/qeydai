@@ -5,7 +5,7 @@ import { useCallback, useId, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics/client";
 import { extractUtmProps, type Locale } from "@/lib/analytics/events";
 import { getActiveExperimentToken } from "@/lib/experiments/ab";
-import { AuthSocialRow } from "./AuthSocialRow";
+import { AuthSocialRow, type SocialProviders } from "./AuthSocialRow";
 
 export type AuthKommoRegisterCopy = {
   title: string;
@@ -25,7 +25,6 @@ export type AuthKommoRegisterCopy = {
   rateLimitedText: string;
   googleLabel: string;
   facebookLabel: string;
-  socialNote: string;
   termsPrefix: string;
   termsLinkText: string;
   termsAnd: string;
@@ -40,6 +39,7 @@ type Props = {
   loginHref: string;
   termsHref: string;
   privacyHref: string;
+  providers: SocialProviders;
 };
 
 const WORKSPACE_COPY = {
@@ -97,9 +97,10 @@ export function AuthKommoRegisterClient({
   loginHref,
   termsHref,
   privacyHref,
+  providers,
 }: Props) {
   const [state, setState] = useState<
-    "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social"
+    "idle" | "sending" | "ok" | "error" | "name_error" | "limited"
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
@@ -131,9 +132,7 @@ export function AuthKommoRegisterClient({
           ? copy.nameRequired
           : state === "error"
             ? copy.errText
-            : state === "social"
-              ? copy.socialNote
-              : "";
+            : "";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -250,7 +249,7 @@ export function AuthKommoRegisterClient({
                   aria-invalid={hasNameError}
                   aria-describedby={hasNameError ? statusId : undefined}
                   onChange={() => {
-                    if (hasNameError || state === "social") setState("idle");
+                    if (hasNameError) setState("idle");
                   }}
                   className="pm-auth-input"
                 />
@@ -280,7 +279,7 @@ export function AuthKommoRegisterClient({
                   aria-invalid={hasPhoneError}
                   aria-describedby={hasPhoneError ? statusId : undefined}
                   onChange={() => {
-                    if (hasPhoneError || state === "social") setState("idle");
+                    if (hasPhoneError) setState("idle");
                   }}
                   className="pm-auth-input"
                 />
@@ -303,9 +302,7 @@ export function AuthKommoRegisterClient({
                 className={
                   state === "ok"
                     ? "pm-auth-status is-ok"
-                    : state === "social"
-                      ? "pm-auth-status"
-                      : "pm-auth-status is-error"
+                    : "pm-auth-status is-error"
                 }
               >
                 {statusText}
@@ -404,9 +401,10 @@ export function AuthKommoRegisterClient({
       </p>
 
       <AuthSocialRow
+        lang={locale}
+        providers={providers}
         googleLabel={copy.googleLabel}
         facebookLabel={copy.facebookLabel}
-        onSocialClick={() => setState("social")}
       />
 
       <div className="pm-auth-footer-links">

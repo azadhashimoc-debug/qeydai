@@ -131,7 +131,7 @@ export function createPanelApi({
     }
     const nowMs = now().getTime();
     const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
-    const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
+    const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs, { allowSocial: true });
     if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs, payload.tenantId))) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
@@ -211,7 +211,7 @@ export function createPanelApi({
         if (config.secret && config.allowedTenants.size > 0) {
           const nowMs = now().getTime();
           const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
-          const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
+          const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs, { allowSocial: true });
           if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs, payload.tenantId);
         }
       }

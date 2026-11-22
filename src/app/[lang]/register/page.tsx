@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthKommoRegisterClient } from "@/components/marketing/AuthKommoRegisterClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
+import { enabledProviders } from "@/lib/auth/oauth";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
@@ -77,7 +78,6 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
             rateLimitedText: reg.form.rateLimited,
             googleLabel: shell.googleLabel,
             facebookLabel: shell.facebookLabel,
-            socialNote: shell.socialNote,
             termsPrefix: reg.termsPrefix,
             termsLinkText: reg.termsLinkText,
             termsAnd: reg.termsAnd,
@@ -88,6 +88,7 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
           loginHref={`/${locale}/login`}
           termsHref={`/${locale}/legal/terms`}
           privacyHref={`/${locale}/legal/privacy`}
+          providers={enabledProviders()}
         />
       </AuthShell>
     </div>

@@ -952,7 +952,7 @@
       "sections": {
         "collection": {
           "title": "1. Toplanan məlumatlar",
-          "body": "Biz platformadan qeydiyyat zamanı təqdim etdiyiniz əlaqə məlumatlarını (ad, telefon nömrəsi), həmçinin xidmətin göstərilməsi üçün zəruri olan mesajlaşma və qeydiyyat tarixçəsini toplayırıq."
+          "body": "Biz platformadan qeydiyyat zamanı təqdim etdiyiniz əlaqə məlumatlarını (ad, telefon nömrəsi), həmçinin xidmətin göstərilməsi üçün zəruri olan mesajlaşma və qeydiyyat tarixçəsini toplayırıq. Google və ya Facebook ilə daxil olduqda həmin xidmətdən yalnız adınız, e-poçt ünvanınız (təqdim olunarsa) və unikal istifadəçi nömrəniz alınır; şifrəniz və digər məlumatlarınız alınmır."
         },
         "purpose": {
           "title": "2. Məlumatların istifadə məqsədi",
@@ -1005,7 +1005,10 @@
       "emailPlaceholder": "E-poçt",
       "passkeyLabel": "Keçid açarı ilə davam edin",
       "forgotLink": "Açarınızı unutmusunuz?",
-      "topSwitchLabel": "Hesab yarat"
+      "topSwitchLabel": "Hesab yarat",
+      "oauthDenied": "Giriş ləğv edildi. İstəsəniz yenidən cəhd edin.",
+      "oauthError": "Google və ya Facebook ilə giriş alınmadı. Bir az sonra yenidən cəhd edin və ya iş sahəsi açarı ilə daxil olun.",
+      "oauthEmail": "Google hesabınızın e-poçtu təsdiqlənməyib, ona görə daxil ola bilmirsiniz."
     },
     "register": {
       "badge": "Yeni İş Sahəsi",
@@ -1046,8 +1049,7 @@
       "magnifierAlt": "Köməkçi lupa maskotu",
       "heartAlt": "Ürək maskotu",
       "googleLabel": "Google ilə daxil ol",
-      "facebookLabel": "Facebook ilə daxil ol",
-      "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda iş sahəsi açarı ilə daxil olun."
+      "facebookLabel": "Facebook ilə daxil ol"
     }
   },
   "selectAccount": {

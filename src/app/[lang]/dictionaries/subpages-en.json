@@ -952,7 +952,7 @@
       "sections": {
         "collection": {
           "title": "1. Information we collect",
-          "body": "We collect contact information provided during registration (name, phone number) alongside conversation history and booking timestamps necessary to deliver the service."
+          "body": "We collect contact information provided during registration (name, phone number) alongside conversation history and booking timestamps necessary to deliver the service. When you sign in with Google or Facebook, we receive only your name, your e-mail address (if provided) and a unique user ID from that service; we never receive your password or other data."
         },
         "purpose": {
           "title": "2. How information is used",
@@ -1005,7 +1005,10 @@
       "emailPlaceholder": "Email",
       "passkeyLabel": "Continue with passkey",
       "forgotLink": "Forgot your access key?",
-      "topSwitchLabel": "Create account"
+      "topSwitchLabel": "Create account",
+      "oauthDenied": "Sign-in was cancelled. Try again if you like.",
+      "oauthError": "Sign-in with Google or Facebook failed. Try again shortly or sign in with a workspace key.",
+      "oauthEmail": "Your Google account's e-mail is not verified, so you cannot sign in."
     },
     "register": {
       "badge": "New Workspace Request",
@@ -1046,8 +1049,7 @@
       "magnifierAlt": "Helper magnifying glass mascot",
       "heartAlt": "Iridescent heart mascot",
       "googleLabel": "Continue with Google",
-      "facebookLabel": "Continue with Facebook",
-      "socialNote": "OAuth sign-in is enabled per provisioned workspace. Use your workspace access key below."
+      "facebookLabel": "Continue with Facebook"
     }
   },
   "selectAccount": {

@@ -1,20 +1,26 @@
 "use client";
 
+export type SocialProviders = { google: boolean; facebook: boolean };
+
+/** Sign-in links for the providers that are configured on the server. Renders nothing when none are. */
 export function AuthSocialRow({
+  lang,
+  providers,
   googleLabel,
   facebookLabel,
-  onSocialClick,
 }: {
+  lang: "az" | "en";
+  providers: SocialProviders;
   googleLabel: string;
   facebookLabel: string;
-  onSocialClick: (provider: "Google" | "Facebook") => void;
 }) {
+  if (!providers.google && !providers.facebook) return null;
   return (
     <div className="pm-auth-social-row">
-      <button
-        type="button"
+      {providers.google && (
+      <a
+        href={`/api/auth/oauth/google/start?lang=${lang}`}
         className="pm-auth-social-btn is-google"
-        onClick={() => onSocialClick("Google")}
       >
         <span className="pm-auth-social-g" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24">
@@ -37,12 +43,13 @@ export function AuthSocialRow({
           </svg>
         </span>
         <span>{googleLabel}</span>
-      </button>
+      </a>
+      )}
 
-      <button
-        type="button"
+      {providers.facebook && (
+      <a
+        href={`/api/auth/oauth/facebook/start?lang=${lang}`}
         className="pm-auth-social-btn is-facebook"
-        onClick={() => onSocialClick("Facebook")}
       >
         <span className="pm-auth-social-fb" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -50,7 +57,8 @@ export function AuthSocialRow({
           </svg>
         </span>
         <span>{facebookLabel}</span>
-      </button>
+      </a>
+      )}
     </div>
   );
 }

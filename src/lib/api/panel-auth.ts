@@ -66,6 +66,8 @@ export type PanelSessionPayload = {
   memberId: string;
   exp: number;
   jti: string;
+  /** True for sessions issued after Google/Facebook sign-in (no admin key behind them). */
+  social: boolean;
 };
 
 type RawPanelTokenPayload = {
@@ -75,6 +77,8 @@ type RawPanelTokenPayload = {
   jti: string;
   k?: string;
   m?: string;
+  /** Account id of a social (Google/Facebook) sign-in; such tokens carry no admin-key fingerprint. */
+  u?: string;
 };
 
 function sha256(input: string): Buffer {
@@ -132,10 +136,12 @@ export function createPanelSessionToken(
   ttlMs: number = DEFAULT_PANEL_TTL_MS,
   keyFingerprint?: string,
   memberId?: string,
+  socialUserId?: string,
 ): string {
   const payload: RawPanelTokenPayload = {
     t: tenantId,
     ...(memberId ? { m: memberId } : {}),
+    ...(socialUserId ? { u: socialUserId } : {}),
     iat: nowMs,
     exp: nowMs + ttlMs,
     jti: randomBytes(12).toString("base64url"),
@@ -151,6 +157,7 @@ export function verifyPanelSessionToken(
   secret: Buffer,
   allowed: Set<string> | Map<string, Set<string>>,
   nowMs: number = Date.now(),
+  options: { allowSocial?: boolean } = {},
 ): PanelSessionPayload | null {
   if (typeof token !== "string" || !token) return null;
   const parts = token.split(".");
@@ -189,14 +196,25 @@ export function verifyPanelSessionToken(
 
   if (rec.exp <= nowMs) return null;
 
-  if (allowed instanceof Map) {
-    if (typeof rec.k !== "string" || !rec.k) return null;
-    if (!allowed.get(rec.t)?.has(rec.k)) return null;
-  } else if (!allowed.has(rec.t)) {
-    return null;
+  // Social sessions have no admin key to check against the environment allowlist. They are accepted only
+  // when the caller opts in and the token names both an account and a member; callers must then confirm the
+  // member still exists in the tenant (withWorkspace does this on every request).
+  const social =
+    options.allowSocial === true &&
+    typeof rec.u === "string" && rec.u.length > 0 &&
+    typeof rec.m === "string" && rec.m.length > 0 &&
+    !("k" in rec);
+
+  if (!social) {
+    if (allowed instanceof Map) {
+      if (typeof rec.k !== "string" || !rec.k) return null;
+      if (!allowed.get(rec.t)?.has(rec.k)) return null;
+    } else if (!allowed.has(rec.t)) {
+      return null;
+    }
   }
 
-  return { tenantId: rec.t, memberId: typeof rec.m === "string" ? rec.m : "", exp: rec.exp, jti: rec.jti };
+  return { tenantId: rec.t, memberId: typeof rec.m === "string" ? rec.m : "", exp: rec.exp, jti: rec.jti, social };
 }
 
 export function buildPanelCookieHeader(token: string, secure: boolean, maxAgeSec: number): string {

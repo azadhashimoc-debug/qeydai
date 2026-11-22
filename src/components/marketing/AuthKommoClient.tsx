@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { AuthSocialRow } from "./AuthSocialRow";
+import { AuthSocialRow, type SocialProviders } from "./AuthSocialRow";
 
 export type AuthKommoCopy = {
   title: string;
@@ -18,7 +18,9 @@ export type AuthKommoCopy = {
   passkeyLabel: string;
   googleLabel: string;
   facebookLabel: string;
-  socialNote: string;
+  oauthDenied: string;
+  oauthError: string;
+  oauthEmail: string;
   forgotLink: string;
   invalidKey: string;
   rateLimited: string;
@@ -30,14 +32,25 @@ type Props = {
   lang: "az" | "en";
   copy: AuthKommoCopy;
   contactHref: string;
+  providers: SocialProviders;
 };
 
-export function AuthKommoClient({ lang, copy, contactHref }: Props) {
+export function AuthKommoClient({ lang, copy, contactHref, providers }: Props) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network" | "social">("idle");
+  const [typedStatus, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network">("idle");
+  // The OAuth callback redirects back here with ?oauth=denied|error|email; shown until the user starts typing.
+  const oauthParam = useSearchParams().get("oauth");
+  const [oauthDismissed, setOauthDismissed] = useState(false);
+  const oauthStatus =
+    oauthDismissed ? "idle"
+    : oauthParam === "denied" ? "oauth_denied"
+    : oauthParam === "email" ? "oauth_email"
+    : oauthParam === "error" ? "oauth_error"
+    : "idle";
+  const status = typedStatus !== "idle" ? typedStatus : oauthStatus;
   const emailId = useId();
   const keyId = useId();
   const statusId = useId();
@@ -50,12 +63,14 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     };
   }, []);
 
-  const isError = status === "invalid" || status === "limited" || status === "network";
+  const isError = status !== "idle" && status !== "submitting";
   const statusText =
     status === "invalid" ? copy.invalidKey
     : status === "limited" ? copy.rateLimited
     : status === "network" ? copy.networkError
-    : status === "social" ? copy.socialNote
+    : status === "oauth_denied" ? copy.oauthDenied
+    : status === "oauth_error" ? copy.oauthError
+    : status === "oauth_email" ? copy.oauthEmail
     : copy.securityNote;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -140,7 +155,10 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   value={key}
                   onChange={(e) => {
                     setKey(e.target.value);
-                    if (isError || status === "social") setStatus("idle");
+                    if (isError) {
+                      setStatus("idle");
+                      setOauthDismissed(true);
+                    }
                   }}
                   placeholder={copy.keyPlaceholder}
                   className="pm-auth-input has-toggle"
@@ -178,9 +196,10 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
 
 
       <AuthSocialRow
+        lang={lang}
+        providers={providers}
         googleLabel={copy.googleLabel}
         facebookLabel={copy.facebookLabel}
-        onSocialClick={() => setStatus("social")}
       />
       <div className="pm-auth-footer-links">
         <Link href={contactHref} className="pm-auth-forgot-link">

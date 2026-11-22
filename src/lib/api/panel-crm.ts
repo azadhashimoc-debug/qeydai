@@ -80,7 +80,7 @@ export async function requirePanelMember(
     return { ok: false, response: fail(401, "unauthorized") };
   }
   const nowMs = Date.now();
-  const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant);
+  const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant, nowMs, { allowSocial: true });
   if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs, payload.tenantId))) {
     return { ok: false, response: fail(401, "unauthorized") };
   }
