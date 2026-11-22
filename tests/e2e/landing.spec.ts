@@ -88,6 +88,7 @@ test("lead form: invalid shows error, valid is stored", async ({ page }, info) =
   expect(rows.some((r) => r.phone === normalizedPhone && r.name === "Aygün")).toBe(true);
 
   await page.goto("/en/login");
+  await page.getByRole("button", { name: "Access key", exact: true }).click();
   await page.getByLabel("Email").fill("pilot@example.test");
   await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS.desktop);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
