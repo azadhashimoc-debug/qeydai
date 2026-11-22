@@ -1,6 +1,7 @@
 import { randomBytes, randomUUID, scrypt as rawScrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import { Pool } from "pg";
+import defaultSalesStagesAz from "../../app/[lang]/dictionaries/default-sales-stages-az.json";
 import {
   buildPanelCookieHeader, createPanelSessionToken, DEFAULT_PANEL_TTL_MS,
   getPanelAuthConfig, isPanelJtiRevoked, PANEL_COOKIE_NAME, readCookieValue, verifyPanelSessionToken,
@@ -144,9 +145,10 @@ export async function registerBusiness(req: Request): Promise<Response> {
     );
     await db.query(`
       INSERT INTO sales_stages (tenant_id,id,name,position,kind)
-      VALUES ($1,'new','Yeni',0,'open'),($1,'contacted','Əlaqə saxlanılıb',1,'open'),
-             ($1,'trial_booked','Görüş təyin edilib',2,'open'),($1,'paid','Uğurlu',3,'won'),($1,'lost','İtirilib',4,'lost')
-    `, [tenant]);
+      VALUES ($1,'new',$2,0,'open'),($1,'contacted',$3,1,'open'),
+             ($1,'trial_booked',$4,2,'open'),($1,'paid',$5,3,'won'),($1,'lost',$6,4,'lost')
+    `, [tenant, defaultSalesStagesAz.new, defaultSalesStagesAz.contacted,
+        defaultSalesStagesAz.trial_booked, defaultSalesStagesAz.paid, defaultSalesStagesAz.lost]);
     await db.query("COMMIT");
     return issueCookie(tenant, id, req);
   } catch (error) {
