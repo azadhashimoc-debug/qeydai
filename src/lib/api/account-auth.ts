@@ -100,7 +100,11 @@ async function body(req: Request): Promise<Record<string, unknown> | null> {
     return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : null;
   } catch { return null; }
 }
+function hasStableSessionSecret(): boolean {
+  return (process.env.QEYDAI_PANEL_SECRET?.trim().length ?? 0) >= 24;
+}
 function issueCookie(tenant: string, id: string, req: Request): Response {
+  if (!hasStableSessionSecret()) return genericError(503, "account_auth_unavailable");
   const secret = getPanelAuthConfig().secret;
   if (!secret) return genericError(503, "account_auth_unavailable");
   const token = createPanelSessionToken(tenant, secret, Date.now(), DEFAULT_PANEL_TTL_MS, undefined, "account:" + id);
@@ -124,7 +128,7 @@ export async function registerBusiness(req: Request): Promise<Response> {
       password.length < 12 || password.length > 128 || Buffer.byteLength(password) > 256) {
     return genericError(422, "invalid_input");
   }
-  if (!getPanelAuthConfig().secret) return genericError(503, "account_auth_unavailable");
+  if (!hasStableSessionSecret() || !getPanelAuthConfig().secret) return genericError(503, "account_auth_unavailable");
   const tenant = "biz_" + randomUUID();
   const id = randomUUID();
   const passwordHash = await hashPassword(password);
@@ -158,6 +162,7 @@ export async function registerBusiness(req: Request): Promise<Response> {
 
 export async function loginBusiness(req: Request): Promise<Response> {
   if (!sameOrigin(req)) return genericError(403, "forbidden");
+  if (!hasStableSessionSecret()) return genericError(503, "account_auth_unavailable");
   if (!allowAttempt(req, "login")) return genericError(429, "rate_limited");
   const input = await body(req);
   if (!input) return genericError(400, "invalid_json");
@@ -180,7 +185,7 @@ export async function loginBusiness(req: Request): Promise<Response> {
 export async function readAccountSession(req: Request): Promise<{ tenantId: string; memberId: string; jti: string; exp: number } | null> {
   const config = getPanelAuthConfig();
   const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
-  if (!config.secret || !token) return null;
+  if (!hasStableSessionSecret() || !config.secret || !token) return null;
   const payloadPart = token.split(".")[0];
   let tenant: string;
   try {
