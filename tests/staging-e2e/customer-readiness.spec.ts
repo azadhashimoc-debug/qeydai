@@ -93,9 +93,6 @@ test("business CRM: login, contacts, pipeline, tasks, notes, tenant isolation, l
     await page.goto("/az/register");
     await expect(page.locator("body")).toBeVisible();
 
-    // Log out invalidates the same session even with the cookie still present.
-    expect((await a.delete("/api/panel/auth", { headers: { origin: baseURL } })).status()).toBe(200);
-    expect((await a.get("/api/panel/auth")).status()).toBe(401);
   } finally {
     // Delete in FK order. Never touch other tenants, even on partial test failure.
     const headers = { origin: baseURL };
@@ -103,6 +100,12 @@ test("business CRM: login, contacts, pipeline, tasks, notes, tenant isolation, l
     if (taskId) await a.delete("/api/panel/tasks?id=" + encodeURIComponent(taskId), { headers }).catch(() => {});
     if (dealId) await a.delete("/api/panel/deals?id=" + encodeURIComponent(dealId), { headers }).catch(() => {});
     if (contactId) await a.delete("/api/panel/contacts?id=" + encodeURIComponent(contactId), { headers }).catch(() => {});
+    // Logout only after cleanup; an invalidated cookie cannot remove test fixtures.
+    const signedIn = await a.get("/api/panel/auth");
+    if (signedIn.status() === 200) {
+      expect((await a.delete("/api/panel/auth", { headers })).status()).toBe(200);
+      expect((await a.get("/api/panel/auth")).status()).toBe(401);
+    }
     await a.dispose();
     await b.dispose();
   }
