@@ -140,7 +140,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   id={keyId}
                   name="key"
                   type={showKey ? "text" : "password"}
-                  autoComplete={loginMode === "password" ? "current-password" : "off"
+                  autoComplete={loginMode === "password" ? "current-password" : "off"}
                   required
                   value={key}
                   onChange={(e) => {
