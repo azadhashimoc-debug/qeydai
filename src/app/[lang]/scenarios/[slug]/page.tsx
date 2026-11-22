@@ -9,7 +9,7 @@ import {
   SubpageHero,
 } from "@/components/marketing/SubpageBlocks";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
-import { SECTOR_SLUGS, SECTOR_UI, SECTORS, isSectorSlug } from "@/lib/marketing/sectors";
+import { SECTOR_IMAGES, SECTOR_SLUGS, isSectorSlug } from "@/lib/marketing/sectors";
 import { getDictionary, locales } from "../../dictionaries";
 import "../../marketing.css";
 
@@ -24,14 +24,14 @@ export async function generateMetadata({
   if (!isSectorSlug(slug)) notFound();
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
-  const copy = SECTORS[slug].copy[locale];
+  const copy = d.subpages.sectors.items[slug];
   return buildSubpageMetadata({
     lang: locale,
     routeSuffix: `/scenarios/${slug}`,
     title: copy.title,
     description: copy.subtitle,
     brand: d.brand,
-    image: `/images/${SECTORS[slug].image}.webp`,
+    image: `/images/${SECTOR_IMAGES[slug]}.webp`,
   });
 }
 
@@ -45,9 +45,8 @@ export default async function SectorScenarioPage({
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
-  const sector = SECTORS[slug];
-  const c = sector.copy[locale];
-  const ui = SECTOR_UI[locale];
+  const c = s.sectors.items[slug];
+  const ui = s.sectors.ui;
   const tones = ["lavender", "mint", "sky"] as const;
   const routeSuffix = `/scenarios/${slug}`;
 
@@ -74,7 +73,7 @@ export default async function SectorScenarioPage({
           subtitle={c.subtitle}
           primaryCta={{ href: `/${locale}/demo`, label: s.common.bottomCta.primary }}
           secondaryCta={{ href: `/${locale}/pricing`, label: s.navGroups.resources.pricingTitle }}
-          image={sector.image}
+          image={SECTOR_IMAGES[slug]}
           imageAlt={c.title}
           badgeVariant="amber"
         />
@@ -117,8 +116,8 @@ export default async function SectorScenarioPage({
               tone: "white",
             },
             ...SECTOR_SLUGS.filter((x) => x !== slug).map((x) => ({
-              title: SECTORS[x].copy[locale].navLabel,
-              desc: SECTORS[x].copy[locale].subtitle,
+              title: s.sectors.items[x].navLabel,
+              desc: s.sectors.items[x].subtitle,
               href: `/${locale}/scenarios/${x}`,
               tone: "white" as const,
             })),

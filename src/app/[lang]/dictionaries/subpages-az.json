@@ -1050,5 +1050,224 @@
     "demoAccount": "Demo al",
     "loginAccount": "Giriş",
     "createAccountTitle": "Hesab yarat"
+  },
+  "sectors": {
+    "ui": {
+      "badge": "Sektor ssenarisi",
+      "disclaimer": "Bu səhifə nümunə iş axınıdır. Real müştəri adı, rəy və ya nəticə rəqəmi göstərilmir.",
+      "moreTitle": "Digər sektorlar"
+    },
+    "items": {
+      "beauty-salons": {
+        "navLabel": "Gözəllik salonları",
+        "title": "Gözəllik salonları üçün Instagram və WhatsApp rezervasiyası",
+        "subtitle": "Qiymət, usta və boş saat suallarına cavab verin, rezervasiyanı təsdiqləyin və gələn müştərini xatırladın.",
+        "challengesTitle": "Salonlarda tez-tez rast gəlinən problemlər",
+        "challenges": [
+          {
+            "title": "Direct-də itən müraciətlər",
+            "desc": "Müştəri axşam yazır, səhər cavab gəlir və o artıq başqa salonu seçib."
+          },
+          {
+            "title": "Usta və saat toqquşması",
+            "desc": "Qrafik əl ilə izlənəndə eyni saata iki nəfər yazılır."
+          },
+          {
+            "title": "Gəlməyən müştərilər",
+            "desc": "Xatırlatma olmayanda rezervasiya boş qalır."
+          }
+        ],
+        "workflowTitle": "Rezervasiya axını",
+        "workflow": [
+          {
+            "title": "Xidmət və usta seçimi",
+            "desc": "AI hansı xidmət və ustanı istədiyini soruşur, boş saatları təklif edir."
+          },
+          {
+            "title": "Saatın ayrılması",
+            "desc": "Nömrə təsdiqlənir, saat ayrılır, təkrar rezervasiya bloklanır."
+          },
+          {
+            "title": "Xatırlatma və təkrar ziyarət",
+            "desc": "Gündən əvvəl xatırlatma gedir, ziyarətdən sonra təkrar təklif üçün tapşırıq yaranır."
+          }
+        ],
+        "detailTitle": "Usta və xidmət üzrə cədvəl",
+        "detailBody": "Hər usta və xidmət üçün boş saatlar paneldə görünür.",
+        "detailBullets": [
+          "Usta üzrə qrafik",
+          "Xidmət siyahısı və qiymətlər",
+          "Instagram və WhatsApp mənbəyi"
+        ]
+      },
+      "clinics": {
+        "navLabel": "Klinika və tibb mərkəzləri",
+        "title": "Klinika və tibb mərkəzləri üçün qəbula yazılma",
+        "subtitle": "Həkim, xidmət və vaxt suallarına cavab verin, qəbula yazılmanı idarə edin və xatırlatma göndərin.",
+        "challengesTitle": "Klinikalarda tez-tez rast gəlinən problemlər",
+        "challenges": [
+          {
+            "title": "Zəng yükü",
+            "desc": "Qəbul masası eyni sualları telefonla təkrar-təkrar cavablayır."
+          },
+          {
+            "title": "Həkim cədvəli üzrə qarışıqlıq",
+            "desc": "Boş vaxtlar əl ilə yoxlandıqda səhv yazılmalar olur."
+          },
+          {
+            "title": "Gəlməyən pasiyentlər",
+            "desc": "Xatırlatma olmayanda qəbul vaxtı boş qalır."
+          }
+        ],
+        "workflowTitle": "Qəbula yazılma axını",
+        "workflow": [
+          {
+            "title": "Xidmət və həkim seçimi",
+            "desc": "AI xidməti və həkimi müəyyən edir, boş vaxtları göstərir."
+          },
+          {
+            "title": "Vaxtın ayrılması",
+            "desc": "Nömrə təsdiqlənir və vaxt təkrar yazılmadan ayrılır."
+          },
+          {
+            "title": "Xatırlatma",
+            "desc": "Qəbuldan əvvəl xatırlatma gedir, dəyişiklik üçün cavab asanlaşır."
+          }
+        ],
+        "detailTitle": "Məxfilik və nəzarət",
+        "detailBody": "Tibbi diaqnoz və ya müayinə məlumatı AI-yə həvalə edilmir; AI yalnız yazılma, vaxt və ümumi məlumat üçündür.",
+        "detailBullets": [
+          "Yalnız yazılma və əlaqə məlumatı",
+          "Həkim üzrə cədvəl",
+          "Komanda üzvü rolları"
+        ]
+      },
+      "auto-service": {
+        "navLabel": "Avtoservis",
+        "title": "Avtoservislər üçün müraciət və növbə idarəsi",
+        "subtitle": "Qiymət sorğularını, növbə yazılmasını və iş mərhələlərini bir paneldə izləyin.",
+        "challengesTitle": "Avtoservislərdə tez-tez rast gəlinən problemlər",
+        "challenges": [
+          {
+            "title": "Qiymət sorğuları",
+            "desc": "Müştəri qısa mesajla qiymət soruşur, cavab gecikəndə başqa servisə gedir."
+          },
+          {
+            "title": "Növbə və boks doluluğu",
+            "desc": "Boş vaxt əl ilə izləndikdə növbələr üst-üstə düşür."
+          },
+          {
+            "title": "İş mərhələsi barədə məlumat",
+            "desc": "Müştəri avtomobilin hazır olub-olmadığını təkrar soruşur."
+          }
+        ],
+        "workflowTitle": "Müraciətdən növbəyə",
+        "workflow": [
+          {
+            "title": "İlkin məlumat",
+            "desc": "Marka, problem və əlaqə nömrəsi söhbətdə toplanır."
+          },
+          {
+            "title": "Növbəyə yazılma",
+            "desc": "Boş vaxt təklif olunur və təsdiqlənir."
+          },
+          {
+            "title": "Mərhələ izlənməsi",
+            "desc": "Kartda mərhələ dəyişir: qəbul, iş gedir, hazırdır, ödəniş."
+          }
+        ],
+        "detailTitle": "Mərhələli satış qıfı",
+        "detailBody": "Hər avtomobil və sifariş ayrıca kartda, mərhələlərlə izlənir.",
+        "detailBullets": [
+          "Mərhələ lövhəsi (Kanban)",
+          "Qeyd və tapşırıqlar",
+          "Komanda üzvü təyinatı"
+        ]
+      },
+      "real-estate": {
+        "navLabel": "Daşınmaz əmlak",
+        "title": "Daşınmaz əmlak agentlikləri üçün müraciət idarəsi",
+        "subtitle": "Elan üzrə gələn mesajları bir qutuda toplayın, baxışları planlaşdırın və müştəri axınını izləyin.",
+        "challengesTitle": "Agentliklərdə tez-tez rast gəlinən problemlər",
+        "challenges": [
+          {
+            "title": "Çox kanaldan gələn müraciətlər",
+            "desc": "Elan saytı, Instagram və WhatsApp ayrı-ayrı yerlərdə cavabsız qalır."
+          },
+          {
+            "title": "Baxış vaxtlarının planlanması",
+            "desc": "Baxışlar əl ilə razılaşdırılır, uyğunsuzluq yaranır."
+          },
+          {
+            "title": "Müştərinin vəziyyəti",
+            "desc": "Hansı müştəri hansı mərhələdə olduğu bilinmir."
+          }
+        ],
+        "workflowTitle": "İş axını",
+        "workflow": [
+          {
+            "title": "Müraciətin toplanması",
+            "desc": "Bütün kanallardan gələn mesajlar vahid qutuda görünür."
+          },
+          {
+            "title": "Baxışın təyini",
+            "desc": "Boş vaxt təklif olunur və baxış təsdiqlənir."
+          },
+          {
+            "title": "Mərhələ izlənməsi",
+            "desc": "Müştəri kartı mərhələlər üzrə irəliləyir, menecerə tapşırıq düşür."
+          }
+        ],
+        "detailTitle": "Hər müştəri bir kartda",
+        "detailBody": "Söhbət tarixçəsi, qeydlər və tapşırıqlar eyni kartda görünür.",
+        "detailBullets": [
+          "Vahid mesaj qutusu",
+          "Müştəri kartı",
+          "Mərhələ lövhəsi"
+        ]
+      },
+      "retail-shops": {
+        "navLabel": "Mağaza və onlayn satış",
+        "title": "Mağazalar və onlayn satıcılar üçün WhatsApp və Instagram satışı",
+        "subtitle": "Sifariş, qiymət və stok suallarına cavab verin, müraciətləri satışa çevirin və müştəri tarixçəsini saxlayın.",
+        "challengesTitle": "Mağazalarda tez-tez rast gəlinən problemlər",
+        "challenges": [
+          {
+            "title": "Eyni suallar",
+            "desc": "“Qiyməti nədir, var?” kimi suallar hər gün yüzlərlə dəfə təkrarlanır."
+          },
+          {
+            "title": "Mesaj kanalları",
+            "desc": "Instagram, WhatsApp və Telegram ayrı-ayrı telefonlarda idarə olunur."
+          },
+          {
+            "title": "Sifarişin itməsi",
+            "desc": "Müştəri yazır, sifariş yazılmır və ya unudulur."
+          }
+        ],
+        "workflowTitle": "Satış axını",
+        "workflow": [
+          {
+            "title": "Sualın cavablanması",
+            "desc": "AI yalnız sizin təsdiqlədiyiniz məhsul və qiymət məlumatı ilə cavab verir."
+          },
+          {
+            "title": "Sifarişin qeydi",
+            "desc": "Ad, nömrə və sifariş kartda saxlanılır."
+          },
+          {
+            "title": "Növbəti addım",
+            "desc": "Menecerə tapşırıq düşür, müştəriyə təsdiq mesajı gedir."
+          }
+        ],
+        "detailTitle": "Kanallar bir yerdə",
+        "detailBody": "WhatsApp, Instagram və Telegram mesajları vahid qutuda toplanır.",
+        "detailBullets": [
+          "Vahid mesaj qutusu",
+          "Müştəri kartı",
+          "Broadcast və n8n şablonları"
+        ]
+      }
+    }
   }
 }

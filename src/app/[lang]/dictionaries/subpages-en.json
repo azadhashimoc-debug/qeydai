@@ -1050,5 +1050,224 @@
     "demoAccount": "Get demo",
     "loginAccount": "Log in",
     "createAccountTitle": "Create account"
+  },
+  "sectors": {
+    "ui": {
+      "badge": "Industry scenario",
+      "disclaimer": "This page shows a sample workflow. No real customer names, reviews or result figures are shown.",
+      "moreTitle": "Other industries"
+    },
+    "items": {
+      "beauty-salons": {
+        "navLabel": "Beauty salons",
+        "title": "Instagram and WhatsApp booking for beauty salons",
+        "subtitle": "Answer price, stylist and availability questions, confirm bookings and remind clients before they arrive.",
+        "challengesTitle": "Common problems at salons",
+        "challenges": [
+          {
+            "title": "Inquiries lost in DMs",
+            "desc": "A client writes in the evening, the answer comes next morning, and she has chosen another salon."
+          },
+          {
+            "title": "Stylist and slot clashes",
+            "desc": "Tracking the calendar by hand books two people into one slot."
+          },
+          {
+            "title": "No-shows",
+            "desc": "Without reminders, booked slots stay empty."
+          }
+        ],
+        "workflowTitle": "Booking flow",
+        "workflow": [
+          {
+            "title": "Pick a service and stylist",
+            "desc": "The AI asks what and who, then offers free slots."
+          },
+          {
+            "title": "Slot reserved",
+            "desc": "The number is verified, the slot is held and duplicates are blocked."
+          },
+          {
+            "title": "Reminder and rebooking",
+            "desc": "A reminder goes out the day before, and a rebooking task is created after the visit."
+          }
+        ],
+        "detailTitle": "Schedule by stylist and service",
+        "detailBody": "Free slots for each stylist and service are visible in the panel.",
+        "detailBullets": [
+          "Schedule per stylist",
+          "Service list and prices",
+          "Instagram and WhatsApp source"
+        ]
+      },
+      "clinics": {
+        "navLabel": "Clinics",
+        "title": "Appointment booking for clinics and medical centers",
+        "subtitle": "Answer doctor, service and time questions, manage appointments and send reminders.",
+        "challengesTitle": "Common problems at clinics",
+        "challenges": [
+          {
+            "title": "Phone load",
+            "desc": "The front desk answers the same questions by phone again and again."
+          },
+          {
+            "title": "Doctor schedule confusion",
+            "desc": "Checking free times by hand leads to wrong bookings."
+          },
+          {
+            "title": "Patient no-shows",
+            "desc": "Without reminders, appointment slots stay empty."
+          }
+        ],
+        "workflowTitle": "Appointment flow",
+        "workflow": [
+          {
+            "title": "Pick a service and doctor",
+            "desc": "The AI identifies the service and doctor and shows free times."
+          },
+          {
+            "title": "Slot reserved",
+            "desc": "The number is verified and the slot is held without duplicates."
+          },
+          {
+            "title": "Reminder",
+            "desc": "A reminder goes out before the visit, and rescheduling is easy."
+          }
+        ],
+        "detailTitle": "Privacy and control",
+        "detailBody": "Diagnosis or examination data is not handed to the AI; it is only for booking, timing and general information.",
+        "detailBullets": [
+          "Booking and contact data only",
+          "Schedule per doctor",
+          "Team member roles"
+        ]
+      },
+      "auto-service": {
+        "navLabel": "Auto service",
+        "title": "Inquiry and queue management for auto service shops",
+        "subtitle": "Track price requests, booking slots and job stages in one panel.",
+        "challengesTitle": "Common problems at auto shops",
+        "challenges": [
+          {
+            "title": "Price requests",
+            "desc": "A customer asks the price in one message and goes elsewhere if the answer is slow."
+          },
+          {
+            "title": "Queue and bay fullness",
+            "desc": "Tracking free time by hand makes bookings overlap."
+          },
+          {
+            "title": "Job status questions",
+            "desc": "Customers keep asking whether the car is ready."
+          }
+        ],
+        "workflowTitle": "From inquiry to queue",
+        "workflow": [
+          {
+            "title": "First details",
+            "desc": "Car make, issue and contact number are collected in chat."
+          },
+          {
+            "title": "Book a slot",
+            "desc": "A free time is offered and confirmed."
+          },
+          {
+            "title": "Stage tracking",
+            "desc": "The card moves through stages: received, in progress, ready, paid."
+          }
+        ],
+        "detailTitle": "Stage-based pipeline",
+        "detailBody": "Each car and order is tracked on its own card with stages.",
+        "detailBullets": [
+          "Stage board (Kanban)",
+          "Notes and tasks",
+          "Team member assignment"
+        ]
+      },
+      "real-estate": {
+        "navLabel": "Real estate",
+        "title": "Inquiry management for real estate agencies",
+        "subtitle": "Collect listing inquiries in one inbox, schedule viewings and track the client pipeline.",
+        "challengesTitle": "Common problems at agencies",
+        "challenges": [
+          {
+            "title": "Inquiries from many channels",
+            "desc": "Listing sites, Instagram and WhatsApp go unanswered in separate places."
+          },
+          {
+            "title": "Viewing scheduling",
+            "desc": "Viewings are arranged by hand and clash."
+          },
+          {
+            "title": "Client status",
+            "desc": "It is unclear which client is at which stage."
+          }
+        ],
+        "workflowTitle": "Workflow",
+        "workflow": [
+          {
+            "title": "Collect inquiries",
+            "desc": "Messages from every channel appear in one inbox."
+          },
+          {
+            "title": "Schedule viewing",
+            "desc": "A free time is offered and the viewing is confirmed."
+          },
+          {
+            "title": "Track stages",
+            "desc": "The client card moves through stages and a task goes to the manager."
+          }
+        ],
+        "detailTitle": "One card per client",
+        "detailBody": "Chat history, notes and tasks appear on the same card.",
+        "detailBullets": [
+          "Unified inbox",
+          "Client card",
+          "Stage board"
+        ]
+      },
+      "retail-shops": {
+        "navLabel": "Retail and online sellers",
+        "title": "WhatsApp and Instagram sales for shops and online sellers",
+        "subtitle": "Answer order, price and stock questions, turn inquiries into sales and keep customer history.",
+        "challengesTitle": "Common problems at shops",
+        "challenges": [
+          {
+            "title": "The same questions",
+            "desc": "“What is the price, is it in stock?” repeats hundreds of times a day."
+          },
+          {
+            "title": "Message channels",
+            "desc": "Instagram, WhatsApp and Telegram are handled on separate phones."
+          },
+          {
+            "title": "Lost orders",
+            "desc": "A customer writes and the order is not recorded or is forgotten."
+          }
+        ],
+        "workflowTitle": "Sales flow",
+        "workflow": [
+          {
+            "title": "Answer the question",
+            "desc": "The AI replies only with product and price data you approved."
+          },
+          {
+            "title": "Record the order",
+            "desc": "Name, number and order are stored on the card."
+          },
+          {
+            "title": "Next step",
+            "desc": "A task goes to the manager and a confirmation goes to the customer."
+          }
+        ],
+        "detailTitle": "All channels in one place",
+        "detailBody": "WhatsApp, Instagram and Telegram messages are collected in one inbox.",
+        "detailBullets": [
+          "Unified inbox",
+          "Customer card",
+          "n8n templates"
+        ]
+      }
+    }
   }
 }
