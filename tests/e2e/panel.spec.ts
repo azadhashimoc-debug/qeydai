@@ -34,6 +34,7 @@ async function signInToPanel(page: Page, project: ProjectName): Promise<void> {
   await page.goto("/en/login");
   await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
   await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByRole("button", { name: "Access key" }).click();
   await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await completeWorkspaceSetup(page);
@@ -98,6 +99,7 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
   await expect(page.getByRole("heading", { name: "Sign in", exact: true })).toBeVisible();
 
   await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByRole("button", { name: "Access key" }).click();
   await page.getByLabel("Workspace access key").fill("invalid-panel-key-0123456789abcdef");
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await expect(page.getByRole("status")).toHaveText("Invalid access key. Check the key and try again.");
@@ -108,6 +110,7 @@ test("SEO noindex, unauthenticated 401, invalid key rejection, and session persi
     (res) => res.url().includes("/api/panel/auth") && res.request().method() === "POST",
   );
   await page.getByLabel("Email").fill("pilot@example.test");
+  await page.getByRole("button", { name: "Access key" }).click();
   await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   const authRes = await authPromise;
