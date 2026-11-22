@@ -1,6 +1,6 @@
 import { expect, test, request as apiRequest } from "@playwright/test";
 
-const base = "http://127.0.0.1:3200";
+const base = "http://localhost:3200";
 
 test("registration form creates a usable account and opens the CRM", async ({ page }) => {
   const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
