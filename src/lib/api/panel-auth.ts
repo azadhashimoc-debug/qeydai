@@ -108,7 +108,7 @@ export function authenticateAdminKey(rawKey: string, adminKeys: Record<string, s
 
 /**
  * Derives the HMAC signing key for panel session cookies.
- * Returns null (fail-closed) when no admin keys are configured.
+ * Returns null when neither an explicit secret nor administrator keys exist.
  * Uses `explicitSecret` when >= 24 characters; otherwise derives deterministically
  * from the sorted `adminKeys` map so there is never a static hardcoded fallback secret.
  */
