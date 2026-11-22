@@ -1,10 +1,11 @@
 import type { Locale } from "@/app/[lang]/dictionaries";
 
 export const SECTOR_SLUGS = [
-  "language-courses",
-  "exam-prep",
-  "it-courses",
-  "kids-centers",
+  "beauty-salons",
+  "clinics",
+  "auto-service",
+  "real-estate",
+  "retail-shops",
 ] as const;
 export type SectorSlug = (typeof SECTOR_SLUGS)[number];
 
@@ -50,192 +51,449 @@ export const SECTOR_UI: Record<Locale, { badge: string; disclaimer: string; more
 };
 
 export const SECTORS: Record<SectorSlug, SectorContent> = {
-  "language-courses": {
-    image: "w-classroom-dusk",
+  "beauty-salons": {
+    image: "p-instagram",
     copy: {
       az: {
-        navLabel: "Dil kursları",
-        title: "Dil kursları üçün WhatsApp və Instagram qeydiyyatı",
-        subtitle:
-          "Səviyyə sualı, sınaq dərsi və qrupa yazılma bir mesaj axınında: boş yerə görə təklif, təkrar qeydiyyatın qarşısı.",
-        challengesTitle: "Dil kurslarında tez-tez rast gəlinən problemlər",
-        challenges: [
-          { title: "Qiymət və qrafik sualları", desc: "Eyni suallar hər gün təkrarlanır və cavab gecikəndə müraciət soyuyur." },
-          { title: "Səviyyə və qrup uyğunsuzluğu", desc: "Səviyyəsi bilinməyən şəxs səhv qrupa yazılır, qrup dolur və ya boş qalır." },
-          { title: "Sınaq dərsindən sonra əlaqənin kəsilməsi", desc: "Sınaq dərsinə gələnə vaxtında yazılmadıqda qeydiyyat tamamlanmır." },
-        ],
-        workflowTitle: "panelim.az ilə qeydiyyat axını",
-        workflow: [
-          { title: "İlkin cavab və səviyyə sualı", desc: "AI hansı dili, hansı məqsədlə öyrənmək istədiyini soruşur və uyğun qrupları göstərir." },
-          { title: "Boş yerin ayrılması", desc: "Qrupda boş yer varsa nömrə təsdiqlənir və yer təkrar yazılmadan ayrılır." },
-          { title: "Xatırlatma və növbəti addım", desc: "Dərsdən əvvəl xatırlatma gedir, sınaqdan sonra menecer üçün tapşırıq yaranır." },
-        ],
-        detailTitle: "Qrup tutumuna nəzarət",
-        detailBody: "Hər qrup üçün yer sayı saxlanılır. Son yer eyni anda iki nəfərə verilmir.",
-        detailBullets: ["Səviyyə və dil üzrə qruplar", "Sınaq dərsi üçün ayrıca vaxt", "Müraciətin mənbəyi (Instagram, WhatsApp, sayt)"],
-      },
+  "navLabel": "Gözəllik salonları",
+  "title": "Gözəllik salonları üçün Instagram və WhatsApp rezervasiyası",
+  "subtitle": "Qiymət, usta və boş saat suallarına cavab verin, rezervasiyanı təsdiqləyin və gələn müştərini xatırladın.",
+  "challengesTitle": "Salonlarda tez-tez rast gəlinən problemlər",
+  "challenges": [
+    {
+      "title": "Direct-də itən müraciətlər",
+      "desc": "Müştəri axşam yazır, səhər cavab gəlir və o artıq başqa salonu seçib."
+    },
+    {
+      "title": "Usta və saat toqquşması",
+      "desc": "Qrafik əl ilə izlənəndə eyni saata iki nəfər yazılır."
+    },
+    {
+      "title": "Gəlməyən müştərilər",
+      "desc": "Xatırlatma olmayanda rezervasiya boş qalır."
+    }
+  ],
+  "workflowTitle": "Rezervasiya axını",
+  "workflow": [
+    {
+      "title": "Xidmət və usta seçimi",
+      "desc": "AI hansı xidmət və ustanı istədiyini soruşur, boş saatları təklif edir."
+    },
+    {
+      "title": "Saatın ayrılması",
+      "desc": "Nömrə təsdiqlənir, saat ayrılır, təkrar rezervasiya bloklanır."
+    },
+    {
+      "title": "Xatırlatma və təkrar ziyarət",
+      "desc": "Gündən əvvəl xatırlatma gedir, ziyarətdən sonra təkrar təklif üçün tapşırıq yaranır."
+    }
+  ],
+  "detailTitle": "Usta və xidmət üzrə cədvəl",
+  "detailBody": "Hər usta və xidmət üçün boş saatlar paneldə görünür.",
+  "detailBullets": [
+    "Usta üzrə qrafik",
+    "Xidmət siyahısı və qiymətlər",
+    "Instagram və WhatsApp mənbəyi"
+  ]
+},
       en: {
-        navLabel: "Language courses",
-        title: "WhatsApp and Instagram enrollment for language courses",
-        subtitle:
-          "Level questions, trial lessons and group sign-up in one message flow: offers based on free seats, no duplicate enrollments.",
-        challengesTitle: "Common problems at language schools",
-        challenges: [
-          { title: "Repeated price and schedule questions", desc: "The same questions arrive daily, and slow replies let leads go cold." },
-          { title: "Level and group mismatch", desc: "Without knowing the level, people join the wrong group and seats go unused." },
-          { title: "Silence after the trial lesson", desc: "Trial attendees who are not followed up with rarely finish enrolling." },
-        ],
-        workflowTitle: "Enrollment flow with panelim.az",
-        workflow: [
-          { title: "First reply and level question", desc: "The AI asks which language and goal, then shows matching groups." },
-          { title: "Seat reservation", desc: "If the group has room, the phone number is verified and the seat is held without duplicates." },
-          { title: "Reminder and next step", desc: "A reminder goes out before class, and a follow-up task is created for the manager after the trial." },
-        ],
-        detailTitle: "Group capacity control",
-        detailBody: "Seat counts are kept per group. The last seat is never given to two people at once.",
-        detailBullets: ["Groups by language and level", "Separate trial lesson slots", "Lead source (Instagram, WhatsApp, website)"],
-      },
+  "navLabel": "Beauty salons",
+  "title": "Instagram and WhatsApp booking for beauty salons",
+  "subtitle": "Answer price, stylist and availability questions, confirm bookings and remind clients before they arrive.",
+  "challengesTitle": "Common problems at salons",
+  "challenges": [
+    {
+      "title": "Inquiries lost in DMs",
+      "desc": "A client writes in the evening, the answer comes next morning, and she has chosen another salon."
+    },
+    {
+      "title": "Stylist and slot clashes",
+      "desc": "Tracking the calendar by hand books two people into one slot."
+    },
+    {
+      "title": "No-shows",
+      "desc": "Without reminders, booked slots stay empty."
+    }
+  ],
+  "workflowTitle": "Booking flow",
+  "workflow": [
+    {
+      "title": "Pick a service and stylist",
+      "desc": "The AI asks what and who, then offers free slots."
+    },
+    {
+      "title": "Slot reserved",
+      "desc": "The number is verified, the slot is held and duplicates are blocked."
+    },
+    {
+      "title": "Reminder and rebooking",
+      "desc": "A reminder goes out the day before, and a rebooking task is created after the visit."
+    }
+  ],
+  "detailTitle": "Schedule by stylist and service",
+  "detailBody": "Free slots for each stylist and service are visible in the panel.",
+  "detailBullets": [
+    "Schedule per stylist",
+    "Service list and prices",
+    "Instagram and WhatsApp source"
+  ]
+},
     },
   },
-  "exam-prep": {
-    image: "s-courses",
-    copy: {
-      az: {
-        navLabel: "İmtahana hazırlıq",
-        title: "İmtahana hazırlıq mərkəzləri üçün müraciət idarəsi",
-        subtitle:
-          "Valideyn və şagirdin suallarına cavab, sınaq imtahanına yazılma və qrup yerlərinin izlənməsi bir paneldə.",
-        challengesTitle: "Hazırlıq mərkəzlərində ən çox rast gəlinən problemlər",
-        challenges: [
-          { title: "Mövsümi müraciət yükü", desc: "Qəbul dövründə mesaj sayı artır və komanda hamısına çatmır." },
-          { title: "Valideynlə şagird arasında qarışıqlıq", desc: "Kim yazıb, kim iştirak edəcək bilinmir, məlumat təkrar toplanır." },
-          { title: "Sınaq imtahanında yer çatışmazlığı", desc: "Yer sayı əl ilə izlənəndə artıq qeydiyyat olur." },
-        ],
-        workflowTitle: "Müraciətdən qeydiyyata",
-        workflow: [
-          { title: "Məlumatın toplanması", desc: "Sinif, fənn və əlaqə nömrəsi söhbət içində toplanır və kartda saxlanılır." },
-          { title: "Sınaq imtahanına yer", desc: "Yer sayı məhduddur: dolu seansa qeydiyyat qəbul edilmir, alternativ vaxt təklif olunur." },
-          { title: "Komanda üçün bildiriş", desc: "Yeni müraciət və ya sınaq nəticəsi sonrası əlaqə tapşırığı menecerə düşür." },
-        ],
-        detailTitle: "Məlumat bir kartda",
-        detailBody: "Hər müraciət üçün söhbət tarixçəsi, qeydlər və tapşırıqlar eyni kartda görünür.",
-        detailBullets: ["Sinif və fənn məlumatı", "Qeyd və tapşırıqlar", "Mərhələlər: yeni, əlaqə, sınaq, ödəniş"],
-      },
-      en: {
-        navLabel: "Exam prep",
-        title: "Inquiry management for exam-preparation centers",
-        subtitle:
-          "Answer parents and students, book mock exams and track group seats in one panel.",
-        challengesTitle: "Common problems at prep centers",
-        challenges: [
-          { title: "Seasonal inquiry spikes", desc: "Message volume jumps during admission season and the team cannot reach everyone." },
-          { title: "Parent and student confusion", desc: "It is unclear who wrote and who will attend, so details are collected twice." },
-          { title: "Mock exam overbooking", desc: "Tracking seats by hand leads to more sign-ups than places." },
-        ],
-        workflowTitle: "From inquiry to enrollment",
-        workflow: [
-          { title: "Collect details", desc: "Grade, subject and contact number are collected in the chat and saved on the card." },
-          { title: "Mock exam seat", desc: "Seats are limited: a full session rejects new sign-ups and offers another time." },
-          { title: "Team notification", desc: "A new inquiry or a post-mock follow-up task lands with the manager." },
-        ],
-        detailTitle: "Everything on one card",
-        detailBody: "Chat history, notes and tasks for each inquiry appear on the same card.",
-        detailBullets: ["Grade and subject", "Notes and tasks", "Stages: new, contacted, trial, paid"],
-      },
-    },
-  },
-  "it-courses": {
-    image: "p-product-tour",
-    copy: {
-      az: {
-        navLabel: "IT kursları",
-        title: "IT kursları və bootcamp-lar üçün qeydiyyat avtomatlaşdırması",
-        subtitle:
-          "Kurs, vaxt və format (onlayn/oflayn) üzrə suallara cavab, tanışlıq dərsinə yazılma və axının izlənməsi.",
-        challengesTitle: "IT kurslarında tez-tez rast gəlinən problemlər",
-        challenges: [
-          { title: "Çoxlu istiqamət və format", desc: "Frontend, data, dizayn, onlayn və ya oflayn: sual çoxdur, cavab hər dəfə əl ilə yazılır." },
-          { title: "Tanışlıq dərsinə gəlməyənlər", desc: "Yazılan şəxs xatırlatma olmadan gəlmir." },
-          { title: "Qrup başlama tarixinə uyğunlaşma", desc: "Qrup dolmayınca başlamır, gözləmə siyahısı idarə olunmur." },
-        ],
-        workflowTitle: "Axın necə işləyir",
-        workflow: [
-          { title: "İstiqamət seçimi", desc: "AI maraq dairəsinə görə kursu və yaxın qrupu təklif edir." },
-          { title: "Tanışlıq dərsinə yazılma", desc: "Yer ayrılır, təkrar qeydiyyat bloklanır, xatırlatma göndərilir." },
-          { title: "Qrup doluluğu", desc: "Qrup üzrə yer sayı panelində görünür, menecer hansı qrupun başlayacağını izləyir." },
-        ],
-        detailTitle: "Kanal və n8n inteqrasiyası",
-        detailBody: "Bildirişləri və xarici sistemləri n8n iş axınları və API vasitəsilə bağlaya bilərsiniz.",
-        detailBullets: ["WhatsApp, Instagram, Telegram", "REST webhook", "n8n şablonları"],
-      },
-      en: {
-        navLabel: "IT courses",
-        title: "Enrollment automation for IT courses and bootcamps",
-        subtitle:
-          "Answer course, schedule and format (online/offline) questions, book intro sessions and track the pipeline.",
-        challengesTitle: "Common problems at IT schools",
-        challenges: [
-          { title: "Many tracks and formats", desc: "Frontend, data, design, online or offline: many questions, each answered by hand." },
-          { title: "No-shows at intro sessions", desc: "People who sign up often do not attend without a reminder." },
-          { title: "Waiting for the group to fill", desc: "A group will not start until full, and the waiting list is unmanaged." },
-        ],
-        workflowTitle: "How the flow works",
-        workflow: [
-          { title: "Pick a track", desc: "The AI suggests a course and the nearest group based on interests." },
-          { title: "Intro session sign-up", desc: "The seat is held, duplicates are blocked and a reminder is sent." },
-          { title: "Group fill level", desc: "Seats per group show in the panel so the manager can see which group will start." },
-        ],
-        detailTitle: "Channels and n8n integration",
-        detailBody: "Connect notifications and external systems through n8n workflows and the API.",
-        detailBullets: ["WhatsApp, Instagram, Telegram", "REST webhook", "n8n templates"],
-      },
-    },
-  },
-  "kids-centers": {
+  "clinics": {
     image: "p-booking",
     copy: {
       az: {
-        navLabel: "Uşaq mərkəzləri",
-        title: "Uşaq inkişaf və dərnək mərkəzləri üçün qeydiyyat",
-        subtitle:
-          "Valideynlərin yaş qrupu, cədvəl və qiymət suallarına cavab, sınaq dərsi və dərnək yerlərinin idarəsi.",
-        challengesTitle: "Uşaq mərkəzlərində tez-tez rast gəlinən problemlər",
-        challenges: [
-          { title: "Yaş qrupu üzrə suallar", desc: "Valideynlər uşağın yaşına uyğun qrupu soruşur və cavabı gözləməyə təəccüb edir." },
-          { title: "Kiçik qruplarda yer idarəsi", desc: "Qruplar kiçikdir, bir yer səhv verilsə narazılıq yaranır." },
-          { title: "Dərs xatırlatmaları", desc: "Sınaq dərsi, ödəniş və buraxılan dərsdən sonra bildiriş əl ilə göndərilir." },
-        ],
-        workflowTitle: "Valideyn üçün sadə axın",
-        workflow: [
-          { title: "Yaşa görə qrup təklifi", desc: "Uşağın yaşı soruşulur, uyğun dərnək və boş saatlar göstərilir." },
-          { title: "Sınaq dərsinə yazılma", desc: "Valideynin nömrəsi təsdiqlənir və yer ayrılır." },
-          { title: "Xatırlatma və əlaqə", desc: "Dərsdən əvvəl xatırlatma gedir, sonra menecer valideynlə əlaqə saxlayır." },
-        ],
-        detailTitle: "Məxfilik",
-        detailBody: "Uşaqlara aid məlumat yalnız zəruri sahələrlə (ad, yaş, valideyn nömrəsi) saxlanılır və kiracı üzrə ayrılır.",
-        detailBullets: ["Yalnız lazımi məlumat", "Mərkəz üzrə ayrılmış məlumat", "Komanda üzvü rolları"],
-      },
+  "navLabel": "Klinika və tibb mərkəzləri",
+  "title": "Klinika və tibb mərkəzləri üçün qəbula yazılma",
+  "subtitle": "Həkim, xidmət və vaxt suallarına cavab verin, qəbula yazılmanı idarə edin və xatırlatma göndərin.",
+  "challengesTitle": "Klinikalarda tez-tez rast gəlinən problemlər",
+  "challenges": [
+    {
+      "title": "Zəng yükü",
+      "desc": "Qəbul masası eyni sualları telefonla təkrar-təkrar cavablayır."
+    },
+    {
+      "title": "Həkim cədvəli üzrə qarışıqlıq",
+      "desc": "Boş vaxtlar əl ilə yoxlandıqda səhv yazılmalar olur."
+    },
+    {
+      "title": "Gəlməyən pasiyentlər",
+      "desc": "Xatırlatma olmayanda qəbul vaxtı boş qalır."
+    }
+  ],
+  "workflowTitle": "Qəbula yazılma axını",
+  "workflow": [
+    {
+      "title": "Xidmət və həkim seçimi",
+      "desc": "AI xidməti və həkimi müəyyən edir, boş vaxtları göstərir."
+    },
+    {
+      "title": "Vaxtın ayrılması",
+      "desc": "Nömrə təsdiqlənir və vaxt təkrar yazılmadan ayrılır."
+    },
+    {
+      "title": "Xatırlatma",
+      "desc": "Qəbuldan əvvəl xatırlatma gedir, dəyişiklik üçün cavab asanlaşır."
+    }
+  ],
+  "detailTitle": "Məxfilik və nəzarət",
+  "detailBody": "Tibbi diaqnoz və ya müayinə məlumatı AI-yə həvalə edilmir; AI yalnız yazılma, vaxt və ümumi məlumat üçündür.",
+  "detailBullets": [
+    "Yalnız yazılma və əlaqə məlumatı",
+    "Həkim üzrə cədvəl",
+    "Komanda üzvü rolları"
+  ]
+},
       en: {
-        navLabel: "Kids centers",
-        title: "Enrollment for child development and activity centers",
-        subtitle:
-          "Answer parents' questions on age groups, schedule and price, then manage trial lessons and club seats.",
-        challengesTitle: "Common problems at kids centers",
-        challenges: [
-          { title: "Age-group questions", desc: "Parents ask which group fits their child and expect a quick answer." },
-          { title: "Seat control in small groups", desc: "Groups are small, and one wrongly given seat causes frustration." },
-          { title: "Class reminders", desc: "Trial lessons, payments and missed-class notices are sent by hand." },
-        ],
-        workflowTitle: "A simple flow for parents",
-        workflow: [
-          { title: "Group by age", desc: "The child's age is asked, and matching clubs and free slots are shown." },
-          { title: "Trial lesson sign-up", desc: "The parent's number is verified and a seat is held." },
-          { title: "Reminder and follow-up", desc: "A reminder goes out before class, and the manager follows up with the parent afterwards." },
-        ],
-        detailTitle: "Privacy",
-        detailBody: "Child-related data is limited to necessary fields (name, age, parent's number) and kept separate per tenant.",
-        detailBullets: ["Only necessary data", "Data separated per center", "Team member roles"],
-      },
+  "navLabel": "Clinics",
+  "title": "Appointment booking for clinics and medical centers",
+  "subtitle": "Answer doctor, service and time questions, manage appointments and send reminders.",
+  "challengesTitle": "Common problems at clinics",
+  "challenges": [
+    {
+      "title": "Phone load",
+      "desc": "The front desk answers the same questions by phone again and again."
+    },
+    {
+      "title": "Doctor schedule confusion",
+      "desc": "Checking free times by hand leads to wrong bookings."
+    },
+    {
+      "title": "Patient no-shows",
+      "desc": "Without reminders, appointment slots stay empty."
+    }
+  ],
+  "workflowTitle": "Appointment flow",
+  "workflow": [
+    {
+      "title": "Pick a service and doctor",
+      "desc": "The AI identifies the service and doctor and shows free times."
+    },
+    {
+      "title": "Slot reserved",
+      "desc": "The number is verified and the slot is held without duplicates."
+    },
+    {
+      "title": "Reminder",
+      "desc": "A reminder goes out before the visit, and rescheduling is easy."
+    }
+  ],
+  "detailTitle": "Privacy and control",
+  "detailBody": "Diagnosis or examination data is not handed to the AI; it is only for booking, timing and general information.",
+  "detailBullets": [
+    "Booking and contact data only",
+    "Schedule per doctor",
+    "Team member roles"
+  ]
+},
+    },
+  },
+  "auto-service": {
+    image: "p-pipeline",
+    copy: {
+      az: {
+  "navLabel": "Avtoservis",
+  "title": "Avtoservislər üçün müraciət və növbə idarəsi",
+  "subtitle": "Qiymət sorğularını, növbə yazılmasını və iş mərhələlərini bir paneldə izləyin.",
+  "challengesTitle": "Avtoservislərdə tez-tez rast gəlinən problemlər",
+  "challenges": [
+    {
+      "title": "Qiymət sorğuları",
+      "desc": "Müştəri qısa mesajla qiymət soruşur, cavab gecikəndə başqa servisə gedir."
+    },
+    {
+      "title": "Növbə və boks doluluğu",
+      "desc": "Boş vaxt əl ilə izləndikdə növbələr üst-üstə düşür."
+    },
+    {
+      "title": "İş mərhələsi barədə məlumat",
+      "desc": "Müştəri avtomobilin hazır olub-olmadığını təkrar soruşur."
+    }
+  ],
+  "workflowTitle": "Müraciətdən növbəyə",
+  "workflow": [
+    {
+      "title": "İlkin məlumat",
+      "desc": "Marka, problem və əlaqə nömrəsi söhbətdə toplanır."
+    },
+    {
+      "title": "Növbəyə yazılma",
+      "desc": "Boş vaxt təklif olunur və təsdiqlənir."
+    },
+    {
+      "title": "Mərhələ izlənməsi",
+      "desc": "Kartda mərhələ dəyişir: qəbul, iş gedir, hazırdır, ödəniş."
+    }
+  ],
+  "detailTitle": "Mərhələli satış qıfı",
+  "detailBody": "Hər avtomobil və sifariş ayrıca kartda, mərhələlərlə izlənir.",
+  "detailBullets": [
+    "Mərhələ lövhəsi (Kanban)",
+    "Qeyd və tapşırıqlar",
+    "Komanda üzvü təyinatı"
+  ]
+},
+      en: {
+  "navLabel": "Auto service",
+  "title": "Inquiry and queue management for auto service shops",
+  "subtitle": "Track price requests, booking slots and job stages in one panel.",
+  "challengesTitle": "Common problems at auto shops",
+  "challenges": [
+    {
+      "title": "Price requests",
+      "desc": "A customer asks the price in one message and goes elsewhere if the answer is slow."
+    },
+    {
+      "title": "Queue and bay fullness",
+      "desc": "Tracking free time by hand makes bookings overlap."
+    },
+    {
+      "title": "Job status questions",
+      "desc": "Customers keep asking whether the car is ready."
+    }
+  ],
+  "workflowTitle": "From inquiry to queue",
+  "workflow": [
+    {
+      "title": "First details",
+      "desc": "Car make, issue and contact number are collected in chat."
+    },
+    {
+      "title": "Book a slot",
+      "desc": "A free time is offered and confirmed."
+    },
+    {
+      "title": "Stage tracking",
+      "desc": "The card moves through stages: received, in progress, ready, paid."
+    }
+  ],
+  "detailTitle": "Stage-based pipeline",
+  "detailBody": "Each car and order is tracked on its own card with stages.",
+  "detailBullets": [
+    "Stage board (Kanban)",
+    "Notes and tasks",
+    "Team member assignment"
+  ]
+},
+    },
+  },
+  "real-estate": {
+    image: "p-inbox",
+    copy: {
+      az: {
+  "navLabel": "Daşınmaz əmlak",
+  "title": "Daşınmaz əmlak agentlikləri üçün müraciət idarəsi",
+  "subtitle": "Elan üzrə gələn mesajları bir qutuda toplayın, baxışları planlaşdırın və müştəri axınını izləyin.",
+  "challengesTitle": "Agentliklərdə tez-tez rast gəlinən problemlər",
+  "challenges": [
+    {
+      "title": "Çox kanaldan gələn müraciətlər",
+      "desc": "Elan saytı, Instagram və WhatsApp ayrı-ayrı yerlərdə cavabsız qalır."
+    },
+    {
+      "title": "Baxış vaxtlarının planlanması",
+      "desc": "Baxışlar əl ilə razılaşdırılır, uyğunsuzluq yaranır."
+    },
+    {
+      "title": "Müştərinin vəziyyəti",
+      "desc": "Hansı müştəri hansı mərhələdə olduğu bilinmir."
+    }
+  ],
+  "workflowTitle": "İş axını",
+  "workflow": [
+    {
+      "title": "Müraciətin toplanması",
+      "desc": "Bütün kanallardan gələn mesajlar vahid qutuda görünür."
+    },
+    {
+      "title": "Baxışın təyini",
+      "desc": "Boş vaxt təklif olunur və baxış təsdiqlənir."
+    },
+    {
+      "title": "Mərhələ izlənməsi",
+      "desc": "Müştəri kartı mərhələlər üzrə irəliləyir, menecerə tapşırıq düşür."
+    }
+  ],
+  "detailTitle": "Hər müştəri bir kartda",
+  "detailBody": "Söhbət tarixçəsi, qeydlər və tapşırıqlar eyni kartda görünür.",
+  "detailBullets": [
+    "Vahid mesaj qutusu",
+    "Müştəri kartı",
+    "Mərhələ lövhəsi"
+  ]
+},
+      en: {
+  "navLabel": "Real estate",
+  "title": "Inquiry management for real estate agencies",
+  "subtitle": "Collect listing inquiries in one inbox, schedule viewings and track the client pipeline.",
+  "challengesTitle": "Common problems at agencies",
+  "challenges": [
+    {
+      "title": "Inquiries from many channels",
+      "desc": "Listing sites, Instagram and WhatsApp go unanswered in separate places."
+    },
+    {
+      "title": "Viewing scheduling",
+      "desc": "Viewings are arranged by hand and clash."
+    },
+    {
+      "title": "Client status",
+      "desc": "It is unclear which client is at which stage."
+    }
+  ],
+  "workflowTitle": "Workflow",
+  "workflow": [
+    {
+      "title": "Collect inquiries",
+      "desc": "Messages from every channel appear in one inbox."
+    },
+    {
+      "title": "Schedule viewing",
+      "desc": "A free time is offered and the viewing is confirmed."
+    },
+    {
+      "title": "Track stages",
+      "desc": "The client card moves through stages and a task goes to the manager."
+    }
+  ],
+  "detailTitle": "One card per client",
+  "detailBody": "Chat history, notes and tasks appear on the same card.",
+  "detailBullets": [
+    "Unified inbox",
+    "Client card",
+    "Stage board"
+  ]
+},
+    },
+  },
+  "retail-shops": {
+    image: "p-whatsapp",
+    copy: {
+      az: {
+  "navLabel": "Mağaza və onlayn satış",
+  "title": "Mağazalar və onlayn satıcılar üçün WhatsApp və Instagram satışı",
+  "subtitle": "Sifariş, qiymət və stok suallarına cavab verin, müraciətləri satışa çevirin və müştəri tarixçəsini saxlayın.",
+  "challengesTitle": "Mağazalarda tez-tez rast gəlinən problemlər",
+  "challenges": [
+    {
+      "title": "Eyni suallar",
+      "desc": "“Qiyməti nədir, var?” kimi suallar hər gün yüzlərlə dəfə təkrarlanır."
+    },
+    {
+      "title": "Mesaj kanalları",
+      "desc": "Instagram, WhatsApp və Telegram ayrı-ayrı telefonlarda idarə olunur."
+    },
+    {
+      "title": "Sifarişin itməsi",
+      "desc": "Müştəri yazır, sifariş yazılmır və ya unudulur."
+    }
+  ],
+  "workflowTitle": "Satış axını",
+  "workflow": [
+    {
+      "title": "Sualın cavablanması",
+      "desc": "AI yalnız sizin təsdiqlədiyiniz məhsul və qiymət məlumatı ilə cavab verir."
+    },
+    {
+      "title": "Sifarişin qeydi",
+      "desc": "Ad, nömrə və sifariş kartda saxlanılır."
+    },
+    {
+      "title": "Növbəti addım",
+      "desc": "Menecerə tapşırıq düşür, müştəriyə təsdiq mesajı gedir."
+    }
+  ],
+  "detailTitle": "Kanallar bir yerdə",
+  "detailBody": "WhatsApp, Instagram və Telegram mesajları vahid qutuda toplanır.",
+  "detailBullets": [
+    "Vahid mesaj qutusu",
+    "Müştəri kartı",
+    "Broadcast və n8n şablonları"
+  ]
+},
+      en: {
+  "navLabel": "Retail and online sellers",
+  "title": "WhatsApp and Instagram sales for shops and online sellers",
+  "subtitle": "Answer order, price and stock questions, turn inquiries into sales and keep customer history.",
+  "challengesTitle": "Common problems at shops",
+  "challenges": [
+    {
+      "title": "The same questions",
+      "desc": "“What is the price, is it in stock?” repeats hundreds of times a day."
+    },
+    {
+      "title": "Message channels",
+      "desc": "Instagram, WhatsApp and Telegram are handled on separate phones."
+    },
+    {
+      "title": "Lost orders",
+      "desc": "A customer writes and the order is not recorded or is forgotten."
+    }
+  ],
+  "workflowTitle": "Sales flow",
+  "workflow": [
+    {
+      "title": "Answer the question",
+      "desc": "The AI replies only with product and price data you approved."
+    },
+    {
+      "title": "Record the order",
+      "desc": "Name, number and order are stored on the card."
+    },
+    {
+      "title": "Next step",
+      "desc": "A task goes to the manager and a confirmation goes to the customer."
+    }
+  ],
+  "detailTitle": "All channels in one place",
+  "detailBody": "WhatsApp, Instagram and Telegram messages are collected in one inbox.",
+  "detailBullets": [
+    "Unified inbox",
+    "Customer card",
+    "n8n templates"
+  ]
+},
     },
   },
 };
