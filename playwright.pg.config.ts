@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const url = "http://127.0.0.1:3200";
+const url = "http://localhost:3200";
 if (!process.env.QEYDAI_DATABASE_URL) throw new Error("PostgreSQL E2E requires QEYDAI_DATABASE_URL");
 export default defineConfig({
   testDir: "tests/e2e-pg",
