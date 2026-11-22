@@ -13,7 +13,7 @@ Updated for branch `feat/pani-crm-intake-core`. **Do not execute production SQL,
 
 ## Authorized production execution order (future only)
 1. Confirm change window, database backup/restore-point strategy, verified rollback branch, and production traffic freeze as applicable.
-2. Export a private migration inventory / checksum for `0001_init.sql`, `0002_crm_inbox.sql`, `0003_sales_workspace.sql`, `0004_panel_jti.sql`, `0005_analytics_ingest.sql`. Run dry-run on a **fresh disposable branch created from production main** first. The current staging branch is a descendant and is not a clean-main rehearsal.
+2. Export a private migration inventory / checksum for `0001_init.sql`, `0002_crm_inbox.sql`, `0003_sales_workspace.sql`, `0004_panel_jti.sql`, `0005_analytics_ingest.sql`, `0006_ai_settings.sql`. Run dry-run on a **fresh disposable branch created from production main** first. The current staging branch is a descendant and is not a clean-main rehearsal.
 3. With a dedicated migration owner **on main only after approval**, apply exact committed migration files in numerical order `0001` → `0002` → `0003` → `0004` → `0005` using stop-on-error. Do not attempt a combined retry after partial execution without reviewing applied objects; scripts use `IF NOT EXISTS` but are not an all-purpose rollback mechanism.
 4. Verify 24 expected tables, 22 tenant-isolated tables with both `relrowsecurity` and `relforcerowsecurity`, policy definitions, indexes, constraints, and the existence of `panel_revoked_jti`. Confirm non-RLS tables `leads` / `analytics_events` are NOT available to the app role.
 5. Create the restricted production LOGIN role with secret-manager generated password. Example **operator-reviewed** role DDL below (not executed).
@@ -94,3 +94,8 @@ Reject release if privileged/runtime role, broad unprotected-table grants, any R
 
 ## Update: local PostgreSQL rehearsal (not production)
 Migrations 0001 to 0005 were applied in order with stop-on-error to a disposable local PostgreSQL 16, then `npm run test:pg` was run as a restricted non-owner role (`panelim_staging_app`, NOBYPASSRLS, allowlisted grants per this document): 4 files, all passing including the AI auto-reply/handoff path. This does not replace the Neon staging rehearsal or production approval above.
+
+## Update: migration 0006 (AI settings)
+- `0006_ai_settings.sql` adds `sales_ai_settings` (per-tenant business knowledge and on/off), forced RLS. Additive; apply after 0005 under the same approval and stop-on-error rules.
+- Add `sales_ai_settings` to the app-role GRANT allowlist (SELECT, INSERT, UPDATE, DELETE) and to the RLS probe list.
+- Until the migration is applied in an environment, `GET/PUT /api/panel/ai` and the AI auto-reply will error for that environment (the auto-reply fails closed and sends nothing). Apply 0006 before deploying this code.

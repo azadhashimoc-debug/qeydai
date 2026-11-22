@@ -594,7 +594,19 @@
       "rule2": "Əmin olmayanda, endirim, şikayət və ya ödəniş sualında cavab göndərmir, mesaj işçiyə qalır.",
       "rule3": "İşçi son 30 dəqiqədə yazıbsa, AI susur.",
       "rule4": "Bir söhbətdə saatda ən çox 10 AI cavabı göndərilir.",
-      "rule5": "WhatsApp və Instagram-da 24 saatlıq cavab pəncərəsi gözlənilir."
+      "rule5": "WhatsApp və Instagram-da 24 saatlıq cavab pəncərəsi gözlənilir.",
+      "editorTitle": "Biznes məlumatı",
+      "editorHint": "Xidmətlər, qiymətlər, iş saatları, ünvan. AI yalnız burada yazılanlardan cavab verir. Şəxsi məlumat (müştəri adı, telefon) yazmayın.",
+      "enabledLabel": "AI avtomatik cavabı aktivdir",
+      "knowledgeField": "Məlumat mətni",
+      "charsLeft": "simvol qalıb",
+      "save": "Yadda saxla",
+      "saving": "Saxlanılır...",
+      "saved": "Saxlanıldı.",
+      "saveError": "Saxlamaq alınmadı.",
+      "readOnly": "Bu məlumatı yalnız sahib və menecer dəyişə bilər.",
+      "sourceDatabase": "Mənbə: panel",
+      "sourceEnv": "Mənbə: server konfiqurasiyası (paneldə yazsanız, o üstün olacaq)"
     },
     "plans": {
       "title": "Planlar",

@@ -594,7 +594,19 @@
       "rule2": "When unsure, or for discounts, complaints and payments, it sends nothing and leaves the message for staff.",
       "rule3": "If staff replied in the last 30 minutes, the AI stays quiet.",
       "rule4": "At most 10 AI replies per hour in one conversation.",
-      "rule5": "The 24-hour reply window on WhatsApp and Instagram is respected."
+      "rule5": "The 24-hour reply window on WhatsApp and Instagram is respected.",
+      "editorTitle": "Business information",
+      "editorHint": "Services, prices, opening hours, address. The AI answers only from what is written here. Do not enter personal data (customer names, phones).",
+      "enabledLabel": "AI auto reply is on",
+      "knowledgeField": "Information text",
+      "charsLeft": "characters left",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Saved.",
+      "saveError": "Could not save.",
+      "readOnly": "Only an owner or manager can change this information.",
+      "sourceDatabase": "Source: panel",
+      "sourceEnv": "Source: server configuration (text saved in the panel takes priority)"
     },
     "plans": {
       "title": "Plans",

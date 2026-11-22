@@ -181,7 +181,7 @@ suite("CRM intake PostgreSQL integration (non-superuser, forced RLS)", () => {
         FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'sales_%'
       `);
-      expect(tables.rows).toHaveLength(17);
+      expect(tables.rows).toHaveLength(18);
       expect(tables.rows.every((r) => r.relrowsecurity && r.relforcerowsecurity)).toBe(true);
       const legacy = await db.query<{ relname: string; relrowsecurity: boolean; relforcerowsecurity: boolean }>(`
         SELECT relname, relrowsecurity, relforcerowsecurity FROM pg_class
@@ -194,7 +194,7 @@ suite("CRM intake PostgreSQL integration (non-superuser, forced RLS)", () => {
         SELECT tablename FROM pg_policies
         WHERE schemaname='public' AND tablename LIKE 'sales_%'
       `);
-      expect(new Set(policies.rows.map((r) => r.tablename)).size).toBe(17);
+      expect(new Set(policies.rows.map((r) => r.tablename)).size).toBe(18);
       const foreignKeys = await db.query<{ table_name: string; definition: string }>(`
         SELECT c.conrelid::regclass::text AS table_name,
                pg_get_constraintdef(c.oid) AS definition

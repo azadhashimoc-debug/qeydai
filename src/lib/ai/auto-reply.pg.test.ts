@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/crm/delivery", () => ({ deliverOne: vi.fn(async () => undefined) }));
 
 import { ingestMessage, workspaceTransaction } from "@/lib/crm/store";
+import { getAiSettings, saveAiSettings } from "./settings";
 import { autoReply } from "./auto-reply";
 
 const suite = process.env.QEYDAI_DATABASE_URL ? describe : describe.skip;
@@ -64,5 +65,24 @@ suite("AI auto reply on PostgreSQL", () => {
     modelSays("sorry, no json here");
     await autoReply(tenant, await inbound("e3", "hello?"));
     expect((await counts()).ai).toBe(1);
+  });
+
+  it("panel settings override the env text, and enabled=false stops replies", async () => {
+    const read = () => workspaceTransaction(tenant, (db) => getAiSettings(db, tenant));
+    expect((await read()).source).toBe("env");
+
+    await workspaceTransaction(tenant, (db) => saveAiSettings(db, tenant, { enabled: true, knowledge: "Panel text: manicure 15 AZN." }));
+    expect(await read()).toMatchObject({ enabled: true, source: "database", knowledge: "Panel text: manicure 15 AZN." });
+
+    const before = (await counts()).ai;
+    await workspaceTransaction(tenant, (db) => saveAiSettings(db, tenant, { enabled: false, knowledge: "Panel text: manicure 15 AZN." }));
+    modelSays(JSON.stringify({ reply: "Manicure is 15 AZN.", handoff: false }));
+    await autoReply(tenant, await inbound("e4", "price of manicure?"));
+    expect((await counts()).ai).toBe(before);
+
+    await workspaceTransaction(tenant, (db) => saveAiSettings(db, tenant, { enabled: true, knowledge: "Panel text: manicure 15 AZN." }));
+    modelSays(JSON.stringify({ reply: "Manicure is 15 AZN.", handoff: false }));
+    await autoReply(tenant, await inbound("e5", "price of manicure again?"));
+    expect((await counts()).ai).toBe(before + 1);
   });
 });

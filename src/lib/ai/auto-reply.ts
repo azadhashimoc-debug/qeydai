@@ -3,6 +3,7 @@ import type { InboundMessage } from "@/lib/crm/channels";
 import { deliverOne } from "@/lib/crm/delivery";
 import { workspaceTransaction } from "@/lib/crm/store";
 import { chatComplete, configuredProviders } from "./llm";
+import { getAiSettings } from "./settings";
 import { buildMessages, parseModelReply, type HistoryItem } from "./prompt";
 
 const STAFF_QUIET_MINUTES = 30;
@@ -20,17 +21,18 @@ export function tenantKnowledge(tenant: string, env: Record<string, string | und
   }
 }
 
-type Snapshot = { threadId: string; dealId: string; connectionId: string; lastId: string; history: HistoryItem[]; businessName: string };
+type Snapshot = { knowledge: string; threadId: string; dealId: string; connectionId: string; lastId: string; history: HistoryItem[]; businessName: string };
 
 /** Drafts and queues an AI reply for a freshly stored inbound message. Best effort: never throws. */
 export async function autoReply(tenant: string, message: InboundMessage): Promise<void> {
   try {
     if (!process.env.QEYDAI_DATABASE_URL) return; // PostgreSQL path only
-    const knowledge = tenantKnowledge(tenant);
-    if (!knowledge || configuredProviders().length === 0) return;
+    if (configuredProviders().length === 0) return;
 
     const connectionId = `${message.channel}:${message.account}`;
     const snapshot = await workspaceTransaction(tenant, async (db): Promise<Snapshot | null> => {
+      const settings = await getAiSettings(db, tenant);
+      if (!settings.enabled || !settings.knowledge) return null;
       const thread = await db.query<{ id: string; deal_id: string }>(
         "SELECT id, deal_id FROM sales_threads WHERE tenant_id=$1 AND connection_id=$2 AND sender_id=$3",
         [tenant, connectionId, message.sender],
@@ -54,6 +56,7 @@ export async function autoReply(tenant: string, message: InboundMessage): Promis
       if (humanActive || aiRecent >= MAX_AI_REPLIES_PER_HOUR) return null;
       const workspace = await db.query<{ name: string }>("SELECT name FROM sales_workspaces WHERE id=$1", [tenant]);
       return {
+        knowledge: settings.knowledge,
         threadId: row.id,
         dealId: row.deal_id,
         connectionId,
@@ -65,7 +68,7 @@ export async function autoReply(tenant: string, message: InboundMessage): Promis
     if (!snapshot) return;
 
     // The model call happens outside any database transaction.
-    const result = await chatComplete(buildMessages(snapshot.businessName, knowledge, snapshot.history));
+    const result = await chatComplete(buildMessages(snapshot.businessName, snapshot.knowledge, snapshot.history));
     if (!result) return;
     const parsed = parseModelReply(result.text);
     if (parsed.handoff) {
