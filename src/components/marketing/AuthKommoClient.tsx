@@ -7,8 +7,6 @@ import { AuthSocialRow, type SocialProviders } from "./AuthSocialRow";
 
 export type AuthKommoCopy = {
   title: string;
-  emailLabel: string;
-  emailPlaceholder: string;
   keyLabel: string;
   keyPlaceholder: string;
   showKey: string;
@@ -39,7 +37,6 @@ type Props = {
 
 export function AuthKommoClient({ lang, copy, contactHref, providers, extra }: Props) {
   const router = useRouter();
-  const [email, setEmail] = useState("");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
   const [typedStatus, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network">("idle");
@@ -53,7 +50,6 @@ export function AuthKommoClient({ lang, copy, contactHref, providers, extra }: P
     : oauthParam === "error" ? "oauth_error"
     : "idle";
   const status = typedStatus !== "idle" ? typedStatus : oauthStatus;
-  const emailId = useId();
   const keyId = useId();
   const statusId = useId();
   const keyRef = useRef<HTMLInputElement>(null);
@@ -112,30 +108,6 @@ export function AuthKommoClient({ lang, copy, contactHref, providers, extra }: P
     <div className="pm-auth-form-box">
       <h1 className="pm-auth-heading">{copy.title}</h1>
           <form onSubmit={handleSubmit} className="pm-auth-form" noValidate>
-            <div className="pm-auth-field">
-              <label htmlFor={emailId} className="pm-sr-only">
-                {copy.emailLabel}
-              </label>
-              <div className="pm-auth-input-shell">
-                <span className="pm-auth-input-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                </span>
-                <input
-                  id={emailId}
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={copy.emailPlaceholder}
-                  className="pm-auth-input"
-                />
-              </div>
-            </div>
-
             <div className="pm-auth-field">
               <label htmlFor={keyId} className="pm-sr-only">
                 {copy.keyLabel}

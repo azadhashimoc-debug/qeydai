@@ -985,7 +985,7 @@
       "userLabel": "İstifadəçi adı",
       "userPlaceholder": "istifadeci@example.com",
       "keyLabel": "İş sahəsi açarı",
-      "keyPlaceholder": "Şifrə və ya iş sahəsi açarı",
+      "keyPlaceholder": "İş sahəsi açarı",
       "showKey": "Göstər",
       "hideKey": "Gizlət",
       "submit": "Giriş",

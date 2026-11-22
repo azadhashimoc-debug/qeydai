@@ -985,7 +985,7 @@
       "userLabel": "Username",
       "userPlaceholder": "user@example.com",
       "keyLabel": "Workspace access key",
-      "keyPlaceholder": "Password or workspace access key",
+      "keyPlaceholder": "Workspace key",
       "showKey": "Show",
       "hideKey": "Hide",
       "submit": "Sign in to panel",

@@ -65,8 +65,6 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
           lang={locale}
           copy={{
             title: login.title,
-            emailLabel: login.emailLabel,
-            emailPlaceholder: login.emailPlaceholder,
             keyLabel: login.keyLabel,
             keyPlaceholder: login.keyPlaceholder,
             showKey: login.showKey,
