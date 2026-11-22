@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { readAccountSession } from "./account-auth";
 import { readAnalyticsSummary } from "../analytics/summary";
 import {
   LEAD_SOURCES,
@@ -124,6 +125,8 @@ export function createPanelApi({
   async function requirePanelSession(
     req: Request,
   ): Promise<{ ok: true; tenantId: string; memberId: string } | { ok: false; response: Response }> {
+    const account = await readAccountSession(req);
+    if (account) return { ok: true, tenantId: account.tenantId, memberId: "" };
     const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
     const config = getAuthConfig();
     if (!config.secret || config.allowedTenants.size === 0 || !token) {
@@ -205,8 +208,10 @@ export function createPanelApi({
 
     authDelete: async (req: Request): Promise<Response> => {
       if (!sameOrigin(req)) return fail(403, "forbidden");
+      const account = await readAccountSession(req);
+      if (account) await revokePanelJti(account.jti, account.exp, now().getTime(), account.tenantId);
       const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
-      if (token) {
+      if (token && !account) {
         const config = getAuthConfig();
         if (config.secret && config.allowedTenants.size > 0) {
           const nowMs = now().getTime();
