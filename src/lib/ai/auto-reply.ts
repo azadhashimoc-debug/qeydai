@@ -4,7 +4,7 @@ import { deliverOne } from "@/lib/crm/delivery";
 import { workspaceTransaction } from "@/lib/crm/store";
 import { chatComplete, configuredProviders } from "./llm";
 import { getAiSettings } from "./settings";
-import { buildMessages, parseModelReply, type HistoryItem } from "./prompt";
+import { buildMessages, isGrounded, looksSensitive, parseModelReply, type HistoryItem } from "./prompt";
 
 const STAFF_QUIET_MINUTES = 30;
 const MAX_AI_REPLIES_PER_HOUR = 10;
@@ -67,10 +67,21 @@ export async function autoReply(tenant: string, message: InboundMessage): Promis
     });
     if (!snapshot) return;
 
-    // The model call happens outside any database transaction.
-    const result = await chatComplete(buildMessages(snapshot.businessName, snapshot.knowledge, snapshot.history));
-    if (!result) return;
-    const parsed = parseModelReply(result.text);
+    // Payment-card data or credentials must never leave for a model provider: hand off to staff instead.
+    const sensitive = snapshot.history.some((item) => item.direction === "in" && looksSensitive(item.body));
+
+    let parsed: { reply: string; handoff: boolean };
+    if (sensitive) {
+      parsed = { reply: "", handoff: true };
+    } else {
+      // The model call happens outside any database transaction.
+      const result = await chatComplete(buildMessages(snapshot.businessName, snapshot.knowledge, snapshot.history));
+      if (!result) return;
+      parsed = parseModelReply(result.text);
+      if (!parsed.handoff && !isGrounded(parsed.reply, snapshot.knowledge, snapshot.history)) {
+        parsed = { reply: "", handoff: true }; // the reply states a number that is not in the business information
+      }
+    }
     if (parsed.handoff) {
       // Left for staff: open a task on the deal so it is not missed. One per customer message.
       await workspaceTransaction(tenant, async (db) => {

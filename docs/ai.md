@@ -24,3 +24,10 @@ Inbound Telegram/WhatsApp/Instagram messages are stored first; then, after the w
 - Business information is an env var; a per-tenant settings table and panel editor would be better.
 - Hand-offs do not create a task or notification yet.
 - Not verified against live Groq/NVIDIA endpoints or a real PostgreSQL database in this environment (no keys, no DB). Covered by unit tests with a mocked `fetch`.
+
+## Guards beyond the prompt (verified live against NVIDIA)
+A live 8-question Azerbaijani evaluation (`scripts/ai-eval.mts`) showed the model inventing a price for a service missing from the business information. Prompts alone are not trusted, so two deterministic guards run in code:
+- **Grounding check** (`isGrounded`): every number in a reply must appear in the business information or in the customer's messages, otherwise the reply is dropped and a handoff task is opened.
+- **Sensitive input** (`looksSensitive`): messages that look like card numbers or credentials are never sent to a model provider; a handoff task is opened instead. Such a message stays in the recent history window, so replies in that conversation hand off until it scrolls out.
+Result after the guards: 7/8 on the evaluation (the remaining case was the card-number message, which the sensitive-input guard now handles).
+Limits: the evaluation is small and covers one tenant; wording quality (for example a closing-time question answered with the opening time) is not caught by these guards.

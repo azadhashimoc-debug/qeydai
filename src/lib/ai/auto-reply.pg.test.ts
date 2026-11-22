@@ -85,4 +85,15 @@ suite("AI auto reply on PostgreSQL", () => {
     await autoReply(tenant, await inbound("e5", "price of manicure again?"));
     expect((await counts()).ai).toBe(before + 1);
   });
+
+  it("never calls the provider for card-like text and opens a handoff task", async () => {
+    const fetchSpy = vi.fn();
+    globalThis.fetch = fetchSpy as unknown as typeof fetch;
+    const before = await counts();
+    await autoReply(tenant, await inbound("e6", "my card is 4169 7388 1234 5678"));
+    expect(fetchSpy).not.toHaveBeenCalled();
+    const after = await counts();
+    expect(after.ai).toBe(before.ai);
+    expect(after.tasks).toBe(before.tasks + 1);
+  });
 });

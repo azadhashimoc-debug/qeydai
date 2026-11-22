@@ -111,3 +111,32 @@ describe("NVIDIA reasoning control", () => {
     expect(bodyOf(groq).chat_template_kwargs).toBeUndefined();
   });
 });
+
+import { isGrounded } from "./prompt";
+
+describe("isGrounded", () => {
+  const knowledge = "Haircut 20 AZN. Open 10:00-19:00.";
+  it("accepts numbers present in the information or the customer message", () => {
+    expect(isGrounded("Haircut is 20 AZN.", knowledge, [])).toBe(true);
+    expect(isGrounded("We open at 10:00.", knowledge, [])).toBe(true);
+    expect(isGrounded("Booked for 15:30.", knowledge, [{ direction: "in", body: "Book me at 15:30" }])).toBe(true);
+    expect(isGrounded("Hello, how can I help?", knowledge, [])).toBe(true);
+  });
+  it("rejects invented numbers", () => {
+    expect(isGrounded("Pedicure is 25 AZN.", knowledge, [])).toBe(false);
+    expect(isGrounded("We close at 21:00.", knowledge, [])).toBe(false);
+    expect(isGrounded("Haircut is 25 AZN.", knowledge, [{ direction: "out", body: "25" }])).toBe(false);
+  });
+});
+
+import { looksSensitive } from "./prompt";
+
+describe("looksSensitive", () => {
+  it("flags card numbers and credentials, not ordinary messages", () => {
+    expect(looksSensitive("my card 4169 7388 1234 5678")).toBe(true);
+    expect(looksSensitive("4169-7388-1234-5678")).toBe(true);
+    expect(looksSensitive("cvv 123")).toBe(true);
+    expect(looksSensitive("PIN is 1234")).toBe(true);
+    expect(looksSensitive("Haircut at 15:30 for 20 AZN, phone 050 123 45 67")).toBe(false);
+  });
+});
