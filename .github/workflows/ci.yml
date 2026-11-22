@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master, main, 'feat/panelim-subpages', 'feat/pani-crm-intake-core']
+    branches: [master, main, 'feat/panelim-subpages', 'feat/pani-crm-intake-core', 'fix/crm-customer-readiness']
   pull_request:
     branches: [master, main, 'feat/panelim-subpages']
 
