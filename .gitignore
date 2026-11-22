@@ -47,3 +47,11 @@ data/
 
 # generated images (large binaries)
 /assets/
+
+# local logs and scratch output
+*.log
+/logs/
+/output*.txt
+/tsc-out.txt
+/test-results-serial/
+!.env.example

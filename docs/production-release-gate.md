@@ -13,8 +13,8 @@ Updated for branch `feat/pani-crm-intake-core`. **Do not execute production SQL,
 
 ## Authorized production execution order (future only)
 1. Confirm change window, database backup/restore-point strategy, verified rollback branch, and production traffic freeze as applicable.
-2. Export a private migration inventory / checksum for `0001_init.sql`, `0002_crm_inbox.sql`, `0003_sales_workspace.sql`, `0004_panel_jti.sql`. Run dry-run on a **fresh disposable branch created from production main** first. The current staging branch is a descendant and is not a clean-main rehearsal.
-3. With a dedicated migration owner **on main only after approval**, apply exact committed migration files in numerical order `0001` → `0002` → `0003` → `0004` using stop-on-error. Do not attempt a combined retry after partial execution without reviewing applied objects; scripts use `IF NOT EXISTS` but are not an all-purpose rollback mechanism.
+2. Export a private migration inventory / checksum for `0001_init.sql`, `0002_crm_inbox.sql`, `0003_sales_workspace.sql`, `0004_panel_jti.sql`, `0005_analytics_ingest.sql`. Run dry-run on a **fresh disposable branch created from production main** first. The current staging branch is a descendant and is not a clean-main rehearsal.
+3. With a dedicated migration owner **on main only after approval**, apply exact committed migration files in numerical order `0001` → `0002` → `0003` → `0004` → `0005` using stop-on-error. Do not attempt a combined retry after partial execution without reviewing applied objects; scripts use `IF NOT EXISTS` but are not an all-purpose rollback mechanism.
 4. Verify 24 expected tables, 22 tenant-isolated tables with both `relrowsecurity` and `relforcerowsecurity`, policy definitions, indexes, constraints, and the existence of `panel_revoked_jti`. Confirm non-RLS tables `leads` / `analytics_events` are NOT available to the app role.
 5. Create the restricted production LOGIN role with secret-manager generated password. Example **operator-reviewed** role DDL below (not executed).
 6. In Vercel project → Settings → Environment Variables, verify the **username only** embedded in `QEYDAI_DATABASE_URL` per environment (Production vs Preview); do not reveal or log any URI/token/password. It must match `panelim_production_app`, not `neondb_owner`. Confirm the host/branch targets production main without showing credential values. Apply secret change ONLY with explicit approval.
@@ -77,8 +77,11 @@ Reject release if privileged/runtime role, broad unprotected-table grants, any R
 
 ## Approval checklist
 - [ ] Approve production-main migration window and validated restore point.
-- [ ] Approve running `0001` → `0004` on main after successful disposable-branch rehearsal.
+- [ ] Approve running `0001` → `0005` on main after successful disposable-branch rehearsal.
 - [ ] Approve `panelim_production_app` provisioning and least-privilege grants.
 - [ ] Approve Vercel production `QEYDAI_DATABASE_URL` replacement after role-only inspection.
 - [ ] Approve deployment once Vercel is unblocked and staging-backed application E2E passes.
 - [ ] Separately approve PR merge; do not infer merge authorization from release approval.
+
+## Update: migration 0005 (analytics ingest)
+`0005_analytics_ingest.sql` enables and forces RLS on `analytics_events`, allows app roles INSERT-only on `(event, locale, props)` and restricts SELECT/DELETE to the owner. This addresses the staging finding about excess CRUD on `analytics_events`. The legacy `leads` table is still outside the RLS allowlist: confirm the app role has no access to it before release. Re-run the runtime probes above after applying `0005`.
