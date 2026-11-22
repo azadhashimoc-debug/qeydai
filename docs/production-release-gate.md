@@ -91,3 +91,6 @@ Reject release if privileged/runtime role, broad unprotected-table grants, any R
 - Fail-closed secrets must all be set: `QEYDAI_ADMIN_KEYS`, `QEYDAI_PANEL_SECRET`, `QEYDAI_CRM_WORKER_KEY`, `QEYDAI_META_APP_SECRET`, `QEYDAI_META_VERIFY_TOKEN` (empty values reject requests by design).
 - AI: set `GROQ_API_KEY` and/or `NVIDIA_API_KEY` plus `QEYDAI_AI_KNOWLEDGE`; confirm via the panel AI tab (status Active).
 - When the AI hands off, it creates an open task `ai-handoff:<message id>` on the deal.
+
+## Update: local PostgreSQL rehearsal (not production)
+Migrations 0001 to 0005 were applied in order with stop-on-error to a disposable local PostgreSQL 16, then `npm run test:pg` was run as a restricted non-owner role (`panelim_staging_app`, NOBYPASSRLS, allowlisted grants per this document): 4 files, all passing including the AI auto-reply/handoff path. This does not replace the Neon staging rehearsal or production approval above.
