@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useId, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics/client";
-import { extractUtmProps, type Locale } from "@/lib/analytics/events";
+import type { Locale } from "@/lib/analytics/events";
 import { getActiveExperimentToken } from "@/lib/experiments/ab";
 import { AuthSocialRow } from "./AuthSocialRow";
 
@@ -126,7 +126,7 @@ export function AuthKommoRegisterClient({
   const hasPhoneError = state === "error";
   const statusText =
     state === "ok"
-      ? copy.okText
+      ? ""
       : state === "limited"
         ? copy.rateLimitedText
         : state === "name_error"
@@ -164,45 +164,12 @@ export function AuthKommoRegisterClient({
       return;
     }
 
-    setState("sending");
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: rawName, phone: rawPhone }),
-      });
-      if (res.ok) {
-        setState("ok");
-        const slug = rawName
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-|-$/g, "");
-        if (slug) {
-          setWorkspaceName(rawName);
-          setSubdomain(slug);
-        }
-        const { utm_source, utm_medium, utm_campaign } = extractUtmProps(
-          typeof window !== "undefined" ? window.location.search : "",
-        );
-        trackEvent({
-          event: "lead_form_submitted",
-          props: {
-            locale,
-            exp: getActiveExperimentToken(),
-            ...(utm_source ? { utm_source } : {}),
-            ...(utm_medium ? { utm_medium } : {}),
-            ...(utm_campaign ? { utm_campaign } : {}),
-          },
-        });
-      } else if (res.status === 429) {
-        setState("limited");
-      } else {
-        setState("error");
-        phoneRef.current?.focus();
-      }
-    } catch {
-      setState("error");
-    }
+    // This is the business onboarding step, not a marketing lead submission.
+    // Create the account only when the password is entered in the final step.
+    const slug = rawName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    setWorkspaceName(rawName);
+    if (slug) setSubdomain(slug);
+    setState("ok");
   }
 
   return (
