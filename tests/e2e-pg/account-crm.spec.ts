@@ -1,6 +1,22 @@
 import { expect, test, request as apiRequest } from "@playwright/test";
 
 const base = "http://127.0.0.1:3200";
+
+test("registration form creates a usable account and opens the CRM", async ({ page }) => {
+  const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+  await page.goto("/az/register");
+  await page.locator('input[type="email"]').fill("register-" + id + "@example.test");
+  await page.locator('form button[type="submit"]').click();
+  await page.locator('input[name="name"]').fill("Biznes " + id);
+  await page.locator('input[name="phone"]').fill("050 234 56 78");
+  await page.locator('form button[type="submit"]').click();
+  await expect(page.locator('input[name="account"]')).toBeVisible();
+  await page.locator('input[autocomplete="new-password"]').fill("Strong-Business-Pass-" + id);
+  await page.locator(".js-create-account-submit-button").click();
+  await expect(page).toHaveURL(/\\/az\\/panel/);
+  expect((await page.request.get("/api/panel/auth")).status()).toBe(200);
+});
+
 test("business owner signs up, logs in with password, manages CRM, and remains tenant-isolated", async ({ page }) => {
   const id = Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
   const email = "owner-" + id + "@example.test";
