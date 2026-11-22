@@ -95,9 +95,9 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   return (
     <div className="pm-auth-form-box">
       <h1 className="pm-auth-heading">{copy.title}</h1>
-      <div className="pm-tools-row" role="group" aria-label={lang === "az" ? "Giriş üsulu" : "Sign-in method"}>
-        <button type="button" className="pm-auth-submit-pill" aria-pressed={loginMode === "password"} onClick={() => { setLoginMode("password"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "E-poçt və şifrə" : "Email and password"}</button>
-        <button type="button" className="pm-auth-submit-pill" aria-pressed={loginMode === "key"} onClick={() => { setLoginMode("key"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "Giriş açarı" : "Access key"}</button>
+      <div className="pm-tools-row" role="group" style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }} aria-label={lang === "az" ? "Giriş üsulu" : "Sign-in method"}>
+        <button type="button" className="pm-auth-submit-pill" style={{ flex: "1 1 140px", minWidth: 0 }} aria-pressed={loginMode === "password"} onClick={() => { setLoginMode("password"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "E-poçt və şifrə" : "Email and password"}</button>
+        <button type="button" className="pm-auth-submit-pill" style={{ flex: "1 1 140px", minWidth: 0 }} aria-pressed={loginMode === "key"} onClick={() => { setLoginMode("key"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "Giriş açarı" : "Access key"}</button>
       </div>
           <form onSubmit={handleSubmit} className="pm-auth-form" noValidate>
             <div className="pm-auth-field">
