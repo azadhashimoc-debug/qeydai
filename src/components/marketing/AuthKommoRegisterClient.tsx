@@ -44,8 +44,8 @@ type Props = {
 
 const WORKSPACE_COPY = {
   az: {
-    step3Title: "14 günlük sınaq müddətinə başlayın",
-    step3Sub: "Bütün özəlliklərə və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
+    step3Title: "CRM hesabınızı yaradın",
+    step3Sub: "Biznesiniz üçün hesab yaradın və CRM panelinə e-poçt və şifrə ilə daxil olun.",
     accountNameLabel: "Biznesin adı",
     accountNamePlaceholder: "Məsələn: Bakı Tədris Mərkəzi",
     subdomainLabel: "Hesabın alt domeni",
@@ -67,8 +67,8 @@ const WORKSPACE_COPY = {
     openPanelBtn: "Hesab yarat və CRM panelini aç",
   },
   en: {
-    step3Title: "Start your 14-day free trial",
-    step3Sub: "Access all features and 10GB storage. No credit card required",
+    step3Title: "Create your CRM account",
+    step3Sub: "Create your business account and sign in with your email and password.",
     accountNameLabel: "Account name (Center or company name)",
     accountNamePlaceholder: "e.g. Baku Learning Center",
     subdomainLabel: "Account subdomain",
