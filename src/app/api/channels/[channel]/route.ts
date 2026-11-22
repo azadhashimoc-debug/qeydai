@@ -1,3 +1,5 @@
+import { after } from "next/server";
+import { autoReply } from "@/lib/ai/auto-reply";
 import { parseInbound, secretsMatch, verifyMetaSignature, type Channel } from "@/lib/crm/channels";
 import { configuredConnections } from "@/lib/crm/config";
 import { databaseConfigured, ingestMessage } from "@/lib/crm/store";
@@ -42,9 +44,17 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
     } catch {
       return new Response(null, { status: 400 });
     }
+    const stored: { tenant: string; message: ReturnType<typeof parseInbound>[number] }[] = [];
     for (const message of parseInbound(channel, body, telegram?.account)) {
       const connection = connections.find((item) => item.account === message.account);
-      if (connection) await ingestMessage(connection.tenant, message);
+      if (connection && (await ingestMessage(connection.tenant, message))) {
+        stored.push({ tenant: connection.tenant, message });
+      }
+    }
+    if (stored.length > 0) {
+      after(async () => {
+        for (const item of stored) await autoReply(item.tenant, item.message);
+      });
     }
     return new Response(null, { status: 200 });
   } catch {
