@@ -40,6 +40,8 @@ type Props = {
   termsHref: string;
   privacyHref: string;
   providers: SocialProviders;
+  /** Optional block shown above the social buttons (e-mail link sign-in). */
+  extra?: React.ReactNode;
 };
 
 const WORKSPACE_COPY = {
@@ -98,6 +100,7 @@ export function AuthKommoRegisterClient({
   termsHref,
   privacyHref,
   providers,
+  extra,
 }: Props) {
   const [state, setState] = useState<
     "idle" | "sending" | "ok" | "error" | "name_error" | "limited"
@@ -400,6 +403,7 @@ export function AuthKommoRegisterClient({
         <Link href={privacyHref}>{copy.privacyLinkText}</Link>
       </p>
 
+      {extra}
       <AuthSocialRow
         lang={locale}
         providers={providers}

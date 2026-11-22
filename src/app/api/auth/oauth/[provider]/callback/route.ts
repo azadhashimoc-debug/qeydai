@@ -1,9 +1,7 @@
 import { isSecureRequest } from "@/lib/api/panel-api";
-import {
-  DEFAULT_PANEL_TTL_MS, buildPanelCookieHeader, createPanelSessionToken, getPanelAuthConfig, isPanelJtiRevoked,
-  readCookieValue, verifyPanelSessionToken,
-} from "@/lib/api/panel-auth";
+import { getPanelAuthConfig, readCookieValue } from "@/lib/api/panel-auth";
 import { signInWithProfile } from "@/lib/auth/accounts";
+import { issueSessionCookie } from "@/lib/auth/session";
 import {
   OAUTH_COOKIE, exchangeCode, fetchProfile, isProvider, oauthCookieHeader, providerConfig, redirectUri, verifyOAuthState,
 } from "@/lib/auth/oauth";
@@ -55,21 +53,11 @@ export async function GET(req: Request, context: RouteContext<"/api/auth/oauth/[
     return back(lang, "error", secure);
   }
 
-  const now = Date.now();
-  const token = createPanelSessionToken(
-    signedIn.tenantId, secret, now, DEFAULT_PANEL_TTL_MS, undefined, signedIn.memberId, signedIn.accountId,
-  );
-  // Same fail-closed check as the key login: the revocation backend must be reachable before a session is issued.
-  const issued = verifyPanelSessionToken(token, secret, new Map(), now, { allowSocial: true });
-  if (!issued) return back(lang, "error", secure);
-  try {
-    await isPanelJtiRevoked(issued.jti, now, issued.tenantId);
-  } catch {
-    return back(lang, "error", secure);
-  }
+  const sessionCookie = await issueSessionCookie(req, signedIn);
+  if (!sessionCookie) return back(lang, "error", secure);
 
   const headers = new Headers({ location: `/${lang}/panel`, "cache-control": "no-store" });
-  headers.append("set-cookie", buildPanelCookieHeader(token, secure, DEFAULT_PANEL_TTL_MS / 1000));
+  headers.append("set-cookie", sessionCookie);
   headers.append("set-cookie", oauthCookieHeader("", secure, 0));
   return new Response(null, { status: 302, headers });
 }

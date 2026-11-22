@@ -1050,6 +1050,26 @@
       "heartAlt": "Ürək maskotu",
       "googleLabel": "Google ilə daxil ol",
       "facebookLabel": "Facebook ilə daxil ol"
+    },
+    "emailLink": {
+      "hint": "Və ya e-poçtla daxil olun: sizə birdəfəlik giriş linki göndərəcəyik.",
+      "submit": "Giriş linki göndər",
+      "sending": "Göndərilir…",
+      "sent": "Linki e-poçtunuza göndərdik. Poçtunuzu yoxlayın (spam qovluğuna da baxın). Link 15 dəqiqə etibarlıdır.",
+      "invalid": "Düzgün e-poçt ünvanı yazın.",
+      "rateLimited": "Çox sorğu. Bir neçə dəqiqə gözləyin.",
+      "error": "Göndərmək alınmadı. Bir az sonra yenidən cəhd edin.",
+      "confirmTitle": "Daxil olun",
+      "confirmBody": "Hesabınıza daxil olmaq üçün düyməyə basın.",
+      "confirmButton": "Daxil ol",
+      "confirming": "Yoxlanılır…",
+      "confirmFailed": "Link etibarsızdır, istifadə olunub və ya vaxtı bitib. Yeni link sorğulayın.",
+      "confirmBack": "Girişə qayıt",
+      "mailSubject": "panelim.az giriş linki",
+      "mailIntro": "panelim.az hesabınıza daxil olmaq üçün aşağıdakı düyməyə basın. Bu e-poçt ünvanı ilə hesab yoxdursa, yeni hesab yaradılacaq.",
+      "mailButton": "Daxil ol",
+      "mailExpires": "Link 15 dəqiqə etibarlıdır və yalnız bir dəfə işləyir.",
+      "mailIgnore": "Siz bunu istəməmisinizsə, bu e-poçtu nəzərə almayın."
     }
   },
   "selectAccount": {

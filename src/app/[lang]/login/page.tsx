@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
+import { AuthEmailLink } from "@/components/marketing/AuthEmailLink";
+import { emailConfigured } from "@/lib/auth/email";
 import { enabledProviders } from "@/lib/auth/oauth";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
@@ -30,6 +32,7 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
   const auth = d.subpages.authPages;
+  const emailLinkEnabled = emailConfigured();
   const login = auth.login;
   const shell = auth.shell;
 
@@ -84,6 +87,22 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
           }}
           contactHref={`/${locale}/contact`}
           providers={enabledProviders()}
+          extra={emailLinkEnabled ? (
+            <AuthEmailLink
+              lang={locale}
+              copy={{
+                emailLabel: auth.login.emailLabel,
+                emailPlaceholder: auth.login.emailPlaceholder,
+                hint: auth.emailLink.hint,
+                submit: auth.emailLink.submit,
+                sending: auth.emailLink.sending,
+                sent: auth.emailLink.sent,
+                invalid: auth.emailLink.invalid,
+                rateLimited: auth.emailLink.rateLimited,
+                error: auth.emailLink.error,
+              }}
+            />
+          ) : undefined}
         />
         </Suspense>
       </AuthShell>

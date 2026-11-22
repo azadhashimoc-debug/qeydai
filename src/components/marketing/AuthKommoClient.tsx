@@ -33,9 +33,11 @@ type Props = {
   copy: AuthKommoCopy;
   contactHref: string;
   providers: SocialProviders;
+  /** Optional block shown above the social buttons (e-mail link sign-in). */
+  extra?: React.ReactNode;
 };
 
-export function AuthKommoClient({ lang, copy, contactHref, providers }: Props) {
+export function AuthKommoClient({ lang, copy, contactHref, providers, extra }: Props) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [key, setKey] = useState("");
@@ -195,6 +197,7 @@ export function AuthKommoClient({ lang, copy, contactHref, providers }: Props) {
           </form>
 
 
+      {extra}
       <AuthSocialRow
         lang={lang}
         providers={providers}

@@ -115,7 +115,7 @@ export function buildAuthorizeUrl(provider: Provider, cfg: ProviderConfig, redir
 }
 
 export type Profile = {
-  provider: Provider;
+  provider: Provider | "email";
   providerUserId: string;
   email: string | null;
   emailVerified: boolean;

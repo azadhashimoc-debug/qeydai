@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { AuthKommoRegisterClient } from "@/components/marketing/AuthKommoRegisterClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
+import { AuthEmailLink } from "@/components/marketing/AuthEmailLink";
+import { emailConfigured } from "@/lib/auth/email";
 import { enabledProviders } from "@/lib/auth/oauth";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
@@ -31,6 +33,7 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
   const auth = d.subpages.authPages;
+  const emailLinkEnabled = emailConfigured();
   const reg = auth.register;
   const shell = auth.shell;
 
@@ -89,6 +92,22 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/regist
           termsHref={`/${locale}/legal/terms`}
           privacyHref={`/${locale}/legal/privacy`}
           providers={enabledProviders()}
+          extra={emailLinkEnabled ? (
+            <AuthEmailLink
+              lang={locale}
+              copy={{
+                emailLabel: auth.login.emailLabel,
+                emailPlaceholder: auth.login.emailPlaceholder,
+                hint: auth.emailLink.hint,
+                submit: auth.emailLink.submit,
+                sending: auth.emailLink.sending,
+                sent: auth.emailLink.sent,
+                invalid: auth.emailLink.invalid,
+                rateLimited: auth.emailLink.rateLimited,
+                error: auth.emailLink.error,
+              }}
+            />
+          ) : undefined}
         />
       </AuthShell>
     </div>

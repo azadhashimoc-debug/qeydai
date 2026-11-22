@@ -67,3 +67,14 @@ Kod işləyir (hər kəs Google/Facebook ilə girib öz biznes hesabını yarada
     - `email` və `public_profile` icazələri standartdır (əlavə review tələb etmir).
 21. Dəyişənlər əlavə olunandan sonra saytı yenidən deploy edin (düymələr build zamanı oxunur).
 22. **Sui-istifadədən qorunma:** hər yeni Google/Facebook hesabı avtomatik yeni biznes hesabı yaradır. Sorğu limiti var (IP başına dəqiqədə 20 geri çağırış), amma çoxlu saxta hesabları izləmək üçün Neon-da `panel_accounts` cədvəlinə vaxtaşırı baxın.
+
+## G. E-poçtla giriş / hesab yaratma (kod hazırdır, e-poçt xidməti sizdən)
+Müştəri e-poçtunu yazır, poçta 15 dəqiqəlik birdəfəlik link gəlir, linkə basanda hesab yaranır və daxil olur. Forma yalnız aşağıdakı iki dəyişən qoyulanda görünür.
+Migrasiya `0007_panel_accounts.sql` (Google/Facebook ilə eyni) bu üçün də lazımdır.
+
+23. **Resend hesabı:** https://resend.com → qeydiyyat → API Keys → Create API Key (Sending access). Açarı Vercel-də `RESEND_API_KEY` kimi əlavə edin. (Köhnə `panelim` tətbiqində `RESEND_API_KEY` adlı dəyişən var idi; `panelim-az` layihəsində artıq mövcuddursa eyni açarı istifadə edə bilərsiniz, yalnız domenin təsdiqli olduğunu yoxlayın.)
+24. **Domeni təsdiqləyin:** Resend → Domains → Add Domain → `panelim.az`. Resend göstərən SPF/DKIM DNS qeydlərini domenin DNS panelində əlavə edin (domen Cloudflare-dədir, nameserver-lər `*.ns.cloudflare.com`). Təsdiq olmadan e-poçtlar spam-a düşür və ya göndərilmir.
+25. **Göndərən ünvan:** Vercel-də `EMAIL_FROM` = `panelim.az <noreply@panelim.az>`.
+26. Dəyişənlər əlavə olunandan sonra yenidən deploy edin. Yoxlama: login səhifəsində öz e-poçtunuzu yazıb linkin gəldiyini görün.
+
+Bilməli olduğunuz: eyni e-poçtla Google və e-poçt link ayrı hesablar sayılır (təhlükəsizlik üçün avtomatik birləşdirmə yoxdur). Sorğu limiti yaddaşdadır və hər serverə görə ayrıdır; ciddi sui-istifadə olarsa Neon-da ortaq limit əlavə edərik.

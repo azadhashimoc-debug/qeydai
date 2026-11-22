@@ -51,6 +51,7 @@ try {
     GRANT INSERT (event, locale, props) ON TABLE public.analytics_events TO panelim_ci;
     -- Global social-account table (no tenant RLS): the app role may only read, insert and update.
     GRANT SELECT, INSERT, UPDATE ON TABLE public.panel_accounts TO panelim_ci;
+    GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.panel_login_tokens TO panelim_ci;
   `);
   const rls = await pool.query(`
     SELECT c.relname AS tablename, c.relrowsecurity AS rowsecurity,

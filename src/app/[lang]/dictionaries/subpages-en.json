@@ -1050,6 +1050,26 @@
       "heartAlt": "Iridescent heart mascot",
       "googleLabel": "Continue with Google",
       "facebookLabel": "Continue with Facebook"
+    },
+    "emailLink": {
+      "hint": "Or sign in with e-mail: we will send you a one-time sign-in link.",
+      "submit": "Send sign-in link",
+      "sending": "Sending…",
+      "sent": "We sent the link to your e-mail. Check your inbox (and spam). The link is valid for 15 minutes.",
+      "invalid": "Enter a valid e-mail address.",
+      "rateLimited": "Too many requests. Wait a few minutes.",
+      "error": "Could not send. Try again shortly.",
+      "confirmTitle": "Sign in",
+      "confirmBody": "Press the button to sign in to your account.",
+      "confirmButton": "Sign in",
+      "confirming": "Checking…",
+      "confirmFailed": "The link is invalid, already used or expired. Request a new one.",
+      "confirmBack": "Back to sign in",
+      "mailSubject": "panelim.az sign-in link",
+      "mailIntro": "Press the button below to sign in to your panelim.az account. If no account exists for this e-mail address, a new one will be created.",
+      "mailButton": "Sign in",
+      "mailExpires": "The link is valid for 15 minutes and works only once.",
+      "mailIgnore": "If you did not request this, ignore this e-mail."
     }
   },
   "selectAccount": {
