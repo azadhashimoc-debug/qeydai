@@ -68,7 +68,17 @@ export async function autoReply(tenant: string, message: InboundMessage): Promis
     const result = await chatComplete(buildMessages(snapshot.businessName, knowledge, snapshot.history));
     if (!result) return;
     const parsed = parseModelReply(result.text);
-    if (parsed.handoff) return; // left for staff in the inbox
+    if (parsed.handoff) {
+      // Left for staff: open a task on the deal so it is not missed. One per customer message.
+      await workspaceTransaction(tenant, async (db) => {
+        await db.query(
+          `INSERT INTO sales_tasks (tenant_id,id,deal_id,title,body)
+           VALUES ($1,$2,$3,$4,$5) ON CONFLICT (tenant_id,id) DO NOTHING`,
+          [tenant, `ai-handoff:${snapshot.lastId}`, snapshot.dealId, "AI handoff: reply to this customer", "The AI was not confident enough to answer. See the latest inbound message."],
+        );
+      });
+      return;
+    }
 
     await workspaceTransaction(tenant, async (db) => {
       await db.query("SELECT 1 FROM sales_threads WHERE tenant_id=$1 AND id=$2 FOR UPDATE", [tenant, snapshot.threadId]);

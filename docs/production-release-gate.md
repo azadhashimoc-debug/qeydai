@@ -85,3 +85,9 @@ Reject release if privileged/runtime role, broad unprotected-table grants, any R
 
 ## Update: migration 0005 (analytics ingest)
 `0005_analytics_ingest.sql` enables and forces RLS on `analytics_events`, allows app roles INSERT-only on `(event, locale, props)` and restricts SELECT/DELETE to the owner. This addresses the staging finding about excess CRUD on `analytics_events`. The legacy `leads` table is still outside the RLS allowlist: confirm the app role has no access to it before release. Re-run the runtime probes above after applying `0005`.
+
+## Update: pre-deploy environment checks
+- `QEYDAI_E2E_SQLITE` must NOT be set in Production or Preview environments (it re-enables the SQLite fallback).
+- Fail-closed secrets must all be set: `QEYDAI_ADMIN_KEYS`, `QEYDAI_PANEL_SECRET`, `QEYDAI_CRM_WORKER_KEY`, `QEYDAI_META_APP_SECRET`, `QEYDAI_META_VERIFY_TOKEN` (empty values reject requests by design).
+- AI: set `GROQ_API_KEY` and/or `NVIDIA_API_KEY` plus `QEYDAI_AI_KNOWLEDGE`; confirm via the panel AI tab (status Active).
+- When the AI hands off, it creates an open task `ai-handoff:<message id>` on the deal.
