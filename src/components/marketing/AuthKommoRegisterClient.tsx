@@ -103,6 +103,8 @@ export function AuthKommoRegisterClient({
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
+  const [accountPassword, setAccountPassword] = useState("");
+  const [accountStatus, setAccountStatus] = useState<"idle" | "saving" | "exists" | "error">("idle");
   const [subdomain, setSubdomain] = useState("baki-merkezi");
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
@@ -387,12 +389,45 @@ export function AuthKommoRegisterClient({
               </select>
             </label>
           </div>
-          <Link
-            href={loginHref}
-            className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
+          <label className="pm-kommo-field">
+            <span>{locale === "az" ? "Şifrə (ən azı 12 simvol)" : "Password (minimum 12 characters)"}</span>
+            <input type="password" autoComplete="new-password" required minLength={12} maxLength={128}
+              value={accountPassword} onChange={(event) => setAccountPassword(event.target.value)} />
+          </label>
+          <button type="button" className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
+            disabled={accountStatus === "saving" || accountPassword.length < 12 || workspaceName.trim().length < 2}
+            onClick={async () => {
+              if (!emailRef.current?.reportValidity()) return;
+              setAccountStatus("saving");
+              try {
+                const response = await fetch("/api/panel/account/register", {
+                  method: "POST",
+                  credentials: "same-origin",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify({
+                    businessName: workspaceName.trim(), email: emailRef.current.value.trim(), password: accountPassword,
+                  }),
+                });
+                if (response.ok) {
+                  window.location.assign(`/${locale}/panel`);
+                  return;
+                }
+                setAccountStatus(response.status === 409 ? "exists" : "error");
+              } catch {
+                setAccountStatus("error");
+              }
+            }}
           >
-            {locale === "az" ? "Giriş səhifəsinə keç" : "Go to sign in"} →
-          </Link>
+            {accountStatus === "saving"
+              ? (locale === "az" ? "Hesab yaradılır..." : "Creating account...")
+              : ws.openPanelBtn}
+          </button>
+          {accountStatus === "exists" && <p role="alert" className="pm-auth-status is-error">
+            {locale === "az" ? "Bu e-poçtla hesab artıq mövcuddur." : "An account with this email already exists."}
+          </p>}
+          {accountStatus === "error" && <p role="alert" className="pm-auth-status is-error">
+            {locale === "az" ? "Hesab yaratmaq mümkün olmadı. Yenidən yoxlayın." : "Unable to create account. Please retry."}
+          </p>}
         </div>
       )}
 
