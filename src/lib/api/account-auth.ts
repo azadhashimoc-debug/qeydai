@@ -1,4 +1,4 @@
-import { createHash, randomBytes, randomUUID, scrypt as rawScrypt, timingSafeEqual } from "node:crypto";
+import { randomBytes, randomUUID, scrypt as rawScrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import { Pool } from "pg";
 import {
