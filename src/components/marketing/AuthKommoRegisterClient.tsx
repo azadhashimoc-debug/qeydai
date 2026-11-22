@@ -105,7 +105,6 @@ export function AuthKommoRegisterClient({
   const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
   const [accountPassword, setAccountPassword] = useState("");
   const [accountStatus, setAccountStatus] = useState<"idle" | "saving" | "exists" | "error">("idle");
-  const [subdomain, setSubdomain] = useState("baki-merkezi");
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const nameId = useId();
@@ -166,9 +165,7 @@ export function AuthKommoRegisterClient({
 
     // This is the business onboarding step, not a marketing lead submission.
     // Create the account only when the password is entered in the final step.
-    const slug = rawName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     setWorkspaceName(rawName);
-    if (slug) setSubdomain(slug);
     setState("ok");
   }
 
@@ -298,64 +295,6 @@ export function AuthKommoRegisterClient({
               onChange={(e) => setWorkspaceName(e.target.value)}
             />
           </label>
-          <label className="pm-kommo-field js-control-subdomain-wrapper">
-            <span>{ws.subdomainLabel}</span>
-            <div className="pm-kommo-subdomain-box">
-              <input
-                type="text"
-                name="subdomain"
-                value={subdomain}
-                onChange={(e) =>
-                  setSubdomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))
-                }
-              />
-              <span>.panelim.az</span>
-            </div>
-          </label>
-          <div className="pm-tools-row">
-            <label className="pm-kommo-field js-industry-select">
-              <span>{ws.industryLabel}</span>
-              <select defaultValue={ws.industries[0]}>
-                {ws.industries.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="pm-kommo-field js-business-type-select">
-              <span>{ws.businessTypeLabel}</span>
-              <select defaultValue={ws.businessTypes[0]}>
-                {ws.businessTypes.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="pm-tools-row">
-            <label className="pm-kommo-field js-employees-count-select">
-              <span>{ws.employeesLabel}</span>
-              <select defaultValue={ws.employeeCounts[0]}>
-                {ws.employeeCounts.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="pm-kommo-field js-clients-count-select">
-              <span>{ws.clientsLabel}</span>
-              <select defaultValue={ws.clientCounts[0]}>
-                {ws.clientCounts.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
           <label className="pm-kommo-field">
             <span>{locale === "az" ? "Şifrə (ən azı 12 simvol)" : "Password (minimum 12 characters)"}</span>
             <input type="password" autoComplete="new-password" required minLength={12} maxLength={128}
