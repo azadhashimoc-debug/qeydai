@@ -90,3 +90,24 @@ describe("tenantKnowledge", () => {
     expect(tenantKnowledge("t1", {})).toBeNull();
   });
 });
+
+describe("NVIDIA reasoning control", () => {
+  const bodyOf = (fetchImpl: ReturnType<typeof vi.fn>) => JSON.parse(fetchImpl.mock.calls[0][1].body as string) as Record<string, unknown>;
+
+  it("disables thinking for Nemotron models only", async () => {
+    const nemotron = vi.fn().mockResolvedValue(ok("x"));
+    await chatComplete([{ role: "user", content: "hi" }], { env: { NVIDIA_API_KEY: "n" }, fetchImpl: nemotron });
+    expect(bodyOf(nemotron).chat_template_kwargs).toEqual({ enable_thinking: false });
+
+    const other = vi.fn().mockResolvedValue(ok("x"));
+    await chatComplete([{ role: "user", content: "hi" }], {
+      env: { NVIDIA_API_KEY: "n", QEYDAI_AI_NVIDIA_MODEL: "google/gemma-4-31b-it" },
+      fetchImpl: other,
+    });
+    expect(bodyOf(other).chat_template_kwargs).toBeUndefined();
+
+    const groq = vi.fn().mockResolvedValue(ok("x"));
+    await chatComplete([{ role: "user", content: "hi" }], { env: { GROQ_API_KEY: "g" }, fetchImpl: groq });
+    expect(bodyOf(groq).chat_template_kwargs).toBeUndefined();
+  });
+});

@@ -9,7 +9,7 @@ Inbound Telegram/WhatsApp/Instagram messages are stored first; then, after the w
 |---|---|
 | `GROQ_API_KEY`, `NVIDIA_API_KEY` | Keys. A provider without a key is skipped. Set them as host secrets, never in the repo. |
 | `QEYDAI_AI_PROVIDER_ORDER` | e.g. `nvidia,groq` |
-| `QEYDAI_AI_GROQ_MODEL`, `QEYDAI_AI_NVIDIA_MODEL` | Override defaults (`llama-3.3-70b-versatile`, `meta/llama-3.3-70b-instruct`). Verify model names against each provider's current catalog before launch. |
+| `QEYDAI_AI_GROQ_MODEL`, `QEYDAI_AI_NVIDIA_MODEL` | Override defaults (`llama-3.3-70b-versatile`, `nvidia/nemotron-3.5-lightning-30b-a3b`; the NVIDIA default was verified live (the earlier `meta/llama-3.3-70b-instruct` returns HTTP 410, retired), the Groq default is still unverified). Verify model names against each provider's current catalog before launch. |
 | `QEYDAI_AI_KNOWLEDGE` | JSON `{ "<tenant>": "business information" }`. A tenant without an entry gets no AI replies. |
 
 ## Safety rules (in code)

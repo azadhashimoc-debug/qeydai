@@ -9,7 +9,7 @@ type Env = Record<string, string | undefined>;
 
 const DEFAULTS = {
   groq: { url: "https://api.groq.com/openai/v1/chat/completions", model: "llama-3.3-70b-versatile" },
-  nvidia: { url: "https://integrate.api.nvidia.com/v1/chat/completions", model: "meta/llama-3.3-70b-instruct" },
+  nvidia: { url: "https://integrate.api.nvidia.com/v1/chat/completions", model: "nvidia/nemotron-3.5-lightning-30b-a3b" },
 } as const;
 
 /** Providers that have an API key, in preferred order (QEYDAI_AI_PROVIDER_ORDER, default "groq,nvidia"). */
@@ -48,6 +48,10 @@ export async function chatComplete(
           temperature: 0.2,
           max_tokens: options.maxTokens ?? 400,
           stream: false,
+          // Nemotron models reason by default and return empty content; turn that off for short replies.
+          ...(provider.name === "nvidia" && /nemotron/i.test(provider.model)
+            ? { chat_template_kwargs: { enable_thinking: false } }
+            : {}),
         }),
         signal: AbortSignal.timeout(options.timeoutMs ?? 8000),
       });
