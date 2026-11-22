@@ -32,5 +32,8 @@ node scripts/smoke.mjs https://<domen>
 Qeyd: bazası qoşulmayan lokal mühitdə "panel API requires auth" 503 qaytarır və uğursuz sayılır; production-da 401/403 gözlənilir (503 = baza konfiqurasiyası səhvdir).
 Sonra: panelə daxil olun, AI tabında vəziyyətin "Aktiv" olduğunu və provayderlərin göründüyünü yoxlayın; test kanalına mesaj yazıb AI cavabının və ötürmə tapşırığının yarandığını təsdiqləyin.
 
+## 5b. Monitorinq
+`GET /api/health` (açıq, sirr göstərmir) `{"ok":true,"database":bool,"ai":bool}` qaytarır. Uptime monitorunu (UptimeRobot, Better Stack və s.) bu ünvana 1–5 dəqiqə intervalla qoşun; `database:false` production-da konfiqurasiya səhvidir.
+
 ## 6. Geri qayıtma
 Release gate-in rollback bölməsinə baxın: migrasiyalar additivdir, kor-koranə geri qaytarılmır; problem olduqda köhnə tətbiqi canlı saxlayın.

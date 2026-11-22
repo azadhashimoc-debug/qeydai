@@ -12,6 +12,7 @@ const checks = [
   ["sector page", "/az/scenarios/clinics", (r) => r.status === 200],
   // With cacheComponents the 404 is streamed after headers, so the status can be 200; noindex must be present then.
   ["unknown sector is 404 or noindex", "/az/scenarios/nope", (r, body) => r.status === 404 || /<meta name="robots" content="noindex"/.test(body)],
+  ["health endpoint", "/api/health", (r, body) => r.status === 200 && /"ok":true/.test(body)],
   ["sitemap", "/sitemap.xml", (r) => r.status === 200],
   ["robots", "/robots.txt", (r) => r.status === 200],
   ["security headers", "/az", (r) => r.headers.has("strict-transport-security") && r.headers.get("x-frame-options") === "DENY"],

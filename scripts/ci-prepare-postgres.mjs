@@ -17,6 +17,7 @@ try {
     "0003_sales_workspace.sql",
     "0004_panel_jti.sql",
     "0005_analytics_ingest.sql",
+    "0006_ai_settings.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);
