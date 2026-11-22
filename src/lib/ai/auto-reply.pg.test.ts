@@ -17,7 +17,7 @@ function modelSays(content: string) {
 }
 
 async function inbound(event: string, text: string) {
-  const message = { channel: "telegram" as const, account: "bot1", event, sender: "9001", name: "Test", text };
+  const message = { channel: "telegram" as const, account: "bot_" + tenant, event, sender: "9001", name: "Test", text };
   expect(await ingestMessage(tenant, message)).toBe(true);
   return message;
 }
