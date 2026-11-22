@@ -948,7 +948,7 @@
     "privacy": {
       "title": "Məxfilik Siyasəti",
       "subtitle": "Fərdi məlumatların toplanması, emalı və qorunması prinsipləri.",
-      "lastUpdated": "Son yenilənmə tarixi: 18 Noyabr 2026",
+      "lastUpdated": "Son yenilənmə tarixi: 22 Noyabr 2026",
       "sections": {
         "collection": {
           "title": "1. Toplanan məlumatlar",
@@ -963,8 +963,8 @@
           "body": "Hər biznesin müştəri məlumatları ayrıca iş sahəsində saxlanılır. Bir biznesin əməkdaşları digər biznesin müştəri bazasına, cədvəlinə və yazışmalarına çıxış əldə etməməlidir."
         },
         "thirdParty": {
-          "title": "4. Üçüncü tərəf xidmətləri",
-          "body": "Mesajların çatdırılması üçün Meta WhatsApp Cloud API və Telegram platformalarının rəsmi protokollarından istifadə edilir. Fərdi məlumatlar marketinq və ya reklam məqsədilə heç bir kənar şirkətə satılmır və ötürülmür."
+          "title": "4. Üçüncü tərəf xidmətləri və emal tərəfləri",
+          "body": "Mesajların çatdırılması üçün Meta (WhatsApp Cloud API, Instagram) və Telegram platformalarının rəsmi protokollarından istifadə edilir. Platforma Vercel (hostinq) və Neon (verilənlər bazası) xidmətlərində işləyir. AI avtomatik cavab aktiv olduqda müştərinin mesaj mətni və biznesin təsdiqlədiyi məlumat cavab hazırlamaq üçün AI provayderlərinə (Groq, NVIDIA) göndərilir; ad və telefon nömrəsi göndərilmir, kart nömrəsi kimi həssas məlumat isə heç vaxt göndərilmir. Fərdi məlumatlar marketinq və ya reklam məqsədilə satılmır və ötürülmür; yuxarıdakı xidmət təminatçıları yalnız xidməti göstərmək üçün emal tərəfi kimi istifadə olunur."
         },
         "retention": {
           "title": "5. Saxlama müddəti və hüquqlarınız",

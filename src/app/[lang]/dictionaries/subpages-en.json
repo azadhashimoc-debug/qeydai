@@ -948,7 +948,7 @@
     "privacy": {
       "title": "Privacy Policy",
       "subtitle": "Principles of personal data collection, processing, and protection.",
-      "lastUpdated": "Last updated: November 18, 2026",
+      "lastUpdated": "Last updated: November 22, 2026",
       "sections": {
         "collection": {
           "title": "1. Information we collect",
@@ -963,8 +963,8 @@
           "body": "Customer data is maintained in separate business workspaces. Employees of one business should not have access to another business's customer records, booking schedules or chat history."
         },
         "thirdParty": {
-          "title": "4. Third-party integrations",
-          "body": "Official communication protocols from Meta WhatsApp Cloud API and Telegram are used to route messages. Personal data is never sold or transferred to external third parties for advertising purposes."
+          "title": "4. Third-party services and processors",
+          "body": "Official communication protocols from Meta (WhatsApp Cloud API, Instagram) and Telegram are used to route messages. The platform runs on Vercel (hosting) and Neon (database). When AI auto-reply is enabled, the customer's message text and the information approved by the business are sent to AI providers (Groq, NVIDIA) to draft a reply; names and phone numbers are not sent, and sensitive data such as card numbers is never sent. Personal data is not sold or shared for marketing or advertising purposes; the service providers above act only as processors needed to deliver the service."
         },
         "retention": {
           "title": "5. Retention and user rights",
