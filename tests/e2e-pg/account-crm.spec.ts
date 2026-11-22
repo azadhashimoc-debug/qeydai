@@ -13,7 +13,7 @@ test("registration form creates a usable account and opens the CRM", async ({ pa
   await expect(page.locator('input[name="account"]')).toBeVisible();
   await page.locator('input[autocomplete="new-password"]').fill("Strong-Business-Pass-" + id);
   await page.locator(".js-create-account-submit-button").click();
-  await expect(page).toHaveURL(/\\/az\\/panel/);
+  await expect(page).toHaveURL(new RegExp("/az/panel"));
   expect((await page.request.get("/api/panel/auth")).status()).toBe(200);
 });
 
@@ -41,7 +41,7 @@ test("business owner signs up, logs in with password, manages CRM, and remains t
   await page.locator('input[name="email"]').fill(email);
   await page.locator('input[name="key"]').fill(password);
   await page.locator('button[type="submit"]').click();
-  await expect(page).toHaveURL(/\/az\/panel/);
+  await expect(page).toHaveURL(new RegExp("/az/panel"));
   expect((await request.get("/api/panel/auth")).status()).toBe(200);
 
   const created = await request.post("/api/panel/contacts", {
