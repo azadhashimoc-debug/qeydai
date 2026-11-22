@@ -126,7 +126,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
 
             <div className="pm-auth-field">
               <label htmlFor={keyId} className="pm-sr-only">
-                {copy.keyLabel}
+                {loginMode === "password" ? (lang === "az" ? "Şifrə" : "Password") : copy.keyLabel}
               </label>
               <div className="pm-auth-input-shell">
                 <span className="pm-auth-input-icon" aria-hidden="true">
