@@ -1,6 +1,6 @@
 import {
-  accountSessionCookieHeaders, findByEmail, hasStableSessionSecret, linkOAuthProvider,
-  provisionOAuthAccount, verifyAccountPasswordById,
+  accountSessionCookieHeaders, findByEmail, findOAuthLinkState, hasStableSessionSecret, linkOAuthProvider,
+  provisionOAuthAccount, verifyAccountPasswordById, type OAuthLinkState,
 } from "./account-auth";
 import { ensurePanelJtiStore } from "./instance";
 import { getPanelAuthConfig, readCookieValue } from "./panel-auth";
@@ -81,21 +81,22 @@ export async function finishOAuth(
     // Matching is by provider-verified email. An account that already signed in with this provider,
     // or was created by OAuth, is used directly. A password account needs its password first.
     let account = await findByEmail(profile.email);
+    let link: OAuthLinkState | null = null;
     if (!account) {
       const created = await provisionOAuthAccount(profile.email, profile.name, provider);
       if (created && created !== "exists") {
-        account = {
-          tenant_id: created.tenantId, id: created.accountId, email: profile.email, password_hash: "",
-          oauth_providers: [provider], password_login_enabled: false,
-        };
+        account = { tenant_id: created.tenantId, id: created.accountId, email: profile.email, password_hash: "" };
+        link = { oauth_providers: [provider], password_login_enabled: false };
       } else if (created === "exists") {
         account = await findByEmail(profile.email);
       }
     }
     if (!account) return fail();
+    link ??= await findOAuthLinkState(account.tenant_id, account.id);
+    if (!link) return fail();
 
-    const linkedAlready = account.oauth_providers.includes(provider);
-    if (!linkedAlready && account.password_login_enabled) {
+    const linkedAlready = link.oauth_providers.includes(provider);
+    if (!linkedAlready && link.password_login_enabled) {
       if (!secret) return fail();
       const token = signLinkToken({
         t: account.tenant_id, a: account.id, p: provider, l: lang, x: Date.now() + OAUTH_STATE_TTL_MS,

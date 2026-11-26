@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const accountMocks = vi.hoisted(() => ({
   findByEmail: vi.fn(),
+  findOAuthLinkState: vi.fn(),
   provisionOAuthAccount: vi.fn(),
   accountSessionCookieHeaders: vi.fn(),
   hasStableSessionSecret: vi.fn(() => true),
@@ -59,10 +60,8 @@ describe("OAuth start/finish", () => {
     const start = startOAuth(new Request("https://panelim.az/api/panel/oauth/google/start?lang=az"), "google", env);
     const location = new URL(start.headers.get("location") ?? "");
     const state = location.searchParams.get("state")!;
-    accountMocks.findByEmail.mockResolvedValue({
-      tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "",
-      oauth_providers: ["google"], password_login_enabled: true,
-    });
+    accountMocks.findByEmail.mockResolvedValue({ tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "" });
+    accountMocks.findOAuthLinkState.mockResolvedValue({ oauth_providers: ["google"], password_login_enabled: true });
     const fetchImpl = (async (input: RequestInfo | URL) => {
       const u = String(input);
       if (u.includes("oauth2.googleapis.com")) return Response.json({ access_token: "t" });
@@ -92,10 +91,8 @@ describe("OAuth start/finish", () => {
   it("sends a password account to the link step instead of signing in", async () => {
     const start = startOAuth(new Request("https://panelim.az/api/panel/oauth/google/start?lang=az"), "google", env);
     const state = new URL(start.headers.get("location") ?? "").searchParams.get("state")!;
-    accountMocks.findByEmail.mockResolvedValue({
-      tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "x",
-      oauth_providers: [], password_login_enabled: true,
-    });
+    accountMocks.findByEmail.mockResolvedValue({ tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "x" });
+    accountMocks.findOAuthLinkState.mockResolvedValue({ oauth_providers: [], password_login_enabled: true });
     const fetchImpl = (async (input: RequestInfo | URL) => String(input).includes("oauth2.googleapis.com")
       ? Response.json({ access_token: "t" })
       : Response.json({ email: "a@b.co", email_verified: true })) as typeof fetch;
@@ -111,10 +108,8 @@ describe("OAuth start/finish", () => {
   it("links the provider without a password when the account is already linked to it", async () => {
     const start = startOAuth(new Request("https://panelim.az/api/panel/oauth/google/start"), "google", env);
     const state = new URL(start.headers.get("location") ?? "").searchParams.get("state")!;
-    accountMocks.findByEmail.mockResolvedValue({
-      tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "x",
-      oauth_providers: ["google"], password_login_enabled: true,
-    });
+    accountMocks.findByEmail.mockResolvedValue({ tenant_id: "biz_1", id: "a1", email: "a@b.co", password_hash: "x" });
+    accountMocks.findOAuthLinkState.mockResolvedValue({ oauth_providers: ["google"], password_login_enabled: true });
     const fetchImpl = (async (input: RequestInfo | URL) => String(input).includes("oauth2.googleapis.com")
       ? Response.json({ access_token: "t" })
       : Response.json({ email: "a@b.co", email_verified: true })) as typeof fetch;

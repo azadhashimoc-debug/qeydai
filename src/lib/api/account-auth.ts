@@ -16,10 +16,9 @@ import {
 const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let pool: Pool | undefined;
-export type Account = {
-  tenant_id: string; id: string; email: string; password_hash: string;
-  oauth_providers: string[]; password_login_enabled: boolean;
-};
+export type Account = { tenant_id: string; id: string; email: string; password_hash: string };
+/** OAuth link columns (migration 0008). Read only by the OAuth paths, so email sign-in works without them. */
+export type OAuthLinkState = { oauth_providers: string[]; password_login_enabled: boolean };
 const genericError = (status: number, error: string) =>
   Response.json({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });
 
@@ -51,7 +50,7 @@ export async function findByEmail(email: string): Promise<Account | null> {
     await assertSafeApplicationRole(db);
     await db.query("SELECT set_config('app.auth_email', $1, true)", [email]);
     const result = await db.query<Account>(
-      "SELECT tenant_id,id,email,password_hash,oauth_providers,password_login_enabled FROM panel_accounts WHERE email=$1", [email],
+      "SELECT tenant_id,id,email,password_hash FROM panel_accounts WHERE email=$1", [email],
     );
     await db.query("COMMIT");
     return result.rows[0] ?? null;
@@ -161,6 +160,26 @@ export async function provisionOAuthAccount(
     await db.query("ROLLBACK").catch(() => {});
     if (error && typeof error === "object" && "code" in error && error.code === "23505") return "exists";
     return null;
+  } finally {
+    db.release();
+  }
+}
+
+export async function findOAuthLinkState(tenant: string, id: string): Promise<OAuthLinkState | null> {
+  const db = await dbPool().connect();
+  try {
+    await db.query("BEGIN");
+    await assertSafeApplicationRole(db);
+    await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
+    const found = await db.query<OAuthLinkState>(
+      "SELECT oauth_providers, password_login_enabled FROM panel_accounts WHERE tenant_id=$1 AND id=$2",
+      [tenant, id],
+    );
+    await db.query("COMMIT");
+    return found.rows[0] ?? null;
+  } catch (error) {
+    await db.query("ROLLBACK").catch(() => {});
+    throw error;
   } finally {
     db.release();
   }
