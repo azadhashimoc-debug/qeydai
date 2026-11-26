@@ -13,10 +13,7 @@ const display = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F8F9FF" },
-    { media: "(prefers-color-scheme: dark)", color: "#090624" },
-  ],
+  themeColor: "#F8F9FF",
 };
 
 export function generateStaticParams() {

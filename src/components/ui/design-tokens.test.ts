@@ -13,9 +13,6 @@ function block(selector: string): Record<string, string> {
 }
 
 const light = block(":root");
-const darkAttr = block(':root[data-theme="dark"]');
-const darkMedia = block(':root:not([data-theme="light"])');
-const dark = { ...light, ...darkAttr };
 
 function lum(hex: string) {
   const n = hex.replace("#", "");
@@ -28,11 +25,12 @@ function contrast(a: string, b: string) {
 }
 
 describe("design tokens", () => {
-  it("dark theme is identical whether chosen by attribute or by OS preference", () => {
-    expect(darkMedia).toEqual(darkAttr);
+  it("site is always light: no dark token overrides by OS preference or attribute", () => {
+    expect(css).not.toMatch(/prefers-color-scheme:\s*dark/);
+    expect(css).not.toContain('data-theme="dark"');
   });
 
-  for (const [name, t] of [["light", light], ["dark", dark]] as const) {
+  for (const [name, t] of [["light", light]] as const) {
     it(`${name}: body text, muted text, stamp, margin, pen and danger meet WCAG AA 4.5:1`, () => {
       for (const fg of ["ink", "muted", "stamp", "danger", "margin", "pen"]) {
         for (const bg of ["bg", "surface"]) {
