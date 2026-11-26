@@ -238,5 +238,5 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page.getByRole("status")).toContainText("Daxil edilən açar yanlışdır");
   await expect(keyField).toHaveAttribute("aria-invalid", "true");
   await page.locator(".pm-auth-forgot-link").click();
-  await expect(page).toHaveURL(/\/az\/contact$/);
+  await expect(page).toHaveURL(/\/az\/forgot-password$/);
 });

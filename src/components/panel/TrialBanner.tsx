@@ -48,7 +48,8 @@ export function TrialBanner({
 
   return (
     <div
-      role={isExpired ? "alert" : "status"}
+      role={isExpired ? "alert" : "region"}
+      aria-label={lang === "en" ? "Subscription status" : "Abunə vəziyyəti"}
       className={`mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm ${
         isExpired
           ? "border-danger/40 bg-danger/10 text-danger"

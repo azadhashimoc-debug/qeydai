@@ -47,7 +47,7 @@ test("settings keep profile edits, real workspace views, and a contained notific
   await expect(page.getByRole("heading", { name: "Profile settings" })).toBeVisible();
   await page.getByRole("textbox", { name: "Note" }).fill("Local settings note");
   await page.getByRole("button", { name: "Save", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Profile saved in this browser.");
+  await expect(page.getByRole("status")).toContainText("Settings saved to your workspace.");
   await page.getByRole("button", { name: "User management" }).click();
   await expect(page.getByLabel("Member ID")).toBeVisible();
   await expect(page.getByLabel("Workspace name")).toHaveCount(0);
@@ -69,15 +69,15 @@ test("channel copying, AI previews, and localized plan contact links", async ({ 
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).not.toBe("");
 
   await page.getByRole("tab", { name: "Pani", exact: true }).click();
-  const preview = page.getByRole("button", { name: "Open", exact: true }).first();
-  await preview.click();
-  await expect(page.getByRole("button", { name: "Close", exact: true })).toHaveAttribute("aria-expanded", "true");
+  await expect(page.getByRole("button", { name: "Save Pani AI settings", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Test reply", exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: "Plans" }).click();
   await expect(page.getByText("Starter", { exact: true })).toBeVisible();
   await page.getByRole("radio", { name: "Monthly", exact: true }).check();
   await expect(page.getByText("49 AZN", { exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "Request pilot" }).first()).toHaveAttribute("href", "/en#contact");
+  await expect(page.getByRole("button", { name: "Request pilot" }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Contact us" }).first()).toHaveAttribute("href", "/en/contact");
 });
 
 test("SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload", async ({
@@ -491,7 +491,7 @@ test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts,
   await page.getByRole("switch", { name: "Receive notifications" }).check();
   await page.getByLabel("Inbox: Email", { exact: true }).check();
   await page.getByRole("button", { name: "Save", exact: true }).click();
-  await expect(page.getByRole("status").filter({ hasText: "Profile saved in this browser." })).toBeVisible();
+  await expect(page.getByRole("status").filter({ hasText: "Settings saved to your workspace." })).toBeVisible();
   await page.reload();
   await page.getByRole("tab", { name: "Settings", exact: true }).click();
   await expect(page.getByLabel("Inbox: Email", { exact: true })).toBeChecked();
