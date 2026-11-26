@@ -282,7 +282,7 @@ export function DealList({
               type="button"
               onClick={() => setViewMode("kanban")}
               className={`min-h-9 rounded px-3 text-xs font-semibold transition-colors ${
-                viewMode === "kanban" ? "bg-cover text-white" : "text-muted hover:text-ink"
+                viewMode === "kanban" ? "bg-brand text-white" : "text-muted hover:text-ink"
               }`}
             >
               {d.deals.viewKanban}
@@ -291,7 +291,7 @@ export function DealList({
               type="button"
               onClick={() => setViewMode("list")}
               className={`min-h-9 rounded px-3 text-xs font-semibold transition-colors ${
-                viewMode === "list" ? "bg-cover text-white" : "text-muted hover:text-ink"
+                viewMode === "list" ? "bg-brand text-white" : "text-muted hover:text-ink"
               }`}
             >
               {d.deals.viewList}

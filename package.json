@@ -2,6 +2,9 @@
   "name": "qeydai",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +14,9 @@
     "e2e": "playwright test",
     "seed:demo": "node scripts/seed-demo.mts",
     "typecheck": "next typegen && tsc --noEmit",
-    "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts src/lib/api/panel-session.pg.test.ts src/app/api/lead/route.pg.test.ts src/app/api/analytics/route.pg.test.ts src/app/api/panel/contacts/route.pg.test.ts src/lib/api/account-auth.pg.test.ts src/lib/api/auth-rate-limit.pg.test.ts"
+    "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts src/lib/api/panel-session.pg.test.ts src/app/api/lead/route.pg.test.ts src/app/api/analytics/route.pg.test.ts src/app/api/panel/contacts/route.pg.test.ts src/lib/api/account-auth.pg.test.ts src/lib/api/auth-rate-limit.pg.test.ts src/app/api/billing/paycell/route.pg.test.ts",
+    "migrate": "node --env-file-if-exists=.env.local scripts/migrate.mts",
+    "check:env": "node --env-file-if-exists=.env.local scripts/check-env.mts"
   },
   "dependencies": {
     "next": "16.4.6",

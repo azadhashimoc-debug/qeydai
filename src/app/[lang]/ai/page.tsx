@@ -202,7 +202,7 @@ export default async function AiPage({ params }: PageProps<"/[lang]/ai">) {
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/pricing`}
           secondaryLabel={s.common.bottomCta.secondary}
         />
       </main>

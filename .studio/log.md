@@ -381,3 +381,35 @@ Port 3000 CSS check -> HTTP 200 (PID=9288)
 - 2026-11-20T09:24:52 `npx -y claude-code-templates@latest --agent development-team/ui-designer --yes` → exit 0
 - 2026-11-20T09:24:57 `npx -y claude-code-templates@latest --agent business-marketing/seo-specialist --yes` → exit 0
 - 2026-11-20T09:25:01 `npx -y claude-code-templates@latest --agent business-marketing/content-marketer --yes` → exit 0
+
+- 2026-11-23 1-brief: kapsam güncellendi (Panelim, KOBİ), onaylandı 2026-11-23
+
+## 2026-11-23 Panelim KOBİ genişlemesi
+- Apify crawl kommo.com: 40 sayfa, yapı özeti docs/research/kommo-crawl/IA.md (ham veri repo dışı)
+- fal.ai gpt-image-2: 17 görsel public/images/ (industry-*, feature-*, ai-*, case-*, channel-tiktok, blog-cover-1, mobile-hero, page-partners); 2 istek başarısız (case-wholesale, blog-cover-2)
+- Yeni: /[lang]/industries + /industries/[slug] (clinic, beauty, real-estate, retail, education), proxy 404, sitemap, header linki
+- Panel: ChannelsTab gerçek durum (/api/panel/channels, token sızdırmaz), AiTab sahte anahtar kaldırıldı (dürüst "aktif değil")
+- Billing: POST /api/billing/paycell/webhook (HMAC-SHA256, idempotent), migration 0004, sqlite şeması
+### Evidence
+$ npx tsc --noEmit -> exit 0
+$ npm test -> 31 files, 258 tests passed
+$ npx eslint src -> 2 error/2 warning, hepsi önceden var (KommoOverlays, TeamStageTab, SelectAccountClient, KanbanBoard)
+$ QEYDAI_DATABASE_URL= npx playwright test -> 88 passed (desktop+mobile)
+$ npm run build -> OK; port 3000 yeniden başlatıldı, 3 CSS chunk 200, /az/industries/unknown -> 404
+
+## 2026-11-23 kalan sayfalar + gorseller
+- Yeni: /integrations, /partners, /cases, /cases/[retail|education], /ai/[agent|analyst|copilot|multi-agents], /channels/tiktok, /channels/whatsapp-broadcast (icerik: src/app/[lang]/dictionaries/pages.ts, render: components/marketing/InfoPage.tsx)
+- Gorseller baglandi: feature-integrations, page-partners, case-*, ai-*, channel-tiktok, feature-broadcast, mobile-hero, blog-cover-1 (appointment-crm blog)
+- Header/footer linkleri + sitemap + proxy 404 guncellendi
+### Evidence
+$ npx tsc --noEmit -> exit 0; npm test -> 258 passed; QEYDAI_DATABASE_URL= npx playwright test -> 88 passed (desktop+mobile); build OK; port 3000 yeniden baslatildi, css 200, /az/cases/x ve /az/ai/x -> 404
+
+## 2026-11-23 gercek giris + migration + .env.example
+- Yeni: email/parola hesaplari. POST /api/auth/register (hesap + workspace + owner uye), POST /api/auth/login. scrypt parola, ayri imza anahtari (QEYDAI_PANEL_SECRET >= 24 karakter), hesap oturum tokeni (a:1) panel-auth.ts verifyAnyPanelToken ile hem panel-crm hem panel-api tarafinda kabul edilir
+- Tablo: accounts (db/migrations/0005_accounts.sql + sqlite-store). RLS yok (login tenant bilinmeden email ile arar)
+- UI: register formuna parola alani, login formu email doluysa email+parola, bossa eski admin anahtari
+- npm run migrate (scripts/migrate.mts): sirali, transaction, checksum, advisory lock, --status, --baseline
+- .env.example tamamlandi, .gitignore: !.env.example
+### Evidence
+$ npx tsc --noEmit -> exit 0; npm test -> 33 files 269 passed; QEYDAI_DATABASE_URL= npx playwright test -> 90 passed (yeni: email register/logout/login e2e)
+- VERIFIED (sonradan): postgres:17 konteynerinde bos DB: migrate 0001-0005 temiz uygulandi, ikinci calisma no-op. appuser (NOSUPERUSER, NOBYPASSRLS) ile next start: register/login/duplicate(409)/workspace izolasyonu OK; RLS: tenant A 1 uye gorur, tenant yokken 0; Paycell webhook: 200 / replay duplicate=true / sahte imza 403 / bilinmeyen tenant 404, billing_events 1 satir. Konteyner silindi.

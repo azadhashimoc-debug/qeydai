@@ -1,4 +1,4 @@
-# Brief: QeydAI (müvəqqəti ad)
+# Brief: Panelim (eski ad: QeydAI)
 
 Tarih: 2026-11-18 · Tür: web + automation (SaaS) · Klasör: C:/Users/adem/projects/qeydai
 
@@ -52,6 +52,14 @@ Web: Next.js (App Router) + TypeScript + Tailwind, Vitest + Playwright (landing 
 
 MEDIUM işarətli bileşen yok.
 
+## Kapsam güncellemesi (2026-11-23)
+- Hedef: tüm KOBİ'ler (klinik, güzellik, emlak, mağaza, eğitim...). Kommo benzeri CRM + site, Azərbaycan bazarı; kopya yok.
+- Ad/logo: Panelim, content/viral-pack/brand/panelim-logo-icon.png.
+- Kanallar: Telegram, WhatsApp, Instagram/Facebook gerçek webhook adaptörleri (kimlik bilgisi .env.local).
+- Ödeme: AZN planlar + Paycell webhook (sağlayıcı doğrulaması gerekli).
+- Dış servis: Apify website-content-crawler (kommo.com) + fal.ai gpt-image-2 görselleri. Harcama öncesi tahmin + ayrı onay.
+- Detay plan: ~/.claude/plans/snazzy-splashing-aurora-of-67211b2f-7a21-4b16-8d6d-73c5435daa21.md
+
 ## İçerik kanalları
 Instagram, TikTok, korporativ sayt + SEO bloq, e-poçt (sistem bildirişləri/hesabat), Telegram, WhatsApp (müştəri kanalı). LinkedIn sonra. Avto-paylaşım yok; fokus müraciət→qeydiyyat.
 
@@ -66,3 +74,4 @@ Canlıya yayım, ödənişli servis aktivləşdirmə, WhatsApp/Instagram real in
 <!-- Onay satırı burada YOK. Yalnızca kullanıcı onayladıktan sonra şu biçimde eklenir:
 Onay: YYYY-MM-DD — kullanıcı -->
 Onay: 2026-11-18 — kullanıcı
+Onay: 2026-11-23 — kullanıcı (kapsam güncellemesi, plan modunda onaylandı)

@@ -144,6 +144,8 @@ export async function assertSafeApplicationRole(client: PgClient): Promise<void>
  * plus `UNIQUE(tenant_id, session_id, phone)` to prevent double-booking and race overfills.
  */
 export class PostgresEnrollmentStore implements EnrollmentStore {
+  private jtiReady = false;
+
   constructor(private pool: PgPool) {}
 
   /** All PostgreSQL enrollment queries run with tenant-bound, transaction-local RLS. */

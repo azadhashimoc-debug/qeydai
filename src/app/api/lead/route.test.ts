@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getSharedStore } from "@/lib/api/instance";
+import type { SqliteEnrollmentStore } from "@/lib/enrollment/sqlite-store";
 import { POST, resetLeadRateLimit } from "./route";
 
 type Opts = { body?: unknown; raw?: string; headers?: Record<string, string> };
@@ -40,7 +41,7 @@ describe("POST /api/lead", () => {
     const res = await POST(req({ body: good }));
     expect(res.status).toBe(200);
     expect(JSON.parse(readFileSync(f, "utf8").trim()).phone).toBe("+994501234567");
-    const leads = await getSharedStore().listLeads("pilot_center");
+    const leads = await getSharedStore()?.listLeads("pilot_center") ?? [];
     expect(leads.some((l) => l.phone === "+994501234567" && l.source === "web")).toBe(true);
   });
   it("rejects production writes without PostgreSQL before opening JSONL or SQLite", async () => {
@@ -60,7 +61,7 @@ describe("POST /api/lead", () => {
 
   it("returns an error when the lead cannot be saved to the panel store", async () => {
     tmpFile();
-    const write = vi.spyOn(getSharedStore(), "upsertLead").mockRejectedValueOnce(new Error("CRM unavailable"));
+    const write = vi.spyOn(getSharedStore() as SqliteEnrollmentStore, "upsertLead").mockRejectedValueOnce(new Error("CRM unavailable"));
     const log = vi.spyOn(console, "error").mockImplementation(() => {});
     try {
       const res = await POST(req({ body: good }));

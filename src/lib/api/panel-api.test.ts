@@ -255,7 +255,7 @@ describe("Panel auth (/api/panel/auth)", () => {
     expect((await panelApi.authGet(panelReq("/api/panel/auth", { cookie: validCookie }))).status).toBe(401);
     expect(
       (await panelApi.authPost(panelReq("/api/panel/auth", { method: "POST", body: { key: ADMIN_KEY_A } }))).status,
-    ).toBe(401);
+    ).toBe(503);
   });
 
   it("enforces sameOrigin CSRF on POST and DELETE auth, and rate-limits authPost by client IP", async () => {

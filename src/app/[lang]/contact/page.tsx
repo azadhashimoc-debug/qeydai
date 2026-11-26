@@ -130,7 +130,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/pricing`}
           secondaryLabel={s.common.bottomCta.secondary}
         />
       </main>

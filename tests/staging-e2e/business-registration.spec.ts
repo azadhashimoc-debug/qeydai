@@ -19,15 +19,15 @@ test("AZ business signup, password sign-in, CRM contact, and logout (no access k
     await page.locator('form.pm-auth-form button[type="submit"]').click();
     await page.locator('input[name="name"]').fill(company);
     await page.locator('input[name="phone"]').fill("050 555 12 34");
-    await page.locator('form.pm-auth-form button[type="submit"]').click();
-    await expect(page.locator(".js-create-account")).toBeVisible();
-    await page.locator('input[name="account"]').fill(company);
-    await page.locator('input[autocomplete="new-password"]').fill(password);
+    await page.locator('input[name="password"]').fill(password);
     const created = page.waitForResponse(r =>
       r.url().endsWith("/api/panel/account/register") && r.request().method() === "POST"
     );
-    await page.locator(".js-create-account-submit-button").click();
+    await page.locator('form.pm-auth-form button[type="submit"]').click();
     expect((await created).status()).toBe(200);
+    await expect(page.locator(".js-create-account")).toBeVisible();
+    await page.locator('input[name="account"]').fill(company);
+    await page.locator(".js-create-account-submit-button").click();
     await page.waitForURL("**/az/panel", { timeout: 20_000 });
     expect((await page.request.get("/api/panel/contacts")).status()).toBe(200);
 

@@ -40,8 +40,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Starter",
-            desc: "For growing shops, salons and service teams starting unified messaging.",
-            prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
+            desc: "For growing courses and studios starting unified messaging.",
+            prices: { monthly: "100 AZN", halfYear: "90 AZN", annual: "80 AZN" },
             setupNote: "Per workspace · No hidden fees",
             ctaLabel: "Start 14-day trial",
             limits: [
@@ -53,8 +53,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "growth",
             name: "Growth",
-            desc: "WhatsApp Cloud API + automated appointment booking.",
-            prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
+            desc: "WhatsApp Cloud API + automated trial scheduling.",
+            prices: { monthly: "160 AZN", halfYear: "145 AZN", annual: "130 AZN" },
             setupNote: "Per workspace · 14-day free trial",
             ctaLabel: "Start 14-day trial",
             limits: [
@@ -69,7 +69,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             desc: "Full automation, multi-branch capacity lock & AI salesbot.",
             popular: true,
             popularBadge: "Most Popular",
-            prices: { monthly: "169 AZN", halfYear: "145 AZN", annual: "135 AZN" },
+            prices: { monthly: "240 AZN", halfYear: "215 AZN", annual: "190 AZN" },
             setupNote: "Per workspace · Priority Baku onboarding",
             ctaLabel: "Choose Pro",
             limits: [
@@ -96,8 +96,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Başlanğıc",
-            desc: "Vahid mesajlaşma və müştəri idarəetməsinə keçən kiçik bizneslər üçün.",
-            prices: { monthly: "59 AZN", halfYear: "49 AZN", annual: "45 AZN" },
+            desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
+            prices: { monthly: "100 AZN", halfYear: "90 AZN", annual: "80 AZN" },
             setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
@@ -109,8 +109,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "growth",
             name: "İnkişaf",
-            desc: "WhatsApp Cloud API və avtomatik görüş rezervasiyası.",
-            prices: { monthly: "99 AZN", halfYear: "85 AZN", annual: "79 AZN" },
+            desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
+            prices: { monthly: "160 AZN", halfYear: "145 AZN", annual: "130 AZN" },
             setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
@@ -125,7 +125,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             desc: "Tam avtomatlaşdırma, çoxfiliallı tutum kilidi və AI satış botu.",
             popular: true,
             popularBadge: "Ən Populyar",
-            prices: { monthly: "169 AZN", halfYear: "145 AZN", annual: "135 AZN" },
+            prices: { monthly: "240 AZN", halfYear: "215 AZN", annual: "190 AZN" },
             setupNote: "İş sahəsi üzrə · Bakıda fərdi quraşdırma",
             ctaLabel: "Pro planını seç",
             limits: [
@@ -310,8 +310,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
-          secondaryLabel={s.common.bottomCta.secondary}
+          secondaryHref={`/${locale}/register`}
+          secondaryLabel={s.authPages.login.noAccount}
         />
       </main>
 

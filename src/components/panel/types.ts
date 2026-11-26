@@ -262,11 +262,20 @@ export function stageKindBadgeClass(kind: SalesStageKind): string {
   }
 }
 
+const AZ_MONTHS = ["Yan", "Fev", "Mar", "Apr", "May", "İyn", "İyl", "Avq", "Sen", "Okt", "Noy", "Dek"] as const;
+
 export function formatPanelDateTime(iso: string, lang: PanelLocale): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
+  if (lang === "az") {
+    const mon = AZ_MONTHS[d.getMonth()] ?? String(d.getMonth() + 1);
+    const day = d.getDate();
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    return `${mon} ${day}, ${hh}:${mm}`;
+  }
   try {
-    return new Intl.DateTimeFormat(lang === "az" ? "az-AZ" : "en-US", {
+    return new Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "numeric",
       hour: "2-digit",

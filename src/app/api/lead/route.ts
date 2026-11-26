@@ -9,9 +9,11 @@ import { clientKey, isUnknownClient, sameOrigin } from "@/lib/http/same-origin";
 
 const MAX_BODY_BYTES = 2048;
 const WINDOW_MS = 10 * 60_000;
-const perClient = createRateLimiter({ max: 5, windowMs: WINDOW_MS });
+const perClientMax = Number(process.env.QEYDAI_LEAD_RATE_MAX ?? 5);
+const globalMax = Number(process.env.QEYDAI_LEAD_RATE_GLOBAL_MAX ?? 200);
+const perClient = createRateLimiter({ max: perClientMax, windowMs: WINDOW_MS });
 // Backstop against rotating client identities: caps total accepted leads per window.
-const global = createRateLimiter({ max: 200, windowMs: WINDOW_MS });
+const global = createRateLimiter({ max: globalMax, windowMs: WINDOW_MS });
 
 /**
  * E2E runner submits independent forms from the same localhost IP. Give each

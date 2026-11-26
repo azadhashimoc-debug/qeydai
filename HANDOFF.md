@@ -52,3 +52,15 @@ $ npm run e2e -> 48 passed (1.7m, desktop + mobile)
 
 ## Açık kalanlar
 - Canlı sunucuya (Vercel/Docker) dağıtım, gerçek WhatsApp/Telegram bot token'ları ve PostgreSQL veritabanı bağlantısı.
+
+## Panelim KOBİ güncellemesi (2026-11-23)
+- Sektör sayfaları: src/app/[lang]/dictionaries/industries.ts (AZ+EN içerik), route src/app/[lang]/industries/**
+- Kanal durumu: GET /api/panel/channels (QEYDAI_CRM_CHANNELS env'inden, token yok)
+- Paycell webhook: POST /api/billing/paycell/webhook, env QEYDAI_PAYCELL_WEBHOOK_SECRET, header x-paycell-signature. Payload sözleşmesi (eventId, tenant, plan, period, status, amount, currency=AZN) VARSAYIMDIR; gerçek Paycell formatı doğrulanmadı.
+- E2E notu: .env.local içindeki QEYDAI_DATABASE_URL e2e'yi bozar; `QEYDAI_DATABASE_URL= npx playwright test` ile çalıştır.
+- Eksik: case/integrations/partners/ai alt sayfaları, TikTok kanalı, plan state'i billing_events'ten okuma, görsellerin sayfalara bağlanması (hazır: public/images/*).
+
+### Giris sistemi (2026-11-23)
+- Hesap: POST /api/auth/register ve /api/auth/login (email + parola >= 10 karakter). Gereken env: QEYDAI_PANEL_SECRET (>= 24 karakter), QEYDAI_DATABASE_URL (veya yerel SQLite).
+- Eksik: parola sifirlama (e-posta gonderimi yok), e-posta dogrulama, Google/Facebook girisi, ekip uyesi daveti (uyeler hala admin anahtari/uye anahtariyla), hesap silme.
+- Veritabani: npm run migrate (bos Postgres 17 uzerinde dogrulandi, RLS non-superuser rolle test edildi). Uygulama rolu SUPERUSER/BYPASSRLS olmamali.

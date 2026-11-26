@@ -28,7 +28,50 @@ type InboxTabProps = {
   lang: PanelLocale;
   d: PanelDict;
   onUnauthorized: () => void;
+  onOpenChannels?: () => void;
 };
+
+export type InboxPeriod = "any" | "today" | "yesterday" | "week" | "d30" | "month";
+export type InboxSort = "newest" | "longestWait";
+export type InboxFilters = {
+  query: string;
+  period: InboxPeriod;
+  stage: LeadStage | "all";
+  source: LeadSource | "all";
+  sort: InboxSort;
+};
+
+const INBOX_PERIODS: readonly InboxPeriod[] = ["any", "today", "yesterday", "week", "d30", "month"];
+const DEFAULT_FILTERS: InboxFilters = { query: "", period: "any", stage: "all", source: "all", sort: "newest" };
+const DAY_MS = 86_400_000;
+
+// Kommo "Chats" filter model: period on last activity, pipeline stage, channel, newest / longest wait.
+export function filterThreads(leads: LeadRecord[], f: InboxFilters, now = new Date()): LeadRecord[] {
+  const q = f.query.trim().toLowerCase();
+  const day = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const from = {
+    any: -Infinity,
+    today: day,
+    yesterday: day - DAY_MS,
+    week: day - ((now.getDay() + 6) % 7) * DAY_MS,
+    d30: now.getTime() - 30 * DAY_MS,
+    month: new Date(now.getFullYear(), now.getMonth(), 1).getTime(),
+  }[f.period];
+  const to = f.period === "yesterday" ? day : Infinity;
+  const dir = f.sort === "newest" ? -1 : 1;
+  return leads
+    .filter((l) => {
+      const t = Date.parse(l.updatedAt);
+      return (
+        t >= from &&
+        t < to &&
+        (f.stage === "all" || l.stage === f.stage) &&
+        (f.source === "all" || l.source === f.source) &&
+        (!q || l.name.toLowerCase().includes(q) || l.phone.toLowerCase().includes(q))
+      );
+    })
+    .sort((a, b) => dir * (Date.parse(a.updatedAt) - Date.parse(b.updatedAt)));
+}
 
 export function InboxTab({
   leads,
@@ -41,8 +84,12 @@ export function InboxTab({
   lang,
   d,
   onUnauthorized,
+  onOpenChannels,
 }: InboxTabProps) {
-  const [threadQuery, setThreadQuery] = useState("");
+  const [filters, setFilters] = useState<InboxFilters>(DEFAULT_FILTERS);
+  const setFilter = <K extends keyof InboxFilters>(key: K, value: InboxFilters[K]) =>
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  const filtersActive = JSON.stringify(filters) !== JSON.stringify(DEFAULT_FILTERS);
   const [messagesState, setMessagesState] = useState<{
     leadId: string | null;
     items: MessageRecord[];
@@ -69,25 +116,11 @@ export function InboxTab({
   const bodyInputId = useId();
   const logEndRef = useRef<HTMLDivElement>(null);
 
-  const sortedLeads = useMemo(
-    () =>
-      [...leads].sort(
-        (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-      ),
-    [leads]
-  );
-
-  const filteredThreads = useMemo(() => {
-    const q = threadQuery.trim().toLowerCase();
-    if (!q) return sortedLeads;
-    return sortedLeads.filter(
-      (l) => l.name.toLowerCase().includes(q) || l.phone.toLowerCase().includes(q)
-    );
-  }, [sortedLeads, threadQuery]);
+  const filteredThreads = useMemo(() => filterThreads(leads, filters), [leads, filters]);
 
   const activeLead = useMemo(
-    () => leads.find((l) => l.id === selectedLeadId) ?? sortedLeads[0] ?? null,
-    [leads, selectedLeadId, sortedLeads]
+    () => leads.find((l) => l.id === selectedLeadId) ?? filteredThreads[0] ?? null,
+    [leads, selectedLeadId, filteredThreads]
   );
 
   const activeLeadId = activeLead?.id ?? null;
@@ -294,7 +327,23 @@ export function InboxTab({
       )}
 
       {leads.length === 0 ? (
-        <div className="panel-card p-6 text-center text-muted">{d.inbox.emptyThreads}</div>
+        <section data-testid="inbox-empty" className="panel-card grid justify-items-center gap-3 p-8 text-center">
+          <h2 className="text-lg font-semibold text-ink">{d.inbox.emptyTitle}</h2>
+          <p className="max-w-md text-sm text-muted">{d.inbox.emptyBody}</p>
+          {onOpenChannels && (
+            <div className="mt-2 flex flex-wrap justify-center gap-2">
+              {[d.inbox.connectWhatsapp, d.inbox.connectTelegram, d.inbox.connectInstagram].map((label) => (
+                <button key={label} type="button" onClick={onOpenChannels} className={buttonClass({ size: "sm", className: "min-h-11" })}>
+                  {label}
+                </button>
+              ))}
+              <button type="button" onClick={onOpenChannels} className={buttonClass({ variant: "secondary", size: "sm", className: "min-h-11" })}>
+                {d.inbox.seeAllChannels}
+              </button>
+            </div>
+          )}
+          <p className="text-xs text-muted">{d.inbox.emptyThreads}</p>
+        </section>
       ) : (
         <div className="grid gap-4 lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start">
           {/* Thread list */}
@@ -307,7 +356,7 @@ export function InboxTab({
             <div className="crm-inbox-heading border-b border-line p-4">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="text-base font-semibold">{d.inbox.threadsTitle}</h2>
-                <span className="font-hand text-xl font-bold text-pen tabular-nums">
+                <span className="text-lg font-semibold text-pen tabular-nums">
                   {filteredThreads.length}
                 </span>
               </div>
@@ -318,14 +367,51 @@ export function InboxTab({
                 <input
                   id={searchId}
                   type="search"
-                  value={threadQuery}
-                  onChange={(e) => setThreadQuery(e.target.value)}
+                  value={filters.query}
+                  onChange={(e) => setFilter("query", e.target.value)}
                   placeholder={d.inbox.searchPlaceholder}
                   className="min-h-11 w-full rounded-md border border-line bg-bg px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-brand"
                 />
               </div>
+              <fieldset className="mt-2 grid grid-cols-2 gap-2">
+                <legend className="sr-only">{d.inbox.filtersLabel}</legend>
+                {(
+                  [
+                    ["period", d.inbox.periodLabel, INBOX_PERIODS.map((p) => [p, d.inbox.periods[p]])],
+                    ["stage", d.inbox.stageFilterLabel, [["all", d.inbox.allStages], ...LEAD_STAGES.map((s) => [s, d.stages[s]])]],
+                    ["source", d.inbox.sourceFilterLabel, [["all", d.inbox.allSources], ...LEAD_SOURCES.map((s) => [s, d.sources[s]])]],
+                    ["sort", d.inbox.sortLabel, [["newest", d.inbox.sortNewest], ["longestWait", d.inbox.sortLongestWait]]],
+                  ] as const
+                ).map(([key, label, options]) => (
+                  <select
+                    key={key}
+                    aria-label={label}
+                    value={filters[key]}
+                    onChange={(e) => setFilter(key, e.target.value as never)}
+                    className="min-h-11 w-full min-w-0 rounded-md border border-line bg-bg px-2 py-1.5 text-xs text-ink focus:border-brand sm:min-h-9"
+                  >
+                    {options.map(([value, text]) => (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    ))}
+                  </select>
+                ))}
+              </fieldset>
+              {filtersActive && (
+                <button
+                  type="button"
+                  onClick={() => setFilters(DEFAULT_FILTERS)}
+                  className="mt-2 min-h-9 text-xs font-semibold text-brand underline-offset-2 hover:underline"
+                >
+                  {d.inbox.resetFilters}
+                </button>
+              )}
             </div>
 
+            {filteredThreads.length === 0 && (
+              <p className="p-4 text-center text-sm text-muted">{d.inbox.noMatches}</p>
+            )}
             <ul className="max-h-[34rem] divide-y divide-line overflow-y-auto">
               {filteredThreads.map((lead) => {
                 const isSelected = activeLead?.id === lead.id;
@@ -340,7 +426,7 @@ export function InboxTab({
                       aria-current={isSelected ? "true" : undefined}
                       className={`flex min-h-11 w-full flex-col gap-1.5 px-4 py-3 text-left transition-colors ${
                         isSelected
-                          ? "bg-(--crm-lavender) shadow-[inset_3px_0_var(--pen)]"
+                          ? "bg-brand/10 shadow-[inset_3px_0_var(--pen)]"
                           : "hover:bg-bg"
                       }`}
                     >
@@ -434,7 +520,7 @@ export function InboxTab({
                       const bubbleStyle = isInbound
                         ? "self-start border border-line bg-surface text-ink rounded-bl-sm"
                         : isAi
-                          ? "self-end bg-cover/90 text-white rounded-br-sm"
+                          ? "self-end bg-brand text-white rounded-br-sm"
                           : "self-end bg-brand text-white rounded-br-sm";
 
                       return (
@@ -485,7 +571,7 @@ export function InboxTab({
                                 ? opt.value === "staff"
                                   ? "border-brand bg-brand text-white"
                                   : opt.value === "ai"
-                                    ? "border-cover bg-cover text-white"
+                                    ? "border-brand bg-brand text-white"
                                     : "border-ink bg-marker text-cover"
                                 : "border-line bg-bg text-ink hover:border-brand"
                             }`}

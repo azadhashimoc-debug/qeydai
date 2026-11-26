@@ -1,3 +1,4 @@
+import { verifyPanelSessionToken } from "./panel-auth";
 import { randomUUID } from "node:crypto";
 import { readAccountSession } from "./account-auth";
 import { readAnalyticsSummary } from "../analytics/summary";
@@ -32,7 +33,7 @@ import {
   PANEL_COOKIE_NAME,
   readCookieValue,
   revokePanelJti,
-  verifyPanelSessionToken,
+  verifyAnyPanelToken,
 } from "./panel-auth";
 
 const MAX_AUTH_BODY_BYTES = 2048;
@@ -143,7 +144,7 @@ export function createPanelApi({
     if (account) return { ok: true, tenantId: account.tenantId, memberId: "" };
     const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
     const config = getAuthConfig();
-    if (!config.secret || config.allowedTenants.size === 0 || !token) {
+    if (!config.secret || !token) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
     const nowMs = now().getTime();
@@ -216,8 +217,9 @@ export function createPanelApi({
       if (typeof rawKey !== "string") return fail(401, "unauthorized");
 
       const config = getAuthConfig();
+      if (!config.secret) return fail(503, "unavailable");
       const tenantId = authenticateAdminKey(rawKey, config.adminKeys);
-      if (!config.secret || !tenantId) return fail(401, "unauthorized");
+      if (!tenantId) return fail(401, "unauthorized");
 
       const token = createPanelSessionToken(
         tenantId,
