@@ -76,7 +76,7 @@ test("channel copying, AI previews, and localized plan contact links", async ({ 
   await page.getByRole("tab", { name: "Plans" }).click();
   await expect(page.getByText("Starter", { exact: true })).toBeVisible();
   await page.getByRole("radio", { name: "Monthly", exact: true }).check();
-  await expect(page.getByText("79 AZN", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("49 AZN", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: "Request pilot" }).first()).toHaveAttribute("href", "/en#contact");
 });
 

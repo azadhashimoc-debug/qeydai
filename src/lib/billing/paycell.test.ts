@@ -2,7 +2,7 @@ import { createHmac } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { createPaycellCheckoutPayload, parsePaycellEvent, PAYCELL_PRICES_AZN, verifyPaycellSignature } from "./paycell";
 
-const good = { eventId: "evt_1", tenant: "t1", plan: "growth", period: "annual", status: "paid", amount: 948, currency: "AZN" };
+const good = { eventId: "evt_1", tenant: "t1", plan: "growth", period: "annual", status: "paid", amount: 852, currency: "AZN" };
 const sign = (raw: string, secret: string) => createHmac("sha256", secret).update(raw).digest("hex");
 
 describe("verifyPaycellSignature", () => {
@@ -42,7 +42,7 @@ describe("createPaycellCheckoutPayload", () => {
     expect(out.currency).toBe("AZN");
     expect(out.checkoutUrl).toBe("https://paycell.example/checkout");
     const expected = createHmac("sha256", "paycell-secret")
-      .update("ord_fixed|ws_abc|growth|annual|948|AZN", "utf8")
+      .update("ord_fixed|ws_abc|growth|annual|852|AZN", "utf8")
       .digest("hex");
     expect(out.signature).toBe(expected);
   });
