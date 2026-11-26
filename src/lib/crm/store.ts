@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
-import { Pool, type PoolClient } from "pg";
+import type { Pool, PoolClient } from "pg";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
+import { getSharedPgPool } from "../db/pool";
 import { normalizeAzPhone } from "../enrollment/enrollment";
 import type { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
 import type { InboundMessage } from "./channels";
@@ -837,8 +838,8 @@ export function isPostgresConfigured(): boolean {
 export async function pingPostgres(): Promise<boolean> {
   const connectionString = process.env.QEYDAI_FORCE_SQLITE === "1" ? undefined : process.env.QEYDAI_DATABASE_URL;
   if (!connectionString) return false;
-  pool ??= new Pool({ connectionString, connectionTimeoutMillis: 3000 });
-  const db = await pool.connect();
+  const activePool = pool ?? getSharedPgPool(connectionString);
+  const db = await activePool.connect();
   try {
     await db.query("SELECT 1");
     return true;
@@ -852,8 +853,8 @@ export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClie
   if (!databaseConfigured()) throw new Error("database_unavailable");
   const connectionString = process.env.QEYDAI_DATABASE_URL;
   if (connectionString) {
-    pool ??= new Pool({ connectionString, connectionTimeoutMillis: 5000 });
-    const db = await pool.connect();
+    const activePool = pool ?? getSharedPgPool(connectionString);
+    const db = await activePool.connect();
     try {
       await db.query("BEGIN");
       await assertSafeApplicationRole(db as unknown as PgClient);

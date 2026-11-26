@@ -1,6 +1,7 @@
 import { parsePaycellEvent, PAYCELL_PRICES_AZN, verifyPaycellSignature } from "@/lib/billing/paycell";
 import { databaseConfigured, workspaceTransaction } from "@/lib/crm/store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
+import { reportServerError } from "@/lib/observability/alerts";
 
 const MAX_BODY = 64 * 1024;
 
@@ -40,7 +41,8 @@ export async function POST(req: Request) {
     });
     if (stored === "unknown_tenant") return new Response(null, { status: 404 });
     return Response.json({ ok: true, duplicate: stored === "duplicate" });
-  } catch {
+  } catch (err) {
+    void reportServerError("api.billing.paycell.webhook", err, { tenant: event.tenant, eventId: event.eventId });
     return new Response(null, { status: 503 });
   }
 }

@@ -1,6 +1,6 @@
 import { mkdirSync } from "node:fs";
 import path from "node:path";
-import { Pool } from "pg";
+import { getSharedPgPool } from "../db/pool";
 import { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
 import { PostgresEnrollmentStore, type PgPool } from "../enrollment/postgres-store";
 import type { EnrollmentStore } from "../enrollment/enrollment";
@@ -48,11 +48,7 @@ let postgresStore: PostgresEnrollmentStore | null = null;
 function getApplicationStore(): (EnrollmentStore & PanelJtiStore) | null {
   if (process.env.QEYDAI_DATABASE_URL) {
     if (!postgresStore) {
-      const pool = new Pool({
-        connectionString: process.env.QEYDAI_DATABASE_URL,
-        max: 5,
-        connectionTimeoutMillis: 5000,
-      });
+      const pool = getSharedPgPool();
       postgresStore = new PostgresEnrollmentStore(pool as unknown as PgPool);
     }
     return postgresStore;

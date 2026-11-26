@@ -1,8 +1,15 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PanelNotificationSettings } from "./PanelNotificationSettings";
-import { loadPanelProfile, maxAvatarBytes, panelProfileKey, type PanelProfile } from "./panel-profile";
+import {
+  loadPanelProfile,
+  maxAvatarBytes,
+  panelProfileKey,
+  reminderIntervals,
+  type PanelProfile,
+  type ReminderInterval,
+} from "./panel-profile";
 import type { PanelLocale } from "./types";
 
 const groups = [
@@ -40,6 +47,16 @@ function SettingsIcon({ kind }: { kind: "camera" | "copy" | "info" | "lock" }) {
   return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={paths[kind]} /></svg>;
 }
 
+type ServerNotificationPrefs = {
+  enabled?: boolean;
+  telegramChatId?: string | null;
+  telegramEnabled?: boolean;
+  reminderMinutes?: number;
+  choices?: Record<string, boolean>;
+  emailFrequency?: PanelProfile["emailFrequency"];
+  updatedAt?: string | null;
+};
+
 export function PanelSettings({ lang, tenantId, memberId, memberName, onNavigate, children }: {
   lang: PanelLocale;
   tenantId: string;
@@ -54,11 +71,43 @@ export function PanelSettings({ lang, tenantId, memberId, memberName, onNavigate
   const [saved, setSaved] = useState(() => loadPanelProfile(key, memberName));
   const [profile, setProfile] = useState(saved);
   const [status, setStatus] = useState<{ error?: boolean; message: string } | null>(null);
+  const [telegramBotConfigured, setTelegramBotConfigured] = useState<boolean>(false);
+  const [testState, setTestState] = useState<{ sending: boolean; error?: boolean; message?: string }>({ sending: false });
   const avatarRead = useRef(0);
   const changed = JSON.stringify(profile) !== JSON.stringify(saved);
   const profileLabel = az ? "Profil ayarları" : "Profile settings";
   const securityLabel = az ? "Profil təhlükəsizliyi" : "Profile security";
   const title = groups.flatMap((group) => [...group[2]]).find(([id]) => id === section)?.[az ? 1 : 2];
+
+  useEffect(() => {
+    if (typeof fetch !== "function") return;
+    const controller = new AbortController();
+    fetch("/api/panel/notifications", { credentials: "same-origin", signal: controller.signal })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { ok?: boolean; prefs?: ServerNotificationPrefs; telegramBotConfigured?: boolean } | null) => {
+        if (controller.signal.aborted || !data?.ok) return;
+        setTelegramBotConfigured(Boolean(data.telegramBotConfigured));
+        const p = data.prefs;
+        if (!p || !p.updatedAt) return;
+        const reminderStr = String(p.reminderMinutes ?? 5) as ReminderInterval;
+        const reminder = reminderIntervals.includes(reminderStr) ? reminderStr : "5";
+        setSaved((prev) => {
+          const merged: PanelProfile = {
+            ...prev,
+            notifications: Boolean(p.enabled),
+            telegramChatId: p.telegramChatId ?? "",
+            telegramEnabled: Boolean(p.telegramEnabled),
+            reminder,
+            choices: p.choices ?? prev.choices,
+            emailFrequency: p.emailFrequency ?? prev.emailFrequency,
+          };
+          setProfile(merged);
+          return merged;
+        });
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, [tenantId, memberId]);
 
   function update(next: PanelProfile) {
     setProfile(next);
@@ -94,6 +143,100 @@ export function PanelSettings({ lang, tenantId, memberId, memberName, onNavigate
     }
   }
 
+  async function sendTestTelegram() {
+    setTestState({ sending: true });
+    try {
+      const res = await fetch("/api/panel/notifications/test", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ telegramChatId: profile.telegramChatId.trim() || null }),
+      });
+      if (res.ok) {
+        setTestState({
+          sending: false,
+          message: az ? "Test bildirişi Telegram-a göndərildi." : "Test alert sent to Telegram.",
+        });
+        return;
+      }
+      const errBody = (await res.json().catch(() => null)) as { error?: string } | null;
+      const code = errBody?.error;
+      if (code === "telegram_alerts_not_configured") {
+        setTestState({
+          sending: false,
+          error: true,
+          message: az
+            ? "Telegram alert bot tokeni serverdə təyin edilməyib."
+            : "Telegram alert bot token is not configured on the server.",
+        });
+      } else if (code === "missing_telegram_chat_id" || code === "invalid_input") {
+        setTestState({
+          sending: false,
+          error: true,
+          message: az
+            ? "Düzgün Telegram Chat ID daxil edin (məs. 123456789)."
+            : "Enter a valid Telegram Chat ID (e.g. 123456789).",
+        });
+      } else {
+        setTestState({
+          sending: false,
+          error: true,
+          message: az ? "Test bildirişi göndərilmədi." : "Could not send test alert.",
+        });
+      }
+    } catch {
+      setTestState({
+        sending: false,
+        error: true,
+        message: az ? "Şəbəkə xətası baş verdi." : "Network error while sending test alert.",
+      });
+    }
+  }
+
+  async function saveProfile(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!changed) return;
+    try {
+      localStorage.setItem(key, JSON.stringify(profile));
+    } catch {
+      setStatus({ error: true, message: az ? "Profil saxlanmadı." : "Profile could not be saved." });
+      return;
+    }
+    setSaved(profile);
+
+    if (typeof fetch === "function") {
+      try {
+        const res = await fetch("/api/panel/notifications", {
+          method: "PUT",
+          credentials: "same-origin",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            enabled: profile.notifications,
+            telegramChatId: profile.telegramChatId.trim() || null,
+            telegramEnabled: profile.telegramEnabled,
+            reminderMinutes: Number(profile.reminder),
+            choices: profile.choices,
+            emailFrequency: profile.emailFrequency,
+          }),
+        });
+        if (res.ok) {
+          setStatus({ message: az ? "Ayarlar iş sahənizdə saxlanıldı." : "Settings saved to your workspace." });
+          return;
+        }
+        if (res.status === 422) {
+          setStatus({
+            error: true,
+            message: az ? "Telegram Chat ID formatı yanlışdır (yalnız rəqəmlər)." : "Invalid Telegram Chat ID format (digits only).",
+          });
+          return;
+        }
+      } catch {
+        // Offline / test environment falls back to local save feedback below.
+      }
+    }
+    setStatus({ message: az ? "Ayarlar yadda saxlanıldı." : "Settings saved." });
+  }
+
   return <div className="panel-settings-layout" data-menu={saved.menu}>
     <nav className="panel-settings-nav" aria-label={az ? "Ayarlar menyusu" : "Settings menu"}>
       <p className="panel-settings-nav-title">{az ? "Ayarlar" : "Settings"}</p>
@@ -105,18 +248,7 @@ export function PanelSettings({ lang, tenantId, memberId, memberName, onNavigate
         }}>{az ? labelAz : labelEn}</button>)}
       </div>)}
     </nav>
-    {section === "profile" ? <form className="panel-settings-content" onSubmit={(event) => {
-      event.preventDefault();
-      if (!changed) return;
-      try {
-        localStorage.setItem(key, JSON.stringify(profile));
-      } catch {
-        setStatus({ error: true, message: az ? "Profil saxlanmadı." : "Profile could not be saved." });
-        return;
-      }
-      setSaved(profile);
-      setStatus({ message: az ? "Profil bu brauzerdə saxlanıldı." : "Profile saved in this browser." });
-    }}>
+    {section === "profile" ? <form className="panel-settings-content" onSubmit={(e) => void saveProfile(e)}>
       <div className="panel-settings-heading">
         <h1>{profileLabel}</h1>
         <button type="submit" className="panel-settings-save" disabled={!changed}>{az ? "Saxla" : "Save"}</button>
@@ -188,7 +320,14 @@ export function PanelSettings({ lang, tenantId, memberId, memberName, onNavigate
           {status && <p className="panel-settings-feedback" role={status.error ? "alert" : "status"}>{status.message}</p>}
         </div>
       </section>
-      <PanelNotificationSettings lang={lang} profile={profile} onChange={update} />
+      <PanelNotificationSettings
+        lang={lang}
+        profile={profile}
+        onChange={update}
+        telegramBotConfigured={telegramBotConfigured}
+        onTestTelegram={() => void sendTestTelegram()}
+        testState={testState}
+      />
     </form> : section === "workspace" || section === "members" ? <div className="panel-settings-content">
       <div className="panel-settings-heading"><h1>{title}</h1></div>
       {children(section)}

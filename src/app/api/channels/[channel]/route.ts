@@ -2,6 +2,7 @@ import { parseInbound, secretsMatch, verifyMetaSignature, type Channel } from "@
 import { configuredConnections } from "@/lib/crm/config";
 import { databaseConfigured, ingestMessage } from "@/lib/crm/store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
+import { reportServerError } from "@/lib/observability/alerts";
 
 function isChannel(value: string): value is Channel {
   return value === "telegram" || value === "whatsapp" || value === "instagram";
@@ -47,7 +48,8 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
       if (connection) await ingestMessage(connection.tenant, message);
     }
     return new Response(null, { status: 200 });
-  } catch {
+  } catch (err) {
+    void reportServerError("api.channels.inbound", err, { channel });
     return new Response(null, { status: 503 });
   }
 }

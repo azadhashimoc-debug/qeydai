@@ -9,7 +9,7 @@ const advanced = [
   ["errors", "Xətalar və digər məlumatlar", "Errors & other info"],
   ["inbox", "Gələnlər", "Inbox"],
   ["mentions", "Qeydlər və komanda söhbəti", "Mentions and team chat"],
-  ["support", "QeydAI dəstəyi ilə söhbət", "Chat from QeydAI team"],
+  ["support", "Panelim dəstəyi ilə söhbət", "Chat from Panelim team"],
   ["incoming-email", "Gələn e-poçtlar", "Incoming emails"],
   ["leads", "Yeni müraciətlər", "Incoming leads"],
   ["task-reminder", "Tapşırıqlar və rezervasiyalar: tədbirdən əvvəl", "Tasks & Bookings: before the event"],
@@ -40,13 +40,24 @@ function Choice({ keys, choices, onSet, ...props }: Omit<ComponentProps<"input">
   }} onChange={() => onSet(keys, !all)} />;
 }
 
-export function PanelNotificationSettings({ lang, profile, onChange }: {
+export function PanelNotificationSettings({
+  lang,
+  profile,
+  onChange,
+  telegramBotConfigured = false,
+  onTestTelegram,
+  testState,
+}: {
   lang: PanelLocale;
   profile: PanelProfile;
   onChange: (profile: PanelProfile) => void;
+  telegramBotConfigured?: boolean;
+  onTestTelegram?: () => void;
+  testState?: { sending: boolean; error?: boolean; message?: string };
 }) {
   const az = lang === "az";
   const heading = useId();
+  const chatIdInput = useId();
   const onSet = (keys: readonly string[], checked: boolean) => {
     const choices = { ...profile.choices };
     keys.forEach((key) => { choices[key] = checked; });
@@ -69,14 +80,22 @@ export function PanelNotificationSettings({ lang, profile, onChange }: {
               <th scope="col" className="panel-notification-more">
                 <details>
                   <summary aria-label={az ? "Digər bildiriş kanalları" : "More notification channels"} title="Telegram">+</summary>
-                  <span>{az ? "Telegram bildirişləri hələ aktiv deyil." : "Telegram notifications are not active yet."}</span>
+                  <span>
+                    {az
+                      ? "Telegram bildirişləri yuxarıdakı Chat ID bölməsindən idarə olunur."
+                      : "Telegram alerts are configured in the Chat ID section above."}
+                  </span>
                 </details>
               </th>
             </tr>
           </thead>
           <tbody>
             {primary && <tr><td colSpan={5} className="panel-notification-notices">
-              <span>{az ? "Brauzerdə bildiriş göndərilməsi aktiv deyil." : "Browser notification delivery is not active."}</span>
+              <span>
+                {az
+                  ? "Bildiriş seçimləri iş sahənizdə saxlanılır. Yeni müraciətlər Telegram üzərindən çatdırılır."
+                  : "Notification preferences sync to your workspace. Incoming lead alerts are delivered via Telegram."}
+              </span>
             </td></tr>}
             {rows.map(([event, a, e]) => {
               const label = az ? a : e;
@@ -117,7 +136,71 @@ export function PanelNotificationSettings({ lang, profile, onChange }: {
         <input type="checkbox" role="switch" checked={profile.notifications} onChange={(e) => onChange({ ...profile, notifications: e.target.checked })} />
       </label>
     </div>
-    <p className="panel-settings-hint">{az ? "Seçimlər yalnız bu brauzerdə saxlanılır. Bildiriş göndərilməsi hələ aktiv deyil." : "Preferences are saved only in this browser. Notification delivery is not active yet."}</p>
+    <p className="panel-settings-hint">
+      {az
+        ? "Seçimlər iş sahənizdə saxlanılır. Yeni müraciətlər və sistem bildirişləri üçün Telegram Chat ID əlavə edə bilərsiniz."
+        : "Preferences are saved to your workspace. Add your Telegram Chat ID below to receive live lead and system alerts."}
+    </p>
+    <div className="panel-settings-paper" style={{ padding: "14px 16px", marginBottom: "14px", display: "grid", gap: "10px" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+        <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontWeight: 600 }}>
+          <input
+            type="checkbox"
+            checked={profile.telegramEnabled}
+            disabled={!profile.notifications}
+            onChange={(e) => onChange({ ...profile, telegramEnabled: e.target.checked })}
+          />
+          {az ? "Telegram bildirişlərini aktiv et" : "Enable Telegram alerts"}
+        </label>
+        <span style={{ fontSize: "0.78rem", opacity: 0.78 }}>
+          {telegramBotConfigured
+            ? az
+              ? "Telegram botu hazırdır"
+              : "Telegram alert bot ready"
+            : az
+              ? "Bot tokeni əlavə olunan kimi aktivləşəcək"
+              : "Activates once alert bot token is set"}
+        </span>
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px" }}>
+        <label htmlFor={chatIdInput} style={{ fontSize: "0.84rem", fontWeight: 500 }}>
+          {az ? "Telegram Chat ID" : "Telegram Chat ID"}
+        </label>
+        <input
+          id={chatIdInput}
+          type="text"
+          inputMode="numeric"
+          placeholder={az ? "məs. 123456789" : "e.g. 123456789"}
+          value={profile.telegramChatId}
+          maxLength={64}
+          disabled={!profile.notifications}
+          onChange={(e) => onChange({ ...profile, telegramChatId: e.target.value })}
+          style={{ flex: "1 1 180px", minHeight: "38px", padding: "6px 10px" }}
+        />
+        {onTestTelegram && (
+          <button
+            type="button"
+            disabled={!profile.notifications || !profile.telegramChatId.trim() || testState?.sending}
+            onClick={onTestTelegram}
+            className="panel-settings-save"
+            style={{ minHeight: "38px" }}
+          >
+            {testState?.sending
+              ? az
+                ? "Göndərilir..."
+                : "Sending..."
+              : az
+                ? "Test göndər"
+                : "Send test"}
+          </button>
+        )}
+      </div>
+      {testState?.message && (
+        <p role={testState.error ? "alert" : "status"} style={{ margin: 0, fontSize: "0.82rem" }}>
+          {testState.message}
+        </p>
+      )}
+    </div>
     {renderTable(az ? "Ətraflı ayarlar" : "Advanced settings", advanced, true)}
     {renderTable(az ? "İnteqrasiyalar" : "Integrations", integrations)}
   </section>;

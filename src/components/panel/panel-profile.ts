@@ -12,6 +12,8 @@ export type PanelProfile = {
   avatar: string;
   menu: PanelMenu;
   notifications: boolean;
+  telegramChatId: string;
+  telegramEnabled: boolean;
   choices: Record<string, boolean>;
   emailFrequency: Partial<Record<string, Frequency>>;
   reminder: ReminderInterval;
@@ -64,6 +66,8 @@ export function loadPanelProfile(key: string, memberName = ""): PanelProfile {
     avatar: avatarPattern.test(avatar) ? avatar : "",
     menu: data.menu === "expanded" ? "expanded" : "compact",
     notifications: data.notifications === true,
+    telegramChatId: text(data.telegramChatId, 64),
+    telegramEnabled: data.telegramEnabled === true,
     choices,
     emailFrequency,
     reminder: reminderIntervals.find((option) => option === data.reminder) ?? "5",

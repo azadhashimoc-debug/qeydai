@@ -10,6 +10,7 @@ import {
   signOAuthState, verifyLinkToken, verifyOAuthState, type OAuthProvider,
 } from "./oauth";
 import { isSecureRequest, resolveOAuthOrigin } from "../http/site-url";
+import { reportServerError } from "../observability/alerts";
 
 type Lang = "az" | "en";
 const STATE_COOKIE_PATH = "/api/panel/oauth";
@@ -111,7 +112,8 @@ export async function finishOAuth(
     const sessionCookies = accountSessionCookieHeaders(account.tenant_id, account.id, req);
     if (!sessionCookies) return fail();
     return redirectTo(`/${lang}/panel`, [clearState, ...sessionCookies]);
-  } catch {
+  } catch (err) {
+    void reportServerError("api.oauth.callback", err, { provider });
     return fail();
   }
 }
@@ -137,7 +139,8 @@ export async function finishLinkAccount(req: Request, env: NodeJS.ProcessEnv = p
     const sessionCookies = accountSessionCookieHeaders(payload.t, payload.a, req);
     if (!sessionCookies) return redirectTo(`/${lang}/login?oauth_error=1`);
     return redirectTo(`/${lang}/panel`, sessionCookies);
-  } catch {
+  } catch (err) {
+    void reportServerError("api.oauth.link", err, { provider: payload.p });
     return redirectTo(`/${lang}/login?oauth_error=1`);
   }
 }

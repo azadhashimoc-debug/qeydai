@@ -27,14 +27,14 @@ it("opens the security explanation and routes to existing workspace and member v
   expect(screen.getByRole("heading", { name: "Existing members form" })).toBeTruthy();
 });
 
-it("shows unavailable email and notification delivery without offering a live connection", () => {
+it("shows workspace-synced notification settings and Telegram alert configuration", () => {
   renderSettings();
   expect(screen.getByRole<HTMLInputElement>("textbox", { name: "Email" }).readOnly).toBe(true);
   expect(screen.getByRole<HTMLButtonElement>("button", { name: "Change email" }).disabled).toBe(true);
   expect(screen.getByRole("rowheader", { name: /scheduled report/i })).toBeTruthy();
   expect(screen.getByRole("rowheader", { name: /WhatsApp Business/i })).toBeTruthy();
-  expect(screen.getByText(/preferences are saved only in this browser/i)).toBeTruthy();
-  expect(screen.getByText("Browser notification delivery is not active.")).toBeTruthy();
+  expect(screen.getByText(/preferences are saved to your workspace/i)).toBeTruthy();
+  expect(screen.getByLabelText("Telegram Chat ID")).toBeTruthy();
 });
 
 it("keeps bulk settings local to the selected group and restores choices and timing after saving", () => {

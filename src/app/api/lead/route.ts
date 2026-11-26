@@ -2,18 +2,29 @@ import { randomUUID } from "node:crypto";
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { getApplicationEnrollmentStore, parseKeys } from "@/lib/api/instance";
+import {
+  allowDistributedLimit,
+  isDistributedLimited,
+  resetDistributedRateLimitsForTests,
+  type DistributedLimit,
+} from "@/lib/api/pg-rate-limit";
+import {
+  listWorkspaceTelegramChatIds,
+  syncPublicLeadToWorkspaceDeal,
+} from "@/lib/crm/notifications-store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
-import { validateLead } from "@/lib/leads/leads";
-import { createRateLimiter } from "@/lib/rate-limit";
 import { clientKey, isUnknownClient, sameOrigin } from "@/lib/http/same-origin";
+import { validateLead } from "@/lib/leads/leads";
+import { notifyNewDemoLead } from "@/lib/notifications/telegram";
+import { reportServerError } from "@/lib/observability/alerts";
 
 const MAX_BODY_BYTES = 2048;
 const WINDOW_MS = 10 * 60_000;
 const perClientMax = Number(process.env.QEYDAI_LEAD_RATE_MAX ?? 5);
 const globalMax = Number(process.env.QEYDAI_LEAD_RATE_GLOBAL_MAX ?? 200);
-const perClient = createRateLimiter({ max: perClientMax, windowMs: WINDOW_MS });
-// Backstop against rotating client identities: caps total accepted leads per window.
-const global = createRateLimiter({ max: globalMax, windowMs: WINDOW_MS });
+const PER_CLIENT_LIMIT: DistributedLimit = { name: "lead-client", max: perClientMax, windowMs: WINDOW_MS };
+// Backstop against rotating client identities: caps total accepted leads per window across all instances.
+const GLOBAL_LIMIT: DistributedLimit = { name: "lead-global", max: globalMax, windowMs: WINDOW_MS };
 
 /**
  * E2E runner submits independent forms from the same localhost IP. Give each
@@ -35,8 +46,7 @@ function leadClientKey(req: Request) {
 }
 
 export const resetLeadRateLimit = () => {
-  perClient.clear();
-  global.clear();
+  resetDistributedRateLimitsForTests("lead-");
 };
 
 export function resolvePublicLeadTenant(): string {
@@ -65,7 +75,10 @@ export async function POST(req: Request) {
   // Without a trusted client identity every caller would share one 5/10min bucket, so one
   // visitor could block the form for everyone; the global backstop still caps the total.
   const leadClient = leadClientKey(req);
-  if (global.isLimited("all") || (!isUnknownClient(leadClient) && !perClient.allow(leadClient))) {
+  if (
+    (await isDistributedLimited(GLOBAL_LIMIT, "all")) ||
+    (!isUnknownClient(leadClient) && !(await allowDistributedLimit(PER_CLIENT_LIMIT, leadClient)))
+  ) {
     return fail("rate_limited", 429);
   }
 
@@ -80,37 +93,59 @@ export async function POST(req: Request) {
   }
   const v = validateLead(body);
   if (!v.ok) return fail("invalid_input", 400);
-  if (!global.allow("all")) return fail("rate_limited", 429);
+  if (!(await allowDistributedLimit(GLOBAL_LIMIT, "all"))) return fail("rate_limited", 429);
 
   const store = getApplicationEnrollmentStore();
   if (!store) return fail("database_unavailable", 503);
 
   const createdAt = new Date().toISOString();
+  const tenantId = resolvePublicLeadTenant();
   // Keep historical local test/dev JSONL output only when PostgreSQL is not configured.
   if (!process.env.QEYDAI_DATABASE_URL) {
     try {
       const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
-    await mkdir(path.dirname(file), { recursive: true });
+      await mkdir(path.dirname(file), { recursive: true });
       await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
     } catch (err) {
-      console.error("lead storage failed:", err instanceof Error ? err.message : "unknown");
+      void reportServerError("api.lead.jsonl_write", err, { tenantId });
       return fail("server_error", 500);
     }
   }
 
   try {
     await store.upsertLead({
-        id: `lead_${randomUUID()}`,
-        tenantId: resolvePublicLeadTenant(),
-        name: v.lead.name,
-        phone: v.lead.phone,
-        source: "web",
-        stage: "new",
-        nowIso: createdAt,
+      id: `lead_${randomUUID()}`,
+      tenantId,
+      name: v.lead.name,
+      phone: v.lead.phone,
+      source: "web",
+      stage: "new",
+      nowIso: createdAt,
     });
   } catch (err) {
-    console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
+    void reportServerError("api.lead.crm_sync", err, { tenantId });
     return fail("server_error", 500);
   }
+
+  // Mirror into the modern sales_contacts + sales_deals board and notify via Telegram (best-effort).
+  try {
+    await syncPublicLeadToWorkspaceDeal({
+      tenantId,
+      name: v.lead.name,
+      phone: v.lead.phone,
+      nowIso: createdAt,
+    });
+    const extraChatIds = await listWorkspaceTelegramChatIds(tenantId);
+    await notifyNewDemoLead({
+      tenantId,
+      name: v.lead.name,
+      phone: v.lead.phone,
+      createdAt,
+      extraChatIds,
+    });
+  } catch (err) {
+    void reportServerError("api.lead.notify", err, { tenantId });
+  }
+
   return Response.json({ ok: true }, { headers: noStore });
 }

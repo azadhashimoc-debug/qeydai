@@ -17,8 +17,10 @@ import {
 } from "../enrollment/enrollment";
 import { readLimitedUtf8 } from "../http/read-body";
 import { clientKey, isUnknownClient, noStoreHeaders, sameOrigin } from "../http/same-origin";
+import { reportServerError } from "../observability/alerts";
 import { createRateLimiter } from "../rate-limit";
 import { parseInstant, validateName } from "../validation";
+import { allowDistributedLimit, isDistributedLimited } from "./pg-rate-limit";
 import {
   adminKeyFingerprint,
   authenticateAdminKey,
@@ -175,10 +177,13 @@ export function createPanelApi({
     try {
       return await fn(auth.tenantId);
     } catch (err) {
-      console.error("panel-api error:", err instanceof Error ? err.message : "unknown");
+      void reportServerError("api.panel", err, { tenantId: auth.tenantId });
       return fail(500, "server_error");
     }
   }
+
+  const shouldUsePgAuthRateLimit = () =>
+    Boolean(process.env.QEYDAI_DATABASE_URL) && process.env.QEYDAI_FORCE_SQLITE !== "1";
 
   return {
     authGet: async (req: Request): Promise<Response> => {
@@ -194,14 +199,25 @@ export function createPanelApi({
       if (!sameOrigin(req)) return fail(403, "forbidden");
       const client = clientKey(req);
       const anonymous = isUnknownClient(client);
+      const distributed = shouldUsePgAuthRateLimit();
+      const ipLimit = { name: "panel-auth-ip", max: authRateMax, windowMs: 60_000 };
+      const anonLimit = { name: "panel-auth-anon", max: authAnonRateMax, windowMs: 60_000 };
+      const credLimit = { name: "panel-auth-cred", max: authRateMax, windowMs: 60_000 };
+
       if (anonymous) {
         if (!warnedUnknownClient) {
           warnedUnknownClient = true;
           console.warn("panel auth: no trusted client IP (set TRUST_PROXY); using per-credential rate limits");
         }
-        if (anonAuthLimiter.isLimited("all")) return fail(429, "rate_limited");
-      } else if (!authLimiter.allow(`ip:${client}`)) {
-        return fail(429, "rate_limited");
+        const limited = distributed
+          ? await isDistributedLimited(anonLimit, "all")
+          : anonAuthLimiter.isLimited("all");
+        if (limited) return fail(429, "rate_limited");
+      } else {
+        const allowed = distributed
+          ? await allowDistributedLimit(ipLimit, `ip:${client}`)
+          : authLimiter.allow(`ip:${client}`);
+        if (!allowed) return fail(429, "rate_limited");
       }
 
       const body = await readJsonObject(req, MAX_AUTH_BODY_BYTES);
@@ -210,9 +226,11 @@ export function createPanelApi({
       const rawKey = body.value.key;
       if (anonymous) {
         const credential = typeof rawKey === "string" ? adminKeyFingerprint(rawKey) : "invalid";
-        if (!anonAuthLimiter.allow("all") || !authLimiter.allow(`cred:${credential}`)) {
-          return fail(429, "rate_limited");
-        }
+        const allowed = distributed
+          ? (await allowDistributedLimit(anonLimit, "all")) &&
+            (await allowDistributedLimit(credLimit, `cred:${credential}`))
+          : anonAuthLimiter.allow("all") && authLimiter.allow(`cred:${credential}`);
+        if (!allowed) return fail(429, "rate_limited");
       }
       if (typeof rawKey !== "string") return fail(401, "unauthorized");
 

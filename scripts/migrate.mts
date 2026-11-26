@@ -14,12 +14,30 @@ import { Client } from "pg";
 
 const dir = path.resolve(import.meta.dirname, "../db/migrations");
 const mode = process.argv.includes("--status") ? "status" : process.argv.includes("--baseline") ? "baseline" : "apply";
-const url = process.env.QEYDAI_DATABASE_URL;
+const rawUrl = process.env.QEYDAI_DATABASE_URL;
 
-if (!url) {
+if (!rawUrl) {
   console.error("QEYDAI_DATABASE_URL is not set.");
   process.exit(2);
 }
+
+function normalizeMigrationUrl(input: string): string {
+  try {
+    const parsed = new URL(input.trim());
+    const host = parsed.hostname.toLowerCase();
+    const local = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
+    const sslmode = parsed.searchParams.get("sslmode")?.toLowerCase();
+    if (!local && (sslmode === "require" || sslmode === "prefer" || sslmode === "allow")) {
+      parsed.searchParams.set("sslmode", "verify-full");
+      return parsed.toString();
+    }
+  } catch {
+    // Keep original connection string if not a standard URL.
+  }
+  return input;
+}
+
+const url = normalizeMigrationUrl(rawUrl);
 
 const files = readdirSync(dir)
   .filter((f) => /^\d{4}_.+\.sql$/.test(f))

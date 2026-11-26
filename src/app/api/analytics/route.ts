@@ -1,62 +1,34 @@
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { Pool } from "pg";
 import { validateAnalyticsEvent } from "@/lib/analytics/events";
+import {
+  allowDistributedLimit,
+  isDistributedLimited,
+  resetDistributedRateLimitsForTests,
+  type DistributedLimit,
+} from "@/lib/api/pg-rate-limit";
+import { closeSharedPgPool, getSharedPgPool } from "@/lib/db/pool";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
-import { createRateLimiter } from "@/lib/rate-limit";
-import { clientKey, isUnknownClient } from "@/lib/http/same-origin";
+import { clientKey, isUnknownClient, sameOrigin } from "@/lib/http/same-origin";
+import { reportServerError } from "@/lib/observability/alerts";
 
 const MAX_BODY_BYTES = 1024;
 const WINDOW_MS = 60_000;
-const perClient = createRateLimiter({ max: 240, windowMs: WINDOW_MS });
-// Single "all" key: a process-wide backstop against rotating or unknown client identities.
-const global = createRateLimiter({ max: 2000, windowMs: WINDOW_MS });
-
-let analyticsPool: Pool | null = null;
-
-// Open the connection lazily: builds and statically rendered pages must not connect.
-function getAnalyticsPool(): Pool {
-  if (!analyticsPool) {
-    analyticsPool = new Pool({
-      connectionString: process.env.QEYDAI_DATABASE_URL,
-      max: 2,
-      connectionTimeoutMillis: 5000,
-    });
-  }
-  return analyticsPool;
-}
+const PER_CLIENT_LIMIT: DistributedLimit = { name: "analytics-client", max: 240, windowMs: WINDOW_MS };
+// Shared cross-instance backstop against rotating or unknown client identities.
+const GLOBAL_LIMIT: DistributedLimit = { name: "analytics-global", max: 2000, windowMs: WINDOW_MS };
 
 /** Only for integration test cleanup. Do not call in request handlers. */
 export async function closeAnalyticsPoolForTests(): Promise<void> {
-  const pool = analyticsPool;
-  analyticsPool = null;
-  if (pool) await pool.end();
+  await closeSharedPgPool();
 }
 
 export const resetAnalyticsRateLimit = () => {
-  perClient.clear();
-  global.clear();
+  resetDistributedRateLimitsForTests("analytics-");
 };
 
 const fail = (error: string, status: number) =>
   Response.json({ ok: false, error }, { status, headers: { "cache-control": "no-store" } });
-
-function localClientKey(req: Request) {
-  return clientKey(req);
-}
-
-function sameOrigin(req: Request) {
-  const fetchSite = req.headers.get("sec-fetch-site")?.toLowerCase();
-  if (fetchSite === "cross-site") return false;
-  const origin = req.headers.get("origin");
-  if (!origin) return true;
-  const host = req.headers.get("host") ?? new URL(req.url).host;
-  try {
-    return new URL(origin).host === host;
-  } catch {
-    return false;
-  }
-}
 
 export async function POST(req: Request) {
   if (!(req.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json")) {
@@ -67,8 +39,11 @@ export async function POST(req: Request) {
   const declared = Number(req.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return fail("payload_too_large", 413);
 
-  const client = localClientKey(req);
-  if (global.isLimited("all") || (!isUnknownClient(client) && !perClient.allow(client))) {
+  const client = clientKey(req);
+  if (
+    (await isDistributedLimited(GLOBAL_LIMIT, "all")) ||
+    (!isUnknownClient(client) && !(await allowDistributedLimit(PER_CLIENT_LIMIT, client)))
+  ) {
     return fail("rate_limited", 429);
   }
 
@@ -84,7 +59,7 @@ export async function POST(req: Request) {
 
   const v = validateAnalyticsEvent(body);
   if (!v.ok) return fail("invalid_event", 422);
-  if (!global.allow("all")) return fail("rate_limited", 429);
+  if (!(await allowDistributedLimit(GLOBAL_LIMIT, "all"))) return fail("rate_limited", 429);
 
   if (process.env.QEYDAI_DATABASE_URL) {
     // Public marketing events are append-only, and the application role has
@@ -92,12 +67,12 @@ export async function POST(req: Request) {
     try {
       const props = v.value.props;
       const locale = "locale" in props ? props.locale : props.to_locale;
-      await getAnalyticsPool().query(
+      await getSharedPgPool().query(
         "INSERT INTO public.analytics_events (event, locale, props) VALUES ($1, $2, $3::jsonb)",
-        [v.value.event, locale, JSON.stringify(props)]
+        [v.value.event, locale, JSON.stringify(props)],
       );
     } catch (err) {
-      console.error("analytics PostgreSQL storage failed:", err instanceof Error ? err.message : "unknown");
+      void reportServerError("api.analytics.postgres", err);
       return fail("server_error", 500);
     }
   } else if (process.env.VERCEL || (process.env.NODE_ENV === "production" && process.env.QEYDAI_E2E_SQLITE !== "1")) {
@@ -110,7 +85,7 @@ export async function POST(req: Request) {
       await mkdir(path.dirname(file), { recursive: true });
       await appendFile(file, JSON.stringify({ ...v.value, ts: new Date().toISOString() }) + "\n", "utf8");
     } catch (err) {
-      console.error("analytics storage failed:", err instanceof Error ? err.message : "unknown");
+      void reportServerError("api.analytics.jsonl", err);
       return fail("server_error", 500);
     }
   }

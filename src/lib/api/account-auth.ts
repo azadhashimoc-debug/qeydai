@@ -1,22 +1,23 @@
 import { randomBytes, randomUUID, scrypt as rawScrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
-import { Pool } from "pg";
+import type { Pool } from "pg";
 import defaultSalesStagesAz from "../../app/[lang]/dictionaries/default-sales-stages-az.json";
 import {
   buildPanelCookieHeader, buildPanelHintCookieHeader, createPanelSessionToken, DEFAULT_PANEL_TTL_MS,
   getPanelAuthConfig, isPanelJtiRevoked, PANEL_COOKIE_NAME, readCookieValue, verifyPanelSessionToken,
 } from "./panel-auth";
+import { getSharedPgPool } from "../db/pool";
 import { assertSafeApplicationRole } from "../enrollment/postgres-store";
 import { ensurePanelJtiStore } from "./instance";
 import { isUnknownClient } from "../http/same-origin";
 import { isSecureRequest } from "../http/site-url";
+import { reportServerError } from "../observability/alerts";
 import {
   allowAuthAttempt, clientIp, LOGIN_PER_EMAIL, LOGIN_PER_IP, REGISTER_PER_IP,
 } from "./auth-rate-limit";
 
 const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-let pool: Pool | undefined;
 export type Account = { tenant_id: string; id: string; email: string; password_hash: string };
 /** OAuth link columns (migration 0009). Read only by the OAuth paths, so email sign-in works without them. */
 export type OAuthLinkState = { oauth_providers: string[]; password_login_enabled: boolean };
@@ -25,8 +26,7 @@ const genericError = (status: number, error: string) =>
 
 function dbPool(): Pool {
   if (!process.env.QEYDAI_DATABASE_URL) throw new Error("database_unavailable");
-  pool ??= new Pool({ connectionString: process.env.QEYDAI_DATABASE_URL, max: 5, connectionTimeoutMillis: 5000 });
-  return pool;
+  return getSharedPgPool();
 }
 async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16);
@@ -295,6 +295,7 @@ export async function registerBusiness(req: Request): Promise<Response> {
     if (error && typeof error === "object" && "code" in error && error.code === "23505") {
       return genericError(409, "email_exists");
     }
+    void reportServerError("api.account.register", error);
     return genericError(503, "database_unavailable");
   } finally {
     db.release();
@@ -326,7 +327,8 @@ export async function loginBusiness(req: Request): Promise<Response> {
     }
     if (!ensurePanelJtiStore()) return genericError(503, "database_unavailable");
     return issueCookie(account.tenant_id, account.id, req);
-  } catch {
+  } catch (error) {
+    void reportServerError("api.account.login", error);
     return genericError(503, "database_unavailable");
   }
 }
