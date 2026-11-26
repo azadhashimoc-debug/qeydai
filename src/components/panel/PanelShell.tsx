@@ -12,6 +12,7 @@ import { DealDetail } from "./DealDetail";
 import { DealList } from "./DealList";
 import { OverviewTab } from "./OverviewTab";
 import { CopilotDrawer } from "./CopilotDrawer";
+import { TrialBanner } from "./TrialBanner";
 import { PANEL_HINT_COOKIE_NAME } from "./session-hint";
 
 // Secondary tabs load on first open so the default (overview) view ships less JavaScript.
@@ -714,6 +715,9 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
                 {d.retry}
               </button>
             </div>
+          ) : null}
+          {activeTab !== "plans" ? (
+            <TrialBanner lang={lang} onOpenPlans={() => setActiveTab("plans")} />
           ) : null}
           <div
             role="tabpanel"

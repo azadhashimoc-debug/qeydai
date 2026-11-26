@@ -9,6 +9,7 @@ import {
   runPanelCRM,
   withWorkspace,
 } from "@/lib/api/panel-crm";
+import { enforceWorkspaceLimit } from "@/lib/billing/entitlements";
 
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
 type MemberRole = "owner" | "manager" | "operator";
@@ -50,6 +51,14 @@ export const POST = (req: Request) =>
     return withWorkspace(member, async (actor, db) => {
       if (!canWrite(actor.role, "members")) return fail(403, "forbidden");
       if (actor.role === "manager" && role === "owner") return fail(403, "forbidden");
+      const limitCheck = await enforceWorkspaceLimit(db, actor.tenantId, "members");
+      if (!limitCheck.ok) {
+        return fail(limitCheck.status, limitCheck.error, {
+          resource: limitCheck.resource,
+          limit: limitCheck.limit,
+          plan: limitCheck.plan,
+        });
+      }
       const created = await createMember(db, actor.tenantId, id, name, role);
       if (!created) return fail(409, "member_exists");
       return json(201, { ok: true, member: created });

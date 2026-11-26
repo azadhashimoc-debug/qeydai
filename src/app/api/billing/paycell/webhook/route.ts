@@ -1,3 +1,4 @@
+import { applyPaycellEventToWorkspace } from "@/lib/billing/entitlements";
 import { parsePaycellEvent, PAYCELL_PRICES_AZN, verifyPaycellSignature } from "@/lib/billing/paycell";
 import { databaseConfigured, workspaceTransaction } from "@/lib/crm/store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
@@ -37,7 +38,11 @@ export async function POST(req: Request) {
          VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (tenant_id, event_id) DO NOTHING RETURNING event_id`,
         [event.tenant, event.eventId, event.plan, event.period, event.status, event.amount, event.currency],
       );
-      return res.rows.length > 0 ? ("created" as const) : ("duplicate" as const);
+      if (res.rows.length > 0) {
+        await applyPaycellEventToWorkspace(db, event.tenant, event);
+        return "created" as const;
+      }
+      return "duplicate" as const;
     });
     if (stored === "unknown_tenant") return new Response(null, { status: 404 });
     return Response.json({ ok: true, duplicate: stored === "duplicate" });

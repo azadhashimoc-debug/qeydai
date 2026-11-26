@@ -6,6 +6,7 @@ import {
   runPanelCRM,
   withWorkspace,
 } from "@/lib/api/panel-crm";
+import { enforceWorkspaceLimit } from "@/lib/billing/entitlements";
 import type { Channel } from "@/lib/crm/channels";
 import { buildChannelWebhookUrl, listTenantConnections, registerTelegramWebhook, upsertTenantConnection } from "@/lib/crm/connections-store";
 import { hasChannelEncryptionKey } from "@/lib/crypto/secrets";
@@ -102,6 +103,18 @@ export const POST = (req: Request) =>
         return fail(403, "forbidden");
       }
       const base = getSiteUrl() || new URL(req.url).origin;
+      const existing = await listTenantConnections(db, actor.tenantId, base);
+      const isUpdatingSame = existing.some((c) => c.id === `${channel}:${account}` && c.active);
+      const limitCheck = await enforceWorkspaceLimit(db, actor.tenantId, "channels", {
+        skipCountCheck: isUpdatingSame,
+      });
+      if (!limitCheck.ok) {
+        return fail(limitCheck.status, limitCheck.error, {
+          resource: limitCheck.resource,
+          limit: limitCheck.limit,
+          plan: limitCheck.plan,
+        });
+      }
       try {
         const saved = await upsertTenantConnection(db, actor.tenantId, base, {
           channel,

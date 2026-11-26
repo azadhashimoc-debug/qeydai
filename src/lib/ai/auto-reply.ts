@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { getWorkspaceEntitlement } from "../billing/entitlements";
 import { getWorkspace, isPostgresConfigured, workspaceTransaction } from "../crm/store";
 import { reportServerError } from "../observability/alerts";
 import { generateGroqReply, isGroqConfigured, type GroqChatMessage } from "./groq";
@@ -72,6 +73,9 @@ export async function maybeAutoReplyInbound(input: {
 
   try {
     const context = await workspaceTransaction(input.tenantId, async (db) => {
+      const entitlement = await getWorkspaceEntitlement(db, input.tenantId);
+      if (!entitlement.canWrite) return { skip: "subscription_required" as const };
+
       const settings = await getWorkspaceAiSettings(db, input.tenantId);
       if (!settings.enabled) return { skip: "ai_disabled" as const };
 
@@ -115,7 +119,11 @@ export async function maybeAutoReplyInbound(input: {
 
       // Check monthly workspace quota and per-thread AI reply cap.
       const usage = await getMonthlyAiUsage(db, input.tenantId);
-      if (usage.repliesCount >= settings.monthlyReplyLimit) {
+      const effectiveMonthlyCap = Math.min(
+        settings.monthlyReplyLimit,
+        entitlement.limits.maxMonthlyAiReplies,
+      );
+      if (usage.repliesCount >= effectiveMonthlyCap) {
         return { skip: "monthly_limit_reached" as const };
       }
 

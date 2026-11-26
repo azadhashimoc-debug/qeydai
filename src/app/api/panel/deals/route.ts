@@ -13,6 +13,7 @@ import {
   updateDeal,
   withWorkspace,
 } from "@/lib/api/panel-crm";
+import { enforceWorkspaceLimit } from "@/lib/billing/entitlements";
 
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
 
@@ -118,6 +119,14 @@ export const POST = (req: Request) =>
     }
 
     return withWorkspace(member, async (actor, db) => {
+      const limitCheck = await enforceWorkspaceLimit(db, actor.tenantId, "deals");
+      if (!limitCheck.ok) {
+        return fail(limitCheck.status, limitCheck.error, {
+          resource: limitCheck.resource,
+          limit: limitCheck.limit,
+          plan: limitCheck.plan,
+        });
+      }
       const deal = await createDeal(db, actor.tenantId, id, contactId, stageId, title, source, amountMinor, note);
       if (!deal) return fail(409, "deal_exists");
       if (actor.role === "operator" && actor.memberId) {
