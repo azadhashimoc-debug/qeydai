@@ -5,20 +5,30 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { LogoMark } from "@/components/Logo";
 import { buttonClass } from "@/components/ui/button";
-import { PanelSettings } from "./PanelSettings";
+import dynamic from "next/dynamic";
 import { WorkspaceSetup } from "./WorkspaceSetup";
-import { ChannelsTab } from "./ChannelsTab";
-import { AiTab } from "./AiTab";
-import { PlansTab } from "./PlansTab";
 import { ContactDetail } from "./ContactDetail";
 import { DealDetail } from "./DealDetail";
 import { DealList } from "./DealList";
-import { InboxTab } from "./InboxTab";
-import { LeadsTab } from "./LeadsTab";
 import { OverviewTab } from "./OverviewTab";
-import { SessionsTab } from "./SessionsTab";
-import { TeamStageTab } from "./TeamStageTab";
 import { CopilotDrawer } from "./CopilotDrawer";
+import { PANEL_HINT_COOKIE_NAME } from "./session-hint";
+
+// Secondary tabs load on first open so the default (overview) view ships less JavaScript.
+const PanelSettings = dynamic(() => import("./PanelSettings").then((m) => m.PanelSettings));
+const ChannelsTab = dynamic(() => import("./ChannelsTab").then((m) => m.ChannelsTab));
+const AiTab = dynamic(() => import("./AiTab").then((m) => m.AiTab));
+const PlansTab = dynamic(() => import("./PlansTab").then((m) => m.PlansTab));
+const InboxTab = dynamic(() => import("./InboxTab").then((m) => m.InboxTab));
+const LeadsTab = dynamic(() => import("./LeadsTab").then((m) => m.LeadsTab));
+const SessionsTab = dynamic(() => import("./SessionsTab").then((m) => m.SessionsTab));
+const TeamStageTab = dynamic(() => import("./TeamStageTab").then((m) => m.TeamStageTab));
+
+/** True when the non-secret login hint cookie is present; the real session cookie is HttpOnly. */
+function hasPanelSessionHint(): boolean {
+  if (typeof document === "undefined") return false;
+  return document.cookie.split(";").some((part) => part.trim().startsWith(`${PANEL_HINT_COOKIE_NAME}=1`));
+}
 import type {
   LeadRecord,
   OverviewPayload,
@@ -95,6 +105,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
   const [actorMemberId, setActorMemberId] = useState<string | null>(null);
   const [loadingData, setLoadingData] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [partialLoadError, setPartialLoadError] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
   const tabBaseId = useId();
@@ -121,6 +132,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
     setSelectedContactId(null);
     setActiveTab("overview");
     setLoadError(null);
+    setPartialLoadError(false);
   }, []);
 
   const handleUnauthorized = useCallback(() => {
@@ -139,6 +151,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
 
     setLoadingData(true);
     setLoadError(null);
+    setPartialLoadError(false);
     try {
       const [
         ovRes,
@@ -187,6 +200,8 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
         setLoadError(d.loadError);
         return;
       }
+      // Secondary data is optional for rendering, but a failure must still be visible.
+      setPartialLoadError(allResponses.some((r) => !r.ok));
 
       const [ovJson, sesJson, leadJson] = await Promise.all([
         ovRes.json() as Promise<OverviewPayload>,
@@ -278,7 +293,13 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
     const epoch = ++sessionEpochRef.current;
     const controller = new AbortController();
     async function checkSession() {
-      // The session cookie is HttpOnly; only the server can check it.
+      // The session cookie is HttpOnly; only the server can check it. Skip the probe (and the
+      // expected 401 in the console) when the login hint cookie says there is no session.
+      if (!hasPanelSessionHint()) {
+        clearSensitiveState();
+        setAuthState("unauthenticated");
+        return;
+      }
       try {
         const res = await fetch("/api/panel/auth", {
           credentials: "same-origin",
@@ -587,6 +608,19 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
             {d.loading}
           </div>
         ) : (
+          <>
+          {partialLoadError ? (
+            <div className="panel-register mb-4 flex flex-wrap items-center gap-3 p-4" role="status">
+              <p className="font-medium text-danger">{d.loadError}</p>
+              <button
+                type="button"
+                onClick={() => void loadPanelData()}
+                className={buttonClass({ size: "sm", className: "min-h-11" })}
+              >
+                {d.retry}
+              </button>
+            </div>
+          ) : null}
           <div
             role="tabpanel"
             id={activePanelId}
@@ -728,6 +762,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
             {activeTab === "ai" && <AiTab lang={lang} d={d} />}
             {activeTab === "plans" && <PlansTab lang={lang} d={d} />}
           </div>
+          </>
         )}
       </main>
     </div>

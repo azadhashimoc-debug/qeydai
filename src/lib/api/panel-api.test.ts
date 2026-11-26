@@ -284,7 +284,8 @@ describe("Panel auth (/api/panel/auth)", () => {
 
     const prevTrustProxy = process.env.TRUST_PROXY;
     try {
-      // Untrusted proxy default: spoofed x-real-ip headers share a single bucket and cannot bypass rate limit
+      // Untrusted proxy default: spoofed x-real-ip headers are ignored, and failed attempts
+      // with other credentials cannot lock a legitimate operator out (no shared "unknown" bucket).
       delete process.env.TRUST_PROXY;
       const u1 = await panelApi.authPost(
         panelReq("/api/panel/auth", { method: "POST", body: { key: "bad1" }, headers: { "x-real-ip": "10.0.0.1" } }),
@@ -295,7 +296,18 @@ describe("Panel auth (/api/panel/auth)", () => {
       const u3 = await panelApi.authPost(
         panelReq("/api/panel/auth", { method: "POST", body: { key: ADMIN_KEY_A }, headers: { "x-real-ip": "10.0.0.3" } }),
       );
-      expect([u1.status, u2.status, u3.status]).toEqual([401, 401, 429]);
+      expect([u1.status, u2.status, u3.status]).toEqual([401, 401, 200]);
+
+      // Repeating one credential is still limited, even when the spoofed IP rotates.
+      const repeat = [];
+      for (const ip of ["10.0.1.1", "10.0.1.2", "10.0.1.3"]) {
+        repeat.push(
+          (await panelApi.authPost(
+            panelReq("/api/panel/auth", { method: "POST", body: { key: "same-bad" }, headers: { "x-real-ip": ip } }),
+          )).status,
+        );
+      }
+      expect(repeat).toEqual([401, 401, 429]);
 
       // Behind TRUST_PROXY=x-real-ip: distinct IPs have separate buckets
       setup({ authRateMax: 2 });

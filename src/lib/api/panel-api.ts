@@ -14,14 +14,16 @@ import {
   type MessageSender,
 } from "../enrollment/enrollment";
 import { readLimitedUtf8 } from "../http/read-body";
-import { clientKey, noStoreHeaders, sameOrigin } from "../http/same-origin";
+import { clientKey, isUnknownClient, noStoreHeaders, sameOrigin } from "../http/same-origin";
 import { createRateLimiter } from "../rate-limit";
 import { parseInstant, validateName } from "../validation";
 import {
   adminKeyFingerprint,
   authenticateAdminKey,
   buildPanelCookieHeader,
+  buildPanelHintCookieHeader,
   clearPanelCookieHeader,
+  clearPanelHintCookieHeader,
   createPanelSessionToken,
   DEFAULT_PANEL_TTL_MS,
   getPanelAuthConfig,
@@ -51,6 +53,8 @@ export type PanelApiOptions = {
   now?: () => Date;
   authRateMax?: number;
   authMaxKeys?: number;
+  /** Process-wide cap on login attempts from callers without a trusted client identity. */
+  authAnonRateMax?: number;
   apiRateMax?: number;
 };
 
@@ -63,11 +67,11 @@ const isMessageDirection = (v: unknown): v is MessageDirection =>
 const isMessageSender = (v: unknown): v is MessageSender =>
   typeof v === "string" && (MESSAGE_SENDERS as readonly string[]).includes(v);
 
-const json = (status: number, body: unknown, headers?: HeadersInit) =>
-  Response.json(body, {
-    status,
-    headers: headers ? { ...noStoreHeaders, ...headers } : { ...noStoreHeaders },
-  });
+const json = (status: number, body: unknown, setCookies: string[] = []) => {
+  const headers = new Headers(noStoreHeaders);
+  for (const cookie of setCookies) headers.append("set-cookie", cookie);
+  return Response.json(body, { status, headers });
+};
 
 const fail = (status: number, error: string, extra: Record<string, unknown> = {}) =>
   json(status, { ok: false, error, ...extra });
@@ -110,6 +114,7 @@ export function createPanelApi({
   now = () => new Date(),
   authRateMax = 30,
   authMaxKeys = 10_000,
+  authAnonRateMax = 300,
   apiRateMax = 600,
 }: PanelApiOptions) {
   const authLimiter = createRateLimiter({
@@ -119,6 +124,15 @@ export function createPanelApi({
     evictOnFull: true,
     now: () => now().getTime(),
   });
+  // Without TRUST_PROXY (and off Vercel) every caller maps to one "unknown" identity. A single
+  // shared bucket would let one attacker lock every operator out, so anonymous attempts are
+  // limited per submitted credential plus a much larger process-wide backstop instead.
+  const anonAuthLimiter = createRateLimiter({
+    max: authAnonRateMax,
+    windowMs: 60_000,
+    now: () => now().getTime(),
+  });
+  let warnedUnknownClient = false;
   const apiLimiter = createRateLimiter({ max: apiRateMax, windowMs: 60_000, now: () => now().getTime() });
 
   async function requirePanelSession(
@@ -165,18 +179,37 @@ export function createPanelApi({
   return {
     authGet: async (req: Request): Promise<Response> => {
       const auth = await requirePanelSession(req);
-      if (!auth.ok) return auth.response;
+      if (!auth.ok) {
+        // Drop a stale UI hint so the browser stops probing once the session is gone.
+        return json(401, { ok: false, error: "unauthorized" }, [clearPanelHintCookieHeader(isSecureRequest(req))]);
+      }
       return json(200, { ok: true, tenantId: auth.tenantId });
     },
 
     authPost: async (req: Request): Promise<Response> => {
       if (!sameOrigin(req)) return fail(403, "forbidden");
-      if (!authLimiter.allow(clientKey(req))) return fail(429, "rate_limited");
+      const client = clientKey(req);
+      const anonymous = isUnknownClient(client);
+      if (anonymous) {
+        if (!warnedUnknownClient) {
+          warnedUnknownClient = true;
+          console.warn("panel auth: no trusted client IP (set TRUST_PROXY); using per-credential rate limits");
+        }
+        if (anonAuthLimiter.isLimited("all")) return fail(429, "rate_limited");
+      } else if (!authLimiter.allow(`ip:${client}`)) {
+        return fail(429, "rate_limited");
+      }
 
       const body = await readJsonObject(req, MAX_AUTH_BODY_BYTES);
       if (!body.ok) return body.response;
 
       const rawKey = body.value.key;
+      if (anonymous) {
+        const credential = typeof rawKey === "string" ? adminKeyFingerprint(rawKey) : "invalid";
+        if (!anonAuthLimiter.allow("all") || !authLimiter.allow(`cred:${credential}`)) {
+          return fail(429, "rate_limited");
+        }
+      }
       if (typeof rawKey !== "string") return fail(401, "unauthorized");
 
       const config = getAuthConfig();
@@ -199,12 +232,18 @@ export function createPanelApi({
       } catch {
         return fail(503, "database_unavailable");
       }
-      const cookie = buildPanelCookieHeader(token, isSecureRequest(req), DEFAULT_PANEL_TTL_MS / 1000);
-      return json(200, { ok: true, tenantId }, { "set-cookie": cookie });
+      const secure = isSecureRequest(req);
+      const maxAgeSec = DEFAULT_PANEL_TTL_MS / 1000;
+      return json(200, { ok: true, tenantId }, [
+        buildPanelCookieHeader(token, secure, maxAgeSec),
+        buildPanelHintCookieHeader(secure, maxAgeSec),
+      ]);
     },
 
     authDelete: async (req: Request): Promise<Response> => {
       if (!sameOrigin(req)) return fail(403, "forbidden");
+      const secure = isSecureRequest(req);
+      const clearCookies = [clearPanelCookieHeader(secure), clearPanelHintCookieHeader(secure)];
       const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
       if (token) {
         const config = getAuthConfig();
@@ -212,11 +251,18 @@ export function createPanelApi({
           const nowMs = now().getTime();
           const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
           const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs, payload.tenantId);
+          if (payload) {
+            try {
+              await revokePanelJti(payload.jti, payload.exp, nowMs, payload.tenantId);
+            } catch (err) {
+              // Still drop the cookies, but report that the token was not revoked server-side.
+              console.error("panel logout revocation failed:", err instanceof Error ? err.message : "unknown");
+              return json(503, { ok: false, error: "revocation_unavailable" }, clearCookies);
+            }
+          }
         }
       }
-      const cookie = clearPanelCookieHeader(isSecureRequest(req));
-      return json(200, { ok: true }, { "set-cookie": cookie });
+      return json(200, { ok: true }, clearCookies);
     },
 
     overview: (req: Request): Promise<Response> =>

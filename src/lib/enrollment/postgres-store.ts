@@ -177,6 +177,11 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
        DO UPDATE SET exp_ms=GREATEST(panel_revoked_jti.exp_ms, EXCLUDED.exp_ms)`,
       [tenantId, jti, expMs],
     );
+    // Expired revocations are dead weight: the token itself is already rejected by `exp`.
+    // Best effort, so a role without DELETE never blocks logout.
+    await this.scoped(tenantId)
+      .query("DELETE FROM panel_revoked_jti WHERE tenant_id=$1 AND exp_ms <= $2", [tenantId, Date.now()])
+      .catch(() => {});
   }
 
   async isPanelJtiRevoked(jti: string, nowMs: number, tenantId: string): Promise<boolean> {
