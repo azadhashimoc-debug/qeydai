@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
@@ -23,8 +24,18 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/login">): 
   });
 }
 
-export default async function LoginPage({ params }: PageProps<"/[lang]/login">) {
+export default function LoginPage(props: PageProps<"/[lang]/login">) {
+  // Reading searchParams makes the route dynamic, so it lives behind Suspense to keep prerendering valid.
+  return (
+    <Suspense fallback={null}>
+      <LoginContent {...props} />
+    </Suspense>
+  );
+}
+
+async function LoginContent({ params, searchParams }: PageProps<"/[lang]/login">) {
   const { lang } = await params;
+  const query = await searchParams;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
   const auth = d.subpages.authPages;
@@ -71,6 +82,8 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
             googleLabel: shell.googleLabel,
             facebookLabel: shell.facebookLabel,
             socialNote: shell.socialNote,
+            oauthError: query.oauth_error === "unavailable" ? shell.socialNote
+              : query.oauth_error ? shell.oauthError : undefined,
             forgotLink: login.forgotLink,
             invalidKey: login.invalidKey,
             rateLimited: login.rateLimited,

@@ -20,6 +20,7 @@ try {
     "0006_panel_accounts.sql",
     "0007_auth_rate_limits.sql",
     "0008_billing_events.sql",
+    "0009_panel_oauth_linking.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);

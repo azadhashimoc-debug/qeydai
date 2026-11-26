@@ -1032,7 +1032,8 @@
       "heartAlt": "Ürək maskotu",
       "googleLabel": "Google ilə daxil ol",
       "facebookLabel": "Facebook ilə daxil ol",
-      "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda iş sahəsi açarı ilə daxil olun."
+      "socialNote": "OAuth girişi iş sahəsi quraşdırıldıqdan sonra aktiv olur. Hazırda iş sahəsi açarı ilə daxil olun.",
+      "oauthError": "Google və ya Facebook ilə giriş tamamlanmadı. Yenidən cəhd edin və ya e-poçt ilə daxil olun."
     }
   },
   "selectAccount": {
