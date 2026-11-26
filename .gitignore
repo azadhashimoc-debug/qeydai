@@ -47,3 +47,9 @@ data/
 
 # generated images (large binaries)
 /assets/
+
+# local logs and command output
+*.log
+/logs/
+/output*.txt
+/tsc-out.txt
