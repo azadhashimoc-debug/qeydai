@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { connection } from "next/server";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
-import { getDictionary, locales } from "../dictionaries";
+import { getDictionary } from "../dictionaries";
 import "../marketing.css";
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/login">): Promise<Metadata> {
   const { lang } = await params;
@@ -24,16 +20,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/login">): 
   });
 }
 
-export default function LoginPage(props: PageProps<"/[lang]/login">) {
-  // Reading searchParams makes the route dynamic, so it lives behind Suspense to keep prerendering valid.
-  return (
-    <Suspense fallback={null}>
-      <LoginContent {...props} />
-    </Suspense>
-  );
-}
-
-async function LoginContent({ params, searchParams }: PageProps<"/[lang]/login">) {
+export default async function LoginPage({ params, searchParams }: PageProps<"/[lang]/login">) {
+  await connection();
   const { lang } = await params;
   const query = await searchParams;
   const d = await getDictionary(lang);
@@ -90,7 +78,7 @@ async function LoginContent({ params, searchParams }: PageProps<"/[lang]/login">
             networkError: login.networkError,
             securityNote: login.securityNote,
           }}
-          contactHref={`/${locale}/contact`}
+          contactHref={`/${locale}/forgot-password`}
         />
       </AuthShell>
     </div>

@@ -39,7 +39,10 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const [loginMode, setLoginMode] = useState<"password" | "key">("password");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "invalid" | "unverified" | "limited" | "network"
+  >("idle");
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const emailId = useId();
   const keyId = useId();
   const statusId = useId();
@@ -52,12 +55,34 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     };
   }, []);
 
-  const isError = status === "invalid" || status === "limited" || status === "network";
+  const isError =
+    status === "invalid" || status === "unverified" || status === "limited" || status === "network";
   const statusText =
     status === "invalid" ? copy.invalidKey
+    : status === "unverified"
+      ? (lang === "az"
+        ? "E-poçt ünvanınız hələ təsdiqlənməyib. Zəhmət olmasa gələnlər qutusundakı linkə klikləyin."
+        : "Your email address is not verified yet. Please check your inbox for the verification link.")
     : status === "limited" ? copy.rateLimited
     : status === "network" ? copy.networkError
     : copy.oauthError ?? copy.securityNote;
+
+  async function handleResendVerification() {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || resendState === "sending") return;
+    setResendState("sending");
+    try {
+      const res = await fetch("/api/panel/account/resend-verification", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ email: trimmedEmail, locale: lang }),
+      });
+      setResendState(res.ok ? "sent" : "error");
+    } catch {
+      setResendState("error");
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,6 +93,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
       return;
     }
     setStatus("submitting");
+    setResendState("idle");
     try {
       const res = await fetch(loginMode === "password" ? "/api/panel/account/login" : "/api/panel/auth", {
         method: "POST",
@@ -84,6 +110,13 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
       if (res.status === 429) {
         setStatus("limited");
         return;
+      }
+      if (res.status === 403) {
+        const body = (await res.json().catch(() => null)) as { error?: string } | null;
+        if (body?.error === "email_not_verified") {
+          setStatus("unverified");
+          return;
+        }
       }
       setStatus("invalid");
       keyRef.current?.focus();
@@ -179,6 +212,23 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             >
               {statusText}
             </p>
+            {status === "unverified" && email.trim() ? (
+              <div style={{ marginTop: "0.5rem", textAlign: "center" }}>
+                <button
+                  type="button"
+                  disabled={resendState === "sending" || resendState === "sent"}
+                  onClick={handleResendVerification}
+                  className="pm-auth-forgot-link"
+                  style={{ background: "none", border: 0, cursor: "pointer", padding: "0.25rem 0.5rem" }}
+                >
+                  {resendState === "sending"
+                    ? (lang === "az" ? "Göndərilir..." : "Sending...")
+                    : resendState === "sent"
+                      ? (lang === "az" ? "Təsdiq linki yenidən göndərildi." : "Verification link resent.")
+                      : (lang === "az" ? "Təsdiq linkini yenidən göndər" : "Resend verification link")}
+                </button>
+              </div>
+            ) : null}
           </form>
 
 

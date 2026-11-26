@@ -7,6 +7,11 @@ export type AuthLimit = DistributedLimit;
 export const REGISTER_PER_IP: AuthLimit = { name: "register-ip", max: 20, windowMs: 10 * 60_000 };
 export const LOGIN_PER_IP: AuthLimit = { name: "login-ip", max: 30, windowMs: 60_000 };
 export const LOGIN_PER_EMAIL: AuthLimit = { name: "login-email", max: 10, windowMs: 15 * 60_000 };
+export const FORGOT_PASSWORD_PER_IP: AuthLimit = { name: "forgot-ip", max: 15, windowMs: 15 * 60_000 };
+export const FORGOT_PASSWORD_PER_EMAIL: AuthLimit = { name: "forgot-email", max: 5, windowMs: 15 * 60_000 };
+export const RESEND_VERIFY_PER_IP: AuthLimit = { name: "resend-verify-ip", max: 15, windowMs: 15 * 60_000 };
+export const RESEND_VERIFY_PER_EMAIL: AuthLimit = { name: "resend-verify-email", max: 5, windowMs: 15 * 60_000 };
+export const RESET_PASSWORD_PER_IP: AuthLimit = { name: "reset-pw-ip", max: 20, windowMs: 15 * 60_000 };
 
 /**
  * Client IP for auth limits. Same trust rules as every other limiter: proxy headers count only

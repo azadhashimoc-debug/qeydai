@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { connection } from "next/server";
 import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
-import { getDictionary, locales } from "../dictionaries";
+import { getDictionary } from "../dictionaries";
 import "../marketing.css";
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/link-account">): Promise<Metadata> {
   const { lang } = await params;
@@ -23,16 +19,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/link-accou
   });
 }
 
-export default function LinkAccountPage(props: PageProps<"/[lang]/link-account">) {
-  // Reading searchParams makes the route dynamic, so it lives behind Suspense to keep prerendering valid.
-  return (
-    <Suspense fallback={null}>
-      <LinkContent {...props} />
-    </Suspense>
-  );
-}
-
-async function LinkContent({ params, searchParams }: PageProps<"/[lang]/link-account">) {
+export default async function LinkAccountPage({ params, searchParams }: PageProps<"/[lang]/link-account">) {
+  await connection();
   const { lang } = await params;
   const query = await searchParams;
   const d = await getDictionary(lang);

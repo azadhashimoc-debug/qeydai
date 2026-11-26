@@ -73,10 +73,13 @@ suite("business account registration and persistent sign-in with PostgreSQL", ()
     expect(login.headers.get("set-cookie")).toContain("HttpOnly");
   });
 
-  it("rejects duplicate signup and incorrect passwords", async () => {
-    expect((await registerBusiness(req("/api/panel/account/register", {
+  it("hides duplicate signup without issuing a session and rejects incorrect passwords", async () => {
+    const duplicate = await registerBusiness(req("/api/panel/account/register", {
       businessName: "Different Business", email, password,
-    }))).status).toBe(409);
+    }));
+    expect(duplicate.status).toBe(202);
+    expect(duplicate.headers.get("set-cookie")).toBeNull();
+    expect(await duplicate.json()).toEqual({ ok: true, verificationRequired: true });
     expect((await loginBusiness(req("/api/panel/account/login", {
       email, password: "not-the-right-password",
     }))).status).toBe(401);

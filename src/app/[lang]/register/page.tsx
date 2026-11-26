@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { AuthKommoRegisterClient } from "@/components/marketing/AuthKommoRegisterClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
-import { getDictionary, locales } from "../dictionaries";
+import { getDictionary } from "../dictionaries";
 import "../marketing.css";
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
 
 export async function generateMetadata({
   params,
@@ -26,6 +23,7 @@ export async function generateMetadata({
 }
 
 export default async function RegisterPage({ params }: PageProps<"/[lang]/register">) {
+  await connection();
   const { lang } = await params;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";

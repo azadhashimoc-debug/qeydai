@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Suspense } from "react";
 import { PanelShell } from "@/components/panel/PanelShell";
 import type { PanelLocale } from "@/components/panel/types";
@@ -15,6 +16,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/panel">): 
 }
 
 export default async function PanelPage({ params }: PageProps<"/[lang]/panel">) {
+  await connection();
   const { lang } = await params;
   const d = await getDictionary(lang);
   const locale: PanelLocale = lang === "en" ? "en" : "az";

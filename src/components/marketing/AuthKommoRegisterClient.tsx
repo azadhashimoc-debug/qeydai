@@ -95,16 +95,24 @@ const WORKSPACE_COPY = {
 const PASSWORD_COPY = {
   az: {
     label: "Parol",
-    placeholder: "Parol (ən azı 10 simvol)",
-    weak: "Parol ən azı 10 simvol olmalı və müxtəlif simvollardan ibarət olmalıdır.",
-    taken: "Bu e-poçt ilə hesab artıq mövcuddur. Daxil olun.",
+    placeholder: "Parol (ən azı 12 simvol)",
+    weak: "Parol ən azı 12 simvol olmalıdır.",
+    verifyTitle: "E-poçtunuzu yoxlayın",
+    verifyBody: "Davam etmək üçün göndərdiyimiz təsdiq linkinə klikləyin. Məktubu görmürsünüzsə, spam qovluğunu yoxlayın və ya yenidən göndərin.",
+    resendBtn: "Təsdiq linkini yenidən göndər",
+    resending: "Göndərilir...",
+    resent: "Yeni təsdiq linki göndərildi.",
     unavailable: "Qeydiyyat hazırda əlçatan deyil. Bir az sonra yenidən cəhd edin.",
   },
   en: {
     label: "Password",
-    placeholder: "Password (at least 10 characters)",
-    weak: "Password must be at least 10 characters and use varied characters.",
-    taken: "An account with this email already exists. Please log in.",
+    placeholder: "Password (at least 12 characters)",
+    weak: "Password must be at least 12 characters long.",
+    verifyTitle: "Check your email",
+    verifyBody: "Click the verification link we sent to your inbox to activate your workspace. Check spam or resend if needed.",
+    resendBtn: "Resend verification link",
+    resending: "Sending...",
+    resent: "A fresh verification link has been sent.",
     unavailable: "Sign-up is unavailable right now. Please try again shortly.",
   },
 } as const;
@@ -118,12 +126,14 @@ export function AuthKommoRegisterClient({
 }: Props) {
   const router = useRouter();
   const [state, setState] = useState<
-    "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social" | "weak_password" | "email_taken" | "unavailable"
+    "idle" | "sending" | "ok" | "verify_email" | "error" | "name_error" | "limited" | "social" | "weak_password" | "unavailable"
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [workspaceName, setWorkspaceName] = useState("Mənim Biznesim");
   const [subdomain, setSubdomain] = useState("menim-biznesim");
   const [savingWorkspace, setSavingWorkspace] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const nameId = useId();
@@ -148,21 +158,37 @@ export function AuthKommoRegisterClient({
   const statusText =
     state === "ok"
       ? copy.okText
-      : state === "limited"
-        ? copy.rateLimitedText
-        : state === "name_error"
-          ? copy.nameRequired
-          : state === "error"
-            ? copy.errText
-            : state === "social"
-              ? copy.socialNote
-              : state === "weak_password"
-                ? pw.weak
-                : state === "email_taken"
-                  ? pw.taken
+      : state === "verify_email"
+        ? pw.verifyBody
+        : state === "limited"
+          ? copy.rateLimitedText
+          : state === "name_error"
+            ? copy.nameRequired
+            : state === "error"
+              ? copy.errText
+              : state === "social"
+                ? copy.socialNote
+                : state === "weak_password"
+                  ? pw.weak
                   : state === "unavailable"
                     ? pw.unavailable
                     : "";
+
+  async function handleResend() {
+    if (!registeredEmail || resendState === "sending") return;
+    setResendState("sending");
+    try {
+      const res = await fetch("/api/panel/account/resend-verification", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ email: registeredEmail, locale }),
+      });
+      setResendState(res.ok ? "sent" : "error");
+    } catch {
+      setResendState("error");
+    }
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -176,6 +202,7 @@ export function AuthKommoRegisterClient({
     const rawName = String(fd.get("name") ?? "").trim();
     const rawPhone = String(fd.get("phone") ?? "").trim();
     const rawPassword = String(fd.get("password") ?? "");
+    const rawEmail = (emailRef.current?.value ?? "").trim();
 
     if (rawName.length < 2) {
       setState("name_error");
@@ -192,7 +219,7 @@ export function AuthKommoRegisterClient({
       return;
     }
 
-    if (rawPassword.length < 10) {
+    if (rawPassword.length < 12) {
       setState("weak_password");
       passwordRef.current?.focus();
       return;
@@ -205,11 +232,18 @@ export function AuthKommoRegisterClient({
         headers: { "content-type": "application/json" },
         credentials: "same-origin",
         body: JSON.stringify({
-          email: emailRef.current?.value ?? "",
+          email: rawEmail,
           password: rawPassword,
           businessName: rawName,
+          locale,
         }),
       });
+      if (res.status === 202) {
+        setRegisteredEmail(rawEmail);
+        setResendState("idle");
+        setState("verify_email");
+        return;
+      }
       if (res.ok) {
         // Keep the phone number as a CRM lead too; failure here must not block sign-up.
         void fetch("/api/lead", {
@@ -241,9 +275,6 @@ export function AuthKommoRegisterClient({
         });
       } else if (res.status === 429) {
         setState("limited");
-      } else if (res.status === 409) {
-        setState("email_taken");
-        emailRef.current?.focus();
       } else if (res.status === 422) {
         const body = (await res.json().catch(() => null)) as { field?: string } | null;
         if (body?.field === "name") {
@@ -368,7 +399,7 @@ export function AuthKommoRegisterClient({
                   name="password"
                   type="password"
                   required
-                  minLength={10}
+                  minLength={12}
                   maxLength={128}
                   autoComplete="new-password"
                   placeholder={pw.placeholder}
@@ -384,13 +415,13 @@ export function AuthKommoRegisterClient({
 
             <button
               type="submit"
-              disabled={state === "sending"}
+              disabled={state === "sending" || state === "verify_email"}
               className="pm-auth-submit-pill"
             >
               {state === "sending" ? copy.sending : copy.submit}
             </button>
 
-            {statusText && (
+            {statusText && state !== "verify_email" && (
               <p
                 id={statusId}
                 role="status"
@@ -407,6 +438,25 @@ export function AuthKommoRegisterClient({
           </>
         )}
       </form>
+
+      {state === "verify_email" && (
+        <div className="pm-kommo-create-account" role="status" aria-live="polite">
+          <h2 className="pm-kommo-create-title">{pw.verifyTitle}</h2>
+          <p className="pm-auth-note">{pw.verifyBody}</p>
+          <button
+            type="button"
+            disabled={resendState === "sending" || resendState === "sent"}
+            onClick={handleResend}
+            className="pm-auth-submit-pill"
+          >
+            {resendState === "sending"
+              ? pw.resending
+              : resendState === "sent"
+                ? pw.resent
+                : pw.resendBtn}
+          </button>
+        </div>
+      )}
 
       {/* Step 3: Kommo Create Account / Subdomain screen (.js-create-account) */}
       {state === "ok" && (

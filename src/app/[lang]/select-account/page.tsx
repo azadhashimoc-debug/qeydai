@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { SelectAccountClient } from "@/components/marketing/SelectAccountClient";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
-import { getDictionary, locales } from "../dictionaries";
+import { getDictionary } from "../dictionaries";
 import "../marketing.css";
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/select-account">): Promise<Metadata> {
   const { lang } = await params;
@@ -28,6 +25,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/select-acc
 }
 
 export default async function SelectAccountPage({ params }: PageProps<"/[lang]/select-account">) {
+  await connection();
   const { lang } = await params;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
