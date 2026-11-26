@@ -42,9 +42,10 @@ describe("authenticateAdminKey", () => {
 });
 
 describe("derivePanelSecret", () => {
-  it("returns null (fail-closed) when adminKeys is empty even if explicitSecret is provided", () => {
+  it("requires either configured administrator keys or a strong explicit secret", () => {
     expect(derivePanelSecret({})).toBeNull();
-    expect(derivePanelSecret({}, "s".repeat(32))).toBeNull();
+    expect(derivePanelSecret({}, "weak")).toBeNull();
+    expect(derivePanelSecret({}, "s".repeat(32))).not.toBeNull();
   });
 
   it("derives deterministic secret independent of key insertion order", () => {

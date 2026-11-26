@@ -2,9 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [master, main, 'feat/panelim-subpages', 'feat/pani-crm-intake-core']
+    branches: [master, main, 'feat/panelim-subpages', 'feat/pani-crm-intake-core', 'fix/crm-customer-readiness']
   pull_request:
     branches: [master, main, 'feat/panelim-subpages']
+
+permissions:
+  contents: read
+  statuses: write
 
 jobs:
   verify:
@@ -56,6 +60,10 @@ jobs:
         run: npx playwright test --project=mobile
       - name: Playwright desktop and mobile (combined regression)
         run: npm run e2e
+      - name: PostgreSQL-backed business registration and CRM Playwright (desktop/mobile)
+        env:
+          QEYDAI_DATABASE_URL: postgresql://panelim_ci:local_app_password@127.0.0.1:5432/panelim_ci
+        run: npx playwright test --config playwright.pg.config.ts
 
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -65,3 +73,21 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+
+      - name: Publish CRM release-gate success status
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -f state=success -f context=crm-release-gate \
+            -f description="All configured CI checks passed"
+
+      - name: Publish CRM release-gate failure status
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -f state=failure -f context=crm-release-gate \
+            -f description="A required CI step failed"

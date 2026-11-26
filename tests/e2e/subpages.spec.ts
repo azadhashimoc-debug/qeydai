@@ -109,6 +109,7 @@ test("standalone login signs into panel and register page links back to login", 
   await page.getByRole("link", { name: "Sign in to your panel" }).click();
   await expect(page).toHaveURL(/\/en\/login$/);
 
+  await page.getByRole("button", { name: "Access key", exact: true }).click();
   await page.getByLabel("Workspace access key").fill(E2E_ADMIN_KEYS[project]);
   await page.getByRole("button", { name: "Sign in to panel" }).click();
   await expect(page).toHaveURL(/\/en\/panel$/);
@@ -157,11 +158,12 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page.locator(".js-find-partner-form-step-1")).toBeVisible();
   await page.locator(".js-modal-close-button").click();
 
-  // The current sign-in design uses a real workspace key. OAuth buttons are
+  // Both email/password and legacy keys are supported. Explicitly choose key mode. OAuth buttons are
   // informational until OAuth is configured; no mock social login may mint a
   // panel session. Verify the actual key form, security feedback and support link.
   await page.goto("/az/login");
   await expect(page.getByRole("heading", { name: "Daxil ol" })).toBeVisible();
+  await page.getByRole("button", { name: "Giriş açarı", exact: true }).click();
   const keyField = page.getByLabel("İş sahəsi açarı");
   await expect(keyField).toHaveAttribute("type", "password");
   await page.getByRole("button", { name: "Göstər" }).click();

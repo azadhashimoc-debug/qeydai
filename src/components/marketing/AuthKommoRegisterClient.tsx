@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useId, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics/client";
-import { extractUtmProps, type Locale } from "@/lib/analytics/events";
+import type { Locale } from "@/lib/analytics/events";
 import { getActiveExperimentToken } from "@/lib/experiments/ab";
 import { AuthSocialRow } from "./AuthSocialRow";
 
@@ -44,31 +44,31 @@ type Props = {
 
 const WORKSPACE_COPY = {
   az: {
-    step3Title: "14 günlük sınağınızı başladın",
-    step3Sub: "Bütün özəlliklərə və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
-    accountNameLabel: "Hesab ismi (Mərkəz və ya şirkət adı)",
+    step3Title: "CRM hesabınızı yaradın",
+    step3Sub: "Biznesiniz üçün hesab yaradın və CRM panelinə e-poçt və şifrə ilə daxil olun.",
+    accountNameLabel: "Biznesin adı",
     accountNamePlaceholder: "Məsələn: Bakı Tədris Mərkəzi",
-    subdomainLabel: "Hesab alt alan adı",
+    subdomainLabel: "Hesabın alt domeni",
     industryLabel: "Sektor",
     industries: [
       "Təhsil və Kurslar",
-      "İdman və Fitnes",
+      "İdman və fitnes",
       "Sağlamlıq və Gözəllik",
-      "Pərakəndə və E-ticarət",
+      "Pərakəndə satış və elektron ticarət",
       "Daşınmaz Əmlak",
       "Rəqəmsal və İT Xidmətləri",
     ],
-    businessTypeLabel: "İşlətmə növü",
+    businessTypeLabel: "Biznes növü",
     businessTypes: ["B2C (Fərdi müştərilər)", "B2B (Korporativ)", "Hər ikisi (B2B & B2C)"],
-    employeesLabel: "Çalışan sayı",
+    employeesLabel: "İşçi sayı",
     employeeCounts: ["1 - 5", "6 - 15", "16 - 50", "50+"],
     clientsLabel: "Aylıq müştəri / müraciət sayı",
     clientCounts: ["1 - 100", "100 - 500", "500 - 2000", "2000+"],
-    openPanelBtn: "Hesab yarat və Canlı CRM Panelini Aç",
+    openPanelBtn: "Hesab yarat və CRM panelini aç",
   },
   en: {
-    step3Title: "Start your 14-day free trial",
-    step3Sub: "Access all features and 10GB storage. No credit card required",
+    step3Title: "Create your CRM account",
+    step3Sub: "Create your business account and sign in with your email and password.",
     accountNameLabel: "Account name (Center or company name)",
     accountNamePlaceholder: "e.g. Baku Learning Center",
     subdomainLabel: "Account subdomain",
@@ -103,7 +103,8 @@ export function AuthKommoRegisterClient({
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
-  const [subdomain, setSubdomain] = useState("baki-merkezi");
+  const [accountPassword, setAccountPassword] = useState("");
+  const [accountStatus, setAccountStatus] = useState<"idle" | "saving" | "exists" | "error">("idle");
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const nameId = useId();
@@ -124,7 +125,7 @@ export function AuthKommoRegisterClient({
   const hasPhoneError = state === "error";
   const statusText =
     state === "ok"
-      ? copy.okText
+      ? ""
       : state === "limited"
         ? copy.rateLimitedText
         : state === "name_error"
@@ -162,45 +163,10 @@ export function AuthKommoRegisterClient({
       return;
     }
 
-    setState("sending");
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: rawName, phone: rawPhone }),
-      });
-      if (res.ok) {
-        setState("ok");
-        const slug = rawName
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-|-$/g, "");
-        if (slug) {
-          setWorkspaceName(rawName);
-          setSubdomain(slug);
-        }
-        const { utm_source, utm_medium, utm_campaign } = extractUtmProps(
-          typeof window !== "undefined" ? window.location.search : "",
-        );
-        trackEvent({
-          event: "lead_form_submitted",
-          props: {
-            locale,
-            exp: getActiveExperimentToken(),
-            ...(utm_source ? { utm_source } : {}),
-            ...(utm_medium ? { utm_medium } : {}),
-            ...(utm_campaign ? { utm_campaign } : {}),
-          },
-        });
-      } else if (res.status === 429) {
-        setState("limited");
-      } else {
-        setState("error");
-        phoneRef.current?.focus();
-      }
-    } catch {
-      setState("error");
-    }
+    // This is the business onboarding step, not a marketing lead submission.
+    // Create the account only when the password is entered in the final step.
+    setWorkspaceName(rawName);
+    setState("ok");
   }
 
   return (
@@ -329,70 +295,45 @@ export function AuthKommoRegisterClient({
               onChange={(e) => setWorkspaceName(e.target.value)}
             />
           </label>
-          <label className="pm-kommo-field js-control-subdomain-wrapper">
-            <span>{ws.subdomainLabel}</span>
-            <div className="pm-kommo-subdomain-box">
-              <input
-                type="text"
-                name="subdomain"
-                value={subdomain}
-                onChange={(e) =>
-                  setSubdomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))
-                }
-              />
-              <span>.panelim.az</span>
-            </div>
+          <label className="pm-kommo-field">
+            <span>{locale === "az" ? "Şifrə (ən azı 12 simvol)" : "Password (minimum 12 characters)"}</span>
+            <input type="password" autoComplete="new-password" required minLength={12} maxLength={128}
+              value={accountPassword} onChange={(event) => setAccountPassword(event.target.value)} />
           </label>
-          <div className="pm-tools-row">
-            <label className="pm-kommo-field js-industry-select">
-              <span>{ws.industryLabel}</span>
-              <select defaultValue={ws.industries[0]}>
-                {ws.industries.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="pm-kommo-field js-business-type-select">
-              <span>{ws.businessTypeLabel}</span>
-              <select defaultValue={ws.businessTypes[0]}>
-                {ws.businessTypes.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="pm-tools-row">
-            <label className="pm-kommo-field js-employees-count-select">
-              <span>{ws.employeesLabel}</span>
-              <select defaultValue={ws.employeeCounts[0]}>
-                {ws.employeeCounts.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="pm-kommo-field js-clients-count-select">
-              <span>{ws.clientsLabel}</span>
-              <select defaultValue={ws.clientCounts[0]}>
-                {ws.clientCounts.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <Link
-            href={loginHref}
-            className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
+          <button type="button" className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
+            disabled={accountStatus === "saving" || accountPassword.length < 12 || workspaceName.trim().length < 2}
+            onClick={async () => {
+              if (!emailRef.current?.reportValidity()) return;
+              setAccountStatus("saving");
+              try {
+                const response = await fetch("/api/panel/account/register", {
+                  method: "POST",
+                  credentials: "same-origin",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify({
+                    businessName: workspaceName.trim(), email: emailRef.current.value.trim(), password: accountPassword,
+                  }),
+                });
+                if (response.ok) {
+                  window.location.assign(`/${locale}/panel`);
+                  return;
+                }
+                setAccountStatus(response.status === 409 ? "exists" : "error");
+              } catch {
+                setAccountStatus("error");
+              }
+            }}
           >
-            {locale === "az" ? "Giriş səhifəsinə keç" : "Go to sign in"} →
-          </Link>
+            {accountStatus === "saving"
+              ? (locale === "az" ? "Hesab yaradılır..." : "Creating account...")
+              : ws.openPanelBtn}
+          </button>
+          {accountStatus === "exists" && <p role="alert" className="pm-auth-status is-error">
+            {locale === "az" ? "Bu e-poçtla hesab artıq mövcuddur." : "An account with this email already exists."}
+          </p>}
+          {accountStatus === "error" && <p role="alert" className="pm-auth-status is-error">
+            {locale === "az" ? "Hesab yaratmaq mümkün olmadı. Yenidən yoxlayın." : "Unable to create account. Please retry."}
+          </p>}
         </div>
       )}
 

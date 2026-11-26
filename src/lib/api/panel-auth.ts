@@ -108,18 +108,17 @@ export function authenticateAdminKey(rawKey: string, adminKeys: Record<string, s
 
 /**
  * Derives the HMAC signing key for panel session cookies.
- * Returns null (fail-closed) when no admin keys are configured.
+ * Returns null when neither an explicit secret nor administrator keys exist.
  * Uses `explicitSecret` when >= 24 characters; otherwise derives deterministically
  * from the sorted `adminKeys` map so there is never a static hardcoded fallback secret.
  */
 export function derivePanelSecret(adminKeys: Record<string, string>, explicitSecret?: string): Buffer | null {
   const entries = Object.entries(adminKeys);
-  if (entries.length === 0) return null;
-
   const trimmedSecret = typeof explicitSecret === "string" ? explicitSecret.trim() : "";
   if (trimmedSecret.length >= MIN_EXPLICIT_SECRET_LENGTH) {
     return sha256(trimmedSecret);
   }
+  if (entries.length === 0) return null;
 
   const sorted = entries.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   return sha256(`qeydai-panel-v1:${JSON.stringify(sorted)}`);

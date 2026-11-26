@@ -96,7 +96,7 @@ describe("POST enroll", () => {
     expect(body.ok).toBe(true);
     expect(body.enrollmentId).toMatch(/^[0-9a-f-]{36}$/);
     expect(JSON.stringify(body)).not.toContain("Ali");
-    expect(JSON.stringify(body)).not.toContain("994");
+    expect(Object.keys(body).sort()).toEqual(["enrollmentId", "ok"]);
   });
   it.each([
     ["duplicate", 409],
