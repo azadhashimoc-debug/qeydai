@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AuthKommoClient } from "@/components/marketing/AuthKommoClient";
 import { AuthShell } from "@/components/marketing/AuthShell";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
@@ -23,7 +24,16 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/login">): 
   });
 }
 
-export default async function LoginPage({ params, searchParams }: PageProps<"/[lang]/login">) {
+export default function LoginPage(props: PageProps<"/[lang]/login">) {
+  // Reading searchParams makes the route dynamic, so it lives behind Suspense to keep prerendering valid.
+  return (
+    <Suspense fallback={null}>
+      <LoginContent {...props} />
+    </Suspense>
+  );
+}
+
+async function LoginContent({ params, searchParams }: PageProps<"/[lang]/login">) {
   const { lang } = await params;
   const query = await searchParams;
   const d = await getDictionary(lang);
