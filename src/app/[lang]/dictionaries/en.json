@@ -6,7 +6,10 @@
   },
   "a11y": {
     "skipToMain": "Skip to main content",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "sliderPrev": "Previous slide",
+    "sliderNext": "Next slide",
+    "sliderBullet": "Go to slide {{index}}"
   },
   "nav": {
     "features": "Features",

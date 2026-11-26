@@ -11,6 +11,7 @@ import {
   AiSpotlight,
   PricingShowcase,
 } from "@/components/LandingInteractive";
+import { MarketingSlider } from "@/components/marketing/MarketingSlider";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { Photo } from "@/components/Photo";
@@ -78,6 +79,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         })),
       },
     ],
+  };
+
+  const sliderLabels = {
+    prev: dictionary.a11y.sliderPrev,
+    next: dictionary.a11y.sliderNext,
+    bullet: dictionary.a11y.sliderBullet,
   };
 
   const sectorItems = [
@@ -258,14 +265,27 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <section className="pm-logos">
           <div className="pm-wrap">
             <p className="pm-logos-title">{l.logos.title}</p>
-            <div className="pm-logos-grid">
-              {sectorItems.map((sector, idx) => (
-                <div key={sector} className="pm-logo-chip">
-                  <SectorGlyph index={idx} />
-                  <span>{sector}</span>
-                </div>
-              ))}
-            </div>
+            <MarketingSlider
+              label={l.logos.title}
+              labels={sliderLabels}
+              className="pm-logos-slider"
+              slidesPerView={2.2}
+              spaceBetween={10}
+              breakpoints={{
+                480: { slidesPerView: 3.2, spaceBetween: 10 },
+                760: { slidesPerView: 4.2, spaceBetween: 12 },
+                1100: { slidesPerView: 6, spaceBetween: 10 },
+              }}
+              items={sectorItems.map((sector, idx) => ({
+                key: sector,
+                node: (
+                  <div className="pm-logo-chip">
+                    <SectorGlyph index={idx} />
+                    <span>{sector}</span>
+                  </div>
+                ),
+              }))}
+            />
             <div className="pm-logos-action">
               <a href="#features" className="pm-link-arrow">
                 {l.logos.link}
@@ -448,29 +468,41 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p>{l.outcomes.subheading}</p>
             </div>
 
-            <div className="pm-outcomes-grid">
-              {outcomeCards.map((card) => (
-                <article key={card.author} className="pm-outcome-card">
-                  <blockquote>
-                    {card.before}
-                    <mark className="pm-mint-mark">{card.highlight}</mark>
-                    {card.after}
-                  </blockquote>
-                  <footer className="pm-outcome-meta">
-                    <Photo
-                      name={card.photo}
-                      alt={card.alt}
-                      sizes="48px"
-                      className="pm-outcome-avatar"
-                    />
-                    <div>
-                      <strong>{card.author}</strong>
-                      <span>{card.role}</span>
-                    </div>
-                  </footer>
-                </article>
-              ))}
-            </div>
+            <MarketingSlider
+              label={l.outcomes.heading}
+              labels={sliderLabels}
+              className="pm-outcomes-slider"
+              slidesPerView={1.08}
+              spaceBetween={16}
+              breakpoints={{
+                700: { slidesPerView: 2.1, spaceBetween: 16 },
+                1000: { slidesPerView: 3, spaceBetween: 18 },
+              }}
+              items={outcomeCards.map((card) => ({
+                key: card.author,
+                node: (
+                  <article className="pm-outcome-card">
+                    <blockquote>
+                      {card.before}
+                      <mark className="pm-mint-mark">{card.highlight}</mark>
+                      {card.after}
+                    </blockquote>
+                    <footer className="pm-outcome-meta">
+                      <Photo
+                        name={card.photo}
+                        alt={card.alt}
+                        sizes="48px"
+                        className="pm-outcome-avatar"
+                      />
+                      <div>
+                        <strong>{card.author}</strong>
+                        <span>{card.role}</span>
+                      </div>
+                    </footer>
+                  </article>
+                ),
+              }))}
+            />
 
             <div className="pm-outcomes-cta">
               <a href="#contact" className="pm-btn pm-btn-outline">
