@@ -15,6 +15,7 @@ let leadId: string | null = null;
 
 async function signIn(page: Page, key: string) {
   await page.goto("/en/login");
+  await page.getByRole("button", { name: "Access key", exact: true }).click();
   await page.getByLabel("Email").fill("staging-e2e@example.test");
   await page.getByLabel("Workspace access key").fill(key);
   const resPromise = page.waitForResponse((r) =>

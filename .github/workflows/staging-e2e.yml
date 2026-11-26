@@ -2,7 +2,7 @@ name: Neon staging Next.js E2E
 
 on:
   push:
-    branches: ['feat/pani-crm-intake-core']
+    branches: ['feat/pani-crm-intake-core', 'fix/crm-customer-readiness']
     paths:
       - '.github/workflows/staging-e2e.yml'
       - 'playwright.staging.config.ts'

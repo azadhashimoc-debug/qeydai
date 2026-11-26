@@ -86,3 +86,70 @@ export const POST = (req: Request) =>
       return json(201, { ok: true, contact });
     });
   });
+
+/** Update an existing contact without allowing cross-tenant writes. */
+export const PATCH = (req: Request) =>
+  runPanelCRM(req, getPanelAuthConfig, async (member) => {
+    const id = new URL(req.url).searchParams.get("id") ?? "";
+    if (!id || !ID_PATTERN.test(id)) return fail(422, "invalid_input", { field: "id" });
+    const text = await requireBody(req);
+    if (text === null) return fail(413, "payload_too_large");
+    let input: unknown;
+    try {
+      input = JSON.parse(text);
+    } catch {
+      return fail(400, "invalid_json");
+    }
+    if (!input || typeof input !== "object" || Array.isArray(input)) {
+      return fail(400, "invalid_json");
+    }
+    const b = input as Record<string, unknown>;
+    if (b.name === undefined && b.phone === undefined) {
+      return fail(422, "invalid_input", { field: "name" });
+    }
+    let name: string | undefined;
+    if (b.name !== undefined) {
+      if (typeof b.name !== "string") return fail(422, "invalid_input", { field: "name" });
+      name = b.name.trim();
+      if (!name || name.length > 120) return fail(422, "invalid_input", { field: "name" });
+    }
+    let phone: string | null | undefined;
+    if (b.phone !== undefined) {
+      if (b.phone !== null && typeof b.phone !== "string") {
+        return fail(422, "invalid_input", { field: "phone" });
+      }
+      const raw = typeof b.phone === "string" ? b.phone.trim() : "";
+      phone = raw ? normalizeAzPhone(raw) : null;
+      if (raw && !phone) return fail(422, "invalid_input", { field: "phone" });
+    }
+    return withWorkspace(member, async (actor, db) => {
+      if (!canWrite(actor.role, "contacts")) return fail(403, "forbidden");
+      const existing = await getContact(db, actor.tenantId, id);
+      if (!existing) return fail(404, "not_found");
+      const nextName = name ?? existing.name;
+      const nextPhone = phone === undefined ? existing.phone : phone;
+      if (nextPhone && nextPhone !== existing.phone) {
+        const duplicate = await db.query(
+          "SELECT 1 FROM sales_contacts WHERE tenant_id=$1 AND phone=$2 AND id<>$3 LIMIT 1",
+          [actor.tenantId, nextPhone, id],
+        );
+        if (duplicate.rows.length) return fail(409, "contact_exists");
+      }
+      try {
+        await db.query(
+          `UPDATE sales_contacts
+           SET name=$3, phone=$4,
+               phone_verified=CASE WHEN phone IS DISTINCT FROM $4 THEN false ELSE phone_verified END
+           WHERE tenant_id=$1 AND id=$2`,
+          [actor.tenantId, id, nextName, nextPhone],
+        );
+      } catch (err) {
+        if (err && typeof err === "object" && "code" in err && err.code === "23505") {
+          return fail(409, "contact_exists");
+        }
+        throw err;
+      }
+      const contact = await getContact(db, actor.tenantId, id);
+      return json(200, { ok: true, contact });
+    });
+  });

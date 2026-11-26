@@ -1,4 +1,5 @@
 import type { PoolClient } from "pg";
+import { readAccountSession } from "./account-auth";
 import { ensurePanelJtiStore } from "./instance";
 import { createRateLimiter } from "../rate-limit";
 import {
@@ -76,8 +77,12 @@ export async function requirePanelMember(
   if (!ensurePanelJtiStore()) return { ok: false, response: fail(503, "database_unavailable") };
   const config = getAuthConfig();
   const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
-  if (!config.secret || config.allowedKeysByTenant.size === 0 || !token) {
+  if (!config.secret || !token) {
     return { ok: false, response: fail(401, "unauthorized") };
+  }
+  const account = await readAccountSession(req);
+  if (account) {
+    return { ok: true, value: { tenantId: account.tenantId, memberId: "", role: "owner" } };
   }
   const nowMs = Date.now();
   const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant);

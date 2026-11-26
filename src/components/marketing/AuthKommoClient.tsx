@@ -35,6 +35,7 @@ type Props = {
 export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [loginMode, setLoginMode] = useState<"password" | "key">("password");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network" | "social">("idle");
@@ -68,11 +69,11 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     }
     setStatus("submitting");
     try {
-      const res = await fetch("/api/panel/auth", {
+      const res = await fetch(loginMode === "password" ? "/api/panel/account/login" : "/api/panel/auth", {
         method: "POST",
         headers: { "content-type": "application/json" },
         credentials: "same-origin",
-        body: JSON.stringify({ key: trimmedKey }),
+        body: JSON.stringify(loginMode === "password" ? { email, password: key } : { key: trimmedKey }),
       });
       if (res.ok) {
         setKey("");
@@ -94,6 +95,10 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   return (
     <div className="pm-auth-form-box">
       <h1 className="pm-auth-heading">{copy.title}</h1>
+      <div className="pm-tools-row" role="group" style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }} aria-label={lang === "az" ? "Giriş üsulu" : "Sign-in method"}>
+        <button type="button" className="pm-auth-submit-pill" style={{ flex: "1 1 140px", minWidth: 0 }} aria-pressed={loginMode === "password"} onClick={() => { setLoginMode("password"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "E-poçt və şifrə" : "Email and password"}</button>
+        <button type="button" className="pm-auth-submit-pill" style={{ flex: "1 1 140px", minWidth: 0 }} aria-pressed={loginMode === "key"} onClick={() => { setLoginMode("key"); setKey(""); setStatus("idle"); }}>{lang === "az" ? "Giriş açarı" : "Access key"}</button>
+      </div>
           <form onSubmit={handleSubmit} className="pm-auth-form" noValidate>
             <div className="pm-auth-field">
               <label htmlFor={emailId} className="pm-sr-only">
@@ -121,7 +126,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
 
             <div className="pm-auth-field">
               <label htmlFor={keyId} className="pm-sr-only">
-                {copy.keyLabel}
+                {loginMode === "password" ? (lang === "az" ? "Şifrə" : "Password") : copy.keyLabel}
               </label>
               <div className="pm-auth-input-shell">
                 <span className="pm-auth-input-icon" aria-hidden="true">
@@ -135,14 +140,14 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   id={keyId}
                   name="key"
                   type={showKey ? "text" : "password"}
-                  autoComplete="current-password"
+                  autoComplete={loginMode === "password" ? "current-password" : "off"}
                   required
                   value={key}
                   onChange={(e) => {
                     setKey(e.target.value);
                     if (isError || status === "social") setStatus("idle");
                   }}
-                  placeholder={copy.keyPlaceholder}
+                  placeholder={loginMode === "password" ? (lang === "az" ? "Şifrənizi daxil edin" : "Enter your password") : copy.keyPlaceholder}
                   className="pm-auth-input has-toggle"
                   aria-invalid={isError}
                   aria-describedby={statusText ? statusId : undefined}
