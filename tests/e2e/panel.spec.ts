@@ -507,11 +507,22 @@ test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts,
   await stagesSection.getByLabel("Rename").fill(renamedStageName);
   await stagesSection.getByRole("button", { name: "Save changes" }).click();
   await expect(stagesSection.locator("li", { hasText: renamedStageName })).toBeVisible();
+  // Saving a rename unmounts the rename form, which collapses the stages card and moves the
+  // custom fields form up. Wait for that before touching the next card, or the mobile click
+  // can land while "Add field" is still moving.
+  await expect(stagesSection.getByLabel("Rename")).toHaveCount(0);
 
-  await page.getByLabel("Field name").fill(fieldName);
-  await page.getByLabel("Field type").selectOption("number");
-  await page.getByRole("button", { name: "Add field" }).click();
-  await expect(page.locator("li", { hasText: fieldName })).toBeVisible();
+  const fieldsSection = page.locator("section", {
+    has: page.getByRole("heading", { name: "Custom deal fields" }),
+  });
+  await fieldsSection.getByLabel("Field name").fill(fieldName);
+  await fieldsSection.getByLabel("Field type").selectOption("number");
+  const addFieldButton = fieldsSection.getByRole("button", { name: "Add field" });
+  await expect(addFieldButton).toBeEnabled();
+  await addFieldButton.scrollIntoViewIfNeeded();
+  await addFieldButton.click();
+  await expect(fieldsSection.locator("li", { hasText: fieldName })).toBeVisible();
+  await expect(fieldsSection.getByLabel("Field name")).toHaveValue("");
 
   await page.getByRole("button", { name: "User management" }).click();
   await page.getByLabel("Member ID").fill(memberId);
