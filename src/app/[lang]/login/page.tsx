@@ -82,7 +82,8 @@ async function LoginContent({ params, searchParams }: PageProps<"/[lang]/login">
             googleLabel: shell.googleLabel,
             facebookLabel: shell.facebookLabel,
             socialNote: shell.socialNote,
-            oauthError: query.oauth_error ? shell.oauthError : undefined,
+            oauthError: query.oauth_error === "unavailable" ? shell.socialNote
+              : query.oauth_error ? shell.oauthError : undefined,
             forgotLink: login.forgotLink,
             invalidKey: login.invalidKey,
             rateLimited: login.rateLimited,

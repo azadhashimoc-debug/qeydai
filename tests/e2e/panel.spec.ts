@@ -623,7 +623,7 @@ test("Google sign-in is informational without OAuth provisioning; cannot bypass 
   const before = await page.request.get("/api/panel/overview");
   expect(before.status()).toBe(401);
   await page.getByRole("button", { name: /Google/ }).click();
-  await expect(page).toHaveURL(/\/az\/login$/);
+  await expect(page).toHaveURL(/\/az\/login(\?oauth_error=unavailable)?$/);
   await expect(page.getByRole("status")).toContainText(/OAuth/i);
   const cookies = await page.context().cookies();
   expect(cookies.some((c) => c.name === "qeydai_panel")).toBe(false);
