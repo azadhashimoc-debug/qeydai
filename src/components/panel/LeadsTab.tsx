@@ -336,7 +336,7 @@ export function LeadsTab({
           aria-pressed={stageFilter === "all"}
           className={`min-h-11 rounded-md border px-3 py-1.5 text-sm font-semibold transition-colors ${
             stageFilter === "all"
-              ? "border-ink bg-cover text-white"
+              ? "border-brand bg-brand text-white"
               : "border-line bg-surface text-ink hover:border-brand"
           }`}
         >
@@ -350,7 +350,7 @@ export function LeadsTab({
             aria-pressed={stageFilter === st}
             className={`min-h-11 rounded-md border px-3 py-1.5 text-sm font-semibold transition-colors ${
               stageFilter === st
-                ? "border-ink bg-cover text-white"
+                ? "border-brand bg-brand text-white"
                 : "border-line bg-surface text-ink hover:border-brand"
             }`}
           >

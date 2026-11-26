@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { WebVitals } from "@/components/WebVitals";
+import { TrackingScripts } from "@/components/marketing/TrackingScripts";
 import "../globals.css";
 import { getDictionary, locales } from "./dictionaries";
 
@@ -61,6 +62,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     <html lang={lang} className={`${body.variable} ${display.variable}`}>
       <body className="min-h-screen antialiased">
         <WebVitals />
+        <TrackingScripts />
         {children}
       </body>
     </html>

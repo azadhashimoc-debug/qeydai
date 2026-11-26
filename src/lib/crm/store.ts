@@ -830,6 +830,23 @@ export function databaseConfigured() {
   return true;
 }
 
+export function isPostgresConfigured(): boolean {
+  return process.env.QEYDAI_FORCE_SQLITE !== "1" && Boolean(process.env.QEYDAI_DATABASE_URL);
+}
+
+export async function pingPostgres(): Promise<boolean> {
+  const connectionString = process.env.QEYDAI_FORCE_SQLITE === "1" ? undefined : process.env.QEYDAI_DATABASE_URL;
+  if (!connectionString) return false;
+  pool ??= new Pool({ connectionString, connectionTimeoutMillis: 3000 });
+  const db = await pool.connect();
+  try {
+    await db.query("SELECT 1");
+    return true;
+  } finally {
+    db.release();
+  }
+}
+
 export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClient) => Promise<T>): Promise<T> {
   // Direct channel/worker callers must not silently fall back to ephemeral SQLite in production.
   if (!databaseConfigured()) throw new Error("database_unavailable");
@@ -856,10 +873,11 @@ export async function workspaceTransaction<T>(tenant: string, run: (db: PoolClie
   // Because DatabaseSync is synchronous, savepoints allow safe nesting without holding an open
   // transaction across async microtask ticks where non-queued handlers might also touch SQLite.
   const next = sqliteTxQueue.then(async () => {
-    const sqliteStore = getSharedStore();
+    const sqliteStore = getSharedStore() as SqliteEnrollmentStore | null;
+    if (!sqliteStore || typeof sqliteStore.getSqliteDb !== "function") throw new Error("sqlite_store_unavailable");
     const db = sqliteStore.getSqliteDb();
     const adapter = new SqliteQueryAdapter(db);
-    sqliteStoreMap.set(adapter, sqliteStore);
+    sqliteStoreMap.set(adapter, sqliteStore as SqliteEnrollmentStore);
     const sp = `sp_${randomUUID().replace(/-/g, "")}`;
     db.exec(`SAVEPOINT ${sp}`);
     try {
@@ -891,8 +909,52 @@ export async function initializeWorkspace(db: PoolClient, tenant: string) {
     ON CONFLICT DO NOTHING`, [tenant]);
 }
 
+export type BillingEventSummary = {
+  plan: string;
+  period: string;
+  status: string;
+  amount: number;
+  currency: string;
+  receivedAt: string;
+};
+
+export async function getLatestBillingEvent(
+  db: PoolClient,
+  tenant: string,
+): Promise<BillingEventSummary | null> {
+  const res = await db.query<{
+    plan: string;
+    period: string;
+    status: string;
+    amount: string | number;
+    currency: string;
+    received_at: string | Date;
+  }>(
+    `SELECT plan, period, status, amount, currency, received_at
+     FROM billing_events
+     WHERE tenant_id = $1
+     ORDER BY received_at DESC
+     LIMIT 1`,
+    [tenant],
+  );
+  const row = res.rows[0];
+  if (!row) return null;
+  const rawDate =
+    typeof row.received_at === "string" && !row.received_at.includes("T")
+      ? `${row.received_at.replace(" ", "T")}Z`
+      : row.received_at;
+  return {
+    plan: row.plan,
+    period: row.period,
+    status: row.status,
+    amount: Number(row.amount),
+    currency: row.currency,
+    receivedAt: new Date(rawDate).toISOString(),
+  };
+}
+
 export async function ingestMessage(tenant: string, message: InboundMessage): Promise<boolean> {
-  if (!process.env.QEYDAI_DATABASE_URL) {
+  if (!isPostgresConfigured()) {
     const phone = normalizeAzPhone(message.sender);
     return workspaceTransaction(tenant, async (db) => {
       const sqlite = getSqliteStore(db);

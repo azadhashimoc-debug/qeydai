@@ -18,6 +18,25 @@ const ALL_SUBPAGE_PATHS = [
   "/az/channels/webhook-api",
   "/az/tools",
   "/az/scenarios/fitness-centers",
+  "/az/industries",
+  "/az/industries/clinic",
+  "/az/integrations",
+  "/az/partners",
+  "/az/cases",
+  "/az/cases/retail",
+  "/az/cases/education",
+  "/az/ai/agent",
+  "/az/ai/analyst",
+  "/az/ai/copilot",
+  "/az/ai/multi-agents",
+  "/az/channels/tiktok",
+  "/az/channels/whatsapp-broadcast",
+  "/en/integrations",
+  "/az/industries/beauty",
+  "/az/industries/real-estate",
+  "/az/industries/retail",
+  "/az/industries/education",
+  "/en/industries/clinic",
   "/az/blog",
   "/az/blog/whatsapp-automation",
   "/az/pricing",
@@ -31,6 +50,7 @@ const ALL_SUBPAGE_PATHS = [
 ];
 
 test("all subpages render HTTP 200 with h1 and zero horizontal overflow", async ({ page }) => {
+  test.slow();
   for (const path of ALL_SUBPAGE_PATHS) {
     const res = await page.goto(path);
     expect(res?.status(), `status for ${path}`).toBe(200);
@@ -46,6 +66,9 @@ test("unknown channel or blog slugs return 404", async ({ request }) => {
   expect((await request.get("/az/channels/shopify")).status()).toBe(404);
   expect((await request.get("/az/blog/unknown")).status()).toBe(404);
   expect((await request.get("/en/channels/constructor")).status()).toBe(404);
+  expect((await request.get("/az/industries/unknown")).status()).toBe(404);
+  expect((await request.get("/az/cases/unknown")).status()).toBe(404);
+  expect((await request.get("/az/ai/unknown")).status()).toBe(404);
 });
 
 test("WhatsApp tools workbench builds links, blocks unsafe QR, estimates fees, and switches locale", async ({
@@ -80,7 +103,7 @@ test("demo page submits lead form cleanly", async ({ page }, info) => {
   // independent E2E flows must not share one synthetic localhost identity.
   await page.setExtraHTTPHeaders({ "x-qeydai-e2e-client": `demo-form-${info.project.name}-${info.workerIndex}` });
   const tail = info.project.name === "mobile" ? "91" : "92";
-  await page.goto("/az/demo");
+  await page.goto("/az/demo", { waitUntil: "networkidle" });
   await page.getByLabel("Adınız").fill("Nigar");
   await page.getByLabel(/^Telefon/).fill(`055 234 56 ${tail}`);
   await page.getByRole("button", { name: "Demo görüşü təyin et" }).click();
@@ -115,6 +138,36 @@ test("standalone login signs into panel and register page links back to login", 
   await expect(page).toHaveURL(/\/en\/panel$/);
   await completeWorkspaceSetup(page);
   await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
+});
+
+test("email account: register creates a workspace, then sign out and sign in with email and password", async ({ page }, info) => {
+  const email = `owner-${info.project.name}-${Date.now()}@example.test`;
+  const password = "Sifre-2026-e2e";
+  await page.goto("/en/register");
+  await page.locator('input[type="email"]').fill(email);
+  await page.locator('form button[type="submit"]').click();
+  await page.locator('input[name="name"]').fill("E2E Salon");
+  await page.locator('input[type="tel"]').fill(`055 987 65 ${info.project.name === "mobile" ? "41" : "42"}`);
+  await page.locator('input[name="password"]').fill("short");
+  await page.locator('form button[type="submit"]').click();
+  await expect(page.getByRole("status")).toContainText("at least 10 characters");
+  await page.locator('input[name="password"]').fill(password);
+  await page.locator('form button[type="submit"]').click();
+  await expect(page.getByRole("button", { name: /Open Live CRM Panel/ })).toBeVisible();
+  // Full navigation: the client-side route change keeps the hidden register form in the DOM.
+  await page.goto("/en/panel");
+  await completeWorkspaceSetup(page);
+  await expect(page.getByRole("heading", { name: "Today at a glance" })).toBeVisible();
+
+  await page.getByRole("button", { name: "Sign out" }).click();
+  await page.goto("/en/login");
+  await page.locator('input[type="email"]').fill(email);
+  await page.getByLabel("Workspace access key").fill("wrong-password-123");
+  await page.getByRole("button", { name: "Sign in to panel" }).click();
+  await expect(page).toHaveURL(/\/en\/login$/);
+  await page.getByLabel("Workspace access key").fill(password);
+  await page.getByRole("button", { name: "Sign in to panel" }).click();
+  await expect(page).toHaveURL(/\/en\/panel$/);
 });
 
 test("sitemap includes localized subpage URLs", async ({ request }) => {

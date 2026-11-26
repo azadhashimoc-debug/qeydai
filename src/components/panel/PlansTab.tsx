@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { buttonClass } from "@/components/ui/button";
 import type { PanelDict } from "./types";
 
 type PlanKey = "starter" | "growth" | "pro" | "enterprise";
+
+type SubscriptionInfo = {
+  plan: PlanKey;
+  period: string;
+  status: string;
+  amount: number;
+  currency: string;
+  receivedAt: string;
+};
 
 const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: string }> = {
   starter: { monthly: "100 AZN", halfYear: "90 AZN", annual: "80 AZN" },
@@ -16,6 +25,23 @@ const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: strin
 export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
   const plansDict = d.plans;
   const [period, setPeriod] = useState<"monthly" | "halfYear" | "annual">("halfYear");
+  const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/panel/billing", {
+      credentials: "same-origin",
+      signal: controller.signal,
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { ok?: boolean; subscription?: SubscriptionInfo | null } | null) => {
+        if (!controller.signal.aborted && data?.ok && data.subscription) {
+          setSubscription(data.subscription);
+        }
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, []);
 
   const periods = {
     monthly: plansDict.monthly ?? "Aylıq",
@@ -63,7 +89,10 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       id: "enterprise",
       name: plansDict.enterprise.name,
       desc: plansDict.enterprise.desc,
-      prices: lang === "en" ? PRICES.enterprise : { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
+      prices:
+        lang === "en"
+          ? { monthly: "Custom", halfYear: "Custom", annual: "Custom" }
+          : PRICES.enterprise,
       ctaKey: "ctaEnterprise",
       popular: false,
     },
@@ -92,9 +121,15 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {plans.map((p) => (
+        {plans.map((p) => {
+          const isCurrent = subscription?.status === "paid" && subscription.plan === p.id;
+          return (
           <div key={p.id} className={`panel-card p-5 rounded-xl border border-line relative ${p.popular ? "border-brand/50 shadow-[0_0_0_1px_color-mix(in_srgb,#3373ff_20%)]" : ""}`}>
-            {p.popular && (
+            {isCurrent ? (
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-stamp bg-stamp/10 border border-stamp/30">
+                {lang === "en" ? "Current plan" : "Cari plan"}
+              </span>
+            ) : p.popular && (
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand bg-brand/10 border border-brand/20">
                 {popularBadge}
               </span>
@@ -113,12 +148,13 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-muted border-t border-line pt-2">{setupPrefix} {setupValue} (birdəfəlik)</p>
+            <p className="mt-2 text-xs text-muted border-t border-line pt-2">{setupPrefix} {setupValue}</p>
             <a href={`/${lang}#contact`} className={buttonClass({ variant: p.popular ? "primary" : "secondary", size: "sm", className: "mt-4 min-h-11 w-full" })}>
               {plansDict[p.ctaKey]}
             </a>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="panel-card p-4 border border-line rounded-xl text-sm text-muted">

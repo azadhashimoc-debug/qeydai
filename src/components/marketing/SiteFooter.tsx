@@ -91,6 +91,18 @@ export function SiteFooter({
                   <Link href={`/${lang}/scenarios/fitness-centers`}>{c.resources.fitness}</Link>
                 </li>
                 <li>
+                  <Link href={`/${lang}/industries`}>{lang === "en" ? "Industries" : "Sektorlar"}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/cases`}>{lang === "en" ? "Scenarios" : "Ssenarilər"}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/integrations`}>{lang === "en" ? "Integrations" : "İnteqrasiyalar"}</Link>
+                </li>
+                <li>
+                  <Link href={`/${lang}/partners`}>{lang === "en" ? "Partners" : "Tərəfdaşlar"}</Link>
+                </li>
+                <li>
                   <Link href={`/${lang}/blog`}>{c.resources.blog}</Link>
                 </li>
               </ul>

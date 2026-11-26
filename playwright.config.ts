@@ -22,6 +22,7 @@ export const E2E_ADMIN_KEYS = {
 export default defineConfig({
   testDir: "tests/e2e",
   fullyParallel: true,
+  workers: process.env.CI ? 2 : 3,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [["html", { open: "never" }], ["github"]] : "list",
@@ -41,7 +42,10 @@ export default defineConfig({
       ENROLL_DB_FILE: E2E_DB,
       // Only the local Playwright server may use SQLite under next start.
       QEYDAI_E2E_SQLITE: "1",
+      QEYDAI_LEAD_RATE_MAX: "100000",
+      QEYDAI_LEAD_RATE_GLOBAL_MAX: "100000",
       QEYDAI_API_KEYS: JSON.stringify({ [E2E_KEYS.desktop]: "e2e-desktop", [E2E_KEYS.mobile]: "e2e-mobile" }),
+      QEYDAI_PANEL_SECRET: "e2e-panel-secret-0123456789abcdef0123",
       QEYDAI_ADMIN_KEYS: JSON.stringify({ [E2E_ADMIN_KEYS.desktop]: "e2e-desktop", [E2E_ADMIN_KEYS.mobile]: "e2e-mobile" }),
     },
     timeout: 60_000,

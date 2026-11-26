@@ -107,6 +107,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [partialLoadError, setPartialLoadError] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const tabBaseId = useId();
   const tabRefs = useRef<Partial<Record<PanelTabId, HTMLButtonElement | null>>>({});
@@ -473,27 +474,41 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
   const activeTabButtonId = `${tabBaseId}-tab-${activeTab}`;
   const activePanelId = `${tabBaseId}-panel-${activeTab}`;
 
-  const goalTabs = ["inbox", "deals", "sessions", "overview"] as const;
+  const activeTabLabel = tabMeta.find((t) => t.id === activeTab)?.label ?? d.tabs.overview;
+  const checklistStepsDone =
+    (workspace?.name ? 1 : 0) + (leads.length > 0 ? 1 : 0) + (sessions.length > 0 ? 1 : 0) + (deals.length > 0 ? 1 : 0);
+  const checklistPct = Math.round((checklistStepsDone / 4) * 100);
+  const displayWorkspaceName = workspace?.name || tenantId || brand;
+  const avatarInitials = displayWorkspaceName.slice(0, 2).toUpperCase();
+
+  const goalTabs = ["overview", "inbox", "deals", "sessions", "inbox"] as const;
   return (
-    <WorkspaceSetup key={tenantId} tenantId={tenantId} lang={lang} onFinish={(goal) => setActiveTab(goalTabs[goal] ?? "overview")}>
-    <div className="crm-screen panel-workspace" data-settings={activeTab === "settings" ? "true" : undefined}>
+    <WorkspaceSetup key={tenantId} tenantId={tenantId} defaultCompany={workspace?.name} lang={lang} onFinish={(goal) => setActiveTab(goalTabs[goal] ?? "overview")}>
+    <div
+      className="crm-screen panel-workspace"
+      data-settings={activeTab === "settings" ? "true" : undefined}
+      data-collapsed={sidebarCollapsed ? "true" : undefined}
+    >
       <a href="#main" className="skip-link">
         {skipToMain}
       </a>
 
-      <header className="panel-workspace-header border-b border-line bg-bg">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+      <header className="panel-workspace-header">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
           <div className="flex min-w-0 items-center gap-2.5">
-            <Link href={`/${lang}`} className="flex min-h-11 shrink-0 items-center gap-2 text-lg font-bold">
+            <Link href={`/${lang}`} className="flex min-h-9 shrink-0 items-center gap-2 text-base font-bold tracking-tight md:hidden">
               <LogoMark />
               <span translate="no">{brand}</span>
             </Link>
-            <span className="rounded bg-cover px-2 py-0.5 text-xs font-semibold text-white">
+            <span className="hidden text-sm font-semibold text-ink md:inline">
+              {activeTabLabel}
+            </span>
+            <span className="rounded border border-brand/25 bg-brand/10 px-2 py-0.5 text-xs font-semibold text-pen">
               {d.badge}
             </span>
-            {tenantId && (
-              <span className="hidden truncate rounded border border-line bg-surface px-2.5 py-0.5 text-xs font-semibold text-ink sm:inline-block">
-                {d.tenantLabel}: {tenantId}
+            {(workspace?.name || tenantId) && (
+              <span className="hidden max-w-48 truncate rounded border border-line bg-bg px-2.5 py-0.5 text-xs font-medium text-muted sm:inline-block">
+                {d.tenantLabel}: {workspace?.name || tenantId}
               </span>
             )}
           </div>
@@ -507,7 +522,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
               className={buttonClass({
                 variant: "secondary",
                 size: "sm",
-                className: "min-h-11",
+                className: "min-h-11 sm:min-h-9",
               })}
             >
               {loadingData ? d.refreshing : d.refresh}
@@ -517,7 +532,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
               href={`/${otherLang}/panel`}
               hrefLang={otherLang}
               aria-label={`${d.switchLang}: ${otherLang.toUpperCase()}`}
-              className="inline-flex min-h-11 items-center rounded-md border border-line bg-surface px-2.5 py-1 text-sm font-semibold uppercase text-muted transition-[color,border-color] hover:border-ink hover:text-ink"
+              className="inline-flex min-h-11 items-center rounded-md border border-line bg-surface px-2.5 py-1 text-sm font-semibold uppercase text-muted transition-[color,border-color] hover:border-ink hover:text-ink sm:min-h-9"
             >
               {otherLang}
             </Link>
@@ -539,9 +554,34 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
             </button>
           </nav>
         </div>
-
       </header>
       <aside className="panel-workspace-sidebar">
+            <div className="panel-rail-top">
+              <Link
+                href={`/${lang}`}
+                aria-label={brand}
+                title={brand}
+                className="panel-rail-brand-link"
+              >
+                <LogoMark />
+                <span className="panel-rail-brand-text truncate" translate="no">
+                  {brand}
+                </span>
+              </Link>
+              <button
+                type="button"
+                onClick={() => setSidebarCollapsed((v) => !v)}
+                aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+                title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+                className="panel-rail-collapse-btn"
+              >
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                  <rect x="2.5" y="3.5" width="15" height="13" rx="2" />
+                  <path d="M7.5 3.5v13" />
+                </svg>
+              </button>
+            </div>
+
             <div
               role="tablist"
               aria-label={d.tabs.ariaLabel}
@@ -560,28 +600,18 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
                     id={tabDomId}
                     type="button"
                     role="tab"
-                    title={activeTab === "settings" ? tab.label : undefined}
+                    title={tab.label}
                     aria-selected={isSelected}
                     aria-controls={panelDomId}
                     tabIndex={isSelected ? 0 : -1}
                     onClick={() => setActiveTab(tab.id)}
                     onKeyDown={(e) => handleTabKeyDown(e, idx)}
-                    className={`inline-flex min-h-11 items-center justify-start gap-2 rounded-md border px-3.5 py-2 text-sm font-semibold transition-colors ${
-                      isSelected
-                        ? "crm-tab-selected"
-                        : "border-transparent bg-transparent text-muted hover:border-line hover:bg-bg hover:text-ink"
-                    }`}
+                    className={isSelected ? "crm-tab-selected" : undefined}
                   >
-                    {activeTab === "settings" && <svg className="panel-rail-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round"><path d={PANEL_TAB_ICONS[tab.id]} /></svg>}
+                    <svg className="panel-rail-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d={PANEL_TAB_ICONS[tab.id]} /></svg>
                     <span className="panel-rail-label">{tab.label}</span>
                     {tab.count !== undefined && (
-                      <span
-                        className={`panel-rail-count rounded px-1.5 py-0.5 text-xs tabular-nums ${
-                          isSelected
-                            ? "border border-line bg-surface text-ink"
-                            : "border border-line bg-bg text-ink"
-                        }`}
-                      >
+                      <span className="panel-rail-count tabular-nums">
                         {tab.count}
                       </span>
                     )}
@@ -589,9 +619,73 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
                 );
               })}
             </div>
+
+            {/* Kommo 2026 Pinned Integrations */}
+            <div className="panel-rail-pinned">
+              <p className="panel-rail-section-label">
+                {lang === "en" ? "Pinned integrations" : "Sabitlənmiş inteqrasiyalar"}
+              </p>
+              <button
+                type="button"
+                onClick={() => setActiveTab("channels")}
+                title="Instagram"
+                className="panel-rail-pinned-btn"
+              >
+                <span
+                  className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-white"
+                  style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.4">
+                    <rect x="4" y="4" width="16" height="16" rx="4" />
+                    <circle cx="12" cy="12" r="3.5" />
+                  </svg>
+                </span>
+                <span className="panel-rail-pinned-label truncate">Instagram</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("channels")}
+                title="WhatsApp Business"
+                className="panel-rail-pinned-btn"
+              >
+                <span
+                  className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
+                    <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z" />
+                  </svg>
+                </span>
+                <span className="panel-rail-pinned-label truncate">WhatsApp Business</span>
+              </button>
+            </div>
+
+            {/* Kommo 2026 Onboarding Progress Card */}
+            <button
+              type="button"
+              onClick={() => setActiveTab(leads.length === 0 ? "leads" : sessions.length === 0 ? "sessions" : "channels")}
+              className="panel-rail-checklist"
+            >
+              <span className="panel-rail-checklist-ring tabular-nums">{checklistPct}%</span>
+              <span className="truncate">
+                {lang === "en" ? "Onboarding progress" : "Başlanğıc addımları"}
+              </span>
+            </button>
+
+            {/* Kommo 2026 User Profile Footer */}
+            <div className="panel-rail-footer">
+              <span className="panel-rail-avatar" aria-hidden="true">
+                {avatarInitials}
+              </span>
+              <div className="panel-rail-user-meta min-w-0">
+                <p className="truncate text-xs font-semibold text-ink">{displayWorkspaceName}</p>
+                <p className="truncate text-[11px] text-muted">{tenantId || "workspace"}</p>
+              </div>
+            </div>
       </aside>
 
-      <main id="main" tabIndex={-1} className="min-w-0 w-full px-4 py-6 sm:px-6 sm:py-8">
+      <main id="main" tabIndex={-1} className="min-w-0 w-full px-4 py-4 sm:px-6 sm:py-5">
         {loadError ? (
           <div className="panel-register flex flex-col items-start gap-3 p-6" role="alert">
             <p className="font-medium text-danger">{loadError}</p>
@@ -723,6 +817,7 @@ export function PanelShell({ lang, brand, d, skipToMain }: PanelShellProps) {
                 lang={lang}
                 d={d}
                 onUnauthorized={handleUnauthorized}
+                onOpenChannels={() => setActiveTab("channels")}
               />
             )}
 

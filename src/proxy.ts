@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isBlogSlug, isChannelSlug } from "./lib/marketing/catalog";
+import { isIndustrySlug } from "./lib/marketing/industries";
+import { isAiSlug, isCaseSlug } from "./app/[lang]/dictionaries/pages";
 
 const locales = ["az", "en"] as const;
 const defaultLocale = "az";
@@ -16,7 +18,7 @@ function pickLocale(req: NextRequest) {
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   if (locales.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))) {
-    const match = /^\/(?:az|en)\/(channels|blog)\/([^/]+)\/?$/.exec(pathname);
+    const match = /^\/(?:az|en)\/(channels|blog|industries|cases|ai)\/([^/]+)\/?$/.exec(pathname);
     if (match) {
       const [, section, rawSlug] = match;
       let slug = rawSlug;
@@ -25,7 +27,17 @@ export function proxy(req: NextRequest) {
       } catch {
         // A malformed slug cannot match the catalog.
       }
-      if (!(section === "channels" ? isChannelSlug(slug) : isBlogSlug(slug))) {
+      const known =
+        section === "channels"
+          ? isChannelSlug(slug) || slug === "tiktok" || slug === "whatsapp-broadcast"
+          : section === "blog"
+            ? isBlogSlug(slug)
+            : section === "industries"
+              ? isIndustrySlug(slug)
+              : section === "cases"
+                ? isCaseSlug(slug)
+                : isAiSlug(slug);
+      if (!known) {
         return NextResponse.rewrite(new URL("/__marketing-not-found", req.url), { status: 404 });
       }
     }

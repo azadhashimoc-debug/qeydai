@@ -44,13 +44,14 @@ export default async function SelectAccountPage({ params }: PageProps<"/[lang]/s
     createWorkspace: "Create workspace",
   };
   const shell = ((subpages as Record<string, unknown>).shell as Record<string, string>) ?? {
-    closeLabel: "Return to home",
+    closeLabel: locale === "az" ? "Ana səhifəyə qayıt" : "Return to home",
   };
 
   return (
     <SelectAccountClient
       lang={locale}
-      title={sa.title.replace("{name}", locale === "az" ? "Adem Novruzlu" : "Adem Novruzlu")}
+      skipToMain={d.a11y.skipToMain}
+      title={sa.title.replace("{name}", locale === "az" ? "İstifadəçi" : "User")}
       subtitle={sa.subtitle}
       badge={sa.badge}
       closeLabel={shell.closeLabel}

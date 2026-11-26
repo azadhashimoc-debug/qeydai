@@ -1,9 +1,10 @@
+import { verifyPanelSessionToken } from "./panel-auth";
 import type { PoolClient } from "pg";
 import { readAccountSession } from "./account-auth";
 import { ensurePanelJtiStore } from "./instance";
 import { createRateLimiter } from "../rate-limit";
 import {
-  verifyPanelSessionToken,
+  verifyAnyPanelToken,
   isPanelJtiRevoked,
   PANEL_COOKIE_NAME,
   readCookieValue,
@@ -44,6 +45,7 @@ import {
   confirmPhoneMatch,
   getWorkspace,
   updateWorkspace,
+  getLatestBillingEvent,
   listDealMessages,
   sendDealReply,
   listTimeline,
@@ -176,6 +178,7 @@ export {
   confirmPhoneMatch,
   getWorkspace,
   updateWorkspace,
+  getLatestBillingEvent,
   listDealMessages,
   sendDealReply,
   listTimeline,

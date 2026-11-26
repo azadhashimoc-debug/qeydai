@@ -611,7 +611,7 @@ export function DealDetail({
             onClick={() => setSubTab(item.id)}
             className={`min-h-11 rounded-md border px-4 py-2 text-sm font-semibold transition-colors sm:min-h-9 ${
               subTab === item.id
-                ? "border-ink bg-cover text-white"
+                ? "border-brand bg-brand text-white"
                 : "border-line bg-surface text-muted hover:text-ink"
             }`}
           >

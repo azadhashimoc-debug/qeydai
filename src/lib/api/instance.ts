@@ -1,9 +1,9 @@
 import { mkdirSync } from "node:fs";
 import path from "node:path";
+import { Pool } from "pg";
 import { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
 import { PostgresEnrollmentStore, type PgPool } from "../enrollment/postgres-store";
 import type { EnrollmentStore } from "../enrollment/enrollment";
-import { Pool } from "pg";
 import { createEnrollApi } from "./enroll-api";
 import { createPanelApi } from "./panel-api";
 import { getPanelAuthConfig, setPanelJtiStore, type PanelJtiStore } from "./panel-auth";
@@ -61,18 +61,32 @@ function getApplicationStore(): (EnrollmentStore & PanelJtiStore) | null {
       (process.env.NODE_ENV === "production" && process.env.QEYDAI_E2E_SQLITE !== "1")) {
     return null;
   }
-  return getSharedStore();
+  return getSharedStore() as (EnrollmentStore & PanelJtiStore) | null;
 }
 let api: Api | null = null;
 let panelApi: PanelApi | null = null;
 
-export function getSharedStore(): SqliteEnrollmentStore {
-  if (!sharedStore) {
-    const file = process.env.ENROLL_DB_FILE ?? path.join(process.cwd(), "data", "qeydai.sqlite");
+/** Health and other callers: fail closed in production, otherwise the same store the app uses. */
+export function getStore(): EnrollmentStore | null {
+  return getApplicationStore();
+}
+
+/** Local SQLite store (dev, tests, and the Playwright server). Never used for production data. */
+function getLocalSqliteStore(): EnrollmentStore | null {
+  if (sharedStore !== undefined && sharedStore !== null) return sharedStore;
+  const file = process.env.ENROLL_DB_FILE ?? (process.env.VERCEL ? ":memory:" : path.join(process.cwd(), "data", "qeydai.sqlite"));
+  try {
     if (file !== ":memory:") mkdirSync(path.dirname(file), { recursive: true });
     sharedStore = new SqliteEnrollmentStore(file);
+  } catch (err) {
+    console.error("getSharedStore init failed:", err instanceof Error ? err.message : "unknown", "file=", file, "VERCEL=", process.env.VERCEL);
+    sharedStore = null;
   }
   return sharedStore;
+}
+
+export function getSharedStore(): EnrollmentStore | null {
+  return getLocalSqliteStore();
 }
 
 const buildUnavailable = async () =>

@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# panelim.az (QeydAI)
 
-## Getting Started
+Messaging-first AI sales CRM and trial-session booking platform built with Next.js 16 (App Router, Turbopack, Cache Components), React 19, TypeScript, Tailwind CSS v4, and PostgreSQL 15+ (with SQLite fallback via Node 24 `node:sqlite` for local development and tests).
 
-First, run the development server:
+## Requirements
+
+- **Node.js 24.x** (uses built-in `node:sqlite`)
+- **PostgreSQL 15+** for production deployments (with Row-Level Security enabled across tenant tables)
+
+## Environment Setup
+
+Copy `.env.example` to `.env.local` and configure required variables:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Required in Production
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `NEXT_PUBLIC_SITE_URL` — Canonical public URL (e.g. `https://panelim.az`), used for `sitemap.xml`, `robots.txt`, and metadata.
+- `QEYDAI_DATABASE_URL` — PostgreSQL connection string. Use a **non-superuser** application role without `BYPASSRLS` so row-level tenant isolation (`app.tenant_id`) is enforced.
+- `QEYDAI_PANEL_SECRET` — Session signing secret (minimum 24 characters). Required for email/password login and registration (`/api/auth/login`, `/api/auth/register`).
+- `TRUST_PROXY` — Set to `x-forwarded-for` or `x-real-ip` when running behind a reverse proxy so IP rate limiting uses the real client IP. Leave unset when exposed directly.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Optional Integrations
 
-## Learn More
+- `QEYDAI_API_KEYS` — JSON map `{"<24+ char key>": "<tenant_id>"}` for `/api/v1/*` server-to-server calls (e.g. n8n).
+- `QEYDAI_ADMIN_KEYS` — JSON map `{"<24+ char key>": "<tenant_id>"}` for key-only staff panel login and `/api/v1/sessions` creation.
+- `QEYDAI_PUBLIC_LEAD_TENANT` — Workspace ID receiving public landing/demo form leads.
+- `QEYDAI_CRM_CHANNELS`, `QEYDAI_CRM_WORKER_KEY`, `QEYDAI_META_VERIFY_TOKEN`, `QEYDAI_META_APP_SECRET`, `QEYDAI_META_GRAPH_VERSION` — Messaging channel connections and Meta webhook signature verification.
+- `QEYDAI_PAYCELL_WEBHOOK_SECRET` — HMAC secret for `POST /api/billing/paycell/webhook`.
 
-To learn more about Next.js, take a look at the following resources:
+## Database Migrations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Apply SQL migrations under `db/migrations/` to `QEYDAI_DATABASE_URL`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run migrate              # apply pending migrations
+npm run migrate -- --status  # inspect applied/pending migrations
+npm run migrate -- --baseline # mark existing schema as applied
+```
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev      # Start development server
+npm run build    # Production build
+npm run start    # Start production server
+npm run lint     # Run ESLint
+npm test         # Run Vitest unit & integration tests
+npm run e2e      # Run Playwright E2E tests (desktop + mobile)
+npx tsc --noEmit # TypeScript type check
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Production Deployment
+
+### Option A — Ubuntu VPS (Systemd + Nginx + Certbot SSL)
+
+1. Copy `.env.example` to `/etc/panelim/panelim.env` and fill required production values (`NEXT_PUBLIC_SITE_URL`, `QEYDAI_DATABASE_URL`, `QEYDAI_PANEL_SECRET`, `TRUST_PROXY=x-forwarded-for`).
+2. Install the Systemd unit (`deploy/systemd/panelim.service`):
+   ```bash
+   sudo cp deploy/systemd/panelim.service /etc/systemd/system/panelim.service
+   sudo systemctl daemon-reload
+   sudo systemctl enable panelim
+   ```
+3. Configure Nginx + HTTPS SSL:
+   ```bash
+   CERTBOT_EMAIL=admin@panelim.az bash deploy/scripts/setup-ssl.sh
+   ```
+4. Deploy and verify health (`check:env` -> `npm ci` -> `npm run migrate` -> `npm run build` -> restart -> `/api/health`):
+   ```bash
+   bash deploy/scripts/deploy-vps.sh
+   ```
+
+### Option B — Docker Compose (`Dockerfile` + `docker-compose.prod.yml`)
+
+```bash
+cp .env.example .env.prod
+# Fill POSTGRES_PASSWORD, QEYDAI_DATABASE_URL, QEYDAI_PANEL_SECRET, NEXT_PUBLIC_SITE_URL
+docker compose -f docker-compose.prod.yml up -d --build
+```
+
+### Production Readiness Endpoints & Checklist
+
+- `npm run check:env` — Validates production environment variables without printing secrets.
+- `GET /api/health` — Readiness probe (`cache-control: no-store`). Verifies PostgreSQL (`SELECT 1`) or SQLite store availability and returns `200` (`status: "ok"`) or `503` (`status: "degraded"`).
+- `GET /robots.txt` — Allows public marketing pages and disallows `/api/`, panel routes, and account-selection screens.
+- `GET /sitemap.xml` — Localized `az` / `en` URLs with `x-default` alternates.
+
+Before deploying to production:
+1. Run `npm run check:env` against the production environment file.
+2. Run `npm run migrate` against the production PostgreSQL database.
+3. Run `npx tsc --noEmit && npm run lint && npm test && npm run build && npm run e2e`.
+4. Confirm `/api/health` returns `200` with `"storage": "postgres"` after deployment.

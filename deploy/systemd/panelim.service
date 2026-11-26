@@ -1,0 +1,23 @@
+[Unit]
+Description=panelim.az (QeydAI) Next.js CRM Application
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=panelim
+Group=panelim
+WorkingDirectory=/opt/panelim
+EnvironmentFile=/etc/panelim/panelim.env
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/panelim/data
+
+[Install]
+WantedBy=multi-user.target

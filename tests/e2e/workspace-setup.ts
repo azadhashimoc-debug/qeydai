@@ -8,32 +8,38 @@ import { expect } from "@playwright/test";
  */
 export async function completeWorkspaceSetup(page: Page) {
   const dialog = page.getByRole("dialog");
-  // The accessible dialog name comes from the current step H1 and changes each step.
-  await expect(dialog.getByRole("heading", { name: "Tell us about your business" })).toBeVisible();
-  await expect(dialog).toBeVisible();
+
+  // Step 1: Avatar, support preference & phone number
+  await expect(page.getByRole("dialog", { name: "Let's make Panelim yours" })).toBeVisible();
   await expect(page.getByRole("tablist")).toHaveCount(0);
+  await expect(dialog.getByRole("button", { name: "Next" })).toBeDisabled();
+  await dialog.getByLabel("Phone number").fill("50 123 45 67");
+  await dialog.getByRole("button", { name: "Next" }).click();
 
-  const next = dialog.getByRole("button", { name: "Continue" });
-  await expect(next).toBeDisabled();
-  await dialog.getByLabel("Industry").fill("Education");
-  await dialog.getByLabel("Your role").selectOption({ label: "Owner / founder" });
-  await dialog.getByLabel("Business name (optional)").fill("Panelim Test");
-  await expect(next).toBeEnabled();
-  await next.click();
+  // Step 2: Industry, conditional business type & role
+  await expect(page.getByRole("dialog", { name: "Let's customize your workspace" })).toBeVisible();
+  await dialog.getByLabel("Select industry").selectOption({ label: "Education" });
+  await dialog.getByLabel("Your business type").selectOption({ label: "Language classes" });
+  await dialog.getByLabel("Select your role").selectOption({ label: "Owner / founder / CEO" });
+  await dialog.getByRole("button", { name: "Next" }).click();
 
-  await expect(dialog.getByRole("heading", { name: "What are your goals?" })).toBeVisible();
-  await expect(next).toBeDisabled();
-  await dialog.getByLabel("Track reports").check();
-  await next.click();
+  // Step 3: Goals (max 2)
+  await expect(page.getByRole("dialog", { name: "What are your goals?" })).toBeVisible();
+  await dialog.getByLabel("Manage leads from ad campaigns").check();
+  await dialog.getByRole("button", { name: "Next" }).click();
 
-  await expect(dialog.getByRole("heading", { name: "Where do your leads come from?" })).toBeVisible();
-  await dialog.getByLabel("No channels yet").check();
-  await next.click();
+  // Step 4: Lead sources
+  await expect(page.getByRole("dialog", { name: "Where do your leads come from?" })).toBeVisible();
+  await dialog.getByLabel("WhatsApp").check();
+  await dialog.getByRole("button", { name: "Next" }).click();
 
-  await expect(dialog.getByRole("heading", { name: "How many people are on your team?" })).toBeVisible();
-  // Team size uses a visually hidden native radio inside a clickable label.
-  await dialog.getByText("Just me", { exact: true }).click();
-  await expect(dialog.getByRole("radio", { name: "Just me" })).toBeChecked();
-  await dialog.getByRole("button", { name: "Finish and open workspace" }).click();
-  await expect(dialog).toHaveCount(0);
+  // Step 5: Team size (single-click auto-advance)
+  await expect(page.getByRole("dialog", { name: "How many team members will use Panelim?" })).toBeVisible();
+  await dialog.getByRole("button", { name: "Just me" }).click();
+
+  // Step 6: Business details
+  await expect(page.getByRole("dialog", { name: "Tell us about your business" })).toBeVisible();
+  await dialog.getByLabel("Your company name").fill("Panelim Test");
+  await dialog.getByLabel("Website or social media").fill("panelim.az");
+  await dialog.getByRole("button", { name: "Next" }).click();
 }
