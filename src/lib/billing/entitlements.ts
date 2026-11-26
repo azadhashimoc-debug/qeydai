@@ -136,6 +136,7 @@ export async function getWorkspaceEntitlement(
   if (!isPostgresConfigured()) {
     return computeEntitlement(defaultTrialRow(now), now);
   }
+  await db.query("SAVEPOINT sp_entitlement_read");
   try {
     const res = await db.query<{
       plan_code: WorkspacePlanCode;
@@ -149,6 +150,7 @@ export async function getWorkspaceEntitlement(
        WHERE id = $1`,
       [tenantId],
     );
+    await db.query("RELEASE SAVEPOINT sp_entitlement_read");
     const r = res.rows[0];
     if (!r) return computeEntitlement(defaultTrialRow(now), now);
     return computeEntitlement(
@@ -162,6 +164,8 @@ export async function getWorkspaceEntitlement(
       now,
     );
   } catch (error) {
+    await db.query("ROLLBACK TO SAVEPOINT sp_entitlement_read").catch(() => {});
+    await db.query("RELEASE SAVEPOINT sp_entitlement_read").catch(() => {});
     // Migration 0014 not yet applied: treat workspace as active trial until migrated.
     if (error && typeof error === "object" && "code" in error && error.code === "42703") {
       return computeEntitlement(defaultTrialRow(now), now);
@@ -176,6 +180,7 @@ export async function applyPaycellEventToWorkspace(
   event: PaycellEvent,
 ): Promise<void> {
   if (!isPostgresConfigured()) return;
+  await db.query("SAVEPOINT sp_entitlement_write");
   try {
     if (event.status === "paid") {
       const days = periodDurationDays(event.period);
@@ -188,14 +193,19 @@ export async function applyPaycellEventToWorkspace(
         [tenantId, event.plan, days],
       );
       const planLimit = PLAN_LIMITS[event.plan]?.maxMonthlyAiReplies ?? 500;
-      await db
-        .query(
+      await db.query("SAVEPOINT sp_ai_limit_sync");
+      try {
+        await db.query(
           `UPDATE sales_ai_settings
            SET monthly_reply_limit = $2, updated_at = now()
            WHERE tenant_id = $1`,
           [tenantId, planLimit],
-        )
-        .catch(() => undefined);
+        );
+        await db.query("RELEASE SAVEPOINT sp_ai_limit_sync");
+      } catch {
+        await db.query("ROLLBACK TO SAVEPOINT sp_ai_limit_sync").catch(() => {});
+        await db.query("RELEASE SAVEPOINT sp_ai_limit_sync").catch(() => {});
+      }
     } else if (event.status === "refunded") {
       await db.query(
         `UPDATE sales_workspaces
@@ -211,7 +221,10 @@ export async function applyPaycellEventToWorkspace(
         [tenantId],
       );
     }
+    await db.query("RELEASE SAVEPOINT sp_entitlement_write");
   } catch (error) {
+    await db.query("ROLLBACK TO SAVEPOINT sp_entitlement_write").catch(() => {});
+    await db.query("RELEASE SAVEPOINT sp_entitlement_write").catch(() => {});
     // Migration 0014 not yet applied: do not reject a verified Paycell webhook.
     if (!(error && typeof error === "object" && "code" in error && error.code === "42703")) {
       throw error;

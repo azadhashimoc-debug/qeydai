@@ -2,7 +2,7 @@
  * CI ONLY: provision a disposable PostgreSQL database with the actual migration
  * files, then grant table access to a NON-superuser role. Never run on production.
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import pg from "pg";
 
@@ -11,17 +11,10 @@ if (!process.env.CI || !process.env.PG_ADMIN_URL) {
 }
 const pool = new pg.Pool({ connectionString: process.env.PG_ADMIN_URL });
 try {
-  for (const migration of [
-    "0001_init.sql",
-    "0002_crm_inbox.sql",
-    "0003_sales_workspace.sql",
-    "0004_panel_jti.sql",
-    "0005_analytics_ingest.sql",
-    "0006_panel_accounts.sql",
-    "0007_auth_rate_limits.sql",
-    "0008_billing_events.sql",
-    "0009_panel_oauth_linking.sql",
-  ]) {
+  const migrations = readdirSync(resolve("db", "migrations"))
+    .filter((file) => file.endsWith(".sql"))
+    .sort();
+  for (const migration of migrations) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);
     console.log("Applied", migration);

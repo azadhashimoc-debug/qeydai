@@ -9,7 +9,7 @@ Kod tərəfindəki bütün 5 mərhələ hazırdır. Aşağıdakı addımlar yaln
 Neon `main` (prod) bazasına əvvəlcə ehtiyat snapshot alın, sonra tətbiq edin:
 
 ```bash
-QEYDAI_MIGRATION_DATABASE_URL="postgresql://neondb_owner:...@.../neondb?sslmode=verify-full" npm run db:migrate
+QEYDAI_DATABASE_URL="postgresql://neondb_owner:...@.../neondb?sslmode=verify-full" npm run migrate
 ```
 
 Tətbiq olunan yeni miqrasiyalar:
