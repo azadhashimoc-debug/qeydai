@@ -1,11 +1,6 @@
 import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 
-/**
- * Exercise the current four-step workspace wizard, including the real datalist
- * text input (not a select), goal/connection choices and team-size radio.
- * Finish on Overview so downstream tests can assert a visible authenticated UI.
- */
 export async function completeWorkspaceSetup(page: Page) {
   const dialog = page.getByRole("dialog");
 

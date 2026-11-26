@@ -24,7 +24,7 @@ test("language switch keeps content in sync", async ({ page }) => {
 
 test("landing header actions fit on one row at desktop widths", async ({ page }) => {
   await page.setViewportSize({ width: 1120, height: 800 });
-  await page.goto("/az", { waitUntil: "networkidle" });
+  await page.goto("/az");
   const header = page.getByRole("banner");
   const demo = header.getByRole("link", { name: "Demo al", exact: true });
   const login = header.getByRole("link", { name: "Giriş", exact: true });
@@ -70,7 +70,7 @@ test("lead form: invalid shows error, valid is stored", async ({ page }, info) =
   await page.setExtraHTTPHeaders({ "x-qeydai-e2e-client": `landing-lead-${info.project.name}-${info.workerIndex}` });
   const tail = info.project.name === "mobile" ? "68" : "67";
   const phone = `050 123 45 ${tail}`;
-  await page.goto("/az#contact", { waitUntil: "networkidle" });
+  await page.goto("/az#contact");
   await page.getByLabel("Adınız").fill("Aygün");
   await page.getByLabel(/^Telefon/).fill("123");
   await page.getByRole("button", { name: "Demo istə" }).last().click();
@@ -186,7 +186,7 @@ test("lead form validates empty name client-side and focuses invalid input", asy
 
 test("focus ring keeps 3:1 contrast: dark violet on paper, yellow on dark cover", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
-  await page.goto("/az", { waitUntil: "networkidle" });
+  await page.goto("/az");
   const focusViaKeyboard = async (sel: string) => {
     const loc = page.locator(sel).first();
     await loc.scrollIntoViewIfNeeded();
@@ -244,9 +244,13 @@ test("custom 404 renders branded page and interactive stage/pricing/AI sections 
   await expect(page.locator('a[href="/az"]').last()).toBeVisible();
   await expect(page.locator('a[href="/en"]').last()).toBeVisible();
 
-  await page.goto("/az", { waitUntil: "networkidle" });
-  await page.getByRole("tab", { name: "Satış lövhəsi" }).click();
-  await expect(page.getByText("Danışıq gedir")).toBeVisible();
+  await page.goto("/az");
+  // The current AI spotlight has real keyboard-accessible tabs. The old
+  // "Satış lövhəsi" teaser was replaced by the Pani product preview.
+  await page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }).click();
+  await expect(page.getByRole("tab", { name: "Yazı səhvlərini və danışıq dilini anlayır" }))
+    .toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#ai").getByRole("tabpanel")).toContainText("49 AZN");
 
   await page.getByRole("button", { name: "İllik", exact: true }).click();
   await expect(page.getByRole("button", { name: "İllik", exact: true }))

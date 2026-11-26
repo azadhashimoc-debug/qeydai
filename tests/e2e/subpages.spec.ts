@@ -141,6 +141,8 @@ test("standalone login signs into panel and register page links back to login", 
 });
 
 test("email account: register creates a workspace, then sign out and sign in with email and password", async ({ page }, info) => {
+  // Email accounts live in PostgreSQL (panel_accounts). This SQLite-backed run cannot register; tests/e2e-pg covers it.
+  test.skip(!process.env.QEYDAI_DATABASE_URL, "needs QEYDAI_DATABASE_URL");
   const email = `owner-${info.project.name}-${Date.now()}@example.test`;
   const password = "Sifre-2026-e2e";
   await page.goto("/en/register");
