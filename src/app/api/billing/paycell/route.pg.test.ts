@@ -131,7 +131,12 @@ suite("Paycell billing routes & /api/panel/billing", () => {
       new Request("http://localhost:3000/api/panel/billing", { headers: { cookie } }),
     );
     expect(before.status).toBe(200);
-    expect(await before.json()).toEqual({ ok: true, subscription: null });
+    expect(await before.json()).toMatchObject({
+      ok: true,
+      subscription: null,
+      checkoutConfigured: true,
+      entitlement: { planCode: "trial", status: "trialing", canWrite: true },
+    });
 
     const badSig = await webhookPost(
       new Request("http://localhost:3000/api/billing/paycell/webhook", {
@@ -225,10 +230,17 @@ suite("Paycell billing routes & /api/panel/billing", () => {
       new Request("http://localhost:3000/api/panel/billing", { headers: { cookie } }),
     );
     expect(after.status).toBe(200);
-    const afterJson = (await after.json()) as { ok: boolean; subscription: { plan: string; status: string; amount: number } | null };
+    const afterJson = (await after.json()) as {
+      ok: boolean;
+      subscription: { plan: string; status: string; amount: number } | null;
+      entitlement?: { planCode: string; status: string; canWrite: boolean };
+    };
     expect(afterJson.ok).toBe(true);
     expect(afterJson.subscription?.plan).toBe("growth");
     expect(afterJson.subscription?.status).toBe("paid");
     expect(afterJson.subscription?.amount).toBe(852);
+    expect(afterJson.entitlement?.planCode).toBe("growth");
+    expect(afterJson.entitlement?.status).toBe("active");
+    expect(afterJson.entitlement?.canWrite).toBe(true);
   });
 });
