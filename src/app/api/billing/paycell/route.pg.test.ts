@@ -47,7 +47,6 @@ suite("Paycell billing routes & /api/panel/billing", () => {
     process.env.QEYDAI_PAYCELL_WEBHOOK_SECRET = PAYCELL_SECRET;
     process.env.QEYDAI_PAYCELL_CHECKOUT_URL = "https://paycell.example/checkout";
     delete process.env.QEYDAI_ADMIN_KEYS;
-    delete process.env.QEYDAI_DATABASE_URL;
     activeStore = new SqliteEnrollmentStore(":memory:");
   });
 
