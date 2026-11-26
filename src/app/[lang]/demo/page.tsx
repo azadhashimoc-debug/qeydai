@@ -123,7 +123,7 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/contact`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/register`}
           secondaryLabel={s.authPages.login.noAccount}
         />
       </main>

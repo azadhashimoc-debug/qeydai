@@ -1,7 +1,7 @@
 import type { PoolClient } from "pg";
 import { createRateLimiter } from "../rate-limit";
 import {
-  verifyPanelSessionToken,
+  verifyAnyPanelToken,
   isPanelJtiRevoked,
   PANEL_COOKIE_NAME,
   readCookieValue,
@@ -42,6 +42,7 @@ import {
   confirmPhoneMatch,
   getWorkspace,
   updateWorkspace,
+  getLatestBillingEvent,
   listDealMessages,
   sendDealReply,
   listTimeline,
@@ -74,11 +75,11 @@ export async function requirePanelMember(
 ): Promise<{ ok: true; value: PanelMember } | { ok: false; response: Response }> {
   const config = getAuthConfig();
   const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
-  if (!config.secret || config.allowedKeysByTenant.size === 0 || !token) {
+  if (!token || (!config.accountSecret && (!config.secret || config.allowedKeysByTenant.size === 0))) {
     return { ok: false, response: fail(401, "unauthorized") };
   }
   const nowMs = Date.now();
-  const payload = verifyPanelSessionToken(token, config.secret, config.allowedKeysByTenant);
+  const payload = verifyAnyPanelToken(token, config, nowMs);
   if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs))) {
     return { ok: false, response: fail(401, "unauthorized") };
   }
@@ -169,6 +170,7 @@ export {
   confirmPhoneMatch,
   getWorkspace,
   updateWorkspace,
+  getLatestBillingEvent,
   listDealMessages,
   sendDealReply,
   listTimeline,

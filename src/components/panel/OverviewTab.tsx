@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Tick } from "@/components/Tick";
 import { buttonClass } from "@/components/ui/button";
 import {
@@ -37,6 +38,10 @@ function stageBarColor(stage: LeadStage): string {
 }
 
 export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps) {
+  const [homeMode, setHomeMode] = useState<"ask" | "build" | "analyze">("ask");
+  const [prompt, setPrompt] = useState("");
+  const [assistantAnswer, setAssistantAnswer] = useState<string | null>(null);
+
   const paidCount = overview.leadsByStage.paid ?? 0;
   const conversionPct =
     overview.totalLeads > 0 ? Math.round((paidCount / overview.totalLeads) * 100) : 0;
@@ -54,12 +59,134 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
   ];
   const funnelMax = Math.max(1, ...funnelSteps.map((s) => s.value));
 
+  const homeCopy =
+    lang === "en"
+      ? {
+          greeting: "Welcome back!",
+          subtitle: "What's on your mind today?",
+          tabs: { ask: "Ask", build: "Build", analyze: "Analyze" },
+          placeholder: "Ask a question about Panelim...",
+          suggestions: [
+            { label: "How do I connect WhatsApp?", tab: "channels" as PanelTabId },
+            { label: "How do I set up an AI assistant?", tab: "ai" as PanelTabId },
+            { label: "How do I manage deals & pipelines?", tab: "deals" as PanelTabId },
+          ],
+          reply: (q: string) =>
+            `Workspace snapshot for "${q}": ${overview.totalLeads} leads, ${overview.totalEnrollments} trial bookings, ${paidCount} paid (${conversionPct}%), and ${overview.totalMessages} messages.`,
+        }
+      : {
+          greeting: "Xoş gəldiniz!",
+          subtitle: "Bu gün nə üzərində işləyək?",
+          tabs: { ask: "Soruş", build: "Qur", analyze: "Analiz et" },
+          placeholder: "Panelim haqqında sual verin...",
+          suggestions: [
+            { label: "WhatsApp necə qoşulur?", tab: "channels" as PanelTabId },
+            { label: "AI köməkçisi necə qurulur?", tab: "ai" as PanelTabId },
+            { label: "Satış mərhələləri necə idarə olunur?", tab: "deals" as PanelTabId },
+          ],
+          reply: (q: string) =>
+            `"${q}" üzrə iş sahəsi xülasəsi: ${overview.totalLeads} müraciət, ${overview.totalEnrollments} sınaq qeydiyyatı, ${paidCount} ödənişli (${conversionPct}%) və ${overview.totalMessages} mesaj.`,
+        };
+
+  function handleHomePromptSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const q = prompt.trim();
+    if (!q) return;
+    setAssistantAnswer(homeCopy.reply(q));
+  }
+
   return (
     <div className="grid gap-6">
+      {/* Kommo 2026 Home AI Hero */}
+      <section className="kommo-home-hero" aria-label="Home assistant">
+        <div
+          className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-2xl"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 48 48" className="h-9 w-9" fill="none">
+            <defs>
+              <linearGradient id="wave-hand" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#93c5fd" />
+                <stop offset="55%" stopColor="#c4b5fd" />
+                <stop offset="100%" stopColor="#e0e7ff" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M18 11a2.5 2.5 0 0 1 5 0v12h1V8.5a2.5 2.5 0 0 1 5 0V23h1V11.5a2.5 2.5 0 0 1 5 0V27c0 7.5-4.8 13-12 13-5.8 0-10-4-11.7-9.6l-2.8-7.7a2.4 2.4 0 0 1 4.4-1.8L16 25V14.5a2.5 2.5 0 0 1 2-3.5z"
+              fill="url(#wave-hand)"
+              stroke="#4c8bf5"
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div>
+          <p className="text-xl font-bold text-ink sm:text-2xl">{homeCopy.greeting}</p>
+          <p className="mt-1 text-sm text-muted sm:text-base">{homeCopy.subtitle}</p>
+        </div>
+
+        <div className="kommo-home-tabs" role="group" aria-label="Assistant mode">
+          {(["ask", "build", "analyze"] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => setHomeMode(mode)}
+              className={`kommo-home-tab ${homeMode === mode ? "is-active" : ""}`}
+            >
+              {homeCopy.tabs[mode]}
+            </button>
+          ))}
+        </div>
+
+        <form onSubmit={handleHomePromptSubmit} className="kommo-home-prompt">
+          <div className="kommo-home-prompt-inner">
+            <textarea
+              rows={2}
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder={homeCopy.placeholder}
+              aria-label={homeCopy.placeholder}
+              className="w-full resize-none bg-transparent text-sm text-ink placeholder:text-muted outline-none"
+            />
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs text-muted">
+                {homeCopy.tabs[homeMode]}
+              </span>
+              <button type="submit" className="kommo-home-send" aria-label={homeCopy.tabs[homeMode]}>
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M3.1 4.2a.75.75 0 0 1 .9-.2l13 5.25a.75.75 0 0 1 0 1.4l-13 5.25a.75.75 0 0 1-1-.95L4.9 10 3 5.05a.75.75 0 0 1 .1-.85z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        {assistantAnswer && (
+          <p role="status" className="max-w-2xl rounded-lg border border-line bg-surface px-4 py-2.5 text-sm text-ink">
+            {assistantAnswer}
+          </p>
+        )}
+
+        <div className="kommo-home-suggestions">
+          {homeCopy.suggestions.map((s) => (
+            <button
+              key={s.label}
+              type="button"
+              onClick={() => onNavigate(s.tab)}
+              className="kommo-home-suggestion"
+            >
+              <span className="mt-0.5 text-brand" aria-hidden="true">✦</span>
+              <span>{s.label}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="min-w-0">
-          <h1 className="text-2xl font-semibold sm:text-3xl">{d.overview.title}</h1>
-          <p className="mt-1 text-[0.95rem] text-muted">{d.overview.subtitle}</p>
+          <h1 className="text-xl font-semibold sm:text-2xl">{d.overview.title}</h1>
+          <p className="mt-1 text-sm text-muted">{d.overview.subtitle}</p>
         </div>
       </div>
 
@@ -67,14 +194,14 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
       <section aria-label={d.overview.title} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <article className="panel-register p-5">
           <p className="text-sm font-medium text-muted">{d.overview.kpiLeads}</p>
-          <p className="mt-2 font-hand text-4xl font-bold leading-none text-ink tabular-nums">
+          <p className="mt-2 font-hand text-3xl font-semibold leading-none text-ink tabular-nums">
             {overview.totalLeads}
           </p>
         </article>
 
         <article className="panel-register p-5">
           <p className="text-sm font-medium text-muted">{d.overview.kpiEnrollments}</p>
-          <p className="mt-2 font-hand text-4xl font-bold leading-none text-pen tabular-nums">
+          <p className="mt-2 font-hand text-3xl font-semibold leading-none text-pen tabular-nums">
             {overview.totalEnrollments}
           </p>
         </article>
@@ -82,7 +209,7 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
         <article className="panel-register p-5">
           <p className="text-sm font-medium text-muted">{d.overview.kpiPaid}</p>
           <div className="mt-2 flex items-baseline justify-between gap-2">
-            <p className="font-hand text-4xl font-bold leading-none text-stamp tabular-nums">
+            <p className="font-hand text-3xl font-semibold leading-none text-stamp tabular-nums">
               {paidCount}
             </p>
             <span className="rounded border border-stamp/35 bg-stamp/10 px-2 py-0.5 text-xs font-semibold text-stamp tabular-nums">
@@ -93,7 +220,7 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
 
         <article className="panel-register p-5">
           <p className="text-sm font-medium text-muted">{d.overview.kpiMessages}</p>
-          <p className="mt-2 font-hand text-4xl font-bold leading-none text-ink tabular-nums">
+          <p className="mt-2 font-hand text-3xl font-semibold leading-none text-ink tabular-nums">
             {overview.totalMessages}
           </p>
         </article>
@@ -242,7 +369,7 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
                 <div key={step.key} className="grid gap-1">
                   <div className="flex items-baseline justify-between gap-2 text-sm">
                     <span className="font-medium text-ink">{step.label}</span>
-                    <span className="font-hand text-xl font-bold text-pen tabular-nums">{step.value}</span>
+                    <span className="text-lg font-semibold text-pen tabular-nums">{step.value}</span>
                   </div>
                   <div className="h-2.5 w-full overflow-hidden rounded-full border border-line bg-bg">
                     <div className="h-full bg-brand" style={{ width: `${widthPct}%` }} />
@@ -263,13 +390,13 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
               <div className="mt-2.5 grid grid-cols-2 gap-3">
                 <div className="rounded border border-line bg-surface px-3 py-2">
                   <p className="text-xs font-semibold uppercase text-muted">AZ</p>
-                  <p className="mt-0.5 font-hand text-2xl font-bold text-ink tabular-nums">
+                  <p className="mt-0.5 text-xl font-semibold text-ink tabular-nums">
                     {analytics.byLocale.az}
                   </p>
                 </div>
                 <div className="rounded border border-line bg-surface px-3 py-2">
                   <p className="text-xs font-semibold uppercase text-muted">EN</p>
-                  <p className="mt-0.5 font-hand text-2xl font-bold text-ink tabular-nums">
+                  <p className="mt-0.5 text-xl font-semibold text-ink tabular-nums">
                     {analytics.byLocale.en}
                   </p>
                 </div>

@@ -29,7 +29,7 @@ import {
   PANEL_COOKIE_NAME,
   readCookieValue,
   revokePanelJti,
-  verifyPanelSessionToken,
+  verifyAnyPanelToken,
 } from "./panel-auth";
 
 const MAX_AUTH_BODY_BYTES = 2048;
@@ -126,12 +126,11 @@ export function createPanelApi({
   ): Promise<{ ok: true; tenantId: string; memberId: string } | { ok: false; response: Response }> {
     const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
     const config = getAuthConfig();
-    if (!config.secret || config.allowedTenants.size === 0 || !token) {
+    if (!token || (!config.accountSecret && (!config.secret || config.allowedTenants.size === 0))) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
     const nowMs = now().getTime();
-    const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
-    const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
+    const payload = verifyAnyPanelToken(token, config, nowMs);
     if (!payload || (await isPanelJtiRevoked(payload.jti, nowMs))) {
       return { ok: false, response: fail(401, "unauthorized") };
     }
@@ -180,8 +179,9 @@ export function createPanelApi({
       if (typeof rawKey !== "string") return fail(401, "unauthorized");
 
       const config = getAuthConfig();
+      if (!config.secret) return fail(503, "unavailable");
       const tenantId = authenticateAdminKey(rawKey, config.adminKeys);
-      if (!config.secret || !tenantId) return fail(401, "unauthorized");
+      if (!tenantId) return fail(401, "unauthorized");
 
       const token = createPanelSessionToken(
         tenantId,
@@ -199,12 +199,9 @@ export function createPanelApi({
       const token = readCookieValue(req.headers.get("cookie"), PANEL_COOKIE_NAME);
       if (token) {
         const config = getAuthConfig();
-        if (config.secret && config.allowedTenants.size > 0) {
-          const nowMs = now().getTime();
-          const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
-          const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
-          if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs);
-        }
+        const nowMs = now().getTime();
+        const payload = verifyAnyPanelToken(token, config, nowMs);
+        if (payload) await revokePanelJti(payload.jti, payload.exp, nowMs);
       }
       const cookie = clearPanelCookieHeader(isSecureRequest(req));
       return json(200, { ok: true }, { "set-cookie": cookie });

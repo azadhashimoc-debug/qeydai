@@ -12,7 +12,7 @@ import "../../marketing.css";
 const BLOG_IMAGES: Record<BlogSlug, string> = {
   "whatsapp-automation": "p-blog-1",
   "instagram-dm-sales": "p-blog-2",
-  "appointment-crm": "p-cases",
+  "appointment-crm": "blog-cover-1",
   "ai-reply-workflows": "p-ai-copilot",
   "telegram-lead-capture": "p-telegram",
 };
@@ -98,7 +98,7 @@ export default async function BlogPostPage({
           subtitle={s.common.bottomCta.subtitle}
           primaryHref={`/${locale}/demo`}
           primaryLabel={s.common.bottomCta.primary}
-          secondaryHref={`/${locale}/login`}
+          secondaryHref={`/${locale}/pricing`}
           secondaryLabel={s.common.bottomCta.secondary}
         />
       </main>

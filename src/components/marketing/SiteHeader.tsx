@@ -59,6 +59,16 @@ export function SiteHeader({
   const resourcesItems = [
     { href: `/${lang}/pricing`, title: subNav.resources.pricingTitle, desc: subNav.resources.pricingDesc },
     { href: `/${lang}/scenarios/fitness-centers`, title: subNav.resources.fitnessTitle, desc: subNav.resources.fitnessDesc },
+    {
+      href: `/${lang}/industries`,
+      title: lang === "en" ? "Industries" : "Sektorlar",
+      desc: lang === "en" ? "Workflows for clinics, salons, real estate, retail and education" : "Klinika, salon, əmlak, mağaza və təhsil üçün iş axınları",
+    },
+    {
+      href: `/${lang}/integrations`,
+      title: lang === "en" ? "Integrations" : "İnteqrasiyalar",
+      desc: lang === "en" ? "Connect channels and external systems" : "Kanalları və xarici sistemləri qoşun",
+    },
     { href: `/${lang}/blog`, title: subNav.resources.blogTitle, desc: subNav.resources.blogDesc },
   ];
 

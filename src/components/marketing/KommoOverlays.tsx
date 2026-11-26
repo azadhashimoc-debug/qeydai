@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import type { Locale } from "@/app/[lang]/dictionaries";
 
 export type ActiveModal =
@@ -112,9 +112,15 @@ const COPY = {
       appNameLabel: "Tətbiq / Xidmət adı",
       useCaseLabel: "İstifadə ssenariniz",
       emailLabel: "E-poçt",
+      phoneLabel: "Telefon nömrəsi (istəyə bağlı)",
       submitBtn: "Təklifi göndər",
       doneTitle: "Təşəkkürlər!",
       doneBody: "Yeni inteqrasiyalar planlaşdırarkən təklifinizi mütləq nəzərə alacağıq.",
+    },
+    formErrors: {
+      invalidLead: "Zəhmət olmasa düzgün ad və Azərbaycan telefon nömrəsi daxil edin (məs. +994 50 123 45 67).",
+      rateLimited: "Çox sayda cəhd edildi. Bir neçə dəqiqədən sonra yenidən cəhd edin.",
+      network: "Göndərmək alınmadı. Zəhmət olmasa yenidən cəhd edin.",
     },
     videoModal: {
       title: "panelim.az — Avtomatlaşdırılmış Satış və AI CRM İcmalı",
@@ -223,9 +229,15 @@ const COPY = {
       appNameLabel: "App / Service name",
       useCaseLabel: "How would you use it?",
       emailLabel: "Email",
+      phoneLabel: "Phone number (optional)",
       submitBtn: "Submit suggestion",
       doneTitle: "Thank you!",
       doneBody: "We will evaluate your suggestion as we plan upcoming integrations.",
+    },
+    formErrors: {
+      invalidLead: "Please enter a valid name and Azerbaijani phone number (e.g. +994 50 123 45 67).",
+      rateLimited: "Too many attempts. Please try again in a few minutes.",
+      network: "Could not submit your request. Please try again.",
     },
     videoModal: {
       title: "panelim.az — Automated Messaging & AI Sales CRM Tour",
@@ -249,10 +261,35 @@ const COUNTRY_CODES = [
   { code: "+971", label: "United Arab Emirates +971" },
 ];
 
+function subscribeCookieBanner(cb: () => void) {
+  window.addEventListener("storage", cb);
+  window.addEventListener("panelim:cookie-change", cb);
+  return () => {
+    window.removeEventListener("storage", cb);
+    window.removeEventListener("panelim:cookie-change", cb);
+  };
+}
+
+function getCookieBannerClientSnapshot() {
+  try {
+    return !localStorage.getItem("panelim:cookie-accepted");
+  } catch {
+    return false;
+  }
+}
+
+function getCookieBannerServerSnapshot() {
+  return false;
+}
+
 export function KommoOverlays({ lang }: { lang: Locale }) {
   const c = COPY[lang];
   const [bannerOpen, setBannerOpen] = useState(true);
-  const [cookieOpen, setCookieOpen] = useState(false);
+  const cookieOpen = useSyncExternalStore(
+    subscribeCookieBanner,
+    getCookieBannerClientSnapshot,
+    getCookieBannerServerSnapshot,
+  );
   const [fabOpen, setFabOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
 
@@ -290,23 +327,43 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
   const [integrationSent, setIntegrationSent] = useState(false);
   const [integrationApp, setIntegrationApp] = useState("");
   const [integrationNote, setIntegrationNote] = useState("");
+  const [integrationPhone, setIntegrationPhone] = useState("");
+  const [bpName, setBpName] = useState("");
+  const [bpCompany, setBpCompany] = useState("");
+  const [bpEmail, setBpEmail] = useState("");
+  const [bpPhone, setBpPhone] = useState("");
+  const [modalSubmitting, setModalSubmitting] = useState(false);
+  const [modalError, setModalError] = useState<string | null>(null);
 
   const modalTitleId = useId();
 
-  useEffect(() => {
+  async function submitModalLead(name: string, phone: string): Promise<boolean> {
+    setModalError(null);
+    setModalSubmitting(true);
     try {
-      if (!localStorage.getItem("panelim:cookie-accepted")) {
-        setCookieOpen(true);
-      }
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), phone: phone.trim() }),
+      });
+      if (res.ok) return true;
+      if (res.status === 429) setModalError(c.formErrors.rateLimited);
+      else if (res.status === 400) setModalError(c.formErrors.invalidLead);
+      else setModalError(c.formErrors.network);
+      return false;
     } catch {
-      /* ignore storage errors */
+      setModalError(c.formErrors.network);
+      return false;
+    } finally {
+      setModalSubmitting(false);
     }
-  }, []);
+  }
 
   useEffect(() => {
     function onCustomModal(e: Event) {
       const detail = (e as CustomEvent<{ modal?: ActiveModal }>).detail;
       if (detail?.modal) {
+        setModalError(null);
         setActiveModal(detail.modal);
         setFabOpen(false);
       }
@@ -326,12 +383,12 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
   }, []);
 
   function acceptCookies() {
-    setCookieOpen(false);
     try {
       localStorage.setItem("panelim:cookie-accepted", "1");
     } catch {
       /* ignore */
     }
+    window.dispatchEvent(new Event("panelim:cookie-change"));
   }
 
   return (
@@ -415,6 +472,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 type="button"
                 className="pm-kommo-fab-item is-action"
                 onClick={() => {
+                  setModalError(null);
                   setContactSent(false);
                   setActiveModal("contact");
                   setFabOpen(false);
@@ -426,6 +484,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 type="button"
                 className="pm-kommo-fab-item is-action"
                 onClick={() => {
+                  setModalError(null);
                   setDemoConfirmed(false);
                   setActiveModal("demo");
                   setFabOpen(false);
@@ -437,6 +496,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 type="button"
                 className="pm-kommo-fab-item is-action"
                 onClick={() => {
+                  setModalError(null);
                   setPartnerStep(1);
                   setActiveModal("partner");
                   setFabOpen(false);
@@ -448,6 +508,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 type="button"
                 className="pm-kommo-fab-item is-action"
                 onClick={() => {
+                  setModalError(null);
                   setActiveModal("video");
                   setFabOpen(false);
                 }}
@@ -532,9 +593,9 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 ) : (
                   <form
                     className="pm-kommo-modal-form"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setDemoConfirmed(true);
+                      if (await submitModalLead(demoName, demoPhone)) setDemoConfirmed(true);
                     }}
                   >
                     <div className="pm-kommo-chip-row">
@@ -579,7 +640,12 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                         onChange={(e) => setDemoPhone(e.target.value)}
                       />
                     </label>
-                    <button type="submit" className="pm-btn pm-btn-primary pm-btn-block">
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary pm-btn-block">
                       {c.demoModal.submit}
                     </button>
                   </form>
@@ -605,9 +671,9 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 ) : (
                   <form
                     className="pm-kommo-modal-form js-enterprise-request-form"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setEntSent(true);
+                      if (await submitModalLead(entName, entPhone)) setEntSent(true);
                     }}
                   >
                     <h2 id={modalTitleId}>{c.enterpriseModal.title}</h2>
@@ -654,7 +720,12 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                         onChange={(e) => setEntReason(e.target.value)}
                       />
                     </label>
-                    <button type="submit" className="pm-btn pm-btn-primary pm-btn-block">
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary pm-btn-block">
                       {c.enterpriseModal.submit}
                     </button>
                   </form>
@@ -672,9 +743,17 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 ) : (
                   <form
                     className="pm-kommo-modal-form js-contact-us-form"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setContactSent(true);
+                      const rawPhone = contactPhone.trim();
+                      if (!rawPhone) {
+                        setContactSent(true);
+                        return;
+                      }
+                      const leadName = contactEmail.split("@")[0]?.trim() || "Contact";
+                      if (await submitModalLead(leadName, `${contactCountry} ${rawPhone}`)) {
+                        setContactSent(true);
+                      }
                     }}
                   >
                     <h2 id={modalTitleId}>{c.contactModal.title}</h2>
@@ -731,7 +810,12 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                         </div>
                       </label>
                     </div>
-                    <button type="submit" className="pm-btn pm-btn-primary pm-btn-block">
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary pm-btn-block">
                       {c.contactModal.submit}
                     </button>
                   </form>
@@ -799,9 +883,9 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 {partnerStep === 2 && (
                   <form
                     className="pm-kommo-modal-form js-find-partner-form-step-2"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setPartnerStep(3);
+                      if (await submitModalLead(partnerName, partnerPhone)) setPartnerStep(3);
                     }}
                   >
                     <h2 id={modalTitleId}>{c.partnerModal.step2Title}</h2>
@@ -823,15 +907,23 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                         onChange={(e) => setPartnerPhone(e.target.value)}
                       />
                     </label>
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
                     <div className="pm-kommo-modal-actions">
                       <button
                         type="button"
                         className="pm-btn pm-btn-outline"
-                        onClick={() => setPartnerStep(1)}
+                        onClick={() => {
+                          setModalError(null);
+                          setPartnerStep(1);
+                        }}
                       >
                         {c.partnerModal.backBtn}
                       </button>
-                      <button type="submit" className="pm-btn pm-btn-primary">
+                      <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary">
                         {c.partnerModal.submitBtn}
                       </button>
                     </div>
@@ -857,30 +949,55 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 ) : (
                   <form
                     className="pm-kommo-modal-form"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setBecomePartnerSent(true);
+                      if (await submitModalLead(bpName, bpPhone)) setBecomePartnerSent(true);
                     }}
                   >
                     <h2 id={modalTitleId}>{c.becomePartnerModal.title}</h2>
                     <p className="pm-kommo-modal-sub">{c.becomePartnerModal.subtitle}</p>
                     <label className="pm-kommo-field">
                       <span>{c.becomePartnerModal.nameLabel}</span>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        required
+                        value={bpName}
+                        onChange={(e) => setBpName(e.target.value)}
+                      />
                     </label>
                     <label className="pm-kommo-field">
                       <span>{c.becomePartnerModal.companyLabel}</span>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        required
+                        value={bpCompany}
+                        onChange={(e) => setBpCompany(e.target.value)}
+                      />
                     </label>
                     <label className="pm-kommo-field">
                       <span>{c.becomePartnerModal.emailLabel}</span>
-                      <input type="email" required />
+                      <input
+                        type="email"
+                        required
+                        value={bpEmail}
+                        onChange={(e) => setBpEmail(e.target.value)}
+                      />
                     </label>
                     <label className="pm-kommo-field">
                       <span>{c.becomePartnerModal.phoneLabel}</span>
-                      <input type="tel" required />
+                      <input
+                        type="tel"
+                        required
+                        value={bpPhone}
+                        onChange={(e) => setBpPhone(e.target.value)}
+                      />
                     </label>
-                    <button type="submit" className="pm-btn pm-btn-primary pm-btn-block">
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary pm-btn-block">
                       {c.becomePartnerModal.submitBtn}
                     </button>
                   </form>
@@ -898,9 +1015,14 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                 ) : (
                   <form
                     className="pm-kommo-modal-form"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setIntegrationSent(true);
+                      const rawPhone = integrationPhone.trim();
+                      if (!rawPhone) {
+                        setIntegrationSent(true);
+                        return;
+                      }
+                      if (await submitModalLead(integrationApp, rawPhone)) setIntegrationSent(true);
                     }}
                   >
                     <h2 id={modalTitleId}>{c.integrationModal.title}</h2>
@@ -923,7 +1045,20 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                         onChange={(e) => setIntegrationNote(e.target.value)}
                       />
                     </label>
-                    <button type="submit" className="pm-btn pm-btn-primary pm-btn-block">
+                    <label className="pm-kommo-field">
+                      <span>{c.integrationModal.phoneLabel}</span>
+                      <input
+                        type="tel"
+                        value={integrationPhone}
+                        onChange={(e) => setIntegrationPhone(e.target.value)}
+                      />
+                    </label>
+                    {modalError && (
+                      <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                        {modalError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={modalSubmitting} className="pm-btn pm-btn-primary pm-btn-block">
                       {c.integrationModal.submitBtn}
                     </button>
                   </form>

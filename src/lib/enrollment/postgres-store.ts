@@ -125,7 +125,21 @@ function toMessage(r: InboxMessageRow): InboxMessage {
  * plus `UNIQUE(tenant_id, session_id, phone)` to prevent double-booking and race overfills.
  */
 export class PostgresEnrollmentStore implements EnrollmentStore {
+  private jtiReady = false;
+
   constructor(private pool: PgPool) {}
+
+  private async ensureJtiSchema() {
+    if (this.jtiReady) return;
+    await this.pool.query(
+      `CREATE TABLE IF NOT EXISTS panel_revoked_jti (
+        jti TEXT PRIMARY KEY,
+        exp_ms BIGINT NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS panel_revoked_jti_exp_idx ON panel_revoked_jti(exp_ms);`,
+    );
+    this.jtiReady = true;
+  }
 
   async createSession(s: Session): Promise<CreateSessionOutcome> {
     const { rows } = await this.pool.query<{ id: string }>(
@@ -345,6 +359,42 @@ export class PostgresEnrollmentStore implements EnrollmentStore {
       if (pgErr?.code === "23503") return null;
       throw err;
     }
+  }
+
+  async revokePanelJti(jti: string, expMs: number): Promise<void> {
+    await this.ensureJtiSchema();
+    await this.pool.query(
+      "INSERT INTO panel_revoked_jti (jti, exp_ms) VALUES ($1, $2) ON CONFLICT (jti) DO UPDATE SET exp_ms = $2",
+      [jti, expMs],
+    );
+  }
+
+  async isPanelJtiRevoked(jti: string, nowMs: number): Promise<boolean> {
+    await this.ensureJtiSchema();
+    const { rows } = await this.pool.query<{ exp_ms: number }>(
+      "SELECT exp_ms FROM panel_revoked_jti WHERE jti = $1",
+      [jti],
+    );
+    if (rows.length === 0) return false;
+    if (Number(rows[0].exp_ms) <= nowMs) {
+      await this.pool.query("DELETE FROM panel_revoked_jti WHERE jti = $1", [jti]);
+      return false;
+    }
+    return true;
+  }
+
+  async purgeExpiredPanelJtis(nowMs: number): Promise<void> {
+    await this.pool.query("DELETE FROM panel_revoked_jti WHERE exp_ms <= $1", [nowMs]);
+  }
+
+  async requireSalesMember(tenantId: string, memberId: string | null): Promise<{ memberId: string; role: "owner" | "manager" | "operator" } | null> {
+    if (!memberId) return null;
+    const { rows } = await this.pool.query<{ id: string; role: "owner" | "manager" | "operator" }>(
+      `SELECT id, role FROM sales_members WHERE tenant_id = $1 AND id = $2`,
+      [tenantId, memberId],
+    );
+    if (!rows.length) return null;
+    return { memberId: rows[0].id, role: rows[0].role };
   }
 
   async listMessages(tenantId: string, leadId?: string): Promise<InboxMessage[]> {

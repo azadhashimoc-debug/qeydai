@@ -27,6 +27,8 @@ type KanbanBoardProps = {
   onOpenDeal: (dealId: string) => void;
 };
 
+const STAGE_ACCENTS = ["#7CB8F7", "#F7E36D", "#F5A623", "#F48FB1", "#34D399", "#F87171"] as const;
+
 export function KanbanBoard({
   stages,
   deals,
@@ -104,12 +106,14 @@ export function KanbanBoard({
 
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
+        e.stopPropagation();
         onOpenDeal(deal.id);
         return;
       }
 
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         e.preventDefault();
+        e.stopPropagation();
         const nextStageId =
           e.key === "ArrowLeft"
             ? stageIdList[(stageIdx - 1 + stageIdList.length) % stageIdList.length]
@@ -125,12 +129,14 @@ export function KanbanBoard({
 
       if (e.key === "ArrowUp") {
         e.preventDefault();
+        e.stopPropagation();
         moveFocus(deal.stageId, null);
         return;
       }
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
+        e.stopPropagation();
         if (!ids.length) return;
         const nextIdx = (dealIdx + 1) % ids.length;
         moveFocus(deal.stageId, ids[nextIdx]);
@@ -140,12 +146,18 @@ export function KanbanBoard({
 
   return (
     <div className="flex gap-4 overflow-x-auto pb-3" data-testid="kanban-board">
-      {sortedStages.map((stage) => {
+      {sortedStages.map((stage, stageIndex) => {
         const stageDeals = deals.filter((deal) => deal.stageId === stage.id);
         const totalMinor = stageDeals.reduce((sum, item) => sum + item.amountMinor, 0);
         const currency = stageDeals[0]?.currency ?? "AZN";
         const isDropTarget = dragOverStageId === stage.id;
         const isFocusedStage = focusedStageId === stage.id;
+        const accentColor =
+          stage.kind === "won"
+            ? "#34D399"
+            : stage.kind === "lost"
+              ? "#F87171"
+              : STAGE_ACCENTS[stageIndex % STAGE_ACCENTS.length];
 
         return (
           <section
@@ -185,26 +197,25 @@ export function KanbanBoard({
             data-focus={isFocusedStage ? "true" : undefined}
             className="panel-card crm-sales-column flex w-72 shrink-0 flex-col gap-3 p-3 transition-colors"
           >
-            <header className="flex items-start justify-between gap-2 border-b border-line pb-2.5">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <h2 className="truncate text-sm font-semibold text-ink">
-                    {localizeStageName(stage, d)}
-                  </h2>
-                  <span
-                    className={`rounded border px-1.5 py-0.5 text-[0.7rem] font-semibold tabular-nums ${stageKindBadgeClass(
-                      stage.kind
-                    )}`}
-                  >
-                    {stageDeals.length}
-                  </span>
-                </div>
-                {totalMinor > 0 && (
-                  <p className="mt-0.5 text-xs font-medium text-muted tabular-nums">
-                    {formatMoneyMinor(totalMinor, currency)}
-                  </p>
-                )}
+            <header
+              className="flex flex-col items-center gap-1 pb-2.5 text-center"
+              style={{ borderBottom: `2.5px solid ${accentColor}` }}
+            >
+              <div className="flex max-w-full items-center justify-center gap-2">
+                <h2 className="truncate text-xs font-bold uppercase tracking-wide text-ink">
+                  {localizeStageName(stage, d)}
+                </h2>
+                <span
+                  className={`rounded-full border px-1.5 py-0.5 text-[0.7rem] font-semibold tabular-nums ${stageKindBadgeClass(
+                    stage.kind
+                  )}`}
+                >
+                  {stageDeals.length}
+                </span>
               </div>
+              <p className="text-xs font-medium text-muted tabular-nums">
+                {formatMoneyMinor(totalMinor, currency)}
+              </p>
             </header>
 
             <div className="flex flex-col gap-2.5">
@@ -237,6 +248,7 @@ export function KanbanBoard({
                       setDragDealId(null);
                       setDragOverStageId(null);
                     }}
+                    onKeyDown={(e) => handleDealKeyDown(e, deal)}
                     data-testid={`deal-card-${deal.id}`}
                     data-focus={isFocusedDeal ? "true" : undefined}
                     className="rounded-xl border border-line bg-surface p-3 shadow-xs transition-colors hover:border-brand/60"

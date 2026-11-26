@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { buttonClass } from "@/components/ui/button";
-import type { LeadRecord, PanelLocale, PanelSession, SalesDeal } from "./types";
+import { LEAD_SOURCES, LEAD_STAGES, type LeadRecord, type PanelLocale, type PanelSession, type SalesDeal } from "./types";
 
 type CopilotMode = "analyst" | "sources" | "overdue" | "assistant";
 
@@ -16,64 +15,55 @@ const COPY = {
     close: "Copilot pəncərəsini bağla",
     modeLabel: "Copilot rejimi",
     modes: {
-      analyst: "Analist modu — Qazanc-İtki Analizi",
-      sources: "Qaynaq Bazında Performans (2026)",
-      overdue: "Gecikmiş Tapşırıqlar & İsti Lead-lər",
-      assistant: "24/7 AI Təmsilçi & Avto-Tapşırıq",
+      analyst: "Analist modu — Canlı Qazanc-İtki Analizi",
+      sources: "Qaynaq Bazında Performans",
+      overdue: "Açıq və Sahibsiz Müraciətlər",
+      assistant: "Sınaq Dərsi Boş Yer Vəziyyəti",
+    },
+    stages: {
+      new: "Yeni",
+      contacted: "Əlaqə quruldu",
+      trial_booked: "Sınaq təyin edildi",
+      paid: "Ödəniş edildi",
+      lost: "İtirildi",
+    },
+    sources: {
+      whatsapp: "WhatsApp",
+      instagram: "Instagram",
+      telegram: "Telegram",
+      web: "Veb sayt",
+      manual: "Əl ilə",
     },
     analystSection: {
-      crumb: "Lead itkisi analizi · Qazanc-İtki Qıfı",
-      question: "Dəvət göndərildikdən sonra lead sayı niyə düşür?",
-      answerBold: "Lead-lərin 37%-i",
-      answerRest:
-        "sınaq dərsi rezervasiya keçidini aldıqdan sonra 48 saat ərzində hərəkətə keçmədikləri üçün itirilir.",
+      crumb: "Canlı CRM xülasəsi · Qazanc-İtki Qıfı",
+      question: "Hazırkı qıf vəziyyəti və ödənişli dönüşüm necədir?",
+      empty: "Hələ CRM müraciəti yoxdur. İlk müraciətlər əlavə olunduqca canlı göstəricilər burada görünəcək.",
       recLabel: "Təklif:",
-      recBody: "Rezervasiya etməyən lead-lər ilə 24 saat ərzində avtomatik xatırlatma mesajı ilə əlaqə saxlayın.",
-      funnelStages: [
-        { label: "Gələn müştərilər", pct: 100, color: "bg-blue-500/25" },
-        { label: "İlk təmas", pct: 84, color: "bg-amber-400/35" },
-        { label: "Randevu keçidi", pct: 68, color: "bg-amber-500/35" },
-        { label: "Planlandı", pct: 52, color: "bg-rose-400/30" },
-        { label: "Xatırlatma mesajı", pct: 44, color: "bg-purple-500/30" },
-        { label: "Görüşüldü", pct: 35, color: "bg-rose-400/30" },
-        { label: "Təqib", pct: 24, color: "bg-emerald-500/30" },
-        { label: "Qazanıldı", pct: 18, color: "bg-lime-500/40" },
-      ],
     },
     sourcesSection: {
-      crumb: "Qazanılan Müştərilər — Bu Ay və Öncəki Ay",
-      question: "Bu il ən çox anlaşma qazandıran reklam qaynaqları hansılar idi?",
-      heading: "📣 Qazanılan Anlaşmalara Görə Ən Önəmli Reklam Qaynaqları - 2026",
-      subhead: "📊 Qaynaq Bazında Performans",
+      crumb: "Canlı qaynaq bölgüsü",
+      question: "Müraciətlər və anlaşmalar hansı kanallardan gəlir?",
+      heading: "📣 Kanallara Görə Canlı Performans",
       colRank: "SIRALAMA",
       colSource: "QAYNAQ",
-      colWon: "QAZANC",
-      rows: [
-        { rank: "🥇 1", source: "Meta Ads (Instagram & WhatsApp)", won: 124 },
-        { rank: "🥈 2", source: "Google Ads", won: 98 },
-        { rank: "🥉 3", source: "LinkedIn & Orqanik", won: 56 },
-      ],
+      colWon: "SAY",
+      empty: "Hələ kanal statistikası yoxdur.",
       copyBtn: "📋 Siyahını kopyala",
       copiedBtn: "✓ Kopyalandı",
-      exportBtn: "📊 Yadda saxla .csv",
     },
     overdueSection: {
-      crumb: "Gecikmiş Tapşırıqlar",
-      question: "Məsuliyyətimdə olan və vaxtı keçmiş tapşırıqlara sahib lead-ləri tap.",
-      heading: "📊 Yeni və Öncəlikli Lead-lər",
-      subhead: "Məsul olduğunuz, vaxtı keçmiş tapşırıqları ehtiva edən önəmli lead-lər:",
-      cards: [
-        { name: "Cəngiz Qarasu", title: "İELTS İntensiv Qrup", tag: "tam_paket", age: "1g •" },
-        { name: "Hakan Qaralar", title: "Uşaq Üzgüçülük Akademiyası", tag: "ozel_qrup", age: "1g •" },
-      ],
+      crumb: "Öncəlikli İşlər",
+      question: "Təcili cavab və ya təyinat gözləyən anlaşmalar hansılardır?",
+      heading: "📊 Sahibsiz / Açıq Anlaşmalar",
+      empty: "Hazırda gözləyən sahibsiz anlaşma və ya yeni müraciət yoxdur.",
+      unassigned: "Təyin edilməyib",
     },
     assistantSection: {
-      crumb: "Avtomatik Tapşırıq & 24/7 Cavab",
-      userMsg: "Salam! Sabahkı sınaq dərsini saat 11:00-a dəyişə bilərik?",
-      botMsg:
-        "Təqvim yoxlanılır... Saat 11:00 qrupunda 2 boş yer mövcuddur, qeydiyyatınız yeniləndi!",
-      taskBadge: "Tapşırıq vaxtı gəlmiş Sabah üçün Təmsilçi : ⟳ Təqib:",
-      taskText: "Sınaq dərsi öncəsi valideynə WhatsApp konum və hazırlıq mesajı göndər.",
+      crumb: "Canlı Sınaq Dərsi Təqvimi",
+      empty: "Aktiv sınaq dərsi sessiyası tapılmadı. Sessiyalar bölməsindən yeni qrup əlavə edin.",
+      seatsLeft: "boş yer",
+      nextSlot: "Ən yaxın açıq sessiya:",
+      summaryLabel: "Ümumi tutum:",
     },
     promptPlaceholder: "Copilot-a sual verin...",
     askBtn: "Soruş",
@@ -86,69 +76,68 @@ const COPY = {
     close: "Close Copilot drawer",
     modeLabel: "Copilot mode",
     modes: {
-      analyst: "Analyst mode — Win-Loss Funnel Analysis",
-      sources: "Top Ad Sources Performance (2026)",
-      overdue: "Overdue Tasks & Hot Leads",
-      assistant: "24/7 AI Agent & Auto Follow-up Task",
+      analyst: "Analyst mode — Live Win-Loss Funnel",
+      sources: "Performance by Channel Source",
+      overdue: "Open & Unassigned Deals",
+      assistant: "Live Trial Session Availability",
+    },
+    stages: {
+      new: "New",
+      contacted: "Contacted",
+      trial_booked: "Trial booked",
+      paid: "Paid",
+      lost: "Lost",
+    },
+    sources: {
+      whatsapp: "WhatsApp",
+      instagram: "Instagram",
+      telegram: "Telegram",
+      web: "Website",
+      manual: "Manual",
     },
     analystSection: {
-      crumb: "Lead loss analysis · Win-Loss Funnel",
-      question: "Why does the lead count drop after sending the booking invite?",
-      answerBold: "37% of leads",
-      answerRest:
-        "are lost because they do not take action within 48 hours of receiving the trial booking link.",
+      crumb: "Live CRM summary · Win-Loss Funnel",
+      question: "How does our current funnel and paid conversion look?",
+      empty: "No CRM leads yet. Live funnel percentages will populate as inquiries arrive.",
       recLabel: "Recommendation:",
-      recBody: "Trigger an automated follow-up message within 24 hours for leads who haven't booked.",
-      funnelStages: [
-        { label: "Incoming leads", pct: 100, color: "bg-blue-500/25" },
-        { label: "First contact", pct: 84, color: "bg-amber-400/35" },
-        { label: "Booking link sent", pct: 68, color: "bg-amber-500/35" },
-        { label: "Scheduled", pct: 52, color: "bg-rose-400/30" },
-        { label: "Reminder message", pct: 44, color: "bg-purple-500/30" },
-        { label: "Attended", pct: 35, color: "bg-rose-400/30" },
-        { label: "Follow-up", pct: 24, color: "bg-emerald-500/30" },
-        { label: "Won", pct: 18, color: "bg-lime-500/40" },
-      ],
     },
     sourcesSection: {
-      crumb: "Won Customers — This Month vs Last Month",
-      question: "Which ad sources generated the most won deals this year?",
-      heading: "📣 Top Ad Sources by Won Deals - 2026",
-      subhead: "📊 Performance by Source",
+      crumb: "Live channel breakdown",
+      question: "Which channels are bringing leads and deals?",
+      heading: "📣 Live Performance by Source",
       colRank: "RANK",
       colSource: "SOURCE",
-      colWon: "WON",
-      rows: [
-        { rank: "🥇 1", source: "Meta Ads (Instagram & WhatsApp)", won: 124 },
-        { rank: "🥈 2", source: "Google Ads", won: 98 },
-        { rank: "🥉 3", source: "LinkedIn & Organic", won: 56 },
-      ],
+      colWon: "COUNT",
+      empty: "No channel data recorded yet.",
       copyBtn: "📋 Copy list",
       copiedBtn: "✓ Copied",
-      exportBtn: "📊 Save .csv",
     },
     overdueSection: {
-      crumb: "Overdue Tasks",
-      question: "Find leads assigned to me that have overdue follow-up tasks.",
-      heading: "📊 Priority Hot Leads",
-      subhead: "Important leads with overdue tasks assigned to you:",
-      cards: [
-        { name: "Cengiz Karasu", title: "IELTS Intensive Group", tag: "full_bundle", age: "1d •" },
-        { name: "Hakan Karalar", title: "Kids Swimming Academy", tag: "custom_group", age: "1d •" },
-      ],
+      crumb: "Priority Queue",
+      question: "Which deals or leads need immediate attention?",
+      heading: "📊 Unassigned / Open Items",
+      empty: "No unassigned deals or new leads waiting right now.",
+      unassigned: "Unassigned",
     },
     assistantSection: {
-      crumb: "Automated Task & 24/7 Reply",
-      userMsg: "Hi! Can we move my trial session tomorrow to 11:00 AM?",
-      botMsg:
-        "Checking calendar... 2 seats available in the 11:00 AM slot, your booking has been updated!",
-      taskBadge: "Task due Tomorrow for Rep : ⟳ Follow-up:",
-      taskText: "Send WhatsApp location pin and preparation checklist before trial class.",
+      crumb: "Live Trial Session Calendar",
+      empty: "No active trial sessions found. Add a group in the Sessions tab.",
+      seatsLeft: "seats left",
+      nextSlot: "Next open session:",
+      summaryLabel: "Total open capacity:",
     },
     promptPlaceholder: "Ask Copilot...",
     askBtn: "Ask",
   },
 } as const;
+
+const STAGE_COLORS: Record<(typeof LEAD_STAGES)[number], string> = {
+  new: "bg-blue-500/25",
+  contacted: "bg-amber-400/35",
+  trial_booked: "bg-purple-500/30",
+  paid: "bg-lime-500/40",
+  lost: "bg-rose-400/30",
+};
 
 export function CopilotDrawer({
   lang,
@@ -169,25 +158,96 @@ export function CopilotDrawer({
   const [prompt, setPrompt] = useState("");
   const [customReply, setCustomReply] = useState<string | null>(null);
 
+  const funnelStats = useMemo(() => {
+    const total = leads.length;
+    const paid = leads.filter((l) => l.stage === "paid").length;
+    const conversionPct = total > 0 ? Math.round((paid / total) * 100) : 0;
+    const newCount = leads.filter((l) => l.stage === "new").length;
+    const rows = LEAD_STAGES.map((stage) => {
+      const count = leads.filter((l) => l.stage === stage).length;
+      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+      return { stage, label: c.stages[stage], count, pct, color: STAGE_COLORS[stage] };
+    });
+    return { total, paid, newCount, conversionPct, rows };
+  }, [leads, c]);
+
+  const sourceRows = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const src of LEAD_SOURCES) counts.set(src, 0);
+    for (const l of leads) counts.set(l.source, (counts.get(l.source) ?? 0) + 1);
+    for (const d of deals) counts.set(d.source, (counts.get(d.source) ?? 0) + 1);
+    return Array.from(counts.entries())
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1])
+      .map(([source, count], idx) => ({
+        rank: `#${idx + 1}`,
+        source: c.sources[source as keyof typeof c.sources] ?? source,
+        count,
+      }));
+  }, [leads, deals, c]);
+
+  const priorityItems = useMemo(() => {
+    const unassignedDeals = deals.filter((d) => !d.assigneeId).slice(0, 5);
+    if (unassignedDeals.length > 0) {
+      return unassignedDeals.map((d) => ({
+        id: d.id,
+        name: d.contactName,
+        title: d.title,
+        tag: c.sources[d.source as keyof typeof c.sources] ?? d.source,
+        meta: c.overdueSection.unassigned,
+      }));
+    }
+    return leads
+      .filter((l) => l.stage === "new")
+      .slice(0, 5)
+      .map((l) => ({
+        id: l.id,
+        name: l.name,
+        title: l.phone,
+        tag: c.sources[l.source] ?? l.source,
+        meta: c.stages[l.stage],
+      }));
+  }, [deals, leads, c]);
+
+  const sessionStats = useMemo(() => {
+    const totalSeatsLeft = sessions.reduce((sum, s) => sum + Math.max(0, s.seatsLeft), 0);
+    const openSession = sessions.find((s) => s.seatsLeft > 0) ?? null;
+    return { totalSeatsLeft, openSession };
+  }, [sessions]);
+
   function handleAsk(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const q = prompt.trim();
     if (!q) return;
+    const topSrc = sourceRows[0]?.source ?? (lang === "az" ? "yoxdur" : "none");
     const summary =
       lang === "az"
-        ? `Canlı workspace xülasəsi: ${deals.length} aktiv satış kartı, ${leads.length} müraciət və ${sessions.length} dərs sessiyası təhlil edildi. "${q}" üzrə tövsiyə: ilk 15 dəqiqədə cavab verilən müraciətlərdə qeydiyyat dönüşümü 2.4x daha yüksəkdir.`
-        : `Live workspace insight: Analyzed ${deals.length} deals, ${leads.length} leads, and ${sessions.length} sessions. For "${q}": leads contacted within 15 minutes convert 2.4x higher.`;
+        ? `Canlı iş sahəsi xülasəsi: ${deals.length} anlaşma, ${leads.length} müraciət (${funnelStats.paid} ödənişli, ${funnelStats.conversionPct}% dönüşüm), ${sessions.length} sessiyada ${sessionStats.totalSeatsLeft} boş yer. Ən aktiv kanal: ${topSrc}. Sorğu: "${q}".`
+        : `Live workspace summary: ${deals.length} deals, ${leads.length} leads (${funnelStats.paid} paid, ${funnelStats.conversionPct}% conversion), ${sessionStats.totalSeatsLeft} open seats across ${sessions.length} sessions. Top channel: ${topSrc}. Query: "${q}".`;
     setCustomReply(summary);
     setPrompt("");
   }
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   async function handleCopySources() {
-    const text = c.sourcesSection.rows.map((r) => `${r.rank} ${r.source}: ${r.won}`).join("\n");
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
+    const text = sourceRows.map((r) => `${r.rank} ${r.source}: ${r.count}`).join("\n");
+    if (text && navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1800);
+      } catch {
+        // Ignore clipboard permission denial safely.
+      }
     }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
   }
 
   return (
@@ -209,11 +269,10 @@ export function CopilotDrawer({
         <aside
           role="dialog"
           aria-label={c.title}
-          className={`fixed top-16 right-4 bottom-4 z-50 flex flex-col rounded-2xl border-2 border-indigo-400/60 bg-surface shadow-2xl transition-all ${
+          className={`fixed top-16 right-4 bottom-4 z-50 flex flex-col rounded-xl border border-line bg-surface shadow-2xl transition-all ${
             expanded ? "w-[min(640px,calc(100vw-2rem))]" : "w-[min(410px,calc(100vw-2rem))]"
           }`}
         >
-          {/* Header */}
           <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-3">
             <div className="flex items-center gap-2">
               <span aria-hidden="true" className="text-lg">
@@ -249,49 +308,51 @@ export function CopilotDrawer({
             </div>
           </div>
 
-          {/* Body */}
           <div className="flex-1 space-y-4 overflow-y-auto p-4">
-            <div className="overflow-hidden rounded-xl border border-line bg-bg">
-              <Image
-                src={
-                  lang === "en"
-                    ? "/images/flow-copilot-analytics-en.webp"
-                    : "/images/flow-copilot-analytics.webp"
-                }
-                alt={c.title}
-                width={380}
-                height={212}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-
             {mode === "analyst" && (
               <div className="space-y-3">
                 <p className="text-xs font-bold text-muted">{c.analystSection.crumb} ›</p>
                 <div className="ml-auto max-w-[85%] rounded-2xl bg-sky-500/15 px-3.5 py-2.5 text-sm text-ink">
                   {c.analystSection.question}
                 </div>
-                <div className="rounded-2xl border-2 border-indigo-400/50 bg-bg p-3.5 text-sm shadow-sm">
-                  <p className="text-ink">
-                    <strong>{c.analystSection.answerBold}</strong> {c.analystSection.answerRest}
+                {funnelStats.total === 0 ? (
+                  <p className="rounded-2xl border border-line bg-bg p-3.5 text-sm text-muted">
+                    {c.analystSection.empty}
                   </p>
-                  <p className="mt-2 text-ink">
-                    <strong>{c.analystSection.recLabel}</strong> {c.analystSection.recBody}
-                  </p>
-                </div>
-
-                {/* Kazanç-Kayıp Analizi Funnel Bars */}
-                <div className="space-y-1.5 rounded-xl border border-line bg-bg p-3">
-                  {c.analystSection.funnelStages.map((st) => (
-                    <div key={st.label} className="grid grid-cols-[120px_1fr_38px] items-center gap-2 text-xs">
-                      <span className="truncate text-muted">{st.label}</span>
-                      <div className="h-3.5 w-full overflow-hidden rounded bg-surface">
-                        <div className={`h-full rounded ${st.color}`} style={{ width: `${st.pct}%` }} />
-                      </div>
-                      <span className="text-right font-semibold text-ink tabular-nums">{st.pct}%</span>
+                ) : (
+                  <>
+                    <div className="rounded-2xl border border-brand/30 bg-bg p-3.5 text-sm shadow-sm">
+                      <p className="text-ink">
+                        {lang === "az"
+                          ? `Cəmi ${funnelStats.total} müraciət və ${deals.length} anlaşma var. Ödənişə dönüşüm: ${funnelStats.conversionPct}% (${funnelStats.paid} ödənişli).`
+                          : `${funnelStats.total} total leads and ${deals.length} deals tracked. Paid conversion: ${funnelStats.conversionPct}% (${funnelStats.paid} paid).`}
+                      </p>
+                      <p className="mt-2 text-ink">
+                        <strong>{c.analystSection.recLabel}</strong>{" "}
+                        {funnelStats.newCount > 0
+                          ? lang === "az"
+                            ? `${funnelStats.newCount} yeni müraciət cavab gözləyir.`
+                            : `${funnelStats.newCount} new leads are waiting for first contact.`
+                          : lang === "az"
+                            ? "Bütün yeni müraciətlər işlənib."
+                            : "All new leads have been contacted."}
+                      </p>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-1.5 rounded-xl border border-line bg-bg p-3">
+                      {funnelStats.rows.map((st) => (
+                        <div key={st.stage} className="grid grid-cols-[120px_1fr_54px] items-center gap-2 text-xs">
+                          <span className="truncate text-muted">{st.label}</span>
+                          <div className="h-3.5 w-full overflow-hidden rounded bg-surface">
+                            <div className={`h-full rounded ${st.color}`} style={{ width: `${st.pct}%` }} />
+                          </div>
+                          <span className="text-right font-semibold text-ink tabular-nums">
+                            {st.count} ({st.pct}%)
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             )}
 
@@ -301,37 +362,42 @@ export function CopilotDrawer({
                 <div className="ml-auto max-w-[85%] rounded-2xl bg-sky-500/15 px-3.5 py-2.5 text-sm text-ink">
                   {c.sourcesSection.question}
                 </div>
-                <div className="rounded-2xl border-2 border-indigo-400/50 bg-bg p-3.5 text-sm shadow-sm">
-                  <h3 className="font-bold text-ink">{c.sourcesSection.heading}</h3>
-                  <p className="mt-1 text-xs font-semibold text-muted">{c.sourcesSection.subhead}</p>
-                  <table className="mt-2.5 w-full border-collapse text-left text-xs">
-                    <thead>
-                      <tr className="border-b border-line text-muted">
-                        <th className="py-1.5">{c.sourcesSection.colRank}</th>
-                        <th className="py-1.5">{c.sourcesSection.colSource}</th>
-                        <th className="py-1.5 text-right">{c.sourcesSection.colWon}</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-line">
-                      {c.sourcesSection.rows.map((row) => (
-                        <tr key={row.rank}>
-                          <td className="py-2 font-semibold">{row.rank}</td>
-                          <td className="py-2 text-ink">{row.source}</td>
-                          <td className="py-2 text-right font-bold tabular-nums">{row.won}</td>
+                {sourceRows.length === 0 ? (
+                  <p className="rounded-2xl border border-line bg-bg p-3.5 text-sm text-muted">
+                    {c.sourcesSection.empty}
+                  </p>
+                ) : (
+                  <div className="rounded-2xl border border-brand/30 bg-bg p-3.5 text-sm shadow-sm">
+                    <h3 className="font-bold text-ink">{c.sourcesSection.heading}</h3>
+                    <table className="mt-2.5 w-full border-collapse text-left text-xs">
+                      <thead>
+                        <tr className="border-b border-line text-muted">
+                          <th className="py-1.5">{c.sourcesSection.colRank}</th>
+                          <th className="py-1.5">{c.sourcesSection.colSource}</th>
+                          <th className="py-1.5 text-right">{c.sourcesSection.colWon}</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={() => void handleCopySources()}
-                      className="rounded border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-ink hover:border-brand"
-                    >
-                      {copied ? c.sourcesSection.copiedBtn : c.sourcesSection.copyBtn}
-                    </button>
+                      </thead>
+                      <tbody className="divide-y divide-line">
+                        {sourceRows.map((row) => (
+                          <tr key={row.source}>
+                            <td className="py-2 font-semibold">{row.rank}</td>
+                            <td className="py-2 text-ink">{row.source}</td>
+                            <td className="py-2 text-right font-bold tabular-nums">{row.count}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => void handleCopySources()}
+                        className="rounded border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-ink hover:border-brand"
+                      >
+                        {copied ? c.sourcesSection.copiedBtn : c.sourcesSection.copyBtn}
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
 
@@ -343,24 +409,27 @@ export function CopilotDrawer({
                 </div>
                 <div className="rounded-2xl border border-line bg-bg p-3.5 text-sm">
                   <h3 className="font-bold text-ink">{c.overdueSection.heading}</h3>
-                  <p className="mt-1 text-xs text-muted">{c.overdueSection.subhead}</p>
-                  <div className="mt-3 space-y-2">
-                    {c.overdueSection.cards.map((card) => (
-                      <div
-                        key={card.name}
-                        className="flex items-center justify-between rounded-xl border-2 border-indigo-400/50 bg-surface p-2.5"
-                      >
-                        <div>
-                          <p className="text-xs font-semibold text-muted">{card.name}</p>
-                          <p className="text-sm font-bold text-sky-600">{card.title}</p>
-                          <span className="mt-1 inline-block rounded border border-line bg-bg px-2 py-0.5 text-[11px] text-muted">
-                            {card.tag}
-                          </span>
+                  {priorityItems.length === 0 ? (
+                    <p className="mt-2 text-xs text-muted">{c.overdueSection.empty}</p>
+                  ) : (
+                    <div className="mt-3 space-y-2">
+                      {priorityItems.map((card) => (
+                        <div
+                          key={card.id}
+                          className="flex items-center justify-between rounded-xl border border-line bg-surface p-2.5"
+                        >
+                          <div>
+                            <p className="text-xs font-semibold text-muted">{card.name}</p>
+                            <p className="text-sm font-bold text-sky-600">{card.title}</p>
+                            <span className="mt-1 inline-block rounded border border-line bg-bg px-2 py-0.5 text-[11px] text-muted">
+                              {card.tag}
+                            </span>
+                          </div>
+                          <span className="text-xs font-bold text-rose-500">{card.meta}</span>
                         </div>
-                        <span className="text-xs font-bold text-rose-500">{card.age} ✨</span>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -368,18 +437,23 @@ export function CopilotDrawer({
             {mode === "assistant" && (
               <div className="space-y-3">
                 <p className="text-xs font-bold text-muted">{c.assistantSection.crumb} ›</p>
-                <div className="rounded-2xl border border-line bg-bg p-3 text-sm space-y-2">
-                  <div className="rounded-xl bg-surface p-2.5 text-xs text-ink">
-                    {c.assistantSection.userMsg}
+                {sessions.length === 0 ? (
+                  <p className="rounded-2xl border border-line bg-bg p-3.5 text-sm text-muted">
+                    {c.assistantSection.empty}
+                  </p>
+                ) : (
+                  <div className="rounded-2xl border border-line bg-bg p-3.5 text-sm space-y-2">
+                    <p className="text-xs font-semibold text-ink">
+                      {c.assistantSection.summaryLabel} {sessionStats.totalSeatsLeft} {c.assistantSection.seatsLeft} ({sessions.length})
+                    </p>
+                    {sessionStats.openSession && (
+                      <div className="rounded-xl bg-surface p-2.5 text-xs text-ink">
+                        <strong>{c.assistantSection.nextSlot}</strong>{" "}
+                        {sessionStats.openSession.courseId} · {sessionStats.openSession.startsAt} ({sessionStats.openSession.seatsLeft} {c.assistantSection.seatsLeft})
+                      </div>
+                    )}
                   </div>
-                  <div className="rounded-xl bg-sky-600 p-2.5 text-xs text-white">
-                    ✨ {c.assistantSection.botMsg}
-                  </div>
-                </div>
-                <div className="rounded-2xl border-2 border-indigo-400/60 bg-bg p-3 text-xs">
-                  <p className="font-bold text-ink">{c.assistantSection.taskBadge}</p>
-                  <p className="mt-1 text-muted">{c.assistantSection.taskText}</p>
-                </div>
+                )}
               </div>
             )}
 
@@ -393,7 +467,6 @@ export function CopilotDrawer({
             )}
           </div>
 
-          {/* Footer Mode Switcher & Prompt Input */}
           <div className="border-t border-line p-3 space-y-2">
             <label className="block text-xs font-semibold text-muted">
               <span className="sr-only">{c.modeLabel}</span>

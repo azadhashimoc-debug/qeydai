@@ -80,7 +80,13 @@ export class SqliteEnrollmentStore implements EnrollmentStore {
   constructor(file: string) {
     this.db = new DatabaseSync(file);
     this.db.exec("PRAGMA busy_timeout = 10000");
-    if (file !== ":memory:") this.db.exec("PRAGMA journal_mode = WAL");
+    if (file !== ":memory:") {
+      try {
+        this.db.exec("PRAGMA journal_mode = WAL");
+      } catch {
+        /* WAL unavailable on read-only/ephemeral FS (e.g. Vercel /tmp); fall back to default journal mode */
+      }
+    }
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS sessions (
         tenant_id TEXT NOT NULL,
@@ -148,6 +154,15 @@ export class SqliteEnrollmentStore implements EnrollmentStore {
         name TEXT NOT NULL CHECK (length(name) BETWEEN 1 AND 120),
         role TEXT NOT NULL CHECK (role IN ('owner','manager','operator')),
         PRIMARY KEY (tenant_id, id)
+      );
+      CREATE TABLE IF NOT EXISTS accounts (
+        id TEXT PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 64),
+        email TEXT NOT NULL UNIQUE CHECK (email = lower(email) AND length(email) BETWEEN 3 AND 254),
+        password_hash TEXT NOT NULL,
+        tenant_id TEXT NOT NULL REFERENCES sales_workspaces(id),
+        member_id TEXT NOT NULL,
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        FOREIGN KEY (tenant_id, member_id) REFERENCES sales_members(tenant_id, id) ON DELETE CASCADE
       );
       CREATE TABLE IF NOT EXISTS sales_member_keys (
         tenant_id TEXT NOT NULL,
@@ -307,6 +322,17 @@ export class SqliteEnrollmentStore implements EnrollmentStore {
         PRIMARY KEY (tenant_id, id),
         FOREIGN KEY (tenant_id, deal_id) REFERENCES sales_deals(tenant_id, id) ON DELETE CASCADE,
         FOREIGN KEY (tenant_id, assignee_id) REFERENCES sales_members(tenant_id, id) ON DELETE SET NULL
+      );
+      CREATE TABLE IF NOT EXISTS billing_events (
+        tenant_id TEXT NOT NULL REFERENCES sales_workspaces(id),
+        event_id TEXT NOT NULL CHECK (length(event_id) BETWEEN 1 AND 128),
+        plan TEXT NOT NULL CHECK (plan IN ('starter','growth','pro','enterprise')),
+        period TEXT NOT NULL CHECK (period IN ('monthly','halfYear','annual')),
+        status TEXT NOT NULL CHECK (status IN ('paid','failed','refunded')),
+        amount REAL NOT NULL CHECK (amount >= 0),
+        currency TEXT NOT NULL DEFAULT 'AZN' CHECK (currency = 'AZN'),
+        received_at TEXT NOT NULL DEFAULT (datetime('now')),
+        PRIMARY KEY (tenant_id, event_id)
       );
       CREATE TABLE IF NOT EXISTS sales_notes (
         tenant_id TEXT NOT NULL REFERENCES sales_workspaces(id),

@@ -786,7 +786,32 @@
       "sendError": "Could not send message.",
       "sendHint": "Press Ctrl+Enter to send quickly.",
       "directionIn": "Inbound",
-      "directionOut": "Outbound"
+      "directionOut": "Outbound",
+      "filtersLabel": "Conversation filters",
+      "periodLabel": "Period",
+      "periods": {
+        "any": "Any time",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "week": "This week",
+        "d30": "Last 30 days",
+        "month": "This month"
+      },
+      "stageFilterLabel": "Stage filter",
+      "allStages": "All stages",
+      "sourceFilterLabel": "Channel filter",
+      "allSources": "All channels",
+      "sortLabel": "Sort",
+      "sortNewest": "Newest",
+      "sortLongestWait": "Longest wait",
+      "resetFilters": "Reset",
+      "noMatches": "No conversations match these filters.",
+      "emptyTitle": "No conversations found",
+      "emptyBody": "Connect your channels to receive and reply to all messages in one place.",
+      "connectWhatsapp": "Connect WhatsApp",
+      "connectTelegram": "Connect Telegram",
+      "connectInstagram": "Connect Instagram",
+      "seeAllChannels": "See all channels"
     },
     "roles": {
       "owner": "Owner",

@@ -1037,10 +1037,10 @@
   },
   "selectAccount": {
     "badge": "İş sahəsini seçin",
-    "title": "Tekrar hoşgeldin, {name}",
+    "title": "Yenidən xoş gəldiniz, {name}",
     "subtitle": "Bir hesabı seçin",
     "emailLabel": "E-poçt",
-    "createAccount": "Başka bir iş sahəsi yaradın",
+    "createAccount": "Başqa bir iş sahəsi yaradın",
     "partnerPortal": "Partner portalına gedin",
     "signOut": "Oturumu bağlayın",
     "switchAccount": "İş sahəsini dəyişdirin",

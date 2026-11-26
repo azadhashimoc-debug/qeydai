@@ -2,10 +2,19 @@ import { expect, test } from "@playwright/test";
 import { E2E_ADMIN_KEYS, E2E_BASE_URL, E2E_KEYS } from "../../playwright.config";
 
 // Each Playwright project gets its own tenant (derived from its API key), so desktop and mobile never collide.
+// A per-load tag makes seeded session IDs unique per worker, so parallel workers never fight over the same
+// session seats. The tag is stable for the worker process: beforeAll and every test on that worker reuse it.
+const SESSION_TAG = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+
 const FUTURE = new Date(Date.now() + 5 * 24 * 3600 * 1000).toISOString();
 
+const sSmall = () => `s-small-${SESSION_TAG}`;
+const sRace = () => `s-race-${SESSION_TAG}`;
+const sOnly = (project: string) => `s-only-${project}-${SESSION_TAG}`;
+const sAdmin = (project: string) => `s-admin-${project}-${SESSION_TAG}`;
+
 // Seed through the admin API (never open the server's SQLite file from a test process).
-// Several workers run this hook, so 409 session_exists is expected after the first one.
+// Several workers run this hook, each with its own tag, so no worker collides on session_exists.
 test.beforeAll(async ({ playwright }, info) => {
   const project = info.project.name as "desktop" | "mobile";
   const admin = await playwright.request.newContext({
@@ -13,9 +22,9 @@ test.beforeAll(async ({ playwright }, info) => {
     extraHTTPHeaders: { authorization: `Bearer ${E2E_ADMIN_KEYS[project]}` },
   });
   const seed = [
-    { id: "s-small", courseId: "ielts", startsAt: FUTURE, capacity: 2 },
-    { id: "s-race", courseId: "math", startsAt: FUTURE, capacity: 3 },
-    { id: `s-only-${project}`, courseId: "art", startsAt: FUTURE, capacity: 5 },
+    { id: sSmall(), courseId: "ielts", startsAt: FUTURE, capacity: 2 },
+    { id: sRace(), courseId: "math", startsAt: FUTURE, capacity: 3 },
+    { id: sOnly(project), courseId: "art", startsAt: FUTURE, capacity: 5 },
   ];
   for (const data of seed) {
     expect([201, 409]).toContain((await admin.post("/api/v1/sessions", { data })).status());
@@ -34,52 +43,54 @@ test("API rejects missing and wrong keys", async ({ request }) => {
 });
 
 test("sessions are scoped to the key's tenant", async ({ request }, info) => {
-  const res = await request.get("/api/v1/sessions", { headers: auth(info.project.name) });
+  const project = info.project.name as "desktop" | "mobile";
+  const other = project === "desktop" ? "mobile" : "desktop";
+  const res = await request.get("/api/v1/sessions", { headers: auth(project) });
   expect(res.status()).toBe(200);
   expect(res.headers()["cache-control"]).toBe("no-store");
   expect(res.headers()["vary"]).toMatch(/authorization/i);
-  // Tests run in parallel: other tests may fill s-small/s-race (full sessions are hidden) or add s-admin-*.
-  // Isolation is what matters: this tenant's own session is listed, the other tenant's never is.
-  const other = info.project.name === "desktop" ? "mobile" : "desktop";
+  // Tests run in parallel: other workers' seeded sessions share this tenant. Isolation is what matters:
+  // this worker's own session is listed, the other project's never is.
   const ids: string[] = (await res.json()).sessions.map((s: { id: string }) => s.id);
-  expect(ids).toContain(`s-only-${info.project.name}`);
-  expect(ids).not.toContain(`s-only-${other}`);
-  expect(ids).not.toContain(`s-admin-${other}`);
-  for (const id of ids)
-    expect(
-      ["s-small", "s-race", `s-only-${info.project.name}`, `s-admin-${info.project.name}`].includes(id) ||
-        id.startsWith(`s-ui-${info.project.name}-`) ||
-        id.startsWith(`s-ov-${info.project.name}-`),
-    ).toBe(true);
+  expect(ids).toContain(sOnly(project));
+  expect(ids).not.toContain(sOnly(other));
+  expect(ids).not.toContain(sAdmin(other));
+  const okPrefix = new RegExp(
+    `^(s-small|s-race|s-only-${project}|s-admin-${project}|s-ui-${project}|s-ov-${project})(-|$)`,
+  );
+  for (const id of ids) expect(okPrefix.test(id)).toBe(true);
 });
 
 test("enroll: success, duplicate, full, unknown, invalid over real HTTP", async ({ request }, info) => {
-  const h = auth(info.project.name);
+  const project = info.project.name as "desktop" | "mobile";
+  const h = auth(project);
   const enroll = (data: unknown) => request.post("/api/v1/enroll", { headers: h, data });
+  const session = sSmall();
 
-  const ok = await enroll({ sessionId: "s-small", name: "Aygün", phone: "050 123 45 67" });
+  const ok = await enroll({ sessionId: session, name: "Aygün", phone: "050 123 45 67" });
   expect(ok.status()).toBe(201);
   expect(JSON.stringify(await ok.json())).not.toContain("Aygün");
 
-  expect((await enroll({ sessionId: "s-small", name: "Aygün", phone: "+994501234567" })).status()).toBe(409);
-  expect((await enroll({ sessionId: "s-small", name: "Ali", phone: "055 111 22 33" })).status()).toBe(201);
-  const full = await enroll({ sessionId: "s-small", name: "Vəli", phone: "070 111 22 33" });
+  expect((await enroll({ sessionId: session, name: "Aygün", phone: "+994501234567" })).status()).toBe(409);
+  expect((await enroll({ sessionId: session, name: "Ali", phone: "055 111 22 33" })).status()).toBe(201);
+  const full = await enroll({ sessionId: session, name: "Vəli", phone: "070 111 22 33" });
   expect(full.status()).toBe(409);
   expect((await full.json()).error).toBe("full");
   expect((await enroll({ sessionId: "nope", name: "X", phone: "050 123 45 67" })).status()).toBe(404);
-  expect((await enroll({ sessionId: "s-small", name: "", phone: "1" })).status()).toBe(422);
+  expect((await enroll({ sessionId: session, name: "", phone: "1" })).status()).toBe(422);
 
   const list = await (await request.get("/api/v1/sessions", { headers: h })).json();
-  expect(list.sessions.map((s: { id: string }) => s.id)).not.toContain("s-small");
+  expect(list.sessions.map((s: { id: string }) => s.id)).not.toContain(session);
 });
 
 test("10 parallel enrollments for 3 seats: exactly 3 succeed", async ({ request }, info) => {
-  const h = auth(info.project.name);
+  const project = info.project.name as "desktop" | "mobile";
+  const h = auth(project);
   const results = await Promise.all(
     Array.from({ length: 10 }, (_, i) =>
       request.post("/api/v1/enroll", {
         headers: h,
-        data: { sessionId: "s-race", name: `P${i}`, phone: `+99450${String(3000000 + i)}` },
+        data: { sessionId: sRace(), name: `P${i}`, phone: `+99450${String(3000000 + i)}` },
       }),
     ),
   );
@@ -91,7 +102,7 @@ test("10 parallel enrollments for 3 seats: exactly 3 succeed", async ({ request 
 test("admin key creates a session that the enrollment key can then book", async ({ request }, info) => {
   const project = info.project.name as "desktop" | "mobile";
   const admin = { authorization: `Bearer ${E2E_ADMIN_KEYS[project]}`, "content-type": "application/json" };
-  const session = { id: `s-admin-${project}`, courseId: "ielts", startsAt: FUTURE, capacity: 1 };
+  const session = { id: sAdmin(project), courseId: "ielts", startsAt: FUTURE, capacity: 1 };
 
   // The enrollment key lacks the admin scope; the admin key has no enrollment scope.
   expect((await request.post("/api/v1/sessions", { headers: auth(project), data: session })).status()).toBe(403);
@@ -116,10 +127,11 @@ test("admin key creates a session that the enrollment key can then book", async 
 });
 
 test("another tenant's key cannot enroll into this tenant's session", async ({ request }, info) => {
-  const other = info.project.name === "desktop" ? "mobile" : "desktop";
+  const project = info.project.name as "desktop" | "mobile";
+  const other = project === "desktop" ? "mobile" : "desktop";
   const res = await request.post("/api/v1/enroll", {
     headers: auth(other),
-    data: { sessionId: `s-only-${info.project.name}`, name: "Ali", phone: "050 999 88 77" },
+    data: { sessionId: sOnly(project), name: "Ali", phone: "050 999 88 77" },
   });
   expect(res.status()).toBe(404); // the id exists only under this project's tenant
 });

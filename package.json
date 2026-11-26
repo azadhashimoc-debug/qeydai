@@ -2,6 +2,9 @@
   "name": "qeydai",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +12,9 @@
     "lint": "eslint",
     "test": "vitest run",
     "e2e": "playwright test",
-    "seed:demo": "node scripts/seed-demo.mts"
+    "seed:demo": "node scripts/seed-demo.mts",
+    "migrate": "node --env-file-if-exists=.env.local scripts/migrate.mts",
+    "check:env": "node --env-file-if-exists=.env.local scripts/check-env.mts"
   },
   "dependencies": {
     "next": "16.4.6",

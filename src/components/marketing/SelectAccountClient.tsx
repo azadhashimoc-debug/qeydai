@@ -2,19 +2,17 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-// Demo flow: mock iş sahesi listesi. Gerçek akışta bu auth oturumundan gelir.
-const WORKSPACES = [
-  { id: "ws-1", name: "Məhsul Satış Mərkəzi", email: "sales@demo.az", plan: "Premium", seats: "12 fəaliyyətçi" },
-  { id: "ws-2", name: "Əməliyyat Mərkəzi", email: "ops@demo.az", plan: "Standart", seats: "5 fəaliyyətçi" },
-  { id: "ws-3", name: "Test İş Sahəsi", email: "test@demo.az", plan: "Sınaq", seats: "2 fəaliyyəçi" },
-];
-
-const USER_NAME = "Adem Novruzlu";
-const USER_EMAIL = "adem@example.com";
+type WorkspaceItem = {
+  id: string;
+  name: string;
+  role: string;
+};
 
 type SelectAccountClientProps = {
   lang: "az" | "en";
+  skipToMain?: string;
   title: string;
   subtitle: string;
   badge: string;
@@ -34,6 +32,7 @@ type SelectAccountClientProps = {
 
 export function SelectAccountClient({
   lang,
+  skipToMain,
   title,
   subtitle,
   badge,
@@ -49,16 +48,73 @@ export function SelectAccountClient({
   createAccountTitle,
 }: SelectAccountClientProps) {
   const router = useRouter();
+  const [workspace, setWorkspace] = useState<WorkspaceItem | null>(null);
 
-  const handleSelect = (id: string) => {
-    router.push(`/${lang}/panel?ws=${id}`);
+  useEffect(() => {
+    const controller = new AbortController();
+    async function loadSessionWorkspace() {
+      try {
+        const authRes = await fetch("/api/panel/auth", {
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        if (!authRes.ok || controller.signal.aborted) return;
+        const wsRes = await fetch("/api/panel/workspace", {
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        if (!wsRes.ok || controller.signal.aborted) return;
+        const data = (await wsRes.json()) as {
+          ok?: boolean;
+          workspace?: { id: string; name: string };
+          actor?: { role?: string };
+        };
+        if (data.ok && data.workspace) {
+          setWorkspace({
+            id: data.workspace.id,
+            name: data.workspace.name,
+            role: data.actor?.role ?? "member",
+          });
+        }
+      } catch {
+        // Unauthenticated or aborted: show empty-workspace actions cleanly.
+      }
+    }
+    void loadSessionWorkspace();
+    return () => controller.abort();
+  }, []);
+
+  const handleSelect = () => {
+    router.push(`/${lang}/panel`);
   };
 
-  const ws = WORKSPACES[0];
+  async function handleSignOut() {
+    await fetch("/api/panel/auth", {
+      method: "DELETE",
+      credentials: "same-origin",
+    }).catch(() => undefined);
+    setWorkspace(null);
+    router.push(`/${lang}/login`);
+  }
+
+  const displayName = workspace?.name ?? "panelim.az";
+  const displayMeta = workspace
+    ? workspace.id
+    : lang === "en"
+      ? "Not signed in"
+      : "Daxil olunmayıb";
+  const avatarInitials = displayName
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("") || "PA";
 
   return (
     <div className="marketing pm-select-account">
-      <a href="#main" className="skip-link">Əsas məskuja keç</a>
+      <a href="#main" className="skip-link">
+        {skipToMain ?? (lang === "en" ? "Skip to main content" : "Əsas məzmuna keç")}
+      </a>
 
       <header className="pm-select-account-header">
         <Link href={`/${lang}`} className="pm-select-account-brand">
@@ -81,10 +137,10 @@ export function SelectAccountClient({
       <main id="main" tabIndex={-1}>
         <aside className="pm-select-account-sidebar">
           <div className="pm-select-account-user">
-            <div className="pm-select-account-avatar">{USER_NAME.charAt(0)}{USER_NAME.split(" ")[1]?.charAt(0)}</div>
+            <div className="pm-select-account-avatar">{avatarInitials}</div>
             <div className="pm-select-account-info">
-              <strong className="pm-select-account-user-name">{USER_NAME}</strong>
-              <span className="pm-select-account-user-email">{USER_EMAIL}</span>
+              <strong className="pm-select-account-user-name">{displayName}</strong>
+              <span className="pm-select-account-user-email">{displayMeta}</span>
             </div>
           </div>
 
@@ -95,26 +151,32 @@ export function SelectAccountClient({
             <button type="button" className="pm-select-account-nav-item" onClick={() => router.push(`/${lang}/register`)}>
               {createAccount}
             </button>
-            <a href={`/${lang}/partner`} className="pm-select-account-nav-item">
+            <Link href={`/${lang}/partners`} className="pm-select-account-nav-item">
               {partnerPortal}
-            </a>
-            <button type="button" className="pm-select-account-nav-item pm-select-account-nav-item--danger" onClick={() => router.push(`/${lang}/login`)}>
-              {signOut}
-            </button>
+            </Link>
+            {workspace !== null && (
+              <button
+                type="button"
+                className="pm-select-account-nav-item pm-select-account-nav-item--danger"
+                onClick={() => void handleSignOut()}
+              >
+                {signOut}
+              </button>
+            )}
           </nav>
         </aside>
 
         <section className="pm-select-account-main">
-          {WORKSPACES.length === 0 ? (
+          {workspace === null ? (
             <div className="pm-select-account-empty">
               <span className="pm-select-account-badge">{badge}</span>
               <h1 className="pm-select-account-title">{title}</h1>
               <p className="pm-select-account-subtitle">{subtitle}</p>
               <div className="pm-select-account-empty-actions">
-                <a href={`/${lang}/demo`} className="pm-select-account-empty-demo">
+                <Link href={`/${lang}/demo`} className="pm-select-account-empty-demo">
                   <span className="pm-select-account-empty-globe">🌐</span>
                   {demoAccount}
-                </a>
+                </Link>
                 <Link href={`/${lang}/login`} className="pm-select-account-empty-login">
                   {loginAccount}
                 </Link>
@@ -131,11 +193,11 @@ export function SelectAccountClient({
                 <p className="pm-select-account-subtitle">{subtitle}</p>
               </div>
 
-              <button type="button" className="pm-select-account-card" onClick={() => handleSelect(WORKSPACES[0].id)}>
-                <span className="pm-select-account-card-action">{WORKSPACES[0].plan}</span>
+              <button type="button" className="pm-select-account-card" onClick={handleSelect}>
+                <span className="pm-select-account-card-action">{workspace.role}</span>
                 <div className="pm-select-account-card-head">
-                  <strong className="pm-select-account-card-name">{WORKSPACES[0].name}</strong>
-                  <span className="pm-select-account-card-email">{WORKSPACES[0].email}</span>
+                  <strong className="pm-select-account-card-name">{workspace.name}</strong>
+                  <span className="pm-select-account-card-email">{workspace.id}</span>
                 </div>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pm-select-account-card-arrow">
                   <path d="M5 12h14M12 5l7 7-7 7" />

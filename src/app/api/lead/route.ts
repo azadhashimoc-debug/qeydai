@@ -9,9 +9,11 @@ import { clientKey, sameOrigin } from "@/lib/http/same-origin";
 
 const MAX_BODY_BYTES = 2048;
 const WINDOW_MS = 10 * 60_000;
-const perClient = createRateLimiter({ max: 5, windowMs: WINDOW_MS });
+const perClientMax = Number(process.env.QEYDAI_LEAD_RATE_MAX ?? 5);
+const globalMax = Number(process.env.QEYDAI_LEAD_RATE_GLOBAL_MAX ?? 200);
+const perClient = createRateLimiter({ max: perClientMax, windowMs: WINDOW_MS });
 // Backstop against rotating client identities: caps total accepted leads per window.
-const global = createRateLimiter({ max: 200, windowMs: WINDOW_MS });
+const global = createRateLimiter({ max: globalMax, windowMs: WINDOW_MS });
 
 export const resetLeadRateLimit = () => {
   perClient.clear();
@@ -58,7 +60,7 @@ export async function POST(req: Request) {
 
   const createdAt = new Date().toISOString();
   try {
-    const file = process.env.LEADS_FILE ?? path.join(process.cwd(), "data", "leads.jsonl");
+    const file = process.env.LEADS_FILE ?? (process.env.VERCEL ? "/tmp/leads.jsonl" : path.join(process.cwd(), "data", "leads.jsonl"));
     await mkdir(path.dirname(file), { recursive: true });
     await appendFile(file, JSON.stringify({ ...v.lead, createdAt }) + "\n", "utf8");
   } catch (err) {
@@ -67,20 +69,22 @@ export async function POST(req: Request) {
   }
 
   if (process.env.NEXT_PHASE !== "phase-production-build") {
-    try {
-      const store = getSharedStore();
-      await store.upsertLead({
-        id: `lead_${randomUUID()}`,
-        tenantId: resolvePublicLeadTenant(),
-        name: v.lead.name,
-        phone: v.lead.phone,
-        source: "web",
-        stage: "new",
-        nowIso: createdAt,
-      });
-    } catch (err) {
-      console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
-      return fail("server_error", 500);
+    const store = getSharedStore();
+    if (store) {
+      try {
+        await store.upsertLead({
+          id: `lead_${randomUUID()}`,
+          tenantId: resolvePublicLeadTenant(),
+          name: v.lead.name,
+          phone: v.lead.phone,
+          source: "web",
+          stage: "new",
+          nowIso: createdAt,
+        });
+      } catch (err) {
+        console.error("lead crm sync failed:", err instanceof Error ? err.message : "unknown");
+        return fail("server_error", 500);
+      }
     }
   }
   return Response.json({ ok: true }, { headers: noStore });

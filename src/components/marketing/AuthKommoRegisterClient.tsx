@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useId, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics/client";
 import { extractUtmProps, type Locale } from "@/lib/analytics/events";
@@ -45,8 +46,8 @@ type Props = {
 const WORKSPACE_COPY = {
   az: {
     step3Title: "14 günlük sınağınızı başladın",
-    step3Sub: "Bütün özəlliklərə və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
-    accountNameLabel: "Hesab ismi (Mərkəz və ya şirkət adı)",
+    step3Sub: "Bütün imkanlara və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
+    accountNameLabel: "Hesab adı (Mərkəz və ya şirkət adı)",
     accountNamePlaceholder: "Məsələn: Bakı Tədris Mərkəzi",
     subdomainLabel: "Hesab alt alan adı",
     industryLabel: "Sektor",
@@ -58,9 +59,9 @@ const WORKSPACE_COPY = {
       "Daşınmaz Əmlak",
       "Rəqəmsal və İT Xidmətləri",
     ],
-    businessTypeLabel: "İşlətmə növü",
+    businessTypeLabel: "Biznes növü",
     businessTypes: ["B2C (Fərdi müştərilər)", "B2B (Korporativ)", "Hər ikisi (B2B & B2C)"],
-    employeesLabel: "Çalışan sayı",
+    employeesLabel: "Əməkdaş sayı",
     employeeCounts: ["1 - 5", "6 - 15", "16 - 50", "50+"],
     clientsLabel: "Aylıq müştəri / müraciət sayı",
     clientCounts: ["1 - 100", "100 - 500", "500 - 2000", "2000+"],
@@ -91,6 +92,23 @@ const WORKSPACE_COPY = {
   },
 } as const;
 
+const PASSWORD_COPY = {
+  az: {
+    label: "Parol",
+    placeholder: "Parol (ən azı 10 simvol)",
+    weak: "Parol ən azı 10 simvol olmalı və müxtəlif simvollardan ibarət olmalıdır.",
+    taken: "Bu e-poçt ilə hesab artıq mövcuddur. Daxil olun.",
+    unavailable: "Qeydiyyat hazırda əlçatan deyil. Bir az sonra yenidən cəhd edin.",
+  },
+  en: {
+    label: "Password",
+    placeholder: "Password (at least 10 characters)",
+    weak: "Password must be at least 10 characters and use varied characters.",
+    taken: "An account with this email already exists. Please log in.",
+    unavailable: "Sign-up is unavailable right now. Please try again shortly.",
+  },
+} as const;
+
 export function AuthKommoRegisterClient({
   locale,
   copy,
@@ -98,12 +116,14 @@ export function AuthKommoRegisterClient({
   termsHref,
   privacyHref,
 }: Props) {
+  const router = useRouter();
   const [state, setState] = useState<
-    "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social"
+    "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social" | "weak_password" | "email_taken" | "unavailable"
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
   const [subdomain, setSubdomain] = useState("baki-merkezi");
+  const [savingWorkspace, setSavingWorkspace] = useState(false);
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const nameId = useId();
@@ -112,6 +132,9 @@ export function AuthKommoRegisterClient({
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const ws = WORKSPACE_COPY[locale];
+  const pw = PASSWORD_COPY[locale];
+  const passwordId = useId();
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const markStarted = useCallback(() => {
     trackEvent({
@@ -133,7 +156,13 @@ export function AuthKommoRegisterClient({
             ? copy.errText
             : state === "social"
               ? copy.socialNote
-              : "";
+              : state === "weak_password"
+                ? pw.weak
+                : state === "email_taken"
+                  ? pw.taken
+                  : state === "unavailable"
+                    ? pw.unavailable
+                    : "";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -146,6 +175,7 @@ export function AuthKommoRegisterClient({
     const fd = new FormData(e.currentTarget);
     const rawName = String(fd.get("name") ?? "").trim();
     const rawPhone = String(fd.get("phone") ?? "").trim();
+    const rawPassword = String(fd.get("password") ?? "");
 
     if (rawName.length < 2) {
       setState("name_error");
@@ -162,14 +192,31 @@ export function AuthKommoRegisterClient({
       return;
     }
 
+    if (rawPassword.length < 10) {
+      setState("weak_password");
+      passwordRef.current?.focus();
+      return;
+    }
+
     setState("sending");
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: rawName, phone: rawPhone }),
+        credentials: "same-origin",
+        body: JSON.stringify({
+          email: emailRef.current?.value ?? "",
+          password: rawPassword,
+          name: rawName,
+        }),
       });
       if (res.ok) {
+        // Keep the phone number as a CRM lead too; failure here must not block sign-up.
+        void fetch("/api/lead", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ name: rawName, phone: rawPhone }),
+        }).catch(() => undefined);
         setState("ok");
         const slug = rawName
           .toLowerCase()
@@ -194,6 +241,23 @@ export function AuthKommoRegisterClient({
         });
       } else if (res.status === 429) {
         setState("limited");
+      } else if (res.status === 409) {
+        setState("email_taken");
+        emailRef.current?.focus();
+      } else if (res.status === 422) {
+        const body = (await res.json().catch(() => null)) as { field?: string } | null;
+        if (body?.field === "name") {
+          setState("name_error");
+          nameRef.current?.focus();
+        } else if (body?.field === "email") {
+          setState("error");
+          emailRef.current?.focus();
+        } else {
+          setState("weak_password");
+          passwordRef.current?.focus();
+        }
+      } else if (res.status === 503) {
+        setState("unavailable");
       } else {
         setState("error");
         phoneRef.current?.focus();
@@ -281,6 +345,37 @@ export function AuthKommoRegisterClient({
                   aria-describedby={hasPhoneError ? statusId : undefined}
                   onChange={() => {
                     if (hasPhoneError || state === "social") setState("idle");
+                  }}
+                  className="pm-auth-input"
+                />
+              </div>
+            </div>
+
+            <div className="pm-auth-field">
+              <label htmlFor={passwordId} className="pm-sr-only">
+                {pw.label}
+              </label>
+              <div className="pm-auth-input-shell">
+                <span className="pm-auth-input-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <input
+                  ref={passwordRef}
+                  id={passwordId}
+                  name="password"
+                  type="password"
+                  required
+                  minLength={10}
+                  maxLength={128}
+                  autoComplete="new-password"
+                  placeholder={pw.placeholder}
+                  aria-invalid={state === "weak_password"}
+                  aria-describedby={state === "weak_password" ? statusId : undefined}
+                  onChange={() => {
+                    if (state === "weak_password") setState("idle");
                   }}
                   className="pm-auth-input"
                 />
@@ -387,12 +482,27 @@ export function AuthKommoRegisterClient({
               </select>
             </label>
           </div>
-          <Link
-            href={`/${locale}/panel?test-login=1`}
+          <button
+            type="button"
+            disabled={savingWorkspace}
+            onClick={async () => {
+              const trimmed = workspaceName.trim();
+              if (trimmed) {
+                setSavingWorkspace(true);
+                await fetch("/api/panel/workspace", {
+                  method: "PATCH",
+                  headers: { "content-type": "application/json" },
+                  credentials: "same-origin",
+                  body: JSON.stringify({ name: trimmed, locale }),
+                }).catch(() => undefined);
+                setSavingWorkspace(false);
+              }
+              router.push(`/${locale}/panel`);
+            }}
             className="pm-auth-submit-pill pm-kommo-open-panel-link js-create-account-submit-button"
           >
             {ws.openPanelBtn} →
-          </Link>
+          </button>
         </div>
       )}
 

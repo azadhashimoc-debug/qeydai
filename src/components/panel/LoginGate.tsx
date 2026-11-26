@@ -116,7 +116,7 @@ export function LoginGate({ lang, brand, d, notice, onAuthenticated }: LoginGate
         <div className="panel-register crm-login-card w-full max-w-md p-6 sm:p-9">
           <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
             <p className="text-sm font-semibold text-muted">{d.login.eyebrow}</p>
-            <span className="rounded bg-cover px-2.5 py-0.5 text-xs font-semibold text-[#FFE45C]">
+            <span className="rounded border border-brand/25 bg-brand/10 px-2.5 py-0.5 text-xs font-semibold text-pen">
               {d.badge}
             </span>
           </div>
@@ -196,14 +196,6 @@ export function LoginGate({ lang, brand, d, notice, onAuthenticated }: LoginGate
               {status === "submitting" ? d.login.submitting : d.login.submit}
             </button>
 
-            <button
-              type="button"
-              onClick={() => onAuthenticated("test-tenant-1")}
-              disabled={status === "submitting"}
-              className={buttonClass({ variant: "secondary", size: "lg", className: "min-h-11 w-full mt-3" })}
-            >
-              Google ile giriş (test)
-            </button>
 
             <p
               id={statusId}

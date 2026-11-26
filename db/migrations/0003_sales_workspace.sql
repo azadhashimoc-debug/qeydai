@@ -44,9 +44,10 @@ CREATE TABLE IF NOT EXISTS sales_contacts (
   marketing_opt_out_at timestamptz,
   tags text[] NOT NULL DEFAULT '{}',
   created_at timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (tenant_id, id),
-  UNIQUE (tenant_id, phone) NULLS NOT DISTINCT
+  PRIMARY KEY (tenant_id, id)
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS sales_contacts_phone_uniq ON sales_contacts(tenant_id, phone) NULLS NOT DISTINCT;
 
 CREATE TABLE IF NOT EXISTS sales_phone_matches (
   tenant_id text NOT NULL REFERENCES sales_workspaces(id),
@@ -271,7 +272,7 @@ BEGIN
     'sales_phone_matches','sales_deals','sales_custom_field_defs','sales_deal_field_values',
     'sales_connections','sales_threads','sales_messages','sales_outbox','sales_activity','sales_tasks','sales_notes','sales_deal_bookings'] LOOP
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename=tbl AND policyname=tbl || '_isolation') THEN
-      EXECUTE format('CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), '')) WITH CHECK (tenant_id = NULLIF(current_setting(''app.tenant_id'', true), ''))', tbl || '_isolation', tbl);
+      EXECUTE format($q$CREATE POLICY %I ON %I USING (tenant_id = NULLIF(current_setting('app.tenant_id', true), '')) WITH CHECK (tenant_id = NULLIF(current_setting('app.tenant_id', true), ''))$q$, tbl || '_isolation', tbl);
     END IF;
   END LOOP;
 END $$;

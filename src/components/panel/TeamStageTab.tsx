@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { buttonClass } from "@/components/ui/button";
 import {
   localizeStageName,
@@ -56,15 +56,6 @@ export function TeamStageTab({
   const [wsCurrency, setWsCurrency] = useState(workspace?.currency ?? "AZN");
   const [savingWs, setSavingWs] = useState(false);
   const [wsStatus, setWsStatus] = useState<{ kind: "ok" | "error"; text: string } | null>(null);
-
-  useEffect(() => {
-    if (workspace) {
-      setWsName(workspace.name);
-      setWsLocale(workspace.locale);
-      setWsTimezone(workspace.timezone);
-      setWsCurrency(workspace.currency);
-    }
-  }, [workspace]);
 
   // Pipeline stages state
   const [newStageName, setNewStageName] = useState("");

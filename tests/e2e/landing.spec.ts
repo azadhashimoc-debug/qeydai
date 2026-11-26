@@ -24,7 +24,7 @@ test("language switch keeps content in sync", async ({ page }) => {
 
 test("landing header actions fit on one row at desktop widths", async ({ page }) => {
   await page.setViewportSize({ width: 1120, height: 800 });
-  await page.goto("/az");
+  await page.goto("/az", { waitUntil: "networkidle" });
   const header = page.getByRole("banner");
   const demo = header.getByRole("link", { name: "Demo al", exact: true });
   const login = header.getByRole("link", { name: "Giriş", exact: true });
@@ -69,7 +69,7 @@ test("no horizontal scroll", async ({ page }) => {
 test("lead form: invalid shows error, valid is stored", async ({ page }, info) => {
   const tail = info.project.name === "mobile" ? "68" : "67";
   const phone = `050 123 45 ${tail}`;
-  await page.goto("/az#contact");
+  await page.goto("/az#contact", { waitUntil: "networkidle" });
   await page.getByLabel("Adınız").fill("Aygün");
   await page.getByLabel(/^Telefon/).fill("123");
   await page.getByRole("button", { name: "Demo istə" }).last().click();
@@ -183,7 +183,7 @@ test("lead form validates empty name client-side and focuses invalid input", asy
 
 test("focus ring keeps 3:1 contrast: blue ring on paper, highlighter yellow on dark cover", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
-  await page.goto("/az");
+  await page.goto("/az", { waitUntil: "networkidle" });
   const focusViaKeyboard = async (sel: string) => {
     const loc = page.locator(sel).first();
     await loc.scrollIntoViewIfNeeded();
@@ -225,7 +225,7 @@ test("custom 404 renders branded page and interactive stage/pricing/AI sections 
   await expect(page.locator('a[href="/az"]').last()).toBeVisible();
   await expect(page.locator('a[href="/en"]').last()).toBeVisible();
 
-  await page.goto("/az");
+  await page.goto("/az", { waitUntil: "networkidle" });
   await page.getByRole("tab", { name: "Satış lövhəsi" }).click();
   await expect(page.getByText("Danışıq gedir")).toBeVisible();
 

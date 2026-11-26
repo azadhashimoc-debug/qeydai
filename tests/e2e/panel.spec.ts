@@ -601,10 +601,11 @@ test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts,
   await expect(page.locator("li", { hasText: dealTitle })).toBeVisible();
 });
 
-test("Google test login opens demo panel", async ({ page }) => {
-  await page.goto("/az/login");
+test("Google button stays on login and shows social unavailable notice", async ({ page }) => {
+  await page.goto("/az/login", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: /Google/ }).click();
-  await expect(page).toHaveURL(/\/az\/panel/);
-  await expect(page.getByRole("heading", { name: /İççi panelinə giriş/ })).toHaveCount(0);
+  await expect(page).toHaveURL(/\/az\/login$/);
+  await expect(page.getByRole("status")).toBeVisible();
+  await expect(page.getByRole("status")).not.toBeEmpty();
 });
 

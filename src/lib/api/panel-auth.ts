@@ -221,6 +221,8 @@ export function getPanelAuthConfig(env: NodeJS.ProcessEnv = process.env): {
   allowedTenants: Set<string>;
   allowedKeysByTenant: Map<string, Set<string>>;
   secret: Buffer | null;
+  /** Signing key for email/password account sessions. Only set from an explicit QEYDAI_PANEL_SECRET (>= 24 chars). */
+  accountSecret?: Buffer | null;
 } {
   const adminKeys = parseKeys(env.QEYDAI_ADMIN_KEYS, "QEYDAI_ADMIN_KEYS");
   const allowedTenants = new Set<string>();
@@ -235,5 +237,71 @@ export function getPanelAuthConfig(env: NodeJS.ProcessEnv = process.env): {
     set.add(adminKeyFingerprint(key));
   }
   const secret = derivePanelSecret(adminKeys, env.QEYDAI_PANEL_SECRET);
-  return { adminKeys, allowedTenants, allowedKeysByTenant, secret };
+  const explicit = (env.QEYDAI_PANEL_SECRET ?? "").trim();
+  const accountSecret =
+    explicit.length >= MIN_EXPLICIT_SECRET_LENGTH ? sha256(`qeydai-account-v1:${explicit}`) : null;
+  return { adminKeys, allowedTenants, allowedKeysByTenant, secret, accountSecret };
+}
+
+/** Session token for an email/password account. Signed with a key separate from the admin-key tokens. */
+export function createAccountSessionToken(
+  tenantId: string,
+  memberId: string,
+  accountSecret: Buffer,
+  nowMs: number = Date.now(),
+  ttlMs: number = DEFAULT_PANEL_TTL_MS,
+): string {
+  const payload = { t: tenantId, m: memberId, a: 1, iat: nowMs, exp: nowMs + ttlMs, jti: randomBytes(12).toString("base64url") };
+  const encoded = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
+  const signature = createHmac("sha256", accountSecret).update(encoded, "utf8").digest("base64url");
+  return `${encoded}.${signature}`;
+}
+
+export function verifyAccountSessionToken(
+  token: string,
+  accountSecret: Buffer,
+  nowMs: number = Date.now(),
+): PanelSessionPayload | null {
+  if (typeof token !== "string") return null;
+  const parts = token.split(".");
+  if (parts.length !== 2 || !BASE64URL_RE.test(parts[0]) || !BASE64URL_RE.test(parts[1])) return null;
+  const expected = createHmac("sha256", accountSecret).update(parts[0], "utf8").digest();
+  const given = Buffer.from(parts[1], "base64url");
+  if (given.length !== expected.length || !timingSafeEqual(given, expected)) return null;
+  let rec: Record<string, unknown>;
+  try {
+    const parsed: unknown = JSON.parse(Buffer.from(parts[0], "base64url").toString("utf8"));
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) return null;
+    rec = parsed as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+  if (
+    rec.a !== 1 ||
+    typeof rec.t !== "string" || !rec.t ||
+    typeof rec.m !== "string" || !rec.m ||
+    typeof rec.jti !== "string" || !rec.jti ||
+    typeof rec.exp !== "number" || !Number.isFinite(rec.exp) || rec.exp <= nowMs
+  ) {
+    return null;
+  }
+  return { tenantId: rec.t, memberId: rec.m, exp: rec.exp, jti: rec.jti };
+}
+
+type VerifyConfig = ReturnType<typeof getPanelAuthConfig> | {
+  secret: Buffer | null;
+  allowedTenants: Set<string>;
+  allowedKeysByTenant?: Map<string, Set<string>>;
+  accountSecret?: Buffer | null;
+};
+
+/** Accepts an admin-key session or an email/password account session. */
+export function verifyAnyPanelToken(token: string, config: VerifyConfig, nowMs: number = Date.now()): PanelSessionPayload | null {
+  if (config.secret && config.allowedTenants.size > 0) {
+    const allowed = config.allowedKeysByTenant ?? config.allowedTenants;
+    const payload = verifyPanelSessionToken(token, config.secret, allowed, nowMs);
+    if (payload) return payload;
+  }
+  if (config.accountSecret) return verifyAccountSessionToken(token, config.accountSecret, nowMs);
+  return null;
 }

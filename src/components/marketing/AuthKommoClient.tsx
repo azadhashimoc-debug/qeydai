@@ -41,20 +41,11 @@ const EXTRA_COPY = {
     forgotModalBtn: "Şifrəni sıfırla",
     forgotTitle: "Şifrənizi unutmusunuz?",
     forgotSub:
-      "Narahat olmayın! E-poçt ünvanınızı daxil edin, şifrəni sıfırlamaq üçün təlimatları göndərək.",
+      "Narahat olmayın! E-poçt ünvanınızı daxil edin və dəstək komandamızla əlaqə yaradın.",
     forgotSubmit: "Şifrəni sıfırla",
+    forgotUnavailable:
+      "Avtomatik e-poçt şifrə sıfırlaması hələ aktiv deyil. Şifrəni yeniləmək üçün iş sahəsi administratoru və ya dəstək komandamızla əlaqə saxlayın.",
     backToLogin: "Girişə qayıt",
-    checkEmailTitle: "E-poçtunuzu yoxlayın",
-    checkEmailSub: "Şifrə sıfırlama keçidini e-poçt ünvanınıza göndərdik.",
-    openResetForm: "Yeni şifrə yarat ekranını aç",
-    newPassTitle: "Yeni şifrə yaradın",
-    newPassSub: "Güclü şifrə tələbləri:",
-    ruleLen: "Ən azı 8 simvol",
-    ruleCase: "Böyük və kiçik hərflər (A-z)",
-    ruleNum: "Ən azı bir rəqəm və simvol (0-9, !@#$)",
-    savePassBtn: "Yadda saxla və davam et",
-    nicelyDoneTitle: "Əla iş çıxardınız!",
-    nicelyDoneSub: "Şifrəniz uğurla yeniləndi. İndi hesabınıza daxil ola bilərsiniz.",
     mfaTitle: "İki addımlı doğrulama",
     mfaSub: "Doğrulama tətbiqinizdəki 6 rəqəmli təhlükəsizlik kodunu daxil edin.",
     mfaVerifyBtn: "Kodu doğrula",
@@ -65,6 +56,9 @@ const EXTRA_COPY = {
     mfaNeedHelp: "Kömək lazımdır?",
     mfaHelpText:
       "Doğrulama cihazınıza girişiniz yoxdursa, iş sahəsi administratoru və ya dəstək komandamızla əlaqə saxlayın.",
+    mfaUnavailable:
+      "Bu iş sahəsi üçün iki addımlı doğrulama aktiv deyil. Zəhmət olmasa e-poçt/şifrə və ya giriş açarı ilə daxil olun.",
+    invalidCredentials: "E-poçt və ya şifrə yanlışdır.",
   },
   en: {
     passkeyUnavailable:
@@ -73,20 +67,11 @@ const EXTRA_COPY = {
     forgotModalBtn: "Reset password",
     forgotTitle: "Forgot your password?",
     forgotSub:
-      "No worries! Enter your email address and we will send instructions to reset your password.",
+      "No worries! Enter your email address and reach out to our support team for a reset.",
     forgotSubmit: "Reset password",
+    forgotUnavailable:
+      "Automated email password reset is not enabled yet. Please contact your workspace admin or our support team.",
     backToLogin: "Back to sign in",
-    checkEmailTitle: "Check your email",
-    checkEmailSub: "We sent a password reset link to your email address.",
-    openResetForm: "Open create new password screen",
-    newPassTitle: "Create a new password",
-    newPassSub: "Strong password requirements:",
-    ruleLen: "At least 8 characters",
-    ruleCase: "Uppercase & lowercase letters (A-z)",
-    ruleNum: "At least one number or symbol (0-9, !@#$)",
-    savePassBtn: "Save and continue",
-    nicelyDoneTitle: "Nicely done!",
-    nicelyDoneSub: "Your password has been reset. You can now sign in to your workspace.",
     mfaTitle: "Two-factor authentication",
     mfaSub: "Enter the 6-digit security code from your authenticator app.",
     mfaVerifyBtn: "Verify code",
@@ -97,6 +82,9 @@ const EXTRA_COPY = {
     mfaNeedHelp: "Need help?",
     mfaHelpText:
       "If you lost access to your authenticator device, contact your workspace admin or support team.",
+    mfaUnavailable:
+      "Two-factor authentication is not enabled for this workspace. Please sign in with your email/password or access key.",
+    invalidCredentials: "Invalid email or password.",
   },
 } as const;
 
@@ -106,9 +94,6 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const [view, setView] = useState<
     | "login"
     | "forgot-email"
-    | "forgot-check"
-    | "forgot-new"
-    | "forgot-done"
     | "mfa-otp"
     | "mfa-backup"
     | "mfa-help"
@@ -117,11 +102,12 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
   const [passkeyNotice, setPasskeyNotice] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
+  const [forgotNotice, setForgotNotice] = useState(false);
+  const [mfaNotice, setMfaNotice] = useState(false);
   const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
   const [backupCode, setBackupCode] = useState("");
   const [status, setStatus] = useState<
-    "idle" | "submitting" | "invalid" | "limited" | "network" | "social"
+    "idle" | "submitting" | "invalid" | "invalid_credentials" | "limited" | "network" | "social"
   >("idle");
   const emailId = useId();
   const keyId = useId();
@@ -135,35 +121,47 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     };
   }, []);
 
-  const isError = status === "invalid" || status === "limited" || status === "network";
+  const isError =
+    status === "invalid" || status === "invalid_credentials" || status === "limited" || status === "network";
   const statusText =
     status === "invalid"
       ? copy.invalidKey
-      : status === "limited"
-        ? copy.rateLimited
-        : status === "network"
-          ? copy.networkError
-          : status === "social"
-            ? copy.socialNote
-            : copy.securityNote;
+      : status === "invalid_credentials"
+        ? extra.invalidCredentials
+        : status === "limited"
+          ? copy.rateLimited
+          : status === "network"
+            ? copy.networkError
+            : status === "social"
+              ? copy.socialNote
+              : copy.securityNote;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const trimmedEmail = email.trim();
     const trimmedKey = key.trim();
     if (!trimmedKey) {
-      setStatus("invalid");
+      setStatus(trimmedEmail ? "invalid_credentials" : "invalid");
       keyRef.current?.focus();
       return;
     }
 
     setStatus("submitting");
     try {
-      const res = await fetch("/api/panel/auth", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({ key: trimmedKey }),
-      });
+      // With an email: email + password account login. Without: legacy admin access key.
+      const res = trimmedEmail
+        ? await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ email: trimmedEmail, password: key }),
+          })
+        : await fetch("/api/panel/auth", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ key: trimmedKey }),
+          });
 
       if (res.ok) {
         setKey("");
@@ -177,7 +175,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
         return;
       }
 
-      setStatus("invalid");
+      setStatus(trimmedEmail ? "invalid_credentials" : "invalid");
       keyRef.current?.focus();
     } catch {
       setStatus("network");
@@ -317,7 +315,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
           <AuthSocialRow
             googleLabel={copy.googleLabel}
             facebookLabel={copy.facebookLabel}
-            onSocialClick={() => router.push(`/${lang}/panel?test-login=1`)}
+            onSocialClick={() => setStatus("social")}
           />
 
           <div className="pm-auth-footer-links">
@@ -344,7 +342,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             className="pm-auth-form js-forgot-form"
             onSubmit={(e) => {
               e.preventDefault();
-              setView("forgot-check");
+              setForgotNotice(true);
             }}
           >
             <div className="pm-auth-field">
@@ -353,12 +351,20 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setForgotNotice(false);
+                    setEmail(e.target.value);
+                  }}
                   placeholder={copy.emailPlaceholder}
                   className="pm-auth-input"
                 />
               </div>
             </div>
+            {forgotNotice && (
+              <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                {extra.forgotUnavailable}
+              </p>
+            )}
             <button type="submit" className="pm-auth-submit-pill">
               {extra.forgotSubmit}
             </button>
@@ -367,86 +373,18 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             <button
               type="button"
               className="pm-kommo-inline-link js-back-to-login"
-              onClick={() => setView("login")}
+              onClick={() => {
+                setForgotNotice(false);
+                setView("login");
+              }}
             >
               ← {extra.backToLogin}
             </button>
+            <span>·</span>
+            <Link href={contactHref} className="pm-auth-forgot-link">
+              {copy.forgotLink}
+            </Link>
           </div>
-        </div>
-      )}
-
-      {view === "forgot-check" && (
-        <div className="pm-kommo-subview js-check-your-email">
-          <h1 className="pm-auth-heading">{extra.checkEmailTitle}</h1>
-          <p className="pm-auth-subheading">{extra.checkEmailSub}</p>
-          <button
-            type="button"
-            className="pm-auth-submit-pill"
-            onClick={() => setView("forgot-new")}
-          >
-            {extra.openResetForm}
-          </button>
-          <div className="pm-auth-footer-links">
-            <button
-              type="button"
-              className="pm-kommo-inline-link"
-              onClick={() => setView("login")}
-            >
-              ← {extra.backToLogin}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {view === "forgot-new" && (
-        <div className="pm-kommo-subview js-create-new-password">
-          <h1 className="pm-auth-heading">{extra.newPassTitle}</h1>
-          <p className="pm-auth-subheading">{extra.newPassSub}</p>
-          <form
-            className="pm-auth-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setView("forgot-done");
-            }}
-          >
-            <div className="pm-auth-field">
-              <div className="pm-auth-input-shell">
-                <input
-                  type="password"
-                  required
-                  minLength={8}
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder={copy.keyPlaceholder}
-                  className="pm-auth-input"
-                />
-              </div>
-            </div>
-            <ul className="pm-kommo-pass-rules">
-              <li className={newPassword.length >= 8 ? "is-valid" : ""}>✓ {extra.ruleLen}</li>
-              <li className={/[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword) ? "is-valid" : ""}>
-                ✓ {extra.ruleCase}
-              </li>
-              <li className={/[0-9!@#$%^&*]/.test(newPassword) ? "is-valid" : ""}>✓ {extra.ruleNum}</li>
-            </ul>
-            <button type="submit" className="pm-auth-submit-pill">
-              {extra.savePassBtn}
-            </button>
-          </form>
-        </div>
-      )}
-
-      {view === "forgot-done" && (
-        <div className="pm-kommo-subview js-nicely-done" role="status">
-          <h1 className="pm-auth-heading">🎉 {extra.nicelyDoneTitle}</h1>
-          <p className="pm-auth-subheading">{extra.nicelyDoneSub}</p>
-          <button
-            type="button"
-            className="pm-auth-submit-pill"
-            onClick={() => setView("login")}
-          >
-            {extra.backToLogin}
-          </button>
         </div>
       )}
 
@@ -471,7 +409,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             className="pm-auth-form"
             onSubmit={(e) => {
               e.preventDefault();
-              router.push(`/${lang}/panel?test-login=1`);
+              setMfaNotice(true);
             }}
           >
             <div className="pm-kommo-otp-row">
@@ -484,11 +422,19 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   maxLength={1}
                   value={digit}
                   aria-label={`OTP ${idx + 1}`}
-                  onChange={(e) => handleOtpChange(idx, e.target.value)}
+                  onChange={(e) => {
+                    setMfaNotice(false);
+                    handleOtpChange(idx, e.target.value);
+                  }}
                   className="pm-kommo-otp-box"
                 />
               ))}
             </div>
+            {mfaNotice && (
+              <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                {extra.mfaUnavailable}
+              </p>
+            )}
             <button type="submit" className="pm-auth-submit-pill">
               {extra.mfaVerifyBtn}
             </button>
@@ -527,7 +473,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
             className="pm-auth-form"
             onSubmit={(e) => {
               e.preventDefault();
-              router.push(`/${lang}/panel?test-login=1`);
+              setMfaNotice(true);
             }}
           >
             <div className="pm-auth-field">
@@ -536,12 +482,20 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   type="text"
                   required
                   value={backupCode}
-                  onChange={(e) => setBackupCode(e.target.value)}
+                  onChange={(e) => {
+                    setMfaNotice(false);
+                    setBackupCode(e.target.value);
+                  }}
                   placeholder={extra.mfaBackupPlaceholder}
                   className="pm-auth-input"
                 />
               </div>
             </div>
+            {mfaNotice && (
+              <p role="status" aria-live="polite" className="pm-auth-status is-error">
+                {extra.mfaUnavailable}
+              </p>
+            )}
             <button type="submit" className="pm-auth-submit-pill">
               {extra.mfaVerifyBtn}
             </button>

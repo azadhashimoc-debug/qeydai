@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useId, useState } from "react";
 import { Tick } from "@/components/Tick";
 import { buttonClass } from "@/components/ui/button";
@@ -33,7 +32,6 @@ export function SessionsTab({
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<{ kind: "ok" | "error"; text: string; field?: string } | null>(null);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(() => new Set());
-  const [calView, setCalView] = useState<"day" | "week" | "month">("day");
 
   const idInputId = useId();
   const courseInputId = useId();
@@ -54,8 +52,8 @@ export function SessionsTab({
     e.preventDefault();
     setFeedback(null);
 
-    const trimmedId = sessionId.trim();
-    const trimmedCourse = courseId.trim();
+    const trimmedId = sessionId.trim().replace(/\s+/g, "-");
+    const trimmedCourse = courseId.trim().replace(/\s+/g, "-");
     const parsedCap = Number.parseInt(capacity, 10);
     const parsedDate = startsAt ? new Date(startsAt) : null;
 
@@ -123,79 +121,11 @@ export function SessionsTab({
             <h1 className="text-2xl font-semibold sm:text-3xl">{d.sessions.title}</h1>
             <p className="mt-1 text-[0.95rem] text-muted">{d.sessions.subtitle}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {(["day", "week", "month"] as const).map((v) => {
-              const label =
-                lang === "az"
-                  ? v === "day"
-                    ? "GÜN"
-                    : v === "week"
-                      ? "HƏFTƏ"
-                      : "AY"
-                  : v.toUpperCase();
-              return (
-                <button
-                  key={v}
-                  type="button"
-                  onClick={() => setCalView(v)}
-                  className={`rounded-md border px-2.5 py-1 text-xs font-bold ${
-                    calView === v
-                      ? "border-brand bg-brand/10 text-ink"
-                      : "border-line bg-bg text-muted"
-                  }`}
-                >
-                  {label}
-                </button>
-              );
-            })}
-            <span className="rounded-md border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-ink">
-              {lang === "az" ? "Mütəxəssislər: 3 · GMT +4" : "Specialists: 3 · GMT +4"}
-            </span>
-          </div>
+          <span className="rounded-lg border border-line bg-bg px-3 py-1.5 text-xs font-semibold tabular-nums text-muted">
+            {sessions.length} {d.sessions.listTitle}
+          </span>
         </div>
       </header>
-
-      {/* Kommo Specialist Calendar Grid + Google Flow Visual */}
-      <section className="panel-card grid gap-4 p-4 sm:grid-cols-[1.2fr_1fr] sm:items-center sm:p-5">
-        <div className="overflow-hidden rounded-xl border border-line bg-bg">
-          <Image
-            src={
-              lang === "en"
-                ? "/images/flow-calendar-booking-en.webp"
-                : "/images/flow-calendar-booking.webp"
-            }
-            alt="Specialist Booking Calendar"
-            width={560}
-            height={312}
-            className="h-auto w-full object-cover"
-          />
-        </div>
-        <div className="space-y-2.5">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted">
-            {lang === "az"
-              ? `✨ AI Təqvim Yoxlayıcısı · ${calView === "day" ? "Günlük" : calView === "week" ? "Həftəlik" : "Aylıq"} Cədvəl`
-              : `✨ AI Calendar Guard · ${calView.toUpperCase()} Schedule`}
-          </p>
-          <div className="grid gap-2">
-            {(sessions.length > 0 ? sessions.slice(0, 3) : []).map((s, idx) => (
-              <div
-                key={s.id}
-                className="rounded-xl border border-indigo-400/50 bg-indigo-500/15 p-3 text-xs"
-              >
-                <div className="flex items-center justify-between font-bold text-ink">
-                  <span>{s.courseId}</span>
-                  <span>
-                    {8 + idx * 2}:00 — {9 + idx * 2}:30
-                  </span>
-                </div>
-                <p className="mt-1 text-muted">
-                  {s.taken}/{s.capacity} {d.sessions.takenOf} · {s.id}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Create session card */}
       <section className="panel-register crm-form-card p-5 sm:p-6">
@@ -297,7 +227,7 @@ export function SessionsTab({
       <section className="panel-card p-5 sm:p-6">
         <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
           <h2 className="text-lg font-semibold">{d.sessions.listTitle}</h2>
-          <span className="font-hand text-2xl font-bold text-pen tabular-nums">{sessions.length}</span>
+          <span className="text-xl font-semibold text-pen tabular-nums">{sessions.length}</span>
         </div>
 
         {sessions.length === 0 ? (

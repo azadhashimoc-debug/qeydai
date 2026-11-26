@@ -1,9 +1,12 @@
 import { mkdirSync } from "node:fs";
 import path from "node:path";
+import { Pool } from "pg";
 import { SqliteEnrollmentStore } from "../enrollment/sqlite-store";
+import { PostgresEnrollmentStore } from "../enrollment/postgres-store";
+import type { EnrollmentStore } from "../enrollment/enrollment";
 import { createEnrollApi } from "./enroll-api";
 import { createPanelApi } from "./panel-api";
-import { getPanelAuthConfig, setPanelJtiStore } from "./panel-auth";
+import { getPanelAuthConfig, setPanelJtiStore, type PanelJtiStore } from "./panel-auth";
 
 const MIN_KEY_LENGTH = 24;
 
@@ -38,17 +41,38 @@ export function parseKeys(raw: string | undefined, name = "QEYDAI_API_KEYS"): Re
 type Api = ReturnType<typeof createEnrollApi>;
 type PanelApi = ReturnType<typeof createPanelApi>;
 
-let sharedStore: SqliteEnrollmentStore | null = null;
+let pgPool: Pool | undefined;
+let sharedStore: EnrollmentStore | null | undefined = undefined;
 let api: Api | null = null;
 let panelApi: PanelApi | null = null;
 
-export function getSharedStore(): SqliteEnrollmentStore {
-  if (!sharedStore) {
-    const file = process.env.ENROLL_DB_FILE ?? path.join(process.cwd(), "data", "qeydai.sqlite");
+export function getStore(): EnrollmentStore | null {
+  if (sharedStore !== undefined) return sharedStore;
+  const pgUrl = process.env.QEYDAI_FORCE_SQLITE === "1" ? undefined : process.env.QEYDAI_DATABASE_URL;
+  if (pgUrl && process.env.NEXT_PHASE !== "phase-production-build") {
+    try {
+      pgPool = new Pool({ connectionString: pgUrl, connectionTimeoutMillis: 5000 });
+      sharedStore = new PostgresEnrollmentStore(pgPool);
+    } catch (err) {
+      console.error("postgres store init failed:", err instanceof Error ? err.message : "unknown");
+      sharedStore = null;
+    }
+    return sharedStore;
+  }
+  const file = process.env.ENROLL_DB_FILE ?? (process.env.VERCEL ? ":memory:" : path.join(process.cwd(), "data", "qeydai.sqlite"));
+  try {
     if (file !== ":memory:") mkdirSync(path.dirname(file), { recursive: true });
     sharedStore = new SqliteEnrollmentStore(file);
+  } catch (err) {
+    console.error("getSharedStore init failed:", err instanceof Error ? err.message : "unknown", "file=", file, "VERCEL=", process.env.VERCEL);
+    sharedStore = null;
   }
   return sharedStore;
+}
+
+/** Backwards-compatible alias. Returns the shared store (Postgres when QEYDAI_DATABASE_URL is set, else SQLite). */
+export function getSharedStore(): EnrollmentStore | null {
+  return getStore();
 }
 
 const buildUnavailable = async () =>
@@ -82,8 +106,10 @@ const buildPhasePanelApi: PanelApi = {
 export function getEnrollApi(): Api {
   if (process.env.NEXT_PHASE === "phase-production-build") return buildPhaseApi;
   if (!api) {
+    const store = getSharedStore();
+    if (!store) return buildPhaseApi;
     api = createEnrollApi({
-      store: getSharedStore(),
+      store,
       keys: parseKeys(process.env.QEYDAI_API_KEYS),
       adminKeys: parseKeys(process.env.QEYDAI_ADMIN_KEYS, "QEYDAI_ADMIN_KEYS"),
     });
@@ -95,8 +121,9 @@ export function getEnrollApi(): Api {
 export function getPanelApi(): PanelApi {
   if (process.env.NEXT_PHASE === "phase-production-build") return buildPhasePanelApi;
   if (!panelApi) {
-    const store = getSharedStore();
-    setPanelJtiStore(store);
+    const store = getStore();
+    setPanelJtiStore(store as PanelJtiStore | null);
+    if (!store) return buildPhasePanelApi;
     panelApi = createPanelApi({
       store,
       getAuthConfig: () => getPanelAuthConfig(),
