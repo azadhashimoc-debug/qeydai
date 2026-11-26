@@ -88,7 +88,7 @@
     },
     "monthly": {
       "label": "Aylıq xidmət",
-      "value": "100 AZN",
+      "value": "99 AZN",
       "body": "Dəstək, yeniləmələr və hesabatlar."
     },
     "extra": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir.",
@@ -440,9 +440,9 @@
           "name": "Başlanğıc",
           "desc": "Kiçik komandalar üçün Telegram + əsas satış lövhəsi",
           "prices": {
-            "monthly": "100 AZN",
-            "halfYear": "90 AZN",
-            "annual": "80 AZN"
+            "monthly": "99 AZN",
+            "halfYear": "99 AZN",
+            "annual": "99 AZN"
           },
           "limits": {
             "one": "1 kanal (Telegram)",
@@ -455,9 +455,9 @@
           "name": "İnkişaf",
           "desc": "Böyüyən bizneslər üçün Pani və çoxkanallı mesaj qutusu",
           "prices": {
-            "monthly": "160 AZN",
-            "halfYear": "145 AZN",
-            "annual": "130 AZN"
+            "monthly": "99 AZN",
+            "halfYear": "99 AZN",
+            "annual": "99 AZN"
           },
           "limits": {
             "one": "Telegram, Instagram və WhatsApp",
@@ -470,9 +470,9 @@
           "name": "Pro",
           "desc": "Bir neçə filialı olan bizneslər üçün avtomatlaşdırma və hesabatlar",
           "prices": {
-            "monthly": "240 AZN",
-            "halfYear": "215 AZN",
-            "annual": "190 AZN"
+            "monthly": "99 AZN",
+            "halfYear": "99 AZN",
+            "annual": "99 AZN"
           },
           "limits": {
             "one": "Bütün kanallar + xüsusi sahələr",

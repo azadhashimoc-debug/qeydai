@@ -10,9 +10,9 @@ export type PaycellPeriod = (typeof PAYCELL_PERIODS)[number];
 
 /** Total charge in AZN for each self-serve plan and billing cycle. */
 export const PAYCELL_PRICES_AZN: Record<PaycellCheckoutPlan, Record<PaycellPeriod, number>> = {
-  starter: { monthly: 100, halfYear: 540, annual: 960 },
-  growth: { monthly: 160, halfYear: 870, annual: 1560 },
-  pro: { monthly: 240, halfYear: 1290, annual: 2280 },
+  starter: { monthly: 99, halfYear: 594, annual: 1188 },
+  growth: { monthly: 99, halfYear: 594, annual: 1188 },
+  pro: { monthly: 99, halfYear: 594, annual: 1188 },
 };
 
 export type PaycellCheckoutPayload = {
