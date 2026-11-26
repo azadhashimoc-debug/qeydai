@@ -231,6 +231,8 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page).toHaveURL(/\/az\/login(\?oauth_error=unavailable)?$/);
   expect((await page.request.get("/api/panel/overview")).status()).toBe(401);
 
+  // The OAuth redirect reloads the login page in its default mode; choose key mode again.
+  await page.getByRole("button", { name: "Giriş açarı", exact: true }).click();
   await keyField.fill("invalid-workspace-key-0123456789abcdef");
   await page.getByRole("button", { name: "Giriş", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("Daxil edilən açar yanlışdır");
