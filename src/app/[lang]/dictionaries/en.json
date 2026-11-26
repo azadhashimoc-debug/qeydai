@@ -83,12 +83,12 @@
     "note": "Pilot offer; pricing is finalized based on your business needs.",
     "setup": {
       "label": "Setup",
-      "value": "350 AZN",
+      "value": "100 AZN",
       "body": "One-time onboarding for service details, business hours and channels."
     },
     "monthly": {
       "label": "Monthly service",
-      "value": "100 AZN",
+      "value": "from 49 AZN",
       "body": "Support, updates and reports."
     },
     "extra": "WhatsApp message fees (Meta's rates) are billed separately and shown to you in advance.",
@@ -434,15 +434,15 @@
       "perMonth": "/ mo",
       "popular": "Most popular",
       "setupPrefix": "Setup:",
-      "setupValue": "350 AZN (one-time)",
+      "setupValue": "100 AZN (one-time, Growth and Pro)",
       "plans": {
         "starter": {
           "name": "Starter",
           "desc": "Telegram bot and core pipeline for small teams",
           "prices": {
-            "monthly": "100 AZN",
-            "halfYear": "90 AZN",
-            "annual": "80 AZN"
+            "monthly": "49 AZN",
+            "halfYear": "44 AZN",
+            "annual": "39 AZN"
           },
           "limits": {
             "one": "1 channel (Telegram)",
@@ -455,9 +455,9 @@
           "name": "Growth",
           "desc": "Pani and multichannel inbox for growing businesses",
           "prices": {
-            "monthly": "160 AZN",
-            "halfYear": "145 AZN",
-            "annual": "130 AZN"
+            "monthly": "89 AZN",
+            "halfYear": "80 AZN",
+            "annual": "71 AZN"
           },
           "limits": {
             "one": "Telegram + Instagram + WhatsApp",
@@ -470,9 +470,9 @@
           "name": "Pro",
           "desc": "Automation and reporting for multi-branch businesses",
           "prices": {
-            "monthly": "240 AZN",
-            "halfYear": "215 AZN",
-            "annual": "190 AZN"
+            "monthly": "149 AZN",
+            "halfYear": "134 AZN",
+            "annual": "119 AZN"
           },
           "limits": {
             "one": "All channels + custom fields",
@@ -598,7 +598,7 @@
       "annual": "Annual",
       "perMonth": "/ mo",
       "setupPrefix": "Setup:",
-      "setupValue": "350 AZN (one-time)",
+      "setupValue": "100 AZN (one-time, Growth and Pro)",
       "popular": "Most popular",
       "ctaStarter": "Request pilot",
       "ctaGrowth": "Request pilot",

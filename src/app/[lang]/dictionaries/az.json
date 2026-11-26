@@ -83,12 +83,12 @@
     "note": "İlkin pilot təklifidir; qiymətlər biznesinizin ehtiyacına uyğun dəqiqləşdirilir.",
     "setup": {
       "label": "Quraşdırma",
-      "value": "350 AZN",
+      "value": "100 AZN",
       "body": "Birdəfəlik: xidmət məlumatları, iş qrafiki və kanalların qurulması."
     },
     "monthly": {
       "label": "Aylıq xidmət",
-      "value": "100 AZN",
+      "value": "49 AZN-dan",
       "body": "Dəstək, yeniləmələr və hesabatlar."
     },
     "extra": "WhatsApp mesaj xərcləri (Meta tarifi) ayrıca hesablanır və əvvəlcədən göstərilir.",
@@ -434,15 +434,15 @@
       "perMonth": "/ ay",
       "popular": "Ən populyar",
       "setupPrefix": "Quraşdırma:",
-      "setupValue": "350 AZN (birdəfəlik)",
+      "setupValue": "100 AZN (birdəfəlik, İnkişaf və Pro üçün)",
       "plans": {
         "starter": {
           "name": "Başlanğıc",
           "desc": "Kiçik komandalar üçün Telegram + əsas satış lövhəsi",
           "prices": {
-            "monthly": "100 AZN",
-            "halfYear": "90 AZN",
-            "annual": "80 AZN"
+            "monthly": "49 AZN",
+            "halfYear": "44 AZN",
+            "annual": "39 AZN"
           },
           "limits": {
             "one": "1 kanal (Telegram)",
@@ -455,9 +455,9 @@
           "name": "İnkişaf",
           "desc": "Böyüyən bizneslər üçün Pani və çoxkanallı mesaj qutusu",
           "prices": {
-            "monthly": "160 AZN",
-            "halfYear": "145 AZN",
-            "annual": "130 AZN"
+            "monthly": "89 AZN",
+            "halfYear": "80 AZN",
+            "annual": "71 AZN"
           },
           "limits": {
             "one": "Telegram, Instagram və WhatsApp",
@@ -470,9 +470,9 @@
           "name": "Pro",
           "desc": "Bir neçə filialı olan bizneslər üçün avtomatlaşdırma və hesabatlar",
           "prices": {
-            "monthly": "240 AZN",
-            "halfYear": "215 AZN",
-            "annual": "190 AZN"
+            "monthly": "149 AZN",
+            "halfYear": "134 AZN",
+            "annual": "119 AZN"
           },
           "limits": {
             "one": "Bütün kanallar + xüsusi sahələr",
@@ -598,7 +598,7 @@
       "annual": "İllik",
       "perMonth": "/ ay",
       "setupPrefix": "Quraşdırma:",
-      "setupValue": "350 AZN (birdəfəlik)",
+      "setupValue": "100 AZN (birdəfəlik, İnkişaf və Pro üçün)",
       "popular": "Ən populyar",
       "ctaStarter": "Pilot üçün müraciət et",
       "ctaGrowth": "Pilot üçün müraciət et",

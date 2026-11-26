@@ -16,9 +16,9 @@ type SubscriptionInfo = {
 };
 
 const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: string }> = {
-  starter: { monthly: "100 AZN", halfYear: "90 AZN", annual: "80 AZN" },
-  growth: { monthly: "160 AZN", halfYear: "145 AZN", annual: "130 AZN" },
-  pro: { monthly: "240 AZN", halfYear: "215 AZN", annual: "190 AZN" },
+  starter: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
+  growth: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
+  pro: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
   enterprise: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
 };
 
@@ -50,7 +50,7 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
   };
   const perMonth = plansDict.perMonth ?? "/ ay";
   const setupPrefix = plansDict.setupPrefix ?? "Quraşdırma:";
-  const setupValue = plansDict.setupValue ?? "350 AZN (birdəfəlik)";
+  const setupValue = plansDict.setupValue ?? "100 AZN (birdəfəlik, İnkişaf və Pro üçün)";
   const popularBadge = plansDict.popular ?? "Ən populyar";
 
   const plans: Array<{

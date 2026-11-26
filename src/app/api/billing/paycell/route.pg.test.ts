@@ -143,7 +143,7 @@ suite("Paycell billing routes & /api/panel/billing", () => {
           plan: "growth",
           period: "annual",
           status: "paid",
-          amount: 1560,
+          amount: 852,
           currency: "AZN",
         }),
       }),
@@ -177,7 +177,7 @@ suite("Paycell billing routes & /api/panel/billing", () => {
       plan: "growth",
       period: "annual",
       status: "paid",
-      amount: 1560,
+      amount: 852,
       currency: "AZN",
     });
     expect(
@@ -198,7 +198,7 @@ suite("Paycell billing routes & /api/panel/billing", () => {
       plan: "growth",
       period: "annual",
       status: "paid",
-      amount: 1560,
+      amount: 852,
       currency: "AZN",
     });
     const first = await webhookPost(
@@ -229,6 +229,6 @@ suite("Paycell billing routes & /api/panel/billing", () => {
     expect(afterJson.ok).toBe(true);
     expect(afterJson.subscription?.plan).toBe("growth");
     expect(afterJson.subscription?.status).toBe("paid");
-    expect(afterJson.subscription?.amount).toBe(1560);
+    expect(afterJson.subscription?.amount).toBe(852);
   });
 });
