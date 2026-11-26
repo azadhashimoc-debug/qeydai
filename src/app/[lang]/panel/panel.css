@@ -26,31 +26,6 @@
   color: var(--ink);
 }
 
-:root[data-theme="dark"] .crm-screen {
-  color-scheme: dark;
-  --bg: #0f172a;
-  --surface: #162033;
-  --ink: #f1f5f9;
-  --muted: #94a3b8;
-  --line: #253248;
-  --grid: #111b2e;
-  --cover: #0b1120;
-  --blue: #4c8bf5;
-  --pen: #93c5fd;
-  --stamp: #34d399;
-  --danger: #f87171;
-  --focus: #60a5fa;
-
-  --rail-bg: #111827;
-  --rail-bg-hover: #1e293b;
-  --rail-active-bg: #1e3a5f;
-  --rail-border: #1f2937;
-  --rail-text: #cbd5e1;
-  --rail-text-muted: #94a3b8;
-  --rail-text-active: #93c5fd;
-  --rail-accent: #60a5fa;
-}
-
 .crm-screen .panel-register,
 .crm-screen .panel-card {
   border-radius: 12px;
@@ -811,11 +786,6 @@
     border: 1px solid #ccebd9;
   }
 
-  :root[data-theme="dark"] .panel-rail-checklist {
-    background: #0f2e22;
-    color: #6ee7b7;
-    border-color: #1a4b38;
-  }
 
   .panel-rail-checklist-ring {
     display: inline-flex;
@@ -882,9 +852,6 @@
   box-shadow: 0 1px 2px rgb(15 23 42 / 3%);
 }
 
-:root[data-theme="dark"] .kommo-home-hero {
-  background: linear-gradient(180deg, var(--surface) 0%, var(--surface) 52%, color-mix(in srgb, #8b5cf6 12%, var(--surface)) 100%);
-}
 
 .kommo-home-tabs {
   display: inline-flex;

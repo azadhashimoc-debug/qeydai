@@ -5,7 +5,7 @@
  * deep indigo anchor (#0E0142), cobalt primary (#3046E8), and emerald highlights.
  */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #F8F9FF;
   --surface: #FFFFFF;
   --ink: #0E0142;
@@ -22,40 +22,6 @@
   --focus: #3046E8;
   --focus-on-dark: #FFE45C;
 }
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #090624;
-  --surface: #130F3A;
-  --ink: #EEF0FF;
-  --muted: #A8AFDA;
-  --line: #2A255E;
-  --grid: #191547;
-  --pen: #9FA8FF;
-  --margin: #FF85A1;
-  --stamp: #5AE0A0;
-  --danger: #FF8B94;
-  --focus: #FFE45C;
-}
-:root[data-theme="light"] {
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #090624;
-    --surface: #130F3A;
-    --ink: #EEF0FF;
-    --muted: #A8AFDA;
-    --line: #2A255E;
-    --grid: #191547;
-    --pen: #9FA8FF;
-    --margin: #FF85A1;
-    --stamp: #5AE0A0;
-    --danger: #FF8B94;
-    --focus: #FFE45C;
-  }
-}
-
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -72,6 +38,18 @@
   --font-sans: var(--font-body), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-display: var(--font-display), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-hand: var(--font-display), system-ui, sans-serif;
+}
+
+/* Site is always light: native controls (select/option, inputs) get explicit light colors. */
+select,
+option,
+optgroup {
+  background-color: #FFFFFF;
+  color: #0E0142;
+}
+input,
+textarea {
+  color-scheme: light;
 }
 
 html {
