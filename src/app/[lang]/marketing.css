@@ -1494,6 +1494,13 @@
   font-weight: 600;
 }
 
+.pm-plan-billed {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--pm-ink, inherit);
+  font-weight: 600;
+}
+
 .pm-plan-setup {
   margin-top: 6px;
   font-size: 0.78rem;
@@ -2371,6 +2378,20 @@
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--pm-ink);
+}
+
+.pm-legal-missing {
+  background: #fff3c4;
+  color: #6b4a00;
+  border-radius: 4px;
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.pm-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 .pm-legal-card p {
@@ -4388,6 +4409,25 @@
   padding: 7px 14px;
   font-size: 0.78rem;
   font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pm-kommo-cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.pm-kommo-cookie-reject {
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
 }

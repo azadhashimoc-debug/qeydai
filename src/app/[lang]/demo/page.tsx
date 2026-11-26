@@ -67,8 +67,8 @@ export default async function DemoPage({ params }: PageProps<"/[lang]/demo">) {
               <strong>24/7</strong>
               <span>
                 {locale === "en"
-                  ? "Automated trial lesson booking"
-                  : "Avtomatik sınaq dərsi qeydiyyatı"}
+                  ? "Automated appointment booking"
+                  : "Avtomatik görüş rezervasiyası"}
               </span>
             </div>
             <div className="pm-demo-stat">

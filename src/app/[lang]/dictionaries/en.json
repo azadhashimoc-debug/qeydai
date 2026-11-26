@@ -430,9 +430,9 @@
         "annual": "Annual"
       },
       "periodNotes": {
-        "monthly": "Flexible start",
-        "halfYear": "Standard pilot cycle",
-        "annual": "Long-term rate"
+        "monthly": "Billed every month",
+        "halfYear": "Billed every 6 months · per-month equivalent",
+        "annual": "Billed yearly · per-month equivalent"
       },
       "perMonth": "/ mo",
       "popular": "Most popular",

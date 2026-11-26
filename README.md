@@ -30,6 +30,15 @@ cp .env.example .env.local
 - `QEYDAI_CRM_CHANNELS`, `QEYDAI_CRM_WORKER_KEY`, `QEYDAI_META_VERIFY_TOKEN`, `QEYDAI_META_APP_SECRET`, `QEYDAI_META_GRAPH_VERSION` — Messaging channel connections and Meta webhook signature verification.
 - `QEYDAI_PAYCELL_WEBHOOK_SECRET` — HMAC secret for `POST /api/billing/paycell/webhook`.
 
+### Public company details (shown on the site; anything unset is hidden)
+
+- `NEXT_PUBLIC_COMPANY_LEGAL_NAME`, `NEXT_PUBLIC_COMPANY_TAX_ID` (VÖEN), `NEXT_PUBLIC_COMPANY_ADDRESS` — filled into the privacy policy, terms and data-deletion pages. Until set, those pages show a yellow "to be filled" marker.
+- `NEXT_PUBLIC_CONTACT_PHONE`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_PRIVACY_EMAIL` — contact page and legal pages.
+- `NEXT_PUBLIC_CONTACT_WHATSAPP` — real WhatsApp number (digits); becomes the wa.me link in the chat launcher.
+- `NEXT_PUBLIC_SOCIAL_TELEGRAM`, `NEXT_PUBLIC_SOCIAL_INSTAGRAM`, `NEXT_PUBLIC_SOCIAL_MESSENGER` — full https links to official accounts.
+
+Prices live in `src/lib/marketing/pricing.ts` and feed the pricing page, the panel, JSON-LD, `llms.txt` and Paycell checkout.
+
 ## Database Migrations
 
 Apply SQL migrations under `db/migrations/` to `QEYDAI_DATABASE_URL`:

@@ -44,19 +44,19 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
     ? [
         {
           id: "calendar",
-          label: "Lock trial seats on the calendar",
-          caption: "Students see available trial time slots and reserve seats without overbooking.",
+          label: "Lock booked slots on the calendar",
+          caption: "Customers see available time slots and book without overbooking.",
           previewTitle: "TRIAL CONFIRMED",
           previewBadge: "1 seat left",
           rows: [
-            { title: "IELTS Speaking", meta: "Thu 16:00 · Room 3", badge: "Confirmed", tone: "mint" },
+            { title: "Consultation", meta: "Thu 16:00 · Room 3", badge: "Confirmed", tone: "mint" },
             { title: "General English B1", meta: "Fri 18:30 · Room 1", badge: "2/8 seats", tone: "sky" },
           ],
         },
         {
           id: "reminders",
           label: "Trigger automated reminders",
-          caption: "Send WhatsApp or Telegram reminders 2 hours before the trial class automatically.",
+          caption: "Send WhatsApp or Telegram reminders 2 hours before the appointment automatically.",
           previewTitle: "REMINDERS",
           previewBadge: "Auto",
           rows: [
@@ -67,11 +67,11 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
         {
           id: "instructors",
           label: "Assign tasks to instructors",
-          caption: "Notify teachers when a new trial student joins their group.",
+          caption: "Notify the specialist when a new customer books their slot.",
           previewTitle: "TEAM SYNC",
           previewBadge: "Instant",
           rows: [
-            { title: "Instructor Leyla", meta: "New IELTS trial student added", badge: "Notified", tone: "sky" },
+            { title: "Specialist Leyla", meta: "New booking added", badge: "Notified", tone: "sky" },
             { title: "Admin Desk", meta: "Attendance check ready", badge: "Synced", tone: "mint" },
           ],
         },
@@ -79,34 +79,34 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
     : [
         {
           id: "calendar",
-          label: "Sınaq dərsi yerlərini təqvimdə kilidləyin",
-          caption: "Tələbələr yalnız boş yer olan qruplara yazılır və sinif tutumu avtomatik qorunur.",
+          label: "Rezerv olunmuş vaxtları təqvimdə kilidləyin",
+          caption: "Müştərilər yalnız boş vaxtlara yazılır və tutum avtomatik qorunur.",
           previewTitle: "SINAQ TƏSDİQLƏNDİ",
           previewBadge: "1 yer qaldı",
           rows: [
-            { title: "IELTS Danışıq", meta: "C.a 16:00 · Otaq 3", badge: "Təsdiqləndi", tone: "mint" },
+            { title: "Konsultasiya", meta: "C.a 16:00 · Otaq 3", badge: "Təsdiqləndi", tone: "mint" },
             { title: "Ümumi İngilis B1", meta: "Cümə 18:30 · Otaq 1", badge: "2/8 yer", tone: "sky" },
           ],
         },
         {
           id: "reminders",
           label: "Avtomatik xatırlatmaları işə salın",
-          caption: "Dərsdən 2 saat əvvəl WhatsApp və Telegram üzərindən ünvan və saat xatırlatması göndərin.",
+          caption: "Görüşdən 2 saat əvvəl WhatsApp və Telegram üzərindən ünvan və saat xatırlatması göndərin.",
           previewTitle: "XATIRLATMALAR",
           previewBadge: "Avto",
           rows: [
-            { title: "WhatsApp Bildirişi", meta: "Dərsdən 2 saat əvvəl", badge: "Göndərildi", tone: "mint" },
+            { title: "WhatsApp Bildirişi", meta: "Görüşdən 2 saat əvvəl", badge: "Göndərildi", tone: "mint" },
             { title: "Təkrar Qeyd Qoruması", meta: "Eyni +994 nömrə bloklanır", badge: "Qorunur", tone: "amber" },
           ],
         },
         {
           id: "instructors",
           label: "Müəllimlərə tapşırıq təyin edin",
-          caption: "Qrupa yeni sınaq tələbəsi əlavə olunan kimi müəllimə və koordinatora bildiriş getsin.",
+          caption: "Yeni rezervasiya olunan kimi mütəxəssisə və koordinatora bildiriş getsin.",
           previewTitle: "KOMANDA SİNXRONU",
           previewBadge: "Ani",
           rows: [
-            { title: "Müəllim Leyla", meta: "Yeni IELTS sınaq tələbəsi", badge: "Bildirildi", tone: "sky" },
+            { title: "Mütəxəssis Leyla", meta: "Yeni rezervasiya", badge: "Bildirildi", tone: "sky" },
             { title: "Qeydiyyat Masası", meta: "Davamiyyət siyahısı hazırdır", badge: "Hazır", tone: "mint" },
           ],
         },
@@ -154,11 +154,11 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
         />
 
         <KommoTabbedShowcase
-          heading={isEn ? "Your team's booking solution" : "Komandanızın randevu və sınaq həlli"}
+          heading={isEn ? "Your team's booking solution" : "Komandanızın rezervasiya həlli"}
           subheading={
             isEn
               ? "Combine chat, capacity locks, and automated reminders to turn every inquiry into attendance."
-              : "Söhbət, yer sayı kilidi və avtomatik xatırlatmaları birləşdirib hər müraciəti real dərs iştirakına çevirin."
+              : "Söhbət, yer sayı kilidi və avtomatik xatırlatmaları birləşdirib hər müraciəti real görüşə çevirin."
           }
           tabs={tabs}
         />
@@ -166,7 +166,7 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
         <KommoPromoBand
           title={
             isEn
-              ? "Get the most out of AI-assisted trial scheduling"
+              ? "Get the most out of AI-assisted scheduling"
               : "Süni intellekt alətlərindən maksimum yararlanın"
           }
           ctaHref={`/${locale}/demo`}

@@ -76,16 +76,16 @@ export default async function PipelinePage({ params }: PageProps<"/[lang]/pipeli
                   A{" "}
                   <mark className="pm-hl is-amber">visual sales funnel</mark>{" "}
                   built to{" "}
-                  <mark className="pm-hl is-lav">organize student inquiries</mark>{" "}
-                  and move every trial lesson smoothly{" "}
+                  <mark className="pm-hl is-lav">organize customer inquiries</mark>{" "}
+                  and move every booking smoothly{" "}
                   <mark className="pm-hl is-sky">toward enrollment</mark>.
                 </>
               ) : (
                 <>
                   Müraciətləri{" "}
                   <mark className="pm-hl is-amber">sistemli izləmək</mark>,{" "}
-                  <mark className="pm-hl is-lav">sınaq dərslərini idarə etmək</mark>{" "}
-                  və tələbələri{" "}
+                  <mark className="pm-hl is-lav">rezervasiyaları idarə etmək</mark>{" "}
+                  və müştəriləri{" "}
                   <mark className="pm-hl is-sky">qeydiyyata çatdırmaq</mark>{" "}
                   üçün qurulmuş vizual satış xətti.
                 </>

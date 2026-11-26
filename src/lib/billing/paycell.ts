@@ -1,4 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
+import { planTermTotalAzn } from "@/lib/marketing/pricing";
 
 export const PAYCELL_PLANS = ["starter", "growth", "pro", "enterprise"] as const;
 export const PAYCELL_CHECKOUT_PLANS = ["starter", "growth", "pro"] as const;
@@ -10,10 +11,18 @@ export type PaycellPeriod = (typeof PAYCELL_PERIODS)[number];
 
 /** Total charge in AZN for each self-serve plan and billing cycle. */
 export const PAYCELL_PRICES_AZN: Record<PaycellCheckoutPlan, Record<PaycellPeriod, number>> = {
-  starter: { monthly: 49, halfYear: 264, annual: 468 },
-  growth: { monthly: 89, halfYear: 480, annual: 852 },
-  pro: { monthly: 149, halfYear: 804, annual: 1428 },
+  starter: termTotals("starter"),
+  growth: termTotals("growth"),
+  pro: termTotals("pro"),
 };
+
+function termTotals(plan: PaycellCheckoutPlan): Record<PaycellPeriod, number> {
+  return {
+    monthly: planTermTotalAzn(plan, "monthly"),
+    halfYear: planTermTotalAzn(plan, "halfYear"),
+    annual: planTermTotalAzn(plan, "annual"),
+  };
+}
 
 export type PaycellCheckoutPayload = {
   orderId: string;

@@ -187,7 +187,7 @@ export function PricingShowcase({
   footnote: string;
   ctaHref?: string;
 }) {
-  const [period, setPeriod] = useState<BillingPeriod>("halfYear");
+  const [period, setPeriod] = useState<BillingPeriod>("monthly");
   const [currency, setCurrency] = useState<CurrencyCode>("AZN");
   const periodKeys: BillingPeriod[] = ["monthly", "halfYear", "annual"];
 
