@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS billing_events (
 );
 
 ALTER TABLE billing_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE billing_events FORCE ROW LEVEL SECURITY;
 DO $$ BEGIN
   CREATE POLICY billing_events_isolation ON billing_events
     USING (tenant_id = NULLIF(current_setting('app.tenant_id', true), ''))
