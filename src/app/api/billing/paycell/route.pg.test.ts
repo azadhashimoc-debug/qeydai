@@ -1,4 +1,4 @@
-import { createHmac } from "node:crypto";
+import { createHmac, randomUUID } from "node:crypto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { SqliteEnrollmentStore } from "@/lib/enrollment/sqlite-store";
 
@@ -58,7 +58,7 @@ suite("Paycell billing routes & /api/panel/billing", () => {
     }
   });
 
-  async function createOwnerSession(email = "owner@example.com") {
+  async function createOwnerSession(email = `owner-${randomUUID()}@example.com`) {
     const reg = await registerPost(
       new Request("http://localhost:3000/api/panel/account/register", {
         method: "POST",
@@ -126,7 +126,7 @@ suite("Paycell billing routes & /api/panel/billing", () => {
   });
 
   it("webhook verifies HMAC, rejects mismatched paid amount, stores idempotently, and /api/panel/billing returns it", async () => {
-    const { tenantId, cookie } = await createOwnerSession("billing2@example.com");
+    const { tenantId, cookie } = await createOwnerSession(`billing2-${randomUUID()}@example.com`);
 
     const before = await billingGet(
       new Request("http://localhost:3000/api/panel/billing", { headers: { cookie } }),

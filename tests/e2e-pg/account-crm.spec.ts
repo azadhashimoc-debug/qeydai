@@ -9,9 +9,9 @@ test("registration form creates a usable account and opens the CRM", async ({ pa
   await page.locator('form button[type="submit"]').click();
   await page.locator('input[name="name"]').fill("Biznes " + id);
   await page.locator('input[name="phone"]').fill("050 234 56 78");
+  await page.locator('input[name="password"]').fill("Strong-Business-Pass-" + id);
   await page.locator('form button[type="submit"]').click();
   await expect(page.locator('input[name="account"]')).toBeVisible();
-  await page.locator('input[autocomplete="new-password"]').fill("Strong-Business-Pass-" + id);
   await page.locator(".js-create-account-submit-button").click();
   await expect(page).toHaveURL(new RegExp("/az/panel"));
   expect((await page.request.get("/api/panel/auth")).status()).toBe(200);
