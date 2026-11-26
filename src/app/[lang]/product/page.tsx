@@ -148,8 +148,8 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
               tag: s.navGroups.product.aiTitle,
               title: isEn ? "No-code Salesbot & Automation" : "Kodsuz Salesbot və Avtomatlaşdırma",
               body: isEn
-                ? "Greet students 24/7, answer fee questions in Azerbaijani, and lock trial lesson seats automatically."
-                : "Tələbələri 24/7 qarşılayın, qiymət və cədvəl suallarını Azərbaycan dilində cavablandırın, boş yerləri avtomatik kilidləyin.",
+                ? "Greet customers 24/7, answer pricing and service questions in Azerbaijani, and lock appointment slots automatically."
+                : "Müştəriləri 24/7 qarşılayın, qiymət və xidmət suallarını Azərbaycan dilində cavablandırın, görüş vaxtlarını avtomatik kilidləyin.",
               cta: { href: `/${locale}/booking`, label: s.navGroups.product.bookingTitle },
               image: "p-salesbot",
               imageAlt: "Salesbot",

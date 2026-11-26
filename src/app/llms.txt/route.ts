@@ -1,7 +1,9 @@
 // llms.txt: a short, machine-readable map of the site for AI assistants.
 // See https://llmstxt.org. Kept in sync with the public pricing in the landing dictionary.
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://panelim.az";
+import { getSiteUrl } from "@/lib/http/site-url";
+
+const base = getSiteUrl();
 
 const body = `# panelim.az
 
@@ -40,6 +42,7 @@ const body = `# panelim.az
 ## Legal
 - [Şərtlər](${base}/az/legal/terms)
 - [Məxfilik](${base}/az/legal/privacy)
+- [Məlumatların silinməsi](${base}/az/legal/data-deletion)
 - [Sitemap](${base}/sitemap.xml)
 `;
 

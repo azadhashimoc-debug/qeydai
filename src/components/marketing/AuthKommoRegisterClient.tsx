@@ -47,8 +47,8 @@ const WORKSPACE_COPY = {
   az: {
     step3Title: "14 günlük sınağınızı başladın",
     step3Sub: "Bütün imkanlara və 10GB yaddaş sahəsinə giriş əldə edin. Kredit kartı tələb olunmur",
-    accountNameLabel: "Hesab adı (Mərkəz və ya şirkət adı)",
-    accountNamePlaceholder: "Məsələn: Bakı Tədris Mərkəzi",
+    accountNameLabel: "Hesab adı (Biznes və ya şirkət adı)",
+    accountNamePlaceholder: "Məsələn: Bakı Xidmət MMC",
     subdomainLabel: "Hesab alt alan adı",
     industryLabel: "Sektor",
     industries: [
@@ -70,8 +70,8 @@ const WORKSPACE_COPY = {
   en: {
     step3Title: "Start your 14-day free trial",
     step3Sub: "Access all features and 10GB storage. No credit card required",
-    accountNameLabel: "Account name (Center or company name)",
-    accountNamePlaceholder: "e.g. Baku Learning Center",
+    accountNameLabel: "Account name (Business or company name)",
+    accountNamePlaceholder: "e.g. Baku Studio LLC",
     subdomainLabel: "Account subdomain",
     industryLabel: "Industry",
     industries: [
@@ -121,8 +121,8 @@ export function AuthKommoRegisterClient({
     "idle" | "sending" | "ok" | "error" | "name_error" | "limited" | "social" | "weak_password" | "email_taken" | "unavailable"
   >("idle");
   const [detailsVisible, setDetailsVisible] = useState(false);
-  const [workspaceName, setWorkspaceName] = useState("Bakı Mərkəzi");
-  const [subdomain, setSubdomain] = useState("baki-merkezi");
+  const [workspaceName, setWorkspaceName] = useState("Mənim Biznesim");
+  const [subdomain, setSubdomain] = useState("menim-biznesim");
   const [savingWorkspace, setSavingWorkspace] = useState(false);
   const emailId = useId();
   const emailRef = useRef<HTMLInputElement>(null);

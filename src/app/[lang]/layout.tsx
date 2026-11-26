@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { WebVitals } from "@/components/WebVitals";
 import { TrackingScripts } from "@/components/marketing/TrackingScripts";
+import { getSiteUrl } from "@/lib/http/site-url";
 import "../globals.css";
 import { getDictionary, locales } from "./dictionaries";
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   const { lang } = await params;
   const d = await getDictionary(lang);
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    metadataBase: new URL(getSiteUrl()),
     title: d.meta.title,
     description: d.meta.description,
     alternates: {

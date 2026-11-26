@@ -24,7 +24,7 @@ const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: strin
 
 export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
   const plansDict = d.plans;
-  const [period, setPeriod] = useState<"monthly" | "halfYear" | "annual">("halfYear");
+  const [period, setPeriod] = useState<"monthly" | "halfYear" | "annual">("monthly");
   const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null);
 
   useEffect(() => {
@@ -52,6 +52,16 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
   const setupPrefix = plansDict.setupPrefix ?? "Quraşdırma:";
   const setupValue = plansDict.setupValue ?? "100 AZN (birdəfəlik, İnkişaf və Pro üçün)";
   const popularBadge = plansDict.popular ?? "Ən populyar";
+  const periodSuffix =
+    period === "annual"
+      ? lang === "en"
+        ? "· billed annually"
+        : "· illik ödənişdə"
+      : period === "halfYear"
+        ? lang === "en"
+          ? "· billed every 6 months"
+          : "· 6 aylıq ödənişdə"
+        : "";
 
   const plans: Array<{
     id: PlanKey;
@@ -123,6 +133,7 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {plans.map((p) => {
           const isCurrent = subscription?.status === "paid" && subscription.plan === p.id;
+          const hasSetupFee = p.id === "growth" || p.id === "pro";
           return (
           <div key={p.id} className={`panel-card p-5 rounded-xl border border-line relative ${p.popular ? "border-brand/50 shadow-[0_0_0_1px_color-mix(in_srgb,#3373ff_20%)]" : ""}`}>
             {isCurrent ? (
@@ -138,7 +149,11 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
             <p className="text-xs text-muted line-clamp-2">{p.desc}</p>
             <div className="mt-3 mb-2">
               <span className="text-xl font-semibold text-ink">{p.prices[period]}</span>
-              {p.id !== "enterprise" && <span className="ml-1 text-xs text-muted">{perMonth}</span>}
+              {p.id !== "enterprise" && (
+                <span className="ml-1 text-xs text-muted">
+                  {perMonth} {periodSuffix}
+                </span>
+              )}
             </div>
             <ul className="space-y-1.5 text-sm text-muted">
               {plansDict[p.id].limits.map((l: string) => (
@@ -148,7 +163,17 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-muted border-t border-line pt-2">{setupPrefix} {setupValue}</p>
+            <p className="mt-2 text-xs text-muted border-t border-line pt-2">
+              {hasSetupFee
+                ? `${setupPrefix} ${setupValue}`
+                : p.id === "starter"
+                  ? lang === "en"
+                    ? "Setup fee: 0 AZN"
+                    : "Quraşdırma haqqı: 0 AZN"
+                  : lang === "en"
+                    ? "Custom onboarding agreement"
+                    : "Fərdi quraşdırma müqaviləsi"}
+            </p>
             <a href={`/${lang}#contact`} className={buttonClass({ variant: p.popular ? "primary" : "secondary", size: "sm", className: "mt-4 min-h-11 w-full" })}>
               {plansDict[p.ctaKey]}
             </a>

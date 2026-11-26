@@ -4,6 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import type { Locale } from "@/app/[lang]/dictionaries";
+import { getProductVideoUrl, getPublicContactConfig } from "@/lib/marketing/contact-config";
+import {
+  COOKIE_CONSENT_KEY,
+  LEGACY_COOKIE_ACCEPTED_KEY,
+  readCookieConsent,
+} from "./TrackingScripts";
 
 export type ActiveModal =
   | null
@@ -17,28 +23,23 @@ export type ActiveModal =
 
 const COPY = {
   az: {
-    announcement: "🔊 panelim.az qiymət və plan dəyişikliklərini nəzərdən keçirin",
+    announcement: "🔊 panelim.az qiymət və plan yeniliklərini nəzərdən keçirin",
     announcementHref: "/az/pricing",
     announcementClose: "Elanı bağla",
     cookieText: "Veb saytımızı işlətmək, təhlil etmək və təkmilləşdirmək üçün kukilər və oxşar texnologiyalardan istifadə edirik.",
     cookieLearnMore: "Ətraflı öyrənin",
     cookieAccept: "Qəbul et",
+    cookieReject: "İmtina et",
     stickyCta: "Pani-ni pulsuz sına",
     fabLabel: "Çoxkanallı canlı dəstək",
     fabTitle: "Bizimlə əlaqə saxlayın",
-    fabChannels: [
-      { id: "telegram", label: "Telegram", href: "https://t.me/panelim_az" },
-      { id: "instagram", label: "Instagram", href: "https://instagram.com/panelim.az" },
-      { id: "messenger", label: "Messenger", href: "https://m.me/panelim.az" },
-      { id: "whatsapp", label: "WhatsApp", href: "https://wa.me/994501234567" },
-    ],
     fabLiveChat: "Canlı Söhbət (Mesaj göndər)",
     fabPartner: "Partner yardımı tələb et",
     fabDemo: "Canlı Demo təyin et",
-    fabVideo: "Məhsul videosunu izlə",
+    fabVideo: "Məhsul icmalına bax",
     closeModal: "Pəncərəni bağla",
     demoModal: {
-      badge: "Calendly · Canlı Görüş",
+      badge: "Canlı Görüş",
       title: "15 dəqiqəlik fərdi demo təyin edin",
       subtitle: "Mütəxəssisimizlə uyğun gün və saatı seçin, biznesiniz üçün canlı iş axınını birlikdə quraq.",
       days: ["B.e · 23 Noy", "Ç.a · 24 Noy", "Çər · 25 Noy", "C.a · 26 Noy"],
@@ -46,8 +47,8 @@ const COPY = {
       nameLabel: "Adınız",
       phoneLabel: "Telefon nömrəsi",
       submit: "Görüşü təsdiqlə",
-      confirmedTitle: "Demo görüşünüz təsdiqləndi!",
-      confirmedBody: "Seçdiyiniz vaxt üçün təqvim dəvəti və WhatsApp xatırlatması göndərildi.",
+      confirmedTitle: "Demo sorğunuz qəbul edildi!",
+      confirmedBody: "Seçdiyiniz vaxt üçün komandamız sizinlə əlaqə saxlayacaq.",
     },
     enterpriseModal: {
       title: "Komandamızla əlaqə saxlayın",
@@ -70,7 +71,7 @@ const COPY = {
       phoneLabel: "Telefon nömrəsi",
       submit: "panelim.az-a mesaj göndər",
       successTitle: "Mesajınız göndərildi!",
-      successBody: "Dəstək komandamız ən qısa zamanda e-poçt və WhatsApp vasitəsilə cavab verəcək.",
+      successBody: "Dəstək komandamız ən qısa zamanda sizinlə əlaqə saxlayacaq.",
     },
     partnerModal: {
       step1Title: "Partner yardımı tələb et",
@@ -124,11 +125,12 @@ const COPY = {
     },
     videoModal: {
       title: "panelim.az — Avtomatlaşdırılmış Satış və AI CRM İcmalı",
-      duration: "02:45 · HD Təqdimat",
-      chapters: [
-        "00:00 — WhatsApp, Instagram və Telegram vahid gələn qutusu",
-        "00:55 — Pani-nin 24/7 görüş rezervasiyası",
-        "01:45 — Kanban satış qıfı, avtomatik tapşırıqlar və analitika",
+      badgePreview: "Məhsul önizləməsi",
+      badgeVideo: "Məhsul təqdimatı",
+      highlights: [
+        "WhatsApp, Instagram və Telegram müraciətləri vahid gələn qutusunda",
+        "Pani AI köməkçi və 24/7 görüş rezervasiyası",
+        "Kanban satış mərhələləri, tapşırıqlar və komanda analitikası",
       ],
       tryCta: "14 gün pulsuz sına",
     },
@@ -140,19 +142,14 @@ const COPY = {
     cookieText: "We use cookies and similar technologies to operate, analyze, and improve our website.",
     cookieLearnMore: "Learn more",
     cookieAccept: "Accept",
+    cookieReject: "Reject",
     stickyCta: "Try Pani for free",
     fabLabel: "Multi-channel live support",
     fabTitle: "Connect with us",
-    fabChannels: [
-      { id: "telegram", label: "Telegram", href: "https://t.me/panelim_az" },
-      { id: "instagram", label: "Instagram", href: "https://instagram.com/panelim.az" },
-      { id: "messenger", label: "Messenger", href: "https://m.me/panelim.az" },
-      { id: "whatsapp", label: "WhatsApp", href: "https://wa.me/994501234567" },
-    ],
     fabLiveChat: "Live Chat (Send message)",
     fabPartner: "Request partner assistance",
     fabDemo: "Schedule a live demo",
-    fabVideo: "Watch product tour video",
+    fabVideo: "View product overview",
     closeModal: "Close modal",
     demoModal: {
       badge: "Calendly · Live Walkthrough",
@@ -240,12 +237,13 @@ const COPY = {
       network: "Could not submit your request. Please try again.",
     },
     videoModal: {
-      title: "panelim.az — Automated Messaging & AI Sales CRM Tour",
-      duration: "02:45 · HD Walkthrough",
-      chapters: [
-        "00:00 — Unified inbox for WhatsApp, Instagram, and Telegram",
-        "00:55 — 24/7 AI booking agent & live seat capacity guard",
-        "01:45 — Kanban sales pipeline, automated follow-up tasks & ROI analytics",
+      title: "panelim.az — Automated Messaging & AI Sales CRM Overview",
+      badgePreview: "Product preview",
+      badgeVideo: "Product walkthrough",
+      highlights: [
+        "Unified inbox for WhatsApp, Instagram, and Telegram",
+        "24/7 Pani AI assistant & appointment scheduling",
+        "Kanban sales pipeline, follow-up tasks & team analytics",
       ],
       tryCta: "Start 14-day free trial",
     },
@@ -271,11 +269,7 @@ function subscribeCookieBanner(cb: () => void) {
 }
 
 function getCookieBannerClientSnapshot() {
-  try {
-    return !localStorage.getItem("panelim:cookie-accepted");
-  } catch {
-    return false;
-  }
+  return readCookieConsent() === null;
 }
 
 function getCookieBannerServerSnapshot() {
@@ -284,6 +278,8 @@ function getCookieBannerServerSnapshot() {
 
 export function KommoOverlays({ lang }: { lang: Locale }) {
   const c = COPY[lang];
+  const socialChannels = getPublicContactConfig().socialChannels;
+  const productVideoUrl = getProductVideoUrl();
   const [bannerOpen, setBannerOpen] = useState(true);
   const cookieOpen = useSyncExternalStore(
     subscribeCookieBanner,
@@ -384,7 +380,18 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
 
   function acceptCookies() {
     try {
-      localStorage.setItem("panelim:cookie-accepted", "1");
+      localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
+      localStorage.setItem(LEGACY_COOKIE_ACCEPTED_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+    window.dispatchEvent(new Event("panelim:cookie-change"));
+  }
+
+  function rejectCookies() {
+    try {
+      localStorage.setItem(COOKIE_CONSENT_KEY, "rejected");
+      localStorage.removeItem(LEGACY_COOKIE_ACCEPTED_KEY);
     } catch {
       /* ignore */
     }
@@ -419,13 +426,22 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
               {c.cookieLearnMore}
             </Link>
           </p>
-          <button
-            type="button"
-            className="pm-kommo-cookie-accept js-control-cookies-close-button"
-            onClick={acceptCookies}
-          >
-            {c.cookieAccept}
-          </button>
+          <div className="pm-kommo-cookie-actions">
+            <button
+              type="button"
+              className="pm-kommo-cookie-reject"
+              onClick={rejectCookies}
+            >
+              {c.cookieReject}
+            </button>
+            <button
+              type="button"
+              className="pm-kommo-cookie-accept js-control-cookies-close-button"
+              onClick={acceptCookies}
+            >
+              {c.cookieAccept}
+            </button>
+          </div>
         </aside>
       )}
 
@@ -456,7 +472,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
               />
             </div>
             <div className="pm-kommo-fab-list">
-              {c.fabChannels.map((ch) => (
+              {socialChannels.map((ch) => (
                 <a
                   key={ch.id}
                   href={ch.href}
@@ -1068,25 +1084,41 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
 
             {activeModal === "video" && (
               <div id="marquee-video-modal" className="pm-kommo-modal-body js-video-modal">
-                <span className="pm-tag">{c.videoModal.duration}</span>
+                <span className="pm-tag">
+                  {productVideoUrl ? c.videoModal.badgeVideo : c.videoModal.badgePreview}
+                </span>
                 <h2 id={modalTitleId}>{c.videoModal.title}</h2>
                 <div className="pm-kommo-flow-art">
-                  <Image
-                    src={
-                      lang === "en"
-                        ? "/images/flow-copilot-analytics-en.webp"
-                        : "/images/flow-copilot-analytics.webp"
-                    }
-                    alt={c.videoModal.title}
-                    width={460}
-                    height={256}
-                    className="pm-kommo-flow-img"
-                  />
+                  {productVideoUrl ? (
+                    <video
+                      src={productVideoUrl}
+                      controls
+                      preload="metadata"
+                      poster={
+                        lang === "en"
+                          ? "/images/flow-copilot-analytics-en.webp"
+                          : "/images/flow-copilot-analytics.webp"
+                      }
+                      className="pm-kommo-flow-img"
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        lang === "en"
+                          ? "/images/flow-copilot-analytics-en.webp"
+                          : "/images/flow-copilot-analytics.webp"
+                      }
+                      alt={c.videoModal.title}
+                      width={460}
+                      height={256}
+                      className="pm-kommo-flow-img"
+                    />
+                  )}
                 </div>
                 <div className="pm-kommo-video-stage">
                   <ul className="pm-kommo-video-chapters">
-                    {c.videoModal.chapters.map((ch) => (
-                      <li key={ch}>▶ {ch}</li>
+                    {c.videoModal.highlights.map((item) => (
+                      <li key={item}>✓ {item}</li>
                     ))}
                   </ul>
                 </div>

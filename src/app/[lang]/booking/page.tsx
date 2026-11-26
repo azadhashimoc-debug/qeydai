@@ -44,86 +44,86 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
     ? [
         {
           id: "calendar",
-          label: "Lock trial seats on the calendar",
-          caption: "Students see available trial time slots and reserve seats without overbooking.",
-          previewTitle: "TRIAL CONFIRMED",
-          previewBadge: "1 seat left",
+          label: "Lock appointment slots on the calendar",
+          caption: "Customers see available time slots and reserve bookings without double-booking.",
+          previewTitle: "BOOKING CONFIRMED",
+          previewBadge: "1 slot left",
           rows: [
-            { title: "IELTS Speaking", meta: "Thu 16:00 · Room 3", badge: "Confirmed", tone: "mint" },
-            { title: "General English B1", meta: "Fri 18:30 · Room 1", badge: "2/8 seats", tone: "sky" },
+            { title: "Initial Consultation", meta: "Thu 16:00 · Branch 1", badge: "Confirmed", tone: "mint" },
+            { title: "Service Visit", meta: "Fri 18:30 · Room 2", badge: "2/8 slots", tone: "sky" },
           ],
         },
         {
           id: "reminders",
           label: "Trigger automated reminders",
-          caption: "Send WhatsApp or Telegram reminders 2 hours before the trial class automatically.",
+          caption: "Send WhatsApp or Telegram reminders 2 hours before the appointment automatically.",
           previewTitle: "REMINDERS",
           previewBadge: "Auto",
           rows: [
-            { title: "WhatsApp Ping", meta: "2h before class · Baku address", badge: "Sent", tone: "mint" },
+            { title: "WhatsApp Ping", meta: "2h before visit · Baku address", badge: "Sent", tone: "mint" },
             { title: "Duplicate Guard", meta: "Blocks repeat +994 booking", badge: "Protected", tone: "amber" },
           ],
         },
         {
           id: "instructors",
-          label: "Assign tasks to instructors",
-          caption: "Notify teachers when a new trial student joins their group.",
+          label: "Assign tasks to specialists",
+          caption: "Notify staff members when a new customer books their time slot.",
           previewTitle: "TEAM SYNC",
           previewBadge: "Instant",
           rows: [
-            { title: "Instructor Leyla", meta: "New IELTS trial student added", badge: "Notified", tone: "sky" },
-            { title: "Admin Desk", meta: "Attendance check ready", badge: "Synced", tone: "mint" },
+            { title: "Specialist Leyla", meta: "New 16:00 booking confirmed", badge: "Notified", tone: "sky" },
+            { title: "Front Desk", meta: "Schedule roster updated", badge: "Synced", tone: "mint" },
           ],
         },
       ]
     : [
         {
           id: "calendar",
-          label: "Sınaq dərsi yerlərini təqvimdə kilidləyin",
-          caption: "Tələbələr yalnız boş yer olan qruplara yazılır və sinif tutumu avtomatik qorunur.",
-          previewTitle: "SINAQ TƏSDİQLƏNDİ",
+          label: "Görüş yerlərini təqvimdə kilidləyin",
+          caption: "Müştərilər yalnız boş olan saatlara yazılır və cədvəl tutumu avtomatik qorunur.",
+          previewTitle: "GÖRÜŞ TƏSDİQLƏNDİ",
           previewBadge: "1 yer qaldı",
           rows: [
-            { title: "IELTS Danışıq", meta: "C.a 16:00 · Otaq 3", badge: "Təsdiqləndi", tone: "mint" },
-            { title: "Ümumi İngilis B1", meta: "Cümə 18:30 · Otaq 1", badge: "2/8 yer", tone: "sky" },
+            { title: "İlkin Konsultasiya", meta: "C.a 16:00 · Filial 1", badge: "Təsdiqləndi", tone: "mint" },
+            { title: "Xidmət Qəbulu", meta: "Cümə 18:30 · Otaq 2", badge: "2/8 yer", tone: "sky" },
           ],
         },
         {
           id: "reminders",
           label: "Avtomatik xatırlatmaları işə salın",
-          caption: "Dərsdən 2 saat əvvəl WhatsApp və Telegram üzərindən ünvan və saat xatırlatması göndərin.",
+          caption: "Görüşdən 2 saat əvvəl WhatsApp və Telegram üzərindən ünvan və saat xatırlatması göndərin.",
           previewTitle: "XATIRLATMALAR",
           previewBadge: "Avto",
           rows: [
-            { title: "WhatsApp Bildirişi", meta: "Dərsdən 2 saat əvvəl", badge: "Göndərildi", tone: "mint" },
+            { title: "WhatsApp Bildirişi", meta: "Görüşdən 2 saat əvvəl", badge: "Göndərildi", tone: "mint" },
             { title: "Təkrar Qeyd Qoruması", meta: "Eyni +994 nömrə bloklanır", badge: "Qorunur", tone: "amber" },
           ],
         },
         {
           id: "instructors",
-          label: "Müəllimlərə tapşırıq təyin edin",
-          caption: "Qrupa yeni sınaq tələbəsi əlavə olunan kimi müəllimə və koordinatora bildiriş getsin.",
+          label: "Mütəxəssislərə tapşırıq təyin edin",
+          caption: "Yeni müştəri qeydiyyatdan keçən kimi məsul əməkdaşa və administratora bildiriş getsin.",
           previewTitle: "KOMANDA SİNXRONU",
           previewBadge: "Ani",
           rows: [
-            { title: "Müəllim Leyla", meta: "Yeni IELTS sınaq tələbəsi", badge: "Bildirildi", tone: "sky" },
-            { title: "Qeydiyyat Masası", meta: "Davamiyyət siyahısı hazırdır", badge: "Hazır", tone: "mint" },
+            { title: "Mütəxəssis Leyla", meta: "Saat 16:00 üçün yeni görüş", badge: "Bildirildi", tone: "sky" },
+            { title: "Qeydiyyat Masası", meta: "Günün cədvəli yeniləndi", badge: "Hazır", tone: "mint" },
           ],
         },
       ];
 
   const sectorCards = isEn
     ? [
-        { title: "For Education Centers", desc: "Automate IELTS, SAT, IT, and language trial lessons with zero double-bookings.", tone: "lavender" as const },
-        { title: "For Fitness Studios", desc: "Manage group workouts, trainer schedules, and trial pass renewals.", href: `/${locale}/scenarios/fitness-centers`, ctaLabel: "Explore fitness scenario", tone: "mint" as const },
         { title: "For Beauty & Clinics", desc: "Let clients pick open specialist slots directly inside WhatsApp or Instagram.", tone: "sky" as const },
-        { title: "For Workshops & Clubs", desc: "Track seat limits, attendance confirmations, and post-event follow-ups.", tone: "amber" as const },
+        { title: "For Fitness Studios", desc: "Manage group workouts, trainer schedules, and intro session bookings.", href: `/${locale}/scenarios/fitness-centers`, ctaLabel: "Explore fitness scenario", tone: "mint" as const },
+        { title: "For Service & Retail", desc: "Schedule consultations, showroom visits, and delivery windows without overlaps.", tone: "amber" as const },
+        { title: "For Courses & Training", desc: "Organize group schedules, seat capacity, and attendance confirmations.", href: `/${locale}/industries/education`, ctaLabel: "Explore education CRM", tone: "lavender" as const },
       ]
     : [
-        { title: "Tədris mərkəzləri üçün", desc: "IELTS, SAT, proqramlaşdırma və dil kurslarının sınaq dərslərini səhvsiz planlayın.", tone: "lavender" as const },
-        { title: "Fitness salonları üçün", desc: "Qrup məşqlərini, məşqçi cədvəllərini və sınaq girişlərini avtomatlaşdırın.", href: `/${locale}/scenarios/fitness-centers`, ctaLabel: "Fitness ssenarisinə bax", tone: "mint" as const },
         { title: "Gözəllik və klinikalar üçün", desc: "Müştərilər WhatsApp və Instagram-dan birbaşa boş saat seçib randevu alsınlar.", tone: "sky" as const },
-        { title: "Təlim və klublar üçün", desc: "Maksimum yer limitinə nəzarət edin, iştirak təsdiqlərini avtomatik toplayın.", tone: "amber" as const },
+        { title: "Fitness salonları üçün", desc: "Qrup məşqlərini, məşqçi cədvəllərini və sınaq məşqlərini avtomatlaşdırın.", href: `/${locale}/scenarios/fitness-centers`, ctaLabel: "Fitness ssenarisinə bax", tone: "mint" as const },
+        { title: "Xidmət və satış biznesləri üçün", desc: "Konsultasiya, ofis ziyarəti və çatdırılma saatlarını toqquşmasız planlayın.", tone: "amber" as const },
+        { title: "Kurs və təlimlər üçün", desc: "Qrup cədvəllərini, yer tutumunu və iştirak təsdiqlərini səhvsiz idarə edin.", href: `/${locale}/industries/education`, ctaLabel: "Təhsil CRM-inə bax", tone: "lavender" as const },
       ];
 
   return (
@@ -154,11 +154,11 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
         />
 
         <KommoTabbedShowcase
-          heading={isEn ? "Your team's booking solution" : "Komandanızın randevu və sınaq həlli"}
+          heading={isEn ? "Your team's booking solution" : "Komandanızın görüş və rezervasiya həlli"}
           subheading={
             isEn
-              ? "Combine chat, capacity locks, and automated reminders to turn every inquiry into attendance."
-              : "Söhbət, yer sayı kilidi və avtomatik xatırlatmaları birləşdirib hər müraciəti real dərs iştirakına çevirin."
+              ? "Combine chat, capacity locks, and automated reminders to turn every inquiry into a confirmed visit."
+              : "Söhbət, tutum kilidi və avtomatik xatırlatmaları birləşdirib hər müraciəti real görüşə çevirin."
           }
           tabs={tabs}
         />
@@ -166,7 +166,7 @@ export default async function BookingPage({ params }: PageProps<"/[lang]/booking
         <KommoPromoBand
           title={
             isEn
-              ? "Get the most out of AI-assisted trial scheduling"
+              ? "Get the most out of AI-assisted appointment scheduling"
               : "Süni intellekt alətlərindən maksimum yararlanın"
           }
           ctaHref={`/${locale}/demo`}

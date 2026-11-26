@@ -131,8 +131,8 @@ export default async function ChannelDetailPage({
                 </h2>
                 <p>
                   {locale === "en"
-                    ? "Reply to student inquiries in Azerbaijani or English 24/7, summarize threads, and lock trial seats automatically."
-                    : "Tələbə sorğularına 24/7 Azərbaycan və ya İngilis dilində cavab verin, yazışmaları xülasə edin və sınaq dərsi yerlərini avtomatik kilidləyin."}
+                    ? "Reply to customer inquiries in Azerbaijani or English 24/7, summarize threads, and confirm bookings automatically."
+                    : "Müştəri sorğularına 24/7 Azərbaycan və ya İngilis dilində cavab verin, yazışmaları xülasə edin və görüş vaxtlarını avtomatik təsdiqləyin."}
                 </p>
                 <Link href={`/${locale}/ai`} className="pm-prod-ai-link">
                   {s.navGroups.product.aiTitle} →

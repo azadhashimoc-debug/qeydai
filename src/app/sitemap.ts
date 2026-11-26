@@ -3,8 +3,13 @@ import { statSync } from "node:fs";
 import { BLOG_SLUGS, CHANNEL_SLUGS } from "@/lib/marketing/catalog";
 import { INDUSTRY_SLUGS } from "@/lib/marketing/industries";
 import { AI_SLUGS, CASE_SLUGS } from "@/app/[lang]/dictionaries/pages";
+import { getSiteUrl } from "@/lib/http/site-url";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const base = getSiteUrl();
+
+// Exclude roadmap-only pages (/channels/tiktok, /channels/whatsapp-broadcast, /ai/multi-agents)
+// and authentication pages (/login, /register) from the public search sitemap.
+const INDEXABLE_AI_SLUGS = AI_SLUGS.filter((slug) => slug !== "multi-agents");
 
 const STATIC_SUBPAGE_SUFFIXES = [
   "",
@@ -21,9 +26,7 @@ const STATIC_SUBPAGE_SUFFIXES = [
   "/partners",
   "/cases",
   ...CASE_SLUGS.map((slug) => `/cases/${slug}`),
-  ...AI_SLUGS.map((slug) => `/ai/${slug}`),
-  "/channels/tiktok",
-  "/channels/whatsapp-broadcast",
+  ...INDEXABLE_AI_SLUGS.map((slug) => `/ai/${slug}`),
   "/industries",
   ...INDUSTRY_SLUGS.map((slug) => `/industries/${slug}`),
   "/blog",
@@ -31,10 +34,9 @@ const STATIC_SUBPAGE_SUFFIXES = [
   "/pricing",
   "/demo",
   "/contact",
-  "/login",
-  "/register",
   "/legal/terms",
   "/legal/privacy",
+  "/legal/data-deletion",
 ] as const;
 
 const pageMtime = () => {

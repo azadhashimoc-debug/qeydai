@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
+import { getPublicContactConfig } from "@/lib/marketing/contact-config";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import { LeadForm } from "../LeadForm";
@@ -33,6 +34,8 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
   const s = d.subpages;
   const contact = s.contactPage;
   const form = contact.form;
+  const publicContact = getPublicContactConfig();
+  const directParts = [publicContact.phone, publicContact.email].filter(Boolean);
 
   return (
     <div className="marketing">
@@ -65,19 +68,29 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
           <div className="pm-wrap">
             <div className="pm-contact-channels-grid">
               <article className="pm-contact-channel-card">
-                <h3>{locale === "en" ? "Baku Office" : "Bakı Ofisi"}</h3>
+                <h3>
+                  {publicContact.officeAddress
+                    ? locale === "en"
+                      ? "Baku Office"
+                      : "Bakı Ofisi"
+                    : locale === "en"
+                      ? "Support Hours (Baku)"
+                      : "Dəstək Saatları (Bakı)"}
+                </h3>
                 <p>
-                  {locale === "en"
-                    ? "Nizami St., Baku, Azerbaijan · Mon–Sat, 09:00–19:00"
-                    : "Nizami küç., Bakı, Azərbaycan · B.e–Ş., 09:00–19:00"}
+                  {publicContact.officeAddress
+                    ? `${publicContact.officeAddress} · ${locale === "en" ? "Mon–Sat, 09:00–19:00" : "B.e–Ş., 09:00–19:00"}`
+                    : locale === "en"
+                      ? "Baku, Azerbaijan · Online support Mon–Sat, 09:00–19:00 (AZT)"
+                      : "Bakı, Azərbaycan · Onlayn dəstək B.e–Ş., 09:00–19:00 (AZT)"}
                 </p>
               </article>
               <article className="pm-contact-channel-card">
                 <h3>{locale === "en" ? "WhatsApp & Telegram" : "WhatsApp və Telegram"}</h3>
                 <p>
                   {locale === "en"
-                    ? "Instant onboarding support for education & service centers."
-                    : "Tədris və xidmət mərkəzləri üçün operativ qoşulma dəstəyi."}
+                    ? "Fast onboarding support for sales and service businesses."
+                    : "Satış və xidmət biznesləri üçün operativ qoşulma dəstəyi."}
                 </p>
               </article>
               <article className="pm-contact-channel-card">
@@ -90,9 +103,11 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
               </article>
             </div>
             <div className="pm-contact-direct-bar">
-              {locale === "en"
-                ? "Direct line: +994 50 000 00 00 · info@panelim.az"
-                : "Birbaşa əlaqə: +994 50 000 00 00 · info@panelim.az"}
+              {directParts.length > 0
+                ? `${locale === "en" ? "Direct contact: " : "Birbaşa əlaqə: "}${directParts.join(" · ")}`
+                : locale === "en"
+                  ? "Submit the form below and our Baku team will reply within 1 business hour."
+                  : "Aşağıdakı əlaqə formu vasitəsilə yazın — komandamız 1 iş saatı ərzində geri dönüş edir."}
             </div>
           </div>
         </section>

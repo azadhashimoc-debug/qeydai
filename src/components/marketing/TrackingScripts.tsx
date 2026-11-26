@@ -33,6 +33,22 @@ export function readTrackingConfig(env: Record<string, string | undefined>): Tra
   };
 }
 
+export const COOKIE_CONSENT_KEY = "panelim:cookie-consent";
+export const LEGACY_COOKIE_ACCEPTED_KEY = "panelim:cookie-accepted";
+
+export type CookieConsentState = "accepted" | "rejected" | null;
+
+export function readCookieConsent(): CookieConsentState {
+  try {
+    const value = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (value === "accepted" || value === "rejected") return value;
+    if (localStorage.getItem(LEGACY_COOKIE_ACCEPTED_KEY) === "1") return "accepted";
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 function subscribeConsent(cb: () => void) {
   window.addEventListener("storage", cb);
   window.addEventListener("panelim:cookie-change", cb);
@@ -43,11 +59,7 @@ function subscribeConsent(cb: () => void) {
 }
 
 function getConsentSnapshot(): boolean {
-  try {
-    return Boolean(localStorage.getItem("panelim:cookie-accepted"));
-  } catch {
-    return false;
-  }
+  return readCookieConsent() === "accepted";
 }
 
 function getServerConsentSnapshot(): boolean {

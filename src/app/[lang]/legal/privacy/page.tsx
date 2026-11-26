@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { SubpageHero } from "@/components/marketing/SubpageBlocks";
+import { getLegalEntityConfig } from "@/lib/marketing/contact-config";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../../dictionaries";
 import "../../marketing.css";
@@ -34,6 +35,7 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/legal/p
   const s = d.subpages;
   const p = s.legal.privacy;
   const sections = Object.values(p.sections);
+  const entity = getLegalEntityConfig();
 
   return (
     <div className="marketing">
@@ -53,11 +55,11 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/legal/p
 
       <main id="main" tabIndex={-1}>
         <SubpageHero
-          badge={s.common.badgeSample}
+          badge={s.legal.badge}
           title={p.title}
           subtitle={`${p.subtitle} · ${p.lastUpdated}`}
-          primaryCta={{ href: `/${locale}/contact`, label: s.navGroups.resources.blogTitle }}
-          secondaryCta={{ href: `/${locale}/legal/terms`, label: s.footer.cols.legal.terms }}
+          primaryCta={{ href: `/${locale}/contact`, label: s.legal.contactCta }}
+          secondaryCta={{ href: `/${locale}/legal/data-deletion`, label: s.legal.dataDeletionLink }}
           image="p-cases"
           imageAlt={p.title}
           badgeVariant="mint"
@@ -72,7 +74,31 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/legal/p
                   <p>{sec.body}</p>
                 </section>
               ))}
-              <div>
+              <section>
+                <h2>{locale === "en" ? "Data controller details" : "Məlumat operatorunun rekvizitləri"}</h2>
+                <p>
+                  {entity.companyName || entity.taxId || entity.address || entity.email
+                    ? [
+                        entity.companyName && `${locale === "en" ? "Legal entity" : "Hüquqi şəxs"}: ${entity.companyName}`,
+                        entity.taxId && `${locale === "en" ? "Tax ID (VOEN)" : "VÖEN"}: ${entity.taxId}`,
+                        entity.address && `${locale === "en" ? "Address" : "Ünvan"}: ${entity.address}`,
+                        entity.email && `${locale === "en" ? "Email" : "E-poçt"}: ${entity.email}`,
+                        entity.phone && `${locale === "en" ? "Phone" : "Telefon"}: ${entity.phone}`,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")
+                    : locale === "en"
+                      ? "Operator: panelim.az (Baku, Azerbaijan). Full legal entity registration details (Tax ID and registered address) are published here prior to paid billing activation. For privacy inquiries, use the contact form."
+                      : "Operator: panelim.az (Bakı, Azərbaycan). Tam hüquqi rekvizitlər (hüquqi ad, VÖEN və rəsmi ünvan) ödənişli abunəlik aktivləşməzdən əvvəl bu bölmədə dərc olunur. Məxfilik müraciətləri üçün əlaqə formasından istifadə edin."}
+                </p>
+              </section>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "18px", alignItems: "center" }}>
+                <Link href={`/${locale}/legal/data-deletion`} className="pm-link-arrow">
+                  {s.legal.dataDeletionLink}
+                </Link>
+                <Link href={`/${locale}/legal/terms`} className="pm-link-arrow">
+                  {s.footer.cols.legal.terms}
+                </Link>
                 <Link href={`/${locale}/contact`} className="pm-link-arrow">
                   {s.footer.cols.legal.contact}
                 </Link>

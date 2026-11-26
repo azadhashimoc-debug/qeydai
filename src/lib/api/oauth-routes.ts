@@ -9,6 +9,7 @@ import {
   OAUTH_STATE_COOKIE_NAME, OAUTH_STATE_TTL_MS, providerConfig, safeEqualText, signLinkToken,
   signOAuthState, verifyLinkToken, verifyOAuthState, type OAuthProvider,
 } from "./oauth";
+import { isSecureRequest, resolveOAuthOrigin } from "../http/site-url";
 
 type Lang = "az" | "en";
 const STATE_COOKIE_PATH = "/api/panel/oauth";
@@ -30,7 +31,7 @@ function stateCookie(value: string, secure: boolean, maxAgeSec: number): string 
 /** Step 1: sets a signed state + PKCE cookie and sends the browser to the provider's consent screen. */
 export function startOAuth(req: Request, provider: OAuthProvider, env: NodeJS.ProcessEnv = process.env): Response {
   const url = new URL(req.url);
-  const secure = url.protocol === "https:";
+  const secure = isSecureRequest(req, env);
   const lang = langFrom(url.searchParams.get("lang"));
   const fail = () => redirectTo(`/${lang}/login?oauth_error=unavailable`);
   const cfg = providerConfig(provider, env);
@@ -43,7 +44,8 @@ export function startOAuth(req: Request, provider: OAuthProvider, env: NodeJS.Pr
     { p: provider, s: state, v: verifier, l: lang, x: Date.now() + OAUTH_STATE_TTL_MS },
     secret,
   );
-  const redirectUri = `${url.origin}/api/panel/oauth/${provider}/callback`;
+  const origin = resolveOAuthOrigin(req, env);
+  const redirectUri = `${origin}/api/panel/oauth/${provider}/callback`;
   const authorize = buildAuthorizeUrl(provider, cfg, redirectUri, state, challenge, env);
   return redirectTo(authorize, [stateCookie(cookieValue, secure, Math.floor(OAUTH_STATE_TTL_MS / 1000))]);
 }
@@ -56,7 +58,7 @@ export async function finishOAuth(
   fetchImpl: typeof fetch = fetch,
 ): Promise<Response> {
   const url = new URL(req.url);
-  const secure = url.protocol === "https:";
+  const secure = isSecureRequest(req, env);
   const clearState = stateCookie("", secure, 0);
   const secret = getPanelAuthConfig(env).secret;
   const payload = secret
@@ -74,7 +76,8 @@ export async function finishOAuth(
     const cfg = providerConfig(provider, env);
     if (!cfg || !hasStableSessionSecret() || !ensurePanelJtiStore()) return fail();
 
-    const redirectUri = `${url.origin}/api/panel/oauth/${provider}/callback`;
+    const origin = resolveOAuthOrigin(req, env);
+    const redirectUri = `${origin}/api/panel/oauth/${provider}/callback`;
     const profile = await fetchOAuthProfile(provider, cfg, code, payload.v, redirectUri, env, fetchImpl);
     if (!profile) return fail();
 

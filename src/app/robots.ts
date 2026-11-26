@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/http/site-url";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://panelim.az";
+const base = getSiteUrl();
 
 const privatePaths = [
   "/api/",

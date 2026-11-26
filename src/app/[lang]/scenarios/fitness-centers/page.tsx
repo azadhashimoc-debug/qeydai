@@ -89,7 +89,7 @@ export default async function FitnessScenarioPage({
           previewTitle: "REKLAM ANALİTİKASI",
           previewBadge: "AZN Gəlir",
           rows: [
-            { title: "Yay Kampaniyası", meta: "42 sınaq dərsi yazıldı", badge: "Instagram", tone: "amber" },
+            { title: "Yay Kampaniyası", meta: "42 sınaq məşqi yazıldı", badge: "Instagram", tone: "amber" },
             { title: "Bakı Pilates", meta: "18 aylıq abunə", badge: "WhatsApp", tone: "mint" },
           ],
         },

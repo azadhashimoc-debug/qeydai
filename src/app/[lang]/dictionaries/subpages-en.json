@@ -230,7 +230,7 @@
   "inbox": {
     "hero": {
       "eyebrow": "Unified Team Inbox",
-      "title": "One Shared Inbox for WhatsApp, Instagram, and Telegram",
+      "title": "Shared Inbox for WhatsApp, Instagram & Telegram",
       "subtitle": "Manage WhatsApp, Instagram and Telegram conversations in one place with a complete customer history.",
       "primaryCta": "Explore the inbox",
       "secondaryCta": "Schedule a demo",
@@ -668,28 +668,28 @@
   },
   "blogPosts": {
     "whatsapp-automation": {
-      "title": "WhatsApp Business Automation in Azerbaijan: Step-by-Step Guide",
+      "title": "WhatsApp Business Automation in Azerbaijan",
       "excerpt": "Setting up a shared team inbox, verified template alerts, and managing 24-hour customer windows via Cloud API.",
       "category": "WhatsApp",
       "readTime": "5 min read",
       "body": "WhatsApp is the primary messaging channel in Azerbaijan. Leveraging the official WhatsApp Cloud API allows entire sales teams to collaborate under one shared business number. Replies within the 24-hour customer service window incur zero message fees. For booking confirmations and reminders, pre-approved Meta templates ensure high deliverability without account bans. panelim.az manages these workflows out of the box."
     },
     "instagram-dm-sales": {
-      "title": "Doubling Sales Conversions Through Instagram Direct Messages",
+      "title": "Boost Sales Conversions via Instagram DMs",
       "excerpt": "Proven techniques to funnel story reactions and direct messages into qualified CRM deals.",
       "category": "Instagram",
       "readTime": "6 min read",
-      "body": "Inquiries from Instagram advertising campaigns carry high purchase intent, but response delays exceeding fifteen minutes drastically reduce close rates. Best practices require instant conversational qualification, immediate pricing guidance from approved tables, and automated trial scheduling. Unifying direct messages inside a structured team workspace ensures zero leads slip through unanswered."
+      "body": "Inquiries from Instagram advertising campaigns carry high purchase intent, but response delays exceeding fifteen minutes drastically reduce close rates. Best practices require instant conversational qualification, immediate pricing guidance from approved tables, and automated appointment scheduling. Unifying direct messages inside a structured team workspace ensures zero leads slip through unanswered."
     },
     "appointment-crm": {
-      "title": "Appointment & Booking Management: Prevent Duplicate Reservations",
+      "title": "Appointment CRM: Prevent Duplicate Bookings",
       "excerpt": "Transitioning from spreadsheets to atomic capacity protection, live rosters, and duplicate checks.",
       "category": "CRM & Schedule",
       "readTime": "4 min read",
       "body": "Many shops, salons and service businesses still manage appointments with spreadsheets. This can lead to duplicate bookings and overlapping time slots. Booking workflows with capacity checks help teams offer accurate availability and keep reservations organized."
     },
     "ai-reply-workflows": {
-      "title": "AI Reply Assistants in Sales: Guardrails and Best Practices",
+      "title": "AI Reply Assistants in Sales: Best Practices",
       "excerpt": "Preventing hallucinations with strict price constraints and knowing when to escalate to staff.",
       "category": "Artificial Intelligence",
       "readTime": "7 min read",
@@ -829,7 +829,7 @@
     "hero": {
       "eyebrow": "Tailored Walkthrough",
       "title": "See panelim.az in Action with Your Workflow",
-      "subtitle": "Schedule a focused 15-minute demo to explore unified chats, automated trial bookings, and CRM tracking.",
+      "subtitle": "Schedule a focused 15-minute demo to explore unified chats, automated appointment bookings, and CRM tracking.",
       "badge": "Live Walkthrough"
     },
     "form": {
@@ -899,65 +899,88 @@
     }
   },
   "legal": {
+    "badge": "Legal document",
+    "contactCta": "Contact us",
+    "dataDeletionLink": "User Data Deletion",
     "terms": {
       "title": "Terms of Service",
-      "subtitle": "Terms and conditions governing the use of panelim.az services.",
-      "lastUpdated": "Last updated: November 18, 2026",
+      "subtitle": "Terms governing use of panelim.az, subscriptions, refunds, and party responsibilities.",
+      "lastUpdated": "Last updated: November 26, 2026",
       "sections": {
         "intro": {
           "title": "1. General provisions",
-          "body": "These Terms of Service govern your access to and use of the panelim.az website and software platform. By using the platform, you agree to these terms in full."
+          "body": "These Terms of Service govern your access to and use of the panelim.az website and software platform. By creating an account or using the platform, you agree to these terms."
         },
         "account": {
           "title": "2. Workspace access & security",
-          "body": "Users are responsible for keeping business workspace access keys confidential and for activity carried out within that workspace. Sharing credentials with unauthorized parties is prohibited."
+          "body": "Users are responsible for keeping business workspace credentials confidential and for activity carried out within that workspace. Sharing credentials with unauthorized parties is prohibited."
         },
         "acceptable": {
           "title": "3. Acceptable use policy",
-          "body": "Using the platform for spam, unsolicited messaging, illegal material, or actions infringing upon the rights of others is strictly forbidden. Violations may result in immediate workspace termination."
+          "body": "Using the platform for spam, unsolicited bulk advertising, illegal material, or actions infringing upon the rights of others is strictly forbidden. Violations may result in workspace suspension."
         },
-        "fees": {
-          "title": "4. Fees & communication tariffs",
-          "body": "Subscription fees follow the agreed service rates. Official WhatsApp Cloud API messaging tariffs charged by Meta or third-party telecom providers are billed separately and remain the responsibility of the customer."
+        "trialAndBilling": {
+          "title": "4. Free trial, subscriptions & renewal",
+          "body": "New workspaces start with a 14-day free trial. After the trial ends, continued access requires choosing a monthly, 6-month, or annual plan. Growth and Pro plans may include a one-time 100 AZN onboarding setup fee. Subscriptions renew for the chosen billing cycle with customer consent; canceling before the end of the active period stops future charges. Official WhatsApp Cloud API and telecom conversation tariffs charged by Meta or third parties are billed separately to the customer."
+        },
+        "refunds": {
+          "title": "5. Refund policy",
+          "body": "If a verified technical issue prevents use of the platform within 7 calendar days of payment, you may request a full or pro-rated refund for the unused subscription period. Completed onboarding/setup work and third-party messaging tariffs are non-refundable. Approved refunds are processed back to the original payment method within 10 business days."
         },
         "liability": {
-          "title": "5. Limitation of liability",
-          "body": "panelim.az implements diligent engineering measures to maintain uptime. However, the platform is not liable for disruptions originating from third-party provider outages or telecom network downtime."
+          "title": "6. Limitation of liability",
+          "body": "panelim.az implements diligent engineering measures to maintain reliability. However, the platform is not liable for disruptions originating from third-party provider outages (Meta, Telegram, payment gateways, or telecom networks)."
+        },
+        "governingLaw": {
+          "title": "7. Governing law & dispute resolution",
+          "body": "These Terms of Service are governed by and construed in accordance with the legislation of the Republic of Azerbaijan. Disputes are resolved first through good-faith negotiation, and if unresolved, by the competent courts of the Republic of Azerbaijan."
         },
         "contact": {
-          "title": "6. Notices and inquiries",
-          "body": "Inquiries or notices regarding these terms should be directed to our team via the contact form on panelim.az."
+          "title": "8. Notices and inquiries",
+          "body": "Formal notices or inquiries regarding these terms, billing, or refunds may be submitted using the company details below or via the contact form on panelim.az."
         }
       }
     },
     "privacy": {
       "title": "Privacy Policy",
-      "subtitle": "Principles of personal data collection, processing, and protection.",
-      "lastUpdated": "Last updated: November 18, 2026",
+      "subtitle": "Principles of personal data collection, processing, cookies, OAuth sign-in, and protection.",
+      "lastUpdated": "Last updated: November 26, 2026",
       "sections": {
         "collection": {
           "title": "1. Information we collect",
-          "body": "We collect contact information provided during registration (name, phone number) alongside conversation history and booking timestamps necessary to deliver the service."
+          "body": "We collect contact details provided during registration (name, email address, phone number, business name) alongside messaging, lead, and booking records necessary to operate your CRM workspace."
         },
         "purpose": {
           "title": "2. How information is used",
-          "body": "Collected data is processed exclusively to handle customer communications, organize trial appointments, operate the CRM pipeline, and maintain technical platform security."
+          "body": "Collected data is processed to respond to customer inquiries, schedule appointments and bookings, manage your sales pipeline, secure workspace accounts, and deliver service notifications."
         },
         "isolation": {
           "title": "3. Multi-tenant data isolation",
-          "body": "Customer data is maintained in separate business workspaces. Employees of one business should not have access to another business's customer records, booking schedules or chat history."
+          "body": "Customer data is isolated per business workspace at the database layer using PostgreSQL Row-Level Security (RLS). Staff of one workspace cannot access another workspace's contacts, schedules, or conversations."
+        },
+        "oauth": {
+          "title": "4. Google and Facebook (OAuth) sign-in",
+          "body": "When signing in with Google or Facebook, we read only your verified email address and display name for authentication. We never post on your behalf. You may revoke OAuth permissions at any time in your Google or Facebook account settings."
+        },
+        "cookies": {
+          "title": "5. Cookies and analytics",
+          "body": "Strictly necessary cookies support secure panel sessions and language preferences. Optional analytics and marketing scripts (such as Google Analytics or Meta Pixel) load only after explicit consent via the cookie banner; selecting Reject prevents third-party tracking scripts from loading."
         },
         "thirdParty": {
-          "title": "4. Third-party integrations",
-          "body": "Official communication protocols from Meta WhatsApp Cloud API and Telegram are used to route messages. Personal data is never sold or transferred to external third parties for advertising purposes."
+          "title": "6. Third-party infrastructure providers",
+          "body": "We use official infrastructure providers such as Meta (WhatsApp/Instagram), Telegram, Groq, Resend, and Paycell solely to deliver messaging, AI replies, transactional emails, and payments. Personal data is never sold for advertising."
+        },
+        "crossBorder": {
+          "title": "7. Hosting location & cross-border transfers",
+          "body": "Application servers (Vercel) and databases (Neon PostgreSQL) are currently hosted in the United States (us-east-1 / iad1). All data in transit is encrypted with TLS and safeguarded in line with the Law of the Republic of Azerbaijan on Personal Data."
         },
         "retention": {
-          "title": "5. Retention and user rights",
-          "body": "Data is retained for the duration of the active service relationship. Users may request correction, export, or deletion of their personal records and workspace at any time."
+          "title": "8. Retention, user rights & data deletion",
+          "body": "Data is retained while your workspace remains active. You may request correction, export, or permanent deletion of your personal records at any time. Instructions for account and Meta/Facebook deletion are published on our User Data Deletion page, and verified requests are fulfilled within 30 calendar days."
         },
         "contact": {
-          "title": "6. Privacy contact",
-          "body": "Questions or requests regarding this Privacy Policy and personal data handling may be submitted through the contact page on panelim.az."
+          "title": "9. Privacy contact",
+          "body": "Questions or requests regarding this Privacy Policy and personal data protection may be submitted via the company contact details below or the contact page on panelim.az."
         }
       }
     }

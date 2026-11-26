@@ -24,16 +24,16 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
 
   const leads: LeadCard[] = isEn
     ? [
-        { name: "Ayten Hasanova", course: "IELTS Intensive", amount: "180 AZN", channel: "WhatsApp", tag: "Trial today" },
-        { name: "Kamran Aliyev", course: "Python Backend", amount: "240 AZN", channel: "Instagram", tag: "New lead" },
-        { name: "Nigar Mammadova", course: "General English B2", amount: "150 AZN", channel: "Telegram", tag: "Confirmed" },
-        { name: "Tural Rzayev", course: "UI/UX Design", amount: "220 AZN", channel: "WhatsApp", tag: "Follow-up" },
+        { name: "Ayten Hasanova", course: "Dental Consultation", amount: "180 AZN", channel: "WhatsApp", tag: "Booking today" },
+        { name: "Kamran Aliyev", course: "Home Interior Package", amount: "240 AZN", channel: "Instagram", tag: "New lead" },
+        { name: "Nigar Mammadova", course: "Salon Care Bundle", amount: "150 AZN", channel: "Telegram", tag: "Confirmed" },
+        { name: "Tural Rzayev", course: "B2B Audit Service", amount: "220 AZN", channel: "WhatsApp", tag: "Follow-up" },
       ]
     : [
-        { name: "Aytən Həsənova", course: "IELTS Hazırlıq", amount: "180 AZN", channel: "WhatsApp", tag: "Bu gün sınaq" },
-        { name: "Kamran Əliyev", course: "Python Backend", amount: "240 AZN", channel: "Instagram", tag: "Yeni sorğu" },
-        { name: "Nigar Məmmədova", course: "Ümumi İngilis B2", amount: "150 AZN", channel: "Telegram", tag: "Təsdiqləndi" },
-        { name: "Tural Rzayev", course: "UI/UX Dizayn", amount: "220 AZN", channel: "WhatsApp", tag: "Təqibdə" },
+        { name: "Aytən Həsənova", course: "Klinika Konsultasiyası", amount: "180 AZN", channel: "WhatsApp", tag: "Bu gün görüş" },
+        { name: "Kamran Əliyev", course: "İnteryer Paketi", amount: "240 AZN", channel: "Instagram", tag: "Yeni sorğu" },
+        { name: "Nigar Məmmədova", course: "Salon Baxım Paketi", amount: "150 AZN", channel: "Telegram", tag: "Təsdiqləndi" },
+        { name: "Tural Rzayev", course: "Biznes Xidməti", amount: "220 AZN", channel: "WhatsApp", tag: "Təqibdə" },
       ];
 
   return (
@@ -44,8 +44,8 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
             <div className="pm-prod-kanban">
               {[
                 { col: isEn ? "First Contact" : "İlk Təmas", cards: [leads[1], leads[3]] },
-                { col: isEn ? "Trial Scheduled" : "Sınaq Dərsi", cards: [leads[0]] },
-                { col: isEn ? "Enrolled" : "Qeydiyyat", cards: [leads[2]] },
+                { col: isEn ? "Appointment Set" : "Görüş Təyin Edildi", cards: [leads[0]] },
+                { col: isEn ? "Closed Won" : "Ödəniş Edildi", cards: [leads[2]] },
               ].map((column) => (
                 <div key={column.col} className="pm-prod-col">
                   <div className="pm-prod-col-head">
@@ -100,13 +100,13 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
               <div className="pm-prod-inbox-chat">
                 <div className="pm-prod-msg is-in">
                   {isEn
-                    ? "Salam, what time is the IELTS trial class today?"
-                    : "Salam, bu gün IELTS sınaq dərsi saat neçədədir?"}
+                    ? "Hello, do you have an open appointment slot today?"
+                    : "Salam, bu gün saat neçədə boş görüş vaxtınız var?"}
                 </div>
                 <div className="pm-prod-msg is-out">
                   {isEn
-                    ? "Hi Ayten! There are 2 seats left at 16:00. Shall I reserve your spot?"
-                    : "Salam Aytən! Saat 16:00 qrupunda 2 boş yer qalıb. Sizin üçün ayıraq?"}
+                    ? "Hi Ayten! We have 2 slots open at 16:00. Shall I confirm your booking?"
+                    : "Salam Aytən! Saat 16:00 üçün boş vaxtımız var. Sizin üçün təsdiqləyək?"}
                 </div>
               </div>
             </div>

@@ -7,6 +7,12 @@ import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 
 const tones = ["lavender", "mint", "sky"] as const;
 
+const NOINDEX_PAGE_KEYS = new Set<PageKey>([
+  "channels/tiktok",
+  "channels/whatsapp-broadcast",
+  "ai/multi-agents",
+]);
+
 export async function infoMetadata(lang: string, key: PageKey) {
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
@@ -18,6 +24,7 @@ export async function infoMetadata(lang: string, key: PageKey) {
     description: page[locale].subtitle,
     brand: d.brand,
     image: `/images/${page.image}.webp`,
+    robots: NOINDEX_PAGE_KEYS.has(key) ? { index: false, follow: true } : undefined,
   });
 }
 

@@ -581,14 +581,14 @@
     },
     "ai": {
       "title": "AI köməkçisi",
-      "subtitle": "Avtomatik cavab, müraciət qiymətləndirməsi və sınaq dərsə yazdırma ssenarilərini idarə edin.",
+      "subtitle": "Avtomatik cavab, müraciət qiymətləndirməsi və görüş rezervasiyası ssenarilərini idarə edin.",
       "activeLabel": "AI cavabı aktivdir",
       "settings": "Ayarları aç",
       "active": "Aktiv",
       "inactive": "Dəyişdirilmişdir",
       "greeting": "Xoş gəldin mesajı",
       "price": "Qiymət sualı",
-      "booking": "Sınaq dərsə yazılma",
+      "booking": "Görüş rezervasiyası",
       "handoff": "Menecerə ötürmə",
       "open": "Aç",
       "close": "Bağla"

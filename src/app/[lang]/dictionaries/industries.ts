@@ -44,7 +44,7 @@ export const INDUSTRIES: Record<IndustrySlug, Industry> = {
     az: {
       name: "Klinikalar",
       badge: "Klinika və səhiyyə",
-      title: "Klinikanız üçün müraciətdən qəbula qədər vahid pəncərə",
+      title: "Klinikalar üçün vahid müraciət və qəbul CRM-i",
       subtitle:
         "WhatsApp, Instagram və Telegram-dan gələn pasiyent suallarını bir qutuda toplayın, qəbul vaxtını təyin edin və unudulmuş vizitləri azaldın.",
       showcaseHeading: "Klinika komandası üçün gündəlik iş axını",
@@ -104,7 +104,7 @@ export const INDUSTRIES: Record<IndustrySlug, Industry> = {
     az: {
       name: "Gözəllik salonları",
       badge: "Gözəllik və spa",
-      title: "Salonunuzda hər yazılış mesajdan başlayır, biz onu qeydə çeviririk",
+      title: "Gözəllik salonları üçün mesajdan görüşə CRM",
       subtitle:
         "Instagram DM-lərdə qiymət və vaxt soruşan müştəriləri itirməyin: usta cədvəli ilə yazılışı bir yerdə idarə edin.",
       showcaseHeading: "Salon komandası üçün sadə iş axını",
@@ -132,7 +132,7 @@ export const INDUSTRIES: Record<IndustrySlug, Industry> = {
     en: {
       name: "Beauty salons",
       badge: "Beauty & spa",
-      title: "Every booking at your salon starts as a message. We turn it into an appointment",
+      title: "Beauty Salon CRM: Turn Messages Into Bookings",
       subtitle:
         "Don't lose clients who ask for prices and times in Instagram DMs: manage bookings together with each stylist's schedule.",
       showcaseHeading: "A simple workflow for your salon team",

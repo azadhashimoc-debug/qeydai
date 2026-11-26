@@ -76,7 +76,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                   {
                     tag: "Entry Point",
                     title: "Turn attention into a direct chat entry point",
-                    body: "Place your custom wa.me link or QR code on Instagram bio, flyers, and course landing pages so students start chatting in one tap.",
+                    body: "Place your custom wa.me link or QR code on Instagram bio, flyers, and service landing pages so customers start chatting in one tap.",
                     image: "p-whatsapp",
                     imageAlt: "WhatsApp link",
                     tone: "mint",
@@ -84,7 +84,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                   {
                     tag: "AI Speed",
                     title: "Let AI answer every message instantly",
-                    body: "Connect your link to panelim.az so incoming inquiries receive schedule details and trial booking options 24/7.",
+                    body: "Connect your link to panelim.az so incoming inquiries receive service details and appointment booking options 24/7.",
                     image: "p-ai-copilot",
                     imageAlt: "AI replies",
                     tone: "lavender",
@@ -94,7 +94,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                   {
                     tag: "Giriş Nöqtəsi",
                     title: "Marağı birbaşa WhatsApp söhbətinə çevirin",
-                    body: "Xüsusi wa.me linkini və ya QR kodunu Instagram bio-da, elanlarda və kurs səhifənizdə yerləşdirin ki, tələbələr bir toxunuşla yazsınlar.",
+                    body: "Xüsusi wa.me linkini və ya QR kodunu Instagram bio-da, elanlarda və veb səhifənizdə yerləşdirin ki, müştərilər bir toxunuşla yazsınlar.",
                     image: "p-whatsapp",
                     imageAlt: "WhatsApp linki",
                     tone: "mint",
@@ -102,7 +102,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                   {
                     tag: "AI Sürəti",
                     title: "AI hər mesajı anında cavablasın",
-                    body: "Linkdən gələn müraciətləri panelim.az-a bağlayın ki, sınaq dərsi cədvəli və boş yer məlumatı 24/7 avtomatik göndərilsin.",
+                    body: "Linkdən gələn müraciətləri panelim.az-a bağlayın ki, xidmət cədvəli və boş saat məlumatı 24/7 avtomatik göndərilsin.",
                     image: "p-ai-copilot",
                     imageAlt: "AI cavablar",
                     tone: "lavender",
@@ -125,7 +125,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                     },
                     {
                       q: "Why use a pre-filled welcome message?",
-                      a: "Pre-filled messages help your team immediately see which course or ad campaign the student clicked from.",
+                      a: "Pre-filled messages help your team immediately see which service or ad campaign the customer clicked from.",
                     },
                   ]
                 : [
@@ -135,7 +135,7 @@ export default async function ToolsPage({ params }: PageProps<"/[lang]/tools">) 
                     },
                     {
                       q: "Niyə hazır salamlama mesajı əlavə etmək lazımdır?",
-                      a: "Hazır mesaj sayəsində tələbə yazan kimi hansı kurs və ya elan üzrə müraciət etdiyini dərhal görürsünüz.",
+                      a: "Hazır mesaj sayəsində müştəri yazan kimi hansı xidmət və ya reklam üzrə müraciət etdiyini dərhal görürsünüz.",
                     },
                   ]
               ).map((item) => (

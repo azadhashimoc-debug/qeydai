@@ -6,16 +6,16 @@ import type { PanelDict } from "./types";
 
 const SCENARIOS = {
   az: [
-    { id: "greeting", body: "Salam! Mərkəzimizlə əlaqə saxladığınız üçün təşəkkür edirik. Sizə necə kömək edə bilərik?" },
-    { id: "price", body: "IELTS kursumuz aylıq 180 AZN-dir. Şənbə 11:00 sınaq dərsinə yazılmaq istəyirsiniz?" },
-    { id: "booking", body: "Adınızı və telefon nömrənizi yazın. Boş yer varsa qeydiyyatınızı təsdiqləyirik." },
-    { id: "handoff", body: "Endirim və xüsusi tələblər üçün menecerimizlə əlaqə saxlamaq istəyirsiniz?" },
+    { id: "greeting", body: "Salam! Bizimlə əlaqə saxladığınız üçün təşəkkür edirik. Sizə necə kömək edə bilərik?" },
+    { id: "price", body: "Standart xidmət paketimiz 120 AZN-dən başlayır. Şənbə saat 11:00 üçün görüş təyin edək?" },
+    { id: "booking", body: "Adınızı və telefon nömrənizi yazın. Uyğun saat varsa qeydiyyatınızı dərhal təsdiqləyirik." },
+    { id: "handoff", body: "Fərdi təklif və ya ətraflı məlumat üçün menecerimizə yönləndirim?" },
   ],
   en: [
-    { id: "greeting", body: "Hello! Thank you for reaching out to our center. How can we help you today?" },
-    { id: "price", body: "Our IELTS course is 180 AZN/month. Would you like to book the Saturday 11:00 trial lesson?" },
-    { id: "booking", body: "Please share your full name and phone number. If seats are open, we will confirm your booking." },
-    { id: "handoff", body: "Would you like me to connect you with a manager for discounts or special requests?" },
+    { id: "greeting", body: "Hello! Thank you for reaching out. How can we help you today?" },
+    { id: "price", body: "Our standard service package starts at 120 AZN. Would you like to book Saturday at 11:00?" },
+    { id: "booking", body: "Please share your full name and phone number. If the slot is open, we will confirm right away." },
+    { id: "handoff", body: "Would you like me to connect you with a manager for custom terms or special requests?" },
   ],
 } as const;
 

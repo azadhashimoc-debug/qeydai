@@ -35,7 +35,19 @@ export function PricingTiersClient({
   perMonthLabel,
   tiers,
 }: PricingTiersProps) {
-  const [period, setPeriod] = useState<PeriodKey>("annual");
+  const [period, setPeriod] = useState<PeriodKey>("monthly");
+  const periodBillingNote =
+    period === "annual"
+      ? lang === "en"
+        ? "billed annually"
+        : "illik ödənişdə"
+      : period === "halfYear"
+        ? lang === "en"
+          ? "billed every 6 months"
+          : "6 aylıq ödənişdə"
+        : lang === "en"
+          ? "billed monthly"
+          : "aylıq ödəniş";
 
   return (
     <div className="pm-tiers-wrap">
@@ -71,7 +83,11 @@ export function PricingTiersClient({
 
             <div className="pm-plan-price">
               <strong>{tier.prices[period]}</strong>
-              {tier.prices[period].includes("AZN") && <span>{perMonthLabel}</span>}
+              {tier.prices[period].includes("AZN") && (
+                <span>
+                  {perMonthLabel} · {periodBillingNote}
+                </span>
+              )}
             </div>
             <p className="pm-plan-setup">{tier.setupNote}</p>
 

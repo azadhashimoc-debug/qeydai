@@ -9,6 +9,7 @@ import {
 import { assertSafeApplicationRole } from "../enrollment/postgres-store";
 import { ensurePanelJtiStore } from "./instance";
 import { isUnknownClient } from "../http/same-origin";
+import { isSecureRequest } from "../http/site-url";
 import {
   allowAuthAttempt, clientIp, LOGIN_PER_EMAIL, LOGIN_PER_IP, REGISTER_PER_IP,
 } from "./auth-rate-limit";
@@ -78,9 +79,16 @@ async function existsByTenant(tenant: string, id: string): Promise<boolean> {
   }
 }
 function sameOrigin(req: Request): boolean {
+  const fetchSite = req.headers.get("sec-fetch-site")?.toLowerCase();
+  if (fetchSite === "cross-site") return false;
   const origin = req.headers.get("origin");
   if (!origin) return false;
-  try { return new URL(origin).origin === new URL(req.url).origin; } catch { return false; }
+  const host = req.headers.get("host") ?? new URL(req.url).host;
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
 }
 async function body(req: Request): Promise<Record<string, unknown> | null> {
   if (!(req.headers.get("content-type") ?? "").startsWith("application/json")) return null;
@@ -99,7 +107,7 @@ function issueCookie(tenant: string, id: string, req: Request): Response {
   const secret = getPanelAuthConfig().secret;
   if (!secret) return genericError(503, "account_auth_unavailable");
   const token = createPanelSessionToken(tenant, secret, Date.now(), DEFAULT_PANEL_TTL_MS, undefined, "account:" + id);
-  const secure = new URL(req.url).protocol === "https:";
+  const secure = isSecureRequest(req);
   const headers = new Headers({ "Cache-Control": "no-store" });
   headers.append("Set-Cookie", buildPanelCookieHeader(token, secure, DEFAULT_PANEL_TTL_MS / 1000));
   // Lets the panel UI know a session may exist without exposing the HttpOnly token.
@@ -113,7 +121,7 @@ export function accountSessionCookieHeaders(tenant: string, id: string, req: Req
   const secret = getPanelAuthConfig().secret;
   if (!secret) return null;
   const token = createPanelSessionToken(tenant, secret, Date.now(), DEFAULT_PANEL_TTL_MS, undefined, "account:" + id);
-  const secure = new URL(req.url).protocol === "https:";
+  const secure = isSecureRequest(req);
   return [
     buildPanelCookieHeader(token, secure, DEFAULT_PANEL_TTL_MS / 1000),
     buildPanelHintCookieHeader(secure, DEFAULT_PANEL_TTL_MS / 1000),

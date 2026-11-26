@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { Photo } from "@/components/Photo";
 import { ProductPreview } from "@/components/ProductPreview";
+import { getSiteUrl } from "@/lib/http/site-url";
 import { getDictionary } from "./dictionaries";
 import { LeadForm } from "./LeadForm";
 import "./marketing.css";
@@ -43,7 +44,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const other = locale === "az" ? "en" : "az";
   const l = dictionary.landing;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://panelim.az";
+  const siteUrl = getSiteUrl();
   const faqEntries = Object.entries(dictionary.faq.items);
 
   const jsonLd = {

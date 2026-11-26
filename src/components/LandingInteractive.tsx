@@ -187,7 +187,7 @@ export function PricingShowcase({
   footnote: string;
   ctaHref?: string;
 }) {
-  const [period, setPeriod] = useState<BillingPeriod>("halfYear");
+  const [period, setPeriod] = useState<BillingPeriod>("monthly");
   const [currency, setCurrency] = useState<CurrencyCode>("AZN");
   const periodKeys: BillingPeriod[] = ["monthly", "halfYear", "annual"];
 
@@ -224,6 +224,7 @@ export function PricingShowcase({
             const displayPrice = plan.prices
               ? convertPriceString(rawDisplayPrice, currency)
               : rawDisplayPrice;
+            const hasSetupFee = plan.key === "growth" || plan.key === "pro";
             return (
               <article
                 key={plan.key}
@@ -236,7 +237,7 @@ export function PricingShowcase({
                   <strong>{displayPrice}</strong>
                   {plan.prices && <span>{perMonth}</span>}
                 </div>
-                {plan.prices && (
+                {hasSetupFee && (
                   <p className="pm-plan-setup">
                     {setupPrefix} <strong>{setupValue}</strong>
                   </p>

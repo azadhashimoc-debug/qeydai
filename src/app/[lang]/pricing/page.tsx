@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getSiteUrl } from "@/lib/http/site-url";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { PricingMatrixClient } from "@/components/marketing/PricingMatrixClient";
 import { PricingTiersClient, type PricingTier } from "@/components/marketing/PricingTiersClient";
@@ -33,6 +34,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
   const pricing = s.pricingPage;
+  const siteUrl = getSiteUrl();
 
   const tiers: PricingTier[] =
     locale === "en"
@@ -40,12 +42,12 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Starter",
-            desc: "For growing courses and studios starting unified messaging.",
+            desc: "For small businesses starting unified messaging and CRM.",
             prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "Per workspace · No hidden fees",
+            setupNote: "No setup fee · 14-day free trial",
             ctaLabel: "Start 14-day trial",
             limits: [
-              "Telegram + Instagram Direct inbox",
+              "1 channel (Telegram inbox)",
               "Kanban pipeline up to 500 leads",
               "Duplicate booking checks",
             ],
@@ -53,9 +55,11 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "growth",
             name: "Growth",
-            desc: "WhatsApp Cloud API + automated trial scheduling.",
+            desc: "WhatsApp Cloud API + automated appointment scheduling.",
+            popular: true,
+            popularBadge: "Most Popular",
             prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "Per workspace · 14-day free trial",
+            setupNote: "Setup fee: 100 AZN (one-time) · 14-day free trial",
             ctaLabel: "Start 14-day trial",
             limits: [
               "WhatsApp + Instagram + Telegram",
@@ -66,11 +70,9 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "pro",
             name: "Pro",
-            desc: "Full automation, multi-branch capacity lock & AI salesbot.",
-            popular: true,
-            popularBadge: "Most Popular",
+            desc: "Full automation, multi-branch scheduling & AI sales assistant.",
             prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "Per workspace · Priority Baku onboarding",
+            setupNote: "Setup fee: 100 AZN (one-time) · Priority onboarding",
             ctaLabel: "Choose Pro",
             limits: [
               "All channels + REST Webhook & n8n",
@@ -96,12 +98,12 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Başlanğıc",
-            desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
+            desc: "Vahid mesajlaşma və ilk CRM axınına keçən bizneslər üçün.",
             prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
+            setupNote: "Quraşdırma haqqı yoxdur · 14 gün pulsuz sınaq",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
-              "Telegram + Instagram Direct qutusu",
+              "1 kanal (Telegram qutusu)",
               "500 müraciətədək Kanban lövhəsi",
               "Təkrar rezervasiyalara nəzarət",
             ],
@@ -109,9 +111,11 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "growth",
             name: "İnkişaf",
-            desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
+            desc: "WhatsApp Cloud API və avtomatik görüş rezervasiyası.",
+            popular: true,
+            popularBadge: "Ən populyar",
             prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
+            setupNote: "Quraşdırma: 100 AZN (birdəfəlik) · 14 gün pulsuz sınaq",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
               "WhatsApp + Instagram + Telegram",
@@ -122,11 +126,9 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "pro",
             name: "Pro",
-            desc: "Tam avtomatlaşdırma, çoxfiliallı tutum kilidi və AI satış botu.",
-            popular: true,
-            popularBadge: "Ən Populyar",
+            desc: "Tam avtomatlaşdırma, çoxfiliallı idarəetmə və AI satış köməkçisi.",
             prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "İş sahəsi üzrə · Bakıda fərdi quraşdırma",
+            setupNote: "Quraşdırma: 100 AZN (birdəfəlik) · Fərdi qoşulma",
             ctaLabel: "Pro planını seç",
             limits: [
               "Bütün kanallar + REST Webhook & n8n",
@@ -169,7 +171,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           },
           {
             title: "Multi-Branch Ready",
-            desc: "Operate separate Baku branches with isolated schedules and operator roles.",
+            desc: "Operate separate branches with isolated schedules and operator roles.",
             tone: "amber" as const,
           },
         ]
@@ -186,7 +188,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           },
           {
             title: "Gəlir yönümlü böyümə",
-            desc: "İlk mesajdan ödənişli qeydiyyata qədər bütün satış mərhələlərini AZN ilə izləyin.",
+            desc: "İlk mesajdan ödənişli satışa qədər bütün mərhələləri AZN ilə izləyin.",
             tone: "sky" as const,
           },
           {
@@ -204,6 +206,10 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             a: "Yes. You can start with a 14-day free trial and switch billing cycles without losing customer or lead records.",
           },
           {
+            q: "What does the 100 AZN one-time setup fee cover?",
+            a: "Growth and Pro plans include an optional 100 AZN one-time onboarding fee covering WhatsApp Cloud API / Instagram / Telegram setup, sales pipeline configuration, and team onboarding. Starter has no setup fee.",
+          },
+          {
             q: "Are there any extra fees for WhatsApp Cloud API?",
             a: "Your panelim.az subscription covers the CRM, automation, and webhook engine. Meta conversation charges are billed directly at Meta's official rates.",
           },
@@ -218,6 +224,10 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             a: "Bəli. 14 günlük pulsuz sınaqla başlaya və məlumatlarınızı itirmədən istənilən vaxt ödəniş dövrünü dəyişə bilərsiniz.",
           },
           {
+            q: "100 AZN birdəfəlik quraşdırma haqqı nələri əhatə edir?",
+            a: "İnkişaf və Pro planlarında tətbiq olunan 100 AZN birdəfəlik quraşdırma haqqı WhatsApp Cloud API, Instagram və Telegram qoşulmasını, satış mərhələlərinin qurulmasını və komanda təlimini əhatə edir. Başlanğıc planında quraşdırma haqqı yoxdur.",
+          },
+          {
             q: "WhatsApp Cloud API üçün əlavə ödəniş varmı?",
             a: "panelim.az abunəliyi CRM, bot və avtomatlaşdırma mühərrikini əhatə edir. Rəsmi Meta mesaj tarifləri birbaşa Meta hesabınız üzərindən hesablanır.",
           },
@@ -227,8 +237,81 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           },
         ];
 
+  const pricingJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: d.brand,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        description: pricing.hero.subtitle,
+        url: `${siteUrl}/${locale}/pricing`,
+        inLanguage: locale,
+        offers: [
+          {
+            "@type": "Offer",
+            name: tiers[0].name,
+            priceCurrency: "AZN",
+            price: "49",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "49",
+              priceCurrency: "AZN",
+              unitText: "MONTH",
+            },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+          {
+            "@type": "Offer",
+            name: tiers[1].name,
+            priceCurrency: "AZN",
+            price: "89",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "89",
+              priceCurrency: "AZN",
+              unitText: "MONTH",
+            },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+          {
+            "@type": "Offer",
+            name: tiers[2].name,
+            priceCurrency: "AZN",
+            price: "149",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "149",
+              priceCurrency: "AZN",
+              unitText: "MONTH",
+            },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="marketing">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(pricingJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <a href="#main" className="skip-link">
         {d.a11y.skipToMain}
       </a>
@@ -266,11 +349,11 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
         </section>
 
         <FeatureGrid
-          heading={locale === "en" ? "Why teams choose Pro" : "Komandalar niyə Pro-nu seçir?"}
+          heading={locale === "en" ? "Why teams choose panelim.az" : "Komandalar niyə panelim.az seçir?"}
           subheading={
             locale === "en"
-              ? "Built to turn customer conversations into sales."
-              : "Mesajları real dərs qeydiyyatına çevirmək üçün ideal plan."
+              ? "Built to turn customer conversations into confirmed bookings and sales."
+              : "Mesajları real satış və görüş qeydiyyatına çevirmək üçün ideal platforma."
           }
           columns={2}
           items={proBenefits}
