@@ -16,9 +16,9 @@ type SubscriptionInfo = {
 };
 
 const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: string }> = {
-  starter: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
-  growth: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
-  pro: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+  starter: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
+  growth: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
+  pro: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
   enterprise: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
 };
 

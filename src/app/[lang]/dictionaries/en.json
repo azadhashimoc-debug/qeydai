@@ -88,7 +88,7 @@
     },
     "monthly": {
       "label": "Monthly service",
-      "value": "99 AZN",
+      "value": "79 AZN",
       "body": "Support, updates and reports."
     },
     "extra": "WhatsApp message fees (Meta's rates) are billed separately and shown to you in advance.",
@@ -440,9 +440,9 @@
           "name": "Starter",
           "desc": "Telegram bot and core pipeline for small teams",
           "prices": {
-            "monthly": "99 AZN",
-            "halfYear": "99 AZN",
-            "annual": "99 AZN"
+            "monthly": "79 AZN",
+            "halfYear": "79 AZN",
+            "annual": "79 AZN"
           },
           "limits": {
             "one": "1 channel (Telegram)",
@@ -455,9 +455,9 @@
           "name": "Growth",
           "desc": "Pani and multichannel inbox for growing businesses",
           "prices": {
-            "monthly": "99 AZN",
-            "halfYear": "99 AZN",
-            "annual": "99 AZN"
+            "monthly": "79 AZN",
+            "halfYear": "79 AZN",
+            "annual": "79 AZN"
           },
           "limits": {
             "one": "Telegram + Instagram + WhatsApp",
@@ -470,9 +470,9 @@
           "name": "Pro",
           "desc": "Automation and reporting for multi-branch businesses",
           "prices": {
-            "monthly": "99 AZN",
-            "halfYear": "99 AZN",
-            "annual": "99 AZN"
+            "monthly": "79 AZN",
+            "halfYear": "79 AZN",
+            "annual": "79 AZN"
           },
           "limits": {
             "one": "All channels + custom fields",

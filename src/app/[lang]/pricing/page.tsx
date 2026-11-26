@@ -41,7 +41,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             id: "starter",
             name: "Starter",
             desc: "For growing courses and studios starting unified messaging.",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "Per workspace · No hidden fees",
             ctaLabel: "Start 14-day trial",
             limits: [
@@ -54,7 +54,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             id: "growth",
             name: "Growth",
             desc: "WhatsApp Cloud API + automated trial scheduling.",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "Per workspace · 14-day free trial",
             ctaLabel: "Start 14-day trial",
             limits: [
@@ -69,7 +69,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             desc: "Full automation, multi-branch capacity lock & AI salesbot.",
             popular: true,
             popularBadge: "Most Popular",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "Per workspace · Priority Baku onboarding",
             ctaLabel: "Choose Pro",
             limits: [
@@ -97,7 +97,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             id: "starter",
             name: "Başlanğıc",
             desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
@@ -110,7 +110,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             id: "growth",
             name: "İnkişaf",
             desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
             ctaLabel: "14 gün pulsuz sına",
             limits: [
@@ -125,7 +125,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             desc: "Tam avtomatlaşdırma, çoxfiliallı tutum kilidi və AI satış botu.",
             popular: true,
             popularBadge: "Ən Populyar",
-            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            prices: { monthly: "79 AZN", halfYear: "79 AZN", annual: "79 AZN" },
             setupNote: "İş sahəsi üzrə · Bakıda fərdi quraşdırma",
             ctaLabel: "Pro planını seç",
             limits: [

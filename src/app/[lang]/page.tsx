@@ -62,7 +62,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         offers: {
           "@type": "Offer",
           priceCurrency: "AZN",
-          price: "99",
+          price: "79",
           priceValidUntil: "2027-12-31",
         },
       },
