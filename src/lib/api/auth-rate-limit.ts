@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import type { Pool } from "pg";
 import { assertSafeApplicationRole } from "../enrollment/postgres-store";
+import { clientKey } from "../http/same-origin";
 import { createRateLimiter } from "../rate-limit";
 
 export type AuthLimit = { name: string; max: number; windowMs: number };
@@ -25,11 +26,12 @@ function memoryAllow(limit: AuthLimit, bucket: string): boolean {
   return limiter.allow(bucket);
 }
 
-/** Client IP as set by the hosting edge (Vercel overwrites x-forwarded-for). */
+/**
+ * Client IP for auth limits. Same trust rules as every other limiter: proxy headers count only
+ * on Vercel or when TRUST_PROXY allows them, so a spoofed header cannot mint fresh buckets.
+ */
 export function clientIp(req: Request): string {
-  return req.headers.get("x-real-ip")?.trim()
-    || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
-    || "unknown";
+  return clientKey(req);
 }
 
 /**

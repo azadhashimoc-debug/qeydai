@@ -4,12 +4,13 @@ import { Pool } from "pg";
 import { validateAnalyticsEvent } from "@/lib/analytics/events";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
 import { createRateLimiter } from "@/lib/rate-limit";
-import { clientKey } from "@/lib/http/same-origin";
+import { clientKey, isUnknownClient } from "@/lib/http/same-origin";
 
 const MAX_BODY_BYTES = 1024;
 const WINDOW_MS = 60_000;
 const perClient = createRateLimiter({ max: 240, windowMs: WINDOW_MS });
-const global = createRateLimiter({ max: 2000, windowMs: WINDOW_MS, maxKeys: 1 });
+// Single "all" key: a process-wide backstop against rotating or unknown client identities.
+const global = createRateLimiter({ max: 2000, windowMs: WINDOW_MS });
 
 let analyticsPool: Pool | null = null;
 
@@ -66,7 +67,10 @@ export async function POST(req: Request) {
   const declared = Number(req.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return fail("payload_too_large", 413);
 
-  if (global.isLimited("all") || !perClient.allow(localClientKey(req))) return fail("rate_limited", 429);
+  const client = localClientKey(req);
+  if (global.isLimited("all") || (!isUnknownClient(client) && !perClient.allow(client))) {
+    return fail("rate_limited", 429);
+  }
 
   const text = await readLimitedUtf8(req, MAX_BODY_BYTES);
   if (text === null) return fail("payload_too_large", 413);

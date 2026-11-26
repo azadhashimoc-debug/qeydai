@@ -3,11 +3,12 @@ import { promisify } from "node:util";
 import { Pool } from "pg";
 import defaultSalesStagesAz from "../../app/[lang]/dictionaries/default-sales-stages-az.json";
 import {
-  buildPanelCookieHeader, createPanelSessionToken, DEFAULT_PANEL_TTL_MS,
+  buildPanelCookieHeader, buildPanelHintCookieHeader, createPanelSessionToken, DEFAULT_PANEL_TTL_MS,
   getPanelAuthConfig, isPanelJtiRevoked, PANEL_COOKIE_NAME, readCookieValue, verifyPanelSessionToken,
 } from "./panel-auth";
 import { assertSafeApplicationRole } from "../enrollment/postgres-store";
 import { ensurePanelJtiStore } from "./instance";
+import { isUnknownClient } from "../http/same-origin";
 import {
   allowAuthAttempt, clientIp, LOGIN_PER_EMAIL, LOGIN_PER_IP, REGISTER_PER_IP,
 } from "./auth-rate-limit";
@@ -96,12 +97,12 @@ function issueCookie(tenant: string, id: string, req: Request): Response {
   const secret = getPanelAuthConfig().secret;
   if (!secret) return genericError(503, "account_auth_unavailable");
   const token = createPanelSessionToken(tenant, secret, Date.now(), DEFAULT_PANEL_TTL_MS, undefined, "account:" + id);
-  return Response.json({ ok: true, tenantId: tenant }, {
-    headers: {
-      "Cache-Control": "no-store",
-      "Set-Cookie": buildPanelCookieHeader(token, new URL(req.url).protocol === "https:", DEFAULT_PANEL_TTL_MS / 1000),
-    },
-  });
+  const secure = new URL(req.url).protocol === "https:";
+  const headers = new Headers({ "Cache-Control": "no-store" });
+  headers.append("Set-Cookie", buildPanelCookieHeader(token, secure, DEFAULT_PANEL_TTL_MS / 1000));
+  // Lets the panel UI know a session may exist without exposing the HttpOnly token.
+  headers.append("Set-Cookie", buildPanelHintCookieHeader(secure, DEFAULT_PANEL_TTL_MS / 1000));
+  return Response.json({ ok: true, tenantId: tenant }, { headers });
 }
 
 export async function registerBusiness(req: Request): Promise<Response> {
@@ -165,7 +166,10 @@ export async function loginBusiness(req: Request): Promise<Response> {
   if (!EMAIL_RE.test(email) || password.length > 128) return genericError(401, "invalid_credentials");
   try {
     const pool = dbPool();
-    if (!(await allowAuthAttempt(pool, LOGIN_PER_IP, clientIp(req))) ||
+    // An untrusted ("unknown") IP would be one bucket shared by every caller; the per-email
+    // limit still applies in that case.
+    const ip = clientIp(req);
+    if ((!isUnknownClient(ip) && !(await allowAuthAttempt(pool, LOGIN_PER_IP, ip))) ||
         !(await allowAuthAttempt(pool, LOGIN_PER_EMAIL, email))) {
       return genericError(429, "rate_limited");
     }

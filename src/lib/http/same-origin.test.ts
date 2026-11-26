@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clientKey, noStoreHeaders, sameOrigin } from "./same-origin";
+import { clientKey, noStoreHeaders, parseTrustProxy, sameOrigin } from "./same-origin";
 
 describe("sameOrigin", () => {
   it("allows same-origin browser requests and non-browser requests without Origin", () => {
@@ -105,6 +105,26 @@ describe("clientKey", () => {
     ).toBe("203.0.113.9");
 
     expect(clientKey(new Request("https://qeyd.az/api/lead"), "x-forwarded-for")).toBe("unknown");
+  });
+});
+
+describe("parseTrustProxy / vercel mode", () => {
+  it("defaults to vercel mode on Vercel and lets TRUST_PROXY=none opt out", () => {
+    expect(parseTrustProxy(undefined, true)).toBe("vercel");
+    expect(parseTrustProxy(undefined, false)).toBe("none");
+    expect(parseTrustProxy("none", true)).toBe("none");
+    expect(parseTrustProxy("x-real-ip", true)).toBe("x-real-ip");
+  });
+
+  it("reads Vercel's edge-set headers in vercel mode", () => {
+    const req = new Request("https://qeyd.az/api/lead", {
+      headers: { "x-vercel-forwarded-for": "203.0.113.7", "x-real-ip": "198.51.100.1" },
+    });
+    expect(clientKey(req, "vercel")).toBe("203.0.113.7");
+    expect(clientKey(new Request("https://qeyd.az/api/lead", { headers: { "x-real-ip": "198.51.100.1" } }), "vercel")).toBe(
+      "198.51.100.1",
+    );
+    expect(clientKey(new Request("https://qeyd.az/api/lead"), "vercel")).toBe("unknown");
   });
 });
 

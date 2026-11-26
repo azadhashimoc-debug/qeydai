@@ -2,6 +2,12 @@ import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypt
 import { parseKeys } from "./instance";
 
 export const PANEL_COOKIE_NAME = "qeydai_panel";
+/**
+ * Non-HttpOnly companion cookie with no secret value. It only tells the panel UI that a
+ * session may exist, so the client skips the /api/panel/auth probe (and its 401) when signed out.
+ * Authorization still depends solely on the HttpOnly session cookie.
+ */
+export const PANEL_HINT_COOKIE_NAME = "qeydai_panel_hint";
 export const DEFAULT_PANEL_TTL_MS = 8 * 3600 * 1000;
 
 const MIN_EXPLICIT_SECRET_LENGTH = 24;
@@ -205,6 +211,15 @@ export function buildPanelCookieHeader(token: string, secure: boolean, maxAgeSec
 
 export function clearPanelCookieHeader(secure: boolean): string {
   return `${PANEL_COOKIE_NAME}=; HttpOnly; Path=/; SameSite=Lax; Max-Age=0${secure ? "; Secure" : ""}`;
+}
+
+export function buildPanelHintCookieHeader(secure: boolean, maxAgeSec: number): string {
+  const maxAge = Math.max(0, Math.floor(maxAgeSec));
+  return `${PANEL_HINT_COOKIE_NAME}=1; Path=/; SameSite=Lax; Max-Age=${maxAge}${secure ? "; Secure" : ""}`;
+}
+
+export function clearPanelHintCookieHeader(secure: boolean): string {
+  return `${PANEL_HINT_COOKIE_NAME}=; Path=/; SameSite=Lax; Max-Age=0${secure ? "; Secure" : ""}`;
 }
 
 export function readCookieValue(cookieHeader: string | null, name: string): string | null {
