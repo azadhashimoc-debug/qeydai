@@ -11,7 +11,7 @@
     "e2e": "playwright test",
     "seed:demo": "node scripts/seed-demo.mts",
     "typecheck": "next typegen && tsc --noEmit",
-    "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts src/lib/api/panel-session.pg.test.ts src/app/api/lead/route.pg.test.ts src/app/api/analytics/route.pg.test.ts src/app/api/panel/contacts/route.pg.test.ts src/lib/api/account-auth.pg.test.ts"
+    "test:pg": "vitest run src/app/api/panel/intake/route.pg.test.ts src/lib/api/panel-session.pg.test.ts src/app/api/lead/route.pg.test.ts src/app/api/analytics/route.pg.test.ts src/app/api/panel/contacts/route.pg.test.ts src/lib/api/account-auth.pg.test.ts src/lib/api/auth-rate-limit.pg.test.ts"
   },
   "dependencies": {
     "next": "16.4.6",

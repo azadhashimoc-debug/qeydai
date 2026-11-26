@@ -82,6 +82,18 @@ suite("business account registration and persistent sign-in with PostgreSQL", ()
     }))).status).toBe(401);
   });
 
+  it("locks out repeated sign-in attempts for one email and treats unknown emails alike", async () => {
+    const target = `lockout-${randomUUID()}@example.test`;
+    const statuses: number[] = [];
+    for (let i = 0; i < 11; i++) {
+      statuses.push((await loginBusiness(req("/api/panel/account/login", {
+        email: target, password: "wrong-password-attempt",
+      }))).status);
+    }
+    expect(statuses.slice(0, 10).every((s) => s === 401)).toBe(true);
+    expect(statuses[10]).toBe(429);
+  });
+
   it("persists account sessions and revokes them on sign-out", async () => {
     const api = createPanelApi({ store: new PostgresEnrollmentStore(pool) });
     const loggedIn = new Request(origin + "/api/panel/auth", { headers: { cookie } });

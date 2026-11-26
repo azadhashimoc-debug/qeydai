@@ -18,6 +18,7 @@ try {
     "0004_panel_jti.sql",
     "0005_analytics_ingest.sql",
     "0006_panel_accounts.sql",
+    "0007_auth_rate_limits.sql",
   ]) {
     const sql = readFileSync(resolve("db", "migrations", migration), "utf8");
     await pool.query(sql);

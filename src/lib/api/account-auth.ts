@@ -8,31 +8,16 @@ import {
 } from "./panel-auth";
 import { assertSafeApplicationRole } from "../enrollment/postgres-store";
 import { ensurePanelJtiStore } from "./instance";
+import {
+  allowAuthAttempt, clientIp, LOGIN_PER_EMAIL, LOGIN_PER_IP, REGISTER_PER_IP,
+} from "./auth-rate-limit";
 
 const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const SIGNUP_RATE_LIMIT = 12;
-const windowCounts = new Map<string, { count: number; until: number }>();
 let pool: Pool | undefined;
 type Account = { tenant_id: string; id: string; email: string; password_hash: string };
 const genericError = (status: number, error: string) =>
   Response.json({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });
-
-function allowAttempt(req: Request, kind: string): boolean {
-  const id = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const key = kind + ":" + id;
-  const now = Date.now();
-  const existing = windowCounts.get(key);
-  if (!existing || now > existing.until) {
-    windowCounts.set(key, { count: 1, until: now + 60_000 });
-    return true;
-  }
-  existing.count++;
-  if (windowCounts.size > 10_000) {
-    for (const [k, v] of windowCounts) if (v.until < now) windowCounts.delete(k);
-  }
-  return existing.count <= SIGNUP_RATE_LIMIT;
-}
 
 function dbPool(): Pool {
   if (!process.env.QEYDAI_DATABASE_URL) throw new Error("database_unavailable");
@@ -44,6 +29,8 @@ async function hashPassword(password: string): Promise<string> {
   const hash = await scrypt(password, salt, 64) as Buffer;
   return "scrypt$" + salt.toString("base64url") + "$" + hash.toString("base64url");
 }
+// Verified against when no account exists, so unknown emails cost the same scrypt work as known ones.
+let dummyHash: Promise<string> | undefined;
 async function matchesPassword(password: string, stored: string): Promise<boolean> {
   const parts = stored.split("$");
   if (parts.length !== 3 || parts[0] !== "scrypt") return false;
@@ -119,7 +106,6 @@ function issueCookie(tenant: string, id: string, req: Request): Response {
 
 export async function registerBusiness(req: Request): Promise<Response> {
   if (!sameOrigin(req)) return genericError(403, "forbidden");
-  if (!allowAttempt(req, "register")) return genericError(429, "rate_limited");
   const input = await body(req);
   if (!input) return genericError(400, "invalid_json");
   const email = typeof input.email === "string" ? input.email.trim().toLowerCase() : "";
@@ -128,6 +114,13 @@ export async function registerBusiness(req: Request): Promise<Response> {
   if (!EMAIL_RE.test(email) || email.length > 254 || name.length < 2 || name.length > 120 ||
       password.length < 12 || password.length > 128 || Buffer.byteLength(password) > 256) {
     return genericError(422, "invalid_input");
+  }
+  try {
+    if (!(await allowAuthAttempt(dbPool(), REGISTER_PER_IP, clientIp(req)))) {
+      return genericError(429, "rate_limited");
+    }
+  } catch {
+    return genericError(503, "database_unavailable");
   }
   if (!hasStableSessionSecret() || !getPanelAuthConfig().secret) return genericError(503, "account_auth_unavailable");
   const tenant = "biz_" + randomUUID();
@@ -165,15 +158,21 @@ export async function registerBusiness(req: Request): Promise<Response> {
 export async function loginBusiness(req: Request): Promise<Response> {
   if (!sameOrigin(req)) return genericError(403, "forbidden");
   if (!hasStableSessionSecret()) return genericError(503, "account_auth_unavailable");
-  if (!allowAttempt(req, "login")) return genericError(429, "rate_limited");
   const input = await body(req);
   if (!input) return genericError(400, "invalid_json");
   const email = typeof input.email === "string" ? input.email.trim().toLowerCase() : "";
   const password = typeof input.password === "string" ? input.password : "";
   if (!EMAIL_RE.test(email) || password.length > 128) return genericError(401, "invalid_credentials");
   try {
+    const pool = dbPool();
+    if (!(await allowAuthAttempt(pool, LOGIN_PER_IP, clientIp(req))) ||
+        !(await allowAuthAttempt(pool, LOGIN_PER_EMAIL, email))) {
+      return genericError(429, "rate_limited");
+    }
     const account = await findByEmail(email);
-    if (!account || !(await matchesPassword(password, account.password_hash))) {
+    dummyHash ??= hashPassword(randomBytes(32).toString("hex"));
+    const ok = await matchesPassword(password, account?.password_hash ?? await dummyHash);
+    if (!account || !ok) {
       return genericError(401, "invalid_credentials");
     }
     if (!ensurePanelJtiStore()) return genericError(503, "database_unavailable");
