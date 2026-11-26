@@ -16,7 +16,7 @@ import {
 const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let pool: Pool | undefined;
-type Account = { tenant_id: string; id: string; email: string; password_hash: string };
+export type Account = { tenant_id: string; id: string; email: string; password_hash: string };
 const genericError = (status: number, error: string) =>
   Response.json({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });
 
@@ -41,7 +41,7 @@ async function matchesPassword(password: string, stored: string): Promise<boolea
   const actual = await scrypt(password, salt, 64) as Buffer;
   return timingSafeEqual(actual, expected);
 }
-async function findByEmail(email: string): Promise<Account | null> {
+export async function findByEmail(email: string): Promise<Account | null> {
   const db = await dbPool().connect();
   try {
     await db.query("BEGIN");
@@ -89,7 +89,7 @@ async function body(req: Request): Promise<Record<string, unknown> | null> {
     return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : null;
   } catch { return null; }
 }
-function hasStableSessionSecret(): boolean {
+export function hasStableSessionSecret(): boolean {
   return (process.env.QEYDAI_PANEL_SECRET?.trim().length ?? 0) >= 24;
 }
 function issueCookie(tenant: string, id: string, req: Request): Response {
@@ -103,6 +103,63 @@ function issueCookie(tenant: string, id: string, req: Request): Response {
   // Lets the panel UI know a session may exist without exposing the HttpOnly token.
   headers.append("Set-Cookie", buildPanelHintCookieHeader(secure, DEFAULT_PANEL_TTL_MS / 1000));
   return Response.json({ ok: true, tenantId: tenant }, { headers });
+}
+
+/** Session cookies for a redirect-based sign-in (OAuth callback); the caller sets them on its own response. */
+export function accountSessionCookieHeaders(tenant: string, id: string, req: Request): string[] | null {
+  if (!hasStableSessionSecret()) return null;
+  const secret = getPanelAuthConfig().secret;
+  if (!secret) return null;
+  const token = createPanelSessionToken(tenant, secret, Date.now(), DEFAULT_PANEL_TTL_MS, undefined, "account:" + id);
+  const secure = new URL(req.url).protocol === "https:";
+  return [
+    buildPanelCookieHeader(token, secure, DEFAULT_PANEL_TTL_MS / 1000),
+    buildPanelHintCookieHeader(secure, DEFAULT_PANEL_TTL_MS / 1000),
+  ];
+}
+
+/**
+ * Creates a workspace + owner account for a first-time OAuth sign-in. The stored password is random
+ * and unknown to anyone, so the account can only be used through the provider.
+ * Returns "exists" when a concurrent request already created the email.
+ */
+export async function provisionOAuthAccount(
+  email: string, businessName: string,
+): Promise<{ tenantId: string; accountId: string } | "exists" | null> {
+  const name = businessName.length >= 2 && businessName.length <= 120 ? businessName : (email.split("@")[0].slice(0, 120).padEnd(2, "_"));
+  const tenant = "biz_" + randomUUID();
+  const id = randomUUID();
+  const passwordHash = await hashPassword(randomBytes(32).toString("hex"));
+  let db;
+  try {
+    db = await dbPool().connect();
+  } catch {
+    return null;
+  }
+  try {
+    await db.query("BEGIN");
+    await assertSafeApplicationRole(db);
+    await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
+    await db.query("INSERT INTO sales_workspaces (id,name) VALUES ($1,$2)", [tenant, name]);
+    await db.query(
+      "INSERT INTO panel_accounts (tenant_id,id,email,password_hash) VALUES ($1,$2,$3,$4)",
+      [tenant, id, email, passwordHash],
+    );
+    await db.query(`
+      INSERT INTO sales_stages (tenant_id,id,name,position,kind)
+      VALUES ($1,'new',$2,0,'open'),($1,'contacted',$3,1,'open'),
+             ($1,'trial_booked',$4,2,'open'),($1,'paid',$5,3,'won'),($1,'lost',$6,4,'lost')
+    `, [tenant, defaultSalesStagesAz.new, defaultSalesStagesAz.contacted,
+        defaultSalesStagesAz.trial_booked, defaultSalesStagesAz.paid, defaultSalesStagesAz.lost]);
+    await db.query("COMMIT");
+    return { tenantId: tenant, accountId: id };
+  } catch (error) {
+    await db.query("ROLLBACK").catch(() => {});
+    if (error && typeof error === "object" && "code" in error && error.code === "23505") return "exists";
+    return null;
+  } finally {
+    db.release();
+  }
 }
 
 export async function registerBusiness(req: Request): Promise<Response> {

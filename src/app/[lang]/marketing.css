@@ -2846,6 +2846,7 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: #ffffff;
+  text-decoration: none;
   cursor: pointer;
   padding: 0 10px;
   transition: filter 0.15s ease, transform 0.15s ease;

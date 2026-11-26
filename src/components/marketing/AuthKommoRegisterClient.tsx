@@ -314,7 +314,7 @@ export function AuthKommoRegisterClient({
                   aria-invalid={hasNameError}
                   aria-describedby={hasNameError ? statusId : undefined}
                   onChange={() => {
-                    if (hasNameError || state === "social") setState("idle");
+                    if (hasNameError) setState("idle");
                   }}
                   className="pm-auth-input"
                 />
@@ -344,7 +344,7 @@ export function AuthKommoRegisterClient({
                   aria-invalid={hasPhoneError}
                   aria-describedby={hasPhoneError ? statusId : undefined}
                   onChange={() => {
-                    if (hasPhoneError || state === "social") setState("idle");
+                    if (hasPhoneError) setState("idle");
                   }}
                   className="pm-auth-input"
                 />
@@ -398,9 +398,7 @@ export function AuthKommoRegisterClient({
                 className={
                   state === "ok"
                     ? "pm-auth-status is-ok"
-                    : state === "social"
-                      ? "pm-auth-status"
-                      : "pm-auth-status is-error"
+                    : "pm-auth-status is-error"
                 }
               >
                 {statusText}
@@ -516,7 +514,8 @@ export function AuthKommoRegisterClient({
       <AuthSocialRow
         googleLabel={copy.googleLabel}
         facebookLabel={copy.facebookLabel}
-        onSocialClick={() => setState("social")}
+        googleHref={`/api/panel/oauth/google/start?lang=${locale}`}
+        facebookHref={`/api/panel/oauth/facebook/start?lang=${locale}`}
       />
 
       <div className="pm-auth-footer-links">

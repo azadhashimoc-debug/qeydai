@@ -19,6 +19,7 @@ export type AuthKommoCopy = {
   googleLabel: string;
   facebookLabel: string;
   socialNote: string;
+  oauthError?: string;
   forgotLink: string;
   invalidKey: string;
   rateLimited: string;
@@ -38,7 +39,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
   const [loginMode, setLoginMode] = useState<"password" | "key">("password");
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network" | "social">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "invalid" | "limited" | "network">("idle");
   const emailId = useId();
   const keyId = useId();
   const statusId = useId();
@@ -56,8 +57,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
     status === "invalid" ? copy.invalidKey
     : status === "limited" ? copy.rateLimited
     : status === "network" ? copy.networkError
-    : status === "social" ? copy.socialNote
-    : copy.securityNote;
+    : copy.oauthError ?? copy.securityNote;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -145,7 +145,7 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
                   value={key}
                   onChange={(e) => {
                     setKey(e.target.value);
-                    if (isError || status === "social") setStatus("idle");
+                    if (isError) setStatus("idle");
                   }}
                   placeholder={loginMode === "password" ? (lang === "az" ? "Şifrənizi daxil edin" : "Enter your password") : copy.keyPlaceholder}
                   className="pm-auth-input has-toggle"
@@ -185,7 +185,8 @@ export function AuthKommoClient({ lang, copy, contactHref }: Props) {
       <AuthSocialRow
         googleLabel={copy.googleLabel}
         facebookLabel={copy.facebookLabel}
-        onSocialClick={() => setStatus("social")}
+        googleHref={`/api/panel/oauth/google/start?lang=${lang}`}
+        facebookHref={`/api/panel/oauth/facebook/start?lang=${lang}`}
       />
       <div className="pm-auth-footer-links">
         <Link href={contactHref} className="pm-auth-forgot-link">

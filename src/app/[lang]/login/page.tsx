@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/login">): 
   });
 }
 
-export default async function LoginPage({ params }: PageProps<"/[lang]/login">) {
+export default async function LoginPage({ params, searchParams }: PageProps<"/[lang]/login">) {
   const { lang } = await params;
+  const query = await searchParams;
   const d = await getDictionary(lang);
   const locale = lang === "en" ? "en" : "az";
   const auth = d.subpages.authPages;
@@ -71,6 +72,7 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/login">) 
             googleLabel: shell.googleLabel,
             facebookLabel: shell.facebookLabel,
             socialNote: shell.socialNote,
+            oauthError: query.oauth_error ? shell.oauthError : undefined,
             forgotLink: login.forgotLink,
             invalidKey: login.invalidKey,
             rateLimited: login.rateLimited,

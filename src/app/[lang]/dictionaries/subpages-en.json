@@ -1032,7 +1032,8 @@
       "heartAlt": "Iridescent heart mascot",
       "googleLabel": "Continue with Google",
       "facebookLabel": "Continue with Facebook",
-      "socialNote": "OAuth sign-in is enabled per provisioned workspace. Use your workspace access key below."
+      "socialNote": "OAuth sign-in is enabled per provisioned workspace. Use your workspace access key below.",
+      "oauthError": "Sign-in with Google or Facebook did not complete. Try again or sign in with email."
     }
   },
   "selectAccount": {
