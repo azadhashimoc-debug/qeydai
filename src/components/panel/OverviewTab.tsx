@@ -72,7 +72,7 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
             { label: "How do I manage deals & pipelines?", tab: "deals" as PanelTabId },
           ],
           reply: (q: string) =>
-            `Workspace snapshot for "${q}": ${overview.totalLeads} leads, ${overview.totalEnrollments} trial bookings, ${paidCount} paid (${conversionPct}%), and ${overview.totalMessages} messages.`,
+            `Workspace snapshot for "${q}": ${overview.totalLeads} leads, ${overview.totalEnrollments} bookings, ${paidCount} paid (${conversionPct}%), and ${overview.totalMessages} messages.`,
         }
       : {
           greeting: "Xoş gəldiniz!",
@@ -85,7 +85,7 @@ export function OverviewTab({ overview, lang, d, onNavigate }: OverviewTabProps)
             { label: "Satış mərhələləri necə idarə olunur?", tab: "deals" as PanelTabId },
           ],
           reply: (q: string) =>
-            `"${q}" üzrə iş sahəsi xülasəsi: ${overview.totalLeads} müraciət, ${overview.totalEnrollments} sınaq qeydiyyatı, ${paidCount} ödənişli (${conversionPct}%) və ${overview.totalMessages} mesaj.`,
+            `"${q}" üzrə iş sahəsi xülasəsi: ${overview.totalLeads} müraciət, ${overview.totalEnrollments} rezervasiya, ${paidCount} ödənişli (${conversionPct}%) və ${overview.totalMessages} mesaj.`,
         };
 
   function handleHomePromptSubmit(e: React.FormEvent<HTMLFormElement>) {

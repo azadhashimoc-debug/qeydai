@@ -35,6 +35,7 @@ const STATIC_SUBPAGE_SUFFIXES = [
   "/register",
   "/legal/terms",
   "/legal/privacy",
+  "/legal/data-deletion",
 ] as const;
 
 const pageMtime = () => {

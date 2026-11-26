@@ -434,7 +434,7 @@
         },
         "two": {
           "title": "Təsdiqlənmiş şablon bildirişləri",
-          "desc": "Dərs xatırlatması, qeydiyyat təsdiqi kimi vacib mesajları Meta şablonları ilə göndərin."
+          "desc": "Görüş xatırlatması, rezervasiya təsdiqi kimi vacib mesajları Meta şablonları ilə göndərin."
         },
         "three": {
           "title": "24 saatlıq müştəri xidməti pəncərəsi",
@@ -893,7 +893,7 @@
       "directTitle": "Birbaşa müraciət",
       "directDesc": "Platforma haqqında suallarınızı saytımızın forması vasitəsilə ünvanlaya bilərsiniz.",
       "channelsTitle": "Rəsmi kanallar",
-      "channelsDesc": "Müştəri mərkəzimiz Telegram və WhatsApp üzərindən iş saatlarında aktivdir.",
+      "channelsDesc": "Komandamız iş saatlarında saytdakı forma vasitəsilə gələn müraciətlərə cavab verir.",
       "hoursTitle": "İş saatları",
       "hoursDesc": "Bazar ertəsi — Şənbə, saat 09:00-dan 19:00-a qədər."
     }

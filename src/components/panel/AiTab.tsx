@@ -7,13 +7,13 @@ import type { PanelDict } from "./types";
 const SCENARIOS = {
   az: [
     { id: "greeting", body: "Salam! Mərkəzimizlə əlaqə saxladığınız üçün təşəkkür edirik. Sizə necə kömək edə bilərik?" },
-    { id: "price", body: "IELTS kursumuz aylıq 180 AZN-dir. Şənbə 11:00 sınaq dərsinə yazılmaq istəyirsiniz?" },
+    { id: "price", body: "Xidmətimizin qiyməti 60 AZN-dir. Şənbə 11:00 üçün sizi yazaq?" },
     { id: "booking", body: "Adınızı və telefon nömrənizi yazın. Boş yer varsa qeydiyyatınızı təsdiqləyirik." },
     { id: "handoff", body: "Endirim və xüsusi tələblər üçün menecerimizlə əlaqə saxlamaq istəyirsiniz?" },
   ],
   en: [
     { id: "greeting", body: "Hello! Thank you for reaching out to our center. How can we help you today?" },
-    { id: "price", body: "Our IELTS course is 180 AZN/month. Would you like to book the Saturday 11:00 trial lesson?" },
+    { id: "price", body: "The service costs 60 AZN. Shall we book you for Saturday 11:00?" },
     { id: "booking", body: "Please share your full name and phone number. If seats are open, we will confirm your booking." },
     { id: "handoff", body: "Would you like me to connect you with a manager for discounts or special requests?" },
   ],

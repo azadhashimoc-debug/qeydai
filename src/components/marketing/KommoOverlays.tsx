@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { PUBLIC_COMPANY_INFO } from "@/lib/marketing/company";
+import { readConsent, subscribeConsent, writeConsent } from "@/lib/analytics/consent";
 import Link from "next/link";
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import type { Locale } from "@/app/[lang]/dictionaries";
@@ -20,22 +22,17 @@ const COPY = {
     announcement: "🔊 panelim.az qiymət və plan dəyişikliklərini nəzərdən keçirin",
     announcementHref: "/az/pricing",
     announcementClose: "Elanı bağla",
-    cookieText: "Veb saytımızı işlətmək, təhlil etmək və təkmilləşdirmək üçün kukilər və oxşar texnologiyalardan istifadə edirik.",
+    cookieText: "Saytın işləməsi üçün zəruri kukilərdən istifadə edirik. Analitika və reklam kukiləri yalnız razılığınızla yüklənir.",
     cookieLearnMore: "Ətraflı öyrənin",
-    cookieAccept: "Qəbul et",
+    cookieAccept: "Hamısını qəbul et",
+    cookieReject: "Yalnız zəruri",
     stickyCta: "Pani-ni pulsuz sına",
     fabLabel: "Çoxkanallı canlı dəstək",
     fabTitle: "Bizimlə əlaqə saxlayın",
-    fabChannels: [
-      { id: "telegram", label: "Telegram", href: "https://t.me/panelim_az" },
-      { id: "instagram", label: "Instagram", href: "https://instagram.com/panelim.az" },
-      { id: "messenger", label: "Messenger", href: "https://m.me/panelim.az" },
-      { id: "whatsapp", label: "WhatsApp", href: "https://wa.me/994501234567" },
-    ],
     fabLiveChat: "Canlı Söhbət (Mesaj göndər)",
     fabPartner: "Partner yardımı tələb et",
     fabDemo: "Canlı Demo təyin et",
-    fabVideo: "Məhsul videosunu izlə",
+    fabVideo: "Məhsulun qısa icmalı",
     closeModal: "Pəncərəni bağla",
     demoModal: {
       badge: "Calendly · Canlı Görüş",
@@ -123,12 +120,12 @@ const COPY = {
       network: "Göndərmək alınmadı. Zəhmət olmasa yenidən cəhd edin.",
     },
     videoModal: {
-      title: "panelim.az — Avtomatlaşdırılmış Satış və AI CRM İcmalı",
-      duration: "02:45 · HD Təqdimat",
+      title: "panelim.az — Satış və AI CRM icmalı",
+      duration: "Qısa icmal",
       chapters: [
-        "00:00 — WhatsApp, Instagram və Telegram vahid gələn qutusu",
-        "00:55 — Pani-nin 24/7 görüş rezervasiyası",
-        "01:45 — Kanban satış qıfı, avtomatik tapşırıqlar və analitika",
+        "WhatsApp, Instagram və Telegram vahid gələn qutusu",
+        "Pani ilə görüş rezervasiyası",
+        "Kanban satış qıfı, tapşırıqlar və analitika",
       ],
       tryCta: "14 gün pulsuz sına",
     },
@@ -137,22 +134,17 @@ const COPY = {
     announcement: "🔊 Review panelim.az pricing and plan updates",
     announcementHref: "/en/pricing",
     announcementClose: "Dismiss announcement",
-    cookieText: "We use cookies and similar technologies to operate, analyze, and improve our website.",
+    cookieText: "We use essential cookies to run the site. Analytics and advertising cookies load only with your consent.",
     cookieLearnMore: "Learn more",
-    cookieAccept: "Accept",
+    cookieAccept: "Accept all",
+    cookieReject: "Essential only",
     stickyCta: "Try Pani for free",
     fabLabel: "Multi-channel live support",
     fabTitle: "Connect with us",
-    fabChannels: [
-      { id: "telegram", label: "Telegram", href: "https://t.me/panelim_az" },
-      { id: "instagram", label: "Instagram", href: "https://instagram.com/panelim.az" },
-      { id: "messenger", label: "Messenger", href: "https://m.me/panelim.az" },
-      { id: "whatsapp", label: "WhatsApp", href: "https://wa.me/994501234567" },
-    ],
     fabLiveChat: "Live Chat (Send message)",
     fabPartner: "Request partner assistance",
     fabDemo: "Schedule a live demo",
-    fabVideo: "Watch product tour video",
+    fabVideo: "Quick product overview",
     closeModal: "Close modal",
     demoModal: {
       badge: "Calendly · Live Walkthrough",
@@ -240,12 +232,12 @@ const COPY = {
       network: "Could not submit your request. Please try again.",
     },
     videoModal: {
-      title: "panelim.az — Automated Messaging & AI Sales CRM Tour",
-      duration: "02:45 · HD Walkthrough",
+      title: "panelim.az — Sales & AI CRM overview",
+      duration: "Quick overview",
       chapters: [
-        "00:00 — Unified inbox for WhatsApp, Instagram, and Telegram",
-        "00:55 — 24/7 AI booking agent & live seat capacity guard",
-        "01:45 — Kanban sales pipeline, automated follow-up tasks & ROI analytics",
+        "Unified inbox for WhatsApp, Instagram, and Telegram",
+        "Booking with Pani and live capacity guard",
+        "Kanban sales pipeline, follow-up tasks and analytics",
       ],
       tryCta: "Start 14-day free trial",
     },
@@ -261,18 +253,9 @@ const COUNTRY_CODES = [
   { code: "+971", label: "United Arab Emirates +971" },
 ];
 
-function subscribeCookieBanner(cb: () => void) {
-  window.addEventListener("storage", cb);
-  window.addEventListener("panelim:cookie-change", cb);
-  return () => {
-    window.removeEventListener("storage", cb);
-    window.removeEventListener("panelim:cookie-change", cb);
-  };
-}
-
 function getCookieBannerClientSnapshot() {
   try {
-    return !localStorage.getItem("panelim:cookie-accepted");
+    return readConsent() === null;
   } catch {
     return false;
   }
@@ -286,7 +269,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
   const c = COPY[lang];
   const [bannerOpen, setBannerOpen] = useState(true);
   const cookieOpen = useSyncExternalStore(
-    subscribeCookieBanner,
+    subscribeConsent,
     getCookieBannerClientSnapshot,
     getCookieBannerServerSnapshot,
   );
@@ -383,12 +366,11 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
   }, []);
 
   function acceptCookies() {
-    try {
-      localStorage.setItem("panelim:cookie-accepted", "1");
-    } catch {
-      /* ignore */
-    }
-    window.dispatchEvent(new Event("panelim:cookie-change"));
+    writeConsent("all");
+  }
+
+  function rejectCookies() {
+    writeConsent("essential");
   }
 
   return (
@@ -419,13 +401,18 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
               {c.cookieLearnMore}
             </Link>
           </p>
-          <button
-            type="button"
-            className="pm-kommo-cookie-accept js-control-cookies-close-button"
-            onClick={acceptCookies}
-          >
-            {c.cookieAccept}
-          </button>
+          <div className="pm-kommo-cookie-actions">
+            <button type="button" className="pm-kommo-cookie-reject" onClick={rejectCookies}>
+              {c.cookieReject}
+            </button>
+            <button
+              type="button"
+              className="pm-kommo-cookie-accept js-control-cookies-close-button"
+              onClick={acceptCookies}
+            >
+              {c.cookieAccept}
+            </button>
+          </div>
         </aside>
       )}
 
@@ -456,7 +443,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
               />
             </div>
             <div className="pm-kommo-fab-list">
-              {c.fabChannels.map((ch) => (
+              {PUBLIC_COMPANY_INFO.social.map((ch) => (
                 <a
                   key={ch.id}
                   href={ch.href}
@@ -513,7 +500,7 @@ export function KommoOverlays({ lang }: { lang: Locale }) {
                   setFabOpen(false);
                 }}
               >
-                ▶️ {c.fabVideo}
+                🧭 {c.fabVideo}
               </button>
             </div>
           </div>

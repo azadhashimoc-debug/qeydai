@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { BottomCtaBand, SubpageHero } from "@/components/marketing/SubpageBlocks";
 import { buildSubpageMetadata } from "@/lib/marketing/metadata";
+import { getCompanyInfo } from "@/lib/marketing/company";
 import { getDictionary, locales } from "../dictionaries";
 import { LeadForm } from "../LeadForm";
 import "../marketing.css";
@@ -31,6 +32,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
   const locale = lang === "en" ? "en" : "az";
   const other = locale === "az" ? "en" : "az";
   const s = d.subpages;
+  const company = getCompanyInfo();
   const contact = s.contactPage;
   const form = contact.form;
 
@@ -65,19 +67,27 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
           <div className="pm-wrap">
             <div className="pm-contact-channels-grid">
               <article className="pm-contact-channel-card">
-                <h3>{locale === "en" ? "Baku Office" : "Bakı Ofisi"}</h3>
+                <h3>{company.address ? (locale === "en" ? "Office" : "Ofis") : locale === "en" ? "Support hours" : "Dəstək saatları"}</h3>
                 <p>
-                  {locale === "en"
-                    ? "Nizami St., Baku, Azerbaijan · Mon–Sat, 09:00–19:00"
-                    : "Nizami küç., Bakı, Azərbaycan · B.e–Ş., 09:00–19:00"}
+                  {company.address ? `${company.address} · ` : ""}
+                  {locale === "en" ? "Mon–Sat, 09:00–19:00 (Baku time)" : "B.e–Ş., 09:00–19:00 (Bakı vaxtı)"}
                 </p>
               </article>
               <article className="pm-contact-channel-card">
-                <h3>{locale === "en" ? "WhatsApp & Telegram" : "WhatsApp və Telegram"}</h3>
+                <h3>{locale === "en" ? "Messaging channels" : "Mesajlaşma kanalları"}</h3>
                 <p>
-                  {locale === "en"
-                    ? "Instant onboarding support for education & service centers."
-                    : "Tədris və xidmət mərkəzləri üçün operativ qoşulma dəstəyi."}
+                  {company.social.length > 0
+                    ? company.social.map((ch, i) => (
+                        <span key={ch.id}>
+                          {i > 0 ? " · " : ""}
+                          <a href={ch.href} target="_blank" rel="noopener noreferrer">
+                            {ch.label}
+                          </a>
+                        </span>
+                      ))
+                    : locale === "en"
+                      ? "Write to us through the form below and we will reply on the channel you prefer."
+                      : "Aşağıdakı forma ilə yazın, sizə istədiyiniz kanalda cavab verək."}
                 </p>
               </article>
               <article className="pm-contact-channel-card">
@@ -89,11 +99,12 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
                 </p>
               </article>
             </div>
-            <div className="pm-contact-direct-bar">
-              {locale === "en"
-                ? "Direct line: +994 50 000 00 00 · info@panelim.az"
-                : "Birbaşa əlaqə: +994 50 000 00 00 · info@panelim.az"}
-            </div>
+            {(company.phone || company.email) && (
+              <div className="pm-contact-direct-bar">
+                {locale === "en" ? "Direct line: " : "Birbaşa əlaqə: "}
+                {[company.phone, company.email].filter(Boolean).join(" · ")}
+              </div>
+            )}
           </div>
         </section>
 

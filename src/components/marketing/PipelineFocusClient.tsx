@@ -20,10 +20,10 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
           caption:
             "Choose the view that fits your workflow: Kanban keeps the big picture clear, while List view lets you inspect every lead detail.",
           rows: [
-            { title: "IELTS Speaking Group · Ayten H.", stage: "New lead", tone: "sky" },
-            { title: "Python Bootcamp · Kamran A.", stage: "Trial booked", tone: "amber" },
+            { title: "Dental check-up · Ayten H.", stage: "New lead", tone: "sky" },
+            { title: "Sofa order · Kamran A.", stage: "Booked", tone: "amber" },
             { title: "General English B2 · Nigar M.", stage: "Enrolled", tone: "mint" },
-            { title: "SAT Prep · Murad K.", stage: "Trial booked", tone: "amber" },
+            { title: "Wedding make-up · Murad K.", stage: "Booked", tone: "amber" },
           ],
         },
         {
@@ -33,7 +33,7 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
             "Pin quick filters by channel (WhatsApp, Instagram, Telegram), branch, or unassigned operator.",
           rows: [
             { title: "WhatsApp · Unanswered > 5m", stage: "Priority", tone: "amber" },
-            { title: "Instagram DM · Today's trials", stage: "Confirmed", tone: "mint" },
+            { title: "Instagram DM · Today's bookings", stage: "Confirmed", tone: "mint" },
             { title: "Telegram Bot · New inquiries", stage: "Auto-reply", tone: "sky" },
           ],
         },
@@ -41,10 +41,10 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
           id: "multi",
           label: "Create multiple pipelines",
           caption:
-            "Separate Trial Bookings, Monthly Renewals, and Corporate Training into dedicated pipelines.",
+            "Separate new bookings, monthly renewals, and corporate orders into dedicated pipelines.",
           rows: [
-            { title: "Baku Main Branch — Trial Funnel", stage: "14 active", tone: "sky" },
-            { title: "Online Courses — Monthly Funnel", stage: "22 active", tone: "mint" },
+            { title: "Baku Main Branch — Bookings", stage: "14 active", tone: "sky" },
+            { title: "Online Store — Monthly Funnel", stage: "22 active", tone: "mint" },
             { title: "Corporate English — B2B Funnel", stage: "6 active", tone: "amber" },
           ],
         },
@@ -56,10 +56,10 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
           caption:
             "İşinizə uyğun görünüşü seçin: Kanban ümumi satış gedişatını göstərir, Siyahı görünüşü isə detalları sürətli yoxlamağa imkan verir.",
           rows: [
-            { title: "IELTS Hazırlıq · Aytən H.", stage: "Yeni sorğu", tone: "sky" },
-            { title: "Python Bootcamp · Kamran Ə.", stage: "Sınaq dərsi", tone: "amber" },
+            { title: "Diş müayinəsi · Aytən H.", stage: "Yeni sorğu", tone: "sky" },
+            { title: "Divan sifarişi · Kamran Ə.", stage: "Rezervasiya", tone: "amber" },
             { title: "Ümumi İngilis B2 · Nigar M.", stage: "Qeydiyyat", tone: "mint" },
-            { title: "SAT Hazırlıq · Murad K.", stage: "Sınaq dərsi", tone: "amber" },
+            { title: "Toy makiyajı · Murad K.", stage: "Rezervasiya", tone: "amber" },
           ],
         },
         {
@@ -69,7 +69,7 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
             "Kanal (WhatsApp, Instagram, Telegram), filial və ya cavabsız müraciətlər üzrə hazır filtrləri bir kliklə açın.",
           rows: [
             { title: "WhatsApp · Cavab gözləyən", stage: "Təcili", tone: "amber" },
-            { title: "Instagram DM · Bugünkü sınaqlar", stage: "Təsdiqləndi", tone: "mint" },
+            { title: "Instagram DM · Bugünkü görüşlər", stage: "Təsdiqləndi", tone: "mint" },
             { title: "Telegram Bot · Yeni müraciətlər", stage: "Avto-cavab", tone: "sky" },
           ],
         },
@@ -77,10 +77,10 @@ export function PipelineFocusClient({ lang }: { lang: "az" | "en" }) {
           id: "multi",
           label: "Birdən çox satış xətti yaradın",
           caption:
-            "Sınaq dərsləri, aylıq ödəniş yenilənmələri və korporativ təlimlər üçün ayrı-ayrı satış xətləri qurun.",
+            "Yeni rezervasiyalar, aylıq ödəniş yenilənmələri və korporativ sifarişlər üçün ayrı-ayrı satış xətləri qurun.",
           rows: [
-            { title: "Bakı Mərkəz — Sınaq Xətti", stage: "14 aktiv", tone: "sky" },
-            { title: "Onlayn Dərslər — Aylıq Xətt", stage: "22 aktiv", tone: "mint" },
+            { title: "Bakı Mərkəz — Rezervasiyalar", stage: "14 aktiv", tone: "sky" },
+            { title: "Onlayn Mağaza — Aylıq Xətt", stage: "22 aktiv", tone: "mint" },
             { title: "Korporativ Təlim — B2B Xətti", stage: "6 aktiv", tone: "amber" },
           ],
         },

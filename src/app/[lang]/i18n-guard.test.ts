@@ -6,7 +6,7 @@ import { errorCopy, errorCopyFor } from "./error-copy";
 const SRC = path.resolve(import.meta.dirname, "../..");
 // Files allowed to hold user-facing copy directly: the dictionaries, the error-boundary copy,
 // the bilingual global 404 (no locale is known there) and tests.
-const ALLOWED = [/dictionaries[\\/]/, /error-copy\.ts$/, /global-not-found\.tsx$/, /\.test\.tsx?$/, /components[\\/]panel[\\/]/, /components[\\/]marketing[\\/]/, /app[\\/]/];
+const ALLOWED = [/dictionaries[\\/]/, /error-copy\.ts$/, /global-not-found\.tsx$/, /\.test\.tsx?$/, /components[\\/]panel[\\/]/, /components[\\/]marketing[\\/]/, /app[\\/]/, /lib[\\/]marketing[\\/](legal|pricing-jsonld)\.ts$/];
 
 function walk(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {

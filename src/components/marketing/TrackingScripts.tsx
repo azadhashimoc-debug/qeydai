@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { readConsent, subscribeConsent } from "@/lib/analytics/consent";
 import { useSyncExternalStore } from "react";
 
 export type TrackingConfig = {
@@ -33,21 +34,8 @@ export function readTrackingConfig(env: Record<string, string | undefined>): Tra
   };
 }
 
-function subscribeConsent(cb: () => void) {
-  window.addEventListener("storage", cb);
-  window.addEventListener("panelim:cookie-change", cb);
-  return () => {
-    window.removeEventListener("storage", cb);
-    window.removeEventListener("panelim:cookie-change", cb);
-  };
-}
-
 function getConsentSnapshot(): boolean {
-  try {
-    return Boolean(localStorage.getItem("panelim:cookie-accepted"));
-  } catch {
-    return false;
-  }
+  return readConsent() === "all";
 }
 
 function getServerConsentSnapshot(): boolean {

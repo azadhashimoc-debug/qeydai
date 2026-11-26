@@ -118,6 +118,9 @@ export function SiteFooter({
                   <Link href={`/${lang}/legal/privacy`}>{c.legal.privacy}</Link>
                 </li>
                 <li>
+                  <Link href={`/${lang}/legal/data-deletion`}>{lang === "en" ? "Data deletion" : "Məlumatların silinməsi"}</Link>
+                </li>
+                <li>
                   <Link href={`/${lang}/login`}>{c.legal.login}</Link>
                 </li>
               </ul>

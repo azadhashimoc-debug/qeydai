@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { buttonClass } from "@/components/ui/button";
 import type { PanelDict } from "./types";
+import { PLAN_MONTHLY_AZN, type PlanId } from "@/lib/marketing/pricing";
 
 type PlanKey = "starter" | "growth" | "pro" | "enterprise";
 
@@ -15,16 +16,21 @@ type SubscriptionInfo = {
   receivedAt: string;
 };
 
+const azn = (plan: PlanId) => {
+  const p = PLAN_MONTHLY_AZN[plan];
+  return { monthly: `${p.monthly} AZN`, halfYear: `${p.halfYear} AZN`, annual: `${p.annual} AZN` };
+};
+
 const PRICES: Record<PlanKey, { monthly: string; halfYear: string; annual: string }> = {
-  starter: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-  growth: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-  pro: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
+  starter: azn("starter"),
+  growth: azn("growth"),
+  pro: azn("pro"),
   enterprise: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
 };
 
 export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
   const plansDict = d.plans;
-  const [period, setPeriod] = useState<"monthly" | "halfYear" | "annual">("halfYear");
+  const [period, setPeriod] = useState<"monthly" | "halfYear" | "annual">("monthly");
   const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null);
 
   useEffect(() => {

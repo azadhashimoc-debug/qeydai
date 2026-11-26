@@ -24,16 +24,16 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
 
   const leads: LeadCard[] = isEn
     ? [
-        { name: "Ayten Hasanova", course: "IELTS Intensive", amount: "180 AZN", channel: "WhatsApp", tag: "Trial today" },
-        { name: "Kamran Aliyev", course: "Python Backend", amount: "240 AZN", channel: "Instagram", tag: "New lead" },
-        { name: "Nigar Mammadova", course: "General English B2", amount: "150 AZN", channel: "Telegram", tag: "Confirmed" },
-        { name: "Tural Rzayev", course: "UI/UX Design", amount: "220 AZN", channel: "WhatsApp", tag: "Follow-up" },
+        { name: "Ayten Hasanova", course: "Dental check-up", amount: "60 AZN", channel: "WhatsApp", tag: "Visit today" },
+        { name: "Kamran Aliyev", course: "Sofa order", amount: "1 240 AZN", channel: "Instagram", tag: "New lead" },
+        { name: "Nigar Mammadova", course: "English course B2", amount: "150 AZN", channel: "Telegram", tag: "Confirmed" },
+        { name: "Tural Rzayev", course: "Hair colouring", amount: "120 AZN", channel: "WhatsApp", tag: "Follow-up" },
       ]
     : [
-        { name: "Aytən Həsənova", course: "IELTS Hazırlıq", amount: "180 AZN", channel: "WhatsApp", tag: "Bu gün sınaq" },
-        { name: "Kamran Əliyev", course: "Python Backend", amount: "240 AZN", channel: "Instagram", tag: "Yeni sorğu" },
-        { name: "Nigar Məmmədova", course: "Ümumi İngilis B2", amount: "150 AZN", channel: "Telegram", tag: "Təsdiqləndi" },
-        { name: "Tural Rzayev", course: "UI/UX Dizayn", amount: "220 AZN", channel: "WhatsApp", tag: "Təqibdə" },
+        { name: "Aytən Həsənova", course: "Diş müayinəsi", amount: "60 AZN", channel: "WhatsApp", tag: "Bu gün görüş" },
+        { name: "Kamran Əliyev", course: "Divan sifarişi", amount: "1 240 AZN", channel: "Instagram", tag: "Yeni sorğu" },
+        { name: "Nigar Məmmədova", course: "İngilis dili kursu B2", amount: "150 AZN", channel: "Telegram", tag: "Təsdiqləndi" },
+        { name: "Tural Rzayev", course: "Saç boyama", amount: "120 AZN", channel: "WhatsApp", tag: "Təqibdə" },
       ];
 
   return (
@@ -44,7 +44,7 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
             <div className="pm-prod-kanban">
               {[
                 { col: isEn ? "First Contact" : "İlk Təmas", cards: [leads[1], leads[3]] },
-                { col: isEn ? "Trial Scheduled" : "Sınaq Dərsi", cards: [leads[0]] },
+                { col: isEn ? "Booked" : "Rezervasiya", cards: [leads[0]] },
                 { col: isEn ? "Enrolled" : "Qeydiyyat", cards: [leads[2]] },
               ].map((column) => (
                 <div key={column.col} className="pm-prod-col">
@@ -100,8 +100,8 @@ export function ProductViewSwitcherClient({ lang }: { lang: "az" | "en" }) {
               <div className="pm-prod-inbox-chat">
                 <div className="pm-prod-msg is-in">
                   {isEn
-                    ? "Salam, what time is the IELTS trial class today?"
-                    : "Salam, bu gün IELTS sınaq dərsi saat neçədədir?"}
+                    ? "Salam, is my 16:00 appointment today still on?"
+                    : "Salam, bu gün saat 16:00 görüşüm qüvvədədir?"}
                 </div>
                 <div className="pm-prod-msg is-out">
                   {isEn

@@ -47,7 +47,34 @@ const ALL_SUBPAGE_PATHS = [
   "/az/select-account",
   "/az/legal/terms",
   "/az/legal/privacy",
+  "/az/legal/data-deletion",
+  "/en/legal/data-deletion",
 ];
+
+test("pricing opens on monthly prices and JSON-LD never shows a discounted figure as monthly", async ({ page }) => {
+  await page.goto("/az/pricing");
+  const cards = page.locator(".pm-plan-card");
+  await expect(cards.nth(0).locator(".pm-plan-price strong")).toHaveText("49 AZN");
+  await expect(cards.nth(1).locator(".pm-plan-price strong")).toHaveText("89 AZN");
+  await expect(cards.nth(2).locator(".pm-plan-price strong")).toHaveText("149 AZN");
+  await expect(cards.nth(1)).toContainText("100 AZN");
+
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const offers = ld.map((t) => JSON.parse(t)).flatMap((j) => j.offers ?? []);
+  expect(offers.map((o: { price: string }) => o.price)).toEqual(["49", "89", "149"]);
+
+  await page.getByRole("tab", { name: /İllik/ }).click();
+  await expect(cards.nth(0).locator(".pm-plan-price strong")).toHaveText("39 AZN");
+  await expect(cards.nth(0)).toContainText("468 AZN");
+});
+
+test("no placeholder WhatsApp number is published", async ({ page }) => {
+  await page.goto("/az");
+  await page.locator(".js-amo-button").click();
+  await expect(page.locator('#amo-livechat a[href*="994501234567"]')).toHaveCount(0);
+  await page.goto("/az/contact");
+  await expect(page.locator("main")).not.toContainText("+994 50 000 00 00");
+});
 
 test("all subpages render HTTP 200 with h1 and zero horizontal overflow", async ({ page }) => {
   test.slow();

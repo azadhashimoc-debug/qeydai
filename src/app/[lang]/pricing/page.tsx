@@ -5,6 +5,8 @@ import { PricingTiersClient, type PricingTier } from "@/components/marketing/Pri
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { BottomCtaBand, FeatureGrid, SubpageHero } from "@/components/marketing/SubpageBlocks";
+import { PLAN_SETUP_FEE_AZN, TRIAL_DAYS } from "@/lib/marketing/pricing";
+import { pricingJsonLd } from "@/lib/marketing/pricing-jsonld";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
 
@@ -34,61 +36,64 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
   const s = d.subpages;
   const pricing = s.pricingPage;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://panelim.az";
+  const register = `/${locale}/register`;
   const tiers: PricingTier[] =
     locale === "en"
       ? [
           {
             id: "starter",
             name: "Starter",
-            desc: "For growing courses and studios starting unified messaging.",
-            prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "Per workspace · No hidden fees",
-            ctaLabel: "Start 14-day trial",
+            desc: "For small businesses bringing Telegram and Instagram enquiries into one inbox.",
+            setupNote: "Per workspace · No setup fee",
+            ctaLabel: `Start ${TRIAL_DAYS}-day free trial`,
+            ctaHref: register,
             limits: [
               "Telegram + Instagram Direct inbox",
-              "Kanban pipeline up to 500 leads",
-              "Duplicate booking checks",
+              "Kanban sales pipeline",
+              "Duplicate enquiry checks",
             ],
           },
           {
             id: "growth",
             name: "Growth",
-            desc: "WhatsApp Cloud API + automated trial scheduling.",
-            prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "Per workspace · 14-day free trial",
-            ctaLabel: "Start 14-day trial",
+            desc: "Adds WhatsApp Cloud API, bookings and team handoff.",
+            setupNote: `Per workspace · ${PLAN_SETUP_FEE_AZN.growth} AZN one-time setup`,
+            ctaLabel: `Start ${TRIAL_DAYS}-day free trial`,
+            ctaHref: register,
             limits: [
               "WhatsApp + Instagram + Telegram",
-              "AI assistant & instant replies",
+              "Pani AI assistant and quick replies",
               "Team assignment & operator handoff",
             ],
           },
           {
             id: "pro",
             name: "Pro",
-            desc: "Full automation, multi-branch capacity lock & AI salesbot.",
+            desc: "For businesses with several branches that want the full automation set.",
             popular: true,
             popularBadge: "Most Popular",
-            prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "Per workspace · Priority Baku onboarding",
-            ctaLabel: "Choose Pro",
+            setupNote: `Per workspace · ${PLAN_SETUP_FEE_AZN.pro} AZN one-time setup · onboarding in Baku`,
+            ctaLabel: `Start ${TRIAL_DAYS}-day free trial`,
+            ctaHref: register,
             limits: [
               "All channels + REST Webhook & n8n",
               "Unlimited custom CRM fields",
-              "Full audit log & multi-branch control",
+              "Activity log & branch control",
             ],
           },
           {
             id: "enterprise",
             name: "Enterprise",
-            desc: "Dedicated PostgreSQL isolation, SLA & custom integrations.",
-            prices: { monthly: "Custom", halfYear: "Custom", annual: "Custom" },
-            setupNote: "Tailored for multi-branch businesses",
+            desc: "Custom contract, SLA and integrations.",
+            customPrice: "Custom",
+            setupNote: "For multi-branch businesses and service networks",
             ctaLabel: "Contact sales",
+            ctaHref: `/${locale}/contact`,
             limits: [
-              "Dedicated isolated database",
-              "Custom ERP / payment webhooks",
-              "Dedicated technical account lead",
+              "Custom contract and SLA",
+              "Custom payment / ERP integrations",
+              "Dedicated account manager",
             ],
           },
         ]
@@ -96,53 +101,54 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Başlanğıc",
-            desc: "Vahid mesajlaşma və ilk qeydiyyat axınına keçən mərkəzlər üçün.",
-            prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "İş sahəsi üzrə · Gizli xərc yoxdur",
-            ctaLabel: "14 gün pulsuz sına",
+            desc: "Telegram və Instagram müraciətlərini bir qutuda toplamağa başlayan kiçik bizneslər üçün.",
+            setupNote: "İş sahəsi üzrə · Quraşdırma haqqı yoxdur",
+            ctaLabel: `${TRIAL_DAYS} gün pulsuz sına`,
+            ctaHref: register,
             limits: [
               "Telegram + Instagram Direct qutusu",
-              "500 müraciətədək Kanban lövhəsi",
-              "Təkrar rezervasiyalara nəzarət",
+              "Kanban satış lövhəsi",
+              "Təkrar müraciət yoxlaması",
             ],
           },
           {
             id: "growth",
             name: "İnkişaf",
-            desc: "WhatsApp Cloud API və avtomatik sınaq dərsi rezervasiyası.",
-            prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "İş sahəsi üzrə · 14 gün pulsuz sınaq",
-            ctaLabel: "14 gün pulsuz sına",
+            desc: "WhatsApp Cloud API, görüş rezervasiyası və komanda bölgüsü əlavə olunur.",
+            setupNote: `İş sahəsi üzrə · ${PLAN_SETUP_FEE_AZN.growth} AZN birdəfəlik quraşdırma`,
+            ctaLabel: `${TRIAL_DAYS} gün pulsuz sına`,
+            ctaHref: register,
             limits: [
               "WhatsApp + Instagram + Telegram",
-              "AI köməkçi və sürətli cavablar",
+              "Pani AI köməkçi və hazır cavablar",
               "Operator bölgüsü və canlı ötürmə",
             ],
           },
           {
             id: "pro",
             name: "Pro",
-            desc: "Tam avtomatlaşdırma, çoxfiliallı tutum kilidi və AI satış botu.",
+            desc: "Bir neçə filialı olan və tam avtomatlaşdırma istəyən bizneslər üçün.",
             popular: true,
             popularBadge: "Ən Populyar",
-            prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "İş sahəsi üzrə · Bakıda fərdi quraşdırma",
-            ctaLabel: "Pro planını seç",
+            setupNote: `İş sahəsi üzrə · ${PLAN_SETUP_FEE_AZN.pro} AZN birdəfəlik quraşdırma · Bakıda yerində`,
+            ctaLabel: `${TRIAL_DAYS} gün pulsuz sına`,
+            ctaHref: register,
             limits: [
-              "Bütün kanallar + REST Webhook & n8n",
+              "Bütün kanallar + REST Webhook və n8n",
               "Limitsiz fərdi CRM sahələri",
-              "Tam audit jurnalı və filial nəzarəti",
+              "Fəaliyyət jurnalı və filial nəzarəti",
             ],
           },
           {
             id: "enterprise",
             name: "Korporativ",
-            desc: "Təcrid olunmuş PostgreSQL bazası, SLA və xüsusi inteqrasiyalar.",
-            prices: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
+            desc: "Fərdi müqavilə, SLA və xüsusi inteqrasiyalar.",
+            customPrice: "Fərdi",
             setupNote: "Çoxfiliallı bizneslər və xidmət şəbəkələri üçün",
             ctaLabel: "Satışla əlaqə",
+            ctaHref: `/${locale}/contact`,
             limits: [
-              "Fərdi təcrid olunmuş verilənlər bazası",
+              "Fərdi müqavilə və SLA",
               "Xüsusi ödəniş və ERP inteqrasiyası",
               "Fərdi texniki dəstək meneceri",
             ],
@@ -244,6 +250,18 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
       />
 
       <main id="main" tabIndex={-1}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              pricingJsonLd(siteUrl, locale, d.brand, {
+                starter: tiers[0].name,
+                growth: tiers[1].name,
+                pro: tiers[2].name,
+              }),
+            ).replace(/</g, "\\u003c"),
+          }}
+        />
         <SubpageHero
           badge={pricing.hero.badge}
           title={pricing.hero.title}
@@ -270,7 +288,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           subheading={
             locale === "en"
               ? "Built to turn customer conversations into sales."
-              : "Mesajları real dərs qeydiyyatına çevirmək üçün ideal plan."
+              : "Müştəri yazışmalarını satışa çevirmək üçün qurulub."
           }
           columns={2}
           items={proBenefits}

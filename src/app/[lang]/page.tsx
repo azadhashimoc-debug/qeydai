@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { planOffers } from "@/lib/marketing/pricing-jsonld";
 import Link from "next/link";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import {
@@ -63,32 +64,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         description: dictionary.meta.description,
         url: siteUrl,
         inLanguage: locale === "en" ? "en" : "az",
-        offers: [
-          {
-            "@type": "Offer",
-            name: dictionary.landing.pricing.plans.starter.name,
-            priceCurrency: "AZN",
-            price: "49",
-            priceSpecification: { "@type": "UnitPriceSpecification", price: "49", priceCurrency: "AZN", unitText: "MONTH" },
-            url: `${siteUrl}/${locale}/pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: dictionary.landing.pricing.plans.growth.name,
-            priceCurrency: "AZN",
-            price: "89",
-            priceSpecification: { "@type": "UnitPriceSpecification", price: "89", priceCurrency: "AZN", unitText: "MONTH" },
-            url: `${siteUrl}/${locale}/pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: dictionary.landing.pricing.plans.pro.name,
-            priceCurrency: "AZN",
-            price: "149",
-            priceSpecification: { "@type": "UnitPriceSpecification", price: "149", priceCurrency: "AZN", unitText: "MONTH" },
-            url: `${siteUrl}/${locale}/pricing`,
-          },
-        ],
+        offers: planOffers(siteUrl, locale === "en" ? "en" : "az", {
+          starter: dictionary.landing.pricing.plans.starter.name,
+          growth: dictionary.landing.pricing.plans.growth.name,
+          pro: dictionary.landing.pricing.plans.pro.name,
+        }),
       },
       {
         "@type": "FAQPage",
