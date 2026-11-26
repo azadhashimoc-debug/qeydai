@@ -757,6 +757,10 @@ export async function sendDealReply(
      VALUES ($1,$2)`,
     [tenant, messageId],
   );
+  await db.query(
+    "UPDATE sales_threads SET mode='operator' WHERE tenant_id=$1 AND id=$2",
+    [tenant, thread.id],
+  );
   await db.query("UPDATE sales_deals SET updated_at=now() WHERE tenant_id=$1 AND id=$2", [tenant, dealId]);
   return { ok: true, message: { id: messageId, dealId, body, direction: "out", sender: "staff", status: "queued" } };
 }
@@ -954,14 +958,22 @@ export async function getLatestBillingEvent(
   };
 }
 
-export async function ingestMessage(tenant: string, message: InboundMessage): Promise<boolean> {
+export type IngestResult = {
+  ingested: boolean;
+  dealId?: string;
+  threadId?: string;
+  connectionId?: string;
+};
+
+export async function ingestMessageDetailed(tenant: string, message: InboundMessage): Promise<IngestResult> {
   if (!isPostgresConfigured()) {
     const phone = normalizeAzPhone(message.sender);
-    return workspaceTransaction(tenant, async (db) => {
+    const ingested = await workspaceTransaction(tenant, async (db) => {
       const sqlite = getSqliteStore(db);
       if (!sqlite) throw new Error("sqlite_store_unavailable");
       return sqlite.ingestSalesMessage(tenant, message, phone);
     });
+    return { ingested };
   }
   const { channel, account, event, sender, name, text } = message;
   const connection = `${channel}:${account}`;
@@ -974,7 +986,7 @@ export async function ingestMessage(tenant: string, message: InboundMessage): Pr
     const channelRow = await db.query<{ active: boolean }>(
       "SELECT active FROM sales_connections WHERE tenant_id=$1 AND id=$2", [tenant, connection],
     );
-    if (!channelRow.rows[0]?.active) return false;
+    if (!channelRow.rows[0]?.active) return { ingested: false };
 
     await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [
       JSON.stringify([tenant, phone ?? connection, phone ? null : sender]),
@@ -983,7 +995,7 @@ export async function ingestMessage(tenant: string, message: InboundMessage): Pr
       "SELECT 1 FROM sales_messages WHERE tenant_id=$1 AND connection_id=$2 AND provider_event_id=$3",
       [tenant, connection, event],
     );
-    if (seen.rows.length > 0 || (seen.rowCount ?? 0) > 0) return false;
+    if (seen.rows.length > 0 || (seen.rowCount ?? 0) > 0) return { ingested: false };
 
     const existing = await db.query<{ id: string; contact_id: string; deal_id: string }>(`
       SELECT id, contact_id, deal_id FROM sales_threads
@@ -1050,7 +1062,12 @@ export async function ingestMessage(tenant: string, message: InboundMessage): Pr
       INSERT INTO sales_messages (tenant_id,id,thread_id,deal_id,connection_id,provider_event_id,direction,sender,body,status)
       VALUES ($1,$2,$3,$4,$5,$6,'in','student',$7,'received')`,
     [tenant, randomUUID(), threadId, deal, connection, event, text]);
-    return true;
+    return { ingested: true, dealId: deal, threadId, connectionId: connection };
   });
+}
+
+export async function ingestMessage(tenant: string, message: InboundMessage): Promise<boolean> {
+  const res = await ingestMessageDetailed(tenant, message);
+  return res.ingested;
 }
 

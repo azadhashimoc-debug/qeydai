@@ -157,6 +157,7 @@ export function CopilotDrawer({
   const [copied, setCopied] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [customReply, setCustomReply] = useState<string | null>(null);
+  const [asking, setAsking] = useState(false);
 
   const funnelStats = useMemo(() => {
     const total = leads.length;
@@ -215,17 +216,35 @@ export function CopilotDrawer({
     return { totalSeatsLeft, openSession };
   }, [sessions]);
 
-  function handleAsk(e: React.FormEvent<HTMLFormElement>) {
+  async function handleAsk(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const q = prompt.trim();
-    if (!q) return;
-    const topSrc = sourceRows[0]?.source ?? (lang === "az" ? "yoxdur" : "none");
-    const summary =
-      lang === "az"
-        ? `Canlı iş sahəsi xülasəsi: ${deals.length} anlaşma, ${leads.length} müraciət (${funnelStats.paid} ödənişli, ${funnelStats.conversionPct}% dönüşüm), ${sessions.length} sessiyada ${sessionStats.totalSeatsLeft} boş yer. Ən aktiv kanal: ${topSrc}. Sorğu: "${q}".`
-        : `Live workspace summary: ${deals.length} deals, ${leads.length} leads (${funnelStats.paid} paid, ${funnelStats.conversionPct}% conversion), ${sessionStats.totalSeatsLeft} open seats across ${sessions.length} sessions. Top channel: ${topSrc}. Query: "${q}".`;
-    setCustomReply(summary);
+    if (!q || asking) return;
+    setAsking(true);
     setPrompt("");
+    const topSrc = sourceRows[0]?.source ?? (lang === "az" ? "yoxdur" : "none");
+    const fallback =
+      lang === "az"
+        ? `Canlı iş sahəsi xülasəsi: ${deals.length} anlaşma, ${leads.length} müraciət (${funnelStats.paid} ödənişli, ${funnelStats.conversionPct}% dönüşüm), ${sessions.length} sessiyada ${sessionStats.totalSeatsLeft} boş yer. Ən aktiv kanal: ${topSrc}.`
+        : `Live workspace summary: ${deals.length} deals, ${leads.length} leads (${funnelStats.paid} paid, ${funnelStats.conversionPct}% conversion), ${sessionStats.totalSeatsLeft} open seats across ${sessions.length} sessions. Top channel: ${topSrc}.`;
+    try {
+      const res = await fetch("/api/panel/copilot", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ question: q, locale: lang }),
+      });
+      const data = (await res.json().catch(() => null)) as { ok?: boolean; reply?: string | null } | null;
+      if (res.ok && data?.ok && data.reply) {
+        setCustomReply(data.reply);
+      } else {
+        setCustomReply(fallback);
+      }
+    } catch {
+      setCustomReply(fallback);
+    } finally {
+      setAsking(false);
+    }
   }
 
   useEffect(() => {
@@ -483,19 +502,21 @@ export function CopilotDrawer({
               </select>
             </label>
 
-            <form onSubmit={handleAsk} className="flex gap-2">
+            <form onSubmit={(e) => void handleAsk(e)} className="flex gap-2">
               <input
                 type="text"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder={c.promptPlaceholder}
+                disabled={asking}
                 className="flex-1 rounded-lg border border-line bg-bg px-3 py-1.5 text-xs text-ink"
               />
               <button
                 type="submit"
-                className="rounded-lg bg-ink px-3 py-1.5 text-xs font-bold text-surface"
+                disabled={asking || !prompt.trim()}
+                className="rounded-lg bg-ink px-3 py-1.5 text-xs font-bold text-surface disabled:opacity-50"
               >
-                {c.askBtn}
+                {asking ? "..." : c.askBtn}
               </button>
             </form>
           </div>

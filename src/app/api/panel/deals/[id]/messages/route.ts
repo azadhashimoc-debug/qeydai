@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import {
   fail,
   getDeal,
@@ -9,6 +10,8 @@ import {
   sendDealReply,
   withWorkspace,
 } from "@/lib/api/panel-crm";
+import { deliverBatch } from "@/lib/crm/delivery";
+import { reportServerError } from "@/lib/observability/alerts";
 
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
 
@@ -54,6 +57,18 @@ export const POST = (req: Request, { params }: { params: Promise<{ id: string }>
       if (!res.ok) {
         if (res.error === "reply_window_expired") return fail(403, "reply_window_expired");
         return fail(404, res.error === "no_thread" ? "no_thread" : "not_found");
+      }
+      const tenantId = actor.tenantId;
+      const flush = () =>
+        deliverBatch(tenantId, 5)
+          .then(() => undefined)
+          .catch((err) => {
+            void reportServerError("api.panel.deal_reply.deliver", err, { tenantId });
+          });
+      try {
+        after(flush);
+      } catch {
+        void flush();
       }
       return json(201, {
         ok: true,
