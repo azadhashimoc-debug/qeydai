@@ -5731,3 +5731,115 @@
   }
   .pm-live-guide { display: none; }
 }
+
+/* Swiper sliders (src/components/marketing/MarketingSlider.tsx) */
+.pm-slider {
+  position: relative;
+  margin-top: 28px;
+}
+
+.pm-slider-swiper {
+  margin: 0 -4px;
+  padding: 6px 4px 4px;
+}
+
+.pm-slider-swiper:has(.swiper-pagination:not(.swiper-pagination-lock)) {
+  padding-bottom: 48px;
+}
+
+.pm-slider-slide {
+  height: auto;
+}
+
+.pm-slider .pm-slider-slide > * {
+  height: 100%;
+}
+
+.pm-slider .swiper-pagination {
+  bottom: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pm-slider .swiper-pagination-bullet {
+  display: block;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #c9c3e6;
+  opacity: 1;
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.pm-slider .swiper-pagination-bullet-active {
+  width: 22px;
+  background: var(--pm-accent);
+}
+
+.pm-slider .swiper-pagination-bullet:focus-visible,
+.pm-slider-btn:focus-visible {
+  outline: 3px solid var(--pm-accent);
+  outline-offset: 3px;
+}
+
+.pm-slider-nav[hidden] {
+  display: none;
+}
+
+.pm-slider-btn {
+  position: absolute;
+  top: calc(50% - 22px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--pm-line);
+  background: #fff;
+  box-shadow: var(--pm-shadow-sm);
+  color: var(--pm-ink);
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.pm-slider-btn:hover:not(:disabled) {
+  background: var(--pm-lav-card);
+}
+
+.pm-slider-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pm-slider-btn.is-prev {
+  left: -12px;
+}
+
+.pm-slider-btn.is-next {
+  right: -12px;
+}
+
+.pm-logos-slider,
+.pm-outcomes-slider {
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  /* Phones swipe; arrows would cover the cards there. */
+  .pm-slider-btn {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-slider-swiper .swiper-wrapper {
+    transition-duration: 0ms !important;
+  }
+}

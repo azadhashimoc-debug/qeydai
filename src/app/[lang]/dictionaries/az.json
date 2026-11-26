@@ -6,7 +6,10 @@
   },
   "a11y": {
     "skipToMain": "Əsas məzmuna keç",
-    "mainNav": "Əsas naviqasiya"
+    "mainNav": "Əsas naviqasiya",
+    "sliderPrev": "Əvvəlki slayd",
+    "sliderNext": "Növbəti slayd",
+    "sliderBullet": "{{index}} nömrəli slayda keç"
   },
   "nav": {
     "features": "İmkanlar",
