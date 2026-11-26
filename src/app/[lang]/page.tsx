@@ -52,6 +52,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         "@type": "Organization",
         name: dictionary.brand,
         url: siteUrl,
+        logo: `${siteUrl}/icon.svg`,
       },
       {
         "@type": "SoftwareApplication",
@@ -59,12 +60,34 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         description: dictionary.meta.description,
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "AZN",
-          price: "49",
-          priceValidUntil: "2027-12-31",
-        },
+        url: siteUrl,
+        inLanguage: locale === "en" ? "en" : "az",
+        offers: [
+          {
+            "@type": "Offer",
+            name: dictionary.landing.pricing.plans.starter.name,
+            priceCurrency: "AZN",
+            price: "49",
+            priceSpecification: { "@type": "UnitPriceSpecification", price: "49", priceCurrency: "AZN", unitText: "MONTH" },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+          {
+            "@type": "Offer",
+            name: dictionary.landing.pricing.plans.growth.name,
+            priceCurrency: "AZN",
+            price: "89",
+            priceSpecification: { "@type": "UnitPriceSpecification", price: "89", priceCurrency: "AZN", unitText: "MONTH" },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+          {
+            "@type": "Offer",
+            name: dictionary.landing.pricing.plans.pro.name,
+            priceCurrency: "AZN",
+            price: "149",
+            priceSpecification: { "@type": "UnitPriceSpecification", price: "149", priceCurrency: "AZN", unitText: "MONTH" },
+            url: `${siteUrl}/${locale}/pricing`,
+          },
+        ],
       },
       {
         "@type": "FAQPage",
