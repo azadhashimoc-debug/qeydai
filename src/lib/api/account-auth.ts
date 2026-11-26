@@ -17,7 +17,7 @@ const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let pool: Pool | undefined;
 export type Account = { tenant_id: string; id: string; email: string; password_hash: string };
-/** OAuth link columns (migration 0008). Read only by the OAuth paths, so email sign-in works without them. */
+/** OAuth link columns (migration 0009). Read only by the OAuth paths, so email sign-in works without them. */
 export type OAuthLinkState = { oauth_providers: string[]; password_login_enabled: boolean };
 const genericError = (status: number, error: string) =>
   Response.json({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });

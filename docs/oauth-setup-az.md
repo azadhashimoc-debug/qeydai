@@ -60,4 +60,4 @@ Dəyişənləri əlavə etdikdən sonra layihəni yenidən yerləşdirmək (rede
 - Google yalnız təsdiqlənmiş e-poçtu qəbul edir. Facebook hesabında e-poçt paylaşılmasa, giriş rədd olunur.
 - Sosial girişlə yaradılan hesabın şifrəsi təsadüfi və naməlumdur. Həmin hesaba yalnız Google və ya Facebook ilə daxil olmaq olar.
 - Əgər e-poçt ilə şifrəli hesab artıq varsa, Google/Facebook girişi ilk dəfə həmin hesaba bağlanmazdan əvvəl şifrə soruşulur. Şifrə düzgün olduqda bağlanma bir dəfəlik olur və sonrakı girişlər birbaşa işləyir.
-- Miqrasiya `db/migrations/0008_panel_oauth_linking.sql` deploy-dan əvvəl Neon-da tətbiq edilməlidir.
+- Miqrasiya `db/migrations/0009_panel_oauth_linking.sql` deploy-dan əvvəl Neon-da tətbiq edilməlidir.
