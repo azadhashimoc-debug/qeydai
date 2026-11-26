@@ -177,3 +177,34 @@ export async function fetchOAuthProfile(
   }) as { email?: unknown; name?: unknown };
   return profileFrom(me.email, me.name);
 }
+
+/** Link token: proves the provider's verified email matched this existing account. Valid 10 minutes. */
+export type LinkTokenPayload = { t: string; a: string; p: OAuthProvider; l: "az" | "en"; x: number };
+
+export function signLinkToken(payload: LinkTokenPayload, secret: Buffer): string {
+  const encoded = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
+  return `${encoded}.${sign(encoded, secret)}`;
+}
+
+export function verifyLinkToken(token: string | null, secret: Buffer, nowMs: number = Date.now()): LinkTokenPayload | null {
+  if (!token) return null;
+  const parts = token.split(".");
+  if (parts.length !== 2 || !/^[A-Za-z0-9_-]+$/.test(parts[0]) || !/^[A-Za-z0-9_-]+$/.test(parts[1])) return null;
+  const expected = Buffer.from(sign(parts[0], secret), "base64url");
+  const given = Buffer.from(parts[1], "base64url");
+  if (given.length !== expected.length || !timingSafeEqual(given, expected)) return null;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(Buffer.from(parts[0], "base64url").toString("utf8"));
+  } catch {
+    return null;
+  }
+  if (!parsed || typeof parsed !== "object") return null;
+  const rec = parsed as Record<string, unknown>;
+  if (typeof rec.t !== "string" || !/^biz_[a-f0-9-]{36}$/.test(rec.t)) return null;
+  if (typeof rec.a !== "string" || !/^[a-f0-9-]{36}$/.test(rec.a)) return null;
+  if (typeof rec.p !== "string" || !isOAuthProvider(rec.p)) return null;
+  if (rec.l !== "az" && rec.l !== "en") return null;
+  if (typeof rec.x !== "number" || rec.x <= nowMs) return null;
+  return { t: rec.t, a: rec.a, p: rec.p, l: rec.l, x: rec.x };
+}

@@ -16,7 +16,10 @@ import {
 const scrypt = promisify(rawScrypt);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let pool: Pool | undefined;
-export type Account = { tenant_id: string; id: string; email: string; password_hash: string };
+export type Account = {
+  tenant_id: string; id: string; email: string; password_hash: string;
+  oauth_providers: string[]; password_login_enabled: boolean;
+};
 const genericError = (status: number, error: string) =>
   Response.json({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });
 
@@ -48,7 +51,7 @@ export async function findByEmail(email: string): Promise<Account | null> {
     await assertSafeApplicationRole(db);
     await db.query("SELECT set_config('app.auth_email', $1, true)", [email]);
     const result = await db.query<Account>(
-      "SELECT tenant_id,id,email,password_hash FROM panel_accounts WHERE email=$1", [email],
+      "SELECT tenant_id,id,email,password_hash,oauth_providers,password_login_enabled FROM panel_accounts WHERE email=$1", [email],
     );
     await db.query("COMMIT");
     return result.rows[0] ?? null;
@@ -124,7 +127,7 @@ export function accountSessionCookieHeaders(tenant: string, id: string, req: Req
  * Returns "exists" when a concurrent request already created the email.
  */
 export async function provisionOAuthAccount(
-  email: string, businessName: string,
+  email: string, businessName: string, provider: string,
 ): Promise<{ tenantId: string; accountId: string } | "exists" | null> {
   const name = businessName.length >= 2 && businessName.length <= 120 ? businessName : (email.split("@")[0].slice(0, 120).padEnd(2, "_"));
   const tenant = "biz_" + randomUUID();
@@ -142,8 +145,9 @@ export async function provisionOAuthAccount(
     await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
     await db.query("INSERT INTO sales_workspaces (id,name) VALUES ($1,$2)", [tenant, name]);
     await db.query(
-      "INSERT INTO panel_accounts (tenant_id,id,email,password_hash) VALUES ($1,$2,$3,$4)",
-      [tenant, id, email, passwordHash],
+      `INSERT INTO panel_accounts (tenant_id,id,email,password_hash,oauth_providers,password_login_enabled)
+       VALUES ($1,$2,$3,$4,ARRAY[$5]::text[],false)`,
+      [tenant, id, email, passwordHash, provider],
     );
     await db.query(`
       INSERT INTO sales_stages (tenant_id,id,name,position,kind)
@@ -160,6 +164,63 @@ export async function provisionOAuthAccount(
   } finally {
     db.release();
   }
+}
+
+/** Records a provider on an account after its password was confirmed (or on a password-less account). */
+export async function linkOAuthProvider(tenant: string, id: string, provider: string): Promise<void> {
+  const db = await dbPool().connect();
+  try {
+    await db.query("BEGIN");
+    await assertSafeApplicationRole(db);
+    await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
+    await db.query(
+      `UPDATE panel_accounts SET oauth_providers = array_append(oauth_providers, $3)
+       WHERE tenant_id=$1 AND id=$2 AND NOT ($3 = ANY(oauth_providers))`,
+      [tenant, id, provider],
+    );
+    await db.query("COMMIT");
+  } catch (error) {
+    await db.query("ROLLBACK").catch(() => {});
+    throw error;
+  } finally {
+    db.release();
+  }
+}
+
+/**
+ * Password check for linking an OAuth provider to an existing account (by id, since the link token
+ * carries no email). Shares the per-account login rate limit with password sign-in.
+ */
+export async function verifyAccountPasswordById(
+  tenant: string, id: string, password: string,
+): Promise<"ok" | "bad" | "limited" | "unavailable"> {
+  if (password.length === 0 || password.length > 128) return "bad";
+  const pool = dbPool();
+  try {
+    if (!(await allowAuthAttempt(pool, LOGIN_PER_EMAIL, tenant + ":" + id))) return "limited";
+  } catch {
+    return "unavailable";
+  }
+  const db = await pool.connect();
+  let stored: string | undefined;
+  try {
+    await db.query("BEGIN");
+    await assertSafeApplicationRole(db);
+    await db.query("SELECT set_config('app.tenant_id', $1, true)", [tenant]);
+    const found = await db.query<{ password_hash: string }>(
+      "SELECT password_hash FROM panel_accounts WHERE tenant_id=$1 AND id=$2", [tenant, id],
+    );
+    await db.query("COMMIT");
+    stored = found.rows[0]?.password_hash;
+  } catch {
+    await db.query("ROLLBACK").catch(() => {});
+    return "unavailable";
+  } finally {
+    db.release();
+  }
+  dummyHash ??= hashPassword(randomBytes(32).toString("hex"));
+  const ok = await matchesPassword(password, stored ?? await dummyHash);
+  return ok && stored ? "ok" : "bad";
 }
 
 export async function registerBusiness(req: Request): Promise<Response> {

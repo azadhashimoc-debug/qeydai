@@ -1,10 +1,13 @@
-import { accountSessionCookieHeaders, findByEmail, hasStableSessionSecret, provisionOAuthAccount } from "./account-auth";
+import {
+  accountSessionCookieHeaders, findByEmail, hasStableSessionSecret, linkOAuthProvider,
+  provisionOAuthAccount, verifyAccountPasswordById,
+} from "./account-auth";
 import { ensurePanelJtiStore } from "./instance";
 import { getPanelAuthConfig, readCookieValue } from "./panel-auth";
 import {
-  buildAuthorizeUrl, createOAuthState, createPkcePair, fetchOAuthProfile, OAUTH_STATE_COOKIE_NAME,
-  OAUTH_STATE_TTL_MS, providerConfig, safeEqualText, signOAuthState, verifyOAuthState,
-  type OAuthProvider,
+  buildAuthorizeUrl, createOAuthState, createPkcePair, fetchOAuthProfile,
+  OAUTH_STATE_COOKIE_NAME, OAUTH_STATE_TTL_MS, providerConfig, safeEqualText, signLinkToken,
+  signOAuthState, verifyLinkToken, verifyOAuthState, type OAuthProvider,
 } from "./oauth";
 
 type Lang = "az" | "en";
@@ -75,22 +78,62 @@ export async function finishOAuth(
     const profile = await fetchOAuthProfile(provider, cfg, code, payload.v, redirectUri, env, fetchImpl);
     if (!profile) return fail();
 
-    // Linking is by provider-verified email. An existing account with that email is reused.
+    // Matching is by provider-verified email. An account that already signed in with this provider,
+    // or was created by OAuth, is used directly. A password account needs its password first.
     let account = await findByEmail(profile.email);
     if (!account) {
-      const created = await provisionOAuthAccount(profile.email, profile.name);
+      const created = await provisionOAuthAccount(profile.email, profile.name, provider);
       if (created && created !== "exists") {
-        account = { tenant_id: created.tenantId, id: created.accountId, email: profile.email, password_hash: "" };
+        account = {
+          tenant_id: created.tenantId, id: created.accountId, email: profile.email, password_hash: "",
+          oauth_providers: [provider], password_login_enabled: false,
+        };
       } else if (created === "exists") {
         account = await findByEmail(profile.email);
       }
     }
     if (!account) return fail();
 
+    const linkedAlready = account.oauth_providers.includes(provider);
+    if (!linkedAlready && account.password_login_enabled) {
+      if (!secret) return fail();
+      const token = signLinkToken({
+        t: account.tenant_id, a: account.id, p: provider, l: lang, x: Date.now() + OAUTH_STATE_TTL_MS,
+      }, secret);
+      return redirectTo(`/${lang}/link-account?t=${encodeURIComponent(token)}`, [clearState]);
+    }
+    if (!linkedAlready) await linkOAuthProvider(account.tenant_id, account.id, provider);
+
     const sessionCookies = accountSessionCookieHeaders(account.tenant_id, account.id, req);
     if (!sessionCookies) return fail();
     return redirectTo(`/${lang}/panel`, [clearState, ...sessionCookies]);
   } catch {
     return fail();
+  }
+}
+
+/**
+ * Step 3 (password accounts only): the user confirms this account's password, then the provider is linked
+ * and the session starts. The link token is the only thing that identifies the account.
+ */
+export async function finishLinkAccount(req: Request, env: NodeJS.ProcessEnv = process.env): Promise<Response> {
+  const form = await req.formData().catch(() => null);
+  const token = typeof form?.get("t") === "string" ? String(form.get("t")) : null;
+  const password = typeof form?.get("password") === "string" ? String(form.get("password")) : "";
+  const secret = getPanelAuthConfig(env).secret;
+  const payload = secret ? verifyLinkToken(token, secret) : null;
+  if (!payload || !secret) return redirectTo("/az/login?oauth_error=1");
+  const lang = payload.l;
+  const back = `/${lang}/link-account?t=${encodeURIComponent(token ?? "")}`;
+  try {
+    const result = await verifyAccountPasswordById(payload.t, payload.a, password);
+    if (result === "limited") return redirectTo(`${back}&error=limited`);
+    if (result !== "ok") return redirectTo(`${back}&error=1`);
+    await linkOAuthProvider(payload.t, payload.a, payload.p);
+    const sessionCookies = accountSessionCookieHeaders(payload.t, payload.a, req);
+    if (!sessionCookies) return redirectTo(`/${lang}/login?oauth_error=1`);
+    return redirectTo(`/${lang}/panel`, sessionCookies);
+  } catch {
+    return redirectTo(`/${lang}/login?oauth_error=1`);
   }
 }
