@@ -10,3 +10,12 @@
 - Yalnız feat/panelim-subpages branch-i və təsdiqlənmiş fayl/sətir sərhədləri istifadə olunur.
 - Mərhələ 2B, 3 və 4 ayrıca təsdiq tələb edir.
 - Build nəticəsi faktiki yoxlama olmadan uğurlu sayılmır.
+
+## 2026-11-28 — Mərhələ 2A checkpoint
+- Altı icazəli fayl üzrə son beş detalın kod və sənədləşdirmə icrası tamamlandı.
+- Kanal səhifəsinin aktiv kartları yalnız WhatsApp və Pani AI-dır.
+- Qiymət müqayisəsi, SEO və panel tarifləri: 99/49, 199/99, 349/175 AZN (aylıq/ilk ay).
+- Paycell müştəri interfeysində aktivləşdirmə axınından çıxarılıb. NEXT_PUBLIC_WHATSAPP_NUMBER konfiqurasiya olunubsa WhatsApp keçidi, əks halda lokal əlaqə səhifəsi istifadə olunur. Dəyər loglanmır.
+- Backend ödəniş tarifləri və entitlement limitləri dəyişdirilməyib; canlı satışdan əvvəl uyğunluğu yoxlanmalıdır.
+- Əvvəlki CI: TypeScript və ESLint uğurlu; src/lib/marketing/wa-tools.test.ts köhnə kanal kataloqu gözləntisində uğursuz; build icra edilməyib. Bu fayl və kataloq yeni icazə xaricindədir. Texniki buraxılış təsdiqi açıqdır.
+- Mərhələ 2B başladılmayıb.

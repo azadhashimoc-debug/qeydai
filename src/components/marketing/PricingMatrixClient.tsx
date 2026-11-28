@@ -6,7 +6,7 @@ import type { SubpagesDict } from "@/app/[lang]/dictionaries";
 type EntitlementRow = {
   name: string;
   desc: string;
-  values: [boolean, boolean, boolean, boolean];
+  values: [boolean, boolean, boolean];
 };
 
 type CategoryGroup = {
@@ -20,7 +20,7 @@ export function PricingMatrixClient({
   planNames,
 }: {
   matrix: SubpagesDict["pricingPage"]["matrix"];
-  planNames: [string, string, string, string];
+  planNames: [string, string, string];
 }) {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     channels: true,
@@ -29,104 +29,44 @@ export function PricingMatrixClient({
     support: true,
   });
 
+  const az = planNames[0] === "Başlanğıc";
+  const all: [boolean, boolean, boolean] = [true, true, true];
+  const standard: [boolean, boolean, boolean] = [false, true, true];
+  const premium: [boolean, boolean, boolean] = [false, false, true];
+  const row = (nameAz: string, nameEn: string, values: [boolean, boolean, boolean]): EntitlementRow => ({
+    name: az ? nameAz : nameEn,
+    desc: "",
+    values,
+  });
+
   const groups: CategoryGroup[] = [
     {
-      key: "channels",
-      name: matrix.categories.channels.title,
+      key: "crm",
+      name: az ? "Gündəlik idarəetmə" : "Daily management",
       rows: [
-        {
-          name: matrix.categories.channels.features.telegram.name,
-          desc: matrix.categories.channels.features.telegram.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.channels.features.instagram.name,
-          desc: matrix.categories.channels.features.instagram.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.channels.features.whatsapp.name,
-          desc: matrix.categories.channels.features.whatsapp.desc,
-          values: [false, true, true, true],
-        },
-        {
-          name: matrix.categories.channels.features.webhook.name,
-          desc: matrix.categories.channels.features.webhook.desc,
-          values: [true, true, true, true],
-        },
+        row("Müştəri bazası", "Customer database", all),
+        row("Rezervasiya", "Bookings", all),
+        row("İşçi paneli", "Staff panel", all),
       ],
     },
     {
-      key: "crm",
-      name: matrix.categories.crm.title,
-      rows: [
-        {
-          name: matrix.categories.crm.features.kanban.name,
-          desc: matrix.categories.crm.features.kanban.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.crm.features.claim.name,
-          desc: matrix.categories.crm.features.claim.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.crm.features.tasks.name,
-          desc: matrix.categories.crm.features.tasks.desc,
-          values: [false, true, true, true],
-        },
-        {
-          name: matrix.categories.crm.features.customFields.name,
-          desc: matrix.categories.crm.features.customFields.desc,
-          values: [true, true, true, true],
-        },
-      ],
+      key: "channels",
+      name: az ? "WhatsApp" : "WhatsApp",
+      rows: [row("WhatsApp bağlantısı", "WhatsApp connection", standard)],
     },
     {
       key: "aiBooking",
-      name: matrix.categories.aiBooking.title,
-      rows: [
-        {
-          name: matrix.categories.aiBooking.features.booking.name,
-          desc: matrix.categories.aiBooking.features.booking.desc,
-          values: [false, true, true, true],
-        },
-        {
-          name: matrix.categories.aiBooking.features.duplicateBlock.name,
-          desc: matrix.categories.aiBooking.features.duplicateBlock.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.aiBooking.features.aiAssistant.name,
-          desc: matrix.categories.aiBooking.features.aiAssistant.desc,
-          values: [false, true, true, true],
-        },
-        {
-          name: matrix.categories.aiBooking.features.handoff.name,
-          desc: matrix.categories.aiBooking.features.handoff.desc,
-          values: [false, false, true, true],
-        },
-      ],
+      name: "Pani AI",
+      rows: [row("Pani AI köməkçi", "Pani AI assistant", standard)],
     },
     {
       key: "support",
-      name: matrix.categories.support.title,
+      name: az ? "Quraşdırma və dəstək" : "Onboarding and support",
       rows: [
-        {
-          name: matrix.categories.support.features.isolatedDb.name,
-          desc: matrix.categories.support.features.isolatedDb.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.support.features.auditLog.name,
-          desc: matrix.categories.support.features.auditLog.desc,
-          values: [true, true, true, true],
-        },
-        {
-          name: matrix.categories.support.features.support.name,
-          desc: matrix.categories.support.features.support.desc,
-          values: [true, true, true, true],
-        },
+        row("Canlı quraşdırma", "Live onboarding", standard),
+        row("Limitsiz işçi", "Unlimited staff", premium),
+        row("Öncəlikli texniki dəstək", "Priority technical support", premium),
+        row("Aylıq hesabat", "Monthly report", premium),
       ],
     },
   ];
@@ -161,9 +101,11 @@ export function PricingMatrixClient({
                   <thead>
                     <tr>
                       <th scope="col">{group.name}</th>
-                      {planNames.map((name) => (
+                      {planNames.map((name, index) => (
                         <th key={name} scope="col">
-                          {name}
+                          <div>{name}</div>
+                          <div>{[99, 199, 349][index]} AZN{az ? "/ay" : "/mo"}</div>
+                          <div className="pm-matrix-desc">{az ? "İlk ay" : "First month"}: {[49, 99, 175][index]} AZN</div>
                         </th>
                       ))}
                     </tr>
@@ -173,8 +115,7 @@ export function PricingMatrixClient({
                       <tr key={row.name}>
                         <td>
                           <span>{row.name}</span>
-                          <br />
-                          <span className="pm-matrix-desc">{row.desc}</span>
+                          {row.desc && <><br /><span className="pm-matrix-desc">{row.desc}</span></>}
                         </td>
                         {row.values.map((included, idx) => (
                           <td key={`${row.name}-${idx}`}>

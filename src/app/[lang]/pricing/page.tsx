@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/pricing">)
     lang: locale,
     routeSuffix: "/pricing",
     title: d.subpages.pricingPage.hero.title,
-    description: d.subpages.pricingPage.hero.subtitle,
+    description: locale === "en" ? "Starter 99 AZN/month, Standard 199 AZN/month, Premium 349 AZN/month. First month: 49, 99 and 175 AZN." : "Başlanğıc 99 AZN/ay, Standart 199 AZN/ay, Premium 349 AZN/ay. İlk ay: 49, 99 və 175 AZN.",
     brand: d.brand,
     image: "/images/p-pricing-pro.webp",
   });
@@ -195,7 +195,7 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
         name: d.brand,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
-        description: pricing.hero.subtitle,
+        description: locale === "en" ? "Three monthly CRM plans: 99, 199 and 349 AZN." : "Üç aylıq CRM paketi: 99, 199 və 349 AZN.",
         url: `${siteUrl}/${locale}/pricing`,
         inLanguage: locale,
         offers: [
@@ -203,10 +203,10 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             "@type": "Offer",
             name: tiers[0].name,
             priceCurrency: "AZN",
-            price: "49",
+            price: "99",
             priceSpecification: {
               "@type": "UnitPriceSpecification",
-              price: "49",
+              price: "99",
               priceCurrency: "AZN",
               unitText: "MONTH",
             },
@@ -216,10 +216,10 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             "@type": "Offer",
             name: tiers[1].name,
             priceCurrency: "AZN",
-            price: "89",
+            price: "199",
             priceSpecification: {
               "@type": "UnitPriceSpecification",
-              price: "89",
+              price: "199",
               priceCurrency: "AZN",
               unitText: "MONTH",
             },
@@ -229,10 +229,10 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
             "@type": "Offer",
             name: tiers[2].name,
             priceCurrency: "AZN",
-            price: "149",
+            price: "349",
             priceSpecification: {
               "@type": "UnitPriceSpecification",
-              price: "149",
+              price: "349",
               priceCurrency: "AZN",
               unitText: "MONTH",
             },
@@ -315,8 +315,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
               matrix={pricing.matrix}
               planNames={
                 locale === "en"
-                  ? ["Starter", "Growth", "Pro", "Enterprise"]
-                  : ["Başlanğıc", "İnkişaf", "Pro", "Korporativ"]
+                  ? ["Starter", "Standard", "Premium"]
+                  : ["Başlanğıc", "Standart", "Premium"]
               }
             />
           </div>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/ChannelIcons";
+import { WhatsAppIcon } from "@/components/ChannelIcons";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import {
   BottomCtaBand,
-  FeatureAlternating,
   FeatureGrid,
   SubpageHero,
 } from "@/components/marketing/SubpageBlocks";
@@ -12,10 +11,10 @@ import { buildSubpageMetadata } from "@/lib/marketing/metadata";
 import { getDictionary, locales } from "../dictionaries";
 import "../marketing.css";
 
-function WebhookIcon() {
+function PaniIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-      <path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 7l-3 10" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -31,8 +30,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/channels">
   return buildSubpageMetadata({
     lang: locale,
     routeSuffix: "/channels",
-    title: d.subpages.channelsHub.hero.title,
-    description: d.subpages.channelsHub.hero.subtitle,
+    title: locale === "en" ? "WhatsApp and Pani AI" : "WhatsApp və Pani AI",
+    description: locale === "en" ? "Manage customer conversations with WhatsApp and the Pani AI assistant." : "WhatsApp və Pani AI köməkçisi ilə müştəri mesajlarını idarə edin.",
     brand: d.brand,
     image: "/images/p-channels.webp",
   });
@@ -65,12 +64,12 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
       <main id="main" tabIndex={-1}>
         <SubpageHero
           badge={c.hero.badge}
-          title={c.hero.title}
-          subtitle={c.hero.subtitle}
-          primaryCta={{ href: `/${locale}/tools`, label: c.hero.primaryCta }}
+          title={locale === "en" ? "WhatsApp and Pani AI" : "WhatsApp və Pani AI"}
+          subtitle={locale === "en" ? "Manage customer conversations with WhatsApp and the Pani AI assistant." : "WhatsApp və Pani AI köməkçisi ilə müştəri mesajlarını idarə edin."}
+          primaryCta={{ href: `/${locale}/channels/whatsapp`, label: "WhatsApp" }}
           secondaryCta={{ href: `/${locale}/demo`, label: c.hero.secondaryCta }}
           image="p-channels"
-          imageAlt={c.hero.title}
+          imageAlt={locale === "en" ? "WhatsApp and Pani AI" : "WhatsApp və Pani AI"}
         />
 
         <FeatureGrid
@@ -78,49 +77,19 @@ export default async function ChannelsHubPage({ params }: PageProps<"/[lang]/cha
           items={[
             {
               title: c.cards.whatsapp.title,
-              desc: c.cards.whatsapp.desc,
+              desc: locale === "en" ? "Connect one WhatsApp account and manage customer conversations." : "Bir WhatsApp hesabını qoşun və müştəri mesajlarını idarə edin.",
               href: `/${locale}/channels/whatsapp`,
               ctaLabel: s.navGroups.channels.whatsappTitle,
               tone: "mint",
               icon: <WhatsAppIcon size={24} />,
             },
             {
-              title: c.cards.instagram.title,
-              desc: c.cards.instagram.desc,
-              href: `/${locale}/channels/instagram`,
-              ctaLabel: s.navGroups.channels.instagramTitle,
+              title: "Pani AI",
+              desc: locale === "en" ? "AI assistant for customer conversations and daily work." : "Müştəri mesajları və gündəlik iş üçün süni intellekt köməkçisi.",
+              href: `/${locale}/ai`,
+              ctaLabel: locale === "en" ? "Explore Pani AI" : "Pani AI ilə tanış ol",
               tone: "lavender",
-              icon: <InstagramIcon size={24} />,
-            },
-            {
-              title: c.cards.telegram.title,
-              desc: c.cards.telegram.desc,
-              href: `/${locale}/channels/telegram`,
-              ctaLabel: s.navGroups.channels.telegramTitle,
-              tone: "sky",
-              icon: <TelegramIcon size={24} />,
-            },
-            {
-              title: c.cards.webhookApi.title,
-              desc: c.cards.webhookApi.desc,
-              href: `/${locale}/channels/webhook-api`,
-              ctaLabel: s.navGroups.channels.apiTitle,
-              tone: "amber",
-              icon: <WebhookIcon />,
-            },
-          ]}
-        />
-
-        <FeatureAlternating
-          rows={[
-            {
-              tag: s.navGroups.channels.toolsTitle,
-              title: s.tools.hero.title,
-              body: s.tools.hero.subtitle,
-              cta: { href: `/${locale}/tools`, label: s.navGroups.channels.toolsTitle },
-              image: "p-tools",
-              imageAlt: s.tools.hero.title,
-              tone: "mint",
+              icon: <PaniIcon />,
             },
           ]}
         />
