@@ -1,5 +1,6 @@
 import type { PoolClient } from "pg";
 import az from "@/app/[lang]/dictionaries/az.json";
+import { whatsAppReplyWindowExpired } from "@/app/[lang]/dictionaries/pani-whatsapp";
 import { resolveConnectionForDelivery } from "./connections-store";
 import { createTask, workspaceTransaction } from "./store";
 
@@ -212,7 +213,7 @@ export async function deliverOne(tenant: string): Promise<boolean> {
         db,
         tenant,
         delivery.deal_id,
-        az.panel.deals.replyWindowExpired,
+        connection?.channel === "whatsapp" ? whatsAppReplyWindowExpired : az.panel.deals.replyWindowExpired,
         "",
       );
     }

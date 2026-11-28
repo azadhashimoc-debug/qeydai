@@ -23,9 +23,10 @@
 ## 2026-11-28 — Mərhələ 2B checkpoint
 
 - Eyni giriş hadisəsi üçün tək Pani AI cavabı növbəyə düşür. Operator cavabından sonra söhbətdə avtomatik cavab dayandırılır.
-- Yeni hesab üçün standart aktivləşdirmə və salon təlimatı lokalizasiya faylına icazə verildikdən sonra birlikdə tətbiq ediləcək.
+- Yeni biznes hesablarında Pani AI aktiv başlayır və Azərbaycan dilində standart salon təlimatından istifadə edir. Təlimat xidmət, qiymət və rezervasiya sorğularını əhatə edir. Saxlanmış hesab ayarları əməliyyatda üstün tutulur.
+- Standart salon təlimatı və 24 saatlıq WhatsApp bildirişi `src/app/[lang]/dictionaries/pani-whatsapp.ts` faylında saxlanılır.
 - WhatsApp qoşulanda Meta Phone Number ID və token yoxlanır. Deaktiv verilənlər bazası bağlantısı köhnə mühit konfiqurasiyasından üstün tutulur.
 - WhatsApp-ın 24 saatlıq pəncərəsi bitdikdə göndəriş uğursuz kimi saxlanır və paneldə tapşırıq açılır. AI sorğusu uğursuz olduqda xəta loqa yazılır və operatora tapşırıq açılır.
 - Təkrar göndəriş yalnız provayderin sorğunu rədd etdiyi məlum olduqda mümkündür. Nəticəsi qeyri-müəyyən göndəriş avtomatik təkrar edilmir.
 - Başlanğıcda kanal limiti sıfırdır. Standart və Premiumda bir WhatsApp kanalı icazəlidir. Məcburi 11 mühit dəyişəni nümunə faylında dəyərsizdir.
-- Mövcud PostgreSQL testləri və müvəqqəti bazada Groq və Meta cavabları simulyasiya edilən Mərhələ 2B yoxlamaları keçdi. Canlı staging mesajlaşması buraxılış yoxlamasında açıqdır.
+- Mövcud PostgreSQL testləri və müvəqqəti bazada Groq və Meta cavabları simulyasiya edilən Mərhələ 2B yoxlamaları keçdi. Canlı staging mesajlaşması Mərhələ 3-ün buraxılış yoxlamasına daxildir.

@@ -1,4 +1,5 @@
 import type { PoolClient } from "pg";
+import { defaultSalonPaniPrompt } from "@/app/[lang]/dictionaries/pani-whatsapp";
 import { getDefaultGroqModel } from "./groq";
 import { isPostgresConfigured } from "../crm/store";
 
@@ -41,10 +42,10 @@ export function getCurrentMonthKey(now = new Date()): string {
 
 export function defaultAiSettings(): WorkspaceAiSettings {
   return {
-    enabled: false,
+    enabled: true,
     model: getDefaultGroqModel(),
     businessContext: "",
-    systemPrompt: "",
+    systemPrompt: defaultSalonPaniPrompt,
     tone: "friendly",
     handoffKeywords: [...DEFAULT_HANDOFF_KEYWORDS],
     maxRepliesPerThread: 8,
