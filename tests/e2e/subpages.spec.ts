@@ -118,6 +118,8 @@ test("standalone login signs into panel and register page links back to login", 
   const project = info.project.name as ProjectName;
   await page.goto("/en/register");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Google/i })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /Facebook/i })).toHaveCount(0);
   const email = page.locator('input[type="email"]');
   const phone = page.locator('input[type="tel"]');
   const create = page.locator('form button[type="submit"]');
@@ -213,9 +215,9 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await expect(page.locator(".js-find-partner-form-step-1")).toBeVisible();
   await page.locator(".js-modal-close-button").click();
 
-  // Both email/password and legacy keys are supported. Explicitly choose key mode. OAuth buttons are
-  // informational until OAuth is configured; no mock social login may mint a
-  // panel session. Verify the actual key form, security feedback and support link.
+  // Both email/password and legacy keys are supported. Explicitly choose key mode.
+  // Frozen social sign-in is hidden, and direct unprovisioned OAuth must not mint
+  // a panel session. Verify the actual key form, security feedback and support link.
   await page.goto("/az/login");
   await expect(page.getByRole("heading", { name: "Daxil ol" })).toBeVisible();
   await page.getByRole("button", { name: "Giriş açarı", exact: true }).click();
@@ -226,10 +228,13 @@ test("Kommo adapted modals, live-chat launcher, currency switcher, and auth flow
   await page.getByRole("button", { name: "Gizlət" }).click();
   await expect(keyField).toHaveAttribute("type", "password");
 
-  await page.getByRole("link", { name: "Google ilə daxil ol" }).click();
+  await expect(page.getByRole("link", { name: /Google/i })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /Facebook/i })).toHaveCount(0);
+  await page.goto("/api/panel/oauth/google/start?lang=az");
   await expect(page.getByRole("status")).toContainText("OAuth");
   await expect(page).toHaveURL(/\/az\/login(\?oauth_error=unavailable)?$/);
   expect((await page.request.get("/api/panel/overview")).status()).toBe(401);
+  expect((await page.context().cookies()).some((cookie) => cookie.name === "qeydai_panel")).toBe(false);
 
   // The OAuth redirect reloads the login page in its default mode; choose key mode again.
   await page.getByRole("button", { name: "Giriş açarı", exact: true }).click();

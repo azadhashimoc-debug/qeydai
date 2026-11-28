@@ -73,11 +73,29 @@ test("channel copying, AI previews, and localized plan contact links", async ({ 
   await expect(page.getByRole("button", { name: "Test reply", exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: "Plans" }).click();
-  await expect(page.getByText("Starter", { exact: true })).toBeVisible();
-  await page.getByRole("radio", { name: "Monthly", exact: true }).check();
-  await expect(page.getByText("49 AZN", { exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "Request pilot" }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "Contact us" }).first()).toHaveAttribute("href", "/en/contact");
+  for (const [name, monthly, firstMonth] of [
+    ["Starter", 99, 49],
+    ["Standard", 199, 99],
+    ["Premium", 349, 175],
+  ] as const) {
+    const card = page.locator(".panel-card").filter({
+      has: page.getByText(name, { exact: true }),
+    });
+    await expect(card).toHaveCount(1);
+    await expect(card.getByText(`${monthly} AZN`, { exact: true })).toBeVisible();
+    await expect(card.getByText(`First month: ${firstMonth} AZN`, { exact: true })).toBeVisible();
+    await expect(card.getByRole("link", { name: "Contact via WhatsApp to activate", exact: true }).or(
+      card.getByRole("button", { name: "Current plan", exact: true }),
+    )).toBeVisible();
+  }
+  await expect(page.getByRole("radio", { name: "Monthly", exact: true })).toHaveCount(0);
+  await expect(page.getByText("Enterprise", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Paycell|Request pilot/i })).toHaveCount(0);
+  const activationLinks = page.getByRole("link", { name: "Contact via WhatsApp to activate", exact: true });
+  await expect(activationLinks.first()).toBeVisible();
+  for (const link of await activationLinks.all()) {
+    await expect(link).toHaveAttribute("href", /^(?:\/en\/contact|https:\/\/wa\.me\/[1-9][0-9]{6,14})$/);
+  }
 });
 
 test("SEO noindex, unauthenticated 401, invalid key rejection, and session persistence across reload", async ({
@@ -618,11 +636,14 @@ test("Phase 1 CRM: workspace settings, stages, custom fields, members, contacts,
   await expect(page.locator("li", { hasText: dealTitle })).toBeVisible();
 });
 
-test("Google sign-in is informational without OAuth provisioning; cannot bypass key authentication", async ({ page }) => {
+test("Frozen social sign-in is hidden; unprovisioned OAuth cannot bypass key authentication", async ({ page }) => {
   await page.goto("/az/login");
   const before = await page.request.get("/api/panel/overview");
   expect(before.status()).toBe(401);
-  await page.getByRole("link", { name: /Google/ }).click();
+  await expect(page.getByRole("link", { name: /Google/i })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /Facebook/i })).toHaveCount(0);
+  // OAuth is frozen in the UI, not deleted. Direct navigation must still fail closed.
+  await page.goto("/api/panel/oauth/google/start?lang=az");
   await expect(page).toHaveURL(/\/az\/login(\?oauth_error=unavailable)?$/);
   await expect(page.getByRole("status")).toContainText(/OAuth/i);
   const cookies = await page.context().cookies();
