@@ -189,6 +189,7 @@ export function ChannelsTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       const data = (await res.json().catch(() => null)) as {
         ok?: boolean;
         error?: string;
+        message?: string;
         channels?: Status[];
         connections?: ConnectionItem[];
         webhookRegistered?: boolean;
@@ -217,7 +218,7 @@ export function ChannelsTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       if (res.status === 409) {
         setFeedback({ kind: "error", text: c.conflictError });
       } else {
-        setFeedback({ kind: "error", text: c.saveError });
+        setFeedback({ kind: "error", text: data?.message || c.saveError });
       }
     } catch {
       setFeedback({ kind: "error", text: c.saveError });

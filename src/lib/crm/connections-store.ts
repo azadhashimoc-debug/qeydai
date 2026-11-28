@@ -109,8 +109,8 @@ export async function listTenantConnections(
           displayName: row.display_name || row.account,
           active: Boolean(row.active),
           automationEnabled: Boolean(row.automation_enabled),
-          source: row.token_enc ? "db" : existing ? "env" : "db",
-          hasToken: Boolean(row.token_enc || existing?.hasToken),
+          source: !row.token_enc && row.active && existing ? "env" : "db",
+          hasToken: Boolean(row.token_enc || (row.active && existing?.hasToken)),
           webhook: buildChannelWebhookUrl(baseUrl, row.channel, row.account),
         });
       }
@@ -137,8 +137,8 @@ export async function listTenantConnections(
             displayName: row.account,
             active: Boolean(row.active),
             automationEnabled: Boolean(row.automation_enabled),
-            source: existing ? "env" : "db",
-            hasToken: Boolean(existing?.hasToken),
+            source: row.active && existing ? "env" : "db",
+            hasToken: Boolean(row.active && existing?.hasToken),
             webhook: buildChannelWebhookUrl(baseUrl, row.channel, row.account),
           });
         }
@@ -300,9 +300,43 @@ export async function deleteTenantConnection(
   }
 }
 
+type StoredConnection = {
+  tenant_id: string;
+  channel: Channel;
+  account: string;
+  active: boolean;
+  token_enc: string | null;
+  webhook_secret_enc: string | null;
+};
+
+function resolveStoredConnection(
+  row: StoredConnection | undefined,
+  fromEnv: ChannelConnection | undefined,
+): ChannelConnection | null {
+  if (!row) return fromEnv ?? null;
+  if (!row.active) return null;
+  if (!row.token_enc) {
+    // Legacy ingestion can create active rows without storing credentials.
+    return fromEnv?.tenant === row.tenant_id ? fromEnv : null;
+  }
+  const token = decryptSecret(row.token_enc);
+  if (!token) return null;
+  return {
+    channel: row.channel,
+    account: row.account,
+    tenant: row.tenant_id,
+    token,
+    secret: decryptSecret(row.webhook_secret_enc) ?? undefined,
+  };
+}
+
+// Read the active flag even on databases that predate encrypted credentials.
+const CONNECTION_LOOKUP_COLUMNS = `c.tenant_id, c.channel, c.account, c.active,
+  to_jsonb(c)->>'token_enc' AS token_enc,
+  to_jsonb(c)->>'webhook_secret_enc' AS webhook_secret_enc`;
+
 /**
- * Resolves a channel connection for inbound webhook handling: checks env JSON first,
- * then self-serve encrypted DB credentials using scoped RLS lookup.
+ * Resolves inbound credentials with a scoped RLS lookup.
  */
 export async function resolveConnectionForWebhook(
   channel: Channel,
@@ -312,8 +346,7 @@ export async function resolveConnectionForWebhook(
   const fromEnv = configuredConnections().find(
     (item) => item.channel === channel && item.account === account,
   );
-  if (fromEnv) return fromEnv;
-  if (!isPostgresConfigured()) return null;
+  if (!isPostgresConfigured()) return fromEnv ?? null;
 
   const pool = getSharedPgPool();
   const db = await pool.connect();
@@ -322,38 +355,26 @@ export async function resolveConnectionForWebhook(
     await assertSafeApplicationRole(db as unknown as PgClient);
     await db.query("SELECT set_config('app.channel', $1, true)", [channel]);
     await db.query("SELECT set_config('app.channel_account', $1, true)", [account]);
-    const res = await db.query<{
-      tenant_id: string;
-      channel: Channel;
-      account: string;
-      active: boolean;
-      token_enc: string | null;
-      webhook_secret_enc: string | null;
-    }>(
-      `SELECT tenant_id, channel, account, active, token_enc, webhook_secret_enc
-       FROM sales_connections
-       WHERE channel = $1 AND account = $2 AND active = true
-       LIMIT 1`,
+    const res = await db.query<StoredConnection>(
+      `SELECT ${CONNECTION_LOOKUP_COLUMNS}
+       FROM sales_connections c WHERE c.channel = $1 AND c.account = $2`,
       [channel, account],
     );
+    let row = res.rows[0];
+    if (!row && fromEnv) {
+      // Older schemas can limit visibility to the legacy tenant's own rows.
+      await db.query("SELECT set_config('app.tenant_id', $1, true)", [fromEnv.tenant]);
+      const legacy = await db.query<StoredConnection>(
+        `SELECT ${CONNECTION_LOOKUP_COLUMNS}
+         FROM sales_connections c WHERE c.tenant_id = $1 AND c.channel = $2 AND c.account = $3`,
+        [fromEnv.tenant, channel, account],
+      );
+      row = legacy.rows[0];
+    }
     await db.query("COMMIT");
-    const row = res.rows[0];
-    if (!row || !row.token_enc) return null;
-    const token = decryptSecret(row.token_enc);
-    if (!token) return null;
-    const secret = decryptSecret(row.webhook_secret_enc) ?? undefined;
-    return {
-      channel: row.channel,
-      account: row.account,
-      tenant: row.tenant_id,
-      token,
-      secret,
-    };
+    return resolveStoredConnection(row, fromEnv);
   } catch (error) {
     await db.query("ROLLBACK").catch(() => {});
-    if (error && typeof error === "object" && "code" in error && error.code === "42703") {
-      return null;
-    }
     throw error;
   } finally {
     db.release();
@@ -370,42 +391,16 @@ export async function resolveConnectionForDelivery(
   const fromEnv = configuredConnections().find(
     (item) => item.tenant === tenant && `${item.channel}:${item.account}` === connectionId,
   );
-  if (fromEnv) return fromEnv;
-  if (!isPostgresConfigured()) return null;
+  if (!isPostgresConfigured()) return fromEnv ?? null;
 
-  try {
-    return await workspaceTransaction(tenant, async (db) => {
-      const res = await db.query<{
-        channel: Channel;
-        account: string;
-        active: boolean;
-        token_enc: string | null;
-        webhook_secret_enc: string | null;
-      }>(
-        `SELECT channel, account, active, token_enc, webhook_secret_enc
-         FROM sales_connections
-         WHERE tenant_id = $1 AND id = $2 AND active = true
-         LIMIT 1`,
-        [tenant, connectionId],
-      );
-      const row = res.rows[0];
-      if (!row || !row.token_enc) return null;
-      const token = decryptSecret(row.token_enc);
-      if (!token) return null;
-      return {
-        channel: row.channel,
-        account: row.account,
-        tenant,
-        token,
-        secret: decryptSecret(row.webhook_secret_enc) ?? undefined,
-      };
-    });
-  } catch (error) {
-    if (error && typeof error === "object" && "code" in error && error.code === "42703") {
-      return null;
-    }
-    throw error;
-  }
+  return workspaceTransaction(tenant, async (db) => {
+    const res = await db.query<StoredConnection>(
+      `SELECT ${CONNECTION_LOOKUP_COLUMNS}
+       FROM sales_connections c WHERE c.tenant_id = $1 AND c.id = $2`,
+      [tenant, connectionId],
+    );
+    return resolveStoredConnection(res.rows[0], fromEnv);
+  });
 }
 
 /**

@@ -1,12 +1,14 @@
+import type { PoolClient } from "pg";
+import az from "@/app/[lang]/dictionaries/az.json";
 import { resolveConnectionForDelivery } from "./connections-store";
-import { workspaceTransaction } from "./store";
+import { createTask, workspaceTransaction } from "./store";
 
 type Delivery = {
   id: string;
   connection_id: string;
+  deal_id: string;
   sender_id: string;
   body: string;
-  last_inbound_at: Date | null;
   attempts: number;
 };
 
@@ -20,13 +22,66 @@ export function getMetaGraphVersion(
   return configured && /^v\d+\.\d+$/.test(configured) ? configured : DEFAULT_META_GRAPH_VERSION;
 }
 
+export async function ensureOpenOperatorTask(
+  db: PoolClient,
+  tenant: string,
+  dealId: string,
+  title: string,
+  body: string,
+): Promise<void> {
+  const deal = await db.query(
+    "SELECT id FROM sales_deals WHERE tenant_id=$1 AND id=$2 FOR NO KEY UPDATE",
+    [tenant, dealId],
+  );
+  if (!deal.rows[0]) return;
+  const existing = await db.query(
+    "SELECT 1 FROM sales_tasks WHERE tenant_id=$1 AND deal_id=$2 AND title=$3 AND status='open' LIMIT 1",
+    [tenant, dealId, title],
+  );
+  if (!existing.rows[0]) await createTask(db, tenant, dealId, title, body, null, null);
+}
+
+async function checkDeliveryLease(tenant: string, messageId: string, attempt: number) {
+  return workspaceTransaction(tenant, async (db) => {
+    const result = await db.query<{ last_inbound_at: Date | null; can_send: boolean }>(
+      `SELECT t.last_inbound_at, (outbound.sender <> 'ai' OR (
+         t.mode='bot'
+         AND NOT EXISTS (
+           SELECT 1 FROM sales_messages staff
+           WHERE staff.tenant_id=t.tenant_id AND staff.thread_id=t.id AND staff.sender='staff'
+         )
+         AND (
+           COALESCE(outbound.provider_event_id, '') NOT LIKE 'ai:inbound:%'
+           OR outbound.provider_event_id = (
+             SELECT 'ai:inbound:' || inbound.provider_event_id FROM sales_messages inbound
+             WHERE inbound.tenant_id=t.tenant_id AND inbound.thread_id=t.id AND inbound.direction='in'
+             ORDER BY (inbound.created_at = t.last_inbound_at) DESC NULLS LAST, inbound.created_at DESC, inbound.id DESC
+             LIMIT 1
+           )
+         )
+       )) AS can_send
+       FROM sales_outbox o
+       JOIN sales_messages outbound ON (outbound.tenant_id,outbound.id)=(o.tenant_id,o.message_id)
+       JOIN sales_threads t ON (t.tenant_id,t.id)=(outbound.tenant_id,outbound.thread_id)
+       WHERE o.tenant_id=$1 AND o.message_id=$2 AND o.attempts=$3 AND o.lease_until>now()
+         AND outbound.status='queued'`,
+      [tenant, messageId, attempt],
+    );
+    return result.rows[0];
+  });
+}
+
 export async function deliverOne(tenant: string): Promise<boolean> {
   const delivery = await workspaceTransaction(tenant, async (db) => {
     // A crashed or timed-out send can already have reached the user.
     await db.query(
-      `UPDATE sales_messages m SET status='unknown' FROM sales_outbox o
-       WHERE o.tenant_id=$1 AND (m.tenant_id,m.id)=(o.tenant_id,o.message_id)
-         AND m.status='queued' AND o.lease_until<now()`,
+      `WITH expired AS (
+         SELECT tenant_id, message_id FROM sales_outbox
+         WHERE tenant_id=$1 AND lease_until<=now()
+         FOR UPDATE SKIP LOCKED
+       )
+       UPDATE sales_messages m SET status='unknown' FROM expired
+       WHERE (m.tenant_id,m.id)=(expired.tenant_id,expired.message_id) AND m.status='queued'`,
       [tenant],
     );
     await db.query(
@@ -37,7 +92,7 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       [tenant],
     );
     const result = await db.query<Delivery>(
-      `SELECT m.id, m.connection_id, t.sender_id, m.body, t.last_inbound_at, o.attempts
+      `SELECT m.id, m.connection_id, m.deal_id, t.sender_id, m.body, o.attempts
        FROM sales_outbox o
        JOIN sales_messages m ON (m.tenant_id,m.id)=(o.tenant_id,o.message_id)
        JOIN sales_threads t ON (t.tenant_id,t.id)=(m.tenant_id,m.thread_id)
@@ -61,16 +116,20 @@ export async function deliverOne(tenant: string): Promise<boolean> {
 
   const attemptNumber = Number(delivery.attempts ?? 0) + 1;
   const connection = await resolveConnectionForDelivery(tenant, delivery.connection_id);
+  const current = await checkDeliveryLease(tenant, delivery.id, attemptNumber);
+  if (!current) return true;
 
-  let status: "sent" | "failed" | "unknown" | "retry" = "failed";
+  let status: "sent" | "failed" | "unknown" | "retry" | "canceled" = "failed";
   let lastError: string | null = null;
 
   if (!connection) {
     lastError = "channel_connection_missing";
+  } else if (!current.can_send) {
+    status = "canceled";
   } else if (
     connection.channel !== "telegram" &&
-    (!delivery.last_inbound_at ||
-      Date.now() - new Date(delivery.last_inbound_at).valueOf() >= 24 * 3600_000)
+    (!current.last_inbound_at ||
+      Date.now() - new Date(current.last_inbound_at).valueOf() >= 24 * 3600_000)
   ) {
     lastError = "reply_window_expired";
   } else {
@@ -100,20 +159,33 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       });
       if (response.ok) {
         status = "sent";
-      } else if ((response.status === 429 || response.status >= 500) && attemptNumber < MAX_ATTEMPTS) {
+      } else if (response.status === 429 && attemptNumber < MAX_ATTEMPTS) {
         status = "retry";
         lastError = `http_${response.status}`;
       } else {
         status = response.status >= 500 ? "unknown" : "failed";
         lastError = `http_${response.status}`;
+        if (whatsapp && response.status === 400) {
+          const data = (await response.json().catch(() => null)) as { error?: { code?: number } } | null;
+          if (data?.error?.code === 131047) lastError = "reply_window_expired";
+        }
       }
     } catch (err) {
       lastError = err instanceof Error ? err.name : "network_error";
-      status = attemptNumber < MAX_ATTEMPTS ? "retry" : "unknown";
+      // A timeout or disconnection can happen after the provider accepts the message.
+      status = "unknown";
     }
   }
 
   await workspaceTransaction(tenant, async (db) => {
+    const lease = await db.query(
+      `SELECT 1 FROM sales_outbox
+       WHERE tenant_id=$1 AND message_id=$2 AND attempts=$3 AND lease_until IS NOT NULL
+       FOR UPDATE`,
+      [tenant, delivery.id, attemptNumber],
+    );
+    if (!lease.rows[0]) return;
+
     if (status === "retry") {
       const delaySec = Math.min(300, 30 * attemptNumber);
       await db.query(
@@ -127,7 +199,7 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       return;
     }
 
-    await db.query(
+    const updated = await db.query(
       "UPDATE sales_messages SET status=$3 WHERE tenant_id=$1 AND id=$2 AND status='queued'",
       [tenant, delivery.id, status],
     );
@@ -135,6 +207,15 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       "DELETE FROM sales_outbox WHERE tenant_id=$1 AND message_id=$2",
       [tenant, delivery.id],
     );
+    if (updated.rowCount && lastError === "reply_window_expired") {
+      await ensureOpenOperatorTask(
+        db,
+        tenant,
+        delivery.deal_id,
+        az.panel.deals.replyWindowExpired,
+        "",
+      );
+    }
   });
 
   return true;

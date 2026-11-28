@@ -8,12 +8,13 @@
 - [ ] Texniki buraxılış təsdiqi: əvvəlki CI kataloq testində dayanıb; yeni commit üçün build və CI təsdiqi tələb olunur. Test və kataloq cari altı fayllıq icazə xaricindədir.
 - AuthSplitClient.tsx hədəf branch-də istifadəsizliyi təsdiqlənmədiyi üçün qorunur.
 
-Mərhələ 2B-yə keçid ayrıca təsdiq və texniki yoxlama tələb edir.
-
 ## Mərhələ 2B — Pani AI + WhatsApp düzəlişi
-- Groq ilə Pani AI və tək hesablı WhatsApp axınını yoxla.
-- Bloklayıcıları ayrıca plan və təsdiqlə aradan qaldır.
-- Real mesajlaşma və tenant izolyasiyasını sına.
+- [x] Pani AI-də operatora keçid və Groq xəta mesajları tətbiq edildi.
+- [ ] Yeni biznes hesabında Pani AI-nin standart aktivləşdirilməsi və Azərbaycan dilində salon təlimatı. Lokalizasiya faylının əlavə edilməsi üçün təsdiq gözlənilir.
+- [x] Meta məlumatlarının yoxlanması, deaktiv kanalın üstünlüyü, təkrar göndərişdən qorunma və panel xəbərdarlıqları tətbiq edildi.
+- [x] Paketlər üçün WhatsApp icazələri və dəyərsiz mühit dəyişənləri təsdiqləndi.
+- [x] PostgreSQL-də təkrar sorğular, paralel qoşulma, operator müdaxiləsi və tenant izolyasiyası sınaqdan keçirildi.
+- [ ] Staging-də canlı Meta və Groq hesabları ilə real mesajlaşma sınağı.
 
 ## Mərhələ 3 — Canlıya alma
 - Build, təhlükəsizlik və staging sınaqlarını təsdiqlə.

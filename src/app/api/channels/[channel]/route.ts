@@ -2,8 +2,8 @@ import { after } from "next/server";
 import { maybeAutoReplyInbound } from "@/lib/ai/auto-reply";
 import { parseInbound, secretsMatch, verifyMetaSignature, type Channel } from "@/lib/crm/channels";
 import { resolveConnectionForWebhook } from "@/lib/crm/connections-store";
-import { deliverBatch } from "@/lib/crm/delivery";
-import { databaseConfigured, ingestMessageDetailed } from "@/lib/crm/store";
+import { deliverBatch, ensureOpenOperatorTask } from "@/lib/crm/delivery";
+import { databaseConfigured, ingestMessageDetailed, workspaceTransaction } from "@/lib/crm/store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
 import { reportServerError } from "@/lib/observability/alerts";
 
@@ -17,6 +17,46 @@ function scheduleBackground(task: () => Promise<void>): void {
   } catch {
     void task();
   }
+}
+
+async function saveAiFailure(
+  task: Parameters<typeof maybeAutoReplyInbound>[0],
+  reason: string,
+): Promise<void> {
+  const logged = reportServerError("api.channels.inbound.ai_reply", new Error(reason), {
+    tenantId: task.tenantId,
+  });
+  const saved = workspaceTransaction(task.tenantId, async (db) => {
+    const deal = await db.query(
+      "SELECT id FROM sales_deals WHERE tenant_id=$1 AND id=$2 FOR NO KEY UPDATE",
+      [task.tenantId, task.dealId],
+    );
+    if (!deal.rows[0]) return;
+    const updated = await db.query(
+      `UPDATE sales_threads t SET mode='operator'
+       WHERE t.tenant_id=$1 AND t.id=$2 AND t.deal_id=$3
+         AND EXISTS (
+           SELECT 1 FROM sales_messages m
+           WHERE m.tenant_id=t.tenant_id AND m.thread_id=t.id AND m.direction='in'
+             AND m.provider_event_id=$4 AND m.created_at=t.last_inbound_at
+         )
+         AND NOT EXISTS (
+           SELECT 1 FROM sales_messages m
+           WHERE m.tenant_id=t.tenant_id AND m.connection_id=t.connection_id
+             AND m.provider_event_id='ai:inbound:' || $4
+         )`,
+      [task.tenantId, task.threadId, task.dealId, task.inboundEventId],
+    );
+    if (!updated.rowCount) return;
+    await ensureOpenOperatorTask(
+      db,
+      task.tenantId,
+      task.dealId,
+      "Pani AI cavab verə bilmədi: operator cavabı gözlənilir",
+      "Söhbəti paneldə açın və müştəriyə cavab verin.",
+    );
+  });
+  await Promise.all([logged, saved]);
 }
 
 export async function GET(req: Request, context: RouteContext<"/api/channels/[channel]">) {
@@ -68,13 +108,7 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
       return new Response(null, { status: 400 });
     }
 
-    const aiTasks: Array<{
-      tenantId: string;
-      dealId: string;
-      threadId: string;
-      connectionId: string;
-      inboundText: string;
-    }> = [];
+    const aiTasks: Parameters<typeof maybeAutoReplyInbound>[0][] = [];
 
     for (const message of parseInbound(channel, body, telegram?.account)) {
       const connection =
@@ -89,6 +123,7 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
           dealId: result.dealId,
           threadId: result.threadId,
           connectionId: result.connectionId,
+          inboundEventId: message.event,
           inboundText: message.text,
         });
       }
@@ -101,6 +136,10 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
           if (outcome.replied) {
             await deliverBatch(task.tenantId, 5).catch((err) => {
               void reportServerError("api.channels.inbound.deliver", err, { tenantId: task.tenantId });
+            });
+          } else if (outcome.failed) {
+            await saveAiFailure(task, outcome.reason).catch(async (err) => {
+              await reportServerError("api.channels.inbound.ai_warning", err, { tenantId: task.tenantId });
             });
           }
         }

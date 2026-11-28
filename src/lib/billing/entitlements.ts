@@ -1,4 +1,5 @@
 import type { PoolClient } from "pg";
+import type { Channel } from "../crm/channels";
 import { isPostgresConfigured } from "../crm/store";
 import type { PaycellEvent, PaycellPeriod } from "./paycell";
 
@@ -20,19 +21,19 @@ export const PLAN_LIMITS: Record<WorkspacePlanCode, PlanLimits> = {
     maxDeals: 500,
   },
   starter: {
-    maxChannels: 1,
+    maxChannels: 0,
     maxMembers: 2,
     maxMonthlyAiReplies: 300,
     maxDeals: 500,
   },
   growth: {
-    maxChannels: 3,
+    maxChannels: 1,
     maxMembers: 5,
     maxMonthlyAiReplies: 1500,
     maxDeals: 3000,
   },
   pro: {
-    maxChannels: 10,
+    maxChannels: 1,
     maxMembers: 15,
     maxMonthlyAiReplies: 5000,
     maxDeals: 20000,
@@ -44,6 +45,12 @@ export const PLAN_LIMITS: Record<WorkspacePlanCode, PlanLimits> = {
     maxDeals: 1000000,
   },
 };
+
+export function planAllowsChannel(plan: WorkspacePlanCode, channel: Channel): boolean {
+  if (plan === "starter") return false;
+  if (plan === "growth" || plan === "pro") return channel === "whatsapp";
+  return true;
+}
 
 export type WorkspaceSubscriptionRow = {
   planCode: WorkspacePlanCode;
@@ -248,7 +255,7 @@ export async function enforceWorkspaceLimit(
   db: PoolClient,
   tenantId: string,
   resource: "channels" | "members" | "deals",
-  options: { skipCountCheck?: boolean } = {},
+  options: { skipCountCheck?: boolean; channel?: Channel; activeChannels?: readonly Channel[] } = {},
 ): Promise<LimitCheckResult> {
   const entitlement = await getWorkspaceEntitlement(db, tenantId);
   if (!entitlement.canWrite) {
@@ -256,6 +263,20 @@ export async function enforceWorkspaceLimit(
       ok: false,
       status: 402,
       error: "subscription_required",
+      plan: entitlement.planCode,
+    };
+  }
+  if (
+    resource === "channels" &&
+    (entitlement.limits.maxChannels === 0 ||
+      (options.channel !== undefined && !planAllowsChannel(entitlement.planCode, options.channel)))
+  ) {
+    return {
+      ok: false,
+      status: 402,
+      error: "plan_limit_reached",
+      resource,
+      limit: 0,
       plan: entitlement.planCode,
     };
   }
@@ -267,11 +288,15 @@ export async function enforceWorkspaceLimit(
   let limit = 0;
   if (resource === "channels") {
     limit = entitlement.limits.maxChannels;
-    const res = await db.query<{ cnt: string }>(
-      "SELECT count(*)::text AS cnt FROM sales_connections WHERE tenant_id = $1 AND active = true",
-      [tenantId],
-    );
-    current = Number(res.rows[0]?.cnt ?? 0);
+    if (options.activeChannels) {
+      current = options.activeChannels.filter((channel) => planAllowsChannel(entitlement.planCode, channel)).length;
+    } else {
+      const res = await db.query<{ cnt: string }>(
+        "SELECT count(*)::text AS cnt FROM sales_connections WHERE tenant_id = $1 AND active = true",
+        [tenantId],
+      );
+      current = Number(res.rows[0]?.cnt ?? 0);
+    }
   } else if (resource === "members") {
     limit = entitlement.limits.maxMembers;
     const res = await db.query<{ cnt: string }>(

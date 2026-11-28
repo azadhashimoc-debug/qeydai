@@ -33,7 +33,9 @@ export const POST = (req: Request) =>
     }
 
     if (!isGroqConfigured()) {
-      return fail(503, "ai_not_configured");
+      return fail(503, "ai_not_configured", {
+        message: "Pani AI sınağı üçün serverdə GROQ_API_KEY açarı təyin edilməlidir.",
+      });
     }
 
     return withWorkspace(member, async (actor, db) => {
@@ -68,7 +70,9 @@ export const POST = (req: Request) =>
         sampleMessage,
       });
       if (!result.ok) {
-        return fail(502, result.reason);
+        return fail(502, result.reason, {
+          message: "Groq-dan cavab almaq mümkün olmadı. Bir az sonra yenidən cəhd edin.",
+        });
       }
       return json(200, {
         ok: true,
