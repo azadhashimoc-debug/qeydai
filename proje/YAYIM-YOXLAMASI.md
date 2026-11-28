@@ -3,6 +3,8 @@
 Tarix: 2026-11-28. Mənbə: `feat/panelim-subpages`, yoxlanmış kod commit-i `45ebd4e8c8abcb8fda08aaacff903c8b55fe5a9d`.
 Bu beş bənd canlı mühitdə nəticə ilə təsdiqlənənədək açıq qalır. Lokal build canlı inteqrasiyaların işlədiyini təsdiqləmir.
 
+Mərhələ 3B üçün avtomatik icra: `npm run verify:live`. Hazırlıq, test nömrəsi və təmizləmə qaydaları [VERIFY-LIVE.md](./VERIFY-LIVE.md) faylındadır. Lokal şablondakı dəyərlər boş olduğundan canlı yoxlamalar hələ keçirilməyib. Skript yalnız beş yoxlama və təmizləmə uğurlu olduqda aşağıdakı xanaları işarələyir.
+
 ## Canlıya çıxış üçün 5 yoxlama
 
 - [ ] **Hosting panelində 11 əsas mühit dəyişəni doldurulsun.** Aşağıdakı adlar `.env.example`-da mövcuddur. Dəyərlər yalnız hosting-in məxfi dəyişənlər bölməsinə yazılsın; sənədlərə, loglara və Git-ə köçürülməsin. Dəyişiklikdən sonra yeni deployment tələb olunur.

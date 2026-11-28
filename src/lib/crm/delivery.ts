@@ -3,6 +3,7 @@ import az from "@/app/[lang]/dictionaries/az.json";
 import { whatsAppReplyWindowExpired } from "@/app/[lang]/dictionaries/pani-whatsapp";
 import { resolveConnectionForDelivery } from "./connections-store";
 import { createTask, workspaceTransaction } from "./store";
+import { saveWhatsAppReceipt } from "./delivery-receipts";
 
 type Delivery = {
   id: string;
@@ -122,6 +123,7 @@ export async function deliverOne(tenant: string): Promise<boolean> {
 
   let status: "sent" | "failed" | "unknown" | "retry" | "canceled" = "failed";
   let lastError: string | null = null;
+  let providerMessageId: string | null = null;
 
   if (!connection) {
     lastError = "channel_connection_missing";
@@ -160,6 +162,12 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       });
       if (response.ok) {
         status = "sent";
+        if (whatsapp) {
+          const data = await response.json().catch(() => null) as { messages?: { id?: string }[] } | null;
+          const id = data?.messages?.[0]?.id;
+          if (typeof id === "string" && id.length > 0 && id.length <= 256) providerMessageId = id;
+          else { status = "unknown"; lastError = "provider_message_id_missing"; }
+        }
       } else if (response.status === 429 && attemptNumber < MAX_ATTEMPTS) {
         status = "retry";
         lastError = `http_${response.status}`;
@@ -200,6 +208,14 @@ export async function deliverOne(tenant: string): Promise<boolean> {
       return;
     }
 
+    // Receipt -> message is also the webhook's lock order. Preserve an early
+    // delivered/read callback instead of overwriting it with provider acceptance.
+    if (providerMessageId) {
+      await saveWhatsAppReceipt(db, tenant, delivery.connection_id, {
+        account: connection!.account, id: providerMessageId, recipient: delivery.sender_id,
+        status: "sent", timestamp: 0,
+      }, delivery.id);
+    }
     const updated = await db.query(
       "UPDATE sales_messages SET status=$3 WHERE tenant_id=$1 AND id=$2 AND status='queued'",
       [tenant, delivery.id, status],

@@ -3,6 +3,7 @@ import { maybeAutoReplyInbound } from "@/lib/ai/auto-reply";
 import { parseInbound, secretsMatch, verifyMetaSignature, type Channel } from "@/lib/crm/channels";
 import { resolveConnectionForWebhook } from "@/lib/crm/connections-store";
 import { deliverBatch, ensureOpenOperatorTask } from "@/lib/crm/delivery";
+import { parseWhatsAppReceipts, recordWhatsAppReceipt } from "@/lib/crm/delivery-receipts";
 import { databaseConfigured, ingestMessageDetailed, workspaceTransaction } from "@/lib/crm/store";
 import { readLimitedUtf8 } from "@/lib/http/read-body";
 import { reportServerError } from "@/lib/observability/alerts";
@@ -109,6 +110,15 @@ export async function POST(req: Request, context: RouteContext<"/api/channels/[c
     }
 
     const aiTasks: Parameters<typeof maybeAutoReplyInbound>[0][] = [];
+
+    if (channel === "whatsapp") {
+      for (const receipt of parseWhatsAppReceipts(body)) {
+        const connection = await resolveConnectionForWebhook(channel, receipt.account);
+        if (connection) {
+          await recordWhatsAppReceipt(connection.tenant, `${channel}:${receipt.account}`, receipt);
+        }
+      }
+    }
 
     for (const message of parseInbound(channel, body, telegram?.account)) {
       const connection =

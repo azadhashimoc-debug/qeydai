@@ -1,0 +1,6 @@
+.env*
+!.env.example
+.git/
+.vercel/verify-live*
+test-results/
+playwright-report/
