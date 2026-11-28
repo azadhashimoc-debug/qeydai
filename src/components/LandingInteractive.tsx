@@ -115,8 +115,8 @@ export function AiSpotlight({
                 />
                 <div className="pm-ai-channel-stack">
                   <WhatsAppIcon size={24} />
-                  <InstagramIcon size={24} />
-                  <TelegramIcon size={24} />
+                  {false && <InstagramIcon size={24} />}
+                  {false && <TelegramIcon size={24} />}
                 </div>
               </div>
 

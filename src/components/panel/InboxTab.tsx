@@ -332,7 +332,7 @@ export function InboxTab({
           <p className="max-w-md text-sm text-muted">{d.inbox.emptyBody}</p>
           {onOpenChannels && (
             <div className="mt-2 flex flex-wrap justify-center gap-2">
-              {[d.inbox.connectWhatsapp, d.inbox.connectTelegram, d.inbox.connectInstagram].map((label) => (
+              {[d.inbox.connectWhatsapp].map((label) => (
                 <button key={label} type="button" onClick={onOpenChannels} className={buttonClass({ size: "sm", className: "min-h-11" })}>
                   {label}
                 </button>

@@ -138,10 +138,10 @@ export function PanelNotificationSettings({
     </div>
     <p className="panel-settings-hint">
       {az
-        ? "Seçimlər iş sahənizdə saxlanılır. Yeni müraciətlər və sistem bildirişləri üçün Telegram Chat ID əlavə edə bilərsiniz."
-        : "Preferences are saved to your workspace. Add your Telegram Chat ID below to receive live lead and system alerts."}
+        ? "Seçimlər iş sahənizdə saxlanılır." 
+        : "Preferences are saved to your workspace."}
     </p>
-    <div className="panel-settings-paper" style={{ padding: "14px 16px", marginBottom: "14px", display: "grid", gap: "10px" }}>
+    <div hidden style={{ display: "none" }}>
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
         <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontWeight: 600 }}>
           <input

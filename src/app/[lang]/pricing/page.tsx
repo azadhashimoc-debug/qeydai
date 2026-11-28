@@ -42,112 +42,62 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
           {
             id: "starter",
             name: "Starter",
-            desc: "For small businesses starting unified messaging and CRM.",
-            prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "No setup fee · 14-day free trial",
-            ctaLabel: "Start 14-day trial",
-            limits: [
-              "1 channel (Telegram inbox)",
-              "Kanban pipeline up to 500 leads",
-              "Duplicate booking checks",
-            ],
+            desc: "Customer and appointment management.",
+            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            setupNote: "First month: 49 AZN",
+            ctaLabel: "Choose plan",
+            limits: ["Customer database","Bookings","Staff panel"],
           },
           {
             id: "growth",
-            name: "Growth",
-            desc: "WhatsApp Cloud API + automated appointment scheduling.",
+            name: "Standard",
+            desc: "WhatsApp and Pani AI for your team.",
             popular: true,
-            popularBadge: "Most Popular",
-            prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "Setup fee: 100 AZN (one-time) · 14-day free trial",
-            ctaLabel: "Start 14-day trial",
-            limits: [
-              "WhatsApp + Instagram + Telegram",
-              "AI assistant & instant replies",
-              "Team assignment & operator handoff",
-            ],
+            popularBadge: "Recommended",
+            prices: { monthly: "199 AZN", halfYear: "199 AZN", annual: "199 AZN" },
+            setupNote: "First month: 99 AZN",
+            ctaLabel: "Choose plan",
+            limits: ["Everything in Starter","WhatsApp connection","Pani AI assistant","Live onboarding"],
           },
           {
             id: "pro",
-            name: "Pro",
-            desc: "Full automation, multi-branch scheduling & AI sales assistant.",
-            prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "Setup fee: 100 AZN (one-time) · Priority onboarding",
-            ctaLabel: "Choose Pro",
-            limits: [
-              "All channels + REST Webhook & n8n",
-              "Unlimited custom CRM fields",
-              "Full audit log & multi-branch control",
-            ],
-          },
-          {
-            id: "enterprise",
-            name: "Enterprise",
-            desc: "Dedicated PostgreSQL isolation, SLA & custom integrations.",
-            prices: { monthly: "Custom", halfYear: "Custom", annual: "Custom" },
-            setupNote: "Tailored for multi-branch businesses",
-            ctaLabel: "Contact sales",
-            limits: [
-              "Dedicated isolated database",
-              "Custom ERP / payment webhooks",
-              "Dedicated technical account lead",
-            ],
+            name: "Premium",
+            desc: "Extended support and team management.",
+            prices: { monthly: "349 AZN", halfYear: "349 AZN", annual: "349 AZN" },
+            setupNote: "First month: 175 AZN",
+            ctaLabel: "Choose plan",
+            limits: ["Everything in Standard","Unlimited staff","Priority technical support","Monthly report"],
           },
         ]
       : [
           {
             id: "starter",
             name: "Başlanğıc",
-            desc: "Vahid mesajlaşma və ilk CRM axınına keçən bizneslər üçün.",
-            prices: { monthly: "49 AZN", halfYear: "44 AZN", annual: "39 AZN" },
-            setupNote: "Quraşdırma haqqı yoxdur · 14 gün pulsuz sınaq",
-            ctaLabel: "14 gün pulsuz sına",
-            limits: [
-              "1 kanal (Telegram qutusu)",
-              "500 müraciətədək Kanban lövhəsi",
-              "Təkrar rezervasiyalara nəzarət",
-            ],
+            desc: "Müştəri və rezervasiyaların idarə edilməsi.",
+            prices: { monthly: "99 AZN", halfYear: "99 AZN", annual: "99 AZN" },
+            setupNote: "İlk ay: 49 AZN",
+            ctaLabel: "Paketi seç",
+            limits: ["Müştəri bazası","Rezervasiya","İşçi paneli"],
           },
           {
             id: "growth",
-            name: "İnkişaf",
-            desc: "WhatsApp Cloud API və avtomatik görüş rezervasiyası.",
+            name: "Standart",
+            desc: "WhatsApp və Pani AI ilə komanda işi.",
             popular: true,
-            popularBadge: "Ən populyar",
-            prices: { monthly: "89 AZN", halfYear: "80 AZN", annual: "71 AZN" },
-            setupNote: "Quraşdırma: 100 AZN (birdəfəlik) · 14 gün pulsuz sınaq",
-            ctaLabel: "14 gün pulsuz sına",
-            limits: [
-              "WhatsApp + Instagram + Telegram",
-              "AI köməkçi və sürətli cavablar",
-              "Operator bölgüsü və canlı ötürmə",
-            ],
+            popularBadge: "Tövsiyə olunan",
+            prices: { monthly: "199 AZN", halfYear: "199 AZN", annual: "199 AZN" },
+            setupNote: "İlk ay: 99 AZN",
+            ctaLabel: "Paketi seç",
+            limits: ["Başlanğıc paketinin bütün imkanları","WhatsApp bağlantısı","Pani AI köməkçi","Canlı quraşdırma"],
           },
           {
             id: "pro",
-            name: "Pro",
-            desc: "Tam avtomatlaşdırma, çoxfiliallı idarəetmə və AI satış köməkçisi.",
-            prices: { monthly: "149 AZN", halfYear: "134 AZN", annual: "119 AZN" },
-            setupNote: "Quraşdırma: 100 AZN (birdəfəlik) · Fərdi qoşulma",
-            ctaLabel: "Pro planını seç",
-            limits: [
-              "Bütün kanallar + REST Webhook & n8n",
-              "Limitsiz fərdi CRM sahələri",
-              "Tam audit jurnalı və filial nəzarəti",
-            ],
-          },
-          {
-            id: "enterprise",
-            name: "Korporativ",
-            desc: "Təcrid olunmuş PostgreSQL bazası, SLA və xüsusi inteqrasiyalar.",
-            prices: { monthly: "Fərdi", halfYear: "Fərdi", annual: "Fərdi" },
-            setupNote: "Çoxfiliallı bizneslər və xidmət şəbəkələri üçün",
-            ctaLabel: "Satışla əlaqə",
-            limits: [
-              "Fərdi təcrid olunmuş verilənlər bazası",
-              "Xüsusi ödəniş və ERP inteqrasiyası",
-              "Fərdi texniki dəstək meneceri",
-            ],
+            name: "Premium",
+            desc: "Genişləndirilmiş dəstək və komanda idarəetməsi.",
+            prices: { monthly: "349 AZN", halfYear: "349 AZN", annual: "349 AZN" },
+            setupNote: "İlk ay: 175 AZN",
+            ctaLabel: "Paketi seç",
+            limits: ["Standart paketinin bütün imkanları","Limitsiz işçi","Öncəlikli texniki dəstək","Aylıq hesabat"],
           },
         ];
 
@@ -155,8 +105,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
     locale === "en"
       ? [
           {
-            title: "Omnichannel Inbox",
-            desc: "Manage WhatsApp, Instagram DMs, and Telegram inquiries in one unified screen.",
+            title: "WhatsApp messaging",
+            desc: "Manage customer WhatsApp inquiries with the Standard and Premium plans.",
             tone: "lavender" as const,
           },
           {
@@ -177,8 +127,8 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
         ]
       : [
           {
-            title: "Geniş çeşidli ünsiyyət",
-            desc: "WhatsApp, Instagram DM və Telegram müraciətlərini tək vahid qutuda idarə edin.",
+            title: "WhatsApp mesajlaşması",
+            desc: "Standart və Premium paketlərdə müştəri WhatsApp müraciətlərini idarə edin.",
             tone: "lavender" as const,
           },
           {
@@ -202,12 +152,12 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
     locale === "en"
       ? [
           {
-            q: "Can we switch between monthly and annual billing?",
-            a: "Yes. You can start with a 14-day free trial and switch billing cycles without losing customer or lead records.",
+            q: "What is the first-month price?",
+            a: "Starter: 49 AZN; Standard: 99 AZN; Premium: 175 AZN. Regular monthly pricing applies afterward.",
           },
           {
-            q: "What does the 100 AZN one-time setup fee cover?",
-            a: "Growth and Pro plans include an optional 100 AZN one-time onboarding fee covering WhatsApp Cloud API / Instagram / Telegram setup, sales pipeline configuration, and team onboarding. Starter has no setup fee.",
+            q: "Which plans include live onboarding?",
+            a: "Standard and Premium include live onboarding and WhatsApp connection.",
           },
           {
             q: "Are there any extra fees for WhatsApp Cloud API?",
@@ -220,12 +170,12 @@ export default async function PricingPage({ params }: PageProps<"/[lang]/pricing
         ]
       : [
           {
-            q: "Aylıq və illik ödəniş arasında keçid etmək mümkündür?",
-            a: "Bəli. 14 günlük pulsuz sınaqla başlaya və məlumatlarınızı itirmədən istənilən vaxt ödəniş dövrünü dəyişə bilərsiniz.",
+            q: "İlk ayın qiyməti nə qədərdir?",
+            a: "Başlanğıc 49 AZN, Standart 99 AZN, Premium 175 AZN. Sonrakı aylarda adi aylıq qiymət tətbiq olunur.",
           },
           {
-            q: "100 AZN birdəfəlik quraşdırma haqqı nələri əhatə edir?",
-            a: "İnkişaf və Pro planlarında tətbiq olunan 100 AZN birdəfəlik quraşdırma haqqı WhatsApp Cloud API, Instagram və Telegram qoşulmasını, satış mərhələlərinin qurulmasını və komanda təlimini əhatə edir. Başlanğıc planında quraşdırma haqqı yoxdur.",
+            q: "Canlı quraşdırma hansı paketlərə daxildir?",
+            a: "Standart və Premium paketlərinə canlı quraşdırma və WhatsApp bağlantısı daxildir.",
           },
           {
             q: "WhatsApp Cloud API üçün əlavə ödəniş varmı?",

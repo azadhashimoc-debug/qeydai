@@ -232,12 +232,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <span className="sr-only">{l.hero.channels.whatsapp}</span>
                 </li>
                 <li>
-                  <InstagramIcon size={56} />
-                  <span className="sr-only">{l.hero.channels.instagram}</span>
+                  {false && <InstagramIcon size={56} />}
                 </li>
-                <li>
-                  <TelegramIcon size={36} />
-                  <span className="sr-only">{l.hero.channels.telegram}</span>
+                <li style={{ display: "none" }}>
+                  {false && <TelegramIcon size={36} />}
                 </li>
               </ul>
 

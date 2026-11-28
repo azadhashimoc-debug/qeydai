@@ -1,4 +1,4 @@
-export const CHANNEL_SLUGS = ["whatsapp", "instagram", "telegram", "webhook-api"] as const;
+export const CHANNEL_SLUGS: readonly ("whatsapp" | "instagram" | "telegram" | "webhook-api")[] = ["whatsapp", "webhook-api"];
 export type ChannelSlug = (typeof CHANNEL_SLUGS)[number];
 
 export const BLOG_SLUGS = [

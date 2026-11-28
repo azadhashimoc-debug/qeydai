@@ -282,7 +282,7 @@ export function ChannelsTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
       )}
 
       <div className="grid gap-4">
-        {(statuses ?? []).map((st) => {
+        {(statuses ?? []).filter((st) => st.channel === "whatsapp").map((st) => {
           const { name, Icon } = META[st.channel];
           const chConnections = connections.filter((item) => item.channel === st.channel && item.active);
           const isEditing = editingChannel === st.channel;

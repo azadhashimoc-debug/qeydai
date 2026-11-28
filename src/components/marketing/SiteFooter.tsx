@@ -67,10 +67,7 @@ export function SiteFooter({
                   <Link href={`/${lang}/channels/whatsapp`}>{c.channels.whatsapp}</Link>
                 </li>
                 <li>
-                  <Link href={`/${lang}/channels/instagram`}>{c.channels.instagram}</Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/channels/telegram`}>{c.channels.telegram}</Link>
+                  {/* Frozen Instagram and Telegram links are not rendered. */}
                 </li>
                 <li>
                   <Link href={`/${lang}/channels/webhook-api`}>{c.channels.api}</Link>

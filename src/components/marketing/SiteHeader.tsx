@@ -50,8 +50,6 @@ export function SiteHeader({
   const channelsItems = [
     { href: `/${lang}/channels`, title: subNav.channels.hubTitle, desc: subNav.channels.hubDesc },
     { href: `/${lang}/channels/whatsapp`, title: subNav.channels.whatsappTitle, desc: subNav.channels.whatsappDesc },
-    { href: `/${lang}/channels/instagram`, title: subNav.channels.instagramTitle, desc: subNav.channels.instagramDesc },
-    { href: `/${lang}/channels/telegram`, title: subNav.channels.telegramTitle, desc: subNav.channels.telegramDesc },
     { href: `/${lang}/channels/webhook-api`, title: subNav.channels.apiTitle, desc: subNav.channels.apiDesc },
     { href: `/${lang}/tools`, title: subNav.channels.toolsTitle, desc: subNav.channels.toolsDesc },
   ];

@@ -35,6 +35,7 @@ tsc-out.txt
 panel.html
 test-results-serial/
 .playwright-mcp/
+.status-tmp.txt
 
 # env files (can opt-in for committing if needed)
 .env*

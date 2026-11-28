@@ -118,6 +118,11 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
     setCheckingOutPlan(plan);
     setCheckoutNotice(null);
     try {
+      // Paycell checkout is frozen; activation is handled through the existing contact page.
+      if (plan) {
+        window.location.assign(`/${lang}/contact`);
+        return;
+      }
       const res = await fetch("/api/billing/paycell/checkout", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -286,7 +291,7 @@ export function PlansTab({ lang, d }: { lang: "az" | "en"; d: PanelDict }) {
           </div>
           {!checkoutConfigured && (
             <span className="rounded-md border border-line bg-surface px-2.5 py-1 text-xs font-medium text-muted">
-              {lang === "en" ? "Invoice / Paycell setup" : "Faktura / Paycell aktivasiyası"}
+              <Link href={`/${lang}/contact`}>{lang === "en" ? "Contact us for activation" : "Aktivləşdirmə üçün əlaqə"}</Link>
             </span>
           )}
         </div>
